@@ -1,18 +1,11 @@
-//
-//  Hello_TriangleTests.m
-//  Hello_TriangleTests
-//
-//  Created by Daniel Ginsburg on 9/23/13.
-//  Copyright (c) 2013 Daniel Ginsburg. All rights reserved.
-//
 
 #import <XCTest/XCTest.h>
 
-@interface Hello_TriangleTests : XCTestCase
+@interface iOSSRETests : XCTestCase
 
 @end
 
-@implementation Hello_TriangleTests
+@implementation iOSSRETests
 
 - (void)setUp
 {

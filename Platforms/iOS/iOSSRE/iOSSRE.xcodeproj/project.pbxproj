@@ -465,19 +465,18 @@
 		7626527317F10E6C007CCD43 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Hello_Triangle.app/Hello_Triangle";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Hello_Triangle/Hello_Triangle-Prefix.pch";
+				GCC_PREFIX_HEADER = "iOSSRE/iOSSRE-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "Hello_TriangleTests/Hello_TriangleTests-Info.plist";
+				INFOPLIST_FILE = "iOSSRETests/iOSSRETests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -487,15 +486,14 @@
 		7626527417F10E6C007CCD43 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Hello_Triangle.app/Hello_Triangle";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Hello_Triangle/Hello_Triangle-Prefix.pch";
-				INFOPLIST_FILE = "Hello_TriangleTests/Hello_TriangleTests-Info.plist";
+				GCC_PREFIX_HEADER = "iOSSRE/iOSSRE-Prefix.pch";
+				INFOPLIST_FILE = "iOSSRETests/iOSSRETests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
