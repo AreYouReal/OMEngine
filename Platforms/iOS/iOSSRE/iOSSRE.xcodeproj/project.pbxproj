@@ -17,8 +17,6 @@
 		7626526217F10E6C007CCD43 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7626523917F10E6C007CCD43 /* UIKit.framework */; };
 		9418FFD91AFB5E990058E1DE /* Main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9418FFD81AFB5E990058E1DE /* Main.cpp */; };
 		9418FFDF1AFB5EB00058E1DE /* esShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9418FFDB1AFB5EB00058E1DE /* esShader.cpp */; };
-		9418FFE01AFB5EB00058E1DE /* esShapes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9418FFDC1AFB5EB00058E1DE /* esShapes.cpp */; };
-		9418FFE11AFB5EB00058E1DE /* esTransform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9418FFDD1AFB5EB00058E1DE /* esTransform.cpp */; };
 		9418FFE21AFB5EB00058E1DE /* esUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9418FFDE1AFB5EB00058E1DE /* esUtil.cpp */; };
 		9418FFF51AFB5F0F0058E1DE /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9418FFEF1AFB5F0F0058E1DE /* AppDelegate.mm */; };
 		9418FFF61AFB5F0F0058E1DE /* FileWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9418FFF11AFB5F0F0058E1DE /* FileWrapper.mm */; };
@@ -55,8 +53,6 @@
 		9418FFD81AFB5E990058E1DE /* Main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Main.cpp; path = CPPSources/Main.cpp; sourceTree = "<group>"; };
 		9418FFDA1AFB5EA60058E1DE /* esUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = esUtil.h; path = Common/Include/esUtil.h; sourceTree = "<group>"; };
 		9418FFDB1AFB5EB00058E1DE /* esShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = esShader.cpp; path = Common/Source/esShader.cpp; sourceTree = "<group>"; };
-		9418FFDC1AFB5EB00058E1DE /* esShapes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = esShapes.cpp; path = Common/Source/esShapes.cpp; sourceTree = "<group>"; };
-		9418FFDD1AFB5EB00058E1DE /* esTransform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = esTransform.cpp; path = Common/Source/esTransform.cpp; sourceTree = "<group>"; };
 		9418FFDE1AFB5EB00058E1DE /* esUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = esUtil.cpp; path = Common/Source/esUtil.cpp; sourceTree = "<group>"; };
 		9418FFEE1AFB5F0F0058E1DE /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9418FFEF1AFB5F0F0058E1DE /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
@@ -157,8 +153,6 @@
 			isa = PBXGroup;
 			children = (
 				9418FFDB1AFB5EB00058E1DE /* esShader.cpp */,
-				9418FFDC1AFB5EB00058E1DE /* esShapes.cpp */,
-				9418FFDD1AFB5EB00058E1DE /* esTransform.cpp */,
 				9418FFDE1AFB5EB00058E1DE /* esUtil.cpp */,
 				9418FFDA1AFB5EA60058E1DE /* esUtil.h */,
 				9418FFF91AFB60F50058E1DE /* Main.h */,
@@ -303,8 +297,6 @@
 				9418FFF61AFB5F0F0058E1DE /* FileWrapper.mm in Sources */,
 				9418FFD91AFB5E990058E1DE /* Main.cpp in Sources */,
 				9418FFF51AFB5F0F0058E1DE /* AppDelegate.mm in Sources */,
-				9418FFE11AFB5EB00058E1DE /* esTransform.cpp in Sources */,
-				9418FFE01AFB5EB00058E1DE /* esShapes.cpp in Sources */,
 				9418FFF71AFB5F0F0058E1DE /* main.m in Sources */,
 				9418FFE21AFB5EB00058E1DE /* esUtil.cpp in Sources */,
 			);

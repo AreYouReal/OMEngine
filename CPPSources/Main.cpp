@@ -37,7 +37,7 @@ int Main::Init ( ESContext *esContext ){
    // Store the program object
    userData->programObject = programObject;
 
-   glClearColor ( 1.0f, 1.0f, 1.0f, 0.0f );
+   glClearColor ( 0.0f, 0.0f, 0.0f, 1.0f );
    return TRUE;
 }
 

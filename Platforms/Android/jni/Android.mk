@@ -11,8 +11,6 @@ LOCAL_CFLAGS    += -std=c++11
 
 
 LOCAL_SRC_FILES := $(COMMON_SRC_PATH)/esShader.cpp \
-				   $(COMMON_SRC_PATH)/esShapes.cpp \
-				   $(COMMON_SRC_PATH)/esTransform.cpp \
 				   $(COMMON_SRC_PATH)/esUtil.cpp \
 				   $(COMMON_SRC_PATH)/Android/esUtil_Android.cpp \
 				   $(SRC_PATH)/CPPSources/Main.cpp \
