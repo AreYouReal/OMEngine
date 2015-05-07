@@ -5,7 +5,7 @@
         android:label="SRE"
         android:hasCode="false">
          <activity android:name="android.app.NativeActivity"
-                android:label="HelloTriangle"
+                android:label="SREngine"
                 android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
 				android:launchMode="singleTask"
                 android:configChanges="orientation|keyboardHidden">

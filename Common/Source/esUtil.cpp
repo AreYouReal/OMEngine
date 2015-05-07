@@ -162,10 +162,10 @@ GLboolean ESUTIL_API esCreateWindow ( ESContext *esContext, const char *title, G
    esContext->height = height;
 #endif
 
-   if ( !WinCreate ( esContext, title ) )
-   {
-      return GL_FALSE;
-   }
+//   if ( !WinCreate ( esContext, title ) )
+//   {
+//      return GL_FALSE;
+//   }
 
    esContext->eglDisplay = eglGetDisplay( esContext->eglNativeDisplay );
    if ( esContext->eglDisplay == EGL_NO_DISPLAY )
