@@ -37,8 +37,7 @@
 
 #import "ViewController.h"
 #include "esUtil.h"
-
-extern void esMain( ESContext *esContext );
+#include "main.h"
 
 
 @interface ViewController ()
@@ -107,7 +106,7 @@ extern void esMain( ESContext *esContext );
     
     memset( &_esContext, 0, sizeof( _esContext ) );
   
-    esMain( &_esContext );
+    Main::esMain(&_esContext);
 }
 
 - (void)tearDownGL

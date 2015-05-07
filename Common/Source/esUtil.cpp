@@ -325,7 +325,8 @@ static esFile *esFileOpen ( void *ioContext, const char *fileName )
 #else
 #ifdef __APPLE__
    // iOS: Remap the filename to a path that can be opened from the bundle.
-   fileName = GetBundleFileName ( fileName );
+//   fileName = GetBundleFileName ( fileName );
+    fileName = "";
 #endif
 
    pFile = fopen ( fileName, "rb" );
