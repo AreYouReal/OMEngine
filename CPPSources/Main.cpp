@@ -1,4 +1,5 @@
 #include "main.h"
+#include "ShaderHelper.h"
 
 typedef struct{
    GLuint programObject;
@@ -28,7 +29,7 @@ int Main::Init ( ESContext *esContext ){
 
     GLuint programObject;
 
-    programObject = esLoadProgram(vShaderStr, fShaderStr);
+    programObject = ShaderHelper::createProgram(vShaderStr, fShaderStr);
     
    if ( programObject == 0 ){
       return 0;

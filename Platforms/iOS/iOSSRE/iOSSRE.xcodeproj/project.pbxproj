@@ -16,12 +16,12 @@
 		7626526117F10E6C007CCD43 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7626523517F10E6C007CCD43 /* Foundation.framework */; };
 		7626526217F10E6C007CCD43 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7626523917F10E6C007CCD43 /* UIKit.framework */; };
 		9418FFD91AFB5E990058E1DE /* Main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9418FFD81AFB5E990058E1DE /* Main.cpp */; };
-		9418FFDF1AFB5EB00058E1DE /* esShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9418FFDB1AFB5EB00058E1DE /* esShader.cpp */; };
 		9418FFE21AFB5EB00058E1DE /* esUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9418FFDE1AFB5EB00058E1DE /* esUtil.cpp */; };
 		9418FFF51AFB5F0F0058E1DE /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9418FFEF1AFB5F0F0058E1DE /* AppDelegate.mm */; };
 		9418FFF61AFB5F0F0058E1DE /* FileWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9418FFF11AFB5F0F0058E1DE /* FileWrapper.mm */; };
 		9418FFF71AFB5F0F0058E1DE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9418FFF21AFB5F0F0058E1DE /* main.m */; };
 		9418FFF81AFB5F0F0058E1DE /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9418FFF41AFB5F0F0058E1DE /* ViewController.mm */; };
+		9420DCE81B007EBD006D2A7E /* ShaderHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9420DCE61B007EBD006D2A7E /* ShaderHelper.cpp */; };
 		F3D5E1081AF8F23E00DD216B /* iOSSRETests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3D5E1071AF8F23E00DD216B /* iOSSRETests-Info.plist */; };
 		F3D5E10B1AF8F24400DD216B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F3D5E1091AF8F24400DD216B /* InfoPlist.strings */; };
 		F3D5E1111AF8F2CD00DD216B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F3D5E10F1AF8F2CD00DD216B /* InfoPlist.strings */; };
@@ -52,7 +52,6 @@
 		7626525F17F10E6C007CCD43 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		9418FFD81AFB5E990058E1DE /* Main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Main.cpp; path = CPPSources/Main.cpp; sourceTree = "<group>"; };
 		9418FFDA1AFB5EA60058E1DE /* esUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = esUtil.h; path = Common/Include/esUtil.h; sourceTree = "<group>"; };
-		9418FFDB1AFB5EB00058E1DE /* esShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = esShader.cpp; path = Common/Source/esShader.cpp; sourceTree = "<group>"; };
 		9418FFDE1AFB5EB00058E1DE /* esUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = esUtil.cpp; path = Common/Source/esUtil.cpp; sourceTree = "<group>"; };
 		9418FFEE1AFB5F0F0058E1DE /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9418FFEF1AFB5F0F0058E1DE /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
@@ -62,6 +61,8 @@
 		9418FFF31AFB5F0F0058E1DE /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		9418FFF41AFB5F0F0058E1DE /* ViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController.mm; sourceTree = "<group>"; };
 		9418FFF91AFB60F50058E1DE /* Main.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = Main.h; path = CPPSources/Main.h; sourceTree = "<group>"; };
+		9420DCE61B007EBD006D2A7E /* ShaderHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShaderHelper.cpp; path = CPPSources/Shaders/ShaderHelper.cpp; sourceTree = "<group>"; };
+		9420DCE71B007EBD006D2A7E /* ShaderHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShaderHelper.h; path = CPPSources/Shaders/ShaderHelper.h; sourceTree = "<group>"; };
 		F3D5E1051AF8F23400DD216B /* iOSSRETests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iOSSRETests.m; path = iOSSRETests/iOSSRETests.m; sourceTree = SOURCE_ROOT; };
 		F3D5E1071AF8F23E00DD216B /* iOSSRETests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "iOSSRETests-Info.plist"; path = "iOSSRETests/iOSSRETests-Info.plist"; sourceTree = SOURCE_ROOT; };
 		F3D5E10A1AF8F24400DD216B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = iOSSRETests/en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
@@ -152,7 +153,7 @@
 		7626523F17F10E6C007CCD43 /* iOSSRE */ = {
 			isa = PBXGroup;
 			children = (
-				9418FFDB1AFB5EB00058E1DE /* esShader.cpp */,
+				9420DCE41B007E0D006D2A7E /* Shaders */,
 				9418FFDE1AFB5EB00058E1DE /* esUtil.cpp */,
 				9418FFDA1AFB5EA60058E1DE /* esUtil.h */,
 				9418FFF91AFB60F50058E1DE /* Main.h */,
@@ -191,6 +192,15 @@
 				F3D5E1071AF8F23E00DD216B /* iOSSRETests-Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9420DCE41B007E0D006D2A7E /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				9420DCE61B007EBD006D2A7E /* ShaderHelper.cpp */,
+				9420DCE71B007EBD006D2A7E /* ShaderHelper.h */,
+			);
+			name = Shaders;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -292,8 +302,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9420DCE81B007EBD006D2A7E /* ShaderHelper.cpp in Sources */,
 				9418FFF81AFB5F0F0058E1DE /* ViewController.mm in Sources */,
-				9418FFDF1AFB5EB00058E1DE /* esShader.cpp in Sources */,
 				9418FFF61AFB5F0F0058E1DE /* FileWrapper.mm in Sources */,
 				9418FFD91AFB5E990058E1DE /* Main.cpp in Sources */,
 				9418FFF51AFB5F0F0058E1DE /* AppDelegate.mm in Sources */,

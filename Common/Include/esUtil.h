@@ -124,26 +124,6 @@ void ESUTIL_API esRegisterKeyFunc ( ESContext *esContext,
 void ESUTIL_API esLogMessage ( const char *formatStr, ... );
 
 //
-///
-/// \brief Load a shader, check for compile errors, print error messages to output log
-/// \param type Type of shader (GL_VERTEX_SHADER or GL_FRAGMENT_SHADER)
-/// \param shaderSrc Shader source string
-/// \return A new shader object on success, 0 on failure
-//
-GLuint ESUTIL_API esLoadShader ( GLenum type, const char *shaderSrc );
-
-//
-///
-/// \brief Load a vertex and fragment shader, create a program object, link program.
-///        Errors output to log.
-/// \param vertShaderSrc Vertex shader source code
-/// \param fragShaderSrc Fragment shader source code
-/// \return A new program object linked with the vertex/fragment shader pair, 0 on failure
-//
-GLuint ESUTIL_API esLoadProgram ( const char *vertShaderSrc, const char *fragShaderSrc );
-
-
-//
 /// \brief Generates geometry for a sphere.  Allocates memory for the vertex data and stores
 ///        the results in the arrays.  Generate index list for a TRIANGLE_STRIP
 /// \param numSlices The number of slices in the sphere

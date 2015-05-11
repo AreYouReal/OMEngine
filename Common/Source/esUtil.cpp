@@ -101,16 +101,14 @@ EGLint GetContextRenderableType ( EGLDisplay eglDisplay )
 //          ES_WINDOW_STENCIL     - specifies that a stencil buffer should be created
 //          ES_WINDOW_MULTISAMPLE - specifies that a multi-sample buffer should be created
 //
-GLboolean ESUTIL_API esCreateWindow ( ESContext *esContext, const char *title, GLint width, GLint height, GLuint flags )
-{
+GLboolean ESUTIL_API esCreateWindow ( ESContext *esContext, const char *title, GLint width, GLint height, GLuint flags ){
 #ifndef __APPLE__
    EGLConfig config;
    EGLint majorVersion;
    EGLint minorVersion;
    EGLint contextAttribs[] = { EGL_CONTEXT_CLIENT_VERSION, 3, EGL_NONE };
 
-   if ( esContext == NULL )
-   {
+   if ( esContext == NULL ){
       return GL_FALSE;
    }
 
@@ -124,27 +122,19 @@ GLboolean ESUTIL_API esCreateWindow ( ESContext *esContext, const char *title, G
    esContext->height = height;
 #endif
 
-//   if ( !WinCreate ( esContext, title ) )
-//   {
-//      return GL_FALSE;
-//   }
-
    esContext->eglDisplay = eglGetDisplay( esContext->eglNativeDisplay );
-   if ( esContext->eglDisplay == EGL_NO_DISPLAY )
-   {
+   if ( esContext->eglDisplay == EGL_NO_DISPLAY ){
       return GL_FALSE;
    }
 
    // Initialize EGL
-   if ( !eglInitialize ( esContext->eglDisplay, &majorVersion, &minorVersion ) )
-   {
+   if ( !eglInitialize ( esContext->eglDisplay, &majorVersion, &minorVersion ) ){
       return GL_FALSE;
    }
 
    {
       EGLint numConfigs = 0;
-      EGLint attribList[] =
-      {
+      EGLint attribList[] = {
          EGL_RED_SIZE,       5,
          EGL_GREEN_SIZE,     6,
          EGL_BLUE_SIZE,      5,
@@ -159,13 +149,11 @@ GLboolean ESUTIL_API esCreateWindow ( ESContext *esContext, const char *title, G
       };
 
       // Choose config
-      if ( !eglChooseConfig ( esContext->eglDisplay, attribList, &config, 1, &numConfigs ) )
-      {
+      if ( !eglChooseConfig ( esContext->eglDisplay, attribList, &config, 1, &numConfigs ) ){
          return GL_FALSE;
       }
 
-      if ( numConfigs < 1 )
-      {
+      if ( numConfigs < 1 ){
          return GL_FALSE;
       }
    }
@@ -179,13 +167,11 @@ GLboolean ESUTIL_API esCreateWindow ( ESContext *esContext, const char *title, G
       ANativeWindow_setBuffersGeometry ( esContext->eglNativeWindow, 0, 0, format );
    }
 #endif // ANDROID
-
    // Create a surface
    esContext->eglSurface = eglCreateWindowSurface ( esContext->eglDisplay, config, 
                                                     esContext->eglNativeWindow, NULL );
 
-   if ( esContext->eglSurface == EGL_NO_SURFACE )
-   {
+   if ( esContext->eglSurface == EGL_NO_SURFACE ){
       return GL_FALSE;
    }
 
@@ -193,15 +179,13 @@ GLboolean ESUTIL_API esCreateWindow ( ESContext *esContext, const char *title, G
    esContext->eglContext = eglCreateContext ( esContext->eglDisplay, config, 
                                               EGL_NO_CONTEXT, contextAttribs );
 
-   if ( esContext->eglContext == EGL_NO_CONTEXT )
-   {
+   if ( esContext->eglContext == EGL_NO_CONTEXT ){
       return GL_FALSE;
    }
 
    // Make the context current
    if ( !eglMakeCurrent ( esContext->eglDisplay, esContext->eglSurface, 
-                          esContext->eglSurface, esContext->eglContext ) )
-   {
+                          esContext->eglSurface, esContext->eglContext ) ){
       return GL_FALSE;
    }
 
@@ -213,24 +197,21 @@ GLboolean ESUTIL_API esCreateWindow ( ESContext *esContext, const char *title, G
 ///
 //  esRegisterDrawFunc()
 //
-void ESUTIL_API esRegisterDrawFunc ( ESContext *esContext, void ( ESCALLBACK *drawFunc ) ( ESContext * ) )
-{
+void ESUTIL_API esRegisterDrawFunc ( ESContext *esContext, void ( ESCALLBACK *drawFunc ) ( ESContext * ) ){
    esContext->drawFunc = drawFunc;
 }
 
 ///
 //  esRegisterShutdownFunc()
 //
-void ESUTIL_API esRegisterShutdownFunc ( ESContext *esContext, void ( ESCALLBACK *shutdownFunc ) ( ESContext * ) )
-{
+void ESUTIL_API esRegisterShutdownFunc ( ESContext *esContext, void ( ESCALLBACK *shutdownFunc ) ( ESContext * ) ){
    esContext->shutdownFunc = shutdownFunc;
 }
 
 ///
 //  esRegisterUpdateFunc()
 //
-void ESUTIL_API esRegisterUpdateFunc ( ESContext *esContext, void ( ESCALLBACK *updateFunc ) ( ESContext *, float ) )
-{
+void ESUTIL_API esRegisterUpdateFunc ( ESContext *esContext, void ( ESCALLBACK *updateFunc ) ( ESContext *, float ) ){
    esContext->updateFunc = updateFunc;
 }
 
@@ -239,8 +220,7 @@ void ESUTIL_API esRegisterUpdateFunc ( ESContext *esContext, void ( ESCALLBACK *
 //  esRegisterKeyFunc()
 //
 void ESUTIL_API esRegisterKeyFunc ( ESContext *esContext,
-                                    void ( ESCALLBACK *keyFunc ) ( ESContext *, unsigned char, int, int ) )
-{
+                                    void ( ESCALLBACK *keyFunc ) ( ESContext *, unsigned char, int, int ) ){
    esContext->keyFunc = keyFunc;
 }
 
@@ -250,8 +230,7 @@ void ESUTIL_API esRegisterKeyFunc ( ESContext *esContext,
 //
 //    Log an error message to the debug output for the platform
 //
-void ESUTIL_API esLogMessage ( const char *formatStr, ... )
-{
+void ESUTIL_API esLogMessage ( const char *formatStr, ... ){
    va_list params;
    char buf[BUFSIZ];
 
@@ -272,8 +251,7 @@ void ESUTIL_API esLogMessage ( const char *formatStr, ... )
 //
 //    Wrapper for platform specific File open
 //
-static esFile *esFileOpen ( void *ioContext, const char *fileName )
-{
+static esFile *esFileOpen ( void *ioContext, const char *fileName ){
    esFile *pFile = NULL;
 
 #ifdef ANDROID
@@ -302,8 +280,7 @@ static esFile *esFileOpen ( void *ioContext, const char *fileName )
 //
 //    Wrapper for platform specific File close
 //
-static void esFileClose ( esFile *pFile )
-{
+static void esFileClose ( esFile *pFile ){
    if ( pFile != NULL )
    {
 #ifdef ANDROID
@@ -320,8 +297,7 @@ static void esFileClose ( esFile *pFile )
 //
 //    Wrapper for platform specific File read
 //
-static int esFileRead ( esFile *pFile, int bytesToRead, void *buffer )
-{
+static int esFileRead ( esFile *pFile, int bytesToRead, void *buffer ){
    int bytesRead = 0;
 
    if ( pFile == NULL )
@@ -343,8 +319,7 @@ static int esFileRead ( esFile *pFile, int bytesToRead, void *buffer )
 //
 //    Loads a 8-bit, 24-bit or 32-bit TGA image from a file
 //
-char *ESUTIL_API esLoadTGA ( void *ioContext, const char *fileName, int *width, int *height )
-{
+char *ESUTIL_API esLoadTGA ( void *ioContext, const char *fileName, int *width, int *height ){
    char        *buffer;
    esFile      *fp;
    TGA_HEADER   Header;
