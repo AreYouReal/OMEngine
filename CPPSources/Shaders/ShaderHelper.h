@@ -8,6 +8,5 @@ public:
 private:
     static GLint checkCompileStatus(GLuint shader);
     static GLint checkLinkStatus(GLuint program);
-    
     static GLuint loadShader(GLenum shaderType, const char* shaderSource);
 };
