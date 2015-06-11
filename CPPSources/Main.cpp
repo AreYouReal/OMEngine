@@ -8,7 +8,7 @@ typedef struct{
 ///
 // Initialize the shader and program object
 //
-int Main::Init ( ESContext *esContext ){
+int Init ( ESContext *esContext ){
    UserData *userData = (UserData*)esContext->userData;
    char vShaderStr[] =
       "#version 300 es                          \n"
@@ -45,7 +45,7 @@ int Main::Init ( ESContext *esContext ){
 ///
 // Draw a triangle using the shader pair created in Init()
 //
-void Main::Draw ( ESContext *esContext ){
+void Draw ( ESContext *esContext ){
    UserData *userData = (UserData*)esContext->userData;
    GLfloat vVertices[] = {  0.0f,  0.5f, 0.0f,
                             -0.5f, -0.5f, 0.0f,
@@ -68,13 +68,13 @@ void Main::Draw ( ESContext *esContext ){
    glDrawArrays ( GL_TRIANGLES, 0, 3 );
 }
 
-void Main::Shutdown ( ESContext *esContext ){
+void Shutdown ( ESContext *esContext ){
    UserData *userData = (UserData*)esContext->userData;
 
    glDeleteProgram ( userData->programObject );
 }
 
-int Main::esMain ( ESContext *esContext ){
+int esMain ( ESContext *esContext ){
    esContext->userData = malloc ( sizeof ( UserData ) );
 
    esCreateWindow ( esContext, "Hello Triangle", 320, 240, ES_WINDOW_RGB );
