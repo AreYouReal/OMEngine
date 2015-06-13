@@ -1,5 +1,6 @@
 #include "main.h"
 #include "ShaderHelper.h"
+#include "SRUtils.h"
 
 typedef struct{
    GLuint programObject;
@@ -39,6 +40,8 @@ int Init ( ESContext *esContext ){
    userData->programObject = programObject;
 
    glClearColor ( 0.0f, 0.0f, 0.0f, 1.0f );
+    
+    readShaderFromFile(esContext, "vertex.glsl");
    return TRUE;
 }
 

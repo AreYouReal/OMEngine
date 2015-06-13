@@ -3,6 +3,10 @@
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <memory>
+#include <vector>
+
+#include "lodepng.h"
 
 #ifdef __APPLE__
 #include <OpenGLES/ES3/gl.h>
@@ -18,7 +22,12 @@
 #include <android/asset_manager.h>
 typedef AAsset srFile;
 #else
+#ifdef __APPLE__
+#include "FileWrapper.h"
+#endif
 typedef FILE srFile;
 #endif
 
 void logMessage(const char *formatString, ...);
+
+char* readShaderFromFile( void *ioContext, const char *fileName);

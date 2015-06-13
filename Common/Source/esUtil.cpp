@@ -199,11 +199,4 @@ void ESUTIL_API esRegisterKeyFunc ( ESContext *esContext,
 }
 
 
-///
-// esFileRead()
-//
-//    Wrapper for platform specific File open
-//
-
-
 
