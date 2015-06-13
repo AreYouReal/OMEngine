@@ -26,6 +26,7 @@
 		944E39711B0119C7003806EB /* q4d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 944E396D1B0119C7003806EB /* q4d.cpp */; };
 		944E39721B0119C7003806EB /* v3d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 944E396F1B0119C7003806EB /* v3d.cpp */; };
 		944E39741B0119F6003806EB /* m4d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 944E39731B0119F6003806EB /* m4d.cpp */; };
+		9453DEE11B2A0A2700C79DB3 /* SRUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9453DEDF1B2A0A2700C79DB3 /* SRUtils.cpp */; };
 		F3D5E1081AF8F23E00DD216B /* iOSSRETests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3D5E1071AF8F23E00DD216B /* iOSSRETests-Info.plist */; };
 		F3D5E10B1AF8F24400DD216B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F3D5E1091AF8F24400DD216B /* InfoPlist.strings */; };
 		F3D5E1111AF8F2CD00DD216B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F3D5E10F1AF8F2CD00DD216B /* InfoPlist.strings */; };
@@ -76,6 +77,8 @@
 		944E396F1B0119C7003806EB /* v3d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = v3d.cpp; path = CPPSources/Math/v3d.cpp; sourceTree = "<group>"; };
 		944E39701B0119C7003806EB /* v3d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = v3d.h; path = CPPSources/Math/v3d.h; sourceTree = "<group>"; };
 		944E39731B0119F6003806EB /* m4d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = m4d.cpp; path = CPPSources/Math/m4d.cpp; sourceTree = "<group>"; };
+		9453DEDF1B2A0A2700C79DB3 /* SRUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SRUtils.cpp; path = CPPSources/Utils/SRUtils.cpp; sourceTree = "<group>"; };
+		9453DEE01B2A0A2700C79DB3 /* SRUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SRUtils.h; path = CPPSources/Utils/SRUtils.h; sourceTree = "<group>"; };
 		F3D5E1051AF8F23400DD216B /* iOSSRETests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iOSSRETests.m; path = iOSSRETests/iOSSRETests.m; sourceTree = SOURCE_ROOT; };
 		F3D5E1071AF8F23E00DD216B /* iOSSRETests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "iOSSRETests-Info.plist"; path = "iOSSRETests/iOSSRETests-Info.plist"; sourceTree = SOURCE_ROOT; };
 		F3D5E10A1AF8F24400DD216B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = iOSSRETests/en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
@@ -166,6 +169,7 @@
 		7626523F17F10E6C007CCD43 /* iOSSRE */ = {
 			isa = PBXGroup;
 			children = (
+				9453DEDE1B2A080F00C79DB3 /* Utils */,
 				944E39671B01191F003806EB /* Math */,
 				9420DCE91B0115B0006D2A7E /* Objects */,
 				9420DCE41B007E0D006D2A7E /* Shaders */,
@@ -239,6 +243,15 @@
 				944E39701B0119C7003806EB /* v3d.h */,
 			);
 			name = Math;
+			sourceTree = "<group>";
+		};
+		9453DEDE1B2A080F00C79DB3 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				9453DEDF1B2A0A2700C79DB3 /* SRUtils.cpp */,
+				9453DEE01B2A0A2700C79DB3 /* SRUtils.h */,
+			);
+			name = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -350,6 +363,7 @@
 				944E39741B0119F6003806EB /* m4d.cpp in Sources */,
 				9418FFF71AFB5F0F0058E1DE /* main.m in Sources */,
 				944E396B1B01198C003806EB /* Mesh.cpp in Sources */,
+				9453DEE11B2A0A2700C79DB3 /* SRUtils.cpp in Sources */,
 				9418FFE21AFB5EB00058E1DE /* esUtil.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

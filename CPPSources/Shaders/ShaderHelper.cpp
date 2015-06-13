@@ -55,7 +55,7 @@ void ShaderHelper::printShaderInfoLog(GLuint shader){
     if(infoLen > 1){
         char* infoLog = (char*)malloc(sizeof(char) * infoLen);
         glGetShaderInfoLog(shader, infoLen, NULL, infoLog);
-        esLogMessage("Error compiling shaders: \n%s\n", infoLog);
+        logMessage("Error compiling shaders: \n%s\n", infoLog);
         free(infoLog);
     }
 }
@@ -78,7 +78,7 @@ void ShaderHelper::printProgramInfoLog(GLuint program){
     if(infoLen > 1){
         char *infoLog = (char*)malloc(sizeof(char) * infoLen);
         glGetProgramInfoLog(program, infoLen, NULL, infoLog);
-        esLogMessage("Error linking program: \n%s\n", infoLog);
+        logMessage("Error linking program: \n%s\n", infoLog);
         free(infoLog);
     }
 }
@@ -86,11 +86,11 @@ void ShaderHelper::printProgramInfoLog(GLuint program){
 void ShaderHelper::printShaderInfo(GLuint shader, GLenum pname){
     GLint pStore;
     glGetShaderiv(shader, pname, &pStore);
-    esLogMessage("Shader info for param %X  : %d\n", pname, pStore );
+    logMessage("Shader info for param %X  : %d\n", pname, pStore );
 }
 
 void ShaderHelper::printShaderProgramInfo(GLuint program, GLenum pname){
     GLint pStore;
     glGetProgramiv(program, pname, &pStore);
-    esLogMessage("Program info for param %X  : %d\n", pname, pStore );
+    logMessage("Program info for param %X  : %d\n", pname, pStore );
 }

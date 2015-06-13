@@ -226,27 +226,6 @@ void ESUTIL_API esRegisterKeyFunc ( ESContext *esContext,
 
 
 ///
-// esLogMessage()
-//
-//    Log an error message to the debug output for the platform
-//
-void ESUTIL_API esLogMessage ( const char *formatStr, ... ){
-   va_list params;
-   char buf[BUFSIZ];
-
-   va_start ( params, formatStr );
-   vsprintf ( buf, formatStr, params );
-
-#ifdef ANDROID
-   __android_log_print ( ANDROID_LOG_INFO, "esUtil" , "%s", buf );
-#else
-   printf ( "%s", buf );
-#endif
-
-   va_end ( params );
-}
-
-///
 // esFileRead()
 //
 //    Wrapper for platform specific File open
@@ -331,7 +310,7 @@ char *ESUTIL_API esLoadTGA ( void *ioContext, const char *fileName, int *width, 
    if ( fp == NULL )
    {
       // Log error as 'error in opening the input file from apk'
-      esLogMessage ( "esLoadTGA FAILED to load : { %s }\n", fileName );
+//      esLogMessage ( "esLoadTGA FAILED to load : { %s }\n", fileName );
       return NULL;
    }
 
