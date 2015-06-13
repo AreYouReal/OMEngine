@@ -12,5 +12,13 @@
 #include <EGL/eglext.h>
 #endif
 
+#ifdef ANDROID
+#include <android/log.h>
+#include <android_native_app_glue.h>
+#include <android/asset_manager.h>
+typedef AAsset srFile;
+#else
+typedef FILE srFile;
+#endif
 
 void logMessage(const char *formatString, ...);

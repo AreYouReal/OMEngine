@@ -84,13 +84,6 @@ void ESUTIL_API esRegisterUpdateFunc ( ESContext *esContext, void ( ESCALLBACK *
 
 void ESUTIL_API esRegisterKeyFunc ( ESContext *esContext,
                                     void ( ESCALLBACK *drawFunc ) ( ESContext *, unsigned char, int, int ) );
-
-void ESUTIL_API esLogMessage ( const char *formatStr, ... );
-
-    
-char *ESUTIL_API esLoadTGA ( void *ioContext, const char *fileName, int *width, int *height );
-
-
 #ifdef __cplusplus
 }
 #endif
