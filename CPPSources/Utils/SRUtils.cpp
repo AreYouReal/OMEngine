@@ -1,6 +1,7 @@
 #include "SRUtils.h"
 
 
+#pragma mark LOGGING
 void logMessage(const char *formatString, ...){
     va_list params;
     char buf[1024];
@@ -14,8 +15,8 @@ void logMessage(const char *formatString, ...){
     va_end(params);
 }
 
-
-static srFile *esFileOpen ( void *ioContext, const char *fileName ){
+#pragma mark FILE RELATED
+srFile  *fileOpen       ( void *ioContext, const char *fileName ){
     srFile *pFile = NULL;
     logMessage("File open start");
     
@@ -35,9 +36,7 @@ static srFile *esFileOpen ( void *ioContext, const char *fileName ){
     logMessage("FILE OPEN");
     return pFile;
 }
-
-
-static void esFileClose ( srFile *pFile ){
+void    fileClose       ( srFile *pFile ){
     if ( pFile != NULL )
     {
 #ifdef ANDROID
@@ -48,8 +47,7 @@ static void esFileClose ( srFile *pFile ){
 #endif
     }
 }
-
-static int esFileRead ( srFile *pFile, int bytesToRead, void *buffer ){
+int     fileRead        ( srFile *pFile, int bytesToRead, void *buffer ){
     int bytesRead = 0;
     
     if ( pFile == NULL ) return bytesRead;
@@ -62,9 +60,78 @@ static int esFileRead ( srFile *pFile, int bytesToRead, void *buffer ){
     
     return bytesRead;
 }
+void    adjustFilePath  (char *filepath){
+    unsigned int i = 0, l = strlen(filepath);
+    while( i != l){
+        if(filepath[i] == '\\') filepath[ i ] = '/';
+        ++i;
+    }
+}
+void    getFilePath     (char *filepath, char *path){
+    char *t = NULL;
+    unsigned int p;
+    adjustFilePath( filepath );
+    t = strrchr(filepath, '/');
+    if( t ){
+        p = ( t - filepath ) + 1;
+        strncpy( path, filepath, p);
+        path[ p ] = 0;
+    }
+}
+void    getFileName     (char *filepath, char *filename){
+    char *t = NULL;
+    adjustFilePath(filepath);
+    t = strrchr(filepath, '/');
+    if( t ) strcpy(filename, t + 1);
+    else strcpy(filename, filepath);
+}
+void    getFileExtension(char *filepath, char *ext, bool uppercase){
+    char *t = NULL;
+    adjustFilePath(filepath);
+    t = strrchr(filepath, '.');
+    if( t ) strcpy(ext, t + 1);
+    if(uppercase){
+        unsigned int i = 0, l = strlen( ext );
+        while(i != l){
+            ext[ i ] = toupper(ext[i]);
+            ++i;
+        }
+    }
+}
+
+Memory  *mopen          (char *filename, bool relative_path){
+#ifdef __IPHONE_4_0
+    FILE *f;
+    char fname[MAX_PATH] = {""};
+    if(relative_path){
+        getFilePath(getenv( "FILESYSTEM" ), fname);
+        strcat(fname, filename);
+    }else{
+        strcpy(fname, filename);
+    }
+    
+    f = fopen(fname, "rb");
+    if( !f ) return NULL;
+    
+    Memory *memory = (Memory *) calloc(1, sizeof(Memory));
+    strcpy(memory->filename, fname);
+    fseek(f, 0, SEEK_END);
+    memory->size = ftell(f);
+    fseek(f, 0, SEEK_SET);
+    
+    memory->buffer = (unsigned char * ) calloc(1, memory->size + 1);
+    fread(memory->buffer, memory->size, 1, f);
+    memory->buffer[memory->size] = 0;
+    fclose(f);
+    return memory;
+#else
+    
+#endif
+}
 
 
-std::vector<unsigned char> esLoadPNG ( void *ioContext, const char *fileName, unsigned &width, unsigned &height )
+#pragma mark LOAD PNG
+std::vector<unsigned char> loadPNG ( void *ioContext, const char *fileName, unsigned &width, unsigned &height )
 {
     
 #ifdef __APPLE__
@@ -93,24 +160,25 @@ std::vector<unsigned char> esLoadPNG ( void *ioContext, const char *fileName, un
     return image2;
 }
 
+#pragma mark READ SHADER
 std::shared_ptr<ShaderSource> readShaderFromFile( void *ioContext, const char *fileName){
     srFile      *fp;
     char tempBuffer[4096];
     // Open the file for reading
-    fp = esFileOpen ( ioContext, fileName );
+    fp = fileOpen ( ioContext, fileName );
     
     if ( fp == NULL ){
         // Log error as 'error in opening the input file from apk'
         logMessage ( "esReadShaderFromFile FAILED to load : { %s }\n", fileName );
         return nullptr;
     }
-    int redBytes = esFileRead ( fp, 1, tempBuffer );
+    int redBytes = fileRead ( fp, 1, tempBuffer );
     int fileSize = redBytes;
     while(redBytes){
-        redBytes = esFileRead ( fp, 1, tempBuffer + fileSize );
+        redBytes = fileRead ( fp, 1, tempBuffer + fileSize );
         fileSize += redBytes;
     }
-    esFileClose(fp);
+    fileClose(fp);
     std::shared_ptr<ShaderSource> shaderSource = std::shared_ptr<ShaderSource>(new ShaderSource());
     shaderSource->source = new char[fileSize + 1];
     memcpy(shaderSource->source, tempBuffer, fileSize);

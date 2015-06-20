@@ -36,6 +36,7 @@
 
 int main(int argc, char * argv[])
 {
+    setenv( "FILESYSTEM", argv[ 0 ], 1 );
     @autoreleasepool {
         return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
     }
