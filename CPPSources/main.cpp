@@ -11,26 +11,12 @@ typedef struct{
 //
 int Init ( ESContext *esContext ){
    UserData *userData = (UserData*)esContext->userData;
-   char vShaderStr[] =
-      "#version 300 es                          \n"
-      "layout(location = 0) in vec4 vPosition;  \n"
-      "void main()                              \n"
-      "{                                        \n"
-      "   gl_Position = vPosition;              \n"
-      "}                                        \n";
-
-   char fShaderStr[] =
-      "#version 300 es                              \n"
-      "precision mediump float;                     \n"
-      "out vec4 fragColor;                          \n"
-      "void main()                                  \n"
-      "{                                            \n"
-      "   fragColor = vec4 ( 1.0, 0.0, 0.0, 1.0 );  \n"
-      "}                                            \n";
-
     GLuint programObject;
-
-    programObject = ShaderHelper::createProgram(vShaderStr, fShaderStr);
+    
+    std::shared_ptr<ShaderSource> vertexSource =  readShaderFromFile(esContext, "vertex.glsl");
+    std::shared_ptr<ShaderSource> fragmentSource =  readShaderFromFile(esContext, "fragment.glsl");
+    
+    programObject = ShaderHelper::createProgram(vertexSource->source, fragmentSource->source);
     
    if ( programObject == 0 ){
       return 0;
@@ -41,8 +27,7 @@ int Init ( ESContext *esContext ){
 
    glClearColor ( 0.0f, 0.0f, 0.0f, 1.0f );
     
-    readShaderFromFile(esContext, "vertex.glsl");
-   return TRUE;
+    return TRUE;
 }
 
 ///
@@ -77,7 +62,7 @@ void Shutdown ( ESContext *esContext ){
    glDeleteProgram ( userData->programObject );
 }
 
-int esMain ( ESContext *esContext ){
+int Main ( ESContext *esContext ){
    esContext->userData = malloc ( sizeof ( UserData ) );
 
    esCreateWindow ( esContext, "Hello Triangle", 320, 240, ES_WINDOW_RGB );

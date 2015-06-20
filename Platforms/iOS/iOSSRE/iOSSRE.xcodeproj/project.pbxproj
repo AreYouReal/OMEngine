@@ -73,6 +73,7 @@
 		9418FFF91AFB60F50058E1DE /* main.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = main.h; path = CPPSources/main.h; sourceTree = "<group>"; };
 		9420DCE61B007EBD006D2A7E /* ShaderHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShaderHelper.cpp; path = CPPSources/Shaders/ShaderHelper.cpp; sourceTree = "<group>"; };
 		9420DCE71B007EBD006D2A7E /* ShaderHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShaderHelper.h; path = CPPSources/Shaders/ShaderHelper.h; sourceTree = "<group>"; };
+		943257B21B35550C008F7D30 /* ShaderSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShaderSource.h; path = CPPSources/Shaders/ShaderSource.h; sourceTree = "<group>"; };
 		944E39681B01198C003806EB /* Material.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Material.h; path = CPPSources/Objects/Material.h; sourceTree = "<group>"; };
 		944E39691B01198C003806EB /* Mesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Mesh.cpp; path = CPPSources/Objects/Mesh.cpp; sourceTree = "<group>"; };
 		944E396A1B01198C003806EB /* Mesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Mesh.h; path = CPPSources/Objects/Mesh.h; sourceTree = "<group>"; };
@@ -233,6 +234,7 @@
 			children = (
 				9420DCE61B007EBD006D2A7E /* ShaderHelper.cpp */,
 				9420DCE71B007EBD006D2A7E /* ShaderHelper.h */,
+				943257B21B35550C008F7D30 /* ShaderSource.h */,
 			);
 			name = Shaders;
 			sourceTree = "<group>";

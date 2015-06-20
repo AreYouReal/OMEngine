@@ -106,7 +106,7 @@
     
     memset( &_esContext, 0, sizeof( _esContext ) );
   
-    esMain(&_esContext);
+    Main(&_esContext);
 }
 
 - (void)tearDownGL

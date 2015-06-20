@@ -8,8 +8,12 @@
 
 #include "lodepng.h"
 
+#include "ShaderSource.h"
+
+
 #ifdef __APPLE__
 #include <OpenGLES/ES3/gl.h>
+#include "FileWrapper.h"
 #else
 #include <GLES3/gl3.h>
 #include <EGL/egl.h>
@@ -22,12 +26,9 @@
 #include <android/asset_manager.h>
 typedef AAsset srFile;
 #else
-#ifdef __APPLE__
-#include "FileWrapper.h"
-#endif
 typedef FILE srFile;
 #endif
 
 void logMessage(const char *formatString, ...);
 
-char* readShaderFromFile( void *ioContext, const char *fileName);
+std::shared_ptr<ShaderSource> readShaderFromFile( void *ioContext, const char *fileName);

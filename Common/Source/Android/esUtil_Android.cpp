@@ -83,7 +83,7 @@ static void HandleCommand ( struct android_app *pApp, int32_t cmd )
          esContext->eglNativeWindow = pApp->window;
 
          // Call the main entrypoint for the app
-         if ( Main::esMain ( esContext ) != GL_TRUE )
+         if ( Main ( esContext ) != GL_TRUE )
          {
             exit ( 0 ); //@TEMP better way to exit?
          }

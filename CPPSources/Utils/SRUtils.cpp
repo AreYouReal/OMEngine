@@ -17,6 +17,7 @@ void logMessage(const char *formatString, ...){
 
 static srFile *esFileOpen ( void *ioContext, const char *fileName ){
     srFile *pFile = NULL;
+    logMessage("File open start");
     
 #ifdef ANDROID
     if ( ioContext != NULL ){
@@ -31,7 +32,7 @@ static srFile *esFileOpen ( void *ioContext, const char *fileName ){
 #endif
     pFile = fopen ( fileName, "rb" );
 #endif
-    
+    logMessage("FILE OPEN");
     return pFile;
 }
 
@@ -92,7 +93,7 @@ std::vector<unsigned char> esLoadPNG ( void *ioContext, const char *fileName, un
     return image2;
 }
 
-char* readShaderFromFile( void *ioContext, const char *fileName){
+std::shared_ptr<ShaderSource> readShaderFromFile( void *ioContext, const char *fileName){
     srFile      *fp;
     char tempBuffer[4096];
     // Open the file for reading
@@ -110,6 +111,12 @@ char* readShaderFromFile( void *ioContext, const char *fileName){
         fileSize += redBytes;
     }
     esFileClose(fp);
-    logMessage("FIlesize: %d", fileSize);
-    return nullptr;
+    std::shared_ptr<ShaderSource> shaderSource = std::shared_ptr<ShaderSource>(new ShaderSource());
+    shaderSource->source = new char[fileSize + 1];
+    memcpy(shaderSource->source, tempBuffer, fileSize);
+    shaderSource->source[fileSize] = 0;
+    for(int i = 0; i < fileSize + 1; i++){
+        logMessage("%c", shaderSource->source[i]);
+    }
+    return shaderSource;
 }
