@@ -24,6 +24,9 @@
 #include <android/log.h>
 #include <android_native_app_glue.h>
 #include <android/asset_manager.h>
+
+#include "zlib/zlib.h"
+#include "zlib/unzip.h"
 typedef AAsset srFile;
 #else
 typedef FILE srFile;

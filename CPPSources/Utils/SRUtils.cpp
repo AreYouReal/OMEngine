@@ -125,6 +125,55 @@ Memory  *mopen          (char *filename, bool relative_path){
     fclose(f);
     return memory;
 #else
+    char    fpath[MAX_PATH] = {""},
+            fname[MAX_PATH] = {""};
+    
+    unzFile		    uf;
+    unz_file_info   fi;
+    unz_file_pos    fp;
+
+    strcpy( fpath, getenv( "FILESYSTEM" ) );
+    
+    uf = unzOpen( fpath );
+    
+    if( !uf ) return NULL;
+    
+    if( relative_path ) sprintf( fname, "assets/%s", filename );
+    else strcpy( fname, filename );
+    
+    unzGoToFirstFile( uf );
+    
+    Memory *memory = ( Memory * ) calloc( 1, sizeof( Memory ) );
+    
+    unzGetFilePos( uf, &fp );
+    
+    if( unzLocateFile( uf, fname, 1 ) == UNZ_OK ){
+        unzGetCurrentFileInfo(  uf,
+                              &fi,
+                              memory->filename,
+                              MAX_PATH,
+                              NULL, 0,
+                              NULL, 0 );
+        
+        if( unzOpenCurrentFilePassword( uf, NULL ) == UNZ_OK ){
+            memory->position = 0;
+            memory->size	 = fi.uncompressed_size;
+            memory->buffer   = ( unsigned char * ) realloc( memory->buffer, fi.uncompressed_size + 1 );
+            memory->buffer[ fi.uncompressed_size ] = 0;
+            
+            while( unzReadCurrentFile( uf, memory->buffer, fi.uncompressed_size ) > 0 ){}
+            
+            unzCloseCurrentFile( uf );
+            
+            unzClose( uf );
+            
+            return memory;
+        }
+    }
+    
+    unzClose( uf );
+    
+    return NULL;
     
 #endif
 }

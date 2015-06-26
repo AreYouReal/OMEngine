@@ -1,39 +1,3 @@
-// The MIT License (MIT)
-//
-// Copyright (c) 2013 Dan Ginsburg, Budirijanto Purnomo
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
-
-//
-// Book:      OpenGL(R) ES 3.0 Programming Guide, 2nd Edition
-// Authors:   Dan Ginsburg, Budirijanto Purnomo, Dave Shreiner, Aaftab Munshi
-// ISBN-10:   0-321-93388-5
-// ISBN-13:   978-0-321-93388-1
-// Publisher: Addison-Wesley Professional
-// URLs:      http://www.opengles-book.com
-//            http://my.safaribooksonline.com/book/animation-and-3d/9780133440133
-//
-// esUtil_Android.c
-//
-//    This file contains the Android implementation of the windowing functions.
-
-
 ///
 // Includes
 //
@@ -51,11 +15,31 @@
 //
 //
 
+void printCommand(int32_t cmd){
+   switch ( cmd ){
+      case APP_CMD_INPUT_CHANGED:         LOGI("cmd: APP_CMD_INPUT_CHANGED");          break; 
+      case APP_CMD_INIT_WINDOW:           LOGI("cmd: APP_CMD_INIT_WINDOW");            break; 
+      case APP_CMD_TERM_WINDOW:           LOGI("cmd: APP_CMD_TERM_WINDOW");            break; 
+      case APP_CMD_WINDOW_RESIZED:        LOGI("cmd: APP_CMD_WINDOW_RESIZED");         break; 
+      case APP_CMD_WINDOW_REDRAW_NEEDED:  LOGI("cmd: APP_CMD_WINDOW_REDRAW_NEEDED");   break; 
+      case APP_CMD_CONTENT_RECT_CHANGED:  LOGI("cmd: APP_CMD_CONTENT_RECT_CHANGED");   break; 
+      case APP_CMD_GAINED_FOCUS:          LOGI("cmd: APP_CMD_GAINED_FOCUS");           break; 
+      case APP_CMD_LOST_FOCUS:            LOGI("cmd: APP_CMD_LOST_FOCUS");             break; 
+      case APP_CMD_CONFIG_CHANGED:        LOGI("cmd: APP_CMD_CONFIG_CHANGED");         break; 
+      case APP_CMD_LOW_MEMORY:            LOGI("cmd: APP_CMD_LOW_MEMORY");             break; 
+      case APP_CMD_START:                 LOGI("cmd: APP_CMD_START");                  break; 
+      case APP_CMD_RESUME:                LOGI("cmd: APP_CMD_RESUME");                 break; 
+      case APP_CMD_SAVE_STATE:            LOGI("cmd: APP_CMD_SAVE_STATE");             break; 
+      case APP_CMD_PAUSE:                 LOGI("cmd: APP_CMD_PAUSE");                  break; 
+      case APP_CMD_STOP:                  LOGI("cmd: APP_CMD_STOP");                   break; 
+      case APP_CMD_DESTROY:               LOGI("cmd: APP_CMD_DESTROY");                break; 
+   }
+}
+
 ///
 // GetCurrentTime()
 //
-static float GetCurrentTime()
-{
+static float GetCurrentTime(){
    struct timespec clockRealTime;
    clock_gettime ( CLOCK_MONOTONIC, &clockRealTime );
    double curTimeInSeconds = clockRealTime.tv_sec + ( double ) clockRealTime.tv_nsec / 1e9;
@@ -67,52 +51,59 @@ static float GetCurrentTime()
 //
 //    Android callback for onAppCmd
 //
-static void HandleCommand ( struct android_app *pApp, int32_t cmd )
-{
+static void HandleCommand ( struct android_app *pApp, int32_t cmd ){
    ESContext *esContext = ( ESContext * ) pApp->userData;
-
-   switch ( cmd )
-   {
-      case APP_CMD_SAVE_STATE:
-         // the OS asked us to save the state of the app
-         break;
-
-      case APP_CMD_INIT_WINDOW:
-
+   printCommand(cmd);
+   switch ( cmd ){
+      case APP_CMD_INPUT_CHANGED:      break; // 0
+      //______________________________________
+      case APP_CMD_INIT_WINDOW:              // 1
          esContext->eglNativeDisplay = EGL_DEFAULT_DISPLAY;
          esContext->eglNativeWindow = pApp->window;
-
          // Call the main entrypoint for the app
-         if ( Main ( esContext ) != GL_TRUE )
-         {
+         if ( Main ( esContext ) != GL_TRUE ){
             exit ( 0 ); //@TEMP better way to exit?
          }
-
          break;
-
+      //______________________________________
       case APP_CMD_TERM_WINDOW:
-
          // Cleanup on shutdown
-         if ( esContext->shutdownFunc != NULL )
-         {
+         if ( esContext->shutdownFunc != NULL ){
             esContext->shutdownFunc ( esContext );
          }
-
-         if ( esContext->userData != NULL )
-         {
+         if ( esContext->userData != NULL ){
             free ( esContext->userData );
          }
-
          memset ( esContext, 0, sizeof ( ESContext ) );
          break;
-
-      case APP_CMD_LOST_FOCUS:
-         // if the app lost focus, avoid unnecessary processing (like monitoring the accelerometer)
-         break;
-
-      case APP_CMD_GAINED_FOCUS:
-         // bring back a certain functionality, like monitoring the accelerometer
-         break;
+      //______________________________________
+      case APP_CMD_WINDOW_RESIZED:        break;
+      //______________________________________
+      case APP_CMD_WINDOW_REDRAW_NEEDED:  break;
+      //______________________________________
+      case APP_CMD_CONTENT_RECT_CHANGED:  break;
+      //______________________________________
+      case APP_CMD_GAINED_FOCUS:          break;
+      setenv( "FILESYSTEM", "com.sre.enginetest", 1 );
+      //______________________________________
+      case APP_CMD_LOST_FOCUS:            break;
+      //______________________________________
+      case APP_CMD_CONFIG_CHANGED:        break;
+      //______________________________________
+      case APP_CMD_LOW_MEMORY:            break;
+      //______________________________________
+      case APP_CMD_START:                 break;
+      //______________________________________
+      case APP_CMD_RESUME:                break;
+      //______________________________________
+      case APP_CMD_SAVE_STATE:            break;
+      //______________________________________
+      case APP_CMD_PAUSE:                 break;
+      //______________________________________
+      case APP_CMD_STOP:                  break;
+      //______________________________________
+      case APP_CMD_DESTROY:               break;
+      //______________________________________
    }
 }
 
@@ -127,8 +118,7 @@ static void HandleCommand ( struct android_app *pApp, int32_t cmd )
 //
 //    Main entrypoint for Android application
 //
-void android_main ( struct android_app *pApp )
-{
+void android_main ( struct android_app *pApp ){
    ESContext esContext;
    float lastTime;
 
@@ -145,48 +135,43 @@ void android_main ( struct android_app *pApp )
 
    lastTime = GetCurrentTime();
 
-   while ( 1 )
-   {
+   while ( 1 ){
       int ident;
       int events;
       struct android_poll_source *pSource;
 
-      while ( ( ident = ALooper_pollAll ( 0, NULL, &events, ( void ** ) &pSource ) ) >= 0 )
-      {
+      while ( ( ident = ALooper_pollAll ( 0, NULL, &events, ( void ** ) &pSource ) ) >= 0 ){
 
-         if ( pSource != NULL )
-         {
+         if ( pSource != NULL ){
             pSource->process ( pApp, pSource );
          }
 
-         if ( pApp->destroyRequested != 0 )
-         {
+         if ( pApp->destroyRequested != 0 ){
             return;
          }
 
       }
 
-      if ( esContext.eglNativeWindow == NULL )
-      {
+      if ( esContext.eglNativeWindow == NULL ){
          continue;
       }
 
       // Call app update function
-      if ( esContext.updateFunc != NULL )
-      {
+      if ( esContext.updateFunc != NULL ){
          float curTime = GetCurrentTime();
          float deltaTime =  ( curTime - lastTime );
          lastTime = curTime;
          esContext.updateFunc ( &esContext, deltaTime );
       }
 
-      if ( esContext.drawFunc != NULL )
-      {
+      if ( esContext.drawFunc != NULL ){
          esContext.drawFunc ( &esContext );
          eglSwapBuffers ( esContext.eglDisplay, esContext.eglSurface );
       }
    }
 }
+
+
 
 
 ///
