@@ -16,18 +16,22 @@ int Init ( ESContext *esContext ){
     
 //    Memory *m =  mopen("vertex.glsl", true);
 //    Memory *m2 =  mopen("fragment.glsl", true);
-//    
-//    std::shared_ptr<ShaderSource> vertexSource =  readShaderFromFile(esContext, "vertex.glsl");
-//    std::shared_ptr<ShaderSource> fragmentSource =  readShaderFromFile(esContext, "fragment.glsl");
-//    
 //    programObject = ShaderHelper::createProgram((char*)m->buffer, (char*)m2->buffer);
-//    
-//   if ( programObject == 0 ){
-//      return 0;
-//   }
-//    
-//   // Store the program object
-//   userData->programObject = programObject;s
+    
+    
+    std::shared_ptr<ShaderSource> vertexSource =  readShaderFromFile(esContext, "vertex.glsl");
+    std::shared_ptr<ShaderSource> fragmentSource =  readShaderFromFile(esContext, "fragment.glsl");
+    programObject = ShaderHelper::createProgram(vertexSource->source, fragmentSource->source);
+    
+    
+    
+    
+   if ( programObject == 0 ){
+      return 0;
+   }
+    
+   // Store the program object
+   userData->programObject = programObject;
 
 
    glClearColor ( 0.0f, 0.0f, 0.0f, 1.0f );

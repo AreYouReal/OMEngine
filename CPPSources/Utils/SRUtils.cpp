@@ -36,6 +36,8 @@ srFile  *fileOpen       ( void *ioContext, const char *fileName ){
     logMessage("FILE OPEN");
     return pFile;
 }
+
+
 void    fileClose       ( srFile *pFile ){
     if ( pFile != NULL )
     {
@@ -60,6 +62,8 @@ int     fileRead        ( srFile *pFile, int bytesToRead, void *buffer ){
     
     return bytesRead;
 }
+
+
 void    adjustFilePath  (char *filepath){
     unsigned int i = 0, l = strlen(filepath);
     while( i != l){

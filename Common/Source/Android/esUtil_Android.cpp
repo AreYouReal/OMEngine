@@ -84,7 +84,7 @@ static void HandleCommand ( struct android_app *pApp, int32_t cmd ){
       case APP_CMD_CONTENT_RECT_CHANGED:  break;
       //______________________________________
       case APP_CMD_GAINED_FOCUS:          break;
-      setenv( "FILESYSTEM", "com.sre.enginetest", 1 );
+      // setenv( "FILESYSTEM", "com.sre.enginetest", 1 );
       //______________________________________
       case APP_CMD_LOST_FOCUS:            break;
       //______________________________________
