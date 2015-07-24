@@ -1,6 +1,5 @@
 #include "SRUtils.h"
 
-
 #pragma mark LOGGING
 void logMessage(const char *formatString, ...){
     va_list params;
@@ -22,7 +21,7 @@ srFile  *fileOpen       ( void *ioContext, const char *fileName ){
     
 #ifdef ANDROID
     if ( ioContext != NULL ){
-        AAssetManager *assetManager = ( AAssetManager * ) ioContext;
+        AAssetManager *assetManager = ( AAssetManager * ) ((ESContext*)ioContext)->platformData;
         pFile = AAssetManager_open ( assetManager, fileName, AASSET_MODE_BUFFER );
     }
 #else
