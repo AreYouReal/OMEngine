@@ -14,11 +14,11 @@
 		<string>https://github.com/AreYouReal/SREngine.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Platforms/iOS/iOSSRE/iOSSRE.xcodeproj</string>
+	<string>Platforms/iOS/iOSSRE.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>A623276CDE58E131A459AEF1A230F687A3938771</key>
-		<string>../../../../..</string>
+		<string>../../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/AreYouReal/SREngine.git</string>
