@@ -21,15 +21,17 @@ int Init ( ESContext *esContext ){
     
     std::shared_ptr<ShaderSource> vertexSource =  readShaderFromFile(esContext, "vertex.glsl");
     std::shared_ptr<ShaderSource> fragmentSource =  readShaderFromFile(esContext, "fragment.glsl");
-    logMessage("%s", fragmentSource->source);
-    logMessage("%s", vertexSource->source);
-//    programObject = ShaderHelper::createProgram(vertexSource->source, fragmentSource->source);
+    logMessage("%d", fragmentSource->size);
+    logMessage("%d", vertexSource->size);
+    programObject = ShaderHelper::createProgram(vertexSource->source, fragmentSource->source);
+
     
-   const char* vS = "#version 300 es \n layout(location = 0) in vec4 vPosition;\n void main(){ gl_Position = vPosition; } \n";
     
-    const char* fS = "#version 300 es \n precision mediump float;\n out vec4 fragColor; \n void main(){ fragColor = vec4 ( 1.0, 0.0, 0.0, 1.0 ); }";
-    
-    programObject = ShaderHelper::createProgram(vS, fS);
+//   const char* vS = "#version 300 es \n layout(location = 0) in vec4 vPosition;\n void main(){ gl_Position = vPosition; } \n";
+//    
+//    const char* fS = "#version 300 es \n precision mediump float;\n out vec4 fragColor; \n void main(){ fragColor = vec4 ( 1.0, 0.0, 0.0, 1.0 ); }";
+//    
+//    programObject = ShaderHelper::createProgram(vS, fS);
     
     
     

@@ -234,6 +234,7 @@ std::shared_ptr<ShaderSource> readShaderFromFile( void *ioContext, const char *f
     std::shared_ptr<ShaderSource> shaderSource = std::shared_ptr<ShaderSource>(new ShaderSource());
     shaderSource->source = new char[fileSize + 1];
     memcpy(shaderSource->source, tempBuffer, fileSize);
+    shaderSource->size = fileSize;
     shaderSource->source[fileSize] = 0;
     for(int i = 0; i < fileSize + 1; i++){
         logMessage("%c", shaderSource->source[i]);

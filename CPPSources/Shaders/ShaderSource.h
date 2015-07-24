@@ -8,6 +8,6 @@ struct ShaderSource{
     int size   = -1;
     
     ~ShaderSource(){
-        if(source) delete source;
+        if(source) delete[] source;
     }
 };

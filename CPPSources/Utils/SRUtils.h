@@ -9,7 +9,7 @@
 #include "lodepng.h"
 
 #include "ShaderSource.h"
-
+#include "esUtil.h"
 
 #ifdef __APPLE__
 #include <OpenGLES/ES3/gl.h>
