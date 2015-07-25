@@ -1,8 +1,5 @@
 LOCAL_PATH			:= $(call my-dir)
 SRC_PATH			:= $(LOCAL_PATH)/../../..
-COMMON_PATH			:= $(SRC_PATH)/Common
-COMMON_INC_PATH		:= $(COMMON_PATH)/Include
-COMMON_SRC_PATH		:= $(COMMON_PATH)/Source
 
 include $(CLEAR_VARS)
 
@@ -10,8 +7,8 @@ LOCAL_MODULE    := SRE
 LOCAL_CFLAGS    += -std=c++11
 
 
-LOCAL_SRC_FILES := $(COMMON_SRC_PATH)/esUtil.cpp \
-				   $(COMMON_SRC_PATH)/Android/esUtil_Android.cpp \
+LOCAL_SRC_FILES := $(SRC_PATH)/CPPSources/esUtil.cpp \
+				   $(LOCAL_PATH)/esUtil_Android.cpp \
 				   $(SRC_PATH)/CPPSources/Main.cpp \
 				   $(SRC_PATH)/CPPSources/Shaders/ShaderHelper.cpp \
 				   $(SRC_PATH)/CPPSources/Utils/SRUtils.cpp \
