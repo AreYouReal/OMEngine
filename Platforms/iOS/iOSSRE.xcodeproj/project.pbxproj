@@ -31,6 +31,10 @@
 		948E27671B359A7F008CAFAF /* uncompr.c in Sources */ = {isa = PBXBuildFile; fileRef = 948E27551B359A7F008CAFAF /* uncompr.c */; };
 		948E27681B359A7F008CAFAF /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 948E27561B359A7F008CAFAF /* unzip.c */; };
 		948E27691B359A7F008CAFAF /* zutil.c in Sources */ = {isa = PBXBuildFile; fileRef = 948E275A1B359A7F008CAFAF /* zutil.c */; };
+		94C5DB541B63E5DB005E706E /* fragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 94C5DB501B63E5DB005E706E /* fragment.glsl */; };
+		94C5DB551B63E5DB005E706E /* model.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 94C5DB511B63E5DB005E706E /* model.mtl */; };
+		94C5DB561B63E5DB005E706E /* model.obj in Resources */ = {isa = PBXBuildFile; fileRef = 94C5DB521B63E5DB005E706E /* model.obj */; };
+		94C5DB571B63E5DB005E706E /* vertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 94C5DB531B63E5DB005E706E /* vertex.glsl */; };
 		94CE87CC1B62B4D000752D5C /* m4d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94CE87C61B62B4D000752D5C /* m4d.cpp */; };
 		94CE87CD1B62B4D000752D5C /* q4d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94CE87C81B62B4D000752D5C /* q4d.cpp */; };
 		94CE87CE1B62B4D000752D5C /* v3d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94CE87CA1B62B4D000752D5C /* v3d.cpp */; };
@@ -42,10 +46,6 @@
 		94CE87E21B62B59800752D5C /* FileWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 94CE87E01B62B59800752D5C /* FileWrapper.mm */; };
 		94CE87E61B62B5A400752D5C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 94CE87E31B62B5A400752D5C /* main.m */; };
 		94CE87E71B62B5A400752D5C /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 94CE87E51B62B5A400752D5C /* ViewController.mm */; };
-		94CE87EC1B62B5F400752D5C /* fragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 94CE87E81B62B5F400752D5C /* fragment.glsl */; };
-		94CE87ED1B62B5F400752D5C /* model.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 94CE87E91B62B5F400752D5C /* model.mtl */; };
-		94CE87EE1B62B5F400752D5C /* model.obj in Resources */ = {isa = PBXBuildFile; fileRef = 94CE87EA1B62B5F400752D5C /* model.obj */; };
-		94CE87EF1B62B5F400752D5C /* vertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 94CE87EB1B62B5F400752D5C /* vertex.glsl */; };
 		F3D5E1081AF8F23E00DD216B /* iOSSRETests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3D5E1071AF8F23E00DD216B /* iOSSRETests-Info.plist */; };
 		F3D5E10B1AF8F24400DD216B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F3D5E1091AF8F24400DD216B /* InfoPlist.strings */; };
 		F3D5E1111AF8F2CD00DD216B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F3D5E10F1AF8F2CD00DD216B /* InfoPlist.strings */; };
@@ -105,6 +105,10 @@
 		948E27591B359A7F008CAFAF /* zlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zlib.h; sourceTree = "<group>"; };
 		948E275A1B359A7F008CAFAF /* zutil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zutil.c; sourceTree = "<group>"; };
 		948E275B1B359A7F008CAFAF /* zutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zutil.h; sourceTree = "<group>"; };
+		94C5DB501B63E5DB005E706E /* fragment.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = fragment.glsl; path = SREngine/Platforms/Android/assets/fragment.glsl; sourceTree = "<group>"; };
+		94C5DB511B63E5DB005E706E /* model.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = model.mtl; path = SREngine/Platforms/Android/assets/model.mtl; sourceTree = "<group>"; };
+		94C5DB521B63E5DB005E706E /* model.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = model.obj; path = SREngine/Platforms/Android/assets/model.obj; sourceTree = "<group>"; };
+		94C5DB531B63E5DB005E706E /* vertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = vertex.glsl; path = SREngine/Platforms/Android/assets/vertex.glsl; sourceTree = "<group>"; };
 		94CE87C61B62B4D000752D5C /* m4d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = m4d.cpp; path = ../../CPPSources/Math/m4d.cpp; sourceTree = SOURCE_ROOT; };
 		94CE87C71B62B4D000752D5C /* m4d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = m4d.h; path = ../../CPPSources/Math/m4d.h; sourceTree = SOURCE_ROOT; };
 		94CE87C81B62B4D000752D5C /* q4d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = q4d.cpp; path = ../../CPPSources/Math/q4d.cpp; sourceTree = SOURCE_ROOT; };
@@ -128,10 +132,6 @@
 		94CE87E31B62B5A400752D5C /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = iOSSRE/main.m; sourceTree = SOURCE_ROOT; };
 		94CE87E41B62B5A400752D5C /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = iOSSRE/ViewController.h; sourceTree = SOURCE_ROOT; };
 		94CE87E51B62B5A400752D5C /* ViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ViewController.mm; path = iOSSRE/ViewController.mm; sourceTree = SOURCE_ROOT; };
-		94CE87E81B62B5F400752D5C /* fragment.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = fragment.glsl; path = SREngine/Platforms/iOS/fragment.glsl; sourceTree = "<group>"; };
-		94CE87E91B62B5F400752D5C /* model.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = model.mtl; path = SREngine/Platforms/iOS/model.mtl; sourceTree = "<group>"; };
-		94CE87EA1B62B5F400752D5C /* model.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = model.obj; path = SREngine/Platforms/iOS/model.obj; sourceTree = "<group>"; };
-		94CE87EB1B62B5F400752D5C /* vertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = vertex.glsl; path = SREngine/Platforms/iOS/vertex.glsl; sourceTree = "<group>"; };
 		F3D5E1051AF8F23400DD216B /* iOSSRETests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iOSSRETests.m; path = iOSSRETests/iOSSRETests.m; sourceTree = SOURCE_ROOT; };
 		F3D5E1071AF8F23E00DD216B /* iOSSRETests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "iOSSRETests-Info.plist"; path = "iOSSRETests/iOSSRETests-Info.plist"; sourceTree = SOURCE_ROOT; };
 		F3D5E10A1AF8F24400DD216B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = iOSSRETests/en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
@@ -240,10 +240,10 @@
 		7626524017F10E6C007CCD43 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				94CE87E81B62B5F400752D5C /* fragment.glsl */,
-				94CE87E91B62B5F400752D5C /* model.mtl */,
-				94CE87EA1B62B5F400752D5C /* model.obj */,
-				94CE87EB1B62B5F400752D5C /* vertex.glsl */,
+				94C5DB501B63E5DB005E706E /* fragment.glsl */,
+				94C5DB511B63E5DB005E706E /* model.mtl */,
+				94C5DB521B63E5DB005E706E /* model.obj */,
+				94C5DB531B63E5DB005E706E /* vertex.glsl */,
 				F3D5E10F1AF8F2CD00DD216B /* InfoPlist.strings */,
 				F3D5E10C1AF8F2C600DD216B /* iOSSRE-Info.plist */,
 				F3D5E10D1AF8F2C600DD216B /* iOSSRE-Prefix.pch */,
@@ -441,14 +441,14 @@
 			files = (
 				F3D5E1111AF8F2CD00DD216B /* InfoPlist.strings in Resources */,
 				F3D5E1191AF8F32E00DD216B /* Images.xcassets in Resources */,
-				94CE87EE1B62B5F400752D5C /* model.obj in Resources */,
+				94C5DB561B63E5DB005E706E /* model.obj in Resources */,
 				F3D5E10B1AF8F24400DD216B /* InfoPlist.strings in Resources */,
 				F3D5E1161AF8F32600DD216B /* Main_iPad.storyboard in Resources */,
 				F3D5E1171AF8F32600DD216B /* Main_iPhone.storyboard in Resources */,
-				94CE87ED1B62B5F400752D5C /* model.mtl in Resources */,
-				94CE87EC1B62B5F400752D5C /* fragment.glsl in Resources */,
+				94C5DB551B63E5DB005E706E /* model.mtl in Resources */,
+				94C5DB541B63E5DB005E706E /* fragment.glsl in Resources */,
 				F3D5E1081AF8F23E00DD216B /* iOSSRETests-Info.plist in Resources */,
-				94CE87EF1B62B5F400752D5C /* vertex.glsl in Resources */,
+				94C5DB571B63E5DB005E706E /* vertex.glsl in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
