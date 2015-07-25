@@ -25,6 +25,8 @@ int Init ( ESContext *esContext ){
     logMessage("%d", vertexSource->size);
     programObject = ShaderHelper::createProgram(vertexSource->source, fragmentSource->source);
 
+//    readOBJFromFile(esContext, "model.obj");
+    
     
     
 //   const char* vS = "#version 300 es \n layout(location = 0) in vec4 vPosition;\n void main(){ gl_Position = vPosition; } \n";

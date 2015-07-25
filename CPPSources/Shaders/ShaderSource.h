@@ -5,7 +5,7 @@
 struct ShaderSource{
     
     char* source = nullptr;
-    int size   = -1;
+    long size   = -1;
     
     ~ShaderSource(){
         if(source) delete[] source;

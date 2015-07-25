@@ -36,6 +36,16 @@ srFile  *fileOpen       ( void *ioContext, const char *fileName ){
     return pFile;
 }
 
+long getFileSize(srFile *pFile){
+#ifdef ANDROID
+    long fSize = AAsset_getLength(pFile);
+#else
+    fseek(pFile, 0, SEEK_END);
+    long fSize = ftell(pFile);
+    rewind(pFile);
+#endif
+    return fSize;
+}
 
 void    fileClose       ( srFile *pFile ){
     if ( pFile != NULL )
@@ -48,7 +58,7 @@ void    fileClose       ( srFile *pFile ){
 #endif
     }
 }
-int     fileRead        ( srFile *pFile, int bytesToRead, void *buffer ){
+int     fileRead        ( srFile *pFile, long bytesToRead, void *buffer ){
     int bytesRead = 0;
     
     if ( pFile == NULL ) return bytesRead;
@@ -215,7 +225,6 @@ std::vector<unsigned char> loadPNG ( void *ioContext, const char *fileName, unsi
 #pragma mark READ SHADER
 std::shared_ptr<ShaderSource> readShaderFromFile( void *ioContext, const char *fileName){
     srFile      *fp;
-    char tempBuffer[4096];
     // Open the file for reading
     fp = fileOpen ( ioContext, fileName );
     
@@ -224,20 +233,41 @@ std::shared_ptr<ShaderSource> readShaderFromFile( void *ioContext, const char *f
         logMessage ( "esReadShaderFromFile FAILED to load : { %s }\n", fileName );
         return nullptr;
     }
-    int redBytes = fileRead ( fp, 1, tempBuffer );
-    int fileSize = redBytes;
-    while(redBytes){
-        redBytes = fileRead ( fp, 1, tempBuffer + fileSize );
-        fileSize += redBytes;
-    }
+    long fSize = getFileSize(fp);
+    char tempBuffer[fSize];
+    int redBytes = fileRead ( fp, fSize, tempBuffer );
+    logMessage("RED BYTES: { %d / %d }", redBytes, fSize);
+    
     fileClose(fp);
+    
     std::shared_ptr<ShaderSource> shaderSource = std::shared_ptr<ShaderSource>(new ShaderSource());
-    shaderSource->source = new char[fileSize + 1];
-    memcpy(shaderSource->source, tempBuffer, fileSize);
-    shaderSource->size = fileSize;
-    shaderSource->source[fileSize] = 0;
-    for(int i = 0; i < fileSize + 1; i++){
+    
+    shaderSource->source = new char[fSize + 1];
+    memcpy(shaderSource->source, tempBuffer, fSize);
+    shaderSource->size = fSize;
+    shaderSource->source[fSize] = 0;
+    for(int i = 0; i < fSize + 1; i++){
         logMessage("%c", shaderSource->source[i]);
     }
     return shaderSource;
+}
+
+#pragma mark READ OBJ FILE
+void readOBJFromFile(void *ioContext, const char *fileName){
+    srFile *fp;
+    fp = fileOpen(ioContext, fileName);
+    if( fp == NULL){
+        logMessage("readOBJFromFile FAILED to load : { %s }\n", fileName);
+        return;
+    }
+    
+    long fSize = getFileSize(fp);
+    
+    char tempBuffer[fSize];
+    
+    int redBytes = fileRead ( fp, fSize, tempBuffer );
+    fileClose(fp);
+    for(long i = 0; i < fSize; i++){
+        logMessage("%c", tempBuffer[i]);
+    }
 }

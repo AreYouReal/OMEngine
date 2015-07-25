@@ -44,6 +44,7 @@ struct Memory{
 void logMessage(const char *formatString, ...);
 
 srFile *fileOpen ( void *ioContext, const char *fileName );
+long getFileSize( srFile *pFile );
 void fileClose ( srFile *pFile );
 int fileRead ( srFile *pFile, int bytesToRead, void *buffer );
 
@@ -58,3 +59,4 @@ unsigned int mread( Memory *memory, void *dst, unsigned int size );
 void minsert(Memory *memory, char *str, unsigned int position );
 
 std::shared_ptr<ShaderSource> readShaderFromFile( void *ioContext, const char *fileName);
+void readOBJFromFile(void *ioContext, const char *fileName);
