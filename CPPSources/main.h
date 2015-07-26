@@ -1,8 +1,8 @@
 #pragma once
 
-#include "esUtil.h"
+#include "SRUtils.h"
 
-int  Main ( ESContext *esContext );
-int  Init( ESContext *esContext );
-void Draw( ESContext *esContext );
-void Shutdown( ESContext *esContext );
+int  Main       ( SRContext *Context );
+int  Init       ( SRContext *Context );
+void Draw       ( SRContext *context );
+void Shutdown   ( SRContext *context );

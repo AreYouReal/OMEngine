@@ -9,8 +9,8 @@ typedef struct{
 ///
 // Initialize the shader and program object
 //
-int Init ( ESContext *esContext ){
-   UserData *userData = (UserData*)esContext->userData;
+int Init ( SRContext *context ){
+   UserData *userData = (UserData*)context->userData;
     GLuint programObject;
     
     
@@ -19,13 +19,13 @@ int Init ( ESContext *esContext ){
 //    programObject = ShaderHelper::createProgram((char*)m->buffer, (char*)m2->buffer);
     
     
-    std::shared_ptr<ShaderSource> vertexSource =  readShaderFromFile(esContext, "vertex.glsl");
-    std::shared_ptr<ShaderSource> fragmentSource =  readShaderFromFile(esContext, "fragment.glsl");
+    std::shared_ptr<ShaderSource> vertexSource =  readShaderFromFile(context, "vertex.glsl");
+    std::shared_ptr<ShaderSource> fragmentSource =  readShaderFromFile(context, "fragment.glsl");
     logMessage("%d", fragmentSource->size);
     logMessage("%d", vertexSource->size);
     programObject = ShaderHelper::createProgram(vertexSource->source, fragmentSource->source);
 
-//    readOBJFromFile(esContext, "model.obj");
+//    readOBJFromFile(context, "model.obj");
     
     
     
@@ -50,21 +50,21 @@ logMessage("program object %d", userData->programObject);
 
    glClearColor ( 0.0f, 0.0f, 0.0f, 1.0f );
     
-    return TRUE;
+    return true;
 }
 
 ///
 // Draw a triangle using the shader pair created in Init()
 //
-void Draw ( ESContext *esContext ){
-   UserData *userData = (UserData*)esContext->userData;
+void Draw ( SRContext *context ){
+   UserData *userData = (UserData*)context->userData;
    GLfloat vVertices[] = {  0.0f,  0.5f, 0.0f,
                             -0.5f, -0.5f, 0.0f,
                             0.5f, -0.5f, 0.0f
                          };
 
    // Set the viewport
-   glViewport ( 0, 0, esContext->width, esContext->height );
+   glViewport ( 0, 0, context->width, context->height );
 
    // Clear the color buffer
    glClear ( GL_COLOR_BUFFER_BIT );
@@ -79,23 +79,21 @@ void Draw ( ESContext *esContext ){
    glDrawArrays ( GL_TRIANGLES, 0, 3 );
 }
 
-void Shutdown ( ESContext *esContext ){
-   UserData *userData = (UserData*)esContext->userData;
+void Shutdown ( SRContext *context ){
+   UserData *userData = (UserData*)context->userData;
 
    glDeleteProgram ( userData->programObject );
 }
 
-int Main ( ESContext *esContext ){
-   esContext->userData = malloc ( sizeof ( UserData ) );
+int Main ( SRContext *context ){
+   context->userData = malloc ( sizeof ( UserData ) );
 
-   esCreateWindow ( esContext, "Hello Triangle", 320, 240, ES_WINDOW_RGB );
+   SRCreateWindow( context, "Hello Triangle", 320, 240, ES_WINDOW_RGB );
 
-   if ( !Init ( esContext ) ){
-      return GL_FALSE;
-   }
+   if ( !Init ( context ) ){ return GL_FALSE; }
 
-   esRegisterShutdownFunc ( esContext, Shutdown );
-   esRegisterDrawFunc ( esContext, Draw );
+   SRRegisterShutdownFunc ( context, Shutdown );
+   SRRegisterDrawFunc ( context, Draw );
 
    return GL_TRUE;
 }

@@ -1,4 +1,148 @@
+
+#ifdef __APPLE__
+#include "FileWrapper.h"
+#endif
+
 #include "SRUtils.h"
+
+
+#ifndef __APPLE__
+#pragma pack(push,x1)                            // Byte alignment (8-bit)
+#pragma pack(1)
+#endif
+
+#ifndef __APPLE__
+#pragma pack(pop,x1)
+#endif
+
+#ifndef __APPLE__
+
+/** Check whether EGL_KHR_create_context extension is supported.  If so,
+return EGL_OPENGL_ES3_BIT_KHR instead of EGL_OPENGL_ES2_BIT */
+EGLint GetContextRenderableType ( EGLDisplay eglDisplay ){
+#ifdef EGL_KHR_create_context
+    const char *extensions = eglQueryString ( eglDisplay, EGL_EXTENSIONS );
+    // check whether EGL_KHR_create_context is in the extension string
+    if ( extensions != NULL && strstr( extensions, "EGL_KHR_create_context" ) ){
+        return EGL_OPENGL_ES3_BIT_KHR; // extension is supported
+    }
+#endif
+    return EGL_OPENGL_ES2_BIT;          // extension is not supported
+}
+#endif
+
+
+#pragma GENERAL
+
+GLboolean SRUTIL_API SRCreateWindow ( SRContext *context, const char *title, GLint width, GLint height, GLuint flags ){
+#ifndef __APPLE__
+    EGLConfig config;
+    EGLint majorVersion;
+    EGLint minorVersion;
+    EGLint contextAttribs[] = { EGL_CONTEXT_CLIENT_VERSION, 3, EGL_NONE };
+    
+    if ( context == NULL ){
+        return GL_FALSE;
+    }
+    
+#ifdef ANDROID
+    // For Android, get the width/height from the window rather than what the
+    // application requested.
+    context->width = ANativeWindow_getWidth ( context->eglNativeWindow );
+    context->height = ANativeWindow_getHeight ( context->eglNativeWindow );
+#else
+    context->width = width;
+    Context->height = height;
+#endif
+    
+    context->eglDisplay = eglGetDisplay( context->eglNativeDisplay );
+    if ( context->eglDisplay == EGL_NO_DISPLAY ){
+        return GL_FALSE;
+    }
+    
+    // Initialize EGL
+    if ( !eglInitialize ( context->eglDisplay, &majorVersion, &minorVersion ) ){
+        return GL_FALSE;
+    }
+    
+    {
+        EGLint numConfigs = 0;
+        EGLint attribList[] = {
+            EGL_RED_SIZE,       5,
+            EGL_GREEN_SIZE,     6,
+            EGL_BLUE_SIZE,      5,
+            EGL_ALPHA_SIZE,     ( flags & ES_WINDOW_ALPHA ) ? 8 : EGL_DONT_CARE,
+            EGL_DEPTH_SIZE,     ( flags & ES_WINDOW_DEPTH ) ? 8 : EGL_DONT_CARE,
+            EGL_STENCIL_SIZE,   ( flags & ES_WINDOW_STENCIL ) ? 8 : EGL_DONT_CARE,
+            EGL_SAMPLE_BUFFERS, ( flags & ES_WINDOW_MULTISAMPLE ) ? 1 : 0,
+            // if EGL_KHR_create_context extension is supported, then we will use
+            // EGL_OPENGL_ES3_BIT_KHR instead of EGL_OPENGL_ES2_BIT in the attribute list
+            EGL_RENDERABLE_TYPE, GetContextRenderableType ( context->eglDisplay ),
+            EGL_NONE
+        };
+        
+        // Choose config
+        if ( !eglChooseConfig ( context->eglDisplay, attribList, &config, 1, &numConfigs ) ){
+            return GL_FALSE;
+        }
+        
+        if ( numConfigs < 1 ){
+            return GL_FALSE;
+        }
+    }
+    
+    
+#ifdef ANDROID
+    // For Android, need to get the EGL_NATIVE_VISUAL_ID and set it using ANativeWindow_setBuffersGeometry
+    {
+        EGLint format = 0;
+        eglGetConfigAttrib ( context->eglDisplay, config, EGL_NATIVE_VISUAL_ID, &format );
+        ANativeWindow_setBuffersGeometry ( context->eglNativeWindow, 0, 0, format );
+    }
+#endif // ANDROID
+    // Create a surface
+    context->eglSurface = eglCreateWindowSurface ( Context->eglDisplay, config,
+                                                    context->eglNativeWindow, NULL );
+    
+    if ( context->eglSurface == EGL_NO_SURFACE ){
+        return GL_FALSE;
+    }
+    
+    // Create a GL context
+    Context->eglContext = eglCreateContext ( context->eglDisplay, config,
+                                              EGL_NO_CONTEXT, contextAttribs );
+    
+    if ( context->eglContext == EGL_NO_CONTEXT ){
+        return GL_FALSE;
+    }
+    
+    // Make the context current
+    if ( !eglMakeCurrent ( context->eglDisplay, context->eglSurface,
+                          context->eglSurface, context->eglContext ) ){
+        return GL_FALSE;
+    }
+    
+#endif // #ifndef __APPLE__
+    
+    return GL_TRUE;
+}
+
+void SRUTIL_API SRRegisterDrawFunc ( SRContext *context, void ( SRCALLBACK *drawFunc ) ( SRContext * ) ){
+    context->drawFunc = drawFunc;
+}
+
+void SRUTIL_API SRRegisterShutdownFunc ( SRContext *context, void ( SRCALLBACK *shutdownFunc ) ( SRContext * ) ){
+    context->shutdownFunc = shutdownFunc;
+}
+
+void SRUTIL_API SRRegisterUpdateFunc ( SRContext *context, void ( SRCALLBACK *updateFunc ) ( SRContext *, float ) ){
+    context->updateFunc = updateFunc;
+}
+
+void SRUTIL_API SRRegisterKeyFunc ( SRContext *context, void ( SRCALLBACK *keyFunc ) ( SRContext *, unsigned char, int, int ) ){
+    context->keyFunc = keyFunc;
+}
+
 
 #pragma mark LOGGING
 void logMessage(const char *formatString, ...){
@@ -21,7 +165,7 @@ srFile  *fileOpen       ( void *ioContext, const char *fileName ){
     
 #ifdef ANDROID
     if ( ioContext != NULL ){
-        AAssetManager *assetManager = ( AAssetManager * ) ((ESContext*)ioContext)->platformData;
+        AAssetManager *assetManager = ( AAssetManager * ) ((context*)ioContext)->platformData;
         pFile = AAssetManager_open ( assetManager, fileName, AASSET_MODE_BUFFER );
     }
 #else
