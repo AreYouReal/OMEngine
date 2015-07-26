@@ -17,20 +17,6 @@
 		7626526217F10E6C007CCD43 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7626523917F10E6C007CCD43 /* UIKit.framework */; };
 		9453DEE11B2A0A2700C79DB3 /* SRUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9453DEDF1B2A0A2700C79DB3 /* SRUtils.cpp */; };
 		948C6A081B2C162600D61689 /* lodepng.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 948C6A061B2C162600D61689 /* lodepng.cpp */; };
-		948E275C1B359A7F008CAFAF /* adler32.c in Sources */ = {isa = PBXBuildFile; fileRef = 948E27411B359A7F008CAFAF /* adler32.c */; };
-		948E275D1B359A7F008CAFAF /* compress.c in Sources */ = {isa = PBXBuildFile; fileRef = 948E27421B359A7F008CAFAF /* compress.c */; };
-		948E275E1B359A7F008CAFAF /* crc32.c in Sources */ = {isa = PBXBuildFile; fileRef = 948E27431B359A7F008CAFAF /* crc32.c */; };
-		948E275F1B359A7F008CAFAF /* deflate.c in Sources */ = {isa = PBXBuildFile; fileRef = 948E27461B359A7F008CAFAF /* deflate.c */; };
-		948E27601B359A7F008CAFAF /* gzio.c in Sources */ = {isa = PBXBuildFile; fileRef = 948E27481B359A7F008CAFAF /* gzio.c */; };
-		948E27611B359A7F008CAFAF /* infback.c in Sources */ = {isa = PBXBuildFile; fileRef = 948E27491B359A7F008CAFAF /* infback.c */; };
-		948E27621B359A7F008CAFAF /* inffast.c in Sources */ = {isa = PBXBuildFile; fileRef = 948E274A1B359A7F008CAFAF /* inffast.c */; };
-		948E27631B359A7F008CAFAF /* inflate.c in Sources */ = {isa = PBXBuildFile; fileRef = 948E274D1B359A7F008CAFAF /* inflate.c */; };
-		948E27641B359A7F008CAFAF /* inftrees.c in Sources */ = {isa = PBXBuildFile; fileRef = 948E274F1B359A7F008CAFAF /* inftrees.c */; };
-		948E27651B359A7F008CAFAF /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 948E27511B359A7F008CAFAF /* ioapi.c */; };
-		948E27661B359A7F008CAFAF /* trees.c in Sources */ = {isa = PBXBuildFile; fileRef = 948E27531B359A7F008CAFAF /* trees.c */; };
-		948E27671B359A7F008CAFAF /* uncompr.c in Sources */ = {isa = PBXBuildFile; fileRef = 948E27551B359A7F008CAFAF /* uncompr.c */; };
-		948E27681B359A7F008CAFAF /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 948E27561B359A7F008CAFAF /* unzip.c */; };
-		948E27691B359A7F008CAFAF /* zutil.c in Sources */ = {isa = PBXBuildFile; fileRef = 948E275A1B359A7F008CAFAF /* zutil.c */; };
 		94C5DB541B63E5DB005E706E /* fragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 94C5DB501B63E5DB005E706E /* fragment.glsl */; };
 		94C5DB551B63E5DB005E706E /* model.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 94C5DB511B63E5DB005E706E /* model.mtl */; };
 		94C5DB561B63E5DB005E706E /* model.obj in Resources */ = {isa = PBXBuildFile; fileRef = 94C5DB521B63E5DB005E706E /* model.obj */; };
@@ -78,33 +64,6 @@
 		9453DEE01B2A0A2700C79DB3 /* SRUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SRUtils.h; path = ../../CPPSources/Utils/SRUtils.h; sourceTree = SOURCE_ROOT; };
 		948C6A061B2C162600D61689 /* lodepng.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lodepng.cpp; sourceTree = "<group>"; };
 		948C6A071B2C162600D61689 /* lodepng.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lodepng.h; sourceTree = "<group>"; };
-		948E27411B359A7F008CAFAF /* adler32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = adler32.c; sourceTree = "<group>"; };
-		948E27421B359A7F008CAFAF /* compress.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = compress.c; sourceTree = "<group>"; };
-		948E27431B359A7F008CAFAF /* crc32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = crc32.c; sourceTree = "<group>"; };
-		948E27441B359A7F008CAFAF /* crc32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crc32.h; sourceTree = "<group>"; };
-		948E27451B359A7F008CAFAF /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
-		948E27461B359A7F008CAFAF /* deflate.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = deflate.c; sourceTree = "<group>"; };
-		948E27471B359A7F008CAFAF /* deflate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = deflate.h; sourceTree = "<group>"; };
-		948E27481B359A7F008CAFAF /* gzio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = gzio.c; sourceTree = "<group>"; };
-		948E27491B359A7F008CAFAF /* infback.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = infback.c; sourceTree = "<group>"; };
-		948E274A1B359A7F008CAFAF /* inffast.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = inffast.c; sourceTree = "<group>"; };
-		948E274B1B359A7F008CAFAF /* inffast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = inffast.h; sourceTree = "<group>"; };
-		948E274C1B359A7F008CAFAF /* inffixed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = inffixed.h; sourceTree = "<group>"; };
-		948E274D1B359A7F008CAFAF /* inflate.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = inflate.c; sourceTree = "<group>"; };
-		948E274E1B359A7F008CAFAF /* inflate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = inflate.h; sourceTree = "<group>"; };
-		948E274F1B359A7F008CAFAF /* inftrees.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = inftrees.c; sourceTree = "<group>"; };
-		948E27501B359A7F008CAFAF /* inftrees.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = inftrees.h; sourceTree = "<group>"; };
-		948E27511B359A7F008CAFAF /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
-		948E27521B359A7F008CAFAF /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
-		948E27531B359A7F008CAFAF /* trees.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = trees.c; sourceTree = "<group>"; };
-		948E27541B359A7F008CAFAF /* trees.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = trees.h; sourceTree = "<group>"; };
-		948E27551B359A7F008CAFAF /* uncompr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = uncompr.c; sourceTree = "<group>"; };
-		948E27561B359A7F008CAFAF /* unzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unzip.c; sourceTree = "<group>"; };
-		948E27571B359A7F008CAFAF /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unzip.h; sourceTree = "<group>"; };
-		948E27581B359A7F008CAFAF /* zconf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zconf.h; sourceTree = "<group>"; };
-		948E27591B359A7F008CAFAF /* zlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zlib.h; sourceTree = "<group>"; };
-		948E275A1B359A7F008CAFAF /* zutil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zutil.c; sourceTree = "<group>"; };
-		948E275B1B359A7F008CAFAF /* zutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zutil.h; sourceTree = "<group>"; };
 		94C5DB501B63E5DB005E706E /* fragment.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = fragment.glsl; path = SREngine/Platforms/Android/assets/fragment.glsl; sourceTree = "<group>"; };
 		94C5DB511B63E5DB005E706E /* model.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = model.mtl; path = SREngine/Platforms/Android/assets/model.mtl; sourceTree = "<group>"; };
 		94C5DB521B63E5DB005E706E /* model.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = model.obj; path = SREngine/Platforms/Android/assets/model.obj; sourceTree = "<group>"; };
@@ -309,7 +268,6 @@
 		9453DEDE1B2A080F00C79DB3 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				948E27401B359A7F008CAFAF /* zlib */,
 				948C6A051B2C162600D61689 /* loadpng */,
 				9453DEDF1B2A0A2700C79DB3 /* SRUtils.cpp */,
 				9453DEE01B2A0A2700C79DB3 /* SRUtils.h */,
@@ -326,41 +284,6 @@
 			);
 			name = loadpng;
 			path = ../../CPPSources/Utils/loadpng;
-			sourceTree = SOURCE_ROOT;
-		};
-		948E27401B359A7F008CAFAF /* zlib */ = {
-			isa = PBXGroup;
-			children = (
-				948E27411B359A7F008CAFAF /* adler32.c */,
-				948E27421B359A7F008CAFAF /* compress.c */,
-				948E27431B359A7F008CAFAF /* crc32.c */,
-				948E27441B359A7F008CAFAF /* crc32.h */,
-				948E27451B359A7F008CAFAF /* crypt.h */,
-				948E27461B359A7F008CAFAF /* deflate.c */,
-				948E27471B359A7F008CAFAF /* deflate.h */,
-				948E27481B359A7F008CAFAF /* gzio.c */,
-				948E27491B359A7F008CAFAF /* infback.c */,
-				948E274A1B359A7F008CAFAF /* inffast.c */,
-				948E274B1B359A7F008CAFAF /* inffast.h */,
-				948E274C1B359A7F008CAFAF /* inffixed.h */,
-				948E274D1B359A7F008CAFAF /* inflate.c */,
-				948E274E1B359A7F008CAFAF /* inflate.h */,
-				948E274F1B359A7F008CAFAF /* inftrees.c */,
-				948E27501B359A7F008CAFAF /* inftrees.h */,
-				948E27511B359A7F008CAFAF /* ioapi.c */,
-				948E27521B359A7F008CAFAF /* ioapi.h */,
-				948E27531B359A7F008CAFAF /* trees.c */,
-				948E27541B359A7F008CAFAF /* trees.h */,
-				948E27551B359A7F008CAFAF /* uncompr.c */,
-				948E27561B359A7F008CAFAF /* unzip.c */,
-				948E27571B359A7F008CAFAF /* unzip.h */,
-				948E27581B359A7F008CAFAF /* zconf.h */,
-				948E27591B359A7F008CAFAF /* zlib.h */,
-				948E275A1B359A7F008CAFAF /* zutil.c */,
-				948E275B1B359A7F008CAFAF /* zutil.h */,
-			);
-			name = zlib;
-			path = ../../CPPSources/Utils/zlib;
 			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
@@ -468,29 +391,15 @@
 			files = (
 				94CE87E61B62B5A400752D5C /* main.m in Sources */,
 				94CE87D21B62B4FB00752D5C /* Mesh.cpp in Sources */,
-				948E27691B359A7F008CAFAF /* zutil.c in Sources */,
-				948E27671B359A7F008CAFAF /* uncompr.c in Sources */,
 				94CE87D61B62B51900752D5C /* ShaderHelper.cpp in Sources */,
-				948E27681B359A7F008CAFAF /* unzip.c in Sources */,
-				948E27661B359A7F008CAFAF /* trees.c in Sources */,
 				94CE87DC1B62B57A00752D5C /* esUtil.cpp in Sources */,
-				948E275D1B359A7F008CAFAF /* compress.c in Sources */,
 				94CE87CC1B62B4D000752D5C /* m4d.cpp in Sources */,
-				948E27621B359A7F008CAFAF /* inffast.c in Sources */,
 				94CE87E11B62B59800752D5C /* AppDelegate.mm in Sources */,
-				948E275E1B359A7F008CAFAF /* crc32.c in Sources */,
-				948E27601B359A7F008CAFAF /* gzio.c in Sources */,
-				948E27641B359A7F008CAFAF /* inftrees.c in Sources */,
-				948E27651B359A7F008CAFAF /* ioapi.c in Sources */,
 				94CE87E21B62B59800752D5C /* FileWrapper.mm in Sources */,
 				94CE87D91B62B53500752D5C /* main.cpp in Sources */,
-				948E275F1B359A7F008CAFAF /* deflate.c in Sources */,
 				94CE87CE1B62B4D000752D5C /* v3d.cpp in Sources */,
-				948E27631B359A7F008CAFAF /* inflate.c in Sources */,
 				94CE87CD1B62B4D000752D5C /* q4d.cpp in Sources */,
-				948E27611B359A7F008CAFAF /* infback.c in Sources */,
 				948C6A081B2C162600D61689 /* lodepng.cpp in Sources */,
-				948E275C1B359A7F008CAFAF /* adler32.c in Sources */,
 				9453DEE11B2A0A2700C79DB3 /* SRUtils.cpp in Sources */,
 				94CE87E71B62B5A400752D5C /* ViewController.mm in Sources */,
 			);

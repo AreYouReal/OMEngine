@@ -46,17 +46,7 @@ void logMessage(const char *formatString, ...);
 srFile *fileOpen ( void *ioContext, const char *fileName );
 long getFileSize( srFile *pFile );
 void fileClose ( srFile *pFile );
-int fileRead ( srFile *pFile, int bytesToRead, void *buffer );
-
-void adjustFilePath(char *filepath);
-void getFilePath(char* filepath, char *path);
-void getFileName(char *filepath, char *filename);
-void getFileExtension(char *filepath, char *ext, bool uppercase);
-
-Memory *mopen( char *filename, bool relative_path );
-Memory *mclose( Memory *memory );
-unsigned int mread( Memory *memory, void *dst, unsigned int size );
-void minsert(Memory *memory, char *str, unsigned int position );
+int fileRead ( srFile *pFile, long bytesToRead, void *buffer );
 
 std::shared_ptr<ShaderSource> readShaderFromFile( void *ioContext, const char *fileName);
 void readOBJFromFile(void *ioContext, const char *fileName);
