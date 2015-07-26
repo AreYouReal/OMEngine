@@ -21,13 +21,13 @@
 		94C5DB551B63E5DB005E706E /* model.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 94C5DB511B63E5DB005E706E /* model.mtl */; };
 		94C5DB561B63E5DB005E706E /* model.obj in Resources */ = {isa = PBXBuildFile; fileRef = 94C5DB521B63E5DB005E706E /* model.obj */; };
 		94C5DB571B63E5DB005E706E /* vertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 94C5DB531B63E5DB005E706E /* vertex.glsl */; };
+		94C6CBDB1B64933E001DFB8B /* esUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94C6CBD91B64933E001DFB8B /* esUtil.cpp */; };
 		94CE87CC1B62B4D000752D5C /* m4d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94CE87C61B62B4D000752D5C /* m4d.cpp */; };
 		94CE87CD1B62B4D000752D5C /* q4d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94CE87C81B62B4D000752D5C /* q4d.cpp */; };
 		94CE87CE1B62B4D000752D5C /* v3d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94CE87CA1B62B4D000752D5C /* v3d.cpp */; };
 		94CE87D21B62B4FB00752D5C /* Mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94CE87D01B62B4FB00752D5C /* Mesh.cpp */; };
 		94CE87D61B62B51900752D5C /* ShaderHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94CE87D31B62B51900752D5C /* ShaderHelper.cpp */; };
 		94CE87D91B62B53500752D5C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94CE87D71B62B53500752D5C /* main.cpp */; };
-		94CE87DC1B62B57A00752D5C /* esUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94CE87DA1B62B57A00752D5C /* esUtil.cpp */; };
 		94CE87E11B62B59800752D5C /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 94CE87DE1B62B59800752D5C /* AppDelegate.mm */; };
 		94CE87E21B62B59800752D5C /* FileWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 94CE87E01B62B59800752D5C /* FileWrapper.mm */; };
 		94CE87E61B62B5A400752D5C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 94CE87E31B62B5A400752D5C /* main.m */; };
@@ -68,6 +68,8 @@
 		94C5DB511B63E5DB005E706E /* model.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = model.mtl; path = SREngine/Platforms/Android/assets/model.mtl; sourceTree = "<group>"; };
 		94C5DB521B63E5DB005E706E /* model.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = model.obj; path = SREngine/Platforms/Android/assets/model.obj; sourceTree = "<group>"; };
 		94C5DB531B63E5DB005E706E /* vertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = vertex.glsl; path = SREngine/Platforms/Android/assets/vertex.glsl; sourceTree = "<group>"; };
+		94C6CBD91B64933E001DFB8B /* esUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = esUtil.cpp; sourceTree = "<group>"; };
+		94C6CBDA1B64933E001DFB8B /* esUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = esUtil.h; sourceTree = "<group>"; };
 		94CE87C61B62B4D000752D5C /* m4d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = m4d.cpp; path = ../../CPPSources/Math/m4d.cpp; sourceTree = SOURCE_ROOT; };
 		94CE87C71B62B4D000752D5C /* m4d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = m4d.h; path = ../../CPPSources/Math/m4d.h; sourceTree = SOURCE_ROOT; };
 		94CE87C81B62B4D000752D5C /* q4d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = q4d.cpp; path = ../../CPPSources/Math/q4d.cpp; sourceTree = SOURCE_ROOT; };
@@ -82,8 +84,6 @@
 		94CE87D51B62B51900752D5C /* ShaderSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShaderSource.h; path = ../../CPPSources/Shaders/ShaderSource.h; sourceTree = SOURCE_ROOT; };
 		94CE87D71B62B53500752D5C /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = SREngine/CPPSources/main.cpp; sourceTree = "<group>"; };
 		94CE87D81B62B53500752D5C /* main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = main.h; path = SREngine/CPPSources/main.h; sourceTree = "<group>"; };
-		94CE87DA1B62B57A00752D5C /* esUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = esUtil.cpp; path = SREngine/CPPSources/esUtil.cpp; sourceTree = "<group>"; };
-		94CE87DB1B62B57A00752D5C /* esUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = esUtil.h; path = SREngine/CPPSources/esUtil.h; sourceTree = "<group>"; };
 		94CE87DD1B62B59800752D5C /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = iOSSRE/AppDelegate.h; sourceTree = SOURCE_ROOT; };
 		94CE87DE1B62B59800752D5C /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = iOSSRE/AppDelegate.mm; sourceTree = SOURCE_ROOT; };
 		94CE87DF1B62B59800752D5C /* FileWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileWrapper.h; path = iOSSRE/FileWrapper.h; sourceTree = SOURCE_ROOT; };
@@ -186,8 +186,6 @@
 				9420DCE91B0115B0006D2A7E /* Objects */,
 				9420DCE41B007E0D006D2A7E /* Shaders */,
 				94CE87D71B62B53500752D5C /* main.cpp */,
-				94CE87DA1B62B57A00752D5C /* esUtil.cpp */,
-				94CE87DB1B62B57A00752D5C /* esUtil.h */,
 				94CE87D81B62B53500752D5C /* main.h */,
 				7625BC3617F32A780019C421 /* iOS */,
 				7626524017F10E6C007CCD43 /* Supporting Files */,
@@ -270,6 +268,8 @@
 			children = (
 				948C6A051B2C162600D61689 /* loadpng */,
 				9453DEDF1B2A0A2700C79DB3 /* SRUtils.cpp */,
+				94C6CBD91B64933E001DFB8B /* esUtil.cpp */,
+				94C6CBDA1B64933E001DFB8B /* esUtil.h */,
 				9453DEE01B2A0A2700C79DB3 /* SRUtils.h */,
 			);
 			name = Utils;
@@ -392,7 +392,6 @@
 				94CE87E61B62B5A400752D5C /* main.m in Sources */,
 				94CE87D21B62B4FB00752D5C /* Mesh.cpp in Sources */,
 				94CE87D61B62B51900752D5C /* ShaderHelper.cpp in Sources */,
-				94CE87DC1B62B57A00752D5C /* esUtil.cpp in Sources */,
 				94CE87CC1B62B4D000752D5C /* m4d.cpp in Sources */,
 				94CE87E11B62B59800752D5C /* AppDelegate.mm in Sources */,
 				94CE87E21B62B59800752D5C /* FileWrapper.mm in Sources */,
@@ -401,6 +400,7 @@
 				94CE87CD1B62B4D000752D5C /* q4d.cpp in Sources */,
 				948C6A081B2C162600D61689 /* lodepng.cpp in Sources */,
 				9453DEE11B2A0A2700C79DB3 /* SRUtils.cpp in Sources */,
+				94C6CBDB1B64933E001DFB8B /* esUtil.cpp in Sources */,
 				94CE87E71B62B5A400752D5C /* ViewController.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

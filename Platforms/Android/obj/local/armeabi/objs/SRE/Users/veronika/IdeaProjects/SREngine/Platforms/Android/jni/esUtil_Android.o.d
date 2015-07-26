@@ -50,7 +50,7 @@
  /Users/veronika/Documents/ADT/android-ndk-r9d/platforms/android-18/arch-arm/usr/include/android/native_window.h \
  /Users/veronika/Documents/ADT/android-ndk-r9d/platforms/android-18/arch-arm/usr/include/android/rect.h \
  /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Main.h \
- /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/esUtil.h \
+ /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/esUtil.h \
  /Users/veronika/Documents/ADT/android-ndk-r9d/platforms/android-18/arch-arm/usr/include/stdlib.h \
  /Users/veronika/Documents/ADT/android-ndk-r9d/platforms/android-18/arch-arm/usr/include/alloca.h \
  /Users/veronika/Documents/ADT/android-ndk-r9d/platforms/android-18/arch-arm/usr/include/strings.h \
@@ -162,7 +162,7 @@
 
 /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Main.h:
 
-/Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/esUtil.h:
+/Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/esUtil.h:
 
 /Users/veronika/Documents/ADT/android-ndk-r9d/platforms/android-18/arch-arm/usr/include/stdlib.h:
 

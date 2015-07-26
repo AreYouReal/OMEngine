@@ -7,26 +7,12 @@ LOCAL_MODULE    := SRE
 LOCAL_CFLAGS    += -std=c++11
 
 
-LOCAL_SRC_FILES := $(SRC_PATH)/CPPSources/esUtil.cpp \
+LOCAL_SRC_FILES := $(SRC_PATH)/CPPSources/Utils/esUtil.cpp \
 				   $(LOCAL_PATH)/esUtil_Android.cpp \
 				   $(SRC_PATH)/CPPSources/Main.cpp \
 				   $(SRC_PATH)/CPPSources/Shaders/ShaderHelper.cpp \
 				   $(SRC_PATH)/CPPSources/Utils/SRUtils.cpp \
 				   $(SRC_PATH)/CPPSources/Utils/loadpng/lodepng.cpp \
-				   $(SRC_PATH)/CPPSources/Utils/zlib/adler32.c \
-				   $(SRC_PATH)/CPPSources/Utils/zlib/compress.c \
-				   $(SRC_PATH)/CPPSources/Utils/zlib/crc32.c \
-				   $(SRC_PATH)/CPPSources/Utils/zlib/deflate.c \
-				   $(SRC_PATH)/CPPSources/Utils/zlib/gzio.c \
-				   $(SRC_PATH)/CPPSources/Utils/zlib/infback.c \
-				   $(SRC_PATH)/CPPSources/Utils/zlib/inffast.c \
-				   $(SRC_PATH)/CPPSources/Utils/zlib/inflate.c \
-				   $(SRC_PATH)/CPPSources/Utils/zlib/inftrees.c \
-				   $(SRC_PATH)/CPPSources/Utils/zlib/ioapi.c \
-				   $(SRC_PATH)/CPPSources/Utils/zlib/trees.c \
-				   $(SRC_PATH)/CPPSources/Utils/zlib/uncompr.c \
-				   $(SRC_PATH)/CPPSources/Utils/zlib/unzip.c \
-				   $(SRC_PATH)/CPPSources/Utils/zlib/zutil.c \
 
 LOCAL_C_INCLUDES	:= $(SRC_PATH) \
 					   $(COMMON_INC_PATH) \
