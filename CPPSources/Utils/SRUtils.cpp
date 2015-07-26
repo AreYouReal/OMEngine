@@ -101,7 +101,7 @@ GLboolean SRUTIL_API SRCreateWindow ( SRContext *context, const char *title, GLi
     }
 #endif // ANDROID
     // Create a surface
-    context->eglSurface = eglCreateWindowSurface ( Context->eglDisplay, config,
+    context->eglSurface = eglCreateWindowSurface ( context->eglDisplay, config,
                                                     context->eglNativeWindow, NULL );
     
     if ( context->eglSurface == EGL_NO_SURFACE ){
@@ -109,7 +109,7 @@ GLboolean SRUTIL_API SRCreateWindow ( SRContext *context, const char *title, GLi
     }
     
     // Create a GL context
-    Context->eglContext = eglCreateContext ( context->eglDisplay, config,
+    context->eglContext = eglCreateContext ( context->eglDisplay, config,
                                               EGL_NO_CONTEXT, contextAttribs );
     
     if ( context->eglContext == EGL_NO_CONTEXT ){
@@ -165,7 +165,7 @@ srFile  *fileOpen       ( void *ioContext, const char *fileName ){
     
 #ifdef ANDROID
     if ( ioContext != NULL ){
-        AAssetManager *assetManager = ( AAssetManager * ) ((context*)ioContext)->platformData;
+        AAssetManager *assetManager = ( AAssetManager * ) ((SRContext*)ioContext)->platformData;
         pFile = AAssetManager_open ( assetManager, fileName, AASSET_MODE_BUFFER );
     }
 #else

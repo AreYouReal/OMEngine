@@ -7,8 +7,7 @@ LOCAL_MODULE    := SRE
 LOCAL_CFLAGS    += -std=c++11
 
 
-LOCAL_SRC_FILES := $(SRC_PATH)/CPPSources/Utils/esUtil.cpp \
-				   $(LOCAL_PATH)/esUtil_Android.cpp \
+LOCAL_SRC_FILES := $(LOCAL_PATH)/esUtil_Android.cpp \
 				   $(SRC_PATH)/CPPSources/Main.cpp \
 				   $(SRC_PATH)/CPPSources/Shaders/ShaderHelper.cpp \
 				   $(SRC_PATH)/CPPSources/Utils/SRUtils.cpp \

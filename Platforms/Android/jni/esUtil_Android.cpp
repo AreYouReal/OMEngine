@@ -52,29 +52,29 @@ static float GetCurrentTime(){
 //    Android callback for onAppCmd
 //
 static void HandleCommand ( struct android_app *pApp, int32_t cmd ){
-   ESContext *esContext = ( ESContext * ) pApp->userData;
+   SRContext *context = ( SRContext * ) pApp->userData;
    printCommand(cmd);
    switch ( cmd ){
       case APP_CMD_INPUT_CHANGED:      break; // 0
       //______________________________________
       case APP_CMD_INIT_WINDOW:              // 1
-         esContext->eglNativeDisplay = EGL_DEFAULT_DISPLAY;
-         esContext->eglNativeWindow = pApp->window;
+         context->eglNativeDisplay = EGL_DEFAULT_DISPLAY;
+         context->eglNativeWindow = pApp->window;
          // Call the main entrypoint for the app
-         if ( Main ( esContext ) != GL_TRUE ){
+         if ( Main ( context ) != GL_TRUE ){
             exit ( 0 ); //@TEMP better way to exit?
          }
          break;
       //______________________________________
       case APP_CMD_TERM_WINDOW:
          // Cleanup on shutdown
-         if ( esContext->shutdownFunc != NULL ){
-            esContext->shutdownFunc ( esContext );
+         if ( context->shutdownFunc != NULL ){
+            context->shutdownFunc ( context );
          }
-         if ( esContext->userData != NULL ){
-            free ( esContext->userData );
+         if ( context->userData != NULL ){
+            free ( context->userData );
          }
-         memset ( esContext, 0, sizeof ( ESContext ) );
+         memset ( context, 0, sizeof ( SRContext ) );
          break;
       //______________________________________
       case APP_CMD_WINDOW_RESIZED:        break;
@@ -119,19 +119,19 @@ static void HandleCommand ( struct android_app *pApp, int32_t cmd ){
 //    Main entrypoint for Android application
 //
 void android_main ( struct android_app *pApp ){
-   ESContext esContext;
+   SRContext context;
    float lastTime;
 
    // Make sure glue isn't stripped.
    app_dummy();
 
    // Initialize the context
-   memset ( &esContext, 0, sizeof ( ESContext ) );
+   memset ( &context, 0, sizeof ( SRContext ) );
 
-   esContext.platformData = ( void * ) pApp->activity->assetManager;
+   context.platformData = ( void * ) pApp->activity->assetManager;
 
    pApp->onAppCmd = HandleCommand;
-   pApp->userData = &esContext;
+   pApp->userData = &context;
 
    lastTime = GetCurrentTime();
 
@@ -152,36 +152,21 @@ void android_main ( struct android_app *pApp ){
 
       }
 
-      if ( esContext.eglNativeWindow == NULL ){
+      if ( context.eglNativeWindow == NULL ){
          continue;
       }
 
       // Call app update function
-      if ( esContext.updateFunc != NULL ){
+      if ( context.updateFunc != NULL ){
          float curTime = GetCurrentTime();
          float deltaTime =  ( curTime - lastTime );
          lastTime = curTime;
-         esContext.updateFunc ( &esContext, deltaTime );
+         context.updateFunc ( &context, deltaTime );
       }
 
-      if ( esContext.drawFunc != NULL ){
-         esContext.drawFunc ( &esContext );
-         eglSwapBuffers ( esContext.eglDisplay, esContext.eglSurface );
+      if ( context.drawFunc != NULL ){
+         context.drawFunc ( &context );
+         eglSwapBuffers ( context.eglDisplay, context.eglSurface );
       }
    }
-}
-
-
-
-
-///
-//  WinCreate()
-//
-//      Create Win32 instance and window
-//
-GLboolean WinCreate ( ESContext *esContext, const char *title )
-{
-   // On Android, this does not need to do anything.  Everything happens from
-   // android_main()
-   return GL_TRUE;
 }
