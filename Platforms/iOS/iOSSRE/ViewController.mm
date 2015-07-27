@@ -88,4 +88,32 @@
 }
 
 
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    UITouch *touch = [[event allTouches] anyObject];
+    CGPoint location = [touch locationInView:touch.view];
+    //    NSLog(@"touchBEGAN, %f, %f", location.x, location.y);
+    if(_SRContext.touchFunc) _SRContext.touchFunc(&_SRContext, TOUCH_EVENT::BEGAN, location.x, location.y);
+}
+
+-(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
+    UITouch *touch = [[event allTouches] anyObject];
+    CGPoint location = [touch locationInView:touch.view];
+    if(_SRContext.touchFunc) _SRContext.touchFunc(&_SRContext, TOUCH_EVENT::MOVED, location.x, location.y);
+    //    NSLog(@"touchMOVED, %f, %f", location.x, location.y);
+}
+
+-(void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event{
+    UITouch *touch = [[event allTouches] anyObject];
+    CGPoint location = [touch locationInView:touch.view];
+    //    NSLog(@"touchCANCELLED, %f, %f", location.x, location.y);
+    if(_SRContext.touchFunc) _SRContext.touchFunc(&_SRContext, TOUCH_EVENT::CANCELLED, location.x, location.y);
+}
+
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
+    UITouch *touch = [[event allTouches] anyObject];
+    CGPoint location = [touch locationInView:touch.view];
+    //    NSLog(@"touchENDED, %f, %f", location.x, location.y);
+    if(_SRContext.touchFunc)  _SRContext.touchFunc(&_SRContext, TOUCH_EVENT::ENDED, location.x, location.y);
+}
+
 @end

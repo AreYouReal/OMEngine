@@ -85,15 +85,22 @@ void Shutdown ( SRContext *context ){
    glDeleteProgram ( userData->programObject );
 }
 
-int Main ( SRContext *context ){
-   context->userData = malloc ( sizeof ( UserData ) );
-
-   SRCreateWindow( context, "Hello Triangle", 320, 240, ES_WINDOW_RGB );
-
-   if ( !Init ( context ) ){ return GL_FALSE; }
-
-   SRRegisterShutdownFunc ( context, Shutdown );
-   SRRegisterDrawFunc ( context, Draw );
-
-   return GL_TRUE;
+void Touch(SRContext *context, int event, int x, int y){
+    logMessage("TOUCH OCCURED: %d, [ %d, %d ]", event, x, y);
 }
+
+int Main ( SRContext *context ){
+    context->userData = malloc ( sizeof ( UserData ) );
+
+    SRCreateWindow( context, "Hello Triangle", 320, 240, ES_WINDOW_RGB );
+
+    if ( !Init ( context ) ){ return GL_FALSE; }
+
+    SRRegisterShutdownFunc ( context, Shutdown );
+    SRRegisterDrawFunc ( context, Draw );
+    SRRegisterTouchFunc( context, Touch );
+
+    return GL_TRUE;
+}
+
+

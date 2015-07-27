@@ -139,8 +139,8 @@ void SRUTIL_API SRRegisterUpdateFunc ( SRContext *context, void ( SRCALLBACK *up
     context->updateFunc = updateFunc;
 }
 
-void SRUTIL_API SRRegisterKeyFunc ( SRContext *context, void ( SRCALLBACK *keyFunc ) ( SRContext *, unsigned char, int, int ) ){
-    context->keyFunc = keyFunc;
+void SRUTIL_API SRRegisterTouchFunc ( SRContext *context, void ( SRCALLBACK *touchFunc ) ( SRContext *, int , int, int ) ){
+    context->touchFunc = touchFunc;
 }
 
 

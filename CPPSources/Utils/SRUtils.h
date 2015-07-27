@@ -36,6 +36,9 @@ typedef FILE srFile;
 #define ES_WINDOW_STENCIL       4   /// SRCreateWindow flag - stencil buffer
 #define ES_WINDOW_MULTISAMPLE   8   /// SRCreateWindow flat - multi-sample buffer
 
+
+enum TOUCH_EVENT{ BEGAN, MOVED, CANCELLED, ENDED };
+
 #pragma GENERAL
 struct SRContext{
     void       *platformData;    /// Put platform specific data here
@@ -54,7 +57,7 @@ struct SRContext{
     /// Callbacks
     void ( SRCALLBACK *drawFunc ) ( SRContext * );
     void ( SRCALLBACK *shutdownFunc ) ( SRContext * );
-    void ( SRCALLBACK *keyFunc ) ( SRContext *, unsigned char, int, int );
+    void ( SRCALLBACK *touchFunc ) ( SRContext *, int, int, int );
     void ( SRCALLBACK *updateFunc ) ( SRContext *, float deltaTime );
 };
 
@@ -68,8 +71,8 @@ void SRUTIL_API SRRegisterShutdownFunc ( SRContext *context, void ( SRCALLBACK *
 
 void SRUTIL_API SRRegisterUpdateFunc ( SRContext *context, void ( SRCALLBACK *updateFunc ) ( SRContext *, float ) );
 
-void SRUTIL_API SRRegisterKeyFunc ( SRContext *context,
-                                   void ( SRCALLBACK *drawFunc ) ( SRContext *, unsigned char, int, int ) );
+void SRUTIL_API SRRegisterTouchFunc ( SRContext *context,
+                                   void ( SRCALLBACK *touchFunc ) ( SRContext *, int, int, int ) );
 
 
 

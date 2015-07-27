@@ -2,7 +2,8 @@
 
 #include "SRUtils.h"
 
-int  Main       ( SRContext *Context );
-int  Init       ( SRContext *Context );
-void Draw       ( SRContext *context );
-void Shutdown   ( SRContext *context );
+int  Main       ( SRContext * );
+int  Init       ( SRContext * );
+void Draw       ( SRContext * );
+void Shutdown   ( SRContext * );
+void Touch      ( SRContext *, int, int, int );
