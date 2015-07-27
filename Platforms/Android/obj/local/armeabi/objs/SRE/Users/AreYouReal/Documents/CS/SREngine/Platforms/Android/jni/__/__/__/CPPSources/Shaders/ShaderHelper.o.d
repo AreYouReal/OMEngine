@@ -47,12 +47,7 @@
  /Users/AreYouReal/Documents/SOK/android-ndk-r10d/platforms/android-18/arch-arm/usr/include/android/native_activity.h \
  /Users/AreYouReal/Documents/SOK/android-ndk-r10d/platforms/android-18/arch-arm/usr/include/jni.h \
  /Users/AreYouReal/Documents/SOK/android-ndk-r10d/platforms/android-18/arch-arm/usr/include/android/input.h \
- /Users/AreYouReal/Documents/SOK/android-ndk-r10d/platforms/android-18/arch-arm/usr/include/android/keycodes.h \
- /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/zlib/zlib.h \
- /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/zlib/zconf.h \
- /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/zlib/unzip.h \
- /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/zlib/zlib.h \
- /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/zlib/ioapi.h
+ /Users/AreYouReal/Documents/SOK/android-ndk-r10d/platforms/android-18/arch-arm/usr/include/android/keycodes.h
 
 /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Shaders/ShaderHelper.h:
 
@@ -149,13 +144,3 @@
 /Users/AreYouReal/Documents/SOK/android-ndk-r10d/platforms/android-18/arch-arm/usr/include/android/input.h:
 
 /Users/AreYouReal/Documents/SOK/android-ndk-r10d/platforms/android-18/arch-arm/usr/include/android/keycodes.h:
-
-/Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/zlib/zlib.h:
-
-/Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/zlib/zconf.h:
-
-/Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/zlib/unzip.h:
-
-/Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/zlib/zlib.h:
-
-/Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/zlib/ioapi.h:

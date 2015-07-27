@@ -113,6 +113,34 @@ static void HandleCommand ( struct android_app *pApp, int32_t cmd ){
 //
 //
 
+int32_t handle_input(struct android_app* pApp, AInputEvent* event) {
+    SRContext *context = ( SRContext * ) pApp->userData;
+    int32_t eventType = AInputEvent_getType(event);
+    switch(eventType){
+        case AINPUT_EVENT_TYPE_MOTION:
+            switch(AInputEvent_getSource(event)){
+                case AINPUT_SOURCE_TOUCHSCREEN:
+                    int action = AKeyEvent_getAction(event) & AMOTION_EVENT_ACTION_MASK;
+                    switch(action){
+                        case AMOTION_EVENT_ACTION_DOWN:
+                           if(context->touchFunc != NULL) context->touchFunc(context, TOUCH_EVENT::BEGAN, AMotionEvent_getX(event, 0), AMotionEvent_getY(event, 0));
+                        break;
+                        case AMOTION_EVENT_ACTION_UP:
+                           if(context->touchFunc != NULL) context->touchFunc(context, TOUCH_EVENT::ENDED, AMotionEvent_getX(event, 0), AMotionEvent_getY(event, 0));
+                        break;
+                        case AMOTION_EVENT_ACTION_MOVE:
+                           if(context->touchFunc != NULL) context->touchFunc(context, TOUCH_EVENT::MOVED, AMotionEvent_getX(event, 0), AMotionEvent_getY(event, 0));
+                        break;
+                    }
+                break;
+            } // end switch
+        break;
+        case AINPUT_EVENT_TYPE_KEY:
+            // handle key input...
+        break;
+    } // end switch
+}
+
 ///
 //  android_main()
 //
@@ -132,6 +160,7 @@ void android_main ( struct android_app *pApp ){
 
    pApp->onAppCmd = HandleCommand;
    pApp->userData = &context;
+   pApp->onInputEvent = handle_input;
 
    lastTime = GetCurrentTime();
 
