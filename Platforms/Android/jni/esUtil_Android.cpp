@@ -61,7 +61,7 @@ static void HandleCommand ( struct android_app *pApp, int32_t cmd ){
          context->eglNativeDisplay = EGL_DEFAULT_DISPLAY;
          context->eglNativeWindow = pApp->window;
          // Call the main entrypoint for the app
-         if ( Main ( context ) != GL_TRUE ){
+         if ( SRGraphics::Main ( context ) != GL_TRUE ){
             exit ( 0 ); //@TEMP better way to exit?
          }
          break;

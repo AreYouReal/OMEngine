@@ -2,8 +2,13 @@
 
 #include "SRUtils.h"
 
-int  Main       ( SRContext * );
-int  Init       ( SRContext * );
-void Draw       ( SRContext * );
-void Shutdown   ( SRContext * );
-void Touch      ( SRContext *, int, int, int );
+struct SRGraphics{
+
+    static int  Main       ( SRContext * );
+    static int  Init       ( SRContext * );
+    static void Draw       ( SRContext * );
+    static void Shutdown   ( SRContext * );
+    static void Touch      ( SRContext *, int, int, int );
+    
+    static    SRContext*      GetAppContext();
+};

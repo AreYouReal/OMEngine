@@ -1,6 +1,6 @@
-/Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/obj/local/armeabi/objs/SRE//Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/__/__/__/CPPSources/Main.o: \
- /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Main.cpp \
- /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/main.h \
+/Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/obj/local/armeabi/objs/SRE//Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/__/__/__/CPPSources/Shaders/ShaderProgram.o: \
+ /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Shaders/ShaderProgram.cpp \
+ /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Shaders/ShaderProgram.h \
  /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/SRUtils.h \
  /Users/AreYouReal/Documents/SOK/android-ndk-r10d/platforms/android-18/arch-arm/usr/include/stdio.h \
  /Users/AreYouReal/Documents/SOK/android-ndk-r10d/platforms/android-18/arch-arm/usr/include/sys/cdefs.h \
@@ -48,11 +48,10 @@
  /Users/AreYouReal/Documents/SOK/android-ndk-r10d/platforms/android-18/arch-arm/usr/include/jni.h \
  /Users/AreYouReal/Documents/SOK/android-ndk-r10d/platforms/android-18/arch-arm/usr/include/android/input.h \
  /Users/AreYouReal/Documents/SOK/android-ndk-r10d/platforms/android-18/arch-arm/usr/include/android/keycodes.h \
- /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Shaders/ShaderProgram.h \
  /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Shaders/SRShader.h \
  /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Shaders/ShaderHelper.h
 
-/Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/main.h:
+/Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Shaders/ShaderProgram.h:
 
 /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/SRUtils.h:
 
@@ -147,8 +146,6 @@
 /Users/AreYouReal/Documents/SOK/android-ndk-r10d/platforms/android-18/arch-arm/usr/include/android/input.h:
 
 /Users/AreYouReal/Documents/SOK/android-ndk-r10d/platforms/android-18/arch-arm/usr/include/android/keycodes.h:
-
-/Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Shaders/ShaderProgram.h:
 
 /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Shaders/SRShader.h:
 

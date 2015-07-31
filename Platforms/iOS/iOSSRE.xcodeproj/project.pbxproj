@@ -37,6 +37,9 @@
 		F3D5E1171AF8F32600DD216B /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3D5E1141AF8F32600DD216B /* Main_iPhone.storyboard */; };
 		F3D5E1191AF8F32E00DD216B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3D5E1181AF8F32E00DD216B /* Images.xcassets */; };
 		F3D5E1321AF8F4DD00DD216B /* iOSSRETests.m in Sources */ = {isa = PBXBuildFile; fileRef = F3D5E1051AF8F23400DD216B /* iOSSRETests.m */; };
+		F3FAE8B21B6B6BC7007AF169 /* obj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3FAE8B01B6B6BC7007AF169 /* obj.cpp */; };
+		F3FAE8B81B6B77D6007AF169 /* ShaderProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3FAE8B61B6B77D6007AF169 /* ShaderProgram.cpp */; };
+		F3FAE8BB1B6B7885007AF169 /* SRShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3FAE8B91B6B7885007AF169 /* SRShader.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +98,12 @@
 		F3D5E1131AF8F32600DD216B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = iOSSRE/Base.lproj/Main_iPad.storyboard; sourceTree = SOURCE_ROOT; };
 		F3D5E1151AF8F32600DD216B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = iOSSRE/Base.lproj/Main_iPhone.storyboard; sourceTree = SOURCE_ROOT; };
 		F3D5E1181AF8F32E00DD216B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = iOSSRE/Images.xcassets; sourceTree = SOURCE_ROOT; };
+		F3FAE8B01B6B6BC7007AF169 /* obj.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = obj.cpp; path = OBJ/obj.cpp; sourceTree = "<group>"; };
+		F3FAE8B11B6B6BC7007AF169 /* obj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = obj.h; path = OBJ/obj.h; sourceTree = "<group>"; };
+		F3FAE8B61B6B77D6007AF169 /* ShaderProgram.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShaderProgram.cpp; path = SREngine/CPPSources/Shaders/ShaderProgram.cpp; sourceTree = "<group>"; };
+		F3FAE8B71B6B77D6007AF169 /* ShaderProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShaderProgram.h; path = SREngine/CPPSources/Shaders/ShaderProgram.h; sourceTree = "<group>"; };
+		F3FAE8B91B6B7885007AF169 /* SRShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SRShader.cpp; path = SREngine/CPPSources/Shaders/SRShader.cpp; sourceTree = "<group>"; };
+		F3FAE8BA1B6B7885007AF169 /* SRShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SRShader.h; path = SREngine/CPPSources/Shaders/SRShader.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,6 +237,10 @@
 				94CE87D31B62B51900752D5C /* ShaderHelper.cpp */,
 				94CE87D41B62B51900752D5C /* ShaderHelper.h */,
 				94CE87D51B62B51900752D5C /* ShaderSource.h */,
+				F3FAE8B61B6B77D6007AF169 /* ShaderProgram.cpp */,
+				F3FAE8B71B6B77D6007AF169 /* ShaderProgram.h */,
+				F3FAE8B91B6B7885007AF169 /* SRShader.cpp */,
+				F3FAE8BA1B6B7885007AF169 /* SRShader.h */,
 			);
 			name = Shaders;
 			path = ../../..;
@@ -260,6 +273,7 @@
 		9453DEDE1B2A080F00C79DB3 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				F33B0B841B6B6B46006305C1 /* OBJ */,
 				948C6A051B2C162600D61689 /* loadpng */,
 				9453DEDF1B2A0A2700C79DB3 /* SRUtils.cpp */,
 				9453DEE01B2A0A2700C79DB3 /* SRUtils.h */,
@@ -277,6 +291,15 @@
 			name = loadpng;
 			path = ../../CPPSources/Utils/loadpng;
 			sourceTree = SOURCE_ROOT;
+		};
+		F33B0B841B6B6B46006305C1 /* OBJ */ = {
+			isa = PBXGroup;
+			children = (
+				F3FAE8B01B6B6BC7007AF169 /* obj.cpp */,
+				F3FAE8B11B6B6BC7007AF169 /* obj.h */,
+			);
+			name = OBJ;
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -384,13 +407,16 @@
 				94CE87E61B62B5A400752D5C /* main.m in Sources */,
 				94CE87D61B62B51900752D5C /* ShaderHelper.cpp in Sources */,
 				94CE87CC1B62B4D000752D5C /* m4d.cpp in Sources */,
+				F3FAE8B81B6B77D6007AF169 /* ShaderProgram.cpp in Sources */,
 				94CE87E11B62B59800752D5C /* AppDelegate.mm in Sources */,
+				F3FAE8BB1B6B7885007AF169 /* SRShader.cpp in Sources */,
 				94CE87E21B62B59800752D5C /* FileWrapper.mm in Sources */,
 				94CE87D91B62B53500752D5C /* main.cpp in Sources */,
 				94CE87CE1B62B4D000752D5C /* v3d.cpp in Sources */,
 				94CE87CD1B62B4D000752D5C /* q4d.cpp in Sources */,
 				948C6A081B2C162600D61689 /* lodepng.cpp in Sources */,
 				9453DEE11B2A0A2700C79DB3 /* SRUtils.cpp in Sources */,
+				F3FAE8B21B6B6BC7007AF169 /* obj.cpp in Sources */,
 				94CE87E71B62B5A400752D5C /* ViewController.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

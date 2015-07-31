@@ -60,7 +60,7 @@
     
     memset( &_context, 0, sizeof( _context ) );
   
-    Main(&_SRContext);
+    SRGraphics::Main(&_SRContext);
 }
 
 - (void)tearDownGL{
