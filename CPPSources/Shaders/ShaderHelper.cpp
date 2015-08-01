@@ -16,6 +16,37 @@ PROGRAM ShaderHelper::createProgram(const char *vertexShaderFilename,const char*
     glAttachShader(program->ID, fragmentShader->ID);
     if(program->bindAttribCallback) program->bindAttribCallback((void *)program.get());
     glLinkProgram(program->ID);
+    
+    int status, total, len, size;
+    unsigned int type;
+    char name[ MAX_CHAR ];
+    glGetProgramiv(program->ID, GL_LINK_STATUS, &status);
+    if(!status){
+        return nullptr;
+    }else{
+        glGetProgramiv(program->ID, GL_ACTIVE_ATTRIBUTES, &total);
+        program->vertexAttribArray = new VertexAttrib[total];
+        for(unsigned int i = 0; i < total; i++){
+            glGetActiveAttrib(program->ID, i, MAX_CHAR, &len, &size, &type, name );
+            VertexAttrib &attrib = program->vertexAttribArray[i];
+            attrib.location = glGetAttribLocation(program->ID, name);
+            strcpy(attrib.name, name);
+            attrib.type = type;
+        }
+
+        glGetProgramiv(program->ID, GL_ACTIVE_UNIFORMS, &total);
+        program->uniformArray = new Uniform[total];
+        for(unsigned int i = 0; i < total; i++){
+            glGetActiveUniform(program->ID, i, MAX_CHAR, &len, &size, &type, name);
+            Uniform &uniform = program->uniformArray[i];
+            uniform.location = glGetUniformLocation(program->ID, name);
+            strcpy(uniform.name, name);
+            uniform.type = type;
+        }
+        
+    }
+    
+    
     ShaderHelper::printProgramInfoLog(program->ID);
     
     return program;
