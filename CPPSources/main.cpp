@@ -1,12 +1,11 @@
 #include "main.h"
-#include "ShaderProgram.h"
+#include "ShaderHelper.h"
 
 typedef struct{
    GLuint programObject;
 } UserData;
 
-ShaderProgram *program;
-
+PROGRAM program;
 
 static SRContext       *appContext;
 
@@ -19,32 +18,9 @@ SRContext* SRGraphics::GetAppContext(){
 //
 int SRGraphics::Init ( SRContext *context ){
    UserData *userData = (UserData*)context->userData;
-    GLuint programObject;
     appContext = context;
-    
-//    Memory *m =  mopen("vertex.glsl", true);
-//    Memory *m2 =  mopen("fragment.glsl", true);
-//    programObject = ShaderHelper::createProgram((char*)m->buffer, (char*)m2->buffer);
-    
-//    
-//    std::shared_ptr<ShaderSource> vertexSource =  readShaderFromFile(context, "vertex.glsl");
-//    std::shared_ptr<ShaderSource> fragmentSource =  readShaderFromFile(context, "fragment.glsl");
-//    logMessage("%d", fragmentSource->size);
-//    logMessage("%d", vertexSource->size);
-    
 
-//    readOBJFromFile(context, "model.obj");
-    
-     program = new ShaderProgram("PROGRAM", "vertex.glsl", "fragment.glsl", true, 0, 0);
-    
-//   const char* vS = "#version 300 es \n layout(location = 0) in vec4 vPosition;\n void main(){ gl_Position = vPosition; } \n";
-//    
-//    const char* fS = "#version 300 es \n precision mediump float;\n out vec4 fragColor; \n void main(){ fragColor = vec4 ( 1.0, 0.0, 0.0, 1.0 ); }";
-    
-//    programObject = ShaderHelper::createProgram(vertexSource->source, fragmentSource->source);
-    
-    
-    
+    program = ShaderHelper::createProgram("vertex.glsl", "fragment.glsl", 0, 0);
     
    if ( program == 0 ){
       return 0;

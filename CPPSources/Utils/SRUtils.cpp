@@ -279,7 +279,7 @@ void readOBJFromFile(void *ioContext, const char *fileName){
         logMessage("readOBJFromFile FAILED to load : { %s }\n", fileName);
         return;
     }
-    
+
     long fSize = getFileSize(fp);
     
     char tempBuffer[fSize];

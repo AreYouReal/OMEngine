@@ -39,7 +39,7 @@
 		F3D5E1321AF8F4DD00DD216B /* iOSSRETests.m in Sources */ = {isa = PBXBuildFile; fileRef = F3D5E1051AF8F23400DD216B /* iOSSRETests.m */; };
 		F3FAE8B21B6B6BC7007AF169 /* obj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3FAE8B01B6B6BC7007AF169 /* obj.cpp */; };
 		F3FAE8B81B6B77D6007AF169 /* ShaderProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3FAE8B61B6B77D6007AF169 /* ShaderProgram.cpp */; };
-		F3FAE8BB1B6B7885007AF169 /* SRShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3FAE8B91B6B7885007AF169 /* SRShader.cpp */; };
+		F3FAE8BB1B6B7885007AF169 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3FAE8B91B6B7885007AF169 /* Shader.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,8 +101,8 @@
 		F3FAE8B11B6B6BC7007AF169 /* obj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = obj.h; path = OBJ/obj.h; sourceTree = "<group>"; };
 		F3FAE8B61B6B77D6007AF169 /* ShaderProgram.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShaderProgram.cpp; path = SREngine/CPPSources/Shaders/ShaderProgram.cpp; sourceTree = "<group>"; };
 		F3FAE8B71B6B77D6007AF169 /* ShaderProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShaderProgram.h; path = SREngine/CPPSources/Shaders/ShaderProgram.h; sourceTree = "<group>"; };
-		F3FAE8B91B6B7885007AF169 /* SRShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SRShader.cpp; path = SREngine/CPPSources/Shaders/SRShader.cpp; sourceTree = "<group>"; };
-		F3FAE8BA1B6B7885007AF169 /* SRShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SRShader.h; path = SREngine/CPPSources/Shaders/SRShader.h; sourceTree = "<group>"; };
+		F3FAE8B91B6B7885007AF169 /* Shader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Shader.cpp; path = SREngine/CPPSources/Shaders/Shader.cpp; sourceTree = "<group>"; };
+		F3FAE8BA1B6B7885007AF169 /* Shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Shader.h; path = SREngine/CPPSources/Shaders/Shader.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -237,8 +237,8 @@
 				94CE87D41B62B51900752D5C /* ShaderHelper.h */,
 				F3FAE8B61B6B77D6007AF169 /* ShaderProgram.cpp */,
 				F3FAE8B71B6B77D6007AF169 /* ShaderProgram.h */,
-				F3FAE8B91B6B7885007AF169 /* SRShader.cpp */,
-				F3FAE8BA1B6B7885007AF169 /* SRShader.h */,
+				F3FAE8B91B6B7885007AF169 /* Shader.cpp */,
+				F3FAE8BA1B6B7885007AF169 /* Shader.h */,
 			);
 			name = Shaders;
 			path = ../../..;
@@ -407,7 +407,7 @@
 				94CE87CC1B62B4D000752D5C /* m4d.cpp in Sources */,
 				F3FAE8B81B6B77D6007AF169 /* ShaderProgram.cpp in Sources */,
 				94CE87E11B62B59800752D5C /* AppDelegate.mm in Sources */,
-				F3FAE8BB1B6B7885007AF169 /* SRShader.cpp in Sources */,
+				F3FAE8BB1B6B7885007AF169 /* Shader.cpp in Sources */,
 				94CE87E21B62B59800752D5C /* FileWrapper.mm in Sources */,
 				94CE87D91B62B53500752D5C /* main.cpp in Sources */,
 				94CE87CE1B62B4D000752D5C /* v3d.cpp in Sources */,

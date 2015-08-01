@@ -1,7 +1,9 @@
-#include "SRUtils.h"
-#include "SRShader.h"
 
 #pragma once
+
+#include "SRUtils.h"
+#include "Shader.h"
+
 
 struct Uniform{
     char            name[ MAX_CHAR ];
@@ -21,8 +23,8 @@ typedef void(BindAttribCallback(void*));
 
 struct ShaderProgram{
     char                name[MAX_CHAR];
-    SRShader            *vertexShader;
-    SRShader            *fragmentShader;
+    Shader              *vertexShader;
+    Shader              *fragmentShader;
     unsigned int        ID;
     unsigned int        uniformCount;
     Uniform             *uniformArray;
@@ -32,9 +34,5 @@ struct ShaderProgram{
     DrawCallback        *drawCallback;
     BindAttribCallback  *bindAttribCallback;
     
-    
-    ShaderProgram(char *name, char *vertexShaderFileName, char *fragmentShaderFileName, bool debug,
-                  DrawCallback *drawCallback, BindAttribCallback *bindAttribCallback);
     ~ShaderProgram();
-    
 };

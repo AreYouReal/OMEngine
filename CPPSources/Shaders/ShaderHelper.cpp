@@ -1,40 +1,41 @@
 #include "ShaderHelper.h"
+#include "main.h"
 
 #pragma mark Public
-GLuint ShaderHelper::createProgram(const char *vertexSource, const char *fragmentSource){
-    GLuint vertexShader = loadShader(GL_VERTEX_SHADER, vertexSource);
-    if(!vertexShader) return 0;
-    GLuint fragmentShader = loadShader(GL_FRAGMENT_SHADER, fragmentSource);
-    if(!fragmentShader) {
-        glDeleteShader(vertexShader);
-        return 0;
-    }
+PROGRAM ShaderHelper::createProgram(const char *vertexShaderFilename,const char* fragmentShaderFilename, BindAttribCallback *bindCallback, DrawCallback *drawCallback){
+
+    PROGRAM program = std::shared_ptr<ShaderProgram>(new ShaderProgram());
+
+    SHADER vertexShader = ShaderHelper::loadShader(GL_VERTEX_SHADER, vertexShaderFilename);
+    SHADER fragmentShader = ShaderHelper::loadShader(GL_FRAGMENT_SHADER, fragmentShaderFilename);
+    program->drawCallback = drawCallback;
+    program->bindAttribCallback = bindCallback;
     
-    GLuint programObject = glCreateProgram();
-    if(!programObject) {
-        glDeleteShader(vertexShader);
-        glDeleteShader(fragmentShader);
-        return 0;
-    }
+    program->ID = glCreateProgram();
+    glAttachShader(program->ID, vertexShader->ID);
+    glAttachShader(program->ID, fragmentShader->ID);
+    if(program->bindAttribCallback) program->bindAttribCallback((void *)program.get());
+    glLinkProgram(program->ID);
+    ShaderHelper::printProgramInfoLog(program->ID);
     
-    glAttachShader(programObject, vertexShader);
-    glAttachShader(programObject, fragmentShader);
-    glLinkProgram(programObject);
-    
-    glDeleteShader(vertexShader);
-    glDeleteShader(fragmentShader);
-    
-    return checkLinkStatus(programObject);
+    return program;
 }
 
 #pragma mark Helpers
-GLuint ShaderHelper::loadShader(GLenum shaderType, const char *shaderSource){
-    GLuint shader = glCreateShader(shaderType);
-    if(!shader) return 0;
-    glShaderSource(shader, 1, &shaderSource, NULL);
-    glCompileShader(shader);
-    
-    return checkCompileStatus(shader);
+SHADER ShaderHelper::loadShader(GLenum shaderType, const char *vertexShaderFilename){
+    std::shared_ptr<Shader> shader = std::shared_ptr<Shader>(new Shader());
+    strcpy(shader->name, vertexShaderFilename);
+    shader->type = GL_VERTEX_SHADER;
+    char *shaderSource = readTextFile(SRGraphics::GetAppContext(), vertexShaderFilename);
+    shader->ID = glCreateShader(shaderType);
+    if(!shader->ID) return nullptr;
+    glShaderSource(shader->ID, 1, &shaderSource, NULL);
+    glCompileShader(shader->ID);
+    if(shaderSource) delete [] shaderSource;
+    if(checkCompileStatus(shader->ID)){
+        logMessage("ERROR COMPILE SHADER! %d", shaderType);
+    }
+    return shader;
 }
 
 GLint ShaderHelper::checkCompileStatus(GLuint shader){
