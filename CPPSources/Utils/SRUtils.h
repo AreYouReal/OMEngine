@@ -8,8 +8,6 @@
 
 #include "lodepng.h"
 
-#include "ShaderSource.h"
-
 #ifdef __APPLE__
 #include <OpenGLES/ES3/gl.h>
 #else
@@ -86,5 +84,5 @@ long getFileSize( srFile *pFile );
 void fileClose ( srFile *pFile );
 int fileRead ( srFile *pFile, long bytesToRead, void *buffer );
 
-std::shared_ptr<ShaderSource> readShaderFromFile( void *ioContext, const char *fileName);
+char* readTextFile( void *ioContext, const char *fileName);
 void readOBJFromFile(void *ioContext, const char *fileName);

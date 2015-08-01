@@ -247,7 +247,7 @@ std::vector<unsigned char> loadPNG ( void *ioContext, const char *fileName, unsi
 }
 
 #pragma mark READ SHADER
-std::shared_ptr<ShaderSource> readShaderFromFile( void *ioContext, const char *fileName){
+char* readTextFile( void *ioContext, const char *fileName){
     srFile      *fp;
     // Open the file for reading
     fp = fileOpen ( ioContext, fileName );
@@ -258,22 +258,17 @@ std::shared_ptr<ShaderSource> readShaderFromFile( void *ioContext, const char *f
         return nullptr;
     }
     long fSize = getFileSize(fp);
-    char tempBuffer[fSize];
+    
+    char* tempBuffer = new char[fSize + 1];
     int redBytes = fileRead ( fp, fSize, tempBuffer );
     logMessage("RED BYTES: { %d / %d }", redBytes, fSize);
     
     fileClose(fp);
-    
-    std::shared_ptr<ShaderSource> shaderSource = std::shared_ptr<ShaderSource>(new ShaderSource());
-    
-    shaderSource->source = new char[fSize + 1];
-    memcpy(shaderSource->source, tempBuffer, fSize);
-    shaderSource->size = fSize;
-    shaderSource->source[fSize] = 0;
+    tempBuffer[fSize] = 0;
     for(int i = 0; i < fSize + 1; i++){
-        logMessage("%c", shaderSource->source[i]);
+        logMessage("%c", tempBuffer[i]);
     }
-    return shaderSource;
+    return tempBuffer;
 }
 
 #pragma mark READ OBJ FILE
