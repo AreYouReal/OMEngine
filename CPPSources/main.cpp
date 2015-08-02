@@ -13,6 +13,12 @@ SRContext* SRGraphics::GetAppContext(){
     return appContext;
 }
 
+void programBindCallback(void *ptr){
+    PROGRAM currProgram = program;
+    logMessage("programBindCallback in action!");
+}
+
+
 ///
 // Initialize the shader and program object
 //
@@ -20,7 +26,7 @@ int SRGraphics::Init ( SRContext *context ){
    UserData *userData = (UserData*)context->userData;
     appContext = context;
 
-    program = ShaderHelper::createProgram("vertex.glsl", "fragment.glsl", 0, 0);
+    program = ShaderHelper::createProgram("vertex.glsl", "fragment.glsl", programBindCallback, 0);
     
    if ( program == 0 ){
       return 0;

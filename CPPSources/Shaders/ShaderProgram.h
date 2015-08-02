@@ -35,4 +35,7 @@ struct ShaderProgram{
     BindAttribCallback  *bindAttribCallback;
     
     ~ShaderProgram();
+    
+    int                 getVertexAttribLocation(const char* name);
+    int                 getUniformLocation(const char* name);
 };
