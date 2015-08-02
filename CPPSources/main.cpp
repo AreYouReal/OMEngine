@@ -31,7 +31,6 @@ int SRGraphics::Init ( SRContext *context ){
    if ( program == 0 ){
       return 0;
    }
-    
    // Store the program object
    userData->programObject = program->ID;
     
@@ -39,7 +38,7 @@ int SRGraphics::Init ( SRContext *context ){
 logMessage("program object %d", userData->programObject);
 
    glClearColor ( 0.0f, 0.0f, 0.0f, 1.0f );
-    
+
     return true;
 }
 
@@ -61,12 +60,12 @@ void SRGraphics::Draw ( SRContext *context ){
 
    // Use the program object
    glUseProgram ( userData->programObject );
-
    // Load the vertex data
    glVertexAttribPointer ( 0, 3, GL_FLOAT, GL_FALSE, 0, vVertices );
    glEnableVertexAttribArray ( 0 );
 
    glDrawArrays ( GL_TRIANGLES, 0, 3 );
+    glUseProgram(0);
 }
 
 void SRGraphics::Shutdown ( SRContext *context ){
@@ -77,6 +76,7 @@ void SRGraphics::Shutdown ( SRContext *context ){
 
 void SRGraphics::Touch(SRContext *context, int event, int x, int y){
     logMessage("TOUCH OCCURED: %d, [ %d, %d ]", event, x, y);
+//    program.reset();
 }
 
 int SRGraphics::Main ( SRContext *context ){

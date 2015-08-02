@@ -2,9 +2,9 @@
 
 #include "SRUtils.h"
 #include "ShaderProgram.h"
+#include "Typedefs.h"
 
 
-typedef std::shared_ptr<Shader>         SHADER;
 typedef std::shared_ptr<ShaderProgram>  PROGRAM;
 
 class ShaderHelper{

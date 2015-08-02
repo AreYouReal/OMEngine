@@ -4,7 +4,7 @@ ShaderProgram::~ShaderProgram(){
     if(vertexAttribArray) free(vertexAttribArray);
     if(ID) glDeleteProgram(ID);
     
-    logMessage("Shader program destructor");
+    logMessage("Shader program destructor: %d", ID );
 }
 
 

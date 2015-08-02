@@ -4,7 +4,6 @@
 #include "SRUtils.h"
 #include "Shader.h"
 
-
 struct Uniform{
     char            name[ MAX_CHAR ];
     unsigned int    type;
@@ -23,8 +22,6 @@ typedef void(BindAttribCallback(void*));
 
 struct ShaderProgram{
     char                name[MAX_CHAR];
-    Shader              *vertexShader;
-    Shader              *fragmentShader;
     unsigned int        ID;
     unsigned int        uniformCount;
     Uniform             *uniformArray;

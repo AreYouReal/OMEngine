@@ -45,7 +45,8 @@ PROGRAM ShaderHelper::createProgram(const char *vertexShaderFilename,const char*
         }
         
     }
-    
+    glDeleteShader(vertexShader->ID);
+    glDeleteShader(fragmentShader->ID);
     
     ShaderHelper::printProgramInfoLog(program->ID);
     
@@ -63,7 +64,7 @@ SHADER ShaderHelper::loadShader(GLenum shaderType, const char *vertexShaderFilen
     glShaderSource(shader->ID, 1, &shaderSource, NULL);
     glCompileShader(shader->ID);
     if(shaderSource) delete [] shaderSource;
-    if(checkCompileStatus(shader->ID)){
+    if(!checkCompileStatus(shader->ID)){
         logMessage("ERROR COMPILE SHADER! %d", shaderType);
     }
     return shader;
