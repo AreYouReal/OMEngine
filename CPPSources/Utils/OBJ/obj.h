@@ -56,11 +56,11 @@ struct ObjMesh{
     unsigned int    size;                   // Total size of the vertex data array.
     unsigned int    offset[ 5 ];            // The VBO offset(????)
     unsigned int    vao;                    // The VAO ID maintaned by GLES
-    
-    
 };
 
 struct Obj{
+    static Obj* load(const char* filename);
+    
     char            texturePath[ MAX_CHAR ];// The texture path (relative to the .mtl file)
     char            programPath[ MAX_CHAR ];// The shader program path ( relative to the .mtl file)
     unsigned int    nObjMesh;               // The number of ObjMesh

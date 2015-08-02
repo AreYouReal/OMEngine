@@ -10,5 +10,5 @@ struct SRGraphics{
     static void Shutdown   ( SRContext * );
     static void Touch      ( SRContext *, int, int, int );
     
-    static    SRContext*      GetAppContext();
+    static    SRContext*      getAppContext();
 };

@@ -1,5 +1,6 @@
 #include "main.h"
 #include "ShaderHelper.h"
+#include "obj.h"
 
 typedef struct{
    GLuint programObject;
@@ -9,7 +10,7 @@ PROGRAM program;
 
 static SRContext       *appContext;
 
-SRContext* SRGraphics::GetAppContext(){
+SRContext* SRGraphics::getAppContext(){
     return appContext;
 }
 
@@ -27,6 +28,10 @@ int SRGraphics::Init ( SRContext *context ){
     appContext = context;
 
     program = ShaderHelper::createProgram("vertex.glsl", "fragment.glsl", programBindCallback, 0);
+    
+    Obj* obj = Obj::load("model.obj");
+    
+    if(obj) delete obj;
     
    if ( program == 0 ){
       return 0;

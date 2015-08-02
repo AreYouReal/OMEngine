@@ -272,21 +272,23 @@ char* readTextFile( void *ioContext, const char *fileName){
 }
 
 #pragma mark READ OBJ FILE
-void readOBJFromFile(void *ioContext, const char *fileName){
+unsigned char* readOBJFromFile(void *ioContext, const char *fileName){
     srFile *fp;
     fp = fileOpen(ioContext, fileName);
     if( fp == NULL){
         logMessage("readOBJFromFile FAILED to load : { %s }\n", fileName);
-        return;
+        return 0;
     }
 
     long fSize = getFileSize(fp);
     
-    char tempBuffer[fSize];
+    unsigned char* tempBuffer = new unsigned char[fSize];
     
     int redBytes = fileRead ( fp, fSize, tempBuffer );
     fileClose(fp);
-    for(long i = 0; i < fSize; i++){
-        logMessage("%c", tempBuffer[i]);
-    }
+//    for(long i = 0; i < fSize; i++){
+//        logMessage("%c", tempBuffer[i]);
+//    }
+    
+    return tempBuffer;
 }

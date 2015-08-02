@@ -85,4 +85,4 @@ void fileClose ( srFile *pFile );
 int fileRead ( srFile *pFile, long bytesToRead, void *buffer );
 
 char* readTextFile( void *ioContext, const char *fileName);
-void readOBJFromFile(void *ioContext, const char *fileName);
+unsigned char* readOBJFromFile(void *ioContext, const char *fileName);
