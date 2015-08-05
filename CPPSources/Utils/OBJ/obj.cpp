@@ -96,3 +96,29 @@ Obj* Obj::load(const char* fileName){
     
     return nullptr;
 }
+
+
+void ObjMesh::addVertexData(ObjTriangleList *otl, int vIndex, int uvIndex){
+    unsigned short index;
+    for(index = 0; index < nObjVertexData; ++index){
+        if(vIndex == objVertexData[index].vertexIndex){
+            if(uvIndex == -1 || uvIndex == objVertexData[index].uvIndex){
+                addIndexToTriangleList(otl, index);
+            }
+        }
+    }
+    
+    index = nObjVertexData;
+    ++nObjVertexData;
+    objVertexData = (ObjVertexData *) realloc(objVertexData, nObjVertexData * sizeof(ObjVertexData));
+    objVertexData[index].vertexIndex = vIndex;
+    objVertexData[index].uvIndex = uvIndex;
+
+}
+
+void ObjMesh::addIndexToTriangleList(ObjTriangleList *otl, int index){
+    ++otl->nIndiceArray;
+    otl->indiceArray = (unsigned short *) realloc(otl->indiceArray, otl->nIndiceArray * sizeof(unsigned short));
+    otl->indiceArray[otl->nIndiceArray - 1] = index;
+}
+

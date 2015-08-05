@@ -2,6 +2,7 @@
 
 #include "SRUtils.h"
 #include "q4d.h"
+#include "ShaderHelper.h"
 
 // Object material structure definition
 struct ObjMaterial{
@@ -56,6 +57,9 @@ struct ObjMesh{
     unsigned int    size;                   // Total size of the vertex data array.
     unsigned int    offset[ 5 ];            // The VBO offset(????)
     unsigned int    vao;                    // The VAO ID maintaned by GLES
+    
+    void            addVertexData(ObjTriangleList *otl, int vIndex, int uvIndex);
+    void            addIndexToTriangleList(ObjTriangleList *otl, int index);
 };
 
 struct Obj{
@@ -71,6 +75,14 @@ struct Obj{
     // Textures goes here
     
     unsigned int    n_program;              // The number of shader program the Obj is using.
+    ShaderProgram   *program;
     
-    
+    // Vertices data goes here
+    unsigned int    nIndexedVertex;
+    v3d             *indexedVertex;
+    v3d             *indexedNormal;
+    v3d             *indexedFNoraml;
+    v3d             *indexedTangent;
+    unsigned int    nIndexedUV;
+    v3d             *indexedUV;    
 };
