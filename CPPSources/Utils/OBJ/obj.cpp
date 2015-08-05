@@ -27,7 +27,12 @@ Obj* Obj::load(const char* fileName){
 //    line = strtok( ( char * )&objSource[ position ], "\n" );
     
     char* line = strtok((char*)objSource, "\n");
-    char last;
+    char last = 0;
+    
+    
+    char name[MAX_CHAR],
+    usemtl[MAX_CHAR];
+    
     while(line){
         if(!line[0] || line[0] == '#'){
             // go to next line
@@ -55,7 +60,30 @@ Obj* Obj::load(const char* fileName){
             }
             
             if( last != 'f'){
-            
+                ++obj->nObjMesh;
+                obj->objMesh = new ObjMesh();
+                objMesh = &obj->objMesh[obj->nObjMesh - 1];
+                objMesh->scale[0] = objMesh->scale[1] = objMesh->scale[2] = 1.0f;
+                objMesh->visible = true;
+                
+                if(name[0]) strcpy(objMesh->name, name);
+                else if(usemtl[0]) strcpy(objMesh->name, name);
+                
+//                if( group[ 0 ] ) strcpy( objmesh->group, group );
+                
+//                objmesh->use_smooth_normals = use_smooth_normals;
+                
+                ++objMesh->nTrinagleList;
+                objMesh->objTriangleList    = new ObjTriangleList[objMesh->nTrinagleList];
+                objTriangleList = &objMesh->objTriangleList[ objMesh->nTrinagleList ];
+                objTriangleList->mode = GL_TRIANGLES;
+                if(useUVs) objTriangleList->useUVs = useUVs;
+//                if(usemtl[0]) objTriangleList->objMaterial = obj->getMaterial(usemtl, 1);  ???
+                name[0]     = 0;
+                usemtl[0]   = 0;
+                
+                
+                
             }
             
             
