@@ -30,20 +30,20 @@ Obj* Obj::load(const char* fileName){
     char last = 0;
     
     
-    char name[MAX_CHAR],
-    usemtl[MAX_CHAR];
+    char name[MAX_CHAR], str[MAX_CHAR],usemtl[MAX_CHAR];
     
     while(line){
         if(!line[0] || line[0] == '#'){
-            // go to next line
+            // go to next object line
             line[0] = 0;
             strtok(NULL, "\n");
+            continue;
         }else if( line[0] == 'f' && line[1] == ' '){
             bool useUVs;
             int vertexIndex[3]  = {0, 0, 0},
                 normalIndex[3]  = {0, 0, 0},
                 uvIndex[3]     = {0, 0, 0},
-                triangle_index;
+                triangleIndex;
             
             if( sscanf(line, "f %d %d %d", &vertexIndex[0], &vertexIndex[1], &vertexIndex[2]) == 3){
                 useUVs = false;
@@ -58,8 +58,14 @@ Obj* Obj::load(const char* fileName){
                 
                 useUVs = true;
             }
+            logMessage("f ->   %d, %d, %d, %d, %d ,%d, %d, %d ,%d \n", vertexIndex[0], vertexIndex[1], vertexIndex[2],
+                       uvIndex[0], uvIndex[1], uvIndex[2],
+                       normalIndex[0], normalIndex[1], normalIndex[2]);
             
             if( last != 'f'){
+                logMessage("\nlast != f: \n");
+                
+                
                 ++obj->nObjMesh;
                 obj->objMesh = new ObjMesh();
                 objMesh = &obj->objMesh[obj->nObjMesh - 1];
@@ -81,14 +87,57 @@ Obj* Obj::load(const char* fileName){
 //                if(usemtl[0]) objTriangleList->objMaterial = obj->getMaterial(usemtl, 1);  ???
                 name[0]     = 0;
                 usemtl[0]   = 0;
-                
-                
-                
             }
             
+                
+            --vertexIndex[0];--vertexIndex[1];--vertexIndex[2];
+            --uvIndex[0];--uvIndex[1];--uvIndex[2];
             
-        }
-        
+            objMesh->addVertexData(objTriangleList, vertexIndex[0], uvIndex[0]);
+            objMesh->addVertexData(objTriangleList, vertexIndex[1], uvIndex[1]);
+            objMesh->addVertexData(objTriangleList, vertexIndex[2], uvIndex[2]);
+            
+            triangleIndex = objTriangleList->nObjTriangleIndex;
+            ++objTriangleList->nObjTriangleIndex;
+            objTriangleList->objTriangleIndex = (ObjTriangleIndex *) realloc( objTriangleList->objTriangleIndex,
+                                                                                 objTriangleList->nObjTriangleIndex * sizeof(ObjTriangleIndex));
+                
+            for(int i = 0; i < 3; ++i){
+                objTriangleList->objTriangleIndex[triangleIndex].vertexIndex[i] = vertexIndex[i];
+                objTriangleList->objTriangleIndex[triangleIndex].uvIndex[i]     = uvIndex[i];
+            }
+            
+        }else if(sscanf(line, "v %f %f %f", &v[0], &v[1], &v[2]) == 3){
+            // Vertex
+            logMessage("v  ->  Vertex: %f, %f, %f \n", v[0], v[1], v[2] );
+            ++obj->nIndexedVertex;
+            obj->indexedVertex = (v3d *) realloc(obj->indexedVertex, obj->nIndexedVertex * sizeof(v3d));
+            memcpy(&obj->indexedVertex[obj->nIndexedVertex - 1], &v, sizeof(v3d));
+            // Normal
+            obj->indexedNormal = (v3d *) realloc(obj->indexedNormal, obj->nIndexedVertex * sizeof(v3d));
+            obj->indexedFNormal = (v3d *) realloc(obj->indexedFNormal, obj->nIndexedVertex * sizeof(v3d));
+            memset(&obj->indexedNormal, 0, sizeof(v3d));
+            memset(&obj->indexedFNormal, 0, sizeof(v3d));
+            // Tangent
+            obj->indexedTangent = (v3d *) realloc(obj->indexedTangent, obj->nIndexedVertex * sizeof(v3d));
+            memset(&obj->indexedTangent, 0, sizeof(v3d));
+        } else if(sscanf(line, "vn %f %f %f", &v[0], &v[1], &v[2]) == 3){
+            logMessage(" vn   -> Drop the normals: %f, %f, %f \n", v[0], v[1], v[2] );
+            // go to next object line
+            line[0] = 0;
+            strtok(NULL, "\n");
+            continue;
+        } else if(sscanf(line, "vn %f %f", &v[0], &v[1]) == 2){
+            ++obj->nIndexedUV;
+            obj->indexedUV = (v3d *) realloc(obj->indexedUV, obj->nIndexedUV * sizeof(v3d));
+            v[1] = 1.0f - v[1];
+            memcpy(&obj->indexedUV[obj->nIndexedUV - 1], &v, sizeof(v3d));
+        }else if(line[0] == 'v' && line[1] == 'n' ){
+            line[0] = 0;
+            strtok(NULL, "\n");
+            continue;
+        }else if(sscanf(line, "usemtl %s", str) == 1){ strcpy(usemtl, str); }
+        else if()
         
     }
     
@@ -98,6 +147,8 @@ Obj* Obj::load(const char* fileName){
 }
 
 
+
+#pragma mark Helpers
 void ObjMesh::addVertexData(ObjTriangleList *otl, int vIndex, int uvIndex){
     unsigned short index;
     for(index = 0; index < nObjVertexData; ++index){

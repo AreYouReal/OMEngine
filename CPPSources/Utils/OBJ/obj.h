@@ -81,7 +81,7 @@ struct Obj{
     unsigned int    nIndexedVertex;
     v3d             *indexedVertex;
     v3d             *indexedNormal;
-    v3d             *indexedFNoraml;
+    v3d             *indexedFNormal;
     v3d             *indexedTangent;
     unsigned int    nIndexedUV;
     v3d             *indexedUV;    
