@@ -82,7 +82,7 @@ Obj* Obj::load(const char* fileName){
                 
                 ++objMesh->nTrinagleList;
                 objMesh->objTriangleList    = new ObjTriangleList[objMesh->nTrinagleList];
-                objTriangleList = &objMesh->objTriangleList[ objMesh->nTrinagleList ];
+                objTriangleList = &objMesh->objTriangleList[ objMesh->nTrinagleList - 1 ];
                 objTriangleList->mode = GL_TRIANGLES;
                 if(useUVs) objTriangleList->useUVs = useUVs;
 //                if(usemtl[0]) objTriangleList->objMaterial = obj->getMaterial(usemtl, 1);  ???
