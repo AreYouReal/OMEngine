@@ -30,12 +30,13 @@ Obj* Obj::load(const char* fileName){
     char last = 0;
     
     
-    char name[MAX_CHAR], str[MAX_CHAR],usemtl[MAX_CHAR];
+    char name[MAX_CHAR], str[MAX_CHAR],usemtl[MAX_CHAR], group[MAX_CHAR];
+    bool useSmoothNormals;
     
     while(line){
         if(!line[0] || line[0] == '#'){
             // go to next object line
-            line[0] = 0;
+            last = line[0];
             strtok(NULL, "\n");
             continue;
         }else if( line[0] == 'f' && line[1] == ' '){
@@ -100,7 +101,7 @@ Obj* Obj::load(const char* fileName){
             triangleIndex = objTriangleList->nObjTriangleIndex;
             ++objTriangleList->nObjTriangleIndex;
             objTriangleList->objTriangleIndex = (ObjTriangleIndex *) realloc( objTriangleList->objTriangleIndex,
-                                                                                 objTriangleList->nObjTriangleIndex * sizeof(ObjTriangleIndex));
+                                                                                                                                                           objTriangleList->nObjTriangleIndex * sizeof(ObjTriangleIndex));
                 
             for(int i = 0; i < 3; ++i){
                 objTriangleList->objTriangleIndex[triangleIndex].vertexIndex[i] = vertexIndex[i];
@@ -124,21 +125,32 @@ Obj* Obj::load(const char* fileName){
         } else if(sscanf(line, "vn %f %f %f", &v[0], &v[1], &v[2]) == 3){
             logMessage(" vn   -> Drop the normals: %f, %f, %f \n", v[0], v[1], v[2] );
             // go to next object line
-            line[0] = 0;
-            strtok(NULL, "\n");
-            continue;
+//            last = line[0];
+//            strtok(NULL, "\n");
         } else if(sscanf(line, "vn %f %f", &v[0], &v[1]) == 2){
             ++obj->nIndexedUV;
             obj->indexedUV = (v3d *) realloc(obj->indexedUV, obj->nIndexedUV * sizeof(v3d));
             v[1] = 1.0f - v[1];
             memcpy(&obj->indexedUV[obj->nIndexedUV - 1], &v, sizeof(v3d));
         }else if(line[0] == 'v' && line[1] == 'n' ){
-            line[0] = 0;
-            strtok(NULL, "\n");
+//            last = line[0];
+//            strtok(NULL, "\n");
+//            continue;
+        }else if(sscanf(line, "usemtl %s", str) == 1){ strcpy(usemtl, str);
+        }else if(sscanf(line, "o %s", str) == 1){ strcpy(name, str);
+        }else if(sscanf(line, "g %s", str) == 1){ strcpy(group, str);
+        }else if(sscanf(line, "s %s", str) == 1){
+            useSmoothNormals = true;
+            if(strstr( str, "off") || strstr(str, "0") ) useSmoothNormals = false;
+        }else if(sscanf(line, "mtllib %s", str) == 1){
+            unsigned char position = (unsigned char *) line - objSource + strlen(line) + 1;
+            // OBJ_LOAD_MTL(obj, );
+            line = strtok((char *) &objSource[position], "\n");
             continue;
-        }else if(sscanf(line, "usemtl %s", str) == 1){ strcpy(usemtl, str); }
-        else if()
+        }
         
+        last = line[0];
+        line = strtok(NULL, "\n");
     }
     
     if(objSource) delete [] objSource;

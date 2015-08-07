@@ -24,11 +24,11 @@ struct ObjTriangleIndex{
 // Represent the one triangle list onside ObjMesh
 struct ObjTriangleList{
     unsigned int        nObjTriangleIndex;  // The number of triangle index.
-    ObjTriangleIndex    *objTriangleIndex;  // Triangle array that contain each triangle index data.
+    ObjTriangleIndex    *objTriangleIndex = 0;  // Triangle array that contain each triangle index data.
     bool                useUVs;             // True if triangle list is using UVs.
     unsigned short      nIndiceArray;       // The number of indice required to draw the triangle list.
-    unsigned short      *indiceArray;       // Array of indices.
-    ObjMaterial         *objMaterial;       // POinter to the material to use when draw this list.
+    unsigned short      *indiceArray    = 0;       // Array of indices.
+    ObjMaterial         *objMaterial    = 0;       // POinter to the material to use when draw this list.
     int                 mode;               // Drawing mode (Default: GL_TRIANGLES).
     unsigned int        vbo;
 };
