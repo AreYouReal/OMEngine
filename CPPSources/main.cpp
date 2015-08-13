@@ -3,7 +3,8 @@
 #include "obj.h"
 
 typedef struct{
-   GLuint programObject;
+    GLuint programObject;
+    ShaderProgram* program;
 } UserData;
 
 ShaderProgram* program;
@@ -23,23 +24,21 @@ void programBindCallback(void *ptr){
 // Initialize the shader and program object
 //
 int SRGraphics::Init ( SRContext *context ){
+    atexit(Exit);
    UserData *userData = (UserData*)context->userData;
     appContext = context;
 
-    program = ShaderHelper::createProgram("vertex.glsl", "fragment.glsl", programBindCallback, 0);
+    userData->program = ShaderHelper::createProgram("vertex.glsl", "fragment.glsl", programBindCallback, 0);
     
     Obj* obj = Obj::load("model.obj");
     
     if(obj) delete obj;
     
-   if ( program == 0 ){
+   if ( userData->program == 0 ){
       return 0;
    }
-   // Store the program object
-   userData->programObject = program->ID;
     
-    
-logMessage("program object %d", userData->programObject);
+logMessage("program object %d", userData->program->ID);
 
    glClearColor ( 0.0f, 0.0f, 0.0f, 1.0f );
 
@@ -63,7 +62,7 @@ void SRGraphics::Draw ( SRContext *context ){
    glClear ( GL_COLOR_BUFFER_BIT );
 
    // Use the program object
-   glUseProgram ( userData->programObject );
+   glUseProgram ( userData->program->ID );
    // Load the vertex data
    glVertexAttribPointer ( 0, 3, GL_FLOAT, GL_FALSE, 0, vVertices );
    glEnableVertexAttribArray ( 0 );
@@ -73,9 +72,10 @@ void SRGraphics::Draw ( SRContext *context ){
 }
 
 void SRGraphics::Shutdown ( SRContext *context ){
-   UserData *userData = (UserData*)context->userData;
+    logMessage("ShutDown function");
+    UserData *userData = (UserData*)context->userData;
 
-   glDeleteProgram ( userData->programObject );
+   glDeleteProgram ( userData->program->ID );
 }
 
 void SRGraphics::Touch(SRContext *context, int event, int x, int y){
@@ -95,6 +95,10 @@ int SRGraphics::Main ( SRContext *context ){
     SRRegisterTouchFunc( context, Touch );
 
     return GL_TRUE;
+}
+
+void SRGraphics::Exit(){
+    logMessage("Exit function");
 }
 
 

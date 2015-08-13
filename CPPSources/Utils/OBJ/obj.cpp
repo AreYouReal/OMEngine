@@ -21,11 +21,6 @@ Obj* Obj::load(const char* fileName){
     
     Obj* obj = new Obj();
     
-//    
-//    unsigned char position = ( unsigned char * )line - objSource + strlen( line ) + 1;
-//    logMessage("%s", line);
-//    line = strtok( ( char * )&objSource[ position ], "\n" );
-    
     char* line = strtok((char*)objSource, "\n");
     char last = 0;
     
@@ -125,17 +120,13 @@ Obj* Obj::load(const char* fileName){
         } else if(sscanf(line, "vn %f %f %f", &v[0], &v[1], &v[2]) == 3){
             logMessage(" vn   -> Drop the normals: %f, %f, %f \n", v[0], v[1], v[2] );
             // go to next object line
-//            last = line[0];
-//            strtok(NULL, "\n");
-        } else if(sscanf(line, "vn %f %f", &v[0], &v[1]) == 2){
+        } else if(sscanf(line, "vs %f %f", &v[0], &v[1]) == 2){
             ++obj->nIndexedUV;
             obj->indexedUV = (v3d *) realloc(obj->indexedUV, obj->nIndexedUV * sizeof(v3d));
             v[1] = 1.0f - v[1];
             memcpy(&obj->indexedUV[obj->nIndexedUV - 1], &v, sizeof(v3d));
         }else if(line[0] == 'v' && line[1] == 'n' ){
 //            last = line[0];
-//            strtok(NULL, "\n");
-//            continue;
         }else if(sscanf(line, "usemtl %s", str) == 1){ strcpy(usemtl, str);
         }else if(sscanf(line, "o %s", str) == 1){ strcpy(name, str);
         }else if(sscanf(line, "g %s", str) == 1){ strcpy(group, str);

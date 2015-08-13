@@ -9,6 +9,8 @@ struct SRGraphics{
     static void Draw       ( SRContext * );
     static void Shutdown   ( SRContext * );
     static void Touch      ( SRContext *, int, int, int );
+    static void Exit        ();
+    
     
     static    SRContext*      getAppContext();
 };
