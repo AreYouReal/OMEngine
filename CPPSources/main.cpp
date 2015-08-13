@@ -7,15 +7,26 @@ typedef struct{
     ShaderProgram* program;
 } UserData;
 
-ShaderProgram* program;
 
 static SRContext       *appContext;
+
+m4d MVPMatrix;
+v3d bve;
 
 SRContext* SRGraphics::getAppContext(){
     return appContext;
 }
 
 void programBindCallback(void *ptr){
+    ShaderProgram *program = (ShaderProgram*)ptr;
+    for(int i = 0; i < program->uniformCount; ++i){
+        if(!strcmp( program->uniformArray[i].name, "MVPMatrix" )){
+            glUniformMatrix4fv(program->uniformArray[i].location, 1, GL_TRUE, MVPMatrix.pointer());
+        }
+        
+        
+        logMessage("UNiform: %s location %d", program->uniformArray[i].name, program->uniformArray[i].location);
+    }
     logMessage("programBindCallback in action!");
 }
 
@@ -25,9 +36,8 @@ void programBindCallback(void *ptr){
 //
 int SRGraphics::Init ( SRContext *context ){
     atexit(Exit);
-   UserData *userData = (UserData*)context->userData;
     appContext = context;
-
+    UserData *userData = (UserData*)context->userData;
     userData->program = ShaderHelper::createProgram("vertex.glsl", "fragment.glsl", programBindCallback, 0);
     
     Obj* obj = Obj::load("model.obj");
@@ -42,6 +52,12 @@ logMessage("program object %d", userData->program->ID);
 
    glClearColor ( 0.0f, 0.0f, 0.0f, 1.0f );
 
+    
+    v3d eye(0.0f, 0.0f, 30);
+    v3d lookAt(0.0f, 0.0f, 0.0f);
+    v3d up(0.0f, 1.0f, 0.0f);
+    MVPMatrix =  m4d::perspective(30, 100, 100, 1, 100) * m4d::lookAt(eye, lookAt, up) * m4d::scale(5, 10, 10);
+    
     return true;
 }
 
@@ -62,7 +78,7 @@ void SRGraphics::Draw ( SRContext *context ){
    glClear ( GL_COLOR_BUFFER_BIT );
 
    // Use the program object
-   glUseProgram ( userData->program->ID );
+    userData->program->use();
    // Load the vertex data
    glVertexAttribPointer ( 0, 3, GL_FLOAT, GL_FALSE, 0, vVertices );
    glEnableVertexAttribArray ( 0 );

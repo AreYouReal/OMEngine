@@ -1,7 +1,7 @@
 #pragma once
 
 #include "SRUtils.h"
-#include "q4d.h"
+#include "m4d.h"
 #include "ShaderHelper.h"
 
 // Object material structure definition

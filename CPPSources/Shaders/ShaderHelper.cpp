@@ -26,6 +26,7 @@ ShaderProgram* ShaderHelper::createProgram(const char *vertexShaderFilename,cons
     }else{
         glGetProgramiv(program->ID, GL_ACTIVE_ATTRIBUTES, &total);
         program->vertexAttribArray = new VertexAttrib[total];
+        program->vertexAttribCount = total;
         for(unsigned int i = 0; i < total; i++){
             glGetActiveAttrib(program->ID, i, MAX_CHAR, &len, &size, &type, name );
             VertexAttrib &attrib = program->vertexAttribArray[i];
@@ -36,6 +37,7 @@ ShaderProgram* ShaderHelper::createProgram(const char *vertexShaderFilename,cons
 
         glGetProgramiv(program->ID, GL_ACTIVE_UNIFORMS, &total);
         program->uniformArray = new Uniform[total];
+        program->uniformCount = total;
         for(unsigned int i = 0; i < total; i++){
             glGetActiveUniform(program->ID, i, MAX_CHAR, &len, &size, &type, name);
             Uniform &uniform = program->uniformArray[i];

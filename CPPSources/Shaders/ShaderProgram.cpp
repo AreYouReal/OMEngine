@@ -19,3 +19,9 @@ int ShaderProgram::getVertexAttribLocation(const char *name){
     
     return -1;
 }
+
+void ShaderProgram::use(){
+    glUseProgram(ID);
+    
+    if(bindAttribCallback) bindAttribCallback((void*)this);
+}

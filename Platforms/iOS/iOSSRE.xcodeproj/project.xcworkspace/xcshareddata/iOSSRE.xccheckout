@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>C7C12A78-4210-4EF6-B018-C88EB6893C75</string>
 	<key>IDESourceControlProjectName</key>
-	<string>iOSSRE</string>
+	<string>project</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>A623276CDE58E131A459AEF1A230F687A3938771</key>
 		<string>https://github.com/AreYouReal/SREngine.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Platforms/iOS/iOSSRE.xcodeproj</string>
+	<string>Platforms/iOS/iOSSRE.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>A623276CDE58E131A459AEF1A230F687A3938771</key>

@@ -54,12 +54,12 @@ Obj* Obj::load(const char* fileName){
                 
                 useUVs = true;
             }
-            logMessage("f ->   %d, %d, %d, %d, %d ,%d, %d, %d ,%d \n", vertexIndex[0], vertexIndex[1], vertexIndex[2],
-                       uvIndex[0], uvIndex[1], uvIndex[2],
-                       normalIndex[0], normalIndex[1], normalIndex[2]);
+//            logMessage("f ->   %d, %d, %d, %d, %d ,%d, %d, %d ,%d \n", vertexIndex[0], vertexIndex[1], vertexIndex[2],
+//                       uvIndex[0], uvIndex[1], uvIndex[2],
+//                       normalIndex[0], normalIndex[1], normalIndex[2]);
             
             if( last != 'f'){
-                logMessage("\nlast != f: \n");
+//                logMessage("\nlast != f: \n");
                 
                 
                 ++obj->nObjMesh;
@@ -105,7 +105,7 @@ Obj* Obj::load(const char* fileName){
             
         }else if(sscanf(line, "v %f %f %f", &v[0], &v[1], &v[2]) == 3){
             // Vertex
-            logMessage("v  ->  Vertex: %f, %f, %f \n", v[0], v[1], v[2] );
+//            logMessage("v  ->  Vertex: %f, %f, %f \n", v[0], v[1], v[2] );
             ++obj->nIndexedVertex;
             obj->indexedVertex = (v3d *) realloc(obj->indexedVertex, obj->nIndexedVertex * sizeof(v3d));
             memcpy(&obj->indexedVertex[obj->nIndexedVertex - 1], &v, sizeof(v3d));
@@ -118,7 +118,7 @@ Obj* Obj::load(const char* fileName){
             obj->indexedTangent = (v3d *) realloc(obj->indexedTangent, obj->nIndexedVertex * sizeof(v3d));
             memset(&obj->indexedTangent, 0, sizeof(v3d));
         } else if(sscanf(line, "vn %f %f %f", &v[0], &v[1], &v[2]) == 3){
-            logMessage(" vn   -> Drop the normals: %f, %f, %f \n", v[0], v[1], v[2] );
+//            logMessage(" vn   -> Drop the normals: %f, %f, %f \n", v[0], v[1], v[2] );
             // go to next object line
         } else if(sscanf(line, "vs %f %f", &v[0], &v[1]) == 2){
             ++obj->nIndexedUV;

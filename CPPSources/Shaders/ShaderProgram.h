@@ -33,6 +33,7 @@ struct ShaderProgram{
     
     ~ShaderProgram();
     
+    void                use();
     int                 getVertexAttribLocation(const char* name);
     int                 getUniformLocation(const char* name);
 };
