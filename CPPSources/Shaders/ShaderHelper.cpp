@@ -2,19 +2,19 @@
 #include "main.h"
 
 #pragma mark Public
-PROGRAM ShaderHelper::createProgram(const char *vertexShaderFilename,const char* fragmentShaderFilename, BindAttribCallback *bindCallback, DrawCallback *drawCallback){
+ShaderProgram* ShaderHelper::createProgram(const char *vertexShaderFilename,const char* fragmentShaderFilename, BindAttribCallback *bindCallback, DrawCallback *drawCallback){
 
-    PROGRAM program = std::shared_ptr<ShaderProgram>(new ShaderProgram());
+    ShaderProgram *program = new ShaderProgram();
 
-    SHADER vertexShader = ShaderHelper::loadShader(GL_VERTEX_SHADER, vertexShaderFilename);
-    SHADER fragmentShader = ShaderHelper::loadShader(GL_FRAGMENT_SHADER, fragmentShaderFilename);
+    Shader *vertexShader = ShaderHelper::loadShader(GL_VERTEX_SHADER, vertexShaderFilename);
+    Shader *fragmentShader = ShaderHelper::loadShader(GL_FRAGMENT_SHADER, fragmentShaderFilename);
     program->drawCallback = drawCallback;
     program->bindAttribCallback = bindCallback;
     
     program->ID = glCreateProgram();
     glAttachShader(program->ID, vertexShader->ID);
     glAttachShader(program->ID, fragmentShader->ID);
-    if(program->bindAttribCallback) program->bindAttribCallback((void *)program.get());
+    if(program->bindAttribCallback) program->bindAttribCallback((void *)program);
     glLinkProgram(program->ID);
     
     int status, total, len, size;
@@ -22,7 +22,7 @@ PROGRAM ShaderHelper::createProgram(const char *vertexShaderFilename,const char*
     char name[ MAX_CHAR ];
     glGetProgramiv(program->ID, GL_LINK_STATUS, &status);
     if(!status){
-        return nullptr;
+        return NULL;
     }else{
         glGetProgramiv(program->ID, GL_ACTIVE_ATTRIBUTES, &total);
         program->vertexAttribArray = new VertexAttrib[total];
@@ -47,6 +47,8 @@ PROGRAM ShaderHelper::createProgram(const char *vertexShaderFilename,const char*
     }
     glDeleteShader(vertexShader->ID);
     glDeleteShader(fragmentShader->ID);
+    delete vertexShader;
+    delete fragmentShader;
     
     ShaderHelper::printProgramInfoLog(program->ID);
     
@@ -54,8 +56,8 @@ PROGRAM ShaderHelper::createProgram(const char *vertexShaderFilename,const char*
 }
 
 #pragma mark Helpers
-SHADER ShaderHelper::loadShader(GLenum shaderType, const char *vertexShaderFilename){
-    std::shared_ptr<Shader> shader = std::shared_ptr<Shader>(new Shader());
+Shader* ShaderHelper::loadShader(GLenum shaderType, const char *vertexShaderFilename){
+    Shader *shader = new Shader();
     strcpy(shader->name, vertexShaderFilename);
     shader->type = GL_VERTEX_SHADER;
     char *shaderSource = readTextFile(SRGraphics::getAppContext(), vertexShaderFilename);

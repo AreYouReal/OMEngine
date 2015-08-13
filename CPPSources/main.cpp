@@ -6,7 +6,7 @@ typedef struct{
    GLuint programObject;
 } UserData;
 
-PROGRAM program;
+ShaderProgram* program;
 
 static SRContext       *appContext;
 
@@ -15,7 +15,6 @@ SRContext* SRGraphics::getAppContext(){
 }
 
 void programBindCallback(void *ptr){
-    PROGRAM currProgram = program;
     logMessage("programBindCallback in action!");
 }
 
