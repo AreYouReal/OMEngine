@@ -40,9 +40,9 @@ int SRGraphics::Init ( SRContext *context ){
     UserData *userData = (UserData*)context->userData;
     userData->program = ShaderHelper::createProgram("vertex.glsl", "fragment.glsl", programBindCallback, 0);
     
-    Obj* obj = Obj::load("model.obj");
+//    Obj* obj = Obj::load("model.obj");
     
-    if(obj) delete obj;
+//    if(obj) delete obj;
     
    if ( userData->program == 0 ){
       return 0;

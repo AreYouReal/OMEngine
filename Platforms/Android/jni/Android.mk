@@ -11,15 +11,21 @@ LOCAL_SRC_FILES := $(LOCAL_PATH)/esUtil_Android.cpp \
 				   $(SRC_PATH)/CPPSources/Main.cpp \
 				   $(SRC_PATH)/CPPSources/Shaders/ShaderHelper.cpp \
 				   $(SRC_PATH)/CPPSources/Shaders/ShaderProgram.cpp \
-				   $(SRC_PATH)/CPPSources/Shaders/SRShader.cpp \
+				   $(SRC_PATH)/CPPSources/Shaders/Shader.cpp \
 				   $(SRC_PATH)/CPPSources/Utils/SRUtils.cpp \
 				   $(SRC_PATH)/CPPSources/Utils/loadpng/lodepng.cpp \
+				   $(SRC_PATH)/CPPSources/Math/m4d.cpp \
+				   $(SRC_PATH)/CPPSources/Math/v3d.cpp \
+				   $(SRC_PATH)/CPPSources/Math/q4d.cpp \
+				   $(SRC_PATH)/CPPSources/Utils/OBJ/obj.cpp
 
 LOCAL_C_INCLUDES	:= $(SRC_PATH) \
 					   $(COMMON_INC_PATH) \
 					   $(SRC_PATH)/CPPSources \
 					   $(SRC_PATH)/CPPSources/Shaders \
 					   $(SRC_PATH)/CPPSources/Utils \
+					   $(SRC_PATH)/CPPSources/Utils/OBJ \
+					   $(SRC_PATH)/CPPSources/Math \
 					   $(SRC_PATH)/CPPSources/Utils/loadpng
 				   
 LOCAL_LDLIBS    := -llog -landroid -lEGL -lGLESv3

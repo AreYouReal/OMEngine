@@ -23,10 +23,9 @@
  /Users/veronika/Documents/ADT/android-ndk-r9d/platforms/android-18/arch-arm/usr/include/alloca.h \
  /Users/veronika/Documents/ADT/android-ndk-r9d/platforms/android-18/arch-arm/usr/include/strings.h \
  /Users/veronika/Documents/ADT/android-ndk-r9d/platforms/android-18/arch-arm/usr/include/memory.h \
- /Users/veronika/Documents/ADT/android-ndk-r9d/sources/cxx-stl/gnu-libstdc++/4.8/include/memory \
  /Users/veronika/Documents/ADT/android-ndk-r9d/sources/cxx-stl/gnu-libstdc++/4.8/include/vector \
  /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/loadpng/lodepng.h \
- /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Shaders/ShaderSource.h \
+ /Users/veronika/Documents/ADT/android-ndk-r9d/sources/cxx-stl/gnu-libstdc++/4.8/include/string \
  /Users/veronika/Documents/ADT/android-ndk-r9d/platforms/android-18/arch-arm/usr/include/GLES3/gl3.h \
  /Users/veronika/Documents/ADT/android-ndk-r9d/platforms/android-18/arch-arm/usr/include/GLES3/gl3platform.h \
  /Users/veronika/Documents/ADT/android-ndk-r9d/platforms/android-18/arch-arm/usr/include/KHR/khrplatform.h \
@@ -94,13 +93,11 @@
 
 /Users/veronika/Documents/ADT/android-ndk-r9d/platforms/android-18/arch-arm/usr/include/memory.h:
 
-/Users/veronika/Documents/ADT/android-ndk-r9d/sources/cxx-stl/gnu-libstdc++/4.8/include/memory:
-
 /Users/veronika/Documents/ADT/android-ndk-r9d/sources/cxx-stl/gnu-libstdc++/4.8/include/vector:
 
 /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/loadpng/lodepng.h:
 
-/Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Shaders/ShaderSource.h:
+/Users/veronika/Documents/ADT/android-ndk-r9d/sources/cxx-stl/gnu-libstdc++/4.8/include/string:
 
 /Users/veronika/Documents/ADT/android-ndk-r9d/platforms/android-18/arch-arm/usr/include/GLES3/gl3.h:
 
