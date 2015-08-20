@@ -69,9 +69,12 @@ float v3d::length(const v3d& vec3){
 v3d v3d::normalize(const v3d& vec3){
     v3d rVec3;
     float length = v3d::length(vec3);
-    rVec3.v[0] = vec3.v[0] / length;
-    rVec3.v[1] = vec3.v[1] / length;
-    rVec3.v[2] = vec3.v[2] / length;
+    if(length){
+        float m = 1.0f / length;
+        rVec3.v[0] = vec3.v[0] * m;
+        rVec3.v[1] = vec3.v[1] * m;
+        rVec3.v[2] = vec3.v[2] * m;
+    }
     return rVec3;
 }
 

@@ -112,12 +112,12 @@ Obj* Obj::load(const char* fileName){
             memcpy(&obj->vertices[obj->nVertices - 1], &v, sizeof(v3d));
             // Normal
             obj->normals = (v3d *) realloc(obj->normals, obj->nVertices * sizeof(v3d));
+            obj->normals[obj->nVertices - 1] = {0.0, 0.0, 0.0};
             obj->faceNormals = (v3d *) realloc(obj->faceNormals, obj->nVertices * sizeof(v3d));
-//            memset(&obj->indexedNormal, v3d(), sizeof(v3d));
-//            memset(&obj->faceNormals, v3d(), sizeof(v3d));
+            obj->faceNormals[obj->nVertices - 1] = {0.0, 0.0, 0.0};
             // Tangent
             obj->tangents = (v3d *) realloc(obj->tangents, obj->nVertices * sizeof(v3d));
-//            memset(&obj->indexedTangent, 0, sizeof(v3d));
+            obj->tangents[obj->nVertices - 1] = {0.0, 0.0, 0.0};
         } else if(sscanf(line, "vn %f %f %f", &v[0], &v[1], &v[2]) == 3){
 //            logMessage(" vn   -> Drop the normals: %f, %f, %f \n", v[0], v[1], v[2] );
             // go to next object line
@@ -162,11 +162,12 @@ Obj* Obj::load(const char* fileName){
                     
                     normal = v3d::normalize(v3d::cross(v1, v2));
                     for(unsigned short e = 0; e < 3; ++e) {
-                        memcpy(&obj->faceNormals[list->tIndex[k].vertexIndex[e]], &normal, sizeof(v3d));
+                        memcpy(&obj->faceNormals[list->tIndex[k].vertexIndex[e]], normal.pointer(), sizeof(v3d));
                     }
-                    
+                    logMessage("%f, %f, %f", normal[0], normal[1], normal[2]);
                     for(unsigned short e = 0; e < 3; ++e){
                         obj->normals[list->tIndex[k].vertexIndex[e]] = obj->normals[list->tIndex[k].vertexIndex[e]] + normal;
+                        
                     }
                     
                     if(list->useUVs){

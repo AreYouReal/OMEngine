@@ -65,6 +65,10 @@ int SRGraphics::Init ( SRContext *context ){
         memcpy(vertexArray, &object->normals[index], sizeof(v3d));
         vertexArray += sizeof(v3d);
     }
+    
+    for(int i = 0; i < size; ++i){
+        logMessage("%u\t", vertexStart[i]);
+    }
 
     glGenBuffers(1, &objMesh->vbo);
     glBindBuffer(GL_ARRAY_BUFFER, objMesh->vbo);
