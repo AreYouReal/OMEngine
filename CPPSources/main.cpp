@@ -40,8 +40,11 @@ void programBindCallback(void *ptr){
 //
 int SRGraphics::Init ( SRContext *context ){
     atexit(Exit);
+    glViewport ( 0, 0, context->width, context->height );
+    
     appContext = context;
     UserData *userData = (UserData*)context->userData;
+    
     userData->program = ShaderHelper::createProgram("vertex.glsl", "fragment.glsl", programBindCallback, 0);
     
     object = Obj::load("model.obj");
@@ -49,13 +52,13 @@ int SRGraphics::Init ( SRContext *context ){
     objMesh = &object->objMesh[0];
     
     unsigned char *vertexArray = NULL, *vertexStart = NULL;
-    unsigned int  i = 0, index = 0, stride = 0, size = 0;
+    unsigned int  index = 0, size = 0;
     size = objMesh->nObjVertexData * sizeof(v3d) * sizeof(v3d);
     
     vertexArray = (unsigned char *)malloc(size);
     vertexStart = vertexArray;
     // OK->
-    for(; i < objMesh->nObjVertexData; ++i){
+    for(unsigned int i = 0; i < objMesh->nObjVertexData; ++i){
         index = objMesh->objVertexData[i].vIndex;
         memcpy(vertexArray, &object->vertices[index], sizeof(v3d));
         vertexArray += sizeof(v3d);
@@ -75,8 +78,7 @@ int SRGraphics::Init ( SRContext *context ){
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
     
     // VAO
-    unsigned char attribute;
-    stride = sizeof(v3d) + sizeof(v3d);
+    unsigned char attribute, stride = sizeof(v3d) + sizeof(v3d);
     glGenVertexArrays(1, &objMesh->vao);
     glBindVertexArray(objMesh->vao);
     
@@ -94,8 +96,6 @@ int SRGraphics::Init ( SRContext *context ){
     
     if ( userData->program == 0 ){ return 0; }
 
-    glClearColor ( 0.0f, 0.0f, 0.0f, 1.0f );
-    
     return true;
 }
 
@@ -103,12 +103,10 @@ int SRGraphics::Init ( SRContext *context ){
 // Draw a triangle using the shader pair created in Init()
 //
 void SRGraphics::Draw ( SRContext *context ){
-    glViewport ( 0, 0, context->width, context->height );
-    v3d eye(0.0f, -4.0f, 0.0);
-    eye[2] += 0.1f;
+    v3d eye(1.0f, -4.0f, 0.0);
     v3d lookAt(0.0f, 0.0f, 0.0f);
-    v3d up(0.0f, 1.0f, 0.0f);
-    MVPMatrix =  m4d::perspective(45, 100, 100, 1, 100) * m4d::lookAt(eye, lookAt, up) * m4d::scale(1, 1, 1);
+    v3d up(0.0f, 0.0f, 1.0f);
+    MVPMatrix =  m4d::perspective(45, context->width, context->height, 0.1, 100) * m4d::lookAt(eye, lookAt, up);
     
     
     UserData *uData = (UserData*)context->userData;

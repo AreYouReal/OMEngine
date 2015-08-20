@@ -41,7 +41,7 @@ struct ObjMesh{
     ObjVertexData   *objVertexData;  // Well, ObjVertexData themselves.
     unsigned char   nTList;          // The number of triangle lists for this ObjMesh.
     ObjTriangleList *tList;          // Array og ObjTriangleList - basically at least one need to draw the ObjMesh.
-    ObjMaterial          *material;  // Current object material.
+    ObjMaterial     *material;       // Current object material.
     
     unsigned int    vbo;             // The vertex buffer VBO ID maintaned by GLES.
     unsigned int    stride;          // Stride size in bytes to determine next data chunk location.
