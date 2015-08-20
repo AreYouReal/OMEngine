@@ -23,7 +23,7 @@ struct ObjTriangleIndex{
 
 // Represent the one triangle list onside ObjMesh
 struct ObjTriangleList{
-    unsigned int        nObjTriangleIndex;  // The number of triangle index.
+    unsigned int        nObjTriangleIndex = 0;  // The number of triangle index.
     ObjTriangleIndex    *objTriangleIndex = 0;  // Triangle array that contain each triangle index data.
     bool                useUVs;             // True if triangle list is using UVs.
     unsigned short      nIndiceArray;       // The number of indice required to draw the triangle list.

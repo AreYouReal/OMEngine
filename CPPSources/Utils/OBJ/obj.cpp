@@ -102,7 +102,7 @@ Obj* Obj::load(const char* fileName){
                 objTriangleList->objTriangleIndex[triangleIndex].vertexIndex[i] = vertexIndex[i];
                 objTriangleList->objTriangleIndex[triangleIndex].uvIndex[i]     = uvIndex[i];
             }
-            
+        
         }else if(sscanf(line, "v %f %f %f", &v[0], &v[1], &v[2]) == 3){
             // Vertex
 //            logMessage("v  ->  Vertex: %f, %f, %f \n", v[0], v[1], v[2] );
@@ -112,11 +112,11 @@ Obj* Obj::load(const char* fileName){
             // Normal
             obj->indexedNormal = (v3d *) realloc(obj->indexedNormal, obj->nIndexedVertex * sizeof(v3d));
             obj->indexedFNormal = (v3d *) realloc(obj->indexedFNormal, obj->nIndexedVertex * sizeof(v3d));
-            memset(&obj->indexedNormal, 0, sizeof(v3d));
-            memset(&obj->indexedFNormal, 0, sizeof(v3d));
+//            memset(&obj->indexedNormal, v3d(), sizeof(v3d));
+//            memset(&obj->indexedFNormal, v3d(), sizeof(v3d));
             // Tangent
             obj->indexedTangent = (v3d *) realloc(obj->indexedTangent, obj->nIndexedVertex * sizeof(v3d));
-            memset(&obj->indexedTangent, 0, sizeof(v3d));
+//            memset(&obj->indexedTangent, 0, sizeof(v3d));
         } else if(sscanf(line, "vn %f %f %f", &v[0], &v[1], &v[2]) == 3){
 //            logMessage(" vn   -> Drop the normals: %f, %f, %f \n", v[0], v[1], v[2] );
             // go to next object line
@@ -146,7 +146,84 @@ Obj* Obj::load(const char* fileName){
     
     if(objSource) delete [] objSource;
     
-    return nullptr;
+    // Build the normals and tangent
+    {
+        for(unsigned int i = 0; i < obj->nObjMesh; ++i){
+            ObjMesh *mesh = &obj->objMesh[i];
+            
+            // Accumulate normals and tangent
+            for(unsigned int j = 0; j < mesh->nTrinagleList; ++j){
+                ObjTriangleList *list = &mesh->objTriangleList[j];
+                for(unsigned int k = 0; k < list->nObjTriangleIndex; ++k){
+                    v3d v1, v2, normal;
+                    v1 = obj->indexedVertex[list->objTriangleIndex[k].vertexIndex[0]] - obj->indexedVertex[list->objTriangleIndex[k].vertexIndex[1]];
+                    v2 = obj->indexedVertex[list->objTriangleIndex[k].vertexIndex[0]] - obj->indexedVertex[list->objTriangleIndex[k].vertexIndex[2]];
+                    
+                    normal = v3d::normalize(v3d::cross(v1, v2));
+                    for(unsigned short e = 0; e < 3; ++e) {
+                        memcpy(&obj->indexedFNormal[list->objTriangleIndex[k].vertexIndex[e]], &normal, sizeof(v3d));
+                    }
+                    
+                    for(unsigned short e = 0; e < 3; ++e){
+                        obj->indexedNormal[list->objTriangleIndex[k].vertexIndex[e]] = obj->indexedNormal[list->objTriangleIndex[k].vertexIndex[e]] + normal;
+                    }
+                    
+                    if(list->useUVs){
+//                        vec3 tangent;
+//                        
+//                        vec2 uv1, uv2;
+//                        
+//                        float c;
+//                        
+//                        vec2_diff( &uv1,
+//                                  &obj->indexed_uv[ objtrianglelist->objtriangleindex[ k ].uv_index[ 2 ] ],
+//                                  &obj->indexed_uv[ objtrianglelist->objtriangleindex[ k ].uv_index[ 0 ] ] );
+//                        
+//                        vec2_diff( &uv2,
+//                                  &obj->indexed_uv[ objtrianglelist->objtriangleindex[ k ].uv_index[ 1 ] ],
+//                                  &obj->indexed_uv[ objtrianglelist->objtriangleindex[ k ].uv_index[ 0 ] ] );
+//                        
+//                        
+//                        c = 1.0f / ( uv1.x * uv2.y - uv2.x * uv1.y );
+//                        
+//                        tangent.x = ( v1.x * uv2.y + v2.x * uv1.y ) * c;
+//                        tangent.y = ( v1.y * uv2.y + v2.y * uv1.y ) * c;
+//                        tangent.z = ( v1.z * uv2.y + v2.z * uv1.y ) * c;
+//                        
+//                        
+//                        vec3_add( &obj->indexed_tangent[ objtrianglelist->objtriangleindex[ k ].vertex_index[ 0 ] ],
+//                                 &obj->indexed_tangent[ objtrianglelist->objtriangleindex[ k ].vertex_index[ 0 ] ],
+//                                 &tangent );
+//                        
+//                        vec3_add( &obj->indexed_tangent[ objtrianglelist->objtriangleindex[ k ].vertex_index[ 1 ] ], 
+//                                 &obj->indexed_tangent[ objtrianglelist->objtriangleindex[ k ].vertex_index[ 1 ] ],
+//                                 &tangent );
+//                        
+//                        vec3_add( &obj->indexed_tangent[ objtrianglelist->objtriangleindex[ k ].vertex_index[ 2 ] ], 
+//                                 &obj->indexed_tangent[ objtrianglelist->objtriangleindex[ k ].vertex_index[ 2 ] ],
+//                                 &tangent );
+                    }
+  
+                    
+                }
+            }
+        }
+        
+        unsigned int index;
+        for(unsigned int i = 0; i < obj->nObjMesh; ++i){
+            for(unsigned int j = 0; j < obj->objMesh[i].nObjVertexData; ++j){
+                index = obj->objMesh[i].objVertexData[j].vertexIndex;
+                
+                obj->indexedNormal[index] = v3d::normalize(obj->indexedNormal[index]);
+                if(obj->objMesh[i].objVertexData[j].uvIndex != -1){
+                    obj->indexedTangent[index] = v3d::normalize(obj->indexedTangent[index]);
+                }
+                
+            }
+        }
+    }
+    
+    return obj;
 }
 
 
@@ -158,6 +235,7 @@ void ObjMesh::addVertexData(ObjTriangleList *otl, int vIndex, int uvIndex){
         if(vIndex == objVertexData[index].vertexIndex){
             if(uvIndex == -1 || uvIndex == objVertexData[index].uvIndex){
                 addIndexToTriangleList(otl, index);
+                return;
             }
         }
     }
@@ -167,7 +245,8 @@ void ObjMesh::addVertexData(ObjTriangleList *otl, int vIndex, int uvIndex){
     objVertexData = (ObjVertexData *) realloc(objVertexData, nObjVertexData * sizeof(ObjVertexData));
     objVertexData[index].vertexIndex = vIndex;
     objVertexData[index].uvIndex = uvIndex;
-
+    
+    addIndexToTriangleList(otl, index);
 }
 
 void ObjMesh::addIndexToTriangleList(ObjTriangleList *otl, int index){
