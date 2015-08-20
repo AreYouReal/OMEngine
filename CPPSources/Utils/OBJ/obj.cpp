@@ -63,9 +63,10 @@ Obj* Obj::load(const char* fileName){
                 
                 
                 ++obj->nObjMesh;
-                obj->objMesh = new ObjMesh();
+                obj->objMesh = new ObjMesh[obj->nObjMesh];
+                obj->objMesh[obj->nObjMesh - 1] = *new ObjMesh();
                 objMesh = &obj->objMesh[obj->nObjMesh - 1];
-                objMesh->scale[0] = objMesh->scale[1] = objMesh->scale[2] = 1.0f;
+//                objMesh->scale[0] = objMesh->scale[1] = objMesh->scale[2] = 1.0f;
                 objMesh->visible = true;
                 
                 if(name[0]) strcpy(objMesh->name, name);
@@ -75,9 +76,9 @@ Obj* Obj::load(const char* fileName){
                 
 //                objmesh->use_smooth_normals = use_smooth_normals;
                 
-                ++objMesh->nTrinagleList;
-                objMesh->objTriangleList    = new ObjTriangleList[objMesh->nTrinagleList];
-                objTriangleList = &objMesh->objTriangleList[ objMesh->nTrinagleList - 1 ];
+                ++objMesh->nTList;
+                objMesh->tList    = new ObjTriangleList[objMesh->nTList];
+                objTriangleList = &objMesh->tList[ objMesh->nTList - 1 ];
                 objTriangleList->mode = GL_TRIANGLES;
                 if(useUVs) objTriangleList->useUVs = useUVs;
 //                if(usemtl[0]) objTriangleList->objMaterial = obj->getMaterial(usemtl, 1);  ???
@@ -93,38 +94,38 @@ Obj* Obj::load(const char* fileName){
             objMesh->addVertexData(objTriangleList, vertexIndex[1], uvIndex[1]);
             objMesh->addVertexData(objTriangleList, vertexIndex[2], uvIndex[2]);
             
-            triangleIndex = objTriangleList->nObjTriangleIndex;
-            ++objTriangleList->nObjTriangleIndex;
-            objTriangleList->objTriangleIndex = (ObjTriangleIndex *) realloc( objTriangleList->objTriangleIndex,
-                                                                                                                                                           objTriangleList->nObjTriangleIndex * sizeof(ObjTriangleIndex));
+            triangleIndex = objTriangleList->nTIndex;
+            ++objTriangleList->nTIndex;
+            objTriangleList->tIndex = (ObjTriangleIndex *) realloc( objTriangleList->tIndex,
+                                                                                                                                                           objTriangleList->nTIndex * sizeof(ObjTriangleIndex));
                 
             for(int i = 0; i < 3; ++i){
-                objTriangleList->objTriangleIndex[triangleIndex].vertexIndex[i] = vertexIndex[i];
-                objTriangleList->objTriangleIndex[triangleIndex].uvIndex[i]     = uvIndex[i];
+                objTriangleList->tIndex[triangleIndex].vertexIndex[i] = vertexIndex[i];
+                objTriangleList->tIndex[triangleIndex].uvIndex[i]     = uvIndex[i];
             }
         
         }else if(sscanf(line, "v %f %f %f", &v[0], &v[1], &v[2]) == 3){
             // Vertex
 //            logMessage("v  ->  Vertex: %f, %f, %f \n", v[0], v[1], v[2] );
-            ++obj->nIndexedVertex;
-            obj->indexedVertex = (v3d *) realloc(obj->indexedVertex, obj->nIndexedVertex * sizeof(v3d));
-            memcpy(&obj->indexedVertex[obj->nIndexedVertex - 1], &v, sizeof(v3d));
+            ++obj->nVertices;
+            obj->vertices = (v3d *) realloc(obj->vertices, obj->nVertices * sizeof(v3d));
+            memcpy(&obj->vertices[obj->nVertices - 1], &v, sizeof(v3d));
             // Normal
-            obj->indexedNormal = (v3d *) realloc(obj->indexedNormal, obj->nIndexedVertex * sizeof(v3d));
-            obj->indexedFNormal = (v3d *) realloc(obj->indexedFNormal, obj->nIndexedVertex * sizeof(v3d));
+            obj->normals = (v3d *) realloc(obj->normals, obj->nVertices * sizeof(v3d));
+            obj->faceNormals = (v3d *) realloc(obj->faceNormals, obj->nVertices * sizeof(v3d));
 //            memset(&obj->indexedNormal, v3d(), sizeof(v3d));
-//            memset(&obj->indexedFNormal, v3d(), sizeof(v3d));
+//            memset(&obj->faceNormals, v3d(), sizeof(v3d));
             // Tangent
-            obj->indexedTangent = (v3d *) realloc(obj->indexedTangent, obj->nIndexedVertex * sizeof(v3d));
+            obj->tangents = (v3d *) realloc(obj->tangents, obj->nVertices * sizeof(v3d));
 //            memset(&obj->indexedTangent, 0, sizeof(v3d));
         } else if(sscanf(line, "vn %f %f %f", &v[0], &v[1], &v[2]) == 3){
 //            logMessage(" vn   -> Drop the normals: %f, %f, %f \n", v[0], v[1], v[2] );
             // go to next object line
         } else if(sscanf(line, "vs %f %f", &v[0], &v[1]) == 2){
-            ++obj->nIndexedUV;
-            obj->indexedUV = (v3d *) realloc(obj->indexedUV, obj->nIndexedUV * sizeof(v3d));
+            ++obj->nUVs;
+            obj->UVs = (v3d *) realloc(obj->UVs, obj->nUVs * sizeof(v3d));
             v[1] = 1.0f - v[1];
-            memcpy(&obj->indexedUV[obj->nIndexedUV - 1], &v, sizeof(v3d));
+            memcpy(&obj->UVs[obj->nUVs - 1], &v, sizeof(v3d));
         }else if(line[0] == 'v' && line[1] == 'n' ){
 //            last = line[0];
         }else if(sscanf(line, "usemtl %s", str) == 1){ strcpy(usemtl, str);
@@ -152,20 +153,20 @@ Obj* Obj::load(const char* fileName){
             ObjMesh *mesh = &obj->objMesh[i];
             
             // Accumulate normals and tangent
-            for(unsigned int j = 0; j < mesh->nTrinagleList; ++j){
-                ObjTriangleList *list = &mesh->objTriangleList[j];
-                for(unsigned int k = 0; k < list->nObjTriangleIndex; ++k){
+            for(unsigned int j = 0; j < mesh->nTList; ++j){
+                ObjTriangleList *list = &mesh->tList[j];
+                for(unsigned int k = 0; k < list->nTIndex; ++k){
                     v3d v1, v2, normal;
-                    v1 = obj->indexedVertex[list->objTriangleIndex[k].vertexIndex[0]] - obj->indexedVertex[list->objTriangleIndex[k].vertexIndex[1]];
-                    v2 = obj->indexedVertex[list->objTriangleIndex[k].vertexIndex[0]] - obj->indexedVertex[list->objTriangleIndex[k].vertexIndex[2]];
+                    v1 = obj->vertices[list->tIndex[k].vertexIndex[0]] - obj->vertices[list->tIndex[k].vertexIndex[1]];
+                    v2 = obj->vertices[list->tIndex[k].vertexIndex[0]] - obj->vertices[list->tIndex[k].vertexIndex[2]];
                     
                     normal = v3d::normalize(v3d::cross(v1, v2));
                     for(unsigned short e = 0; e < 3; ++e) {
-                        memcpy(&obj->indexedFNormal[list->objTriangleIndex[k].vertexIndex[e]], &normal, sizeof(v3d));
+                        memcpy(&obj->faceNormals[list->tIndex[k].vertexIndex[e]], &normal, sizeof(v3d));
                     }
                     
                     for(unsigned short e = 0; e < 3; ++e){
-                        obj->indexedNormal[list->objTriangleIndex[k].vertexIndex[e]] = obj->indexedNormal[list->objTriangleIndex[k].vertexIndex[e]] + normal;
+                        obj->normals[list->tIndex[k].vertexIndex[e]] = obj->normals[list->tIndex[k].vertexIndex[e]] + normal;
                     }
                     
                     if(list->useUVs){
@@ -212,11 +213,11 @@ Obj* Obj::load(const char* fileName){
         unsigned int index;
         for(unsigned int i = 0; i < obj->nObjMesh; ++i){
             for(unsigned int j = 0; j < obj->objMesh[i].nObjVertexData; ++j){
-                index = obj->objMesh[i].objVertexData[j].vertexIndex;
+                index = obj->objMesh[i].objVertexData[j].vIndex;
                 
-                obj->indexedNormal[index] = v3d::normalize(obj->indexedNormal[index]);
+                obj->normals[index] = v3d::normalize(obj->normals[index]);
                 if(obj->objMesh[i].objVertexData[j].uvIndex != -1){
-                    obj->indexedTangent[index] = v3d::normalize(obj->indexedTangent[index]);
+                    obj->tangents[index] = v3d::normalize(obj->tangents[index]);
                 }
                 
             }
@@ -232,7 +233,7 @@ Obj* Obj::load(const char* fileName){
 void ObjMesh::addVertexData(ObjTriangleList *otl, int vIndex, int uvIndex){
     unsigned short index;
     for(index = 0; index < nObjVertexData; ++index){
-        if(vIndex == objVertexData[index].vertexIndex){
+        if(vIndex == objVertexData[index].vIndex){
             if(uvIndex == -1 || uvIndex == objVertexData[index].uvIndex){
                 addIndexToTriangleList(otl, index);
                 return;
@@ -243,15 +244,15 @@ void ObjMesh::addVertexData(ObjTriangleList *otl, int vIndex, int uvIndex){
     index = nObjVertexData;
     ++nObjVertexData;
     objVertexData = (ObjVertexData *) realloc(objVertexData, nObjVertexData * sizeof(ObjVertexData));
-    objVertexData[index].vertexIndex = vIndex;
+    objVertexData[index].vIndex = vIndex;
     objVertexData[index].uvIndex = uvIndex;
     
     addIndexToTriangleList(otl, index);
 }
 
 void ObjMesh::addIndexToTriangleList(ObjTriangleList *otl, int index){
-    ++otl->nIndiceArray;
-    otl->indiceArray = (unsigned short *) realloc(otl->indiceArray, otl->nIndiceArray * sizeof(unsigned short));
-    otl->indiceArray[otl->nIndiceArray - 1] = index;
+    ++otl->nIndices;
+    otl->indices = (unsigned short *) realloc(otl->indices, otl->nIndices * sizeof(unsigned short));
+    otl->indices[otl->nIndices - 1] = index;
 }
 

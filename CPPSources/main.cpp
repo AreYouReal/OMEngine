@@ -56,33 +56,23 @@ int SRGraphics::Init ( SRContext *context ){
     vertexStart = vertexArray;
     // OK->
     for(; i < objMesh->nObjVertexData; ++i){
-        index = objMesh->objVertexData[i].vertexIndex;
-        memcpy(vertexArray, &object->indexedVertex[index], sizeof(v3d));
-//        logMessage("\n%u, %u, %u\n", vertexArray[i], vertexArray[i + 1], vertexArray[i + 2]);
+        index = objMesh->objVertexData[i].vIndex;
+        memcpy(vertexArray, &object->vertices[index], sizeof(v3d));
         vertexArray += sizeof(v3d);
-        memcpy(vertexArray, &object->indexedNormal[index], sizeof(v3d));
+        memcpy(vertexArray, &object->normals[index], sizeof(v3d));
         vertexArray += sizeof(v3d);
     }
-    // <- OK
-//    logMessage("\b%d, %d, %d\n", object->nIndexedVertex, objMesh->nTrinagleList, objMesh->nObjVertexData);
-    
-//    for(int i = 0; i < objMesh->objTriangleList[0].nIndiceArray; ++i){
-//        logMessage("\n%d\n", objMesh->objTriangleList[0].indiceArray[i]);
-//    }
-    
-    // OK ->
+
     glGenBuffers(1, &objMesh->vbo);
     glBindBuffer(GL_ARRAY_BUFFER, objMesh->vbo);
     glBufferData(GL_ARRAY_BUFFER, size, vertexStart, GL_STATIC_DRAW);
     if(vertexStart) delete vertexStart;
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     
-    glGenBuffers(1, &objMesh->objTriangleList[0].vbo);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, objMesh->objTriangleList[0].vbo);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, objMesh->objTriangleList[0].nIndiceArray * sizeof(unsigned short), objMesh->objTriangleList[0].indiceArray, GL_STATIC_DRAW);
+    glGenBuffers(1, &objMesh->tList[0].vbo);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, objMesh->tList[0].vbo);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, objMesh->tList[0].nIndices * sizeof(unsigned short), objMesh->tList[0].indices, GL_STATIC_DRAW);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-    // <- OK
-    
     
     // VAO
     unsigned char attribute;
@@ -99,17 +89,12 @@ int SRGraphics::Init ( SRContext *context ){
     glEnableVertexAttribArray(attribute);
     glVertexAttribPointer(attribute, 3, GL_FLOAT, GL_FALSE, stride, (char*) NULL + sizeof(v3d));
     
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, objMesh->objTriangleList[0].vbo);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, objMesh->tList[0].vbo);
     glBindVertexArray(0);
     
     if ( userData->program == 0 ){ return 0; }
-    
-//logMessage("program object %d", userData->program->ID);
 
-   glClearColor ( 0.0f, 0.0f, 0.0f, 1.0f );
-
-    
-
+    glClearColor ( 0.0f, 0.0f, 0.0f, 1.0f );
     
     return true;
 }
@@ -133,28 +118,7 @@ void SRGraphics::Draw ( SRContext *context ){
     
     uData->program->use();
     
-    glDrawElements(GL_TRIANGLES, objMesh->objTriangleList[0].nIndiceArray, GL_UNSIGNED_SHORT, 0);
-    
-//   UserData *userData = (UserData*)context->userData;
-//   GLfloat vVertices[] = {  0.0f,  0.5f, 0.0f,
-//                            -0.5f, -0.5f, 0.0f,
-//                            0.5f, -0.5f, 0.0f
-//                         };
-//
-//   // Set the viewport
-//
-//
-//   // Clear the color buffer
-//   glClear ( GL_COLOR_BUFFER_BIT );
-//
-//   // Use the program object
-//    userData->program->use();
-//   // Load the vertex data
-//   glVertexAttribPointer ( 0, 3, GL_FLOAT, GL_FALSE, 0, vVertices );
-//   glEnableVertexAttribArray ( 0 );
-//
-//   glDrawArrays ( GL_TRIANGLES, 0, 3 );
-//    glUseProgram(0);
+    glDrawElements(GL_TRIANGLES, objMesh->tList[0].nIndices, GL_UNSIGNED_SHORT, 0);
 }
 
 void SRGraphics::Shutdown ( SRContext *context ){
