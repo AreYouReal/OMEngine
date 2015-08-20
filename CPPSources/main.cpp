@@ -54,18 +54,26 @@ int SRGraphics::Init ( SRContext *context ){
     
     vertexArray = (unsigned char *)malloc(size);
     vertexStart = vertexArray;
-    
+    // OK->
     for(; i < objMesh->nObjVertexData; ++i){
         index = objMesh->objVertexData[i].vertexIndex;
         memcpy(vertexArray, &object->indexedVertex[index], sizeof(v3d));
+//        logMessage("\n%u, %u, %u\n", vertexArray[i], vertexArray[i + 1], vertexArray[i + 2]);
         vertexArray += sizeof(v3d);
         memcpy(vertexArray, &object->indexedNormal[index], sizeof(v3d));
+        vertexArray += sizeof(v3d);
     }
+    // <- OK
+//    logMessage("\b%d, %d, %d\n", object->nIndexedVertex, objMesh->nTrinagleList, objMesh->nObjVertexData);
     
+//    for(int i = 0; i < objMesh->objTriangleList[0].nIndiceArray; ++i){
+//        logMessage("\n%d\n", objMesh->objTriangleList[0].indiceArray[i]);
+//    }
     
+    // OK ->
     glGenBuffers(1, &objMesh->vbo);
     glBindBuffer(GL_ARRAY_BUFFER, objMesh->vbo);
-    glBufferData(GL_ARRAY_BUFFER, size, vertexArray, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, size, vertexStart, GL_STATIC_DRAW);
     if(vertexStart) delete vertexStart;
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     
@@ -73,6 +81,8 @@ int SRGraphics::Init ( SRContext *context ){
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, objMesh->objTriangleList[0].vbo);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, objMesh->objTriangleList[0].nIndiceArray * sizeof(unsigned short), objMesh->objTriangleList[0].indiceArray, GL_STATIC_DRAW);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    // <- OK
+    
     
     // VAO
     unsigned char attribute;
@@ -109,7 +119,7 @@ int SRGraphics::Init ( SRContext *context ){
 //
 void SRGraphics::Draw ( SRContext *context ){
     glViewport ( 0, 0, context->width, context->height );
-    v3d eye(0.0f, 0.0f, 10);
+    v3d eye(0.0f, -4.0f, 0.0);
     eye[2] += 0.1f;
     v3d lookAt(0.0f, 0.0f, 0.0f);
     v3d up(0.0f, 1.0f, 0.0f);
