@@ -27,11 +27,7 @@ void programBindCallback(void *ptr){
         if(!strcmp( program->uniformArray[i].name, "MVPMatrix" )){
             glUniformMatrix4fv(program->uniformArray[i].location, 1, GL_TRUE, (float*)MVPMatrix.pointer());
         }
-        
-        
-//        logMessage("UNiform: %s location %d", program->uniformArray[i].name, program->uniformArray[i].location);
     }
-//    logMessage("programBindCallback in action!");
 }
 
 
@@ -41,6 +37,8 @@ void programBindCallback(void *ptr){
 int SRGraphics::Init ( SRContext *context ){
     atexit(Exit);
     glViewport ( 0, 0, context->width, context->height );
+    glEnable( GL_DEPTH_TEST );
+    glEnable( GL_CULL_FACE  );
     
     appContext = context;
     UserData *userData = (UserData*)context->userData;
@@ -65,12 +63,6 @@ int SRGraphics::Init ( SRContext *context ){
         memcpy(vertexArray, &object->normals[index], sizeof(v3d));
         vertexArray += sizeof(v3d);
     }
-    
-    logMessage("%d", objMesh->nObjVertexData);
-    
-//    for(int i = 0; i < size; ++i){
-//        logMessage("%u\t", vertexStart[i]);
-//    }
 
     glGenBuffers(1, &objMesh->vbo);
     glBindBuffer(GL_ARRAY_BUFFER, objMesh->vbo);
@@ -119,6 +111,7 @@ void SRGraphics::Draw ( SRContext *context ){
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear( GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT );
     glBindVertexArray(objMesh->vao);
+    
     
     uData->program->use();
     
