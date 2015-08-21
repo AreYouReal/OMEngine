@@ -164,7 +164,6 @@ Obj* Obj::load(const char* fileName){
                     for(unsigned short e = 0; e < 3; ++e) {
                         memcpy(&obj->faceNormals[list->tIndex[k].vertexIndex[e]], normal.pointer(), sizeof(v3d));
                     }
-                    logMessage("%f, %f, %f", normal[0], normal[1], normal[2]);
                     for(unsigned short e = 0; e < 3; ++e){
                         obj->normals[list->tIndex[k].vertexIndex[e]] = obj->normals[list->tIndex[k].vertexIndex[e]] + normal;
                         

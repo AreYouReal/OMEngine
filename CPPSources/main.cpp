@@ -25,7 +25,7 @@ void programBindCallback(void *ptr){
     ShaderProgram *program = (ShaderProgram*)ptr;
     for(int i = 0; i < program->uniformCount; ++i){
         if(!strcmp( program->uniformArray[i].name, "MVPMatrix" )){
-            glUniformMatrix4fv(program->uniformArray[i].location, 1, GL_TRUE, MVPMatrix.pointer());
+            glUniformMatrix4fv(program->uniformArray[i].location, 1, GL_TRUE, (float*)MVPMatrix.pointer());
         }
         
         
@@ -66,9 +66,11 @@ int SRGraphics::Init ( SRContext *context ){
         vertexArray += sizeof(v3d);
     }
     
-    for(int i = 0; i < size; ++i){
-        logMessage("%u\t", vertexStart[i]);
-    }
+    logMessage("%d", objMesh->nObjVertexData);
+    
+//    for(int i = 0; i < size; ++i){
+//        logMessage("%u\t", vertexStart[i]);
+//    }
 
     glGenBuffers(1, &objMesh->vbo);
     glBindBuffer(GL_ARRAY_BUFFER, objMesh->vbo);
@@ -107,7 +109,7 @@ int SRGraphics::Init ( SRContext *context ){
 // Draw a triangle using the shader pair created in Init()
 //
 void SRGraphics::Draw ( SRContext *context ){
-    v3d eye(1.0f, -4.0f, 0.0);
+    v3d eye(0.0f, -4.0f, 0.0);
     v3d lookAt(0.0f, 0.0f, 0.0f);
     v3d up(0.0f, 0.0f, 1.0f);
     MVPMatrix =  m4d::perspective(45, context->width, context->height, 0.1, 100) * m4d::lookAt(eye, lookAt, up);
