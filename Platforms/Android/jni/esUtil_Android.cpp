@@ -67,7 +67,15 @@ static void HandleCommand ( struct android_app *pApp, int32_t cmd ){
          break;
       //______________________________________
       case APP_CMD_TERM_WINDOW:
-         break;
+              // Cleanup on shutdown
+              if ( context->shutdownFunc != NULL ){
+                 context->shutdownFunc ( context );
+              }
+              if ( context->userData != NULL ){
+                  free ( context->userData );
+              }
+              memset ( context, 0, sizeof ( SRContext ) );
+              break;
       //______________________________________
       case APP_CMD_WINDOW_RESIZED:        break;
       //______________________________________
@@ -93,16 +101,7 @@ static void HandleCommand ( struct android_app *pApp, int32_t cmd ){
       //______________________________________
       case APP_CMD_STOP:                  break;
       //______________________________________
-      case APP_CMD_DESTROY:
-        // Cleanup on shutdown
-        if ( context->shutdownFunc != NULL ){
-           context->shutdownFunc ( context );
-        }
-        if ( context->userData != NULL ){
-            free ( context->userData );
-        }
-        memset ( context, 0, sizeof ( SRContext ) );
-        break;
+      case APP_CMD_DESTROY:               break;
       //______________________________________
    }
 }
