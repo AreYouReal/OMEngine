@@ -16,6 +16,9 @@ v3d bve;
 Obj     *object;
 ObjMesh *objMesh;
 
+int rotateAngel = 0;
+m4d rotateObjMatrix;
+
 
 SRContext* SRGraphics::getAppContext(){
     return appContext;
@@ -104,7 +107,8 @@ void SRGraphics::Draw ( SRContext *context ){
     v3d eye(0.0f, -4.0f, 0.0);
     v3d lookAt(0.0f, 0.0f, 0.0f);
     v3d up(0.0f, 0.0f, 1.0f);
-    MVPMatrix =  m4d::perspective(45, context->width, context->height, 0.1, 100) * m4d::lookAt(eye, lookAt, up);
+    rotateObjMatrix = m4d::rotate(rotateAngel, 0, 0, 1);// * m4d::rotate(rotateAngel, 1, 0, 0);
+    MVPMatrix =  m4d::perspective(45, context->width, context->height, 0.1, 100) * m4d::lookAt(eye, lookAt, up) * rotateObjMatrix;
     
     
     UserData *uData = (UserData*)context->userData;
@@ -126,7 +130,26 @@ void SRGraphics::Shutdown ( SRContext *context ){
    glDeleteProgram ( userData->program->ID );
 }
 
+int startX, startY;
 void SRGraphics::Touch(SRContext *context, int event, int x, int y){
+    switch (event) {
+        case TOUCH_EVENT::BEGAN  :
+            startX = x;
+            startY = y;
+            break;
+        case TOUCH_EVENT::MOVED  :
+            rotateAngel -= ((startX - x) + (startY - y))/20;
+            rotateAngel %= 360;
+            break;
+        case TOUCH_EVENT::ENDED  :
+        case TOUCH_EVENT::CANCELLED  :
+            startX = startY = 0;
+            break;
+        default:
+            break;
+    }
+    
+    
 //    logMessage("TOUCH OCCURED: %d, [ %d, %d ]", event, x, y);
 //    program.reset();
 }

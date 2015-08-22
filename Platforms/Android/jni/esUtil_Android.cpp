@@ -67,14 +67,6 @@ static void HandleCommand ( struct android_app *pApp, int32_t cmd ){
          break;
       //______________________________________
       case APP_CMD_TERM_WINDOW:
-         // Cleanup on shutdown
-         if ( context->shutdownFunc != NULL ){
-            context->shutdownFunc ( context );
-         }
-         if ( context->userData != NULL ){
-            free ( context->userData );
-         }
-         memset ( context, 0, sizeof ( SRContext ) );
          break;
       //______________________________________
       case APP_CMD_WINDOW_RESIZED:        break;
@@ -84,7 +76,6 @@ static void HandleCommand ( struct android_app *pApp, int32_t cmd ){
       case APP_CMD_CONTENT_RECT_CHANGED:  break;
       //______________________________________
       case APP_CMD_GAINED_FOCUS:          break;
-      // setenv( "FILESYSTEM", "com.sre.enginetest", 1 );
       //______________________________________
       case APP_CMD_LOST_FOCUS:            break;
       //______________________________________
@@ -102,7 +93,16 @@ static void HandleCommand ( struct android_app *pApp, int32_t cmd ){
       //______________________________________
       case APP_CMD_STOP:                  break;
       //______________________________________
-      case APP_CMD_DESTROY:               break;
+      case APP_CMD_DESTROY:
+        // Cleanup on shutdown
+        if ( context->shutdownFunc != NULL ){
+           context->shutdownFunc ( context );
+        }
+        if ( context->userData != NULL ){
+            free ( context->userData );
+        }
+        memset ( context, 0, sizeof ( SRContext ) );
+        break;
       //______________________________________
    }
 }
