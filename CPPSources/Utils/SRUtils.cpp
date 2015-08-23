@@ -254,7 +254,7 @@ char* readTextFile( void *ioContext, const char *fileName){
     
     if ( fp == NULL ){
         // Log error as 'error in opening the input file from apk'
-        logMessage ( "esReadShaderFromFile FAILED to load : { %s }\n", fileName );
+        logMessage ( "read file has FAILED to load : { %s }\n", fileName );
         return nullptr;
     }
     long fSize = getFileSize(fp);
@@ -265,9 +265,9 @@ char* readTextFile( void *ioContext, const char *fileName){
     
     fileClose(fp);
     tempBuffer[fSize] = 0;
-    for(int i = 0; i < fSize + 1; i++){
-        logMessage("%c", tempBuffer[i]);
-    }
+//    for(int i = 0; i < fSize + 1; i++){
+//        logMessage("%c", tempBuffer[i]);
+//    }
     return tempBuffer;
 }
 

@@ -11,10 +11,15 @@ struct ObjMaterial{
     v4d     diffuse;                        // Diffuse material color.
     v4d     specular;                       // Specular material color.
     float   specularExponent;               // Specular exponent (aka Hardness or Shiness).
+    float   dissolve;                       // The material dissolve factor a.k.a alpha
+    char    mapAmbient[MAX_CHAR];           // The ambient texture channel filename
+    char    mapDiffuse[MAX_CHAR];           // The diffuse texture channel filename
+    char    mapSpecular[MAX_CHAR];          // The specular texture channel filename
+    char    mapTranslucency[MAX_CHAR];      // The translucecny....
+    char    mapDisp[MAX_CHAR];              // The displacement....
+    char    mapBump[MAX_CHAR];              // The bump map(aka Normal Map)
     
 };
-
-
 
 // Hold all the vertex and UV indices for the particular triangle.
 struct ObjTriangleIndex{ int vertexIndex[3], uvIndex[3]; };
@@ -55,6 +60,8 @@ struct ObjMesh{
 
 struct Obj{
     static Obj* load(const char* filename);
+    
+    void loadMaterial(const char* filename);
     
     char            texturePath[ MAX_CHAR ];// The texture path (relative to the .mtl file)
     char            programPath[ MAX_CHAR ];// The shader program path ( relative to the .mtl file)

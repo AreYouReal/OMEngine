@@ -256,3 +256,12 @@ void ObjMesh::addIndexToTriangleList(ObjTriangleList *otl, int index){
     otl->indices[otl->nIndices - 1] = index;
 }
 
+
+#pragma mark Material loading
+void Obj::loadMaterial(const char *filename){
+    unsigned char* objSource = readOBJFromFile(SRGraphics::getAppContext(), filename);
+    
+    
+    
+    if(objSource) delete[] objSource;
+}
