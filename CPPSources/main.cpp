@@ -10,7 +10,11 @@ typedef struct{
 
 static SRContext       *appContext;
 
-m4d MVPMatrix;
+m4d ModelViewMatrix;
+m4d ProjectionMatrix;
+m4d NormalMatrix;
+v3d lightPosition(0.0f, 0.0f, 0.0f);
+
 v3d bve;
 
 Obj     *object;
@@ -18,6 +22,19 @@ ObjMesh *objMesh;
 
 int rotateAngel = 0;
 m4d rotateObjMatrix;
+
+void calculateMatrices(float width, float height){
+    v3d eye(0.0f, -4.0f, 0.0);
+    v3d lookAt(0.0f, 0.0f, 0.0f);
+    v3d up(0.0f, 0.0f, 1.0f);
+    rotateObjMatrix = m4d::rotate(rotateAngel, 0, 0, 1);// * m4d::rotate(rotateAngel, 1, 0, 0);
+    
+    ModelViewMatrix     = m4d::lookAt(eye, lookAt, up) * rotateObjMatrix;
+    ProjectionMatrix    = m4d::perspective(45, width, height, 0.1, 100);
+    NormalMatrix        = m4d::inverseTranspose(ModelViewMatrix);
+}
+
+
 
 
 SRContext* SRGraphics::getAppContext(){
@@ -27,8 +44,14 @@ SRContext* SRGraphics::getAppContext(){
 void programBindCallback(void *ptr){
     ShaderProgram *program = (ShaderProgram*)ptr;
     for(int i = 0; i < program->uniformCount; ++i){
-        if(!strcmp( program->uniformArray[i].name, "MVPMatrix" )){
-            glUniformMatrix4fv(program->uniformArray[i].location, 1, GL_TRUE, (float*)MVPMatrix.pointer());
+        if(!strcmp( program->uniformArray[i].name, "modelViewM" )){
+            glUniformMatrix4fv(program->uniformArray[i].location, 1, GL_TRUE, (float*)ModelViewMatrix.pointer());
+        }else if(!strcmp( program->uniformArray[i].name, "projectionM" )){
+            glUniformMatrix4fv(program->uniformArray[i].location, 1, GL_TRUE, (float*)ProjectionMatrix.pointer());
+        }else if(!strcmp( program->uniformArray[i].name, "normalM" )){
+            glUniformMatrix4fv(program->uniformArray[i].location, 1, GL_TRUE, (float*)NormalMatrix.pointer());
+        }else if(!strcmp( program->uniformArray[i].name, "lightPos" )){
+            glUniform3fv(program->uniformArray[i].location, 1, &lightPosition[0]);
         }
     }
 }
@@ -104,12 +127,8 @@ int SRGraphics::Init ( SRContext *context ){
 // Draw a triangle using the shader pair created in Init()
 //
 void SRGraphics::Draw ( SRContext *context ){
-    v3d eye(0.0f, -4.0f, 0.0);
-    v3d lookAt(0.0f, 0.0f, 0.0f);
-    v3d up(0.0f, 0.0f, 1.0f);
-    rotateObjMatrix = m4d::rotate(rotateAngel, 0, 0, 1);// * m4d::rotate(rotateAngel, 1, 0, 0);
-    MVPMatrix =  m4d::perspective(45, context->width, context->height, 0.1, 100) * m4d::lookAt(eye, lookAt, up) * rotateObjMatrix;
-    
+
+    calculateMatrices(context->width, context->height);
     
     UserData *uData = (UserData*)context->userData;
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
@@ -121,6 +140,7 @@ void SRGraphics::Draw ( SRContext *context ){
     
     glDrawElements(GL_TRIANGLES, objMesh->tList[0].nIndices, GL_UNSIGNED_SHORT, 0);
 }
+
 
 void SRGraphics::Shutdown ( SRContext *context ){
     if(object) delete object;
