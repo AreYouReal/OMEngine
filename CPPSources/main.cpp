@@ -63,7 +63,9 @@ void programBindCallback(void *ptr){
 //
 int SRGraphics::Init ( SRContext *context ){
     
-    Texture::create(context, "somePNG.png");
+    Texture texture(context, "somePNG.png");
+    texture.generateID(0, 0);
+    logMessage("Texture ID: %d",texture.ID);
     
     atexit(Exit);
     glViewport ( 0, 0, context->width, context->height );

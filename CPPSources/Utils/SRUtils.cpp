@@ -289,7 +289,6 @@ unsigned char* readOBJFromFile(void *ioContext, const char *fileName){
 //    for(long i = 0; i < fSize; i++){
 //        logMessage("%c", tempBuffer[i]);
 //    }
-    
     return tempBuffer;
 }
 
@@ -308,7 +307,7 @@ unsigned char* loadRawPNGData(void *ioContext, const char *filename, unsigned in
     for(unsigned int i = 0; i < fSize; ++i){
         in.push_back(tempBuffer[i]);
     }
-    
+    fileClose(fp);
     if(tempBuffer) delete[] tempBuffer;
     
     std::vector<unsigned char> out;
@@ -325,6 +324,6 @@ unsigned char* loadRawPNGData(void *ioContext, const char *filename, unsigned in
             }
         }
     }
-    
+
     return rawData;
 }
