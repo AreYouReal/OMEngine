@@ -1,6 +1,7 @@
 #include "main.h"
 #include "ShaderHelper.h"
 #include "obj.h"
+#include "Texture.h"
 
 typedef struct{
     GLuint programObject;
@@ -61,6 +62,9 @@ void programBindCallback(void *ptr){
 // Initialize the shader and program object
 //
 int SRGraphics::Init ( SRContext *context ){
+    
+    Texture::create("somePNG.png");
+    
     atexit(Exit);
     glViewport ( 0, 0, context->width, context->height );
     glEnable( GL_DEPTH_TEST );

@@ -1,8 +1,10 @@
 #pragma once
 
+#include "SRUtils.h"
+
 
 struct Texture{
-    static Texture* create();
+    static Texture* create(char *filename);
     
     char    filename[MAX_CHAR];
     unsigned int tID;           // The open GL texture id

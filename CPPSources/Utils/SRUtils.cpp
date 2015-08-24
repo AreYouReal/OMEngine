@@ -292,3 +292,25 @@ unsigned char* readOBJFromFile(void *ioContext, const char *fileName){
     
     return tempBuffer;
 }
+
+unsigned char* loadRawPNGData(void *ioContext, const char *filename, unsigned int &width, unsigned int &height){
+#ifdef __APPLE__
+    filename = GetBundleFileName(filename);
+#endif
+    std::vector<unsigned char> image;
+    unsigned error = lodepng::decode(image, width, height, filename);
+    if(error != 0){ logMessage("Error: %s \n", lodepng_error_text(error)); }
+    
+    size_t u2 = 1; while(u2 < width) u2 *= 2;
+    size_t v2 = 1; while(v2 < height) v2 *= 2;
+    unsigned char* rawData = new unsigned char[u2 * v2 * 4];
+    for(size_t y = 0; y < height; ++y){
+        for(size_t x = 0; x < width; ++x){
+            for(size_t c = 0; c < 4; ++c){
+                rawData[4 * u2 * y + 4 * x + c] = image[4 * width * y + 4 * x + c];
+            }
+        }
+    }
+    
+    return rawData;
+}

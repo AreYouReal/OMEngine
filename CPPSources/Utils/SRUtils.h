@@ -85,3 +85,4 @@ int fileRead ( srFile *pFile, long bytesToRead, void *buffer );
 
 char* readTextFile( void *ioContext, const char *fileName);
 unsigned char* readOBJFromFile(void *ioContext, const char *fileName);
+unsigned char* loadRawPNGData(void *ioContext, const char *filename, unsigned int &width, unsigned int &height);
