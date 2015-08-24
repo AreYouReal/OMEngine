@@ -2,13 +2,26 @@
 #include "main.h"
 
 
-Texture* Texture::create(char* filename){
-    unsigned int width, height;
-    unsigned char* rawData = loadRawPNGData(SRGraphics::getAppContext(), filename, width, height);
+Texture::Texture(void* context, const char* filename){
+    texelArray = loadRawPNGData(context, filename, width, height);
+
+    logMessage("%d, %d\n", width, height);
     
-    logMessage("%d x %d", width, height);
+    strcpy(this->filename, filename);
     
-    if(rawData) delete [] rawData;
+    
+    
+}
+
+Texture::~Texture(){
+    if(texelArray) delete[] texelArray;
+    
+    logMessage("Texture destructor");
+}
+
+Texture* Texture::create(void* context, char* filename){
+
+    Texture txt(context, filename);
     
     return nullptr;
 }

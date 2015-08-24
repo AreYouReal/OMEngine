@@ -294,11 +294,25 @@ unsigned char* readOBJFromFile(void *ioContext, const char *fileName){
 }
 
 unsigned char* loadRawPNGData(void *ioContext, const char *filename, unsigned int &width, unsigned int &height){
-#ifdef __APPLE__
-    filename = GetBundleFileName(filename);
-#endif
-    std::vector<unsigned char> image;
-    unsigned error = lodepng::decode(image, width, height, filename);
+
+    srFile *fp;
+    fp = fileOpen(ioContext, filename);
+    if( fp == NULL){
+        logMessage("loadRawPNGData FAILED to load file: { %s }\n", filename);
+        return 0;
+    }
+    std::vector<unsigned char> in;
+    unsigned int fSize = getFileSize(fp);
+    unsigned char* tempBuffer = new unsigned char[fSize];
+    int redBytes = fileRead ( fp, fSize, tempBuffer );
+    for(unsigned int i = 0; i < fSize; ++i){
+        in.push_back(tempBuffer[i]);
+    }
+    
+    if(tempBuffer) delete[] tempBuffer;
+    
+    std::vector<unsigned char> out;
+    unsigned error = lodepng::decode(out, width, height, in);
     if(error != 0){ logMessage("Error: %s \n", lodepng_error_text(error)); }
     
     size_t u2 = 1; while(u2 < width) u2 *= 2;
@@ -307,7 +321,7 @@ unsigned char* loadRawPNGData(void *ioContext, const char *filename, unsigned in
     for(size_t y = 0; y < height; ++y){
         for(size_t x = 0; x < width; ++x){
             for(size_t c = 0; c < 4; ++c){
-                rawData[4 * u2 * y + 4 * x + c] = image[4 * width * y + 4 * x + c];
+                rawData[4 * u2 * y + 4 * x + c] = out[4 * width * y + 4 * x + c];
             }
         }
     }

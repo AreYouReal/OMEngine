@@ -4,12 +4,15 @@
 
 
 struct Texture{
-    static Texture* create(char *filename);
+    Texture(void* context, const char* filename);
+    ~Texture();
+    
+    static Texture* create(void* context, char *filename);
     
     char    filename[MAX_CHAR];
     unsigned int tID;           // The open GL texture id
-    unsigned short width;
-    unsigned short height;
+    unsigned int width;
+    unsigned int height;
     
     unsigned char byte; // The texture bits???
     
