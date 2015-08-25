@@ -61,14 +61,14 @@ struct ObjMesh{
 struct Obj{
     static Obj* load(const char* filename);
     
-    void loadMaterial(const char* filename);
+    bool loadMaterial(const char* filename);
     
     char            texturePath[ MAX_CHAR ];// The texture path (relative to the .mtl file)
     char            programPath[ MAX_CHAR ];// The shader program path ( relative to the .mtl file)
     unsigned int    nObjMesh;               // The number of ObjMesh
-    ObjMesh         *objMesh;               // Array of ObjMesh for each objec entry of the .obj file
+    ObjMesh         *objMesh    = NULL;               // Array of ObjMesh for each objec entry of the .obj file
     unsigned int    nMaterials;             // The number of ObjMaterial
-    ObjMaterial     *materials;             // The array of ObjMaterial
+    ObjMaterial     *materials  = NULL;             // The array of ObjMaterial
 
     // Textures goes here
     

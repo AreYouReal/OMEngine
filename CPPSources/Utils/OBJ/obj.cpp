@@ -63,8 +63,10 @@ Obj* Obj::load(const char* fileName){
                 
                 
                 ++obj->nObjMesh;
-                obj->objMesh = new ObjMesh[obj->nObjMesh];
-                obj->objMesh[obj->nObjMesh - 1] = *new ObjMesh();
+                ObjMesh *newArray = new ObjMesh[obj->nObjMesh];
+                if(obj->objMesh) memcpy(obj->objMesh, newArray, sizeof(ObjMesh) * obj->nObjMesh);
+                if(obj->objMesh) delete[] obj->objMesh;
+                obj->objMesh = newArray;
                 objMesh = &obj->objMesh[obj->nObjMesh - 1];
 //                objMesh->scale[0] = objMesh->scale[1] = objMesh->scale[2] = 1.0f;
                 objMesh->visible = true;
@@ -258,8 +260,12 @@ void ObjMesh::addIndexToTriangleList(ObjTriangleList *otl, int index){
 
 
 #pragma mark Material loading
-void Obj::loadMaterial(const char *filename){
+bool Obj::loadMaterial(const char *filename){
     unsigned char* objSource = readOBJFromFile(SRGraphics::getAppContext(), filename);
+    if(!objSource) return false;
+    
+    ObjMaterial *material = NULL;
+    
     
     
     
