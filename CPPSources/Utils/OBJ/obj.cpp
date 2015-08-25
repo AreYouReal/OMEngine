@@ -63,11 +63,10 @@ Obj* Obj::load(const char* fileName){
                 
                 
                 ++obj->nObjMesh;
-                ObjMesh *newArray = new ObjMesh[obj->nObjMesh];
-                if(obj->objMesh) memcpy(obj->objMesh, newArray, sizeof(ObjMesh) * obj->nObjMesh);
-                if(obj->objMesh) delete[] obj->objMesh;
-                obj->objMesh = newArray;
+                obj->objMesh = (ObjMesh *)realloc(obj->objMesh, obj->nObjMesh * sizeof(ObjMesh));
+                
                 objMesh = &obj->objMesh[obj->nObjMesh - 1];
+                memset(objMesh, 0, sizeof(objMesh));
 //                objMesh->scale[0] = objMesh->scale[1] = objMesh->scale[2] = 1.0f;
                 objMesh->visible = true;
                 
@@ -79,8 +78,9 @@ Obj* Obj::load(const char* fileName){
 //                objmesh->use_smooth_normals = use_smooth_normals;
                 
                 ++objMesh->nTList;
-                objMesh->tList    = new ObjTriangleList[objMesh->nTList];
+                objMesh->tList    = (ObjTriangleList *) realloc(objMesh->tList, sizeof(ObjTriangleList) * objMesh->nTList);
                 objTriangleList = &objMesh->tList[ objMesh->nTList - 1 ];
+                memset( objTriangleList, 0, sizeof( ObjTriangleList ) );
                 objTriangleList->mode = GL_TRIANGLES;
                 if(useUVs) objTriangleList->useUVs = useUVs;
 //                if(usemtl[0]) objTriangleList->objMaterial = obj->getMaterial(usemtl, 1);  ???
@@ -260,12 +260,8 @@ void ObjMesh::addIndexToTriangleList(ObjTriangleList *otl, int index){
 
 
 #pragma mark Material loading
-bool Obj::loadMaterial(const char *filename){
+void Obj::loadMaterial(const char *filename){
     unsigned char* objSource = readOBJFromFile(SRGraphics::getAppContext(), filename);
-    if(!objSource) return false;
-    
-    ObjMaterial *material = NULL;
-    
     
     
     

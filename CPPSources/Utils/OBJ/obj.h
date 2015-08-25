@@ -26,11 +26,11 @@ struct ObjTriangleIndex{ int vertexIndex[3], uvIndex[3]; };
 
 // Represent the one triangle list onside ObjMesh
 struct ObjTriangleList{
-    unsigned int        nTIndex     = 0;  // The number of triangle index.
-    ObjTriangleIndex    *tIndex     = 0;  // Triangle array that contain each triangle index data.
-    unsigned short      nIndices    = 0;  // The number of indice required to draw the triangle list.
-    unsigned short      *indices    = 0;  // Array of indices.
-    ObjMaterial         *material   = 0;  // Pointer to the material to use when draw this list.
+    unsigned int        nTIndex;  // The number of triangle index.
+    ObjTriangleIndex    *tIndex;  // Triangle array that contain each triangle index data.
+    unsigned short      nIndices;  // The number of indice required to draw the triangle list.
+    unsigned short      *indices;  // Array of indices.
+    ObjMaterial         *material;  // Pointer to the material to use when draw this list.
     bool                useUVs;           // True if triangle list is using UVs.
     int                 mode;             // Drawing mode (Default: GL_TRIANGLES).
     unsigned int        vbo;
@@ -45,7 +45,7 @@ struct ObjMesh{
     unsigned short  nObjVertexData;  // The number of ObjVertexData.
     ObjVertexData   *objVertexData;  // Well, ObjVertexData themselves.
     unsigned char   nTList;          // The number of triangle lists for this ObjMesh.
-    ObjTriangleList *tList;          // Array og ObjTriangleList - basically at least one need to draw the ObjMesh.
+    ObjTriangleList *tList  = NULL;          // Array og ObjTriangleList - basically at least one need to draw the ObjMesh.
     ObjMaterial     *material;       // Current object material.
     
     unsigned int    vbo;             // The vertex buffer VBO ID maintaned by GLES.
@@ -61,14 +61,14 @@ struct ObjMesh{
 struct Obj{
     static Obj* load(const char* filename);
     
-    bool loadMaterial(const char* filename);
+    void loadMaterial(const char* filename);
     
     char            texturePath[ MAX_CHAR ];// The texture path (relative to the .mtl file)
     char            programPath[ MAX_CHAR ];// The shader program path ( relative to the .mtl file)
     unsigned int    nObjMesh;               // The number of ObjMesh
-    ObjMesh         *objMesh    = NULL;               // Array of ObjMesh for each objec entry of the .obj file
+    ObjMesh         *objMesh;               // Array of ObjMesh for each objec entry of the .obj file
     unsigned int    nMaterials;             // The number of ObjMaterial
-    ObjMaterial     *materials  = NULL;             // The array of ObjMaterial
+    ObjMaterial     *materials;             // The array of ObjMaterial
 
     // Textures goes here
     
