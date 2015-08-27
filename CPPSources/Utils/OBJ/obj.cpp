@@ -61,12 +61,11 @@ Obj* Obj::load(const char* fileName){
             if( last != 'f'){
 //                logMessage("\nlast != f: \n");
                 
-                
                 ++obj->nObjMesh;
                 obj->objMesh = (ObjMesh *)realloc(obj->objMesh, obj->nObjMesh * sizeof(ObjMesh));
                 
                 objMesh = &obj->objMesh[obj->nObjMesh - 1];
-                memset(objMesh, 0, sizeof(objMesh));
+                memset(objMesh, 0, sizeof(ObjMesh));
 //                objMesh->scale[0] = objMesh->scale[1] = objMesh->scale[2] = 1.0f;
                 objMesh->visible = true;
                 
@@ -138,6 +137,7 @@ Obj* Obj::load(const char* fileName){
             if(strstr( str, "off") || strstr(str, "0") ) useSmoothNormals = false;
         }else if(sscanf(line, "mtllib %s", str) == 1){
             unsigned char position = (unsigned char *) line - objSource + strlen(line) + 1;
+            obj->loadMaterial(str);
             // OBJ_LOAD_MTL(obj, );
             line = strtok((char *) &objSource[position], "\n");
             continue;
@@ -263,7 +263,29 @@ void ObjMesh::addIndexToTriangleList(ObjTriangleList *otl, int index){
 void Obj::loadMaterial(const char *filename){
     unsigned char* objSource = readOBJFromFile(SRGraphics::getAppContext(), filename);
     
+    if(!objSource) return;
     
+    ObjMaterial *mat = NULL;
+    
+    char *line = strtok((char*)objSource, "\n"),
+                 str[MAX_CHAR] = {""};
+    
+    v3d v;
+    
+    while(line){
+        if(!line[0] || line[0] == '#' ){ line = strtok( NULL, "\n" ); continue;
+        }else if( sscanf(line, "newmtl %s", str) == 1){
+            logMessage("newmtl line %s", str);
+            ++nMaterials;
+            materials = (ObjMaterial*) realloc(materials, nMaterials * sizeof(ObjMaterial));
+            mat = &materials[nMaterials - 1];
+            memset(mat, 0, sizeof(ObjMaterial));
+            strcpy(mat->name, str);
+        }
+        line = strtok( NULL, "\n" );
+    }
+    
+    logMessage("%s", objSource);
     
     if(objSource) delete[] objSource;
 }
