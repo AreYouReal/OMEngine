@@ -125,8 +125,6 @@ int SRGraphics::Init ( SRContext *context ){
     glBindVertexArray(0);
     
     if ( userData->program == 0 ){ return 0; }
-
-    if(object) delete object;
     
     return true;
 }

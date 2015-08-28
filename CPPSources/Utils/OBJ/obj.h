@@ -77,6 +77,8 @@ struct Obj{
     void addTexture(const char* filename);
     int getTextureIndex(const char* filename);
     
+    static void readIndices(const char* line, int v[], int n[], int uv[], bool &useUVs);
+    
     char            texturePath[ MAX_CHAR ];// The texture path (relative to the .mtl file)
     char            programPath[ MAX_CHAR ];// The shader program path ( relative to the .mtl file)
     unsigned int    nObjMesh;               // The number of ObjMesh

@@ -12,23 +12,23 @@
 
 Obj::~Obj(){
     if(objMesh){
-        delete [] objMesh;
+        free( objMesh );
         objMesh = 0;
     }
     if(materials){
-        delete [] materials;
+        free( materials );
         materials = 0;
     }
     if(textures){
         for(unsigned int i = 0; i < nTextures; ++i){
-            delete textures[i];
+            free( textures[i] );
             textures[i] = 0;
         }
         delete [] textures;
         textures = 0;
     }
     if(programs){
-        delete [] programs;
+        free( programs );
         programs = 0;
     }
     
@@ -88,25 +88,11 @@ Obj* Obj::load(const char* fileName){
             bool useUVs;
             int vertexIndex[3]  = {0, 0, 0},
                 normalIndex[3]  = {0, 0, 0},
-                uvIndex[3]     = {0, 0, 0},
+                uvIndex[3]      = {0, 0, 0},
                 triangleIndex;
             
-            if( sscanf(line, "f %d %d %d", &vertexIndex[0], &vertexIndex[1], &vertexIndex[2]) == 3){
-                useUVs = false;
-            }else if( sscanf(line, "f %d//%d %d//%d %d//%d", &vertexIndex[0], &normalIndex[0], &vertexIndex[1], &normalIndex[1], &vertexIndex[2], &normalIndex[2]) == 6){
-                useUVs = false;
-            }else if( sscanf(line, "f %d/%d %d/%d %d/%d", &vertexIndex[0], &normalIndex[0], &vertexIndex[1], &normalIndex[1], &vertexIndex[2], &normalIndex[2]) == 6){
-                useUVs = true;
-            }else{
-                sscanf( line, "f %d/%d/%d %d/%d/%d %d/%d/%d", &vertexIndex[0], &uvIndex[0],&normalIndex[0],
-                       &vertexIndex[1], &uvIndex[1],&normalIndex[1],
-                       &vertexIndex[2], &uvIndex[2],&normalIndex[2]);
-                
-                useUVs = true;
-            }
-//            logMessage("f ->   %d, %d, %d, %d, %d ,%d, %d, %d ,%d \n", vertexIndex[0], vertexIndex[1], vertexIndex[2],
-//                       uvIndex[0], uvIndex[1], uvIndex[2],
-//                       normalIndex[0], normalIndex[1], normalIndex[2]);
+            Obj::readIndices(line, vertexIndex, normalIndex, uvIndex, useUVs);
+
             
             if( last != 'f'){
 //                logMessage("\nlast != f: \n");
@@ -178,7 +164,7 @@ Obj* Obj::load(const char* fileName){
             v.y = 1.0f - v.y;
             memcpy(&obj->UVs[obj->nUVs - 1], &v, sizeof(v3d));
         }else if(line[0] == 'v' && line[1] == 'n' ){
-//            last = line[0];
+            last = line[0];
         }else if(sscanf(line, "usemtl %s", str) == 1){ strcpy(usemtl, str);
         }else if(sscanf(line, "o %s", str) == 1){ strcpy(name, str);
         }else if(sscanf(line, "g %s", str) == 1){ strcpy(group, str);
@@ -282,6 +268,23 @@ Obj* Obj::load(const char* fileName){
 
 
 #pragma mark Helpers
+void Obj::readIndices(const char* line, int v[], int n[], int uv[], bool &useUVs){
+    if( sscanf(line, "f %d %d %d", &v[0], &v[1], &v[2]) == 3){
+        useUVs = false;
+    }else if( sscanf(line, "f %d//%d %d//%d %d//%d", &v[0], &n[0], &v[1], &n[1], &v[2], &n[2]) == 6){
+        useUVs = false;
+    }else if( sscanf(line, "f %d/%d %d/%d %d/%d", &v[0], &uv[0], &v[1], &uv[1], &v[2], &uv[2]) == 6){
+        useUVs = true;
+    }else{
+        sscanf( line, "f %d/%d/%d %d/%d/%d %d/%d/%d", &v[0], &uv[0], &n[0],
+               &v[1], &uv[1], &n[1],
+               &v[2], &uv[2], &n[2]);
+        
+        useUVs = true;
+    }
+}
+
+
 void ObjMesh::addVertexData(ObjTriangleList *otl, int vIndex, int uvIndex){
     unsigned short index;
     for(index = 0; index < nObjVertexData; ++index){
