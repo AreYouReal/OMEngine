@@ -16,6 +16,7 @@
 		7626526117F10E6C007CCD43 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7626523517F10E6C007CCD43 /* Foundation.framework */; };
 		7626526217F10E6C007CCD43 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7626523917F10E6C007CCD43 /* UIKit.framework */; };
 		9453DEE11B2A0A2700C79DB3 /* SRUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9453DEDF1B2A0A2700C79DB3 /* SRUtils.cpp */; };
+		94678C101B903DAE00C697CB /* diffuse.png in Resources */ = {isa = PBXBuildFile; fileRef = 94678C0F1B903DAE00C697CB /* diffuse.png */; };
 		948C6A081B2C162600D61689 /* lodepng.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 948C6A061B2C162600D61689 /* lodepng.cpp */; };
 		94C5DB541B63E5DB005E706E /* fragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 94C5DB501B63E5DB005E706E /* fragment.glsl */; };
 		94C5DB551B63E5DB005E706E /* model.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 94C5DB511B63E5DB005E706E /* model.mtl */; };
@@ -66,6 +67,7 @@
 		941D13521B8A1A2800A1DD00 /* Texture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Texture.h; sourceTree = "<group>"; };
 		9453DEDF1B2A0A2700C79DB3 /* SRUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SRUtils.cpp; path = ../../CPPSources/Utils/SRUtils.cpp; sourceTree = SOURCE_ROOT; };
 		9453DEE01B2A0A2700C79DB3 /* SRUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SRUtils.h; path = ../../CPPSources/Utils/SRUtils.h; sourceTree = SOURCE_ROOT; };
+		94678C0F1B903DAE00C697CB /* diffuse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = diffuse.png; path = SREngine/Platforms/Android/assets/diffuse.png; sourceTree = "<group>"; };
 		948BACC21B6DFB5C004A052C /* Typedefs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Typedefs.h; sourceTree = "<group>"; };
 		948C6A061B2C162600D61689 /* lodepng.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lodepng.cpp; sourceTree = "<group>"; };
 		948C6A071B2C162600D61689 /* lodepng.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lodepng.h; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 		7626524017F10E6C007CCD43 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				94678C0F1B903DAE00C697CB /* diffuse.png */,
 				F3944FCB1B8AE73E0090FF01 /* somePNG.png */,
 				94C5DB501B63E5DB005E706E /* fragment.glsl */,
 				94C5DB511B63E5DB005E706E /* model.mtl */,
@@ -393,6 +396,7 @@
 				F3D5E1161AF8F32600DD216B /* Main_iPad.storyboard in Resources */,
 				F3D5E1171AF8F32600DD216B /* Main_iPhone.storyboard in Resources */,
 				94C5DB551B63E5DB005E706E /* model.mtl in Resources */,
+				94678C101B903DAE00C697CB /* diffuse.png in Resources */,
 				94C5DB541B63E5DB005E706E /* fragment.glsl in Resources */,
 				F3D5E1081AF8F23E00DD216B /* iOSSRETests-Info.plist in Resources */,
 				94C5DB571B63E5DB005E706E /* vertex.glsl in Resources */,

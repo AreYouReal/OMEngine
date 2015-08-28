@@ -10,6 +10,33 @@
 #include "main.h"
 
 
+Obj::~Obj(){
+    if(objMesh){
+        delete[] objMesh;
+        objMesh = 0;
+    }
+    if(materials){
+        delete [] materials;
+        materials = 0;
+    }
+    if(textures){
+        for(unsigned int i = 0; i < nTextures; ++i){
+            delete textures[i];
+            textures[i] = 0;
+        }
+        delete [] textures;
+        textures = 0;
+    }
+    if(programs){
+        delete [] programs;
+        programs = 0;
+    }
+    
+    // Free vertices and other arrays here...
+    
+    logMessage("Object destructor");
+}
+
 Obj* Obj::load(const char* fileName){
     unsigned char* objSource = readOBJFromFile(SRGraphics::getAppContext(), fileName);
     if(!objSource) return nullptr;
@@ -281,11 +308,64 @@ void Obj::loadMaterial(const char *filename){
             mat = &materials[nMaterials - 1];
             memset(mat, 0, sizeof(ObjMaterial));
             strcpy(mat->name, str);
+        }else if(sscanf(line, "Ka %f %f %f", &v[0], &v[1], &v[2]) == 3){
+            memcpy(&mat->ambient, &v, sizeof(v3d));
+        }else if(sscanf(line, "Kd %f %f %f", &v[0], &v[1], &v[2]) == 3){
+            memcpy(&mat->diffuse, &v, sizeof(v3d));
+        }else if(sscanf(line, "Ks %f %f %f", &v[0], &v[1], &v[2]) == 3){
+            memcpy(&mat->specular, &v, sizeof(v3d));
+        }else if(sscanf(line, "Tf %f %f %f", &v[0], &v[1], &v[2]) == 3){
+            memcpy(&mat->transmissionFilter, &v, sizeof(v3d));
+        }else if(sscanf( line, "illum %f", &v[0] ) == 1 ){
+            mat->illuminationModel = (int)v[0];
+        }else if(sscanf(line, "d %f", &v[0]) == 1){
+            mat->ambient[3] = v[0];
+            mat->diffuse[3] = v[0];
+            mat->specular[3]= v[0];
+            mat->dissolve   = v[0];
+        }else if(sscanf(line, "Ns %f",  &v[0]) == 1){
+            mat->specularExponent   = v[0];
+        }else if(sscanf(line, "Ni %f", &v[0]) == 1){
+            mat->opticalDensity = v[0];
+        }else if(sscanf(line, "map_Ka %s", str) == 1){
+//            mat->mapAmbient
+        }else if(sscanf(line, "map_Kd %s", str) == 1){
+            addTexture(str);
+        }else if(sscanf(line, "map_Ks %s", str) == 1){
+//            mat->mapSpecular
+        }else if(sscanf(line, "map_Tr %s", str) == 1){
+//            mat->mapTranslucency
+        }else if( sscanf( line, "map_disp %s", str ) == 1 ||
+                 sscanf( line, "map_Disp %s", str ) == 1 ||
+                 sscanf( line, "disp %s"    , str ) == 1 ){
+//            mat->mapDisp
+        }else if( sscanf( line, "map_bump %s", str ) == 1 ||
+                 sscanf( line, "map_Bump %s", str ) == 1 ||
+                 sscanf( line, "bump %s"	, str ) == 1 ){
+//            mat->mapBump
         }
+        
+        
         line = strtok( NULL, "\n" );
     }
     
     logMessage("%s", objSource);
     
     if(objSource) delete[] objSource;
+}
+
+
+void Obj::addTexture(const char *filename){
+    if(getTextureIndex(filename) < 0){
+        ++nTextures;
+        textures = (Texture **) realloc(textures, sizeof(Texture) * nTextures);
+        textures[nTextures - 1] = new Texture(SRGraphics::getAppContext(), filename);
+    }
+}
+
+int Obj::getTextureIndex(const char *filename){
+    for(unsigned int i = 0; i < nTextures; ++i){
+        if( !strcmp(textures[i]->filename, filename) ) return i;
+    }
+    return -1;
 }

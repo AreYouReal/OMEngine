@@ -150,7 +150,7 @@ void SRGraphics::Draw ( SRContext *context ){
 
 void SRGraphics::Shutdown ( SRContext *context ){
     if(object) delete object;
-    logMessage("ShutDown function");
+    logMessage("ShutDown function\n");
     UserData *userData = (UserData*)context->userData;
 
    glDeleteProgram ( userData->program->ID );
@@ -195,7 +195,7 @@ int SRGraphics::Main ( SRContext *context ){
 }
 
 void SRGraphics::Exit(){
-    logMessage("Exit function");
+    logMessage("Exit function\n");
 }
 
 

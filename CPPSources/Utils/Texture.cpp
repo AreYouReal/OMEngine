@@ -15,7 +15,7 @@ Texture::Texture(void* context, const char* filename){
 
 Texture::~Texture(){
     if(texelArray) delete[] texelArray;
-    logMessage("Texture destructor");
+    logMessage("Texture destructor\n");
 }
 
 void Texture::generateID(unsigned int flags, unsigned char filter){

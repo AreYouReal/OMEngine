@@ -3,6 +3,7 @@
 #include "SRUtils.h"
 #include "m4d.h"
 #include "ShaderHelper.h"
+#include "Texture.h"
 
 // Object material structure definition
 struct ObjMaterial{
@@ -10,8 +11,11 @@ struct ObjMaterial{
     v4d     ambient;                        // Ambient material color.
     v4d     diffuse;                        // Diffuse material color.
     v4d     specular;                       // Specular material color.
+    v3d     transmissionFilter;             // Transmission filter of the material
+    int     illuminationModel;              // ....
     float   specularExponent;               // Specular exponent (aka Hardness or Shiness).
     float   dissolve;                       // The material dissolve factor a.k.a alpha
+    float   opticalDensity;                 // ...
     char    mapAmbient[MAX_CHAR];           // The ambient texture channel filename
     char    mapDiffuse[MAX_CHAR];           // The diffuse texture channel filename
     char    mapSpecular[MAX_CHAR];          // The specular texture channel filename
@@ -61,7 +65,11 @@ struct ObjMesh{
 struct Obj{
     static Obj* load(const char* filename);
     
+    ~Obj();
+    
     void loadMaterial(const char* filename);
+    void addTexture(const char* filename);
+    int getTextureIndex(const char* filename);
     
     char            texturePath[ MAX_CHAR ];// The texture path (relative to the .mtl file)
     char            programPath[ MAX_CHAR ];// The shader program path ( relative to the .mtl file)
@@ -70,10 +78,11 @@ struct Obj{
     unsigned int    nMaterials;             // The number of ObjMaterial
     ObjMaterial     *materials;             // The array of ObjMaterial
 
-    // Textures goes here
+    unsigned int    nTextures;
+    Texture         **textures;
     
-    unsigned int    n_program;              // The number of shader program the Obj is using.
-    ShaderProgram   *program;
+    unsigned int    nPrograms;              // The number of shader program the Obj is using.
+    ShaderProgram   *programs;
     
     // Vertices data goes here
     unsigned int    nVertices;
