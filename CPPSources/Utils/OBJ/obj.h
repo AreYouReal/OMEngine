@@ -30,6 +30,9 @@ struct ObjTriangleIndex{ int vertexIndex[3], uvIndex[3]; };
 
 // Represent the one triangle list onside ObjMesh
 struct ObjTriangleList{
+    
+    ~ObjTriangleList();
+    
     unsigned int        nTIndex;  // The number of triangle index.
     ObjTriangleIndex    *tIndex;  // Triangle array that contain each triangle index data.
     unsigned short      nIndices;  // The number of indice required to draw the triangle list.
@@ -44,6 +47,9 @@ struct ObjTriangleList{
 struct ObjVertexData{ int vIndex, uvIndex; };
 
 struct ObjMesh{
+    
+    ~ObjMesh();
+    
     char            name[MAX_CHAR];  // Mesh name.
     bool            visible;         // If true - it's visible.
     unsigned short  nObjVertexData;  // The number of ObjVertexData.

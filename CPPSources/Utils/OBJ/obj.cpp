@@ -12,7 +12,7 @@
 
 Obj::~Obj(){
     if(objMesh){
-        delete[] objMesh;
+        delete [] objMesh;
         objMesh = 0;
     }
     if(materials){
@@ -32,9 +32,32 @@ Obj::~Obj(){
         programs = 0;
     }
     
-    // Free vertices and other arrays here...
-    
+    if(vertices)    delete[] vertices;
+    if(normals)     delete[] normals;
+    if(faceNormals) delete[] faceNormals;
+    if(tangents)    delete[] tangents;
+    if(UVs)         delete[] UVs;
+
     logMessage("Object destructor");
+}
+
+ObjMesh::~ObjMesh(){
+    if(material){
+        delete material;
+        material = 0;
+    }
+    if(tList) {
+        delete tList;
+        tList = 0;
+    };
+    
+    logMessage("ObjMEsh destructor");
+}
+
+ObjTriangleList::~ObjTriangleList(){
+    if(material) delete material;
+    if(tIndex) delete tIndex;
+    logMessage("ObjTriangleList destructor");
 }
 
 Obj* Obj::load(const char* fileName){

@@ -126,6 +126,8 @@ int SRGraphics::Init ( SRContext *context ){
     
     if ( userData->program == 0 ){ return 0; }
 
+    if(object) delete object;
+    
     return true;
 }
 
