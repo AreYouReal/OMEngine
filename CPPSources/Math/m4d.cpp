@@ -106,7 +106,13 @@ v4d operator*(const m4d& m, v4d& vec){
         for(int col = 0; col < 4; col++){
             result += m.m[row][col] * vec[col];
         }
-        rVec4[row] = result;
+        switch (row) {
+            case 0: rVec4.x = result; break;
+            case 1: rVec4.y = result; break;
+            case 2: rVec4.z = result; break;
+            case 3: rVec4.w = result; break;
+            default: break;
+        }
     }
     return rVec4;
 }
@@ -216,9 +222,9 @@ m4d m4d::rotate(float angle, float x, float y, float z){
 m4d m4d::rotate(float angle, v3d& axis){
     float degree = PI / 180 * angle;
     v3d nAxis = v3d::normalize(axis);
-    float x = nAxis.v[0];
-    float y = nAxis.v[1];
-    float z = nAxis.v[2];
+    float x = nAxis.x;
+    float y = nAxis.y;
+    float z = nAxis.z;
     float c = cos(degree);
     float s = sin(degree);
     
@@ -234,9 +240,9 @@ m4d m4d::scale(float x, float y, float z){
     return m4d::scale(scale);
 }
 m4d m4d::scale(v3d& scale){
-    m4d rMat4(scale.v[0], 0, 0, 0,
-              0, scale.v[1], 0, 0,
-              0, 0, scale.v[2], 0,
+    m4d rMat4(scale.x, 0, 0, 0,
+              0, scale.y, 0, 0,
+              0, 0, scale.z, 0,
               0,	  0,   0,  1);
     return rMat4;
 }
@@ -245,9 +251,9 @@ m4d m4d::translate(float x, float y, float z){
     return m4d::translate(translate);
 }
 m4d m4d::translate(v3d& translate){
-    m4d rMat4(1, 0, 0, translate.v[0],
-              0, 1, 0, translate.v[1],
-              0, 0, 1, translate.v[2],
+    m4d rMat4(1, 0, 0, translate.x,
+              0, 1, 0, translate.y,
+              0, 0, 1, translate.z,
               0, 0, 0,      1);
     
     return rMat4;

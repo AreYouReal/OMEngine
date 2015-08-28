@@ -132,9 +132,9 @@ Obj* Obj::load(const char* fileName){
                 objTriangleList->tIndex[triangleIndex].uvIndex[i]     = uvIndex[i];
             }
         
-        }else if(sscanf(line, "v %f %f %f", &v[0], &v[1], &v[2]) == 3){
+        }else if(sscanf(line, "v %f %f %f", &v.x, &v.y, &v.z) == 3){
             // Vertex
-//            logMessage("v  ->  Vertex: %f, %f, %f \n", v[0], v[1], v[2] );
+//            logMessage("v  ->  Vertex: %f, %f, %f \n", v.x, v.y, v.z );
             ++obj->nVertices;
             obj->vertices = (v3d *) realloc(obj->vertices, obj->nVertices * sizeof(v3d));
             memcpy(&obj->vertices[obj->nVertices - 1], &v, sizeof(v3d));
@@ -146,13 +146,13 @@ Obj* Obj::load(const char* fileName){
             // Tangent
             obj->tangents = (v3d *) realloc(obj->tangents, obj->nVertices * sizeof(v3d));
             obj->tangents[obj->nVertices - 1] = {0.0, 0.0, 0.0};
-        } else if(sscanf(line, "vn %f %f %f", &v[0], &v[1], &v[2]) == 3){
-//            logMessage(" vn   -> Drop the normals: %f, %f, %f \n", v[0], v[1], v[2] );
+        } else if(sscanf(line, "vn %f %f %f", &v.x, &v.y, &v.z) == 3){
+//            logMessage(" vn   -> Drop the normals: %f, %f, %f \n", v.x, v.y, v.z );
             // go to next object line
-        } else if(sscanf(line, "vs %f %f", &v[0], &v[1]) == 2){
+        } else if(sscanf(line, "vs %f %f", &v.x, &v.y) == 2){
             ++obj->nUVs;
             obj->UVs = (v3d *) realloc(obj->UVs, obj->nUVs * sizeof(v3d));
-            v[1] = 1.0f - v[1];
+            v.y = 1.0f - v.y;
             memcpy(&obj->UVs[obj->nUVs - 1], &v, sizeof(v3d));
         }else if(line[0] == 'v' && line[1] == 'n' ){
 //            last = line[0];
@@ -308,25 +308,25 @@ void Obj::loadMaterial(const char *filename){
             mat = &materials[nMaterials - 1];
             memset(mat, 0, sizeof(ObjMaterial));
             strcpy(mat->name, str);
-        }else if(sscanf(line, "Ka %f %f %f", &v[0], &v[1], &v[2]) == 3){
+        }else if(sscanf(line, "Ka %f %f %f", &v.x, &v.y, &v.z) == 3){
             memcpy(&mat->ambient, &v, sizeof(v3d));
-        }else if(sscanf(line, "Kd %f %f %f", &v[0], &v[1], &v[2]) == 3){
+        }else if(sscanf(line, "Kd %f %f %f", &v.x, &v.y, &v.z) == 3){
             memcpy(&mat->diffuse, &v, sizeof(v3d));
-        }else if(sscanf(line, "Ks %f %f %f", &v[0], &v[1], &v[2]) == 3){
+        }else if(sscanf(line, "Ks %f %f %f", &v.x, &v.y, &v.z) == 3){
             memcpy(&mat->specular, &v, sizeof(v3d));
-        }else if(sscanf(line, "Tf %f %f %f", &v[0], &v[1], &v[2]) == 3){
+        }else if(sscanf(line, "Tf %f %f %f", &v.x, &v.y, &v.z) == 3){
             memcpy(&mat->transmissionFilter, &v, sizeof(v3d));
-        }else if(sscanf( line, "illum %f", &v[0] ) == 1 ){
-            mat->illuminationModel = (int)v[0];
-        }else if(sscanf(line, "d %f", &v[0]) == 1){
-            mat->ambient[3] = v[0];
-            mat->diffuse[3] = v[0];
-            mat->specular[3]= v[0];
-            mat->dissolve   = v[0];
-        }else if(sscanf(line, "Ns %f",  &v[0]) == 1){
-            mat->specularExponent   = v[0];
-        }else if(sscanf(line, "Ni %f", &v[0]) == 1){
-            mat->opticalDensity = v[0];
+        }else if(sscanf( line, "illum %f", &v.x ) == 1 ){
+            mat->illuminationModel = (int)v.x;
+        }else if(sscanf(line, "d %f", &v.x) == 1){
+            mat->ambient.w = v.x;
+            mat->diffuse.w = v.x;
+            mat->specular.w= v.x;
+            mat->dissolve   = v.x;
+        }else if(sscanf(line, "Ns %f",  &v.x) == 1){
+            mat->specularExponent   = v.x;
+        }else if(sscanf(line, "Ni %f", &v.x) == 1){
+            mat->opticalDensity = v.x;
         }else if(sscanf(line, "map_Ka %s", str) == 1){
 //            mat->mapAmbient
         }else if(sscanf(line, "map_Kd %s", str) == 1){

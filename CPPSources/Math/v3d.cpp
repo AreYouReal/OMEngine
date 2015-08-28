@@ -3,45 +3,46 @@
 
 #pragma mark 3D
 v3d::v3d(){}
-v3d::v3d(float a){
-    v[0] = v[1] = v[2] = a;
-}
-v3d::v3d(float x, float y, float z){
-    v[0] = x; v[1] = y; v[2] = z;
-}
+v3d::v3d(float a):x(a), y(a),z(a){}
+v3d::v3d(float x, float y, float z): x(x), y(y), z(z){}
 v3d::v3d(const v4d& vec){
-    v[0] = vec.v[0] / vec.v[3]; v[1] = vec.v[1] / vec.v[3]; v[2] = vec.v[2] / vec.v[3];
+    x = vec.x / vec.w; y = vec.y / vec.w; z = vec.z / vec.w;
 }
-float& v3d::operator[](int i){
-    return i > 2 ? v[0] : v[i];
+float v3d::operator[](int i){
+    switch (i) {
+        case 0: return x;
+        case 1: return y;
+        case 2: return z;
+        default: return x;
+    }
 };
 
 void v3d::operator=(const v3d& vec3){
-    v[0] = vec3.v[0];	v[1] = vec3.v[1];	v[2] = vec3.v[2];
+    x = vec3.x;	y = vec3.y;	z = vec3.z;
 }
 
 // Global v3d operator definitions
 void v3d::print(const v3d& vec3){
-    std::cout << "[ " << vec3.v[0] << ", " << vec3.v[1] << ", " << vec3.v[2] << " ]" << std::endl;
+    std::cout << "[ " << vec3.x << ", " << vec3.y << ", " << vec3.z << " ]" << std::endl;
 }
 v3d operator+(const v3d& v1, const v3d& v2){
     v3d rVec3;
-    rVec3.v[0] = v1.v[0] + v2.v[0];	rVec3.v[1] = v1.v[1] + v2.v[1];	rVec3.v[2] = v1.v[2] + v2.v[2];
+    rVec3.x = v1.x + v2.x;	rVec3.y = v1.y + v2.y;	rVec3.z = v1.z + v2.z;
     return rVec3;
 }
 v3d operator-(const v3d& v2, const v3d& v1){
     v3d rVec3;
-    rVec3.v[0] = v2.v[0] - v1.v[0];	rVec3.v[1] = v2.v[1] - v1.v[1];	rVec3.v[2] = v2.v[2] - v1.v[2];
+    rVec3.x = v2.x - v1.x;	rVec3.y = v2.y - v1.y;	rVec3.z = v2.z - v1.z;
     return rVec3;
 }
 v3d operator-(const v3d& vec){
     v3d rVec3;
-    rVec3.v[0] = -vec.v[0]; rVec3.v[1] = -vec.v[1]; rVec3.v[2] = -vec.v[2];
+    rVec3.x = -vec.x; rVec3.y = -vec.y; rVec3.z = -vec.z;
     return rVec3;
 }
 v3d operator*(const float scalar, const v3d& vec3){
     v3d rVec3;
-    rVec3.v[0] = scalar * vec3.v[0];	rVec3.v[1] = scalar * vec3.v[1];	rVec3.v[2] = scalar * vec3.v[2];
+    rVec3.x = scalar * vec3.x;	rVec3.y = scalar * vec3.y;	rVec3.z = scalar * vec3.z;
     return rVec3;
 }
 v3d operator*(const v3d& vec3, const float scalar){
@@ -49,18 +50,18 @@ v3d operator*(const v3d& vec3, const float scalar){
 }
 v3d operator/(const v3d& vec3, const float scalar){
     v3d rVec3;
-    rVec3.v[0] = vec3.v[0] / scalar;	rVec3.v[1] = vec3.v[1] / scalar;	rVec3.v[2] = vec3.v[2] / scalar;
+    rVec3.x = vec3.x / scalar;	rVec3.y = vec3.y / scalar;	rVec3.z = vec3.z / scalar;
     return rVec3;
 }
 
 float v3d::dot(const v3d& v1, const v3d& v2){
-    return (v1.v[0] * v2.v[0]) + (v1.v[1] * v2.v[1]) + (v1.v[2] * v2.v[2]);
+    return (v1.x * v2.x) + (v1.y * v2.y) + (v1.z * v2.z);
 };
 v3d v3d::cross(const v3d& v1, const v3d& v2){
     v3d rVec3;
-    rVec3.v[0] = v1.v[1] * v2.v[2] - v1.v[2] * v2.v[1];
-    rVec3.v[1] = v1.v[2] * v2.v[0] - v1.v[0] * v2.v[2];
-    rVec3.v[2] = v1.v[0] * v2.v[1] - v1.v[1] * v2.v[0];
+    rVec3.x = v1.y * v2.z - v1.z * v2.y;
+    rVec3.y = v1.z * v2.x - v1.x * v2.z;
+    rVec3.z = v1.x * v2.y - v1.y * v2.x;
     return rVec3;
 }
 float v3d::length(const v3d& vec3){
@@ -71,37 +72,37 @@ v3d v3d::normalize(const v3d& vec3){
     float length = v3d::length(vec3);
     if(length){
         float m = 1.0f / length;
-        rVec3.v[0] = vec3.v[0] * m;
-        rVec3.v[1] = vec3.v[1] * m;
-        rVec3.v[2] = vec3.v[2] * m;
+        rVec3.x = vec3.x * m;
+        rVec3.y = vec3.y * m;
+        rVec3.z = vec3.z * m;
     }
     return rVec3;
 }
 
 float* v3d::pointer(){
-    return v;
+    return &x;
 }
 
 #pragma mark 4D
 v4d::v4d(){}
-v4d::v4d(float x, float y, float z, float w){
-    v[0] = x; v[1] = y; v[2] = z; v[3] = w;
-}
-v4d::v4d(const v3d& vec){
-    for(int i = 0; i < 3; ++i)
-        v[i] = vec.v[i];
-    v[3] = 0.0f;
-}
+v4d::v4d(float x, float y, float z, float w):x(x), y(y), z(z), w(w){}
+v4d::v4d(const v3d& vec){ x = vec.x; y = vec.y; z = vec.z; w = 0.0f; }
 
-float& v4d::operator[](int i){
-    return i > 3 ? v[0] : v[i];
+float v4d::operator[](int i){
+    switch (i) {
+        case 0: return x;
+        case 1: return y;
+        case 2: return z;
+        case 3: return w;
+        default: return x;
+    }
 }
 void v4d::operator=(const v4d& vec){
-    v[0] = vec.v[0]; v[1] = vec.v[1]; v[2] = vec.v[2]; v[3] = vec.v[3];
+    x = vec.x; y = vec.y; z = vec.z; w = vec.w;
 }
 
 void v4d::print(const v4d& vec4){
-    std::cout << "[ " << vec4.v[0] << ", " << vec4.v[1] << ", " << vec4.v[2] << ", " << vec4.v[3] << " ]" << std::endl;
+    std::cout << "[ " << vec4.x << ", " << vec4.y << ", " << vec4.z << ", " << vec4.w << " ]" << std::endl;
 }
 
 

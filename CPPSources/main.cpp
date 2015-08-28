@@ -52,7 +52,7 @@ void programBindCallback(void *ptr){
         }else if(!strcmp( program->uniformArray[i].name, "normalM" )){
             glUniformMatrix4fv(program->uniformArray[i].location, 1, GL_TRUE, (float*)NormalMatrix.pointer());
         }else if(!strcmp( program->uniformArray[i].name, "lightPos" )){
-            glUniform3fv(program->uniformArray[i].location, 1, &lightPosition[0]);
+            glUniform3fv(program->uniformArray[i].location, 1, &lightPosition.x);
         }
     }
 }

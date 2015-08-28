@@ -12,7 +12,7 @@ public:
     q4d(const float angle, float x, float y, float z);
     q4d(const float angle, const v3d& axis);
     
-    float& operator[](int i);
+    float operator[](int i);
     void operator=(const q4d& quat);
     q4d operator*(const float scale);
     
@@ -22,7 +22,7 @@ public:
     void normalize();
     q4d unit();
     
-    float q[4]{0.0, 0.0, 0.0, 1.0};
+    float x, y, z, w = 1.0f;
     
     
     static void print(const q4d& quat);
