@@ -126,6 +126,11 @@ int SRGraphics::Init ( SRContext *context ){
     
     if ( userData->program == 0 ){ return 0; }
     
+    if(object){
+        delete object;
+        object = 0;
+    }
+    
     return true;
 }
 
@@ -143,8 +148,7 @@ void SRGraphics::Draw ( SRContext *context ){
     
     
     uData->program->use();
-    
-    glDrawElements(GL_TRIANGLES, objMesh->tList[0].nIndices, GL_UNSIGNED_SHORT, 0);
+    if(object) glDrawElements(GL_TRIANGLES, object->objMesh[0].tList[0].nIndices, GL_UNSIGNED_SHORT, 0);
 }
 
 

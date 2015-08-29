@@ -11,52 +11,50 @@
 
 
 Obj::~Obj(){
-    if(objMesh){
-        free( objMesh );
-        objMesh = 0;
-    }
-    if(materials){
-        free( materials );
-        materials = 0;
-    }
-    if(textures){
-        for(unsigned int i = 0; i < nTextures; ++i){
-            free( textures[i] );
-            textures[i] = 0;
-        }
-        delete [] textures;
-        textures = 0;
-    }
-    if(programs){
-        free( programs );
-        programs = 0;
-    }
-    
-    if(vertices)    delete[] vertices;
-    if(normals)     delete[] normals;
-    if(faceNormals) delete[] faceNormals;
-    if(tangents)    delete[] tangents;
-    if(UVs)         delete[] UVs;
+    freeVertexData();
+    freeMeshData();
+
 
     logMessage("Object destructor");
 }
+
+void Obj::freeVertexData(){
+    if(vertices)    {free(vertices);    vertices    = 0;}
+    if(normals)     {free(normals);     normals     = 0;}
+    if(faceNormals) {free(faceNormals); faceNormals = 0;}
+    if(tangents)    {free(tangents);    tangents    = 0;}
+    if(UVs)         {free(UVs);         UVs         = 0;}
+}
+
+void Obj::freeMeshData(){
+    if(objMesh){
+        delete[] objMesh;
+        objMesh = 0;
+    }
+}
+
 
 ObjMesh::~ObjMesh(){
     if(material){
         delete material;
         material = 0;
     }
-    if(tList) {
-        delete tList;
+    if(tList){
+        delete [] tList;
         tList = 0;
-    };
-    
+    }
     logMessage("ObjMEsh destructor");
 }
 
 ObjTriangleList::~ObjTriangleList(){
-    if(material) delete material;
-    if(tIndex) delete tIndex;
+    if(tIndex){
+        free(tIndex);
+        tIndex = 0;
+    }
+    if(indices){
+        free(indices);
+        indices = 0;
+    }
     logMessage("ObjTriangleList destructor");
 }
 
@@ -98,8 +96,13 @@ Obj* Obj::load(const char* fileName){
 //                logMessage("\nlast != f: \n");
                 
                 ++obj->nObjMesh;
-                obj->objMesh = (ObjMesh *)realloc(obj->objMesh, obj->nObjMesh * sizeof(ObjMesh));
-                
+                if(!obj->objMesh) obj->objMesh = new ObjMesh[obj->nObjMesh];
+                else{
+                    ObjMesh *meshArray = new ObjMesh[obj->nObjMesh];
+                    memcpy(meshArray, obj->objMesh, sizeof(ObjMesh) * (obj->nObjMesh - 1));
+                    delete [] obj->objMesh;
+                    obj->objMesh = meshArray;
+                }
                 objMesh = &obj->objMesh[obj->nObjMesh - 1];
                 memset(objMesh, 0, sizeof(ObjMesh));
 //                objMesh->scale[0] = objMesh->scale[1] = objMesh->scale[2] = 1.0f;
@@ -113,9 +116,15 @@ Obj* Obj::load(const char* fileName){
 //                objmesh->use_smooth_normals = use_smooth_normals;
                 
                 ++objMesh->nTList;
-                objMesh->tList    = (ObjTriangleList *) realloc(objMesh->tList, sizeof(ObjTriangleList) * objMesh->nTList);
+                if(!objMesh->tList) objMesh->tList = new ObjTriangleList[objMesh->nTList];
+                else{
+                    ObjTriangleList *newList = new ObjTriangleList[objMesh->nTList];
+                    memcpy(newList, objMesh->tList, sizeof(ObjTriangleList) * (objMesh->nTList - 1));
+                    delete [] objMesh->tList;
+                    objMesh->tList = newList;
+                }
                 objTriangleList = &objMesh->tList[ objMesh->nTList - 1 ];
-                memset( objTriangleList, 0, sizeof( ObjTriangleList ) );
+                memset(objTriangleList, 0, sizeof(ObjTriangleList));
                 objTriangleList->mode = GL_TRIANGLES;
                 if(useUVs) objTriangleList->useUVs = useUVs;
 //                if(usemtl[0]) objTriangleList->objMaterial = obj->getMaterial(usemtl, 1);  ???

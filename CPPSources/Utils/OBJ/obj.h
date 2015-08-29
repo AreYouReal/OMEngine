@@ -72,6 +72,8 @@ struct Obj{
     static Obj* load(const char* filename);
     
     ~Obj();
+    void freeVertexData();
+    void freeMeshData();
     
     void loadMaterial(const char* filename);
     void addTexture(const char* filename);
