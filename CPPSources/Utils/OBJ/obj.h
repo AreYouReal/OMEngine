@@ -63,15 +63,19 @@ struct ObjMesh{
 };
 
 struct Obj{
-    static Obj* load(const char* filename);
     
+    // Static
+    static void readIndices(const char* line, int v[], int n[], int uv[], bool &useUVs);
+    
+    // Cons(des)tructor
+    Obj(const char* filename);
     ~Obj();
     
-    void loadMaterial(const char* filename);
-    void addTexture(const char* filename);
-    int getTextureIndex(const char* filename);
-    
-    static void readIndices(const char* line, int v[], int n[], int uv[], bool &useUVs);
+    void    loadMaterial(const char* filename);
+    void    addTexture(const char* filename);
+    int     getTextureIndex(const char* filename);
+
+// Fields
     
     std::string     texturePath;    // The texture path (relative to the .mtl file)
     std::string     programPath;    // The shader program path ( relative to the .mtl file)
@@ -79,17 +83,12 @@ struct Obj{
     std::vector<ObjMesh> meshes;
     
     std::vector<ObjMaterial>    materials;
-
-    unsigned int    nTextures;
-    Texture         **textures;     // ??????????????
+    std::vector<Texture>        textures;
+    std::vector<ShaderProgram>  programs;
     
-    unsigned int    nPrograms;              // The number of shader program the Obj is using.
-    ShaderProgram   *programs;
-    
-    // Vertices data goes here
-    std::vector<v3d>    vertices;
-    std::vector<v3d>    normals;
-    std::vector<v3d>    faceNormals;
-    std::vector<v3d>    tangents;
-    std::vector<v3d>    UVs;
+    std::vector<v3d>            vertices;
+    std::vector<v3d>            normals;
+    std::vector<v3d>            faceNormals;
+    std::vector<v3d>            tangents;
+    std::vector<v3d>            UVs;
 };

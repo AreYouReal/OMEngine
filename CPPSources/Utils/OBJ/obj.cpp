@@ -27,17 +27,16 @@ ObjTriangleList::~ObjTriangleList(){
     logMessage("ObjTriangleList destructor");
 }
 
-Obj* Obj::load(const char* fileName){
+Obj::Obj(const char* fileName){
     unsigned char* objSource = readOBJFromFile(SRGraphics::getAppContext(), fileName);
-    if(!objSource) return nullptr;
+#pragma warning throw exception here
+    if(!objSource) return;
     
     ObjMesh* objMesh = nullptr;
     ObjTriangleList* objTriangleList = nullptr;
     
     v3d v;
-    
-    Obj* obj = new Obj();
-    
+
     char* line = strtok((char*)objSource, "\n");
     char last = 0;
     
@@ -54,37 +53,36 @@ Obj* Obj::load(const char* fileName){
         }else if( line[0] == 'f' && line[1] == ' '){
             bool useUVs;
             int vertexIndex[3]  = {0, 0, 0},
-                normalIndex[3]  = {0, 0, 0},
-                uvIndex[3]      = {0, 0, 0},
-                triangleIndex;
+            normalIndex[3]  = {0, 0, 0},
+            uvIndex[3]      = {0, 0, 0};
             
             Obj::readIndices(line, vertexIndex, normalIndex, uvIndex, useUVs);
-
+            
             
             if( last != 'f'){
-//                logMessage("\nlast != f: \n");
-                obj->meshes.push_back(ObjMesh());
-                objMesh = &obj->meshes.back();
+                //                logMessage("\nlast != f: \n");
+                meshes.push_back(ObjMesh());
+                objMesh = &meshes.back();
                 objMesh->visible = true;
                 
                 
                 if(name[0]) objMesh->name = name;
                 else if(usemtl[0]) objMesh->name = name;
                 
-//                if( group[ 0 ] ) strcpy( objmesh->group, group );
+                //                if( group[ 0 ] ) strcpy( objmesh->group, group );
                 
-//                objmesh->use_smooth_normals = use_smooth_normals;
+                //                objmesh->use_smooth_normals = use_smooth_normals;
                 objMesh->tLists.push_back(ObjTriangleList());
                 objTriangleList = &objMesh->tLists.back();
                 
                 objTriangleList->mode = GL_TRIANGLES;
                 if(useUVs) objTriangleList->useUVs = useUVs;
-//                if(usemtl[0]) objTriangleList->objMaterial = obj->getMaterial(usemtl, 1);  ???
+                //                if(usemtl[0]) objTriangleList->objMaterial = obj->getMaterial(usemtl, 1);  ???
                 name[0]     = 0;
                 usemtl[0]   = 0;
             }
             
-                
+            
             --vertexIndex[0];--vertexIndex[1];--vertexIndex[2];
             --uvIndex[0];--uvIndex[1];--uvIndex[2];
             
@@ -96,22 +94,22 @@ Obj* Obj::load(const char* fileName){
                 objTriangleList->tIndices.back().vertexIndex[i] = vertexIndex[i];
                 objTriangleList->tIndices.back().uvIndex[i]     = uvIndex[i];
             }
-        
+            
         }else if(sscanf(line, "v %f %f %f", &v.x, &v.y, &v.z) == 3){
             // Vertex
-//            logMessage("v  ->  Vertex: %f, %f, %f \n", v.x, v.y, v.z );
-            obj->vertices.push_back(v);
+            //            logMessage("v  ->  Vertex: %f, %f, %f \n", v.x, v.y, v.z );
+            vertices.push_back(v);
             // Normal
-            obj->normals.push_back(v3d(0.0f));
-            obj->faceNormals.push_back(v3d(0.0f));
+            normals.push_back(v3d(0.0f));
+            faceNormals.push_back(v3d(0.0f));
             // Tangent
-            obj->tangents.push_back(v3d(0.0f));
+            tangents.push_back(v3d(0.0f));
         } else if(sscanf(line, "vn %f %f %f", &v.x, &v.y, &v.z) == 3){
-//            logMessage(" vn   -> Drop the normals: %f, %f, %f \n", v.x, v.y, v.z );
+            //            logMessage(" vn   -> Drop the normals: %f, %f, %f \n", v.x, v.y, v.z );
             // go to next object line
         } else if(sscanf(line, "vs %f %f", &v.x, &v.y) == 2){
             v.y = 1.0f - v.y;
-            obj->UVs.push_back(v);
+            UVs.push_back(v);
         }else if(line[0] == 'v' && line[1] == 'n' ){
             last = line[0];
         }else if(sscanf(line, "usemtl %s", str) == 1){ strcpy(usemtl, str);
@@ -122,7 +120,7 @@ Obj* Obj::load(const char* fileName){
             if(strstr( str, "off") || strstr(str, "0") ) useSmoothNormals = false;
         }else if(sscanf(line, "mtllib %s", str) == 1){
             unsigned char position = (unsigned char *) line - objSource + strlen(line) + 1;
-            obj->loadMaterial(str);
+            loadMaterial(str);
             // OBJ_LOAD_MTL(obj, );
             line = strtok((char *) &objSource[position], "\n");
             continue;
@@ -136,82 +134,80 @@ Obj* Obj::load(const char* fileName){
     
     // Build the normals and tangent
     {
-        for(unsigned int i = 0; i < obj->meshes.size(); ++i){
-            ObjMesh *mesh = &obj->meshes[i];
+        for(unsigned int i = 0; i < meshes.size(); ++i){
+            ObjMesh *mesh = &meshes[i];
             
             // Accumulate normals and tangent
             for(unsigned int j = 0; j < mesh->tLists.size(); ++j){
                 ObjTriangleList *list = &mesh->tLists[j];
                 for(unsigned int k = 0; k < list->tIndices.size(); ++k){
                     v3d v1, v2, normal;
-                    v1 = obj->vertices[list->tIndices[k].vertexIndex[0]] - obj->vertices[list->tIndices[k].vertexIndex[1]];
-                    v2 = obj->vertices[list->tIndices[k].vertexIndex[0]] - obj->vertices[list->tIndices[k].vertexIndex[2]];
+                    v1 = vertices[list->tIndices[k].vertexIndex[0]] - vertices[list->tIndices[k].vertexIndex[1]];
+                    v2 = vertices[list->tIndices[k].vertexIndex[0]] - vertices[list->tIndices[k].vertexIndex[2]];
                     
                     normal = v3d::normalize(v3d::cross(v1, v2));
                     for(unsigned short e = 0; e < 3; ++e) {
-                        memcpy(&obj->faceNormals[list->tIndices[k].vertexIndex[e]], normal.pointer(), sizeof(v3d));
+                        memcpy(&faceNormals[list->tIndices[k].vertexIndex[e]], normal.pointer(), sizeof(v3d));
                     }
                     for(unsigned short e = 0; e < 3; ++e){
-                        obj->normals[list->tIndices[k].vertexIndex[e]] = obj->normals[list->tIndices[k].vertexIndex[e]] + normal;
+                        normals[list->tIndices[k].vertexIndex[e]] = normals[list->tIndices[k].vertexIndex[e]] + normal;
                         
                     }
                     
                     if(list->useUVs){
-//                        vec3 tangent;
-//                        
-//                        vec2 uv1, uv2;
-//                        
-//                        float c;
-//                        
-//                        vec2_diff( &uv1,
-//                                  &obj->indexed_uv[ objtrianglelist->objtriangleindex[ k ].uv_index[ 2 ] ],
-//                                  &obj->indexed_uv[ objtrianglelist->objtriangleindex[ k ].uv_index[ 0 ] ] );
-//                        
-//                        vec2_diff( &uv2,
-//                                  &obj->indexed_uv[ objtrianglelist->objtriangleindex[ k ].uv_index[ 1 ] ],
-//                                  &obj->indexed_uv[ objtrianglelist->objtriangleindex[ k ].uv_index[ 0 ] ] );
-//                        
-//                        
-//                        c = 1.0f / ( uv1.x * uv2.y - uv2.x * uv1.y );
-//                        
-//                        tangent.x = ( v1.x * uv2.y + v2.x * uv1.y ) * c;
-//                        tangent.y = ( v1.y * uv2.y + v2.y * uv1.y ) * c;
-//                        tangent.z = ( v1.z * uv2.y + v2.z * uv1.y ) * c;
-//                        
-//                        
-//                        vec3_add( &obj->indexed_tangent[ objtrianglelist->objtriangleindex[ k ].vertex_index[ 0 ] ],
-//                                 &obj->indexed_tangent[ objtrianglelist->objtriangleindex[ k ].vertex_index[ 0 ] ],
-//                                 &tangent );
-//                        
-//                        vec3_add( &obj->indexed_tangent[ objtrianglelist->objtriangleindex[ k ].vertex_index[ 1 ] ], 
-//                                 &obj->indexed_tangent[ objtrianglelist->objtriangleindex[ k ].vertex_index[ 1 ] ],
-//                                 &tangent );
-//                        
-//                        vec3_add( &obj->indexed_tangent[ objtrianglelist->objtriangleindex[ k ].vertex_index[ 2 ] ], 
-//                                 &obj->indexed_tangent[ objtrianglelist->objtriangleindex[ k ].vertex_index[ 2 ] ],
-//                                 &tangent );
+                        //                        vec3 tangent;
+                        //
+                        //                        vec2 uv1, uv2;
+                        //
+                        //                        float c;
+                        //
+                        //                        vec2_diff( &uv1,
+                        //                                  &obj->indexed_uv[ objtrianglelist->objtriangleindex[ k ].uv_index[ 2 ] ],
+                        //                                  &obj->indexed_uv[ objtrianglelist->objtriangleindex[ k ].uv_index[ 0 ] ] );
+                        //
+                        //                        vec2_diff( &uv2,
+                        //                                  &obj->indexed_uv[ objtrianglelist->objtriangleindex[ k ].uv_index[ 1 ] ],
+                        //                                  &obj->indexed_uv[ objtrianglelist->objtriangleindex[ k ].uv_index[ 0 ] ] );
+                        //
+                        //
+                        //                        c = 1.0f / ( uv1.x * uv2.y - uv2.x * uv1.y );
+                        //
+                        //                        tangent.x = ( v1.x * uv2.y + v2.x * uv1.y ) * c;
+                        //                        tangent.y = ( v1.y * uv2.y + v2.y * uv1.y ) * c;
+                        //                        tangent.z = ( v1.z * uv2.y + v2.z * uv1.y ) * c;
+                        //
+                        //
+                        //                        vec3_add( &obj->indexed_tangent[ objtrianglelist->objtriangleindex[ k ].vertex_index[ 0 ] ],
+                        //                                 &obj->indexed_tangent[ objtrianglelist->objtriangleindex[ k ].vertex_index[ 0 ] ],
+                        //                                 &tangent );
+                        //
+                        //                        vec3_add( &obj->indexed_tangent[ objtrianglelist->objtriangleindex[ k ].vertex_index[ 1 ] ],
+                        //                                 &obj->indexed_tangent[ objtrianglelist->objtriangleindex[ k ].vertex_index[ 1 ] ],
+                        //                                 &tangent );
+                        //
+                        //                        vec3_add( &obj->indexed_tangent[ objtrianglelist->objtriangleindex[ k ].vertex_index[ 2 ] ],
+                        //                                 &obj->indexed_tangent[ objtrianglelist->objtriangleindex[ k ].vertex_index[ 2 ] ],
+                        //                                 &tangent );
                     }
-  
+                    
                     
                 }
             }
         }
         
         unsigned int index;
-        for(unsigned int i = 0; i < obj->meshes.size(); ++i){
-            for(unsigned int j = 0; j < obj->meshes[i].vertexData.size(); ++j){
-                index = obj->meshes[i].vertexData[j].vIndex;
+        for(unsigned int i = 0; i < meshes.size(); ++i){
+            for(unsigned int j = 0; j < meshes[i].vertexData.size(); ++j){
+                index = meshes[i].vertexData[j].vIndex;
                 
-                obj->normals[index] = v3d::normalize(obj->normals[index]);
-                if(obj->meshes[i].vertexData[j].uvIndex != -1){
-                    obj->tangents[index] = v3d::normalize(obj->tangents[index]);
+                normals[index] = v3d::normalize(normals[index]);
+                if(meshes[i].vertexData[j].uvIndex != -1){
+                    tangents[index] = v3d::normalize(tangents[index]);
                 }
                 
             }
         }
     }
-    
-    return obj;
 }
 
 
@@ -322,15 +318,13 @@ void Obj::loadMaterial(const char *filename){
 
 void Obj::addTexture(const char *filename){
     if(getTextureIndex(filename) < 0){
-        ++nTextures;
-        textures = (Texture **) realloc(textures, sizeof(Texture) * nTextures);
-        textures[nTextures - 1] = new Texture(SRGraphics::getAppContext(), filename);
+        textures.push_back(Texture(SRGraphics::getAppContext(), filename));
     }
 }
 
 int Obj::getTextureIndex(const char *filename){
-    for(unsigned int i = 0; i < nTextures; ++i){
-        if( !strcmp(textures[i]->filename.c_str(), filename) ) return i;
+    for(unsigned int i = 0; i < textures.size(); ++i){
+        if( !strcmp(textures[i].filename.c_str(), filename) ) return i;
     }
     return -1;
 }

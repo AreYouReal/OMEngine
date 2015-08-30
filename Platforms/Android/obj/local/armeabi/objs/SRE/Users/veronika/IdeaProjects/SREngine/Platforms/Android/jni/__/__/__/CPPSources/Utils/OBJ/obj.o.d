@@ -55,6 +55,7 @@
  /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Shaders/ShaderProgram.h \
  /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Shaders/Shader.h \
  /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/Typedefs.h \
+ /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/Texture.h \
  /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/main.h
 
 /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/OBJ/obj.h:
@@ -166,5 +167,7 @@
 /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Shaders/Shader.h:
 
 /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/Typedefs.h:
+
+/Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/Texture.h:
 
 /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/main.h:
