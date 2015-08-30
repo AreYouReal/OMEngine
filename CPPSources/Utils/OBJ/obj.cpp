@@ -24,10 +24,6 @@ ObjMesh::~ObjMesh(){
 }
 
 ObjTriangleList::~ObjTriangleList(){
-    if(tIndex){
-        free(tIndex);
-        tIndex = 0;
-    }
     logMessage("ObjTriangleList destructor");
 }
 
@@ -94,15 +90,10 @@ Obj* Obj::load(const char* fileName){
             objMesh->addVertexData(objTriangleList, vertexIndex[0], uvIndex[0]);
             objMesh->addVertexData(objTriangleList, vertexIndex[1], uvIndex[1]);
             objMesh->addVertexData(objTriangleList, vertexIndex[2], uvIndex[2]);
-            
-            triangleIndex = objTriangleList->nTIndex;
-            ++objTriangleList->nTIndex;
-            objTriangleList->tIndex = (ObjTriangleIndex *) realloc( objTriangleList->tIndex,
-                                                                                                                                                           objTriangleList->nTIndex * sizeof(ObjTriangleIndex));
-                
+            objTriangleList->tIndices.push_back(ObjTriangleIndex());
             for(int i = 0; i < 3; ++i){
-                objTriangleList->tIndex[triangleIndex].vertexIndex[i] = vertexIndex[i];
-                objTriangleList->tIndex[triangleIndex].uvIndex[i]     = uvIndex[i];
+                objTriangleList->tIndices.back().vertexIndex[i] = vertexIndex[i];
+                objTriangleList->tIndices.back().uvIndex[i]     = uvIndex[i];
             }
         
         }else if(sscanf(line, "v %f %f %f", &v.x, &v.y, &v.z) == 3){
@@ -150,17 +141,17 @@ Obj* Obj::load(const char* fileName){
             // Accumulate normals and tangent
             for(unsigned int j = 0; j < mesh->tLists.size(); ++j){
                 ObjTriangleList *list = &mesh->tLists[j];
-                for(unsigned int k = 0; k < list->nTIndex; ++k){
+                for(unsigned int k = 0; k < list->tIndices.size(); ++k){
                     v3d v1, v2, normal;
-                    v1 = obj->vertices[list->tIndex[k].vertexIndex[0]] - obj->vertices[list->tIndex[k].vertexIndex[1]];
-                    v2 = obj->vertices[list->tIndex[k].vertexIndex[0]] - obj->vertices[list->tIndex[k].vertexIndex[2]];
+                    v1 = obj->vertices[list->tIndices[k].vertexIndex[0]] - obj->vertices[list->tIndices[k].vertexIndex[1]];
+                    v2 = obj->vertices[list->tIndices[k].vertexIndex[0]] - obj->vertices[list->tIndices[k].vertexIndex[2]];
                     
                     normal = v3d::normalize(v3d::cross(v1, v2));
                     for(unsigned short e = 0; e < 3; ++e) {
-                        memcpy(&obj->faceNormals[list->tIndex[k].vertexIndex[e]], normal.pointer(), sizeof(v3d));
+                        memcpy(&obj->faceNormals[list->tIndices[k].vertexIndex[e]], normal.pointer(), sizeof(v3d));
                     }
                     for(unsigned short e = 0; e < 3; ++e){
-                        obj->normals[list->tIndex[k].vertexIndex[e]] = obj->normals[list->tIndex[k].vertexIndex[e]] + normal;
+                        obj->normals[list->tIndices[k].vertexIndex[e]] = obj->normals[list->tIndices[k].vertexIndex[e]] + normal;
                         
                     }
                     
@@ -247,7 +238,7 @@ void ObjMesh::addVertexData(ObjTriangleList *otl, int vIndex, int uvIndex){
     for(index = 0; index < vertexData.size(); ++index){
         if(vIndex == vertexData[index].vIndex){
             if(uvIndex == -1 || uvIndex == vertexData[index].uvIndex){
-                addIndexToTriangleList(otl, index);
+                otl->indices.push_back(index);
                 return;
             }
         }
@@ -256,10 +247,6 @@ void ObjMesh::addVertexData(ObjTriangleList *otl, int vIndex, int uvIndex){
     ObjVertexData ovd; ovd.vIndex = vIndex; ovd.uvIndex = uvIndex;
     vertexData.push_back(ovd);
     
-    addIndexToTriangleList(otl, vertexData.size() - 1);
-}
-
-void ObjMesh::addIndexToTriangleList(ObjTriangleList *otl, int index){
     otl->indices.push_back(index);
 }
 

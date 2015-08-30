@@ -32,9 +32,8 @@ struct ObjTriangleIndex{ int vertexIndex[3], uvIndex[3]; };
 struct ObjTriangleList{
     
     ~ObjTriangleList();
-    
-    unsigned int        nTIndex;  // The number of triangle index.
-    ObjTriangleIndex    *tIndex;  // Triangle array that contain each triangle index data.
+
+    std::vector<ObjTriangleIndex>   tIndices;
     std::vector<unsigned short> indices;
     ObjMaterial         *material;  // Pointer to the material to use when draw this list.
     bool                useUVs;           // True if triangle list is using UVs.
@@ -62,7 +61,6 @@ struct ObjMesh{
     unsigned int    vao;             // The VAO ID maintaned by GLES
     
     void            addVertexData(ObjTriangleList *otl, int vIndex, int uvIndex);
-    void            addIndexToTriangleList(ObjTriangleList *otl, int index);
 };
 
 struct Obj{
