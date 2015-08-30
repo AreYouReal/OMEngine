@@ -35,8 +35,7 @@ struct ObjTriangleList{
     
     unsigned int        nTIndex;  // The number of triangle index.
     ObjTriangleIndex    *tIndex;  // Triangle array that contain each triangle index data.
-    unsigned short      nIndices;  // The number of indice required to draw the triangle list.
-    unsigned short      *indices;  // Array of indices.
+    std::vector<unsigned short> indices;
     ObjMaterial         *material;  // Pointer to the material to use when draw this list.
     bool                useUVs;           // True if triangle list is using UVs.
     int                 mode;             // Drawing mode (Default: GL_TRIANGLES).

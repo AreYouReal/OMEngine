@@ -28,10 +28,6 @@ ObjTriangleList::~ObjTriangleList(){
         free(tIndex);
         tIndex = 0;
     }
-    if(indices){
-        free(indices);
-        indices = 0;
-    }
     logMessage("ObjTriangleList destructor");
 }
 
@@ -264,9 +260,7 @@ void ObjMesh::addVertexData(ObjTriangleList *otl, int vIndex, int uvIndex){
 }
 
 void ObjMesh::addIndexToTriangleList(ObjTriangleList *otl, int index){
-    ++otl->nIndices;
-    otl->indices = (unsigned short *) realloc(otl->indices, otl->nIndices * sizeof(unsigned short));
-    otl->indices[otl->nIndices - 1] = index;
+    otl->indices.push_back(index);
 }
 
 

@@ -104,7 +104,7 @@ int SRGraphics::Init ( SRContext *context ){
     
     glGenBuffers(1, &objMesh->tLists[0].vbo);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, objMesh->tLists[0].vbo);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, objMesh->tLists[0].nIndices * sizeof(unsigned short), objMesh->tLists[0].indices, GL_STATIC_DRAW);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, objMesh->tLists[0].indices.size() * sizeof(unsigned short), &objMesh->tLists[0].indices[0], GL_STATIC_DRAW);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
     
     // VAO
@@ -143,7 +143,7 @@ void SRGraphics::Draw ( SRContext *context ){
     
     
     uData->program->use();
-    if(object) glDrawElements(GL_TRIANGLES, object->meshes[0].tLists[0].nIndices, GL_UNSIGNED_SHORT, 0);
+    if(object) glDrawElements(GL_TRIANGLES, object->meshes[0].tLists[0].indices.size(), GL_UNSIGNED_SHORT, 0);
 }
 
 
