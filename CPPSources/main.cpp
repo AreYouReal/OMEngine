@@ -79,7 +79,7 @@ int SRGraphics::Init ( SRContext *context ){
     
     object = Obj::load("model.obj");
     
-    objMesh = &object->objMesh[0];
+    objMesh = &object->meshes[0];
     
     unsigned char *vertexArray = NULL, *vertexStart = NULL;
     unsigned int  index = 0, size = 0;
@@ -102,9 +102,9 @@ int SRGraphics::Init ( SRContext *context ){
     if(vertexStart) delete vertexStart;
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     
-    glGenBuffers(1, &objMesh->tList[0].vbo);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, objMesh->tList[0].vbo);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, objMesh->tList[0].nIndices * sizeof(unsigned short), objMesh->tList[0].indices, GL_STATIC_DRAW);
+    glGenBuffers(1, &objMesh->tLists[0].vbo);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, objMesh->tLists[0].vbo);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, objMesh->tLists[0].nIndices * sizeof(unsigned short), objMesh->tLists[0].indices, GL_STATIC_DRAW);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
     
     // VAO
@@ -121,15 +121,10 @@ int SRGraphics::Init ( SRContext *context ){
     glEnableVertexAttribArray(attribute);
     glVertexAttribPointer(attribute, 3, GL_FLOAT, GL_FALSE, stride, (char*) NULL + sizeof(v3d));
     
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, objMesh->tList[0].vbo);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, objMesh->tLists[0].vbo);
     glBindVertexArray(0);
     
     if ( userData->program == 0 ){ return 0; }
-    
-    if(object){
-        delete object;
-        object = 0;
-    }
     
     return true;
 }
@@ -148,7 +143,7 @@ void SRGraphics::Draw ( SRContext *context ){
     
     
     uData->program->use();
-    if(object) glDrawElements(GL_TRIANGLES, object->objMesh[0].tList[0].nIndices, GL_UNSIGNED_SHORT, 0);
+    if(object) glDrawElements(GL_TRIANGLES, object->meshes[0].tLists[0].nIndices, GL_UNSIGNED_SHORT, 0);
 }
 
 

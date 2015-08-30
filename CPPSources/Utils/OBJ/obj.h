@@ -54,8 +54,7 @@ struct ObjMesh{
     bool            visible;         // If true - it's visible.
     unsigned short  nObjVertexData;  // The number of ObjVertexData.
     ObjVertexData   *objVertexData;  // Well, ObjVertexData themselves.
-    unsigned char   nTList;          // The number of triangle lists for this ObjMesh.
-    ObjTriangleList *tList  = NULL;          // Array og ObjTriangleList - basically at least one need to draw the ObjMesh.
+    std::vector<ObjTriangleList>    tLists;
     ObjMaterial     *material;       // Current object material.
     
     unsigned int    vbo;             // The vertex buffer VBO ID maintaned by GLES.
@@ -72,8 +71,6 @@ struct Obj{
     static Obj* load(const char* filename);
     
     ~Obj();
-    void freeVertexData();
-    void freeMeshData();
     
     void loadMaterial(const char* filename);
     void addTexture(const char* filename);
@@ -83,8 +80,9 @@ struct Obj{
     
     char            texturePath[ MAX_CHAR ];// The texture path (relative to the .mtl file)
     char            programPath[ MAX_CHAR ];// The shader program path ( relative to the .mtl file)
-    unsigned int    nObjMesh;               // The number of ObjMesh
-    ObjMesh         *objMesh;               // Array of ObjMesh for each objec entry of the .obj file
+    
+    std::vector<ObjMesh> meshes;
+    
     unsigned int    nMaterials;             // The number of ObjMaterial
     ObjMaterial     *materials;             // The array of ObjMaterial
 
@@ -95,12 +93,9 @@ struct Obj{
     ShaderProgram   *programs;
     
     // Vertices data goes here
-    unsigned int    nVertices;
-    v3d             *vertices;
-    v3d             *normals;
-    v3d             *faceNormals;
-    v3d             *tangents;
-    
-    unsigned int    nUVs;
-    v3d             *UVs;
+    std::vector<v3d>    vertices;
+    std::vector<v3d>    normals;
+    std::vector<v3d>    faceNormals;
+    std::vector<v3d>    tangents;
+    std::vector<v3d>    UVs;
 };

@@ -11,26 +11,7 @@
 
 
 Obj::~Obj(){
-    freeVertexData();
-    freeMeshData();
-
-
     logMessage("Object destructor");
-}
-
-void Obj::freeVertexData(){
-    if(vertices)    {free(vertices);    vertices    = 0;}
-    if(normals)     {free(normals);     normals     = 0;}
-    if(faceNormals) {free(faceNormals); faceNormals = 0;}
-    if(tangents)    {free(tangents);    tangents    = 0;}
-    if(UVs)         {free(UVs);         UVs         = 0;}
-}
-
-void Obj::freeMeshData(){
-    if(objMesh){
-        delete[] objMesh;
-        objMesh = 0;
-    }
 }
 
 
@@ -38,10 +19,6 @@ ObjMesh::~ObjMesh(){
     if(material){
         delete material;
         material = 0;
-    }
-    if(tList){
-        delete [] tList;
-        tList = 0;
     }
     logMessage("ObjMEsh destructor");
 }
@@ -94,18 +71,8 @@ Obj* Obj::load(const char* fileName){
             
             if( last != 'f'){
 //                logMessage("\nlast != f: \n");
-                
-                ++obj->nObjMesh;
-                if(!obj->objMesh) obj->objMesh = new ObjMesh[obj->nObjMesh];
-                else{
-                    ObjMesh *meshArray = new ObjMesh[obj->nObjMesh];
-                    memcpy(meshArray, obj->objMesh, sizeof(ObjMesh) * (obj->nObjMesh - 1));
-                    delete [] obj->objMesh;
-                    obj->objMesh = meshArray;
-                }
-                objMesh = &obj->objMesh[obj->nObjMesh - 1];
-                memset(objMesh, 0, sizeof(ObjMesh));
-//                objMesh->scale[0] = objMesh->scale[1] = objMesh->scale[2] = 1.0f;
+                obj->meshes.push_back(ObjMesh());
+                objMesh = &obj->meshes.back();
                 objMesh->visible = true;
                 
                 if(name[0]) strcpy(objMesh->name, name);
@@ -114,17 +81,9 @@ Obj* Obj::load(const char* fileName){
 //                if( group[ 0 ] ) strcpy( objmesh->group, group );
                 
 //                objmesh->use_smooth_normals = use_smooth_normals;
+                objMesh->tLists.push_back(ObjTriangleList());
+                objTriangleList = &objMesh->tLists.back();
                 
-                ++objMesh->nTList;
-                if(!objMesh->tList) objMesh->tList = new ObjTriangleList[objMesh->nTList];
-                else{
-                    ObjTriangleList *newList = new ObjTriangleList[objMesh->nTList];
-                    memcpy(newList, objMesh->tList, sizeof(ObjTriangleList) * (objMesh->nTList - 1));
-                    delete [] objMesh->tList;
-                    objMesh->tList = newList;
-                }
-                objTriangleList = &objMesh->tList[ objMesh->nTList - 1 ];
-                memset(objTriangleList, 0, sizeof(ObjTriangleList));
                 objTriangleList->mode = GL_TRIANGLES;
                 if(useUVs) objTriangleList->useUVs = useUVs;
 //                if(usemtl[0]) objTriangleList->objMaterial = obj->getMaterial(usemtl, 1);  ???
@@ -153,25 +112,18 @@ Obj* Obj::load(const char* fileName){
         }else if(sscanf(line, "v %f %f %f", &v.x, &v.y, &v.z) == 3){
             // Vertex
 //            logMessage("v  ->  Vertex: %f, %f, %f \n", v.x, v.y, v.z );
-            ++obj->nVertices;
-            obj->vertices = (v3d *) realloc(obj->vertices, obj->nVertices * sizeof(v3d));
-            memcpy(&obj->vertices[obj->nVertices - 1], &v, sizeof(v3d));
+            obj->vertices.push_back(v);
             // Normal
-            obj->normals = (v3d *) realloc(obj->normals, obj->nVertices * sizeof(v3d));
-            obj->normals[obj->nVertices - 1] = {0.0, 0.0, 0.0};
-            obj->faceNormals = (v3d *) realloc(obj->faceNormals, obj->nVertices * sizeof(v3d));
-            obj->faceNormals[obj->nVertices - 1] = {0.0, 0.0, 0.0};
+            obj->normals.push_back(v3d(0.0f));
+            obj->faceNormals.push_back(v3d(0.0f));
             // Tangent
-            obj->tangents = (v3d *) realloc(obj->tangents, obj->nVertices * sizeof(v3d));
-            obj->tangents[obj->nVertices - 1] = {0.0, 0.0, 0.0};
+            obj->tangents.push_back(v3d(0.0f));
         } else if(sscanf(line, "vn %f %f %f", &v.x, &v.y, &v.z) == 3){
 //            logMessage(" vn   -> Drop the normals: %f, %f, %f \n", v.x, v.y, v.z );
             // go to next object line
         } else if(sscanf(line, "vs %f %f", &v.x, &v.y) == 2){
-            ++obj->nUVs;
-            obj->UVs = (v3d *) realloc(obj->UVs, obj->nUVs * sizeof(v3d));
             v.y = 1.0f - v.y;
-            memcpy(&obj->UVs[obj->nUVs - 1], &v, sizeof(v3d));
+            obj->UVs.push_back(v);
         }else if(line[0] == 'v' && line[1] == 'n' ){
             last = line[0];
         }else if(sscanf(line, "usemtl %s", str) == 1){ strcpy(usemtl, str);
@@ -196,12 +148,12 @@ Obj* Obj::load(const char* fileName){
     
     // Build the normals and tangent
     {
-        for(unsigned int i = 0; i < obj->nObjMesh; ++i){
-            ObjMesh *mesh = &obj->objMesh[i];
+        for(unsigned int i = 0; i < obj->meshes.size(); ++i){
+            ObjMesh *mesh = &obj->meshes[i];
             
             // Accumulate normals and tangent
-            for(unsigned int j = 0; j < mesh->nTList; ++j){
-                ObjTriangleList *list = &mesh->tList[j];
+            for(unsigned int j = 0; j < mesh->tLists.size(); ++j){
+                ObjTriangleList *list = &mesh->tLists[j];
                 for(unsigned int k = 0; k < list->nTIndex; ++k){
                     v3d v1, v2, normal;
                     v1 = obj->vertices[list->tIndex[k].vertexIndex[0]] - obj->vertices[list->tIndex[k].vertexIndex[1]];
@@ -258,12 +210,12 @@ Obj* Obj::load(const char* fileName){
         }
         
         unsigned int index;
-        for(unsigned int i = 0; i < obj->nObjMesh; ++i){
-            for(unsigned int j = 0; j < obj->objMesh[i].nObjVertexData; ++j){
-                index = obj->objMesh[i].objVertexData[j].vIndex;
+        for(unsigned int i = 0; i < obj->meshes.size(); ++i){
+            for(unsigned int j = 0; j < obj->meshes[i].nObjVertexData; ++j){
+                index = obj->meshes[i].objVertexData[j].vIndex;
                 
                 obj->normals[index] = v3d::normalize(obj->normals[index]);
-                if(obj->objMesh[i].objVertexData[j].uvIndex != -1){
+                if(obj->meshes[i].objVertexData[j].uvIndex != -1){
                     obj->tangents[index] = v3d::normalize(obj->tangents[index]);
                 }
                 
