@@ -83,13 +83,13 @@ int SRGraphics::Init ( SRContext *context ){
     
     unsigned char *vertexArray = NULL, *vertexStart = NULL;
     unsigned int  index = 0, size = 0;
-    size = objMesh->nObjVertexData * sizeof(v3d) * sizeof(v3d);
+    size = objMesh->vertexData.size() * sizeof(v3d) * sizeof(v3d);
     
     vertexArray = (unsigned char *)malloc(size);
     vertexStart = vertexArray;
     // OK->
-    for(unsigned int i = 0; i < objMesh->nObjVertexData; ++i){
-        index = objMesh->objVertexData[i].vIndex;
+    for(unsigned int i = 0; i < objMesh->vertexData.size(); ++i){
+        index = objMesh->vertexData[i].vIndex;
         memcpy(vertexArray, &object->vertices[index], sizeof(v3d));
         vertexArray += sizeof(v3d);
         memcpy(vertexArray, &object->normals[index], sizeof(v3d));

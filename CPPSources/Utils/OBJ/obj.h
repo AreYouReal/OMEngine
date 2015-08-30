@@ -52,8 +52,7 @@ struct ObjMesh{
     
     char            name[MAX_CHAR];  // Mesh name.
     bool            visible;         // If true - it's visible.
-    unsigned short  nObjVertexData;  // The number of ObjVertexData.
-    ObjVertexData   *objVertexData;  // Well, ObjVertexData themselves.
+    std::vector<ObjVertexData>      vertexData;
     std::vector<ObjTriangleList>    tLists;
     ObjMaterial     *material;       // Current object material.
     

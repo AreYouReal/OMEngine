@@ -211,11 +211,11 @@ Obj* Obj::load(const char* fileName){
         
         unsigned int index;
         for(unsigned int i = 0; i < obj->meshes.size(); ++i){
-            for(unsigned int j = 0; j < obj->meshes[i].nObjVertexData; ++j){
-                index = obj->meshes[i].objVertexData[j].vIndex;
+            for(unsigned int j = 0; j < obj->meshes[i].vertexData.size(); ++j){
+                index = obj->meshes[i].vertexData[j].vIndex;
                 
                 obj->normals[index] = v3d::normalize(obj->normals[index]);
-                if(obj->meshes[i].objVertexData[j].uvIndex != -1){
+                if(obj->meshes[i].vertexData[j].uvIndex != -1){
                     obj->tangents[index] = v3d::normalize(obj->tangents[index]);
                 }
                 
@@ -248,22 +248,19 @@ void Obj::readIndices(const char* line, int v[], int n[], int uv[], bool &useUVs
 
 void ObjMesh::addVertexData(ObjTriangleList *otl, int vIndex, int uvIndex){
     unsigned short index;
-    for(index = 0; index < nObjVertexData; ++index){
-        if(vIndex == objVertexData[index].vIndex){
-            if(uvIndex == -1 || uvIndex == objVertexData[index].uvIndex){
+    for(index = 0; index < vertexData.size(); ++index){
+        if(vIndex == vertexData[index].vIndex){
+            if(uvIndex == -1 || uvIndex == vertexData[index].uvIndex){
                 addIndexToTriangleList(otl, index);
                 return;
             }
         }
     }
     
-    index = nObjVertexData;
-    ++nObjVertexData;
-    objVertexData = (ObjVertexData *) realloc(objVertexData, nObjVertexData * sizeof(ObjVertexData));
-    objVertexData[index].vIndex = vIndex;
-    objVertexData[index].uvIndex = uvIndex;
+    ObjVertexData ovd; ovd.vIndex = vIndex; ovd.uvIndex = uvIndex;
+    vertexData.push_back(ovd);
     
-    addIndexToTriangleList(otl, index);
+    addIndexToTriangleList(otl, vertexData.size() - 1);
 }
 
 void ObjMesh::addIndexToTriangleList(ObjTriangleList *otl, int index){
