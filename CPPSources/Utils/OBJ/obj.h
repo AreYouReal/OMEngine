@@ -7,7 +7,7 @@
 
 // Object material structure definition
 struct ObjMaterial{
-    char    name[MAX_CHAR];                 // The material name!
+    std::string    name;                 // The material name!
     v4d     ambient;                        // Ambient material color.
     v4d     diffuse;                        // Diffuse material color.
     v4d     specular;                       // Specular material color.
@@ -16,13 +16,12 @@ struct ObjMaterial{
     float   specularExponent;               // Specular exponent (aka Hardness or Shiness).
     float   dissolve;                       // The material dissolve factor a.k.a alpha
     float   opticalDensity;                 // ...
-    char    mapAmbient[MAX_CHAR];           // The ambient texture channel filename
-    char    mapDiffuse[MAX_CHAR];           // The diffuse texture channel filename
-    char    mapSpecular[MAX_CHAR];          // The specular texture channel filename
-    char    mapTranslucency[MAX_CHAR];      // The translucecny....
-    char    mapDisp[MAX_CHAR];              // The displacement....
-    char    mapBump[MAX_CHAR];              // The bump map(aka Normal Map)
-    
+    std::string    mapAmbient;           // The ambient texture channel filename
+    std::string    mapDiffuse;           // The diffuse texture channel filename
+    std::string    mapSpecular;          // The specular texture channel filename
+    std::string    mapTranslucency;      // The translucecny....
+    std::string    mapDisp;              // The displacement....
+    std::string    mapBump;              // The bump map(aka Normal Map)
 };
 
 // Hold all the vertex and UV indices for the particular triangle.
@@ -48,7 +47,7 @@ struct ObjMesh{
     
     ~ObjMesh();
     
-    char            name[MAX_CHAR];  // Mesh name.
+    std::string     name;  // Mesh name.
     bool            visible;         // If true - it's visible.
     std::vector<ObjVertexData>      vertexData;
     std::vector<ObjTriangleList>    tLists;
@@ -74,16 +73,15 @@ struct Obj{
     
     static void readIndices(const char* line, int v[], int n[], int uv[], bool &useUVs);
     
-    char            texturePath[ MAX_CHAR ];// The texture path (relative to the .mtl file)
-    char            programPath[ MAX_CHAR ];// The shader program path ( relative to the .mtl file)
+    std::string     texturePath;    // The texture path (relative to the .mtl file)
+    std::string     programPath;    // The shader program path ( relative to the .mtl file)
     
     std::vector<ObjMesh> meshes;
     
-    unsigned int    nMaterials;             // The number of ObjMaterial
-    ObjMaterial     *materials;             // The array of ObjMaterial
+    std::vector<ObjMaterial>    materials;
 
     unsigned int    nTextures;
-    Texture         **textures;
+    Texture         **textures;     // ??????????????
     
     unsigned int    nPrograms;              // The number of shader program the Obj is using.
     ShaderProgram   *programs;

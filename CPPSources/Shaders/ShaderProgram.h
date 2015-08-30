@@ -5,14 +5,14 @@
 #include "Shader.h"
 
 struct Uniform{
-    char            name[ MAX_CHAR ];
+    std::string     name;
     unsigned int    type;
     int             location;
     bool            constant;
 };
 
 struct VertexAttrib{
-    char            name[ MAX_CHAR ];
+    std::string     name;
     unsigned int    type;
     int             location;
 };
@@ -21,7 +21,7 @@ typedef void(DrawCallback(void*));
 typedef void(BindAttribCallback(void*));
 
 struct ShaderProgram{
-    char                name[MAX_CHAR];
+    std::string         name;
     unsigned int        ID;
     unsigned int        uniformCount;
     Uniform             *uniformArray;

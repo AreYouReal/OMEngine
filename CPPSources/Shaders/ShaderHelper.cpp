@@ -19,7 +19,8 @@ ShaderProgram* ShaderHelper::createProgram(const char *vertexShaderFilename,cons
     
     int status, total, len, size;
     unsigned int type;
-    char name[ MAX_CHAR ];
+    unsigned short buffSize = 255;
+    char name[ buffSize ];
     glGetProgramiv(program->ID, GL_LINK_STATUS, &status);
     if(!status){
         return NULL;
@@ -28,10 +29,10 @@ ShaderProgram* ShaderHelper::createProgram(const char *vertexShaderFilename,cons
         program->vertexAttribArray = new VertexAttrib[total];
         program->vertexAttribCount = total;
         for(unsigned int i = 0; i < total; i++){
-            glGetActiveAttrib(program->ID, i, MAX_CHAR, &len, &size, &type, name );
+            glGetActiveAttrib(program->ID, i, buffSize, &len, &size, &type, name );
             VertexAttrib &attrib = program->vertexAttribArray[i];
             attrib.location = glGetAttribLocation(program->ID, name);
-            strcpy(attrib.name, name);
+            attrib.name = name;
             attrib.type = type;
         }
 
@@ -39,10 +40,10 @@ ShaderProgram* ShaderHelper::createProgram(const char *vertexShaderFilename,cons
         program->uniformArray = new Uniform[total];
         program->uniformCount = total;
         for(unsigned int i = 0; i < total; i++){
-            glGetActiveUniform(program->ID, i, MAX_CHAR, &len, &size, &type, name);
+            glGetActiveUniform(program->ID, i, buffSize, &len, &size, &type, name);
             Uniform &uniform = program->uniformArray[i];
             uniform.location = glGetUniformLocation(program->ID, name);
-            strcpy(uniform.name, name);
+            uniform.name = name;
             uniform.type = type;
         }
         
@@ -60,7 +61,7 @@ ShaderProgram* ShaderHelper::createProgram(const char *vertexShaderFilename,cons
 #pragma mark Helpers
 Shader* ShaderHelper::loadShader(GLenum shaderType, const char *vertexShaderFilename){
     Shader *shader = new Shader();
-    strcpy(shader->name, vertexShaderFilename);
+    shader->name = vertexShaderFilename;
     shader->type = GL_VERTEX_SHADER;
     char *shaderSource = readTextFile(SRGraphics::getAppContext(), vertexShaderFilename);
     shader->ID = glCreateShader(shaderType);

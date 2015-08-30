@@ -3,7 +3,7 @@
 #include "SRUtils.h"
 
 struct Shader{
-    char name[MAX_CHAR];
+    std::string name;
     unsigned int type;
     unsigned int ID;
 

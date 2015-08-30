@@ -41,8 +41,8 @@ Obj* Obj::load(const char* fileName){
     char* line = strtok((char*)objSource, "\n");
     char last = 0;
     
-    
-    char name[MAX_CHAR], str[MAX_CHAR],usemtl[MAX_CHAR], group[MAX_CHAR];
+    unsigned short buffSize = 255;
+    char name[buffSize], str[buffSize],usemtl[buffSize], group[buffSize];
     bool useSmoothNormals;
     
     while(line){
@@ -67,8 +67,9 @@ Obj* Obj::load(const char* fileName){
                 objMesh = &obj->meshes.back();
                 objMesh->visible = true;
                 
-                if(name[0]) strcpy(objMesh->name, name);
-                else if(usemtl[0]) strcpy(objMesh->name, name);
+                
+                if(name[0]) objMesh->name = name;
+                else if(usemtl[0]) objMesh->name = name;
                 
 //                if( group[ 0 ] ) strcpy( objmesh->group, group );
                 
@@ -258,9 +259,9 @@ void Obj::loadMaterial(const char *filename){
     if(!objSource) return;
     
     ObjMaterial *mat = NULL;
-    
+    unsigned short buffSize = 255;
     char *line = strtok((char*)objSource, "\n"),
-                 str[MAX_CHAR] = {""};
+                 str[255] = {""};
     
     v3d v;
     
@@ -268,11 +269,10 @@ void Obj::loadMaterial(const char *filename){
         if(!line[0] || line[0] == '#' ){ line = strtok( NULL, "\n" ); continue;
         }else if( sscanf(line, "newmtl %s", str) == 1){
             logMessage("newmtl line %s", str);
-            ++nMaterials;
-            materials = (ObjMaterial*) realloc(materials, nMaterials * sizeof(ObjMaterial));
-            mat = &materials[nMaterials - 1];
-            memset(mat, 0, sizeof(ObjMaterial));
-            strcpy(mat->name, str);
+
+            materials.push_back(ObjMaterial());
+            mat = &materials.back();
+            mat->name = str;
         }else if(sscanf(line, "Ka %f %f %f", &v.x, &v.y, &v.z) == 3){
             memcpy(&mat->ambient, &v, sizeof(v3d));
         }else if(sscanf(line, "Kd %f %f %f", &v.x, &v.y, &v.z) == 3){
@@ -330,7 +330,7 @@ void Obj::addTexture(const char *filename){
 
 int Obj::getTextureIndex(const char *filename){
     for(unsigned int i = 0; i < nTextures; ++i){
-        if( !strcmp(textures[i]->filename, filename) ) return i;
+        if( !strcmp(textures[i]->filename.c_str(), filename) ) return i;
     }
     return -1;
 }

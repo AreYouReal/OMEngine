@@ -45,13 +45,13 @@ SRContext* SRGraphics::getAppContext(){
 void programBindCallback(void *ptr){
     ShaderProgram *program = (ShaderProgram*)ptr;
     for(int i = 0; i < program->uniformCount; ++i){
-        if(!strcmp( program->uniformArray[i].name, "modelViewM" )){
+        if(!strcmp( program->uniformArray[i].name.c_str(), "modelViewM" )){
             glUniformMatrix4fv(program->uniformArray[i].location, 1, GL_TRUE, (float*)ModelViewMatrix.pointer());
-        }else if(!strcmp( program->uniformArray[i].name, "projectionM" )){
+        }else if(!strcmp( program->uniformArray[i].name.c_str(), "projectionM" )){
             glUniformMatrix4fv(program->uniformArray[i].location, 1, GL_TRUE, (float*)ProjectionMatrix.pointer());
-        }else if(!strcmp( program->uniformArray[i].name, "normalM" )){
+        }else if(!strcmp( program->uniformArray[i].name.c_str(), "normalM" )){
             glUniformMatrix4fv(program->uniformArray[i].location, 1, GL_TRUE, (float*)NormalMatrix.pointer());
-        }else if(!strcmp( program->uniformArray[i].name, "lightPos" )){
+        }else if(!strcmp( program->uniformArray[i].name.c_str(), "lightPos" )){
             glUniform3fv(program->uniformArray[i].location, 1, &lightPosition.x);
         }
     }

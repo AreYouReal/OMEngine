@@ -4,7 +4,7 @@
 
 
 Texture::Texture(void* context, const char* filename){
-    strcpy(this->filename, filename);
+    this->filename = filename;
     texelArray = loadRawPNGData(context, filename, width, height);
     texelType = GL_UNSIGNED_BYTE;
     byte = 4;

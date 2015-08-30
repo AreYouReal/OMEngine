@@ -33,8 +33,6 @@ typedef FILE srFile;
 #define ES_WINDOW_STENCIL       4   /// SRCreateWindow flag - stencil buffer
 #define ES_WINDOW_MULTISAMPLE   8   /// SRCreateWindow flat - multi-sample buffer
 
-#define MAX_CHAR                128 // Max name length
-
 enum TOUCH_EVENT{ BEGAN, MOVED, CANCELLED, ENDED };
 
 #pragma GENERAL

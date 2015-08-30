@@ -18,7 +18,7 @@ struct Texture{
     
     void generateID(unsigned int flags, unsigned char filter);
     
-    char    filename[MAX_CHAR];
+    std::string    filename;
     unsigned int ID;           // The open GL texture id
     unsigned int width;
     unsigned int height;
