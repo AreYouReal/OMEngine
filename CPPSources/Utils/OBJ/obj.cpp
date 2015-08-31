@@ -9,24 +9,6 @@
 #include "obj.h"
 #include "main.h"
 
-
-Obj::~Obj(){
-    logMessage("Object destructor");
-}
-
-
-ObjMesh::~ObjMesh(){
-    if(material){
-        delete material;
-        material = 0;
-    }
-    logMessage("ObjMEsh destructor");
-}
-
-ObjTriangleList::~ObjTriangleList(){
-    logMessage("ObjTriangleList destructor");
-}
-
 Obj::Obj(const char* fileName){
     unsigned char* objSource = readOBJFromFile(SRGraphics::getAppContext(), fileName);
 #pragma warning throw exception here
@@ -107,7 +89,7 @@ Obj::Obj(const char* fileName){
         } else if(sscanf(line, "vn %f %f %f", &v.x, &v.y, &v.z) == 3){
             //            logMessage(" vn   -> Drop the normals: %f, %f, %f \n", v.x, v.y, v.z );
             // go to next object line
-        } else if(sscanf(line, "vs %f %f", &v.x, &v.y) == 2){
+        } else if(sscanf(line, "vt %f %f", &v.x, &v.y) == 2){
             v.y = 1.0f - v.y;
             UVs.push_back(v);
         }else if(line[0] == 'v' && line[1] == 'n' ){
@@ -121,7 +103,6 @@ Obj::Obj(const char* fileName){
         }else if(sscanf(line, "mtllib %s", str) == 1){
             unsigned char position = (unsigned char *) line - objSource + strlen(line) + 1;
             loadMaterial(str);
-            // OBJ_LOAD_MTL(obj, );
             line = strtok((char *) &objSource[position], "\n");
             continue;
         }
@@ -155,6 +136,10 @@ Obj::Obj(const char* fileName){
                     }
                     
                     if(list->useUVs){
+                        v3d tangent;
+                        v3d uv1, uv2;
+                        float c;
+                        
                         //                        vec3 tangent;
                         //
                         //                        vec2 uv1, uv2;

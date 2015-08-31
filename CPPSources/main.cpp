@@ -20,6 +20,8 @@ v3d bve;
 
 Obj     *object;
 ObjMesh *objMesh;
+Texture *texture;
+
 
 int rotateAngel = 0;
 m4d rotateObjMatrix;
@@ -63,9 +65,9 @@ void programBindCallback(void *ptr){
 //
 int SRGraphics::Init ( SRContext *context ){
     
-    Texture texture(context, "somePNG.png");
-    texture.generateID(0, 0);
-    logMessage("Texture ID: %d",texture.ID);
+    texture = new Texture(context, "diffuse.png");
+    texture->generateID(0, 0);
+    logMessage("\nTexture ID: %d\n",texture->ID);
     
     atexit(Exit);
     glViewport ( 0, 0, context->width, context->height );
@@ -83,7 +85,7 @@ int SRGraphics::Init ( SRContext *context ){
     
     unsigned char *vertexArray = NULL, *vertexStart = NULL;
     unsigned int  index = 0, size = 0;
-    size = objMesh->vertexData.size() * sizeof(v3d) * sizeof(v3d);
+    size = objMesh->vertexData.size() * sizeof(v3d) * sizeof(v3d) * sizeof(v3d);
     
     vertexArray = (unsigned char *)malloc(size);
     vertexStart = vertexArray;
@@ -93,6 +95,8 @@ int SRGraphics::Init ( SRContext *context ){
         memcpy(vertexArray, &object->vertices[index], sizeof(v3d));
         vertexArray += sizeof(v3d);
         memcpy(vertexArray, &object->normals[index], sizeof(v3d));
+        vertexArray += sizeof(v3d);
+        memcpy(vertexArray, &object->UVs[objMesh->vertexData[i].uvIndex], sizeof(v3d));
         vertexArray += sizeof(v3d);
     }
 
@@ -108,7 +112,7 @@ int SRGraphics::Init ( SRContext *context ){
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
     
     // VAO
-    unsigned char attribute, stride = sizeof(v3d) + sizeof(v3d);
+    unsigned char attribute, stride = sizeof(v3d) + sizeof(v3d) + sizeof(v3d);
     glGenVertexArrays(1, &objMesh->vao);
     glBindVertexArray(objMesh->vao);
     
@@ -120,6 +124,11 @@ int SRGraphics::Init ( SRContext *context ){
     attribute = userData->program->getVertexAttribLocation("vNormal");
     glEnableVertexAttribArray(attribute);
     glVertexAttribPointer(attribute, 3, GL_FLOAT, GL_FALSE, stride, (char*) NULL + sizeof(v3d));
+    
+    attribute = userData->program->getVertexAttribLocation("vTexCoord");
+    glEnableVertexAttribArray(attribute);
+    glVertexAttribPointer(attribute, 3, GL_FLOAT, GL_FALSE, stride, (char*)NULL + sizeof(v3d) + sizeof(v3d));
+    
     
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, objMesh->tLists[0].vbo);
     glBindVertexArray(0);
@@ -143,6 +152,10 @@ void SRGraphics::Draw ( SRContext *context ){
     
     
     uData->program->use();
+    
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, texture->ID);
+    
     if(object) glDrawElements(GL_TRIANGLES, object->meshes[0].tLists[0].indices.size(), GL_UNSIGNED_SHORT, 0);
 }
 
