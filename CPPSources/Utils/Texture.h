@@ -30,6 +30,6 @@ struct Texture{
     
     unsigned int texelType;            // The type of the texel to use for this texture( Default - GL_UNSIGNED_BYTE)
     
-    unsigned char *texelArray;          // The raw texel array
+    std::vector<unsigned char> texelArray;          // The raw texel array
 //    unsigned int compression;           // The comperssion type
 };

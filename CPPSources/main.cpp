@@ -56,7 +56,7 @@ void programBindCallback(void *ptr){
         }else if(!strcmp( program->uniformArray[i].name.c_str(), "lightPos" )){
             glUniform3fv(program->uniformArray[i].location, 1, &lightPosition.x);
         }else if(!strcmp( program->uniformArray[i].name.c_str(), "Diffuse" ) && !program->uniformArray[i].constant){
-            glUniform1i(program->uniformArray[i].location, GL_TEXTURE0);
+            glUniform1i(program->uniformArray[i].location, 0);
             program->uniformArray[i].constant = true;
         }
     }
@@ -76,6 +76,9 @@ int SRGraphics::Init ( SRContext *context ){
     glViewport ( 0, 0, context->width, context->height );
     glEnable( GL_DEPTH_TEST );
     glEnable( GL_CULL_FACE  );
+    glEnable(GL_TEXTURE_2D);
+//    glEnable(GL_BLEND);
+//    glBlendFunc(GL_ONE, GL_SRC_COLOR);
     
     appContext = context;
     UserData *userData = (UserData*)context->userData;
@@ -149,8 +152,11 @@ void SRGraphics::Draw ( SRContext *context ){
     calculateMatrices(context->width, context->height);
     
     UserData *uData = (UserData*)context->userData;
+    
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, texture->ID);
+    
+    
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear( GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT );
     glBindVertexArray(objMesh->vao);
