@@ -55,6 +55,9 @@ void programBindCallback(void *ptr){
             glUniformMatrix4fv(program->uniformArray[i].location, 1, GL_TRUE, (float*)NormalMatrix.pointer());
         }else if(!strcmp( program->uniformArray[i].name.c_str(), "lightPos" )){
             glUniform3fv(program->uniformArray[i].location, 1, &lightPosition.x);
+        }else if(!strcmp( program->uniformArray[i].name.c_str(), "Diffuse" ) && !program->uniformArray[i].constant){
+            glUniform1i(program->uniformArray[i].location, GL_TEXTURE0);
+            program->uniformArray[i].constant = true;
         }
     }
 }
@@ -146,15 +149,16 @@ void SRGraphics::Draw ( SRContext *context ){
     calculateMatrices(context->width, context->height);
     
     UserData *uData = (UserData*)context->userData;
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, texture->ID);
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear( GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT );
     glBindVertexArray(objMesh->vao);
     
-    
+
     uData->program->use();
     
-    glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D, texture->ID);
+
     
     if(object) glDrawElements(GL_TRIANGLES, object->meshes[0].tLists[0].indices.size(), GL_UNSIGNED_SHORT, 0);
 }
