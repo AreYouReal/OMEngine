@@ -85,7 +85,7 @@ int SRGraphics::Init ( SRContext *context ){
     
     userData->program = ShaderHelper::createProgram("vertex.glsl", "fragment.glsl", programBindCallback, 0);
     
-    object = new Obj("scene.obj");
+    object = new Obj("model.obj");
     
     objMesh = &object->meshes[0];
     

@@ -83,7 +83,11 @@ struct Obj{
     std::vector<v3d>            UVs;
 
 private:
+    
+    
+    
 // Static
+    void addMesh(ObjMesh **mesh, ObjTriangleList **tList, char* name, char* usemtl, bool useUVs);
     static void readIndices(const char* line, int v[], int n[], int uv[], bool &useUVs);
     
 // Helpers

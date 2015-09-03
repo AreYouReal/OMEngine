@@ -14,8 +14,8 @@ Obj::Obj(const char* fileName){
 #pragma warning throw exception here
     if(!objSource) return;
     
-    ObjMesh* objMesh = nullptr;
-    ObjTriangleList* objTriangleList = nullptr;
+    ObjMesh* currentMesh = nullptr;
+    ObjTriangleList* currentTList = nullptr;
     
     v3d v;
 
@@ -30,48 +30,20 @@ Obj::Obj(const char* fileName){
         if(!line[0] || line[0] == '#'){
             // go to next object line
         }else if( line[0] == 'f' && line[1] == ' '){
-            bool useUVs;
-            int vertexIndex[3]  = {0, 0, 0},
-            normalIndex[3]  = {0, 0, 0},
-            uvIndex[3]      = {0, 0, 0};
+            bool useUVs; int vertexIndex[3]  = {0, 0, 0}, normalIndex[3] = {0, 0, 0}, uvIndex[3] = {0, 0, 0};
             
             Obj::readIndices(line, vertexIndex, normalIndex, uvIndex, useUVs);
             
+            if( last != 'f') addMesh(&currentMesh, &currentTList, name, usemtl, useUVs);
             
-            if( last != 'f'){
-                //                logMessage("\nlast != f: \n");
-                meshes.push_back(ObjMesh());
-                objMesh = &meshes.back();
-                objMesh->visible = true;
-                
-                
-                if(name[0]) objMesh->name = name;
-                else if(usemtl[0]) objMesh->name = name;
-                
-                //                if( group[ 0 ] ) strcpy( objmesh->group, group );
-                
-                //                objmesh->use_smooth_normals = use_smooth_normals;
-                objMesh->tLists.push_back(ObjTriangleList());
-                objTriangleList = &objMesh->tLists.back();
-                
-                objTriangleList->mode = GL_TRIANGLES;
-                if(useUVs) objTriangleList->useUVs = useUVs;
-                //                if(usemtl[0]) objTriangleList->objMaterial = obj->getMaterial(usemtl, 1);  ???
-                name[0]     = 0;
-                usemtl[0]   = 0;
-            }
+            --vertexIndex[0];--vertexIndex[1];--vertexIndex[2]; --uvIndex[0];--uvIndex[1];--uvIndex[2];
             
-            
-            --vertexIndex[0];--vertexIndex[1];--vertexIndex[2];
-            --uvIndex[0];--uvIndex[1];--uvIndex[2];
-            
-            objMesh->addVertexData(objTriangleList, vertexIndex[0], uvIndex[0]);
-            objMesh->addVertexData(objTriangleList, vertexIndex[1], uvIndex[1]);
-            objMesh->addVertexData(objTriangleList, vertexIndex[2], uvIndex[2]);
-            objTriangleList->tIndices.push_back(ObjTriangleIndex());
+            for(unsigned short i = 0; i < 3; ++i) currentMesh->addVertexData(currentTList, vertexIndex[i], uvIndex[i]);
+
+            currentTList->tIndices.push_back(ObjTriangleIndex());
             for(int i = 0; i < 3; ++i){
-                objTriangleList->tIndices.back().vertexIndex[i] = vertexIndex[i];
-                objTriangleList->tIndices.back().uvIndex[i]     = uvIndex[i];
+                currentTList->tIndices.back().vertexIndex[i] = vertexIndex[i];
+                currentTList->tIndices.back().uvIndex[i]     = uvIndex[i];
             }
             
         }else if(sscanf(line, "v %f %f %f", &v.x, &v.y, &v.z) == 3){
@@ -209,6 +181,26 @@ void Obj::readIndices(const char* line, int v[], int n[], int uv[], bool &useUVs
         
         useUVs = true;
     }
+}
+
+void Obj::addMesh(ObjMesh **mesh, ObjTriangleList **tList, char* name, char* usemtl, bool useUVs){
+    logMessage("Add new mesh to OBJ");
+    meshes.push_back(ObjMesh());
+    ObjMesh *tempMesh = *mesh = &meshes.back();
+    tempMesh->visible = true;
+    
+    if(name[0]) tempMesh->name = name;
+    else if(usemtl[0]) tempMesh->name = name;
+    //if( group[ 0 ] ) strcpy( objmesh->group, group );
+    //objmesh->use_smooth_normals = use_smooth_normals;
+    tempMesh->tLists.push_back(ObjTriangleList());
+    ObjTriangleList *tempList = *tList = &tempMesh->tLists.back();
+    
+    tempList->mode = GL_TRIANGLES;
+    if(useUVs) tempList->useUVs = useUVs;
+    //if(usemtl[0]) objTriangleList->objMaterial = obj->getMaterial(usemtl, 1);  ???
+    name[0]     = 0;
+    usemtl[0]   = 0;
 }
 
 
