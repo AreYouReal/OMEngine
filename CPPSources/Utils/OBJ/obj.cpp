@@ -29,9 +29,6 @@ Obj::Obj(const char* fileName){
     while(line){
         if(!line[0] || line[0] == '#'){
             // go to next object line
-            last = line[0];
-            strtok(NULL, "\n");
-            continue;
         }else if( line[0] == 'f' && line[1] == ' '){
             bool useUVs;
             int vertexIndex[3]  = {0, 0, 0},
