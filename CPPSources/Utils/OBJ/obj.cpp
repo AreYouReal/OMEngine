@@ -10,6 +10,9 @@
 #include "main.h"
 
 Obj::Obj(const char* fileName){
+    clock_t begin = std::clock();
+    
+    
     unsigned char* objSource = readOBJFromFile(SRGraphics::getAppContext(), fileName);
 #pragma warning throw exception here
     if(!objSource) return;
@@ -29,43 +32,31 @@ Obj::Obj(const char* fileName){
     while(line){
         if(!line[0] || line[0] == '#'){
             // go to next object line
-        }else if( line[0] == 'f' && line[1] == ' '){
+        }else if( line[0] == 'f' && line[1] == ' '){    // Read face indices...
             bool useUVs; int vertexIndex[3]  = {0, 0, 0}, normalIndex[3] = {0, 0, 0}, uvIndex[3] = {0, 0, 0};
-            
             Obj::readIndices(line, vertexIndex, normalIndex, uvIndex, useUVs);
-            
             if( last != 'f') addMesh(&currentMesh, &currentTList, name, usemtl, useUVs);
-            
-            --vertexIndex[0];--vertexIndex[1];--vertexIndex[2]; --uvIndex[0];--uvIndex[1];--uvIndex[2];
-            
+            --vertexIndex[0];--vertexIndex[1];--vertexIndex[2]; --uvIndex[0];--uvIndex[1];--uvIndex[2];             // Why? Because vertexIndex in obj file starts from 1! We count from 0...
             for(unsigned short i = 0; i < 3; ++i) currentMesh->addVertexData(currentTList, vertexIndex[i], uvIndex[i]);
-
             currentTList->tIndices.push_back(ObjTriangleIndex());
             for(int i = 0; i < 3; ++i){
                 currentTList->tIndices.back().vertexIndex[i] = vertexIndex[i];
                 currentTList->tIndices.back().uvIndex[i]     = uvIndex[i];
             }
-            
-        }else if(sscanf(line, "v %f %f %f", &v.x, &v.y, &v.z) == 3){
-            // Vertex
-            //            logMessage("v  ->  Vertex: %f, %f, %f \n", v.x, v.y, v.z );
-            vertices.push_back(v);
-            // Normal
-            normals.push_back(v3d(0.0f));
-            faceNormals.push_back(v3d(0.0f));
-            // Tangent
-            tangents.push_back(v3d(0.0f));
-        } else if(sscanf(line, "vn %f %f %f", &v.x, &v.y, &v.z) == 3){
-            //            logMessage(" vn   -> Drop the normals: %f, %f, %f \n", v.x, v.y, v.z );
+        }else if(sscanf(line, "v %f %f %f", &v.x, &v.y, &v.z) == 3){    // Read vertices and fill in dummy normals, fNormals and tangets.
+            vertices.push_back(v);              // Vertex
+            normals.push_back(v3d(0.0f));       // Normal
+            faceNormals.push_back(v3d(0.0f));   // Face normal
+            tangents.push_back(v3d(0.0f));      // Tangent
+        } else if(sscanf(line, "vn %f %f %f", &v.x, &v.y, &v.z) == 3){   // Drop the normals.
             // go to next object line
-        } else if(sscanf(line, "vt %f %f", &v.x, &v.y) == 2){
+        } else if(sscanf(line, "vt %f %f", &v.x, &v.y) == 2){           // Read UVs.
             v.y = 1.0f - v.y;
             UVs.push_back(v);
-        }else if(line[0] == 'v' && line[1] == 'n' ){
-            last = line[0];
-        }else if(sscanf(line, "usemtl %s", str) == 1){ strcpy(usemtl, str);
-        }else if(sscanf(line, "o %s", str) == 1){ strcpy(name, str);
-        }else if(sscanf(line, "g %s", str) == 1){ strcpy(group, str);
+        }else if(line[0] == 'v' && line[1] == 'n' ){    last = line[0];
+        }else if(sscanf(line, "usemtl %s", str) == 1){  strcpy(usemtl, str);
+        }else if(sscanf(line, "o %s", str) == 1){       strcpy(name, str);
+        }else if(sscanf(line, "g %s", str) == 1){       strcpy(group, str);
         }else if(sscanf(line, "s %s", str) == 1){
             useSmoothNormals = true;
             if(strstr( str, "off") || strstr(str, "0") ) useSmoothNormals = false;
@@ -162,6 +153,10 @@ Obj::Obj(const char* fileName){
             }
         }
     }
+    
+    clock_t end = std::clock();
+    double elapsedTime = double(end - begin) / CLOCKS_PER_SEC;
+    logMessage("Elapsed Time: %f", elapsedTime);
 }
 
 
