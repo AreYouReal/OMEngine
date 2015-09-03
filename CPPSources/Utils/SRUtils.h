@@ -4,9 +4,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <vector>
-#include <ctime>
 
 #include "lodepng.h"
+
+#include "Stopwatch.h"
 
 #ifdef __APPLE__
 #include <OpenGLES/ES3/gl.h>

@@ -10,8 +10,7 @@
 #include "main.h"
 
 Obj::Obj(const char* fileName){
-    clock_t begin = std::clock();
-    
+    Stopwatch stopwatch;
     
     unsigned char* objSource = readOBJFromFile(SRGraphics::getAppContext(), fileName);
 #pragma warning throw exception here
@@ -153,10 +152,8 @@ Obj::Obj(const char* fileName){
             }
         }
     }
-    
-    clock_t end = std::clock();
-    double elapsedTime = double(end - begin) / CLOCKS_PER_SEC;
-    logMessage("Elapsed Time: %f", elapsedTime);
+
+    logMessage("Elapsed Time: %f", stopwatch.elapsedTime());
 }
 
 
