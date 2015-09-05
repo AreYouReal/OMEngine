@@ -88,7 +88,10 @@ private:
     
 // Static
     void addMesh(ObjMesh **mesh, ObjTriangleList **tList, char* name, char* usemtl, bool useUVs);
+    void builNormalsAndTangents();
+    
     static void readIndices(const char* line, int v[], int n[], int uv[], bool &useUVs);
+    
     
 // Helpers
     void    loadMaterial(const char* filename);

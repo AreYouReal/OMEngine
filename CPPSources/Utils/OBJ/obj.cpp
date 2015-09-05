@@ -72,86 +72,7 @@ Obj::Obj(const char* fileName){
     
     if(objSource) delete [] objSource;
     
-    // Build the normals and tangent
-    {
-        for(unsigned int i = 0; i < meshes.size(); ++i){
-            ObjMesh *mesh = &meshes[i];
-            
-            // Accumulate normals and tangent
-            for(unsigned int j = 0; j < mesh->tLists.size(); ++j){
-                ObjTriangleList *list = &mesh->tLists[j];
-                for(unsigned int k = 0; k < list->tIndices.size(); ++k){
-                    v3d v1, v2, normal;
-                    v1 = vertices[list->tIndices[k].vertexIndex[0]] - vertices[list->tIndices[k].vertexIndex[1]];
-                    v2 = vertices[list->tIndices[k].vertexIndex[0]] - vertices[list->tIndices[k].vertexIndex[2]];
-                    
-                    normal = v3d::normalize(v3d::cross(v1, v2));
-                    for(unsigned short e = 0; e < 3; ++e) {
-                        memcpy(&faceNormals[list->tIndices[k].vertexIndex[e]], normal.pointer(), sizeof(v3d));
-                    }
-                    for(unsigned short e = 0; e < 3; ++e){
-                        normals[list->tIndices[k].vertexIndex[e]] = normals[list->tIndices[k].vertexIndex[e]] + normal;
-                        
-                    }
-                    
-                    if(list->useUVs){
-                        v3d tangent;
-                        v3d uv1, uv2;
-                        float c;
-                        
-                        //                        vec3 tangent;
-                        //
-                        //                        vec2 uv1, uv2;
-                        //
-                        //                        float c;
-                        //
-                        //                        vec2_diff( &uv1,
-                        //                                  &obj->indexed_uv[ objtrianglelist->objtriangleindex[ k ].uv_index[ 2 ] ],
-                        //                                  &obj->indexed_uv[ objtrianglelist->objtriangleindex[ k ].uv_index[ 0 ] ] );
-                        //
-                        //                        vec2_diff( &uv2,
-                        //                                  &obj->indexed_uv[ objtrianglelist->objtriangleindex[ k ].uv_index[ 1 ] ],
-                        //                                  &obj->indexed_uv[ objtrianglelist->objtriangleindex[ k ].uv_index[ 0 ] ] );
-                        //
-                        //
-                        //                        c = 1.0f / ( uv1.x * uv2.y - uv2.x * uv1.y );
-                        //
-                        //                        tangent.x = ( v1.x * uv2.y + v2.x * uv1.y ) * c;
-                        //                        tangent.y = ( v1.y * uv2.y + v2.y * uv1.y ) * c;
-                        //                        tangent.z = ( v1.z * uv2.y + v2.z * uv1.y ) * c;
-                        //
-                        //
-                        //                        vec3_add( &obj->indexed_tangent[ objtrianglelist->objtriangleindex[ k ].vertex_index[ 0 ] ],
-                        //                                 &obj->indexed_tangent[ objtrianglelist->objtriangleindex[ k ].vertex_index[ 0 ] ],
-                        //                                 &tangent );
-                        //
-                        //                        vec3_add( &obj->indexed_tangent[ objtrianglelist->objtriangleindex[ k ].vertex_index[ 1 ] ],
-                        //                                 &obj->indexed_tangent[ objtrianglelist->objtriangleindex[ k ].vertex_index[ 1 ] ],
-                        //                                 &tangent );
-                        //
-                        //                        vec3_add( &obj->indexed_tangent[ objtrianglelist->objtriangleindex[ k ].vertex_index[ 2 ] ],
-                        //                                 &obj->indexed_tangent[ objtrianglelist->objtriangleindex[ k ].vertex_index[ 2 ] ],
-                        //                                 &tangent );
-                    }
-                    
-                    
-                }
-            }
-        }
-        
-        unsigned int index;
-        for(unsigned int i = 0; i < meshes.size(); ++i){
-            for(unsigned int j = 0; j < meshes[i].vertexData.size(); ++j){
-                index = meshes[i].vertexData[j].vIndex;
-                
-                normals[index] = v3d::normalize(normals[index]);
-                if(meshes[i].vertexData[j].uvIndex != -1){
-                    tangents[index] = v3d::normalize(tangents[index]);
-                }
-                
-            }
-        }
-    }
+    builNormalsAndTangents();
 
     logMessage("Elapsed Time: %f", stopwatch.elapsedTime());
 }
@@ -195,7 +116,6 @@ void Obj::addMesh(ObjMesh **mesh, ObjTriangleList **tList, char* name, char* use
     usemtl[0]   = 0;
 }
 
-
 void ObjMesh::addVertexData(ObjTriangleList *otl, int vIndex, int uvIndex){
     unsigned short index;
     for(index = 0; index < vertexData.size(); ++index){
@@ -211,6 +131,53 @@ void ObjMesh::addVertexData(ObjTriangleList *otl, int vIndex, int uvIndex){
     vertexData.push_back(ovd);
     
     otl->indices.push_back(index);
+}
+
+void Obj::builNormalsAndTangents(){
+    for(unsigned int i = 0; i < meshes.size(); ++i){
+        ObjMesh *mesh = &meshes[i];
+        for(unsigned int j = 0; j < mesh->tLists.size(); ++j){
+            ObjTriangleList *list = &mesh->tLists[j];
+            for(unsigned int k = 0; k < list->tIndices.size(); ++k){
+                v3d v1, v2, normal;
+                v1 = vertices[list->tIndices[k].vertexIndex[0]] - vertices[list->tIndices[k].vertexIndex[1]];
+                v2 = vertices[list->tIndices[k].vertexIndex[0]] - vertices[list->tIndices[k].vertexIndex[2]];
+                    
+                normal = v3d::normalize(v3d::cross(v1, v2));
+                for(unsigned short e = 0; e < 3; ++e) memcpy(&faceNormals[list->tIndices[k].vertexIndex[e]], normal.pointer(), sizeof(v3d));
+                
+                for(unsigned short e = 0; e < 3; ++e) normals[list->tIndices[k].vertexIndex[e]] = normals[list->tIndices[k].vertexIndex[e]] + normal;
+                
+                    
+                if(list->useUVs){
+                    v3d tangent;
+                    v3d uv1, uv2;
+                    float c;
+                    uv1 = UVs[list->tIndices[k].uvIndex[2]] - UVs[list->tIndices[k].uvIndex[0]];
+                    uv2 = UVs[list->tIndices[k].uvIndex[1]] - UVs[list->tIndices[k].uvIndex[0]];
+                    c = 1.0f / (uv1.x * uv2.y - uv2.x * uv1.y);
+                    tangent.x = (v1.x * uv2.y + v2.x * uv1.y) * c;
+                    tangent.y = (v1.y * uv2.y + v2.y * uv1.y) * c;
+                    tangent.z = (v1.z * uv2.y + v2.z * uv1.y) * c;
+                    for(unsigned char i = 0; i < 3; ++i)
+                        tangents[list->tIndices[k].vertexIndex[i]] = tangents[list->tIndices[k].vertexIndex[i]] + tangent;
+                }
+            }
+        }
+    }
+        
+    unsigned int index;
+    for(unsigned int i = 0; i < meshes.size(); ++i){
+        for(unsigned int j = 0; j < meshes[i].vertexData.size(); ++j){
+            index = meshes[i].vertexData[j].vIndex;
+                
+            normals[index] = v3d::normalize(normals[index]);
+            if(meshes[i].vertexData[j].uvIndex != -1){
+                tangents[index] = v3d::normalize(tangents[index]);
+            }
+                
+        }
+    }
 }
 
 
