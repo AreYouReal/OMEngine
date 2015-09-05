@@ -184,7 +184,7 @@ void Obj::builNormalsAndTangents(){
 #pragma mark Mesh building
 void Obj::buildMesh(unsigned int meshIndex){
     updateBoundMesh(meshIndex);
-    
+    buildVBOMesh(meshIndex);
 }
 
 void Obj::updateBoundMesh(unsigned int meshIndex){
@@ -223,6 +223,77 @@ void Obj::updateMax(v3d &max, v3d &vertex){
     if(vertex.y > max.y) max.y = vertex.y;
     if(vertex.z > max.z) max.z = vertex.z;
 }
+
+void Obj::buildVBOMesh(unsigned int meshIndex){
+    ObjMesh *mesh = &meshes[meshIndex];
+    
+    unsigned int v3dSize = sizeof(v3d);
+    mesh->stride = v3dSize;
+    mesh->stride += v3dSize;
+    mesh->stride += v3dSize;
+    
+    if(mesh->vertexData[0].uvIndex != -1){
+        mesh->stride += v3dSize;
+        mesh->stride += v3dSize;
+    }
+    
+    mesh->size = (unsigned int)mesh->vertexData.size() * mesh->stride;
+    
+    unsigned char *vertexArray = (unsigned char*) malloc(mesh->size);
+    unsigned char *vertexStart = vertexArray;
+    
+    unsigned int index;
+    for(unsigned int i = 0; i < mesh->vertexData.size(); ++i){
+        index = mesh->vertexData[i].vIndex;
+        memcpy(vertexArray, &vertices[index], v3dSize);
+        // Center the pivot
+        v3d centerThePivot = vertices[index] - mesh->location;      // ??????????
+        memcpy(vertexArray, &centerThePivot, v3dSize);              // ??????????
+        vertexArray += v3dSize;
+        memcpy(vertexArray, &normals[index], v3dSize);
+        vertexArray += v3dSize;
+        memcpy(vertexArray, &faceNormals[index], v3dSize);
+        vertexArray += v3dSize;
+        if(mesh->vertexData[0].uvIndex != -1){
+            memcpy(vertexArray, &UVs[mesh->vertexData[i].uvIndex], v3dSize);
+            vertexArray += v3dSize;
+            memcpy(vertexArray, &tangents[index], v3dSize);
+            vertexArray += v3dSize;
+        }
+    }
+    
+    glGenBuffers(1, &mesh->vbo);
+    glBindBuffer(GL_ARRAY_BUFFER, mesh->vbo);
+    glBufferData(GL_ARRAY_BUFFER, mesh->size, vertexStart, GL_STATIC_DRAW);
+    free(vertexStart);
+    
+    logMessage("Mesh vertices vbo:  ARRAY  %d\n", mesh->vbo);
+    
+    
+    unsigned int offset = 0;
+    mesh->offset[0] = offset;
+    offset += v3dSize;
+    mesh->offset[1] = offset;
+    offset += v3dSize;
+    mesh->offset[2] = offset;
+    if(mesh->vertexData[0].uvIndex != -1){
+        offset += v3dSize;
+        mesh->offset[3] = offset;
+        offset += v3dSize;
+        mesh->offset[4] = offset;
+    }
+    
+    for(unsigned int i = 0; i < mesh->tLists.size(); ++i){
+        glGenBuffers(1, &mesh->tLists[i].vbo);
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh->tLists[i].vbo);
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER, mesh->tLists[i].indices.size(), &mesh->tLists[i].indices[0], GL_STATIC_DRAW);
+        logMessage("tList VBO: %d\n", mesh->tLists[i].vbo);
+    }
+    
+    
+    
+}
+
 
 #pragma mark Material loading
 void Obj::loadMaterial(const char *filename){
