@@ -181,6 +181,49 @@ void Obj::builNormalsAndTangents(){
 }
 
 
+#pragma mark Mesh building
+void Obj::buildMesh(unsigned int meshIndex){
+    updateBoundMesh(meshIndex);
+    
+}
+
+void Obj::updateBoundMesh(unsigned int meshIndex){
+    ObjMesh *mesh = &meshes[meshIndex];
+    
+    mesh->min.x = mesh->min.y = mesh->min.z = 9999.99f;
+    mesh->max.x = mesh->max.y = mesh->max.z = -9999.99f;
+    
+    unsigned int index;
+    for(unsigned int i = 0; i < mesh->vertexData.size(); ++i){
+        index = mesh->vertexData[i].vIndex;
+        updateMin(mesh->min, vertices[index]);
+        updateMax(mesh->max, vertices[index]);
+    }
+
+    mesh->location = (mesh->min + mesh->max) * 0.5f;
+    mesh->dimension = mesh->max - mesh->min;
+//    mesh->radius =  mesh->dimension.x >= mesh->dimension.y ?
+//                    mesh->dimension.x :
+//                    mesh->dimension.y;
+//    mesh->radius =  mesh->radius >= mesh->dimension.x ?
+//                    mesh->radius * 0.5f :
+//                    mesh->dimension.z * 0.5f;
+
+    mesh->radius = v3d::length(mesh->max - mesh->min) * 0.5f;
+}
+
+void Obj::updateMin(v3d &min, v3d &vertex){
+    if(vertex.x < min.x) min.x = vertex.x;
+    if(vertex.y < min.y) min.y = vertex.y;
+    if(vertex.z < min.z) min.z = vertex.z;
+}
+
+void Obj::updateMax(v3d &max, v3d &vertex){
+    if(vertex.x > max.x) max.x = vertex.x;
+    if(vertex.y > max.y) max.y = vertex.y;
+    if(vertex.z > max.z) max.z = vertex.z;
+}
+
 #pragma mark Material loading
 void Obj::loadMaterial(const char *filename){
     unsigned char* objSource = readOBJFromFile(SRGraphics::getAppContext(), filename);

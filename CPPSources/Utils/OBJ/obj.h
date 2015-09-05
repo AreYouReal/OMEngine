@@ -49,6 +49,12 @@ struct ObjMesh{
     std::vector<ObjTriangleList>    tLists;
     ObjMaterial                     *material;       // Current object material.
     
+    v3d                             min;
+    v3d                             max;
+    v3d                             location;
+    v3d                             dimension;
+    float                           radius;
+    
     unsigned int                    vbo;             // The vertex buffer VBO ID maintaned by GLES.
     unsigned int                    stride;          // Stride size in bytes to determine next data chunk location.
     unsigned int                    size;            // Total size of the vertex data array in bytes.
@@ -64,6 +70,8 @@ struct Obj{
 // Cons(des)tructor
     Obj(const char* filename);
     
+// Mesh related
+    void buildMesh(unsigned int meshIndex);
     
 // Fields
     
@@ -97,5 +105,9 @@ private:
     void    loadMaterial(const char* filename);
     void    addTexture(const char* filename);
     int     getTextureIndex(const char* filename);
-
+    
+// Mesh related
+    void updateBoundMesh(unsigned int meshIndex);
+    void updateMin(v3d &min, v3d &vertex);
+    void updateMax(v3d &max, v3d &vertex);
 };
