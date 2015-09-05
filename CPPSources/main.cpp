@@ -68,7 +68,7 @@ void programBindCallback(void *ptr){
 //
 int SRGraphics::Init ( SRContext *context ){
     
-    texture = new Texture(context, "diffuse.png");
+    texture = new Texture(context, "momo.png");
     texture->generateID(0, 0);
     logMessage("\nTexture ID: %d\n",texture->ID);
     

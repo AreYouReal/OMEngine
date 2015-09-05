@@ -95,8 +95,6 @@
 		94CE87C91B62B4D000752D5C /* q4d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = q4d.h; path = ../../CPPSources/Math/q4d.h; sourceTree = SOURCE_ROOT; };
 		94CE87CA1B62B4D000752D5C /* v3d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = v3d.cpp; path = ../../CPPSources/Math/v3d.cpp; sourceTree = SOURCE_ROOT; };
 		94CE87CB1B62B4D000752D5C /* v3d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = v3d.h; path = ../../CPPSources/Math/v3d.h; sourceTree = SOURCE_ROOT; };
-		94CE87CF1B62B4FB00752D5C /* Material.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Material.h; path = ../../CPPSources/Objects/Material.h; sourceTree = SOURCE_ROOT; };
-		94CE87D11B62B4FB00752D5C /* Mesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Mesh.h; path = ../../CPPSources/Objects/Mesh.h; sourceTree = SOURCE_ROOT; };
 		94CE87D31B62B51900752D5C /* ShaderHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShaderHelper.cpp; path = ../../CPPSources/Shaders/ShaderHelper.cpp; sourceTree = SOURCE_ROOT; };
 		94CE87D41B62B51900752D5C /* ShaderHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShaderHelper.h; path = ../../CPPSources/Shaders/ShaderHelper.h; sourceTree = SOURCE_ROOT; };
 		94CE87D71B62B53500752D5C /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = SREngine/CPPSources/main.cpp; sourceTree = "<group>"; };
@@ -207,7 +205,6 @@
 			children = (
 				9453DEDE1B2A080F00C79DB3 /* Utils */,
 				944E39671B01191F003806EB /* Math */,
-				9420DCE91B0115B0006D2A7E /* Objects */,
 				9420DCE41B007E0D006D2A7E /* Shaders */,
 				94CE87D71B62B53500752D5C /* main.cpp */,
 				94CE87D81B62B53500752D5C /* main.h */,
@@ -270,16 +267,6 @@
 				F3FAE8BA1B6B7885007AF169 /* Shader.h */,
 			);
 			name = Shaders;
-			path = ../../..;
-			sourceTree = SOURCE_ROOT;
-		};
-		9420DCE91B0115B0006D2A7E /* Objects */ = {
-			isa = PBXGroup;
-			children = (
-				94CE87CF1B62B4FB00752D5C /* Material.h */,
-				94CE87D11B62B4FB00752D5C /* Mesh.h */,
-			);
-			name = Objects;
 			path = ../../..;
 			sourceTree = SOURCE_ROOT;
 		};
