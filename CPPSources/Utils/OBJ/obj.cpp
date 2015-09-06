@@ -368,7 +368,6 @@ void Obj::loadMaterial(const char *filename){
     if(objSource) delete[] objSource;
 }
 
-
 void Obj::addTexture(const char *filename){
     if(getTextureIndex(filename) < 0){
         textures.push_back(Texture(SRGraphics::getAppContext(), filename));
@@ -381,3 +380,43 @@ int Obj::getTextureIndex(const char *filename){
     }
     return -1;
 }
+
+void Obj::buildMaterial(unsigned int matIndex, ShaderProgram *program){
+    ObjMaterial *mat = &materials[matIndex];
+
+    if(textures.size() > 0){
+        int index;
+        if(mat->mapAmbient[0]){
+            index = getTextureIndex(mat->mapAmbient.c_str());
+            if(index >= 0) mat->tAmbient = &textures[index];
+        }
+        
+        if(mat->mapDiffuse[0]){
+            index = getTextureIndex(mat->mapDiffuse.c_str());
+            if(index >= 0) mat->tDiffuse = &textures[index];
+        }
+        
+        if(mat->mapSpecular[0]){
+            index = getTextureIndex(mat->mapSpecular.c_str());
+            if(index >= 0) mat->tSpecular = &textures[index];
+        }
+        
+        if(mat->mapTranslucency[0]){
+            index = getTextureIndex(mat->mapTranslucency.c_str());
+            if(index >= 0) mat->tTranslucency = &textures[index];
+        }
+        
+        if(mat->mapDisp[0]){
+            index = getTextureIndex(mat->mapDisp.c_str());
+            if(index >= 0) mat->tDisp = &textures[index];
+        }
+        
+        if(mat->mapBump[0]){
+            index = getTextureIndex(mat->mapBump.c_str());
+            if(index >= 0) mat->tBump = &textures[index];
+        }        
+    }
+    if(program) mat->program = program;
+}
+
+

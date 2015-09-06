@@ -22,6 +22,11 @@ struct ObjMaterial{
     std::string mapTranslucency;      // The translucecny....
     std::string mapDisp;              // The displacement....
     std::string mapBump;              // The bump map(aka Normal Map)
+    
+    Texture *tAmbient, *tDiffuse, *tSpecular, *tTranslucency, *tDisp, *tBump;
+    ShaderProgram   *program;
+    DrawCallback    *materialDrawCalback;
+    
 };
 
 // Hold all the vertex and UV indices for the particular triangle.
@@ -73,6 +78,9 @@ struct Obj{
 // Mesh related
     void buildMesh(unsigned int meshIndex);
     
+// Material related
+    void buildMaterial(unsigned int matIndex, ShaderProgram *program);
+
 // Fields
     
     std::string     texturePath;    // The texture path (relative to the .mtl file)

@@ -23,6 +23,15 @@ Obj     *object;
 int rotateAngel = 0;
 m4d rotateObjMatrix;
 
+void programBindAttributes(void *ptr){
+    ShaderProgram *program = (ShaderProgram*) ptr;
+    // BindLocations here
+}
+
+void materialDrawCallback(void *ptr){
+    ObjMaterial *mat = (ObjMaterial *)ptr;
+}
+
 void calculateMatrices(float width, float height){
     v3d eye(0.0f, -4.0f, 0.0);
     v3d lookAt(0.0f, 0.0f, 0.0f);
@@ -90,14 +99,10 @@ int SRGraphics::Init ( SRContext *context ){
     }
     
     for(unsigned int i = 0; i < object->materials.size(); ++i){
-        
-    }
-    
-    
-    
-    
-    
-    
+        object->buildMaterial(i, NULL);
+        object->materials[i].program = ShaderHelper::createProgram("vertex.glsl", "fragment.glsl", programBindAttributes, NULL);
+        object->materials[i].materialDrawCalback = materialDrawCallback;
+    }  
     
 //    objMesh = &object->meshes[0];
 //
