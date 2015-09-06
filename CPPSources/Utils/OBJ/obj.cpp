@@ -336,21 +336,27 @@ void Obj::loadMaterial(const char *filename){
         }else if(sscanf(line, "Ni %f", &v.x) == 1){
             mat->opticalDensity = v.x;
         }else if(sscanf(line, "map_Ka %s", str) == 1){
-//            mat->mapAmbient
+            mat->mapAmbient = str;
+            addTexture(str);
         }else if(sscanf(line, "map_Kd %s", str) == 1){
+            mat->mapDiffuse = str;
             addTexture(str);
         }else if(sscanf(line, "map_Ks %s", str) == 1){
-//            mat->mapSpecular
+            mat->mapSpecular = str;
+            addTexture(str);
         }else if(sscanf(line, "map_Tr %s", str) == 1){
-//            mat->mapTranslucency
+            mat->mapTranslucency = str;
+            addTexture(str);
         }else if( sscanf( line, "map_disp %s", str ) == 1 ||
                  sscanf( line, "map_Disp %s", str ) == 1 ||
                  sscanf( line, "disp %s"    , str ) == 1 ){
-//            mat->mapDisp
+            mat->mapDisp = str;
+            addTexture(str);
         }else if( sscanf( line, "map_bump %s", str ) == 1 ||
                  sscanf( line, "map_Bump %s", str ) == 1 ||
                  sscanf( line, "bump %s"	, str ) == 1 ){
-//            mat->mapBump
+            mat->mapBump = str;
+            addTexture(str);
         }
         
         

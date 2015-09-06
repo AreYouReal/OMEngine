@@ -11,6 +11,7 @@ Texture::Texture(void* context, const char* filename){
     format = GL_RGBA;
     target = GL_TEXTURE_2D;
     logMessage("%d, %d\n", width, height);
+    ID = 0;
 }
 
 Texture::~Texture(){

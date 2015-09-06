@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../CPPSources/Utils/Texture.cpp"
-            timestampString = "462717317.633107"
+            timestampString = "463219321.489298"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
             landmarkName = "Texture::generateID(unsigned int flags, unsigned char filter)"
             landmarkType = "5">
          </BreakpointContent>

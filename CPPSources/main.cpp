@@ -19,9 +19,6 @@ v3d lightPosition(0.0f, 0.0f, 0.0f);
 v3d bve;
 
 Obj     *object;
-ObjMesh *objMesh;
-Texture *texture;
-
 
 int rotateAngel = 0;
 m4d rotateObjMatrix;
@@ -68,10 +65,6 @@ void programBindCallback(void *ptr){
 //
 int SRGraphics::Init ( SRContext *context ){
     
-    texture = new Texture(context, "momo.png");
-    texture->generateID(0, 0);
-    logMessage("\nTexture ID: %d\n",texture->ID);
-    
     atexit(Exit);
     glViewport ( 0, 0, context->width, context->height );
     glEnable( GL_DEPTH_TEST );
@@ -89,7 +82,17 @@ int SRGraphics::Init ( SRContext *context ){
     
     for(unsigned int i = 0; i < object->meshes.size(); ++i){
         object->buildMesh(i);
+        // Free object mesh data if needed here
     }
+    
+    for(unsigned int i = 0; i < object->textures.size(); ++i){
+        object->textures[i].generateID(TEXTURE_MIPMAP, TEXTURE_FILTER_2X);
+    }
+    
+    for(unsigned int i = 0; i < object->materials.size(); ++i){
+        
+    }
+    
     
     
     
