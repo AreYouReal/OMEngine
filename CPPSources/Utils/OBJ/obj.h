@@ -120,4 +120,6 @@ private:
     void updateMax(v3d &max, v3d &vertex);
     
     void buildVBOMesh(unsigned int meshIndex);
+    
+    void setMeshAttributes(unsigned int meshIndex);
 };

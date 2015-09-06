@@ -185,6 +185,16 @@ void Obj::builNormalsAndTangents(){
 void Obj::buildMesh(unsigned int meshIndex){
     updateBoundMesh(meshIndex);
     buildVBOMesh(meshIndex);
+    ObjMesh *mesh = &meshes[meshIndex];
+
+    glGenVertexArrays(1, &mesh->vao);
+    glBindVertexArray(mesh->vao);
+    
+    setMeshAttributes(meshIndex);
+    
+    if(mesh->tLists.size() == 1){ glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh->tLists[0].vbo); }
+    
+    glBindVertexArray(0);
 }
 
 void Obj::updateBoundMesh(unsigned int meshIndex){
@@ -289,9 +299,25 @@ void Obj::buildVBOMesh(unsigned int meshIndex){
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, mesh->tLists[i].indices.size(), &mesh->tLists[i].indices[0], GL_STATIC_DRAW);
         logMessage("tList VBO: %d\n", mesh->tLists[i].vbo);
     }
-    
-    
-    
+}
+
+void Obj::setMeshAttributes(unsigned int meshIndex){
+    ObjMesh *mesh = &meshes[meshIndex];
+    glBindBuffer(GL_ARRAY_BUFFER, mesh->vbo);
+
+    unsigned char size = sizeof(v3d);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, size, GL_FLOAT, GL_FALSE, mesh->stride, (char *)NULL);
+    glEnableVertexAttribArray(1);
+    glVertexAttribPointer(1, size, GL_FLOAT, GL_FALSE, mesh->stride, (char *)NULL + mesh->offset[1]);
+    glEnableVertexAttribArray(4);
+    glVertexAttribPointer(4, size, GL_FLOAT, GL_FALSE, mesh->stride, (char *)NULL + mesh->offset[2]);
+    if(mesh->vertexData[0].uvIndex != -1){
+        glEnableVertexAttribArray(2);
+        glVertexAttribPointer(2, size, GL_FLOAT, GL_FALSE, mesh->stride, (char *)NULL + mesh->offset[3]);
+        glEnableVertexAttribArray(3);
+        glVertexAttribPointer(3, size, GL_FLOAT, GL_FALSE, mesh->stride, (char *)NULL + mesh->offset[4]);
+    }
 }
 
 

@@ -102,61 +102,7 @@ int SRGraphics::Init ( SRContext *context ){
         object->buildMaterial(i, NULL);
         object->materials[i].program = ShaderHelper::createProgram("vertex.glsl", "fragment.glsl", programBindAttributes, NULL);
         object->materials[i].materialDrawCalback = materialDrawCallback;
-    }  
-    
-//    objMesh = &object->meshes[0];
-//
-//    unsigned char *vertexArray = NULL, *vertexStart = NULL;
-//    unsigned int  index = 0, size = 0;
-//    size = objMesh->vertexData.size() * sizeof(v3d) * sizeof(v3d) * sizeof(v3d);
-//    
-//    vertexArray = (unsigned char *)malloc(size);
-//    vertexStart = vertexArray;
-//    // OK->
-//    for(unsigned int i = 0; i < objMesh->vertexData.size(); ++i){
-//        index = objMesh->vertexData[i].vIndex;
-//        memcpy(vertexArray, &object->vertices[index], sizeof(v3d));
-//        vertexArray += sizeof(v3d);
-//        memcpy(vertexArray, &object->normals[index], sizeof(v3d));
-//        vertexArray += sizeof(v3d);
-//        memcpy(vertexArray, &object->UVs[objMesh->vertexData[i].uvIndex], sizeof(v3d));
-//        vertexArray += sizeof(v3d);
-//    }
-//
-//    glGenBuffers(1, &objMesh->vbo);
-//    glBindBuffer(GL_ARRAY_BUFFER, objMesh->vbo);
-//    glBufferData(GL_ARRAY_BUFFER, size, vertexStart, GL_STATIC_DRAW);
-//    if(vertexStart) delete vertexStart;
-//    glBindBuffer(GL_ARRAY_BUFFER, 0);
-//    
-//    glGenBuffers(1, &objMesh->tLists[0].vbo);
-//    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, objMesh->tLists[0].vbo);
-//    glBufferData(GL_ELEMENT_ARRAY_BUFFER, objMesh->tLists[0].indices.size() * sizeof(unsigned short), &objMesh->tLists[0].indices[0], GL_STATIC_DRAW);
-//    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-//    
-//    // VAO
-//    unsigned char attribute, stride = sizeof(v3d) + sizeof(v3d) + sizeof(v3d);
-//    glGenVertexArrays(1, &objMesh->vao);
-//    glBindVertexArray(objMesh->vao);
-//    
-//    glBindBuffer(GL_ARRAY_BUFFER, objMesh->vbo);
-//    attribute = userData->program->getVertexAttribLocation("vPosition");
-//    glEnableVertexAttribArray(attribute);
-//    glVertexAttribPointer(attribute, 3, GL_FLOAT, GL_FALSE, stride, 0);
-//    
-//    attribute = userData->program->getVertexAttribLocation("vNormal");
-//    glEnableVertexAttribArray(attribute);
-//    glVertexAttribPointer(attribute, 3, GL_FLOAT, GL_FALSE, stride, (char*) NULL + sizeof(v3d));
-//    
-//    attribute = userData->program->getVertexAttribLocation("vTexCoord");
-//    glEnableVertexAttribArray(attribute);
-//    glVertexAttribPointer(attribute, 3, GL_FLOAT, GL_FALSE, stride, (char*)NULL + sizeof(v3d) + sizeof(v3d));
-//    
-//    
-//    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, objMesh->tLists[0].vbo);
-//    glBindVertexArray(0);
-//    
-//    if ( userData->program == 0 ){ return 0; }
+    }
     
     return true;
 }
@@ -176,14 +122,11 @@ void SRGraphics::Draw ( SRContext *context ){
 //    
     glClearColor(0.0f, 0.3f, 0.0f, 1.0f);
     glClear( GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT );
-//    glBindVertexArray(objMesh->vao);
-//    
-//
-//    uData->program->use();
-//    
-//
-//    
-//    if(object) glDrawElements(GL_TRIANGLES, object->meshes[0].tLists[0].indices.size(), GL_UNSIGNED_SHORT, 0);
+
+    for(unsigned int i = 0; i < object->meshes.size(); ++i){
+        // generate matrices and draw the mesh
+    }
+
 }
 
 
