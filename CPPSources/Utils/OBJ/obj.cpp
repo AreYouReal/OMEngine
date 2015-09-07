@@ -101,7 +101,6 @@ void Obj::addMesh(ObjMesh **mesh, ObjTriangleList **tList, char* name, char* use
     meshes.push_back(ObjMesh());
     ObjMesh *tempMesh = *mesh = &meshes.back();
     tempMesh->visible = true;
-    
     if(name[0]) tempMesh->name = name;
     else if(usemtl[0]) tempMesh->name = name;
     //if( group[ 0 ] ) strcpy( objmesh->group, group );
@@ -195,6 +194,18 @@ void Obj::buildMesh(unsigned int meshIndex){
     if(mesh->tLists.size() == 1){ glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh->tLists[0].vbo); }
     
     glBindVertexArray(0);
+}
+
+unsigned int Obj::drawMesh(unsigned int meshIndex){
+    ObjMesh *mesh = &meshes[meshIndex];
+    unsigned int n = 0;
+    
+    if(!mesh->visible) return n;
+
+    if(mesh->vao) glBindVertexArray(mesh->vao);
+    
+    
+    return 0;
 }
 
 void Obj::updateBoundMesh(unsigned int meshIndex){
