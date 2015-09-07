@@ -32,13 +32,23 @@ void programBindAttributes(void *ptr){
 
 void materialDrawCallback(void *ptr){
     ObjMaterial *mat = (ObjMaterial *)ptr;
+    ShaderProgram *program = mat->program;
+    for(unsigned short i = 0; i < program->uniformCount; ++i){
+        if(!strcmp(program->uniformArray[i].name.c_str(), "Diffuse")){
+            glUniform1i(program->uniformArray[i].location, 1);
+        }else if(!strcmp(program->uniformArray[i].name.c_str(), "modelViewM")){
+            glUniformMatrix4fv(*program->uniformArray[i].name.c_str(), 1, GL_TRUE, ModelViewMatrix.pointer());
+        }else if(!strcmp(program->uniformArray[i].name.c_str(), "projectionM")){
+            glUniformMatrix4fv(*program->uniformArray[i].name.c_str(), 1, GL_TRUE, ProjectionMatrix.pointer());
+        }
+    }
 }
 
 void calculateMatrices(float width, float height){
-    v3d eye(0.0f, -4.0f, 0.0);
-    v3d lookAt(0.0f, 0.0f, 0.0f);
+    v3d eye(0.0f, -6.0f, 1.35f);
+    v3d lookAt(0.0f, -5.0f, 1.35f);
     v3d up(0.0f, 0.0f, 1.0f);
-    rotateObjMatrix = m4d::rotate(rotateAngel, 0, 0, 1);// * m4d::rotate(rotateAngel, 1, 0, 0);
+    rotateObjMatrix = m4d::rotate(rotateAngel, 0, 0, 1); // * m4d::rotate(rotateAngel, 1, 0, 0);
     
     ModelViewMatrix     = m4d::lookAt(eye, lookAt, up) * rotateObjMatrix;
     ProjectionMatrix    = m4d::perspective(45, width, height, 0.1, 100);
@@ -51,25 +61,6 @@ void calculateMatrices(float width, float height){
 SRContext* SRGraphics::getAppContext(){
     return appContext;
 }
-
-void programBindCallback(void *ptr){
-    ShaderProgram *program = (ShaderProgram*)ptr;
-    for(int i = 0; i < program->uniformCount; ++i){
-        if(!strcmp( program->uniformArray[i].name.c_str(), "modelViewM" )){
-            glUniformMatrix4fv(program->uniformArray[i].location, 1, GL_TRUE, (float*)ModelViewMatrix.pointer());
-        }else if(!strcmp( program->uniformArray[i].name.c_str(), "projectionM" )){
-            glUniformMatrix4fv(program->uniformArray[i].location, 1, GL_TRUE, (float*)ProjectionMatrix.pointer());
-        }else if(!strcmp( program->uniformArray[i].name.c_str(), "normalM" )){
-            glUniformMatrix4fv(program->uniformArray[i].location, 1, GL_TRUE, (float*)NormalMatrix.pointer());
-        }else if(!strcmp( program->uniformArray[i].name.c_str(), "lightPos" )){
-            glUniform3fv(program->uniformArray[i].location, 1, &lightPosition.x);
-        }else if(!strcmp( program->uniformArray[i].name.c_str(), "Diffuse" ) && !program->uniformArray[i].constant){
-            glUniform1i(program->uniformArray[i].location, 0);
-            program->uniformArray[i].constant = true;
-        }
-    }
-}
-
 
 ///
 // Initialize the shader and program object
@@ -85,9 +76,6 @@ int SRGraphics::Init ( SRContext *context ){
 //    glBlendFunc(GL_ONE, GL_SRC_COLOR);
     
     appContext = context;
-    UserData *userData = (UserData*)context->userData;
-    
-    userData->program = ShaderHelper::createProgram("vertex.glsl", "fragment.glsl", programBindCallback, 0);
     
     object = new Obj("scene.obj");
     
@@ -113,15 +101,9 @@ int SRGraphics::Init ( SRContext *context ){
 // Draw a triangle using the shader pair created in Init()
 //
 void SRGraphics::Draw ( SRContext *context ){
-//
-//    calculateMatrices(context->width, context->height);
-//    
-//    UserData *uData = (UserData*)context->userData;
-//    
-//    glActiveTexture(GL_TEXTURE0);
-//    glBindTexture(GL_TEXTURE_2D, texture->ID);
-//    
-//    
+
+    calculateMatrices(context->width, context->height);
+
     glClearColor(0.0f, 0.3f, 0.0f, 1.0f);
     glClear( GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT );
 
@@ -158,10 +140,6 @@ void SRGraphics::Touch(SRContext *context, int event, int x, int y){
         default:
             break;
     }
-    
-    
-//    logMessage("TOUCH OCCURED: %d, [ %d, %d ]", event, x, y);
-//    program.reset();
 }
 
 int SRGraphics::Main ( SRContext *context ){

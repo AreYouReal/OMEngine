@@ -14,13 +14,13 @@ out lowp    vec3 lightColor;
 out mediump vec3 texCoord;
 
 void main(){
-    mediump vec3 position =  vec3(modelViewM * vPosition);
-    mediump vec3 normal = normalize(vec3(normalM * vNormal));
-    mediump vec3 lightDirection = normalize(lightPos - position);
+//    mediump vec3 position =  vec3(modelViewM * vPosition);
+//    mediump vec3 normal = normalize(vec3(normalM * vNormal));
+//    mediump vec3 lightDirection = normalize(lightPos - position);
     
-    lowp float ndotl = max(dot(normal, lightDirection), 0.0);
-    lightColor = ndotl * vec3(1.0, 1.0, 1.0); // White color - hard code for now
-    gl_Position = projectionM * vec4(position, 1.0);
+//    lowp float ndotl = max(dot(normal, lightDirection), 0.0);
+//    lightColor = ndotl * vec3(1.0, 1.0, 1.0); // White color - hard code for now
+    gl_Position = projectionM * modelViewM * vPosition;    
     
     texCoord = vTexCoord;
 }

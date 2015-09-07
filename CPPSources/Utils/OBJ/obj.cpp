@@ -221,6 +221,8 @@ unsigned int Obj::drawMesh(unsigned int meshIndex){
 
 void Obj::drawMaterial(ObjMaterial *mat){
     if(mat){
+        if(mat->program) mat->program->use();
+        
         if(mat->tAmbient){
             glActiveTexture(GL_TEXTURE0);
             glBindTexture(mat->tAmbient->target, mat->tAmbient->ID);
@@ -350,7 +352,7 @@ void Obj::buildVBOMesh(unsigned int meshIndex){
     for(unsigned int i = 0; i < mesh->tLists.size(); ++i){
         glGenBuffers(1, &mesh->tLists[i].vbo);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh->tLists[i].vbo);
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER, mesh->tLists[i].indices.size(), &mesh->tLists[i].indices[0], GL_STATIC_DRAW);
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER, mesh->tLists[i].indices.size() * sizeof(unsigned short), &mesh->tLists[i].indices[0], GL_STATIC_DRAW);
         logMessage("tList VBO: %d\n", mesh->tLists[i].vbo);
     }
 }
@@ -359,7 +361,7 @@ void Obj::setMeshAttributes(unsigned int meshIndex){
     ObjMesh *mesh = &meshes[meshIndex];
     glBindBuffer(GL_ARRAY_BUFFER, mesh->vbo);
 
-    unsigned char size = sizeof(v3d);
+    unsigned char size = sizeof(v3d)/sizeof(float);
     glEnableVertexAttribArray(0);
     glVertexAttribPointer(0, size, GL_FLOAT, GL_FALSE, mesh->stride, (char *)NULL);
     glEnableVertexAttribArray(1);
