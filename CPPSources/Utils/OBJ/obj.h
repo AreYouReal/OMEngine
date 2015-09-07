@@ -66,6 +66,8 @@ struct ObjMesh{
     unsigned int                    offset[ 5 ];     // The VBO offset(????)
     unsigned int                    vao;             // The VAO ID maintaned by GLES
 
+    ObjMaterial                     *currentMaterial;
+    
     // Helpers
     void            addVertexData(ObjTriangleList *otl, int vIndex, int uvIndex);
 };
@@ -82,6 +84,8 @@ struct Obj{
     
 // Material related
     void buildMaterial(unsigned int matIndex, ShaderProgram *program);
+    
+    void drawMaterial(ObjMaterial *mat);
 
 // Fields
     
@@ -113,6 +117,7 @@ private:
     void    loadMaterial(const char* filename);
     void    addTexture(const char* filename);
     int     getTextureIndex(const char* filename);
+    ObjMaterial *getMaterial(const char* name);
     
 // Mesh related
     void updateBoundMesh(unsigned int meshIndex);

@@ -25,6 +25,8 @@ m4d rotateObjMatrix;
 
 void programBindAttributes(void *ptr){
     ShaderProgram *program = (ShaderProgram*) ptr;
+    glBindAttribLocation(program->ID, 0, "vPosition");
+    glBindAttribLocation(program->ID, 2, "vTexCoord");
     // BindLocations here
 }
 
@@ -124,7 +126,7 @@ void SRGraphics::Draw ( SRContext *context ){
     glClear( GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT );
 
     for(unsigned int i = 0; i < object->meshes.size(); ++i){
-        // generate matrices and draw the mesh
+        object->drawMesh(i);
     }
 
 }

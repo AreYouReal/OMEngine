@@ -110,7 +110,7 @@ void Obj::addMesh(ObjMesh **mesh, ObjTriangleList **tList, char* name, char* use
     
     tempList->mode = GL_TRIANGLES;
     if(useUVs) tempList->useUVs = useUVs;
-    //if(usemtl[0]) objTriangleList->objMaterial = obj->getMaterial(usemtl, 1);  ???
+    if(usemtl[0]) tempList->material = getMaterial(usemtl);
     name[0]     = 0;
     usemtl[0]   = 0;
 }
@@ -203,10 +203,53 @@ unsigned int Obj::drawMesh(unsigned int meshIndex){
     if(!mesh->visible) return n;
 
     if(mesh->vao) glBindVertexArray(mesh->vao);
+    else setMeshAttributes(meshIndex);
     
+    for(unsigned int i = 0; i < mesh->tLists.size(); ++i){
+        mesh->currentMaterial = mesh->tLists[i].material;
+        if(mesh->currentMaterial) drawMaterial(mesh->currentMaterial);
+        if(mesh->vao){
+            if(mesh->tLists.size() != 1) glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh->tLists[i].vbo);
+        }else{
+            glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh->tLists[i].vbo);
+        }
+        glDrawElements(mesh->tLists[i].mode, mesh->tLists[i].indices.size(), GL_UNSIGNED_SHORT, (void*)NULL);
+    }
     
-    return 0;
+    return n;
 }
+
+void Obj::drawMaterial(ObjMaterial *mat){
+    if(mat){
+        if(mat->tAmbient){
+            glActiveTexture(GL_TEXTURE0);
+            glBindTexture(mat->tAmbient->target, mat->tAmbient->ID);
+        }
+        if(mat->tDiffuse){
+            glActiveTexture(GL_TEXTURE0);
+            glBindTexture(mat->tDiffuse->target, mat->tDiffuse->ID);
+        }
+        if(mat->tSpecular){
+            glActiveTexture(GL_TEXTURE0);
+            glBindTexture(mat->tSpecular->target, mat->tSpecular->ID);
+        }
+        if(mat->tAmbient){
+            glActiveTexture(GL_TEXTURE0);
+            glBindTexture(mat->tDisp->target, mat->tDisp->ID);
+        }
+        if(mat->tAmbient){
+            glActiveTexture(GL_TEXTURE0);
+            glBindTexture(mat->tBump->target, mat->tBump->ID);
+        }
+        if(mat->tAmbient){
+            glActiveTexture(GL_TEXTURE0);
+            glBindTexture(mat->tTranslucency->target, mat->tTranslucency->ID);
+        }
+        
+        if(mat->materialDrawCalback) mat->materialDrawCalback(mat);
+    }
+}
+
 
 void Obj::updateBoundMesh(unsigned int meshIndex){
     ObjMesh *mesh = &meshes[meshIndex];
@@ -416,6 +459,17 @@ int Obj::getTextureIndex(const char *filename){
         if( !strcmp(textures[i].filename.c_str(), filename) ) return i;
     }
     return -1;
+}
+
+ObjMaterial* Obj::getMaterial(const char *name){
+    ObjMaterial *mat = nullptr;
+    for(unsigned int i = 0; i < materials.size(); ++i){
+        if(!strcmp(materials[i].name.c_str(), name)){
+            mat = &materials[i];
+            break;
+        }
+    }
+    return mat;
 }
 
 void Obj::buildMaterial(unsigned int matIndex, ShaderProgram *program){
