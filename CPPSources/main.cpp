@@ -27,7 +27,6 @@ void programBindAttributes(void *ptr){
     ShaderProgram *program = (ShaderProgram*) ptr;
     glBindAttribLocation(program->ID, 0, "vPosition");
     glBindAttribLocation(program->ID, 2, "vTexCoord");
-    // BindLocations here
 }
 
 void materialDrawCallback(void *ptr){
@@ -37,9 +36,9 @@ void materialDrawCallback(void *ptr){
         if(!strcmp(program->uniformArray[i].name.c_str(), "Diffuse")){
             glUniform1i(program->uniformArray[i].location, 1);
         }else if(!strcmp(program->uniformArray[i].name.c_str(), "modelViewM")){
-            glUniformMatrix4fv(*program->uniformArray[i].name.c_str(), 1, GL_TRUE, ModelViewMatrix.pointer());
+            glUniformMatrix4fv(program->uniformArray[i].location, 1, GL_TRUE, ModelViewMatrix.pointer());
         }else if(!strcmp(program->uniformArray[i].name.c_str(), "projectionM")){
-            glUniformMatrix4fv(*program->uniformArray[i].name.c_str(), 1, GL_TRUE, ProjectionMatrix.pointer());
+            glUniformMatrix4fv(program->uniformArray[i].location, 1, GL_TRUE, ProjectionMatrix.pointer());
         }
     }
 }
@@ -51,11 +50,9 @@ void calculateMatrices(float width, float height){
     rotateObjMatrix = m4d::rotate(rotateAngel, 0, 0, 1); // * m4d::rotate(rotateAngel, 1, 0, 0);
     
     ModelViewMatrix     = m4d::lookAt(eye, lookAt, up) * rotateObjMatrix;
-    ProjectionMatrix    = m4d::perspective(45, width, height, 0.1, 100);
+    ProjectionMatrix    = m4d::perspective(90, width, height, 0.1, 100);
     NormalMatrix        = m4d::inverseTranspose(ModelViewMatrix);
 }
-
-
 
 
 SRContext* SRGraphics::getAppContext(){
@@ -66,7 +63,6 @@ SRContext* SRGraphics::getAppContext(){
 // Initialize the shader and program object
 //
 int SRGraphics::Init ( SRContext *context ){
-    
     atexit(Exit);
     glViewport ( 0, 0, context->width, context->height );
     glEnable( GL_DEPTH_TEST );
@@ -80,9 +76,11 @@ int SRGraphics::Init ( SRContext *context ){
     object = new Obj("scene.obj");
     
     for(unsigned int i = 0; i < object->meshes.size(); ++i){
-        object->buildMesh(i);
+            object->buildMesh(i);
         // Free object mesh data if needed here
     }
+    
+
     
     for(unsigned int i = 0; i < object->textures.size(); ++i){
         object->textures[i].generateID(TEXTURE_MIPMAP, TEXTURE_FILTER_2X);
@@ -111,6 +109,8 @@ void SRGraphics::Draw ( SRContext *context ){
         object->drawMesh(i);
     }
 
+//    object->drawMesh(0);
+    
 }
 
 

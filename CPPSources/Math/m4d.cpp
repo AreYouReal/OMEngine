@@ -206,7 +206,7 @@ m4d m4d::perspective(float fovy, float w, float h, float n, float f){
     float A = - (f + n)/(f - n);
     float B = -(2 * f * n)/(f - n);
     float angleOfView =  PI / 180 * fovy;
-    float d = 1.0f / tanf(angleOfView/2);
+    float d = 1.0f / tanf(angleOfView * 0.5f);
     
     m4d rMat4(d/aspect, 0, 0, 0,
               0,     d, 0, 0,

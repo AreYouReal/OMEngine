@@ -191,7 +191,9 @@ void Obj::buildMesh(unsigned int meshIndex){
     
     setMeshAttributes(meshIndex);
     
-    if(mesh->tLists.size() == 1){ glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh->tLists[0].vbo); }
+    if(mesh->tLists.size() == 1){
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh->tLists[0].vbo);
+    }
     
     glBindVertexArray(0);
 }
@@ -214,6 +216,7 @@ unsigned int Obj::drawMesh(unsigned int meshIndex){
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh->tLists[i].vbo);
         }
         glDrawElements(mesh->tLists[i].mode, mesh->tLists[i].indices.size(), GL_UNSIGNED_SHORT, (void*)NULL);
+        n += mesh->tLists[i].indices.size();
     }
     
     return n;
@@ -228,23 +231,23 @@ void Obj::drawMaterial(ObjMaterial *mat){
             glBindTexture(mat->tAmbient->target, mat->tAmbient->ID);
         }
         if(mat->tDiffuse){
-            glActiveTexture(GL_TEXTURE0);
+            glActiveTexture(GL_TEXTURE1);
             glBindTexture(mat->tDiffuse->target, mat->tDiffuse->ID);
         }
         if(mat->tSpecular){
-            glActiveTexture(GL_TEXTURE0);
+            glActiveTexture(GL_TEXTURE2);
             glBindTexture(mat->tSpecular->target, mat->tSpecular->ID);
         }
         if(mat->tAmbient){
-            glActiveTexture(GL_TEXTURE0);
+            glActiveTexture(GL_TEXTURE3);
             glBindTexture(mat->tDisp->target, mat->tDisp->ID);
         }
         if(mat->tAmbient){
-            glActiveTexture(GL_TEXTURE0);
+            glActiveTexture(GL_TEXTURE4);
             glBindTexture(mat->tBump->target, mat->tBump->ID);
         }
         if(mat->tAmbient){
-            glActiveTexture(GL_TEXTURE0);
+            glActiveTexture(GL_TEXTURE5);
             glBindTexture(mat->tTranslucency->target, mat->tTranslucency->ID);
         }
         
@@ -315,6 +318,7 @@ void Obj::buildVBOMesh(unsigned int meshIndex){
         // Center the pivot
         v3d centerThePivot = vertices[index] - mesh->location;      // ??????????
         memcpy(vertexArray, &centerThePivot, v3dSize);              // ??????????
+        logMessage("\n%f %f %f\n", *(float*)vertexArray, *((float *)vertexArray + 1), *((float*)vertexArray + 2));
         vertexArray += v3dSize;
         memcpy(vertexArray, &normals[index], v3dSize);
         vertexArray += v3dSize;
@@ -334,7 +338,6 @@ void Obj::buildVBOMesh(unsigned int meshIndex){
     free(vertexStart);
     
     logMessage("Mesh vertices vbo:  ARRAY  %d\n", mesh->vbo);
-    
     
     unsigned int offset = 0;
     mesh->offset[0] = offset;
@@ -368,7 +371,7 @@ void Obj::setMeshAttributes(unsigned int meshIndex){
     glVertexAttribPointer(1, size, GL_FLOAT, GL_FALSE, mesh->stride, (char *)NULL + mesh->offset[1]);
     glEnableVertexAttribArray(4);
     glVertexAttribPointer(4, size, GL_FLOAT, GL_FALSE, mesh->stride, (char *)NULL + mesh->offset[2]);
-    if(mesh->vertexData[0].uvIndex != -1){
+    if(mesh->offset[3] != -1){
         glEnableVertexAttribArray(2);
         glVertexAttribPointer(2, size, GL_FLOAT, GL_FALSE, mesh->stride, (char *)NULL + mesh->offset[3]);
         glEnableVertexAttribArray(3);
