@@ -83,7 +83,8 @@ int SRGraphics::Init ( SRContext *context ){
 
     
     for(unsigned int i = 0; i < object->textures.size(); ++i){
-        object->textures[i].generateID(TEXTURE_MIPMAP, TEXTURE_FILTER_2X);
+       object->textures[i].generateID(0, 0);
+//        object->textures[i].generateID(TEXTURE_MIPMAP, TEXTURE_FILTER_2X);  // !!!!!!
     }
     
     for(unsigned int i = 0; i < object->materials.size(); ++i){

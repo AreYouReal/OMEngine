@@ -316,8 +316,8 @@ void Obj::buildVBOMesh(unsigned int meshIndex){
         index = mesh->vertexData[i].vIndex;
         memcpy(vertexArray, &vertices[index], v3dSize);
         // Center the pivot
-        v3d centerThePivot = vertices[index] - mesh->location;      // ??????????
-        memcpy(vertexArray, &centerThePivot, v3dSize);              // ??????????
+//        v3d centerThePivot = vertices[index] - mesh->location;      // ??????????
+//        memcpy(vertexArray, &centerThePivot, v3dSize);              // ??????????
         logMessage("\n%f %f %f\n", *(float*)vertexArray, *((float *)vertexArray + 1), *((float*)vertexArray + 2));
         vertexArray += v3dSize;
         memcpy(vertexArray, &normals[index], v3dSize);
