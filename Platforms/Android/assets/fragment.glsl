@@ -9,5 +9,5 @@ in lowp     vec3 lightColor;
 in mediump  vec3 texCoord;
 
 void main(){
-    fragColor = texture( Diffuse, texCoord.xy);
+    fragColor = texture( Diffuse, texCoord.xy) * vec4(lightColor, 1.0);
 }

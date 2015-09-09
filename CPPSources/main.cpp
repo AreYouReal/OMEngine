@@ -26,6 +26,7 @@ m4d rotateObjMatrix;
 void programBindAttributes(void *ptr){
     ShaderProgram *program = (ShaderProgram*) ptr;
     glBindAttribLocation(program->ID, 0, "vPosition");
+    glBindAttribLocation(program->ID, 1, "vNormal");
     glBindAttribLocation(program->ID, 2, "vTexCoord");
 }
 
@@ -39,6 +40,8 @@ void materialDrawCallback(void *ptr){
             glUniformMatrix4fv(program->uniformArray[i].location, 1, GL_TRUE, ModelViewMatrix.pointer());
         }else if(!strcmp(program->uniformArray[i].name.c_str(), "projectionM")){
             glUniformMatrix4fv(program->uniformArray[i].location, 1, GL_TRUE, ProjectionMatrix.pointer());
+        }else if(!strcmp(program->uniformArray[i].name.c_str(), "normalM")){
+            glUniformMatrix4fv(program->uniformArray[i].location, 1, GL_TRUE, NormalMatrix.pointer());
         }
     }
 }
