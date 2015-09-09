@@ -8,7 +8,7 @@
 
 class ShaderHelper{
 public:
-    static ShaderProgram* createProgram(const char *vertexShaderFilename, const char* fragmentShaderFilename, BindAttribCallback *bindCallback, DrawCallback *drawCallback);
+    static std::shared_ptr<ShaderProgram> createProgram(const char *vertexShaderFilename, const char* fragmentShaderFilename, BindAttribCallback *bindCallback, DrawCallback *drawCallback);
     
     static Shader* loadShader(GLenum shaderType, const char* shaderSource);
     

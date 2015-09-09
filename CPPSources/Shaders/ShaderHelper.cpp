@@ -2,9 +2,9 @@
 #include "main.h"
 
 #pragma mark Public
-ShaderProgram* ShaderHelper::createProgram(const char *vertexShaderFilename,const char* fragmentShaderFilename, BindAttribCallback *bindCallback, DrawCallback *drawCallback){
+std::shared_ptr<ShaderProgram> ShaderHelper::createProgram(const char *vertexShaderFilename,const char* fragmentShaderFilename, BindAttribCallback *bindCallback, DrawCallback *drawCallback){
 
-    ShaderProgram *program = new ShaderProgram();
+    std::shared_ptr<ShaderProgram> program(new ShaderProgram());
 
     Shader *vertexShader = ShaderHelper::loadShader(GL_VERTEX_SHADER, vertexShaderFilename);
     Shader *fragmentShader = ShaderHelper::loadShader(GL_FRAGMENT_SHADER, fragmentShaderFilename);
@@ -14,7 +14,7 @@ ShaderProgram* ShaderHelper::createProgram(const char *vertexShaderFilename,cons
     program->ID = glCreateProgram();
     glAttachShader(program->ID, vertexShader->ID);
     glAttachShader(program->ID, fragmentShader->ID);
-    if(program->bindAttribCallback) program->bindAttribCallback((void *)program);
+    if(program->bindAttribCallback) program->bindAttribCallback((void *)program.get());
     glLinkProgram(program->ID);
     
     int status, total, len, size;

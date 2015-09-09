@@ -189,7 +189,7 @@ void Obj::buildMesh(unsigned int meshIndex){
     glGenVertexArrays(1, &mesh->vao);
     glBindVertexArray(mesh->vao);
     
-    setMeshAttributes(meshIndex);
+    mesh->setAttributes();
     
     if(mesh->tLists.size() == 1){
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh->tLists[0].vbo);
@@ -200,59 +200,7 @@ void Obj::buildMesh(unsigned int meshIndex){
 
 unsigned int Obj::drawMesh(unsigned int meshIndex){
     ObjMesh *mesh = &meshes[meshIndex];
-    unsigned int n = 0;
-    
-    if(!mesh->visible) return n;
-
-    if(mesh->vao) glBindVertexArray(mesh->vao);
-    else setMeshAttributes(meshIndex);
-    
-    for(unsigned int i = 0; i < mesh->tLists.size(); ++i){
-        mesh->currentMaterial = mesh->tLists[i].material;
-        if(mesh->currentMaterial) drawMaterial(mesh->currentMaterial);
-        if(mesh->vao){
-            if(mesh->tLists.size() != 1) glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh->tLists[i].vbo);
-        }else{
-            glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh->tLists[i].vbo);
-        }
-        glDrawElements(mesh->tLists[i].mode, mesh->tLists[i].indices.size(), GL_UNSIGNED_SHORT, (void*)NULL);
-        n += mesh->tLists[i].indices.size();
-    }
-    
-    return n;
-}
-
-void Obj::drawMaterial(ObjMaterial *mat){
-    if(mat){
-        if(mat->program) mat->program->use();
-        
-        if(mat->tAmbient){
-            glActiveTexture(GL_TEXTURE0);
-            glBindTexture(mat->tAmbient->target, mat->tAmbient->ID);
-        }
-        if(mat->tDiffuse){
-            glActiveTexture(GL_TEXTURE1);
-            glBindTexture(mat->tDiffuse->target, mat->tDiffuse->ID);
-        }
-        if(mat->tSpecular){
-            glActiveTexture(GL_TEXTURE2);
-            glBindTexture(mat->tSpecular->target, mat->tSpecular->ID);
-        }
-        if(mat->tAmbient){
-            glActiveTexture(GL_TEXTURE3);
-            glBindTexture(mat->tDisp->target, mat->tDisp->ID);
-        }
-        if(mat->tAmbient){
-            glActiveTexture(GL_TEXTURE4);
-            glBindTexture(mat->tBump->target, mat->tBump->ID);
-        }
-        if(mat->tAmbient){
-            glActiveTexture(GL_TEXTURE5);
-            glBindTexture(mat->tTranslucency->target, mat->tTranslucency->ID);
-        }
-        
-        if(mat->materialDrawCalback) mat->materialDrawCalback(mat);
-    }
+    return mesh->draw();
 }
 
 
@@ -360,26 +308,6 @@ void Obj::buildVBOMesh(unsigned int meshIndex){
     }
 }
 
-void Obj::setMeshAttributes(unsigned int meshIndex){
-    ObjMesh *mesh = &meshes[meshIndex];
-    glBindBuffer(GL_ARRAY_BUFFER, mesh->vbo);
-
-    unsigned char size = sizeof(v3d)/sizeof(float);
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, size, GL_FLOAT, GL_FALSE, mesh->stride, (char *)NULL);
-    glEnableVertexAttribArray(1);
-    glVertexAttribPointer(1, size, GL_FLOAT, GL_FALSE, mesh->stride, (char *)NULL + mesh->offset[1]);
-    glEnableVertexAttribArray(4);
-    glVertexAttribPointer(4, size, GL_FLOAT, GL_FALSE, mesh->stride, (char *)NULL + mesh->offset[2]);
-    if(mesh->offset[3] != -1){
-        glEnableVertexAttribArray(2);
-        glVertexAttribPointer(2, size, GL_FLOAT, GL_FALSE, mesh->stride, (char *)NULL + mesh->offset[3]);
-        glEnableVertexAttribArray(3);
-        glVertexAttribPointer(3, size, GL_FLOAT, GL_FALSE, mesh->stride, (char *)NULL + mesh->offset[4]);
-    }
-}
-
-
 #pragma mark Material loading
 void Obj::loadMaterial(const char *filename){
     unsigned char* objSource = readOBJFromFile(SRGraphics::getAppContext(), filename);
@@ -387,7 +315,6 @@ void Obj::loadMaterial(const char *filename){
     if(!objSource) return;
     
     ObjMaterial *mat = NULL;
-    unsigned short buffSize = 255;
     char *line = strtok((char*)objSource, "\n"),
                  str[255] = {""};
     
@@ -477,7 +404,7 @@ ObjMaterial* Obj::getMaterial(const char *name){
     return mat;
 }
 
-void Obj::buildMaterial(unsigned int matIndex, ShaderProgram *program){
+void Obj::buildMaterial(unsigned int matIndex, std::shared_ptr<ShaderProgram> program){
     ObjMaterial *mat = &materials[matIndex];
 
     if(textures.size() > 0){

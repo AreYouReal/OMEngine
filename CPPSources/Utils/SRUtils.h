@@ -8,6 +8,7 @@
 #include "lodepng.h"
 
 #include "Stopwatch.h"
+#include "m4d.h"        // ALL MATH
 
 #ifdef __APPLE__
 #include <OpenGLES/ES3/gl.h>

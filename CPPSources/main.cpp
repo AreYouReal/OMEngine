@@ -32,7 +32,7 @@ void programBindAttributes(void *ptr){
 
 void materialDrawCallback(void *ptr){
     ObjMaterial *mat = (ObjMaterial *)ptr;
-    ShaderProgram *program = mat->program;
+    ShaderProgram *program = mat->program.get();
     for(unsigned short i = 0; i < program->uniformCount; ++i){
         if(!strcmp(program->uniformArray[i].name.c_str(), "Diffuse")){
             glUniform1i(program->uniformArray[i].location, 1);
@@ -78,22 +78,22 @@ int SRGraphics::Init ( SRContext *context ){
     
     object = new Obj("scene.obj");
     
-    for(unsigned int i = 0; i < object->meshes.size(); ++i){
+    for(unsigned int i = 0; i < object->meshesSize(); ++i){
             object->buildMesh(i);
         // Free object mesh data if needed here
     }
     
 
     
-    for(unsigned int i = 0; i < object->textures.size(); ++i){
-       object->textures[i].generateID(0, 0);
+    for(unsigned int i = 0; i < object->texturesSize(); ++i){
+        object->generateTextureID(i, 0, 0);
 //        object->textures[i].generateID(TEXTURE_MIPMAP, TEXTURE_FILTER_2X);  // !!!!!!
     }
     
-    for(unsigned int i = 0; i < object->materials.size(); ++i){
+    for(unsigned int i = 0; i < object->materialsSize(); ++i){
         object->buildMaterial(i, NULL);
-        object->materials[i].program = ShaderHelper::createProgram("vertex.glsl", "fragment.glsl", programBindAttributes, NULL);
-        object->materials[i].materialDrawCalback = materialDrawCallback;
+        object->SetMaterialProgram(i, ShaderHelper::createProgram("vertex.glsl", "fragment.glsl", programBindAttributes, NULL));
+        object->SetMaterialCallback(i, materialDrawCallback);
     }
     
     return true;
@@ -109,7 +109,7 @@ void SRGraphics::Draw ( SRContext *context ){
     glClearColor(0.0f, 0.3f, 0.0f, 1.0f);
     glClear( GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT );
 
-    for(unsigned int i = 0; i < object->meshes.size(); ++i){
+    for(unsigned int i = 0; i < object->meshesSize(); ++i){
         object->drawMesh(i);
     }
 
