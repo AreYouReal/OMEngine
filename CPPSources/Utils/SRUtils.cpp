@@ -161,7 +161,7 @@ void logMessage(const char *formatString, ...){
 #pragma mark FILE RELATED
 srFile  *fileOpen       ( void *ioContext, const char *fileName ){
     srFile *pFile = NULL;
-    logMessage("File open start");
+//    logMessage("File open start");
     
 #ifdef ANDROID
     if ( ioContext != NULL ){
@@ -176,7 +176,7 @@ srFile  *fileOpen       ( void *ioContext, const char *fileName ){
 #endif
     pFile = fopen ( fileName, "rb" );
 #endif
-    logMessage("FILE OPEN");
+//    logMessage("FILE OPEN");
     return pFile;
 }
 
@@ -261,7 +261,7 @@ char* readTextFile( void *ioContext, const char *fileName){
     
     char* tempBuffer = new char[fSize + 1];
     int redBytes = fileRead ( fp, fSize, tempBuffer );
-    logMessage("RED BYTES: { %d / %d }", redBytes, fSize);
+//    logMessage("RED BYTES: { %d / %d }", redBytes, fSize);
     
     fileClose(fp);
     tempBuffer[fSize] = 0;

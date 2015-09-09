@@ -7,20 +7,16 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>C7C12A78-4210-4EF6-B018-C88EB6893C75</string>
 	<key>IDESourceControlProjectName</key>
-	<string>iOSSRE</string>
+	<string>project</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>69351E6436072E50241E7C98FFBEF34A85C0F63F</key>
-		<string>https://github.com/AreYouReal/WorxProjects.git</string>
 		<key>A623276CDE58E131A459AEF1A230F687A3938771</key>
 		<string>https://github.com/AreYouReal/SREngine.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Platforms/iOS/iOSSRE.xcodeproj</string>
+	<string>Platforms/iOS/iOSSRE.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>69351E6436072E50241E7C98FFBEF34A85C0F63F</key>
-		<string>../../../../../WorxProjects</string>
 		<key>A623276CDE58E131A459AEF1A230F687A3938771</key>
 		<string>../../../..</string>
 	</dict>
@@ -39,14 +35,6 @@
 			<string>A623276CDE58E131A459AEF1A230F687A3938771</string>
 			<key>IDESourceControlWCCName</key>
 			<string>SREngine</string>
-		</dict>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.git</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>69351E6436072E50241E7C98FFBEF34A85C0F63F</string>
-			<key>IDESourceControlWCCName</key>
-			<string>WorxProjects</string>
 		</dict>
 	</array>
 </dict>

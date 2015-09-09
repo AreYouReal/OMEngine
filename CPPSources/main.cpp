@@ -3,11 +3,7 @@
 #include "obj.h"
 #include "Texture.h"
 
-typedef struct{
-    GLuint programObject;
-    ShaderProgram* program;
-} UserData;
-
+typedef struct{ } UserData;
 
 static SRContext       *appContext;
 
@@ -18,7 +14,7 @@ v3d lightPosition(0.0f, 0.0f, 0.0f);
 
 v3d bve;
 
-Obj     *object;
+std::shared_ptr<Obj>     object;
 
 int rotateAngel = 0;
 m4d rotateObjMatrix;
@@ -76,7 +72,7 @@ int SRGraphics::Init ( SRContext *context ){
     
     appContext = context;
     
-    object = new Obj("scene.obj");
+    object = std::shared_ptr<Obj>(new Obj("scene.obj"));
     
     for(unsigned int i = 0; i < object->meshesSize(); ++i){
             object->buildMesh(i);
@@ -103,6 +99,10 @@ int SRGraphics::Init ( SRContext *context ){
 // Draw a triangle using the shader pair created in Init()
 //
 void SRGraphics::Draw ( SRContext *context ){
+#ifdef ANDROID
+//    logMessage("%d, %d, %d, %d, %d\n", context->eglNativeDisplay, context->eglNativeWindow, context->eglDisplay, context->eglContext, context->eglSurface );
+    if(!context->eglDisplay) return;
+#endif
 
     calculateMatrices(context->width, context->height);
 
@@ -119,11 +119,7 @@ void SRGraphics::Draw ( SRContext *context ){
 
 
 void SRGraphics::Shutdown ( SRContext *context ){
-    if(object) delete object;
-    logMessage("ShutDown function\n");
-    UserData *userData = (UserData*)context->userData;
-
-   glDeleteProgram ( userData->program->ID );
+//    logMessage("ShutDown function\n");
 }
 
 int startX, startY;

@@ -14,7 +14,6 @@ enum{ TEXTURE_FILTER_0X = 0,
 
 struct Texture{
     Texture(void* context, const char* filename);
-    ~Texture();
     
     void generateID(unsigned int flags, unsigned char filter);
     

@@ -10,13 +10,9 @@ Texture::Texture(void* context, const char* filename){
     byte = 4;
     format = GL_RGBA;
     target = GL_TEXTURE_2D;
-    logMessage("%d, %d\n", width, height);
     ID = 0;
 }
 
-Texture::~Texture(){
-    logMessage("Texture destructor\n");
-}
 
 void Texture::generateID(unsigned int flags, unsigned char filter){
     if(ID) glDeleteTextures( 1, &ID );

@@ -284,7 +284,7 @@ void Obj::buildVBOMesh(unsigned int meshIndex){
     glBufferData(GL_ARRAY_BUFFER, mesh->size, vertexStart, GL_STATIC_DRAW);
     free(vertexStart);
     
-    logMessage("Mesh vertices vbo:  ARRAY  %d\n", mesh->vbo);
+//    logMessage("Mesh vertices vbo:  ARRAY  %d\n", mesh->vbo);
     
     unsigned int offset = 0;
     mesh->offset[0] = offset;
@@ -303,7 +303,7 @@ void Obj::buildVBOMesh(unsigned int meshIndex){
         glGenBuffers(1, &mesh->tLists[i].vbo);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh->tLists[i].vbo);
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, mesh->tLists[i].indices.size() * sizeof(unsigned short), &mesh->tLists[i].indices[0], GL_STATIC_DRAW);
-        logMessage("tList VBO: %d\n", mesh->tLists[i].vbo);
+//        logMessage("tList VBO: %d\n", mesh->tLists[i].vbo);
     }
 }
 
@@ -322,7 +322,7 @@ void Obj::loadMaterial(const char *filename){
     while(line){
         if(!line[0] || line[0] == '#' ){ line = strtok( NULL, "\n" ); continue;
         }else if( sscanf(line, "newmtl %s", str) == 1){
-            logMessage("newmtl line %s", str);
+//            logMessage("newmtl line %s", str);
 
             materials.push_back(ObjMaterial());
             mat = &materials.back();

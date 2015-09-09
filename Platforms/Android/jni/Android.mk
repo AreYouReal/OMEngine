@@ -18,6 +18,7 @@ LOCAL_SRC_FILES := $(LOCAL_PATH)/esUtil_Android.cpp \
 				   $(SRC_PATH)/CPPSources/Math/v3d.cpp \
 				   $(SRC_PATH)/CPPSources/Math/q4d.cpp \
 				   $(SRC_PATH)/CPPSources/Utils/OBJ/obj.cpp \
+				   $(SRC_PATH)/CPPSources/Utils/OBJ/ObjMesh.cpp \
 				   $(SRC_PATH)/CPPSources/Utils/Texture.cpp
 
 LOCAL_C_INCLUDES	:= $(SRC_PATH) \
