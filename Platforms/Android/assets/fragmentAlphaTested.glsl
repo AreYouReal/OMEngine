@@ -9,5 +9,10 @@ in lowp     vec3 lightColor;
 in mediump  vec3 texCoord;
 
 void main(){
-    fragColor = texture( Diffuse, texCoord.xy) * vec4(lightColor, 1.0);
+    lowp vec4 diffuseColor = texture( Diffuse, texCoord.xy );
+    
+    if( diffuseColor.a < 0.5 ) discard;
+    else fragColor = diffuseColor;
+    
+    fragColor *= vec4(lightColor, 1.0);
 }

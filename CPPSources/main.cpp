@@ -92,7 +92,7 @@ int SRGraphics::Init ( SRContext *context ){
     
     for(unsigned int i = 0; i < object->materialsSize(); ++i){
         object->buildMaterial(i, NULL);
-        object->SetMaterialProgram(i, ShaderHelper::createProgram("vertex.glsl", "fragment.glsl", programBindAttributes, NULL));
+        object->SetMaterialProgram(i, programBindAttributes);
         object->SetMaterialCallback(i, materialDrawCallback);
     }
     

@@ -26,8 +26,14 @@ struct Obj{
     void         generateTextureID(unsigned int textureIndex, unsigned int flags, unsigned int filter){
         textures[textureIndex].generateID(flags, filter);
     }
-    void        SetMaterialProgram(unsigned int matIndex, std::shared_ptr<ShaderProgram> program){
-        materials[matIndex].program = program;
+    void        SetMaterialProgram(unsigned int matIndex, BindAttribCallback bindCallback){
+        float matDissolve = materials[matIndex].dissolve;
+        if(matDissolve == 0.0f){
+            materials[matIndex].program = ShaderHelper::createProgram("vertex.glsl", "fragmentAlphaTested.glsl", bindCallback, NULL);
+        }else if(matDissolve == 1.0f){
+            materials[matIndex].program = ShaderHelper::createProgram("vertex.glsl", "fragmentSolid.glsl", bindCallback, NULL);
+        }else
+            materials[matIndex].program = ShaderHelper::createProgram("vertex.glsl", "fragmentTransparent.glsl", bindCallback, NULL);
     }
     
     void        SetMaterialCallback(unsigned int matIndex, DrawCallback callback){
