@@ -7,6 +7,8 @@
 #include "ShaderHelper.h"
 #include "Texture.h"
 
+enum RenderObjectType{ SOLID, ALPHA_TESTED, TRANSPARENT };
+
 struct Obj{
 
 // Cons(des)tructor
@@ -18,7 +20,6 @@ struct Obj{
     
 // Material related
     void buildMaterial(unsigned int matIndex, std::shared_ptr<ShaderProgram> program);
-    void drawMaterial(ObjMaterial *mat);
     
     unsigned int materialsSize(){ return materials.size();  }
     unsigned int meshesSize()   { return meshes.size();     }
@@ -38,6 +39,19 @@ struct Obj{
     
     void        SetMaterialCallback(unsigned int matIndex, DrawCallback callback){
         materials[matIndex].materialDrawCalback = callback;
+    }
+    
+    RenderObjectType renderObjectType(unsigned int meshIndex){
+        ObjMesh *mesh = &meshes[meshIndex];
+        if(mesh->currentMaterial){
+            float dissolve = mesh->currentMaterial->dissolve;
+            if(dissolve == 0.0f){
+                return ALPHA_TESTED;
+            }else if(dissolve == 1.0f){
+                return SOLID;
+            }else return TRANSPARENT;
+        }
+        return SOLID;
     }
     
 

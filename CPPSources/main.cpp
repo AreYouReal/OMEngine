@@ -43,8 +43,8 @@ void materialDrawCallback(void *ptr){
 }
 
 void calculateMatrices(float width, float height){
-    v3d eye(0.0f, -6.0f, 1.35f);
-    v3d lookAt(0.0f, -5.0f, 1.35f);
+    v3d eye(0.0f, -3.0f, 1.35f);
+    v3d lookAt(0.0f, -1.0f, 1.35f);
     v3d up(0.0f, 0.0f, 1.0f);
     rotateObjMatrix = m4d::rotate(rotateAngel, 0, 0, 1); // * m4d::rotate(rotateAngel, 1, 0, 0);
     
@@ -67,8 +67,6 @@ int SRGraphics::Init ( SRContext *context ){
     glEnable( GL_DEPTH_TEST );
     glEnable( GL_CULL_FACE  );
     glEnable(GL_TEXTURE_2D);
-//    glEnable(GL_BLEND);
-//    glBlendFunc(GL_ONE, GL_SRC_COLOR);
     
     appContext = context;
     
@@ -109,8 +107,26 @@ void SRGraphics::Draw ( SRContext *context ){
     glClearColor(0.0f, 0.3f, 0.0f, 1.0f);
     glClear( GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT );
 
+    
+    // Solid objects goes here
     for(unsigned int i = 0; i < object->meshesSize(); ++i){
-        object->drawMesh(i);
+        if(object->renderObjectType(i) == SOLID) object->drawMesh(i);
+    }
+    
+    for(unsigned int i = 0; i < object->meshesSize(); ++i){
+        if(object->renderObjectType(i) == ALPHA_TESTED) object->drawMesh(i);
+    }
+    
+    for(unsigned int i = 0; i < object->meshesSize(); ++i){
+        if(object->renderObjectType(i) == TRANSPARENT){
+            glEnable(GL_BLEND);
+            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+            glCullFace(GL_FRONT);
+            object->drawMesh(i);
+            glCullFace(GL_BACK);
+            object->drawMesh(i);
+            glDisable(GL_BLEND);
+        }
     }
 
 //    object->drawMesh(0);
