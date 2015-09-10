@@ -113,12 +113,17 @@ void SRGraphics::Draw ( SRContext *context ){
         if(object->renderObjectType(i) == SOLID) object->drawMesh(i);
     }
     
-    for(unsigned int i = 0; i < object->meshesSize(); ++i){
-        if(object->renderObjectType(i) == ALPHA_TESTED) object->drawMesh(i);
-    }
+//    for(unsigned int i = 0; i < object->meshesSize(); ++i){
+//        if(object->renderObjectType(i) == ALPHA_TESTED){
+//            glCullFace(GL_FRONT);
+//            object->drawMesh(i);
+//            glCullFace(GL_BACK);
+//            object->drawMesh(i);
+//        }
+//    }
     
     for(unsigned int i = 0; i < object->meshesSize(); ++i){
-        if(object->renderObjectType(i) == TRANSPARENT){
+        if(object->renderObjectType(i) != TRANSPARENT){
             glEnable(GL_BLEND);
             glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
             glCullFace(GL_FRONT);
@@ -128,9 +133,6 @@ void SRGraphics::Draw ( SRContext *context ){
             glDisable(GL_BLEND);
         }
     }
-
-//    object->drawMesh(0);
-    
 }
 
 

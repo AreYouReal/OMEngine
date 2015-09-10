@@ -11,7 +11,7 @@ in mediump  vec3 texCoord;
 void main(){
     lowp vec4 diffuseColor = texture( Diffuse, texCoord.xy );
     
-    if( diffuseColor.a < 0.5 ) discard;
+    if( diffuseColor.a < 0.1 ) discard;
     else fragColor = diffuseColor;
     
     fragColor *= vec4(lightColor, 1.0);
