@@ -10,7 +10,7 @@ struct ObjTriangleIndex{ int vertexIndex[3], uvIndex[3]; };
 struct ObjTriangleList{
     std::vector<ObjTriangleIndex>   tIndices;
     std::vector<unsigned short>     indices;
-    ObjMaterial                     *material;  // Pointer to the material to use when draw this list.
+    std::shared_ptr<ObjMaterial>    material;  // Pointer to the material to use when draw this list.
     bool                            useUVs;     // True if triangle list is using UVs.
     int                             mode;       // Drawing mode (Default: GL_TRIANGLES).
     unsigned int                    vbo;
@@ -21,7 +21,6 @@ struct ObjVertexData{ int vIndex, uvIndex; };
 
 
 struct ObjMesh{
-    
     unsigned int draw();
     void setAttributes();
     
@@ -30,8 +29,8 @@ struct ObjMesh{
     bool                            visible;        // If true - it's visible.
     std::vector<ObjVertexData>      vertexData;     // All vertex data (vertex index & uv index)
     std::vector<ObjTriangleList>    tLists;         // Triangle lists...
-    ObjMaterial                     *material;      // Current object material.
-    
+    std::shared_ptr<ObjMaterial>    currentMaterial;
+
     v3d                             min;
     v3d                             max;
     v3d                             location;
@@ -43,8 +42,6 @@ struct ObjMesh{
     unsigned int                    size;            // Total size of the vertex data array in bytes.
     unsigned int                    offset[ 5 ];     // The VBO offset(????)
     unsigned int                    vao;             // The VAO ID maintaned by GLES
-    
-    ObjMaterial                     *currentMaterial;
     
     // Helpers
     void            addVertexData(ObjTriangleList *otl, int vIndex, int uvIndex);

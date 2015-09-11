@@ -54,7 +54,7 @@ struct ObjMaterial{
     std::string mapDisp;              // The displacement....
     std::string mapBump;              // The bump map(aka Normal Map)
     
-    Texture *tAmbient, *tDiffuse, *tSpecular, *tTranslucency, *tDisp, *tBump;
+    std::shared_ptr<Texture> tAmbient, tDiffuse, tSpecular, tTranslucency, tDisp, tBump;
     std::shared_ptr<ShaderProgram>  program;
     DrawCallback    *materialDrawCalback;
 };

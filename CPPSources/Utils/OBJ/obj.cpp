@@ -1,17 +1,8 @@
-//
-//  obj.cpp
-//  iOSSRE
-//
-//  Created by Alexander Kolesnikov on 31/07/2015.
-//  Copyright (c) 2015 Daniel Ginsburg. All rights reserved.
-//
-
 #include "obj.h"
 #include "main.h"
 
 Obj::Obj(const char* fileName){
-    Stopwatch stopwatch;
-    
+
     unsigned char* objSource = readOBJFromFile(SRGraphics::getAppContext(), fileName);
 #pragma warning throw exception here
     if(!objSource) return;
@@ -73,8 +64,6 @@ Obj::Obj(const char* fileName){
     if(objSource) delete [] objSource;
     
     builNormalsAndTangents();
-
-    logMessage("Elapsed Time: %f", stopwatch.elapsedTime());
 }
 
 
@@ -313,7 +302,7 @@ void Obj::loadMaterial(const char *filename){
     
     if(!objSource) return;
     
-    ObjMaterial *mat = NULL;
+    std::shared_ptr<ObjMaterial> mat = NULL;
     char *line = strtok((char*)objSource, "\n"),
                  str[255] = {""};
     
@@ -324,8 +313,8 @@ void Obj::loadMaterial(const char *filename){
         }else if( sscanf(line, "newmtl %s", str) == 1){
 //            logMessage("newmtl line %s", str);
 
-            materials.push_back(ObjMaterial());
-            mat = &materials.back();
+            materials.push_back(std::shared_ptr<ObjMaterial>(new ObjMaterial()));
+            mat = materials.back();
             mat->name = str;
         }else if(sscanf(line, "Ka %f %f %f", &v.x, &v.y, &v.z) == 3){
             memcpy(&mat->ambient, &v, sizeof(v3d));
@@ -381,22 +370,22 @@ void Obj::loadMaterial(const char *filename){
 
 void Obj::addTexture(const char *filename){
     if(getTextureIndex(filename) < 0){
-        textures.push_back(Texture(SRGraphics::getAppContext(), filename));
+        textures.push_back(std::shared_ptr<Texture>(new Texture(SRGraphics::getAppContext(), filename)));
     }
 }
 
 int Obj::getTextureIndex(const char *filename){
     for(unsigned int i = 0; i < textures.size(); ++i){
-        if( !strcmp(textures[i].filename.c_str(), filename) ) return i;
+        if( !strcmp(textures[i]->filename.c_str(), filename) ) return i;
     }
     return -1;
 }
 
-ObjMaterial* Obj::getMaterial(const char *name){
-    ObjMaterial *mat = nullptr;
+std::shared_ptr<ObjMaterial> Obj::getMaterial(const char *name){
+    std::shared_ptr<ObjMaterial> mat = nullptr;
     for(unsigned int i = 0; i < materials.size(); ++i){
-        if(!strcmp(materials[i].name.c_str(), name)){
-            mat = &materials[i];
+        if(!strcmp(materials[i]->name.c_str(), name)){
+            mat = materials[i];
             break;
         }
     }
@@ -404,38 +393,38 @@ ObjMaterial* Obj::getMaterial(const char *name){
 }
 
 void Obj::buildMaterial(unsigned int matIndex, std::shared_ptr<ShaderProgram> program){
-    ObjMaterial *mat = &materials[matIndex];
+    std::shared_ptr<ObjMaterial> mat = materials[matIndex];
 
     if(textures.size() > 0){
         int index;
         if(mat->mapAmbient[0]){
             index = getTextureIndex(mat->mapAmbient.c_str());
-            if(index >= 0) mat->tAmbient = &textures[index];
+            if(index >= 0) mat->tAmbient = textures[index];
         }
         
         if(mat->mapDiffuse[0]){
             index = getTextureIndex(mat->mapDiffuse.c_str());
-            if(index >= 0) mat->tDiffuse = &textures[index];
+            if(index >= 0) mat->tDiffuse = textures[index];
         }
         
         if(mat->mapSpecular[0]){
             index = getTextureIndex(mat->mapSpecular.c_str());
-            if(index >= 0) mat->tSpecular = &textures[index];
+            if(index >= 0) mat->tSpecular = textures[index];
         }
         
         if(mat->mapTranslucency[0]){
             index = getTextureIndex(mat->mapTranslucency.c_str());
-            if(index >= 0) mat->tTranslucency = &textures[index];
+            if(index >= 0) mat->tTranslucency = textures[index];
         }
         
         if(mat->mapDisp[0]){
             index = getTextureIndex(mat->mapDisp.c_str());
-            if(index >= 0) mat->tDisp = &textures[index];
+            if(index >= 0) mat->tDisp = textures[index];
         }
         
         if(mat->mapBump[0]){
             index = getTextureIndex(mat->mapBump.c_str());
-            if(index >= 0) mat->tBump = &textures[index];
+            if(index >= 0) mat->tBump = textures[index];
         }        
     }
     if(program) mat->program = program;

@@ -25,20 +25,20 @@ struct Obj{
     unsigned int meshesSize()   { return meshes.size();     }
     unsigned int texturesSize() { return textures.size();   }
     void         generateTextureID(unsigned int textureIndex, unsigned int flags, unsigned int filter){
-        textures[textureIndex].generateID(flags, filter);
+        textures[textureIndex]->generateID(flags, filter);
     }
     void        SetMaterialProgram(unsigned int matIndex, BindAttribCallback bindCallback){
-        float matDissolve = materials[matIndex].dissolve;
+        float matDissolve = materials[matIndex]->dissolve;
         if(matDissolve == 0.0f){
-            materials[matIndex].program = ShaderHelper::createProgram("vertex.glsl", "fragmentAlphaTested.glsl", bindCallback, NULL);
+            materials[matIndex]->program = ShaderHelper::createProgram("vertex.glsl", "fragmentAlphaTested.glsl", bindCallback, NULL);
         }else if(matDissolve == 1.0f){
-            materials[matIndex].program = ShaderHelper::createProgram("vertex.glsl", "fragmentSolid.glsl", bindCallback, NULL);
+            materials[matIndex]->program = ShaderHelper::createProgram("vertex.glsl", "fragmentSolid.glsl", bindCallback, NULL);
         }else
-            materials[matIndex].program = ShaderHelper::createProgram("vertex.glsl", "fragmentTransparent.glsl", bindCallback, NULL);
+            materials[matIndex]->program = ShaderHelper::createProgram("vertex.glsl", "fragmentTransparent.glsl", bindCallback, NULL);
     }
     
     void        SetMaterialCallback(unsigned int matIndex, DrawCallback callback){
-        materials[matIndex].materialDrawCalback = callback;
+        materials[matIndex]->materialDrawCalback = callback;
     }
     
     RenderObjectType renderObjectType(unsigned int meshIndex){
@@ -62,9 +62,9 @@ private:
     
     std::vector<ObjMesh> meshes;
     
-    std::vector<ObjMaterial>    materials;
-    std::vector<Texture>        textures;
-    std::vector<ShaderProgram>  programs;
+    std::vector<std::shared_ptr<ObjMaterial>>    materials;
+    std::vector<std::shared_ptr<Texture>>        textures;
+    std::vector<std::shared_ptr<ShaderProgram>>  programs;
     
     std::vector<v3d>            vertices;
     std::vector<v3d>            normals;
@@ -84,7 +84,7 @@ private:
     void    loadMaterial(const char* filename);
     void    addTexture(const char* filename);
     int     getTextureIndex(const char* filename);
-    ObjMaterial *getMaterial(const char* name);
+    std::shared_ptr<ObjMaterial> getMaterial(const char* name);
     
 // Mesh related
     void updateBoundMesh(unsigned int meshIndex);
