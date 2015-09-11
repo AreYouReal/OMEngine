@@ -1,10 +1,12 @@
 #pragma once
 #include <ctime>
+#include "SRUtils.h"
 
 struct Stopwatch{
     Stopwatch(){ start = std::clock(); }
     ~Stopwatch(){ }
-    double elapsedTime(){ return double(std::clock() - start) / CLOCKS_PER_SEC; }
+    float elapsedTime(){ return float(std::clock() - start) / CLOCKS_PER_SEC; }
+    float fps(){ return 1.0f / elapsedTime(); }
     
 private:
     clock_t start;

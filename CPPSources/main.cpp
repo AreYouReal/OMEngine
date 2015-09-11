@@ -10,7 +10,7 @@ static SRContext       *appContext;
 m4d ModelViewMatrix;
 m4d ProjectionMatrix;
 m4d NormalMatrix;
-v3d lightPosition(0.0f, 0.0f, 0.0f);
+v3d lightPosition(0.0f, 0.0f, 3.0f);
 
 v3d bve;
 
@@ -21,23 +21,35 @@ m4d rotateObjMatrix;
 
 void programBindAttributes(void *ptr){
     ShaderProgram *program = (ShaderProgram*) ptr;
-    glBindAttribLocation(program->ID, 0, "vPosition");
-    glBindAttribLocation(program->ID, 1, "vNormal");
-    glBindAttribLocation(program->ID, 2, "vTexCoord");
+    glBindAttribLocation(program->ID, 0, "aPosition");
+    glBindAttribLocation(program->ID, 1, "aNormal");
+    glBindAttribLocation(program->ID, 2, "aTexCoord");
 }
 
 void materialDrawCallback(void *ptr){
     ObjMaterial *mat = (ObjMaterial *)ptr;
     ShaderProgram *program = mat->program.get();
     for(unsigned short i = 0; i < program->uniformCount; ++i){
-        if(!strcmp(program->uniformArray[i].name.c_str(), "Diffuse")){
+        if(!strcmp(program->uniformArray[i].name.c_str(), "uSamplerDiffuse")){
             glUniform1i(program->uniformArray[i].location, 1);
-        }else if(!strcmp(program->uniformArray[i].name.c_str(), "modelViewM")){
+        }else if(!strcmp(program->uniformArray[i].name.c_str(), "uModelViewM")){
             glUniformMatrix4fv(program->uniformArray[i].location, 1, GL_TRUE, ModelViewMatrix.pointer());
-        }else if(!strcmp(program->uniformArray[i].name.c_str(), "projectionM")){
+        }else if(!strcmp(program->uniformArray[i].name.c_str(), "uProjectionM")){
             glUniformMatrix4fv(program->uniformArray[i].location, 1, GL_TRUE, ProjectionMatrix.pointer());
-        }else if(!strcmp(program->uniformArray[i].name.c_str(), "normalM")){
+        }else if(!strcmp(program->uniformArray[i].name.c_str(), "uNormalM")){
             glUniformMatrix4fv(program->uniformArray[i].location, 1, GL_TRUE, NormalMatrix.pointer());
+        }else if(!strcmp(program->uniformArray[i].name.c_str(), "uDissolve")){
+            glUniform1f(program->uniformArray[i].location, mat->dissolve);
+        }else if(!strcmp(program->uniformArray[i].name.c_str(), "uAmbient")){
+            glUniform3fv(program->uniformArray[i].location, 1, &mat->ambient.x);
+        }else if(!strcmp(program->uniformArray[i].name.c_str(), "uDiffuse")){
+            glUniform3fv(program->uniformArray[i].location, 1, &mat->diffuse.x);
+        }else if(!strcmp(program->uniformArray[i].name.c_str(), "uSpecular")){
+            glUniform3fv(program->uniformArray[i].location, 1, &mat->specular.x);
+        }else if(!strcmp(program->uniformArray[i].name.c_str(), "uShininess")){
+            glUniform1f(program->uniformArray[i].location, mat->specularExponent);
+        }else if(!strcmp(program->uniformArray[i].name.c_str(), "uLightPos")){
+             glUniform3fv(program->uniformArray[i].location, 1, &lightPosition.x);
         }
     }
 }
@@ -77,8 +89,6 @@ int SRGraphics::Init ( SRContext *context ){
         // Free object mesh data if needed here
     }
     
-
-    
     for(unsigned int i = 0; i < object->texturesSize(); ++i){
         object->generateTextureID(i, 0, 0);
 //        object->textures[i].generateID(TEXTURE_MIPMAP, TEXTURE_FILTER_2X);  // !!!!!!
@@ -97,6 +107,8 @@ int SRGraphics::Init ( SRContext *context ){
 // Draw a triangle using the shader pair created in Init()
 //
 void SRGraphics::Draw ( SRContext *context ){
+//    Stopwatch drawTimer;
+    
 #ifdef ANDROID
 //    logMessage("%d, %d, %d, %d, %d\n", context->eglNativeDisplay, context->eglNativeWindow, context->eglDisplay, context->eglContext, context->eglSurface );
     if(!context->eglDisplay) return;
@@ -112,18 +124,18 @@ void SRGraphics::Draw ( SRContext *context ){
     for(unsigned int i = 0; i < object->meshesSize(); ++i){
         if(object->renderObjectType(i) == SOLID) object->drawMesh(i);
     }
-    
-//    for(unsigned int i = 0; i < object->meshesSize(); ++i){
-//        if(object->renderObjectType(i) == ALPHA_TESTED){
-//            glCullFace(GL_FRONT);
-//            object->drawMesh(i);
-//            glCullFace(GL_BACK);
-//            object->drawMesh(i);
-//        }
-//    }
-    
+//
+////    for(unsigned int i = 0; i < object->meshesSize(); ++i){
+////        if(object->renderObjectType(i) == ALPHA_TESTED){
+////            glCullFace(GL_FRONT);
+////            object->drawMesh(i);
+////            glCullFace(GL_BACK);
+////            object->drawMesh(i);
+////        }
+////    }
+//    
     for(unsigned int i = 0; i < object->meshesSize(); ++i){
-        if(object->renderObjectType(i) != TRANSPARENT){
+        if(object->renderObjectType(i) != SOLID){
             glEnable(GL_BLEND);
             glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
             glCullFace(GL_FRONT);
@@ -133,6 +145,7 @@ void SRGraphics::Draw ( SRContext *context ){
             glDisable(GL_BLEND);
         }
     }
+//    logMessage("FPS: %f", drawTimer.fps());
 }
 
 

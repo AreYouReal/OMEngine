@@ -1,26 +1,22 @@
 #version 300 es
 
-uniform mediump mat4 modelViewM;
-uniform mediump mat4 projectionM;
-uniform mediump mat4 normalM;
+uniform mediump mat4 uModelViewM;
+uniform mediump mat4 uProjectionM;
+uniform mediump mat4 uNormalM;
 
-uniform mediump vec3 lightPos;
+layout(location = 0) in vec4 aPosition;
+layout(location = 1) in vec4 aNormal;
+layout(location = 2) in vec3 aTexCoord;
 
-layout(location = 0) in vec4 vPosition;
-layout(location = 1) in vec4 vNormal;
-layout(location = 2) in vec3 vTexCoord;
-
-out lowp    vec3 lightColor;
 out mediump vec3 texCoord;
+out mediump vec3 position;
+out mediump vec3 normal;
 
 void main(){
-    mediump vec3 position =  vec3(modelViewM * vPosition);
-    mediump vec3 normal = normalize(vec3(normalM * vNormal));
-    mediump vec3 lightDirection = normalize(lightPos - position);
+    position =  vec3(uModelViewM * aPosition);
+    normal = normalize(vec3(uNormalM * aNormal));
     
-    lowp float ndotl = max(dot(normal, lightDirection), 0.0);
-    lightColor = ndotl * vec3(1.0, 1.0, 1.0); // White color - hard code for now
-    gl_Position = projectionM * vec4(position, 1.0);
+    gl_Position = uProjectionM * vec4(position, 1.0);
     
-    texCoord = vTexCoord;
+    texCoord = aTexCoord;
 }
