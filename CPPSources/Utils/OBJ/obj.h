@@ -42,7 +42,7 @@ struct Obj{
     }
     
     RenderObjectType renderObjectType(unsigned int meshIndex){
-        ObjMesh *mesh = &meshes[meshIndex];
+        std::shared_ptr<ObjMesh> mesh = meshes[meshIndex];
         if(mesh->currentMaterial){
             float dissolve = mesh->currentMaterial->dissolve;
             if(dissolve == 0.0f){
@@ -60,7 +60,7 @@ private:
     std::string     texturePath;    // The texture path (relative to the .mtl file)
     std::string     programPath;    // The shader program path ( relative to the .mtl file)
     
-    std::vector<ObjMesh> meshes;
+    std::vector<std::shared_ptr<ObjMesh>> meshes;
     
     std::vector<std::shared_ptr<ObjMaterial>>    materials;
     std::vector<std::shared_ptr<Texture>>        textures;
@@ -75,7 +75,7 @@ private:
 
     
 // Static
-    void addMesh(ObjMesh **mesh, ObjTriangleList **tList, char* name, char* usemtl, bool useUVs);
+    void addMesh(std::shared_ptr<ObjMesh> &mesh, ObjTriangleList **tList, char* name, char* usemtl, bool useUVs);
     void builNormalsAndTangents();
     
     static void readIndices(const char* line, int v[], int n[], int uv[], bool &useUVs);

@@ -7,7 +7,7 @@ Obj::Obj(const char* fileName){
 #pragma warning throw exception here
     if(!objSource) return;
     
-    ObjMesh* currentMesh = nullptr;
+    std::shared_ptr<ObjMesh> currentMesh = nullptr;
     ObjTriangleList* currentTList = nullptr;
     
     v3d v;
@@ -25,7 +25,7 @@ Obj::Obj(const char* fileName){
         }else if( line[0] == 'f' && line[1] == ' '){    // Read face indices...
             bool useUVs; int vertexIndex[3]  = {0, 0, 0}, normalIndex[3] = {0, 0, 0}, uvIndex[3] = {0, 0, 0};
             Obj::readIndices(line, vertexIndex, normalIndex, uvIndex, useUVs);
-            if( last != 'f') addMesh(&currentMesh, &currentTList, name, usemtl, useUVs);
+            if( last != 'f') addMesh(currentMesh, &currentTList, name, usemtl, useUVs);
             --vertexIndex[0];--vertexIndex[1];--vertexIndex[2]; --uvIndex[0];--uvIndex[1];--uvIndex[2];             // Why? Because vertexIndex in obj file starts from 1! We count from 0...
             for(unsigned short i = 0; i < 3; ++i) currentMesh->addVertexData(currentTList, vertexIndex[i], uvIndex[i]);
             currentTList->tIndices.push_back(ObjTriangleIndex());
@@ -85,17 +85,17 @@ void Obj::readIndices(const char* line, int v[], int n[], int uv[], bool &useUVs
     }
 }
 
-void Obj::addMesh(ObjMesh **mesh, ObjTriangleList **tList, char* name, char* usemtl, bool useUVs){
+void Obj::addMesh(std::shared_ptr<ObjMesh> &mesh, ObjTriangleList **tList, char* name, char* usemtl, bool useUVs){
     logMessage("Add new mesh to OBJ");
-    meshes.push_back(ObjMesh());
-    ObjMesh *tempMesh = *mesh = &meshes.back();
-    tempMesh->visible = true;
-    if(name[0]) tempMesh->name = name;
-    else if(usemtl[0]) tempMesh->name = name;
+    meshes.push_back(std::shared_ptr<ObjMesh>(new ObjMesh()));
+    mesh = meshes.back();
+    mesh->visible = true;
+    if(name[0]) mesh->name = name;
+    else if(usemtl[0]) mesh->name = name;
     //if( group[ 0 ] ) strcpy( objmesh->group, group );
     //objmesh->use_smooth_normals = use_smooth_normals;
-    tempMesh->tLists.push_back(ObjTriangleList());
-    ObjTriangleList *tempList = *tList = &tempMesh->tLists.back();
+    mesh->tLists.push_back(ObjTriangleList());
+    ObjTriangleList *tempList = *tList = &mesh->tLists.back();
     
     tempList->mode = GL_TRIANGLES;
     if(useUVs) tempList->useUVs = useUVs;
@@ -123,7 +123,7 @@ void ObjMesh::addVertexData(ObjTriangleList *otl, int vIndex, int uvIndex){
 
 void Obj::builNormalsAndTangents(){
     for(unsigned int i = 0; i < meshes.size(); ++i){
-        ObjMesh *mesh = &meshes[i];
+        std::shared_ptr<ObjMesh> mesh = meshes[i];
         for(unsigned int j = 0; j < mesh->tLists.size(); ++j){
             ObjTriangleList *list = &mesh->tLists[j];
             for(unsigned int k = 0; k < list->tIndices.size(); ++k){
@@ -156,11 +156,11 @@ void Obj::builNormalsAndTangents(){
         
     unsigned int index;
     for(unsigned int i = 0; i < meshes.size(); ++i){
-        for(unsigned int j = 0; j < meshes[i].vertexData.size(); ++j){
-            index = meshes[i].vertexData[j].vIndex;
+        for(unsigned int j = 0; j < meshes[i]->vertexData.size(); ++j){
+            index = meshes[i]->vertexData[j].vIndex;
                 
             normals[index] = v3d::normalize(normals[index]);
-            if(meshes[i].vertexData[j].uvIndex != -1){
+            if(meshes[i]->vertexData[j].uvIndex != -1){
                 tangents[index] = v3d::normalize(tangents[index]);
             }
                 
@@ -173,7 +173,7 @@ void Obj::builNormalsAndTangents(){
 void Obj::buildMesh(unsigned int meshIndex){
     updateBoundMesh(meshIndex);
     buildVBOMesh(meshIndex);
-    ObjMesh *mesh = &meshes[meshIndex];
+    std::shared_ptr<ObjMesh> mesh = meshes[meshIndex];
 
     glGenVertexArrays(1, &mesh->vao);
     glBindVertexArray(mesh->vao);
@@ -188,13 +188,12 @@ void Obj::buildMesh(unsigned int meshIndex){
 }
 
 unsigned int Obj::drawMesh(unsigned int meshIndex){
-    ObjMesh *mesh = &meshes[meshIndex];
-    return mesh->draw();
+    return meshes[meshIndex]->draw();
 }
 
 
 void Obj::updateBoundMesh(unsigned int meshIndex){
-    ObjMesh *mesh = &meshes[meshIndex];
+    std::shared_ptr<ObjMesh> mesh = meshes[meshIndex];
     
     mesh->min.x = mesh->min.y = mesh->min.z = 9999.99f;
     mesh->max.x = mesh->max.y = mesh->max.z = -9999.99f;
@@ -231,7 +230,7 @@ void Obj::updateMax(v3d &max, v3d &vertex){
 }
 
 void Obj::buildVBOMesh(unsigned int meshIndex){
-    ObjMesh *mesh = &meshes[meshIndex];
+    std::shared_ptr<ObjMesh> mesh = meshes[meshIndex];
     
     unsigned int v3dSize = sizeof(v3d);
     mesh->stride = v3dSize;

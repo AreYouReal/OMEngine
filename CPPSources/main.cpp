@@ -73,7 +73,7 @@ SRContext* SRGraphics::getAppContext(){
 ///
 // Initialize the shader and program object
 //
-int SRGraphics::Init ( SRContext *context ){
+int SRGraphics::Init ( SRContext *context ){   
     atexit(Exit);
     glViewport ( 0, 0, context->width, context->height );
     glEnable( GL_DEPTH_TEST );
@@ -107,6 +107,8 @@ int SRGraphics::Init ( SRContext *context ){
 // Draw a triangle using the shader pair created in Init()
 //
 void SRGraphics::Draw ( SRContext *context ){
+
+    
 //    Stopwatch drawTimer;
     
 #ifdef ANDROID
