@@ -9,15 +9,15 @@ unsigned int ObjMesh::draw(){
     else setAttributes();
     
     for(unsigned int i = 0; i < tLists.size(); ++i){
-        currentMaterial = tLists[i].material;
+        currentMaterial = tLists[i]->material;
         if(currentMaterial) currentMaterial->use();
         if(vao){
-            if(tLists.size() != 1) glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, tLists[i].vbo);
+            if(tLists.size() != 1) glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, tLists[i]->vbo);
         }else{
-            glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, tLists[i].vbo);
+            glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, tLists[i]->vbo);
         }
-        glDrawElements(tLists[i].mode, tLists[i].indices.size(), GL_UNSIGNED_SHORT, (void*)NULL);
-        n += tLists[i].indices.size();
+        glDrawElements(tLists[i]->mode, tLists[i]->indices.size(), GL_UNSIGNED_SHORT, (void*)NULL);
+        n += tLists[i]->indices.size();
     }
     return n;
 }

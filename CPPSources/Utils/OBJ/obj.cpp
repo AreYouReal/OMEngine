@@ -8,7 +8,7 @@ Obj::Obj(const char* fileName){
     if(!objSource) return;
     
     std::shared_ptr<ObjMesh> currentMesh = nullptr;
-    ObjTriangleList* currentTList = nullptr;
+    std::shared_ptr<ObjTriangleList> currentTList = nullptr;
     
     v3d v;
 
@@ -25,7 +25,7 @@ Obj::Obj(const char* fileName){
         }else if( line[0] == 'f' && line[1] == ' '){    // Read face indices...
             bool useUVs; int vertexIndex[3]  = {0, 0, 0}, normalIndex[3] = {0, 0, 0}, uvIndex[3] = {0, 0, 0};
             Obj::readIndices(line, vertexIndex, normalIndex, uvIndex, useUVs);
-            if( last != 'f') addMesh(currentMesh, &currentTList, name, usemtl, useUVs);
+            if( last != 'f') addMesh(currentMesh, currentTList, name, usemtl, useUVs);
             --vertexIndex[0];--vertexIndex[1];--vertexIndex[2]; --uvIndex[0];--uvIndex[1];--uvIndex[2];             // Why? Because vertexIndex in obj file starts from 1! We count from 0...
             for(unsigned short i = 0; i < 3; ++i) currentMesh->addVertexData(currentTList, vertexIndex[i], uvIndex[i]);
             currentTList->tIndices.push_back(ObjTriangleIndex());
@@ -85,7 +85,7 @@ void Obj::readIndices(const char* line, int v[], int n[], int uv[], bool &useUVs
     }
 }
 
-void Obj::addMesh(std::shared_ptr<ObjMesh> &mesh, ObjTriangleList **tList, char* name, char* usemtl, bool useUVs){
+void Obj::addMesh(std::shared_ptr<ObjMesh> &mesh, std::shared_ptr<ObjTriangleList> &tList, char* name, char* usemtl, bool useUVs){
     logMessage("Add new mesh to OBJ");
     meshes.push_back(std::shared_ptr<ObjMesh>(new ObjMesh()));
     mesh = meshes.back();
@@ -94,17 +94,17 @@ void Obj::addMesh(std::shared_ptr<ObjMesh> &mesh, ObjTriangleList **tList, char*
     else if(usemtl[0]) mesh->name = name;
     //if( group[ 0 ] ) strcpy( objmesh->group, group );
     //objmesh->use_smooth_normals = use_smooth_normals;
-    mesh->tLists.push_back(ObjTriangleList());
-    ObjTriangleList *tempList = *tList = &mesh->tLists.back();
+    mesh->tLists.push_back(std::shared_ptr<ObjTriangleList>(new ObjTriangleList()));
+    tList = mesh->tLists.back();
     
-    tempList->mode = GL_TRIANGLES;
-    if(useUVs) tempList->useUVs = useUVs;
-    if(usemtl[0]) tempList->material = getMaterial(usemtl);
+    tList->mode = GL_TRIANGLES;
+    if(useUVs) tList->useUVs = useUVs;
+    if(usemtl[0]) tList->material = getMaterial(usemtl);
     name[0]     = 0;
     usemtl[0]   = 0;
 }
 
-void ObjMesh::addVertexData(ObjTriangleList *otl, int vIndex, int uvIndex){
+void ObjMesh::addVertexData(std::shared_ptr<ObjTriangleList> otl, int vIndex, int uvIndex){
     unsigned short index;
     for(index = 0; index < vertexData.size(); ++index){
         if(vIndex == vertexData[index].vIndex){
@@ -125,7 +125,7 @@ void Obj::builNormalsAndTangents(){
     for(unsigned int i = 0; i < meshes.size(); ++i){
         std::shared_ptr<ObjMesh> mesh = meshes[i];
         for(unsigned int j = 0; j < mesh->tLists.size(); ++j){
-            ObjTriangleList *list = &mesh->tLists[j];
+            std::shared_ptr<ObjTriangleList> list = mesh->tLists[j];
             for(unsigned int k = 0; k < list->tIndices.size(); ++k){
                 v3d v1, v2, normal;
                 v1 = vertices[list->tIndices[k].vertexIndex[0]] - vertices[list->tIndices[k].vertexIndex[1]];
@@ -181,7 +181,7 @@ void Obj::buildMesh(unsigned int meshIndex){
     mesh->setAttributes();
     
     if(mesh->tLists.size() == 1){
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh->tLists[0].vbo);
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh->tLists[0]->vbo);
     }
     
     glBindVertexArray(0);
@@ -288,9 +288,9 @@ void Obj::buildVBOMesh(unsigned int meshIndex){
     }
     
     for(unsigned int i = 0; i < mesh->tLists.size(); ++i){
-        glGenBuffers(1, &mesh->tLists[i].vbo);
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh->tLists[i].vbo);
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER, mesh->tLists[i].indices.size() * sizeof(unsigned short), &mesh->tLists[i].indices[0], GL_STATIC_DRAW);
+        glGenBuffers(1, &mesh->tLists[i]->vbo);
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh->tLists[i]->vbo);
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER, mesh->tLists[i]->indices.size() * sizeof(unsigned short), &mesh->tLists[i]->indices[0], GL_STATIC_DRAW);
 //        logMessage("tList VBO: %d\n", mesh->tLists[i].vbo);
     }
 }

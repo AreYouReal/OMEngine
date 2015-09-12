@@ -28,7 +28,7 @@ struct ObjMesh{
     std::string                     name;           // Mesh name.
     bool                            visible;        // If true - it's visible.
     std::vector<ObjVertexData>      vertexData;     // All vertex data (vertex index & uv index)
-    std::vector<ObjTriangleList>    tLists;         // Triangle lists...
+    std::vector<std::shared_ptr<ObjTriangleList>>    tLists;         // Triangle lists...
     std::shared_ptr<ObjMaterial>    currentMaterial;
 
     v3d                             min;
@@ -44,5 +44,5 @@ struct ObjMesh{
     unsigned int                    vao;             // The VAO ID maintaned by GLES
     
     // Helpers
-    void            addVertexData(ObjTriangleList *otl, int vIndex, int uvIndex);
+    void            addVertexData(std::shared_ptr<ObjTriangleList> otl, int vIndex, int uvIndex);
 };

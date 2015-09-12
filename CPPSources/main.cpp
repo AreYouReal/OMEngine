@@ -29,7 +29,7 @@ void programBindAttributes(void *ptr){
 void materialDrawCallback(void *ptr){
     ObjMaterial *mat = (ObjMaterial *)ptr;
     ShaderProgram *program = mat->program.get();
-    for(unsigned short i = 0; i < program->uniformCount; ++i){
+    for(unsigned short i = 0; i < program->uniformArray.size(); ++i){
         if(!strcmp(program->uniformArray[i].name.c_str(), "uSamplerDiffuse")){
             glUniform1i(program->uniformArray[i].location, 1);
         }else if(!strcmp(program->uniformArray[i].name.c_str(), "uModelViewM")){
@@ -73,7 +73,7 @@ SRContext* SRGraphics::getAppContext(){
 ///
 // Initialize the shader and program object
 //
-int SRGraphics::Init ( SRContext *context ){   
+int SRGraphics::Init ( SRContext *context ){
     atexit(Exit);
     glViewport ( 0, 0, context->width, context->height );
     glEnable( GL_DEPTH_TEST );
@@ -107,8 +107,6 @@ int SRGraphics::Init ( SRContext *context ){
 // Draw a triangle using the shader pair created in Init()
 //
 void SRGraphics::Draw ( SRContext *context ){
-
-    
 //    Stopwatch drawTimer;
     
 #ifdef ANDROID

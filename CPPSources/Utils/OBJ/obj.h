@@ -75,7 +75,7 @@ private:
 
     
 // Static
-    void addMesh(std::shared_ptr<ObjMesh> &mesh, ObjTriangleList **tList, char* name, char* usemtl, bool useUVs);
+    void addMesh(std::shared_ptr<ObjMesh> &mesh, std::shared_ptr<ObjTriangleList> &tList, char* name, char* usemtl, bool useUVs);
     void builNormalsAndTangents();
     
     static void readIndices(const char* line, int v[], int n[], int uv[], bool &useUVs);

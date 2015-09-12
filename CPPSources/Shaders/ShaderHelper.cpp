@@ -26,19 +26,17 @@ std::shared_ptr<ShaderProgram> ShaderHelper::createProgram(const char *vertexSha
         return NULL;
     }else{
         glGetProgramiv(program->ID, GL_ACTIVE_ATTRIBUTES, &total);
-        program->vertexAttribArray = new VertexAttrib[total];
-        program->vertexAttribCount = total;
+        program->attribArray = std::vector<VertexAttrib>(total);
         for(unsigned int i = 0; i < total; i++){
             glGetActiveAttrib(program->ID, i, buffSize, &len, &size, &type, name );
-            VertexAttrib &attrib = program->vertexAttribArray[i];
+            VertexAttrib &attrib = program->attribArray[i];
             attrib.location = glGetAttribLocation(program->ID, name);
             attrib.name = name;
             attrib.type = type;
         }
 
         glGetProgramiv(program->ID, GL_ACTIVE_UNIFORMS, &total);
-        program->uniformArray = new Uniform[total];
-        program->uniformCount = total;
+        program->uniformArray = std::vector<Uniform>(total);
         for(unsigned int i = 0; i < total; i++){
             glGetActiveUniform(program->ID, i, buffSize, &len, &size, &type, name);
             Uniform &uniform = program->uniformArray[i];

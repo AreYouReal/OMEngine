@@ -21,17 +21,17 @@ typedef void(DrawCallback(void*));
 typedef void(BindAttribCallback(void*));
 
 struct ShaderProgram{
-    std::string         name;
-    unsigned int        ID;
-    unsigned int        uniformCount;
-    Uniform             *uniformArray;
-    unsigned char       vertexAttribCount;
-    VertexAttrib        *vertexAttribArray;
+   
+     ~ShaderProgram();
+    
+    
+    std::string                 name;
+    unsigned int                ID;
+    std::vector<Uniform>        uniformArray;
+    std::vector<VertexAttrib>   attribArray;
     
     DrawCallback        *drawCallback;
     BindAttribCallback  *bindAttribCallback;
-    
-    ~ShaderProgram();
     
     void                use();
     int                 getVertexAttribLocation(const char* name);
