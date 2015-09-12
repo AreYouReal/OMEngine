@@ -21,9 +21,9 @@ struct Obj{
 // Material related
     void buildMaterial(unsigned int matIndex, std::shared_ptr<ShaderProgram> program);
     
-    unsigned int materialsSize(){ return materials.size();  }
-    unsigned int meshesSize()   { return meshes.size();     }
-    unsigned int texturesSize() { return textures.size();   }
+    unsigned int materialsSize(){ return (unsigned int)materials.size();  }
+    unsigned int meshesSize()   { return (unsigned int)meshes.size();     }
+    unsigned int texturesSize() { return (unsigned int)textures.size();   }
     void         generateTextureID(unsigned int textureIndex, unsigned int flags, unsigned int filter){
         textures[textureIndex]->generateID(flags, filter);
     }

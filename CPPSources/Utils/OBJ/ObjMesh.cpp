@@ -16,7 +16,7 @@ unsigned int ObjMesh::draw(){
         }else{
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, tLists[i]->vbo);
         }
-        glDrawElements(tLists[i]->mode, tLists[i]->indices.size(), GL_UNSIGNED_SHORT, (void*)NULL);
+        glDrawElements(tLists[i]->mode, (unsigned int)tLists[i]->indices.size(), GL_UNSIGNED_SHORT, (void*)NULL);
         n += tLists[i]->indices.size();
     }
     return n;

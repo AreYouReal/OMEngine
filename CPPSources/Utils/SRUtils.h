@@ -84,7 +84,7 @@ void logMessage(const char *formatString, ...);
 srFile *fileOpen ( void *ioContext, const char *fileName );
 long getFileSize( srFile *pFile );
 void fileClose ( srFile *pFile );
-int fileRead ( srFile *pFile, long bytesToRead, void *buffer );
+long fileRead ( srFile *pFile, long bytesToRead, void *buffer );
 
 std::unique_ptr<FileContent> readTextFile( void *ioContext, const char *fileName);
 std::unique_ptr<FileContent> readOBJFromFile(void *ioContext, const char *fileName);

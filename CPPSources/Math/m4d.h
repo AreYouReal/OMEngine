@@ -1,9 +1,5 @@
 #pragma once
 
-#warning remove from release
-#include <iostream>
-
-
 #include "v3d.h"
 
 struct m4d{

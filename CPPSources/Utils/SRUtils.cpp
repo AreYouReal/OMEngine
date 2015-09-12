@@ -202,8 +202,8 @@ void    fileClose       ( srFile *pFile ){
 #endif
     }
 }
-int     fileRead        ( srFile *pFile, long bytesToRead, void *buffer ){
-    int bytesRead = 0;
+long     fileRead        ( srFile *pFile, long bytesToRead, void *buffer ){
+    long bytesRead = 0;
     
     if ( pFile == NULL ) return bytesRead;
     
@@ -233,8 +233,8 @@ std::vector<unsigned char> loadPNG ( void *ioContext, const char *fileName, unsi
     size_t u2 = 1; while(u2 < width) u2 *= 2;
     size_t v2 = 1; while(v2 < height) v2 *= 2;
     // Ratio for power of two version compared to actual version, to render the non power of two image with proper size.
-    double u3 = (double)width / u2;
-    double v3 = (double)height / v2;
+//    double u3 = (double)width / u2;
+//    double v3 = (double)height / v2;
     // Make power of two version of the image.
     std::vector<unsigned char> image2(u2 * v2 * 4);
     for(size_t y = 0; y < height; y++)
@@ -260,7 +260,7 @@ std::unique_ptr<FileContent> readTextFile( void *ioContext, const char *fileName
     long fSize = getFileSize(fp);
     
     char* tempBuffer = new char[fSize + 1];
-    int redBytes = fileRead ( fp, fSize, tempBuffer );
+    if(fileRead ( fp, fSize, tempBuffer ) == 0) return std::unique_ptr<FileContent>();
     
     fileClose(fp);
     tempBuffer[fSize] = 0;
@@ -279,10 +279,10 @@ std::unique_ptr<FileContent> readOBJFromFile(void *ioContext, const char *fileNa
     }
 
     long fSize = getFileSize(fp);
-    
     char* tempBuffer = new char[fSize];
+
+    if(fileRead ( fp, fSize, tempBuffer ) == 0) return std::unique_ptr<FileContent>();
     
-    int redBytes = fileRead ( fp, fSize, tempBuffer );
     fileClose(fp);
     std::unique_ptr<FileContent> rValue = std::unique_ptr<FileContent>(new FileContent(tempBuffer, fSize));
     return rValue;
@@ -297,9 +297,9 @@ std::vector<unsigned char> loadRawPNGData(void *ioContext, const char *filename,
         return std::vector<unsigned char>();
     }
     std::vector<unsigned char> in;
-    unsigned int fSize = getFileSize(fp);
+    long fSize = getFileSize(fp);
     unsigned char* tempBuffer = new unsigned char[fSize];
-    int redBytes = fileRead ( fp, fSize, tempBuffer );
+    if(fileRead ( fp, fSize, tempBuffer ) == 0) return std::vector<unsigned char>();
     for(unsigned int i = 0; i < fSize; ++i){
         in.push_back(tempBuffer[i]);
     }
@@ -308,8 +308,10 @@ std::vector<unsigned char> loadRawPNGData(void *ioContext, const char *filename,
     
     std::vector<unsigned char> out;
     unsigned error = lodepng::decode(out, width, height, in);
-//    if(error != 0){ logMessage("Error: %s \n", lodepng_error_text(error)); }
-//    
+    if(error != 0){ logMessage("Error: %s \n", lodepng_error_text(error)); }
+    
+//      If you want raw image data... See below:
+    
 //    size_t u2 = 1; while(u2 < width) u2 *= 2;
 //    size_t v2 = 1; while(v2 < height) v2 *= 2;
 //    unsigned char* rawData = new unsigned char[u2 * v2 * 4];
