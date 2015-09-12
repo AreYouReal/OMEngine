@@ -7,6 +7,8 @@
 #include "ShaderHelper.h"
 #include "Texture.h"
 
+#include "NvTriStrip.h"
+
 enum RenderObjectType{ SOLID, ALPHA_TESTED, TRANSPARENT };
 
 struct Obj{
@@ -16,7 +18,11 @@ struct Obj{
     
 // Mesh related
     void buildMesh(unsigned int meshIndex);
+    void optimizeMesh(unsigned int meshIndex, unsigned int vertexCacheSize);
+    
     unsigned int drawMesh(unsigned int meshIndex);
+    
+    
     
 // Material related
     void buildMaterial(unsigned int matIndex, std::shared_ptr<ShaderProgram> program);

@@ -85,7 +85,8 @@ int SRGraphics::Init ( SRContext *context ){
     object = std::shared_ptr<Obj>(new Obj("scene.obj"));
     
     for(unsigned int i = 0; i < object->meshesSize(); ++i){
-            object->buildMesh(i);
+        object->optimizeMesh(i, 0);
+        object->buildMesh(i);
         // Free object mesh data if needed here
     }
     
@@ -107,7 +108,7 @@ int SRGraphics::Init ( SRContext *context ){
 // Draw a triangle using the shader pair created in Init()
 //
 void SRGraphics::Draw ( SRContext *context ){
-//    Stopwatch drawTimer;
+    Stopwatch drawTimer;
     
 #ifdef ANDROID
 //    logMessage("%d, %d, %d, %d, %d\n", context->eglNativeDisplay, context->eglNativeWindow, context->eglDisplay, context->eglContext, context->eglSurface );
@@ -145,7 +146,7 @@ void SRGraphics::Draw ( SRContext *context ){
             glDisable(GL_BLEND);
         }
     }
-//    logMessage("FPS: %f", drawTimer.fps());
+    logMessage("FPS: %f", drawTimer.fps());
 }
 
 

@@ -184,6 +184,26 @@ void Obj::buildMesh(unsigned int meshIndex){
     glBindVertexArray(0);
 }
 
+void Obj::optimizeMesh(unsigned int meshIndex, unsigned int vertexCacheSize){
+    std::shared_ptr<ObjMesh> mesh = meshes[meshIndex];
+    if(vertexCacheSize) SetCacheSize(vertexCacheSize);
+    
+    unsigned short nGroup = 0;
+    for(unsigned int i = 0; i < mesh->tLists.size(); ++i){
+        PrimitiveGroup *primitiveGroup;
+        if( GenerateStrips(&mesh->tLists[i]->indices[0], (unsigned int)mesh->tLists[i]->indices.size(), &primitiveGroup, &nGroup, true)){
+            if(primitiveGroup[0].numIndices < mesh->tLists[i]->indices.size()){
+                logMessage("\n%d VS %d\n", mesh->tLists[i]->indices.size(), primitiveGroup[0].numIndices);
+                mesh->tLists[i]->mode = GL_TRIANGLE_STRIP;
+                unsigned int size = primitiveGroup[0].numIndices * sizeof(unsigned short);
+                mesh->tLists[i]->indices.resize(primitiveGroup[0].numIndices);
+                memcpy(&mesh->tLists[i]->indices[0], &primitiveGroup[0].indices[0], size);
+            }
+            delete [] primitiveGroup;
+        }
+    }
+}
+
 unsigned int Obj::drawMesh(unsigned int meshIndex){
     return meshes[meshIndex]->draw();
 }
