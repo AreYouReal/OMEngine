@@ -59,7 +59,7 @@ std::shared_ptr<Shader> ShaderHelper::loadShader(GLenum shaderType, const char *
     std::shared_ptr<Shader> shader = std::shared_ptr<Shader>(new Shader());
     shader->name = vertexShaderFilename;
     shader->type = GL_VERTEX_SHADER;
-    std::auto_ptr<FileContent> shaderSource = readTextFile(SRGraphics::getAppContext(), vertexShaderFilename);
+    std::unique_ptr<FileContent> shaderSource = readTextFile(SRGraphics::getAppContext(), vertexShaderFilename);
     shader->ID = glCreateShader(shaderType);
     if(!shader->ID) return nullptr;
     glShaderSource(shader->ID, 1, &shaderSource->content, NULL);

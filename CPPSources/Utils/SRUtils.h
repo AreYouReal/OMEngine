@@ -86,6 +86,6 @@ long getFileSize( srFile *pFile );
 void fileClose ( srFile *pFile );
 int fileRead ( srFile *pFile, long bytesToRead, void *buffer );
 
-std::auto_ptr<FileContent> readTextFile( void *ioContext, const char *fileName);
-std::auto_ptr<FileContent> readOBJFromFile(void *ioContext, const char *fileName);
+std::unique_ptr<FileContent> readTextFile( void *ioContext, const char *fileName);
+std::unique_ptr<FileContent> readOBJFromFile(void *ioContext, const char *fileName);
 std::vector<unsigned char> loadRawPNGData(void *ioContext, const char *filename, unsigned int &width, unsigned int &height);

@@ -247,7 +247,7 @@ std::vector<unsigned char> loadPNG ( void *ioContext, const char *fileName, unsi
 }
 
 #pragma mark READ SHADER
-std::auto_ptr<FileContent> readTextFile( void *ioContext, const char *fileName){
+std::unique_ptr<FileContent> readTextFile( void *ioContext, const char *fileName){
     srFile      *fp;
     // Open the file for reading
     fp = fileOpen ( ioContext, fileName );
@@ -255,7 +255,7 @@ std::auto_ptr<FileContent> readTextFile( void *ioContext, const char *fileName){
     if ( fp == NULL ){
         // Log error as 'error in opening the input file from apk'
         logMessage ( "read file has FAILED to load : { %s }\n", fileName );
-        return std::auto_ptr<FileContent>();
+        return std::unique_ptr<FileContent>();
     }
     long fSize = getFileSize(fp);
     
@@ -265,17 +265,17 @@ std::auto_ptr<FileContent> readTextFile( void *ioContext, const char *fileName){
     fileClose(fp);
     tempBuffer[fSize] = 0;
 
-    std::auto_ptr<FileContent> rValue = std::auto_ptr<FileContent>(new FileContent(tempBuffer, fSize + 1));
+    std::unique_ptr<FileContent> rValue = std::unique_ptr<FileContent>(new FileContent(tempBuffer, fSize + 1));
     return rValue;
 }
 
 #pragma mark READ OBJ FILE
-std::auto_ptr<FileContent> readOBJFromFile(void *ioContext, const char *fileName){
+std::unique_ptr<FileContent> readOBJFromFile(void *ioContext, const char *fileName){
     srFile *fp;
     fp = fileOpen(ioContext, fileName);
     if( fp == NULL){
         logMessage("readOBJFromFile FAILED to load : { %s }\n", fileName);
-        return std::auto_ptr<FileContent>();
+        return std::unique_ptr<FileContent>();
     }
 
     long fSize = getFileSize(fp);
@@ -284,7 +284,7 @@ std::auto_ptr<FileContent> readOBJFromFile(void *ioContext, const char *fileName
     
     int redBytes = fileRead ( fp, fSize, tempBuffer );
     fileClose(fp);
-    std::auto_ptr<FileContent> rValue = std::auto_ptr<FileContent>(new FileContent(tempBuffer, fSize));
+    std::unique_ptr<FileContent> rValue = std::unique_ptr<FileContent>(new FileContent(tempBuffer, fSize));
     return rValue;
 }
 

@@ -3,7 +3,7 @@
 
 Obj::Obj(const char* fileName){
 
-    std::auto_ptr<FileContent> objSource = readOBJFromFile(SRGraphics::getAppContext(), fileName);
+    std::unique_ptr<FileContent> objSource = readOBJFromFile(SRGraphics::getAppContext(), fileName);
 #pragma warning throw exception here
     if(!objSource.get()) return;
     
@@ -294,7 +294,7 @@ void Obj::buildVBOMesh(unsigned int meshIndex){
 
 #pragma mark Material loading
 void Obj::loadMaterial(const char *filename){
-    std::auto_ptr<FileContent> objSource = readOBJFromFile(SRGraphics::getAppContext(), filename);
+    std::unique_ptr<FileContent> objSource = readOBJFromFile(SRGraphics::getAppContext(), filename);
     
     if(!objSource.get()) return;
     
