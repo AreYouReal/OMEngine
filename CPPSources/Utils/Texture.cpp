@@ -3,14 +3,9 @@
 #include "lodepng.h"
 
 
-Texture::Texture(void* context, const char* filename){
+Texture::Texture(void* context, const char* filename, unsigned int texelType, unsigned char byte, unsigned int format, unsigned int target, unsigned int ID) : texelType(texelType), byte(4), format(format), target(target), ID(ID){
     this->filename = filename;
     texelArray = loadRawPNGData(context, filename, width, height);
-    texelType = GL_UNSIGNED_BYTE;
-    byte = 4;
-    format = GL_RGBA;
-    target = GL_TEXTURE_2D;
-    ID = 0;
 }
 
 

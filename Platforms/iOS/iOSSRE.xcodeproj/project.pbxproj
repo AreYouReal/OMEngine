@@ -108,6 +108,7 @@
 		94CE87E31B62B5A400752D5C /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = iOSSRE/main.m; sourceTree = SOURCE_ROOT; };
 		94CE87E41B62B5A400752D5C /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = iOSSRE/ViewController.h; sourceTree = SOURCE_ROOT; };
 		94CE87E51B62B5A400752D5C /* ViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ViewController.mm; path = iOSSRE/ViewController.mm; sourceTree = SOURCE_ROOT; };
+		94E5A0DD1BA3FF0700066CC5 /* FileContent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileContent.h; sourceTree = "<group>"; };
 		F33425631BA0684F00E727F5 /* fragmentAlphaTested.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = fragmentAlphaTested.glsl; path = SREngine/Platforms/Android/assets/fragmentAlphaTested.glsl; sourceTree = "<group>"; };
 		F33425641BA0684F00E727F5 /* fragmentSolid.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = fragmentSolid.glsl; path = SREngine/Platforms/Android/assets/fragmentSolid.glsl; sourceTree = "<group>"; };
 		F33425651BA0684F00E727F5 /* fragmentTransparent.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = fragmentTransparent.glsl; path = SREngine/Platforms/Android/assets/fragmentTransparent.glsl; sourceTree = "<group>"; };
@@ -303,6 +304,7 @@
 				9453DEE01B2A0A2700C79DB3 /* SRUtils.h */,
 				948BACC21B6DFB5C004A052C /* Typedefs.h */,
 				940CF4291B98C220005B6F19 /* Stopwatch.h */,
+				94E5A0DD1BA3FF0700066CC5 /* FileContent.h */,
 			);
 			name = Utils;
 			path = ../../CPPSources/Utils;

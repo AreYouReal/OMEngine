@@ -6,8 +6,8 @@ std::shared_ptr<ShaderProgram> ShaderHelper::createProgram(const char *vertexSha
 
     std::shared_ptr<ShaderProgram> program(new ShaderProgram());
 
-    Shader *vertexShader = ShaderHelper::loadShader(GL_VERTEX_SHADER, vertexShaderFilename);
-    Shader *fragmentShader = ShaderHelper::loadShader(GL_FRAGMENT_SHADER, fragmentShaderFilename);
+    std::shared_ptr<Shader> vertexShader = ShaderHelper::loadShader(GL_VERTEX_SHADER, vertexShaderFilename);
+    std::shared_ptr<Shader> fragmentShader = ShaderHelper::loadShader(GL_FRAGMENT_SHADER, fragmentShaderFilename);
     program->drawCallback = drawCallback;
     program->bindAttribCallback = bindCallback;
     
@@ -48,8 +48,6 @@ std::shared_ptr<ShaderProgram> ShaderHelper::createProgram(const char *vertexSha
     }
     glDeleteShader(vertexShader->ID);
     glDeleteShader(fragmentShader->ID);
-    delete vertexShader;
-    delete fragmentShader;
     
     ShaderHelper::printProgramInfoLog(program->ID);
     
@@ -57,16 +55,15 @@ std::shared_ptr<ShaderProgram> ShaderHelper::createProgram(const char *vertexSha
 }
 
 #pragma mark Helpers
-Shader* ShaderHelper::loadShader(GLenum shaderType, const char *vertexShaderFilename){
-    Shader *shader = new Shader();
+std::shared_ptr<Shader> ShaderHelper::loadShader(GLenum shaderType, const char *vertexShaderFilename){
+    std::shared_ptr<Shader> shader = std::shared_ptr<Shader>(new Shader());
     shader->name = vertexShaderFilename;
     shader->type = GL_VERTEX_SHADER;
-    char *shaderSource = readTextFile(SRGraphics::getAppContext(), vertexShaderFilename);
+    std::auto_ptr<FileContent> shaderSource = readTextFile(SRGraphics::getAppContext(), vertexShaderFilename);
     shader->ID = glCreateShader(shaderType);
     if(!shader->ID) return nullptr;
-    glShaderSource(shader->ID, 1, &shaderSource, NULL);
+    glShaderSource(shader->ID, 1, &shaderSource->content, NULL);
     glCompileShader(shader->ID);
-    if(shaderSource) delete [] shaderSource;
     if(!checkCompileStatus(shader->ID)){
         logMessage("ERROR COMPILE SHADER! %d", shaderType);
     }

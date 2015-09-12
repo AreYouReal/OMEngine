@@ -247,7 +247,7 @@ std::vector<unsigned char> loadPNG ( void *ioContext, const char *fileName, unsi
 }
 
 #pragma mark READ SHADER
-char* readTextFile( void *ioContext, const char *fileName){
+std::auto_ptr<FileContent> readTextFile( void *ioContext, const char *fileName){
     srFile      *fp;
     // Open the file for reading
     fp = fileOpen ( ioContext, fileName );
@@ -255,41 +255,37 @@ char* readTextFile( void *ioContext, const char *fileName){
     if ( fp == NULL ){
         // Log error as 'error in opening the input file from apk'
         logMessage ( "read file has FAILED to load : { %s }\n", fileName );
-        return nullptr;
+        return std::auto_ptr<FileContent>();
     }
     long fSize = getFileSize(fp);
     
     char* tempBuffer = new char[fSize + 1];
     int redBytes = fileRead ( fp, fSize, tempBuffer );
-//    logMessage("RED BYTES: { %d / %d }", redBytes, fSize);
     
     fileClose(fp);
     tempBuffer[fSize] = 0;
-//    for(int i = 0; i < fSize + 1; i++){
-//        logMessage("%c", tempBuffer[i]);
-//    }
-    return tempBuffer;
+
+    std::auto_ptr<FileContent> rValue = std::auto_ptr<FileContent>(new FileContent(tempBuffer, fSize + 1));
+    return rValue;
 }
 
 #pragma mark READ OBJ FILE
-unsigned char* readOBJFromFile(void *ioContext, const char *fileName){
+std::auto_ptr<FileContent> readOBJFromFile(void *ioContext, const char *fileName){
     srFile *fp;
     fp = fileOpen(ioContext, fileName);
     if( fp == NULL){
         logMessage("readOBJFromFile FAILED to load : { %s }\n", fileName);
-        return 0;
+        return std::auto_ptr<FileContent>();
     }
 
     long fSize = getFileSize(fp);
     
-    unsigned char* tempBuffer = new unsigned char[fSize];
+    char* tempBuffer = new char[fSize];
     
     int redBytes = fileRead ( fp, fSize, tempBuffer );
     fileClose(fp);
-//    for(long i = 0; i < fSize; i++){
-//        logMessage("%c", tempBuffer[i]);
-//    }
-    return tempBuffer;
+    std::auto_ptr<FileContent> rValue = std::auto_ptr<FileContent>(new FileContent(tempBuffer, fSize));
+    return rValue;
 }
 
 std::vector<unsigned char> loadRawPNGData(void *ioContext, const char *filename, unsigned int &width, unsigned int &height){

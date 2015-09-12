@@ -3,16 +3,16 @@
 
 Obj::Obj(const char* fileName){
 
-    unsigned char* objSource = readOBJFromFile(SRGraphics::getAppContext(), fileName);
+    std::auto_ptr<FileContent> objSource = readOBJFromFile(SRGraphics::getAppContext(), fileName);
 #pragma warning throw exception here
-    if(!objSource) return;
+    if(!objSource.get()) return;
     
     std::shared_ptr<ObjMesh> currentMesh = nullptr;
     std::shared_ptr<ObjTriangleList> currentTList = nullptr;
     
     v3d v;
 
-    char* line = strtok((char*)objSource, "\n");
+    char* line = strtok((char*)objSource->content, "\n");
     char last = 0;
     
     unsigned short buffSize = 255;
@@ -51,18 +51,15 @@ Obj::Obj(const char* fileName){
             useSmoothNormals = true;
             if(strstr( str, "off") || strstr(str, "0") ) useSmoothNormals = false;
         }else if(sscanf(line, "mtllib %s", str) == 1){
-            unsigned char position = (unsigned char *) line - objSource + strlen(line) + 1;
+            unsigned char position = ( char *) line - objSource->content + strlen(line) + 1;
             loadMaterial(str);
-            line = strtok((char *) &objSource[position], "\n");
+            line = strtok((char *) &objSource->content[position], "\n");
             continue;
         }
         
         last = line[0];
         line = strtok(NULL, "\n");
     }
-    
-    if(objSource) delete [] objSource;
-    
     builNormalsAndTangents();
 }
 
@@ -297,12 +294,12 @@ void Obj::buildVBOMesh(unsigned int meshIndex){
 
 #pragma mark Material loading
 void Obj::loadMaterial(const char *filename){
-    unsigned char* objSource = readOBJFromFile(SRGraphics::getAppContext(), filename);
+    std::auto_ptr<FileContent> objSource = readOBJFromFile(SRGraphics::getAppContext(), filename);
     
-    if(!objSource) return;
+    if(!objSource.get()) return;
     
     std::shared_ptr<ObjMaterial> mat = NULL;
-    char *line = strtok((char*)objSource, "\n"),
+    char *line = strtok((char*)objSource->content, "\n"),
                  str[255] = {""};
     
     v3d v;
@@ -362,9 +359,7 @@ void Obj::loadMaterial(const char *filename){
         line = strtok( NULL, "\n" );
     }
     
-    logMessage("%s", objSource);
-    
-    if(objSource) delete[] objSource;
+    logMessage("%s", objSource->content);
 }
 
 void Obj::addTexture(const char *filename){

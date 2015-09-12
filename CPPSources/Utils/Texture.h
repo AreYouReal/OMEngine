@@ -13,7 +13,7 @@ enum{ TEXTURE_FILTER_0X = 0,
       TEXTURE_FILTER_3X = 3 };
 
 struct Texture{
-    Texture(void* context, const char* filename);
+    Texture(void* context, const char* filename, unsigned int texelType = GL_UNSIGNED_BYTE, unsigned char byte = 4, unsigned int format = GL_RGBA, unsigned int target = GL_TEXTURE_2D, unsigned int ID = 0);
     
     void generateID(unsigned int flags, unsigned char filter);
 
