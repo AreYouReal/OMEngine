@@ -1,6 +1,6 @@
 #import "ViewController.h"
 #include "SRUtils.h"
-#include "Main.h"
+#include "Game.h"
 
 
 @interface ViewController (){
@@ -60,7 +60,7 @@
     
     memset( &_context, 0, sizeof( _context ) );
   
-    SRGraphics::Main(&_SRContext);
+    Game::Main(&_SRContext);
 }
 
 - (void)tearDownGL{

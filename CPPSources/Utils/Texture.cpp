@@ -1,5 +1,5 @@
 #include "Texture.h"
-#include "main.h"
+#include "Game.h"
 #include "lodepng.h"
 
 

@@ -1,4 +1,4 @@
-#include "main.h"
+#include "Game.h"
 #include "ShaderHelper.h"
 #include "obj.h"
 #include "Texture.h"
@@ -66,14 +66,14 @@ void calculateMatrices(float width, float height){
 }
 
 
-SRContext* SRGraphics::getAppContext(){
+SRContext* Game::getAppContext(){
     return appContext;
 }
 
 ///
 // Initialize the shader and program object
 //
-int SRGraphics::Init ( SRContext *context ){
+int Game::Init ( SRContext *context ){
     atexit(Exit);
     glViewport ( 0, 0, context->width, context->height );
     glEnable( GL_DEPTH_TEST );
@@ -107,7 +107,7 @@ int SRGraphics::Init ( SRContext *context ){
 ///
 // Draw a triangle using the shader pair created in Init()
 //
-void SRGraphics::Draw ( SRContext *context ){
+void Game::Draw ( SRContext *context ){
 //    Stopwatch drawTimer;
     
 #ifdef ANDROID
@@ -150,12 +150,12 @@ void SRGraphics::Draw ( SRContext *context ){
 }
 
 
-void SRGraphics::Shutdown ( SRContext *context ){
+void Game::Shutdown ( SRContext *context ){
 //    logMessage("ShutDown function\n");
 }
 
 int startX, startY;
-void SRGraphics::Touch(SRContext *context, int event, int x, int y){
+void Game::Touch(SRContext *context, int event, int x, int y){
     switch (event) {
         case TOUCH_EVENT::BEGAN  :
             startX = x;
@@ -174,12 +174,12 @@ void SRGraphics::Touch(SRContext *context, int event, int x, int y){
     }
 }
 
-int SRGraphics::Main ( SRContext *context ){
+int Game::Main ( SRContext *context ){
     context->userData = malloc ( sizeof ( UserData ) );
 
     SRCreateWindow( context, "Hello Triangle", 320, 240, ES_WINDOW_RGB );
 
-    if ( !SRGraphics::Init ( context ) ){ return GL_FALSE; }
+    if ( !Game::Init ( context ) ){ return GL_FALSE; }
 
     SRRegisterShutdownFunc ( context, Shutdown );
     SRRegisterDrawFunc ( context, Draw );
@@ -188,7 +188,7 @@ int SRGraphics::Main ( SRContext *context ){
     return GL_TRUE;
 }
 
-void SRGraphics::Exit(){
+void Game::Exit(){
     logMessage("Exit function\n");
 }
 

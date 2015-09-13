@@ -38,7 +38,7 @@
 		94CE87CD1B62B4D000752D5C /* q4d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94CE87C81B62B4D000752D5C /* q4d.cpp */; };
 		94CE87CE1B62B4D000752D5C /* v3d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94CE87CA1B62B4D000752D5C /* v3d.cpp */; };
 		94CE87D61B62B51900752D5C /* ShaderHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94CE87D31B62B51900752D5C /* ShaderHelper.cpp */; };
-		94CE87D91B62B53500752D5C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94CE87D71B62B53500752D5C /* main.cpp */; };
+		94CE87D91B62B53500752D5C /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94CE87D71B62B53500752D5C /* Game.cpp */; };
 		94CE87E11B62B59800752D5C /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 94CE87DE1B62B59800752D5C /* AppDelegate.mm */; };
 		94CE87E21B62B59800752D5C /* FileWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 94CE87E01B62B59800752D5C /* FileWrapper.mm */; };
 		94CE87E61B62B5A400752D5C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 94CE87E31B62B5A400752D5C /* main.m */; };
@@ -114,8 +114,8 @@
 		94CE87CB1B62B4D000752D5C /* v3d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = v3d.h; path = ../../CPPSources/Math/v3d.h; sourceTree = SOURCE_ROOT; };
 		94CE87D31B62B51900752D5C /* ShaderHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShaderHelper.cpp; path = ../../CPPSources/Shaders/ShaderHelper.cpp; sourceTree = SOURCE_ROOT; };
 		94CE87D41B62B51900752D5C /* ShaderHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShaderHelper.h; path = ../../CPPSources/Shaders/ShaderHelper.h; sourceTree = SOURCE_ROOT; };
-		94CE87D71B62B53500752D5C /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = SREngine/CPPSources/main.cpp; sourceTree = "<group>"; };
-		94CE87D81B62B53500752D5C /* main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = main.h; path = SREngine/CPPSources/main.h; sourceTree = "<group>"; };
+		94CE87D71B62B53500752D5C /* Game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Game.cpp; path = SREngine/CPPSources/Game.cpp; sourceTree = "<group>"; };
+		94CE87D81B62B53500752D5C /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Game.h; path = SREngine/CPPSources/Game.h; sourceTree = "<group>"; };
 		94CE87DD1B62B59800752D5C /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = iOSSRE/AppDelegate.h; sourceTree = SOURCE_ROOT; };
 		94CE87DE1B62B59800752D5C /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = iOSSRE/AppDelegate.mm; sourceTree = SOURCE_ROOT; };
 		94CE87DF1B62B59800752D5C /* FileWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileWrapper.h; path = iOSSRE/FileWrapper.h; sourceTree = SOURCE_ROOT; };
@@ -230,8 +230,8 @@
 				9453DEDE1B2A080F00C79DB3 /* Utils */,
 				944E39671B01191F003806EB /* Math */,
 				9420DCE41B007E0D006D2A7E /* Shaders */,
-				94CE87D71B62B53500752D5C /* main.cpp */,
-				94CE87D81B62B53500752D5C /* main.h */,
+				94CE87D71B62B53500752D5C /* Game.cpp */,
+				94CE87D81B62B53500752D5C /* Game.h */,
 				7625BC3617F32A780019C421 /* iOS */,
 				7626524017F10E6C007CCD43 /* Supporting Files */,
 			);
@@ -493,7 +493,7 @@
 				94CE87E11B62B59800752D5C /* AppDelegate.mm in Sources */,
 				F3FAE8BB1B6B7885007AF169 /* Shader.cpp in Sources */,
 				94CE87E21B62B59800752D5C /* FileWrapper.mm in Sources */,
-				94CE87D91B62B53500752D5C /* main.cpp in Sources */,
+				94CE87D91B62B53500752D5C /* Game.cpp in Sources */,
 				94CE87CE1B62B4D000752D5C /* v3d.cpp in Sources */,
 				94CE87CD1B62B4D000752D5C /* q4d.cpp in Sources */,
 				947FA3291BA4909F00695A4E /* VertexCache.cpp in Sources */,

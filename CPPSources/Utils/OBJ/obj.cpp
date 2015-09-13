@@ -1,9 +1,9 @@
 #include "obj.h"
-#include "main.h"
+#include "Game.h"
 
 Obj::Obj(const char* fileName){
 
-    std::unique_ptr<FileContent> objSource = readOBJFromFile(SRGraphics::getAppContext(), fileName);
+    std::unique_ptr<FileContent> objSource = readOBJFromFile(Game::getAppContext(), fileName);
 #pragma warning throw exception here
     if(!objSource.get()) return;
     
@@ -314,7 +314,7 @@ void Obj::buildVBOMesh(unsigned int meshIndex){
 
 #pragma mark Material loading
 void Obj::loadMaterial(const char *filename){
-    std::unique_ptr<FileContent> objSource = readOBJFromFile(SRGraphics::getAppContext(), filename);
+    std::unique_ptr<FileContent> objSource = readOBJFromFile(Game::getAppContext(), filename);
     
     if(!objSource.get()) return;
     
@@ -384,7 +384,7 @@ void Obj::loadMaterial(const char *filename){
 
 void Obj::addTexture(const char *filename){
     if(getTextureIndex(filename) < 0){
-        textures.push_back(Texture::load(SRGraphics::getAppContext(), filename, TextureSource::PNG));
+        textures.push_back(Texture::load(Game::getAppContext(), filename, TextureSource::PNG));
     }
 }
 

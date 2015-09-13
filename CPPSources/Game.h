@@ -2,7 +2,7 @@
 
 #include "SRUtils.h"
 
-struct SRGraphics{
+struct Game{
 
     static int  Main       ( SRContext * );
     static int  Init       ( SRContext * );
