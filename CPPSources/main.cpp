@@ -108,7 +108,7 @@ int SRGraphics::Init ( SRContext *context ){
 // Draw a triangle using the shader pair created in Init()
 //
 void SRGraphics::Draw ( SRContext *context ){
-    Stopwatch drawTimer;
+//    Stopwatch drawTimer;
     
 #ifdef ANDROID
 //    logMessage("%d, %d, %d, %d, %d\n", context->eglNativeDisplay, context->eglNativeWindow, context->eglDisplay, context->eglContext, context->eglSurface );
@@ -146,7 +146,7 @@ void SRGraphics::Draw ( SRContext *context ){
             glDisable(GL_BLEND);
         }
     }
-    logMessage("FPS: %f", drawTimer.fps());
+//    logMessage("FPS: %f", drawTimer.fps());
 }
 
 

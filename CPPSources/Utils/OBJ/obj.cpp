@@ -384,7 +384,7 @@ void Obj::loadMaterial(const char *filename){
 
 void Obj::addTexture(const char *filename){
     if(getTextureIndex(filename) < 0){
-        textures.push_back(std::shared_ptr<Texture>(new Texture(SRGraphics::getAppContext(), filename)));
+        textures.push_back(Texture::load(SRGraphics::getAppContext(), filename, TextureSource::PNG));
     }
 }
 

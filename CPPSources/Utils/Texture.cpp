@@ -8,6 +8,20 @@ Texture::Texture(void* context, const char* filename, unsigned int texelType, un
     texelArray = loadRawPNGData(context, filename, width, height);
 }
 
+std::shared_ptr<Texture> Texture::load(void *context, const char *filename, TextureSource sourceType){
+    switch (sourceType) {
+        case TextureSource::PNG :
+            return std::shared_ptr<Texture>(new Texture(context, filename));
+            break;
+        case TextureSource::PVR:
+            // load pvr texture here...
+            break;
+        default:
+            break;
+    }
+    return nullptr;
+}
+
 
 void Texture::generateID(unsigned int flags, unsigned char filter){
     if(ID) glDeleteTextures( 1, &ID );
