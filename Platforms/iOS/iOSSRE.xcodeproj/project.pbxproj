@@ -32,7 +32,7 @@
 		94CE87CC1B62B4D000752D5C /* m4d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94CE87C61B62B4D000752D5C /* m4d.cpp */; };
 		94CE87CD1B62B4D000752D5C /* q4d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94CE87C81B62B4D000752D5C /* q4d.cpp */; };
 		94CE87CE1B62B4D000752D5C /* v3d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94CE87CA1B62B4D000752D5C /* v3d.cpp */; };
-		94CE87D61B62B51900752D5C /* ShaderHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94CE87D31B62B51900752D5C /* ShaderHelper.cpp */; };
+		94CE87D61B62B51900752D5C /* ShaderLibrary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94CE87D31B62B51900752D5C /* ShaderLibrary.cpp */; };
 		94CE87D91B62B53500752D5C /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94CE87D71B62B53500752D5C /* Game.cpp */; };
 		94CE87E11B62B59800752D5C /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 94CE87DE1B62B59800752D5C /* AppDelegate.mm */; };
 		94CE87E21B62B59800752D5C /* FileWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 94CE87E01B62B59800752D5C /* FileWrapper.mm */; };
@@ -103,8 +103,8 @@
 		94CE87C91B62B4D000752D5C /* q4d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = q4d.h; path = ../../CPPSources/Math/q4d.h; sourceTree = SOURCE_ROOT; };
 		94CE87CA1B62B4D000752D5C /* v3d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = v3d.cpp; path = ../../CPPSources/Math/v3d.cpp; sourceTree = SOURCE_ROOT; };
 		94CE87CB1B62B4D000752D5C /* v3d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = v3d.h; path = ../../CPPSources/Math/v3d.h; sourceTree = SOURCE_ROOT; };
-		94CE87D31B62B51900752D5C /* ShaderHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShaderHelper.cpp; path = ../../CPPSources/Shaders/ShaderHelper.cpp; sourceTree = SOURCE_ROOT; };
-		94CE87D41B62B51900752D5C /* ShaderHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShaderHelper.h; path = ../../CPPSources/Shaders/ShaderHelper.h; sourceTree = SOURCE_ROOT; };
+		94CE87D31B62B51900752D5C /* ShaderLibrary.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShaderLibrary.cpp; path = ../../CPPSources/Shaders/ShaderLibrary.cpp; sourceTree = SOURCE_ROOT; };
+		94CE87D41B62B51900752D5C /* ShaderLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShaderLibrary.h; path = ../../CPPSources/Shaders/ShaderLibrary.h; sourceTree = SOURCE_ROOT; };
 		94CE87D71B62B53500752D5C /* Game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Game.cpp; path = SREngine/CPPSources/Game.cpp; sourceTree = "<group>"; };
 		94CE87D81B62B53500752D5C /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Game.h; path = SREngine/CPPSources/Game.h; sourceTree = "<group>"; };
 		94CE87DD1B62B59800752D5C /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = iOSSRE/AppDelegate.h; sourceTree = SOURCE_ROOT; };
@@ -285,8 +285,8 @@
 		9420DCE41B007E0D006D2A7E /* Shaders */ = {
 			isa = PBXGroup;
 			children = (
-				94CE87D31B62B51900752D5C /* ShaderHelper.cpp */,
-				94CE87D41B62B51900752D5C /* ShaderHelper.h */,
+				94CE87D31B62B51900752D5C /* ShaderLibrary.cpp */,
+				94CE87D41B62B51900752D5C /* ShaderLibrary.h */,
 				F3FAE8B61B6B77D6007AF169 /* ShaderProgram.cpp */,
 				F3FAE8B71B6B77D6007AF169 /* ShaderProgram.h */,
 				F3FAE8B91B6B7885007AF169 /* Shader.cpp */,
@@ -500,7 +500,7 @@
 			files = (
 				F3944FCA1B8AE0890090FF01 /* Texture.cpp in Sources */,
 				94CE87E61B62B5A400752D5C /* main.m in Sources */,
-				94CE87D61B62B51900752D5C /* ShaderHelper.cpp in Sources */,
+				94CE87D61B62B51900752D5C /* ShaderLibrary.cpp in Sources */,
 				94CE87CC1B62B4D000752D5C /* m4d.cpp in Sources */,
 				F340F7891BA034B20021445C /* ObjMesh.cpp in Sources */,
 				F368E8C01BA6AC9F00F322AF /* lodepng.cpp in Sources */,

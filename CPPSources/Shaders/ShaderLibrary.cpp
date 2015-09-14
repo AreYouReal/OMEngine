@@ -1,13 +1,32 @@
-#include "ShaderHelper.h"
+#include "ShaderLibrary.h"
 #include "Game.h"
 
 #pragma mark Public
-std::shared_ptr<ShaderProgram> ShaderHelper::createProgram(const char *vertexShaderFilename,const char* fragmentShaderFilename, BindAttribCallback *bindCallback, DrawCallback *drawCallback){
+
+static std::map<std::string, std::shared_ptr<ShaderProgram>> shaders;
+
+void ShaderLibrary::init(){
+    // Default program
+    std::shared_ptr<ShaderProgram> defaultProgram = createProgram("vertex.glsl", "fragmentSolid.glsl", NULL, NULL);
+    std::shared_ptr<ShaderProgram> alphaProgram = createProgram("vertex.glsl", "fragmentAlphaTested.glsl", NULL, NULL);
+    std::shared_ptr<ShaderProgram> transparentProgram = createProgram("vertex.glsl", "fragmentTransparent.glsl", NULL, NULL);
+    
+    shaders.insert(std::pair<std::string, std::shared_ptr<ShaderProgram>>("defaultSolid", defaultProgram));
+    shaders.insert(std::pair<std::string, std::shared_ptr<ShaderProgram>>("defaultAlphaTested", alphaProgram));
+    shaders.insert(std::pair<std::string, std::shared_ptr<ShaderProgram>>("defaultTransparent", transparentProgram));    
+}
+
+std::shared_ptr<ShaderProgram> ShaderLibrary::getProgram(std::string name){
+    if(shaders.find(name) == shaders.end()) return nullptr;
+    return shaders[name];
+}
+
+std::shared_ptr<ShaderProgram> ShaderLibrary::createProgram(const char *vertexShaderFilename,const char* fragmentShaderFilename, BindAttribCallback *bindCallback, DrawCallback *drawCallback){
 
     std::shared_ptr<ShaderProgram> program(new ShaderProgram());
 
-    std::shared_ptr<Shader> vertexShader = ShaderHelper::loadShader(GL_VERTEX_SHADER, vertexShaderFilename);
-    std::shared_ptr<Shader> fragmentShader = ShaderHelper::loadShader(GL_FRAGMENT_SHADER, fragmentShaderFilename);
+    std::shared_ptr<Shader> vertexShader = ShaderLibrary::loadShader(GL_VERTEX_SHADER, vertexShaderFilename);
+    std::shared_ptr<Shader> fragmentShader = ShaderLibrary::loadShader(GL_FRAGMENT_SHADER, fragmentShaderFilename);
     program->drawCallback = drawCallback;
     program->bindAttribCallback = bindCallback;
     
@@ -49,13 +68,13 @@ std::shared_ptr<ShaderProgram> ShaderHelper::createProgram(const char *vertexSha
     glDeleteShader(vertexShader->ID);
     glDeleteShader(fragmentShader->ID);
     
-    ShaderHelper::printProgramInfoLog(program->ID);
+    ShaderLibrary::printProgramInfoLog(program->ID);
     
     return program;
 }
 
 #pragma mark Helpers
-std::shared_ptr<Shader> ShaderHelper::loadShader(GLenum shaderType, std::string vertexShaderFilename){
+std::shared_ptr<Shader> ShaderLibrary::loadShader(GLenum shaderType, std::string vertexShaderFilename){
 #ifdef ANDROID
     vertexShaderFilename = "shaders/" + vertexShaderFilename;
 #endif
@@ -73,7 +92,7 @@ std::shared_ptr<Shader> ShaderHelper::loadShader(GLenum shaderType, std::string 
     return shader;
 }
 
-GLint ShaderHelper::checkCompileStatus(GLuint shader){
+GLint ShaderLibrary::checkCompileStatus(GLuint shader){
     GLint compiled;
     glGetShaderiv(shader, GL_COMPILE_STATUS, &compiled);
 
@@ -85,7 +104,7 @@ GLint ShaderHelper::checkCompileStatus(GLuint shader){
     return shader;
 }
 
-void ShaderHelper::printShaderInfoLog(GLuint shader){
+void ShaderLibrary::printShaderInfoLog(GLuint shader){
     GLint infoLen = 0;
     glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &infoLen);
     if(infoLen > 1){
@@ -96,7 +115,7 @@ void ShaderHelper::printShaderInfoLog(GLuint shader){
     }
 }
 
-GLint ShaderHelper::checkLinkStatus(GLuint program){
+GLint ShaderLibrary::checkLinkStatus(GLuint program){
     GLint linked;
     glGetProgramiv(program, GL_LINK_STATUS, &linked);
     if(!linked){
@@ -108,7 +127,7 @@ GLint ShaderHelper::checkLinkStatus(GLuint program){
     return program;
 }
 
-void ShaderHelper::printProgramInfoLog(GLuint program){
+void ShaderLibrary::printProgramInfoLog(GLuint program){
     GLint infoLen;
     glGetProgramiv( program, GL_INFO_LOG_LENGTH, &infoLen);
     if(infoLen > 1){
@@ -119,13 +138,13 @@ void ShaderHelper::printProgramInfoLog(GLuint program){
     }
 }
 
-void ShaderHelper::printShaderInfo(GLuint shader, GLenum pname){
+void ShaderLibrary::printShaderInfo(GLuint shader, GLenum pname){
     GLint pStore;
     glGetShaderiv(shader, pname, &pStore);
     logMessage("Shader info for param %X  : %d\n", pname, pStore );
 }
 
-void ShaderHelper::printShaderProgramInfo(GLuint program, GLenum pname){
+void ShaderLibrary::printShaderProgramInfo(GLuint program, GLenum pname){
     GLint pStore;
     glGetProgramiv(program, pname, &pStore);
     logMessage("Program info for param %X  : %d\n", pname, pStore );

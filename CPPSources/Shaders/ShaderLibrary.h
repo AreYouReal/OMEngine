@@ -3,12 +3,18 @@
 #include "SRUtils.h"
 #include "ShaderProgram.h"
 #include "Typedefs.h"
+#include <map>
 
 
 
-class ShaderHelper{
+class ShaderLibrary{
 public:
+    
+    static void init();
+    
     static std::shared_ptr<ShaderProgram> createProgram(const char *vertexShaderFilename, const char* fragmentShaderFilename, BindAttribCallback *bindCallback, DrawCallback *drawCallback);
+    
+    static std::shared_ptr<ShaderProgram> getProgram(std::string name);
     
     static std::shared_ptr<Shader> loadShader(GLenum shaderType, std::string shaderSource);
     

@@ -4,7 +4,7 @@
 #include "m4d.h"
 #include "ObjMesh.h"
 #include "ObjMaterial.h"
-#include "ShaderHelper.h"
+#include "ShaderLibrary.h"
 #include "Texture.h"
 
 #include "NvTriStrip.h"
@@ -21,9 +21,7 @@ struct Obj{
     void optimizeMesh(unsigned int meshIndex, unsigned int vertexCacheSize);
     
     unsigned int drawMesh(unsigned int meshIndex);
-    
-    
-    
+     
 // Material related
     void buildMaterial(unsigned int matIndex, std::shared_ptr<ShaderProgram> program);
     
@@ -36,11 +34,14 @@ struct Obj{
     void        SetMaterialProgram(unsigned int matIndex, BindAttribCallback bindCallback){
         float matDissolve = materials[matIndex]->dissolve;
         if(matDissolve == 0.0f){
-            materials[matIndex]->program = ShaderHelper::createProgram("vertex.glsl", "fragmentAlphaTested.glsl", bindCallback, NULL);
+            materials[matIndex]->program = ShaderLibrary::getProgram("defaultAlphaTested");
+            materials[matIndex]->program->bindAttribCallback = bindCallback;
         }else if(matDissolve == 1.0f){
-            materials[matIndex]->program = ShaderHelper::createProgram("vertex.glsl", "fragmentSolid.glsl", bindCallback, NULL);
+            materials[matIndex]->program = ShaderLibrary::getProgram("defaultSolid");
+            materials[matIndex]->program->bindAttribCallback = bindCallback;
         }else
-            materials[matIndex]->program = ShaderHelper::createProgram("vertex.glsl", "fragmentTransparent.glsl", bindCallback, NULL);
+            materials[matIndex]->program = ShaderLibrary::getProgram("defaultTransparent");
+            materials[matIndex]->program->bindAttribCallback = bindCallback;
     }
     
     void        SetMaterialCallback(unsigned int matIndex, DrawCallback callback){
