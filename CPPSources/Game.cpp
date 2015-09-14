@@ -85,7 +85,7 @@ int Game::Init ( SRContext *context ){
     
     object = std::shared_ptr<Obj>(new Obj("scene.obj"));
     
-    ShaderLibrary::init();
+    ShaderLibrary::instance();
     
     for(unsigned int i = 0; i < object->meshesSize(); ++i){
         object->optimizeMesh(i, 0);

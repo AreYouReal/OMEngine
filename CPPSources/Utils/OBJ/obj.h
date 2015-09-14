@@ -34,13 +34,13 @@ struct Obj{
     void        SetMaterialProgram(unsigned int matIndex, BindAttribCallback bindCallback){
         float matDissolve = materials[matIndex]->dissolve;
         if(matDissolve == 0.0f){
-            materials[matIndex]->program = ShaderLibrary::getProgram("defaultAlphaTested");
+            materials[matIndex]->program = ShaderLibrary::instance()->getProgram("defaultAlphaTested");
             materials[matIndex]->program->bindAttribCallback = bindCallback;
         }else if(matDissolve == 1.0f){
-            materials[matIndex]->program = ShaderLibrary::getProgram("defaultSolid");
+            materials[matIndex]->program = ShaderLibrary::instance()->getProgram("defaultSolid");
             materials[matIndex]->program->bindAttribCallback = bindCallback;
         }else
-            materials[matIndex]->program = ShaderLibrary::getProgram("defaultTransparent");
+            materials[matIndex]->program = ShaderLibrary::instance()->getProgram("defaultTransparent");
             materials[matIndex]->program->bindAttribCallback = bindCallback;
     }
     

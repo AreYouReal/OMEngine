@@ -5,20 +5,21 @@
 #include "Typedefs.h"
 #include <map>
 
-
-
 class ShaderLibrary{
 public:
+    static std::shared_ptr<ShaderLibrary> instance();
     
-    static void init();
-    
-    static std::shared_ptr<ShaderProgram> createProgram(const char *vertexShaderFilename, const char* fragmentShaderFilename, BindAttribCallback *bindCallback, DrawCallback *drawCallback);
-    
-    static std::shared_ptr<ShaderProgram> getProgram(std::string name);
-    
-    static std::shared_ptr<Shader> loadShader(GLenum shaderType, std::string shaderSource);
+    ShaderLibrary();
+
+    std::shared_ptr<ShaderProgram> getProgram(std::string name);
+    std::shared_ptr<ShaderProgram> createProgram(const char *vertexShaderFilename, const char* fragmentShaderFilename, BindAttribCallback *bindCallback, DrawCallback *drawCallback);
+    std::shared_ptr<Shader> loadShader(GLenum shaderType, std::string shaderSource);
     
 private:
+// Fields
+    std::map<std::string, std::shared_ptr<ShaderProgram>> shaders;
+    
+// Helper functions
     static void     printShaderInfoLog(GLuint shader);
     static void     printProgramInfoLog(GLuint program);
     static GLint    checkCompileStatus(GLuint shader);

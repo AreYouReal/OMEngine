@@ -3,9 +3,14 @@
 
 #pragma mark Public
 
-static std::map<std::string, std::shared_ptr<ShaderProgram>> shaders;
+static std::shared_ptr<ShaderLibrary> mInstance;
 
-void ShaderLibrary::init(){
+std::shared_ptr<ShaderLibrary> ShaderLibrary::instance(){
+    if(!mInstance){ mInstance = std::shared_ptr<ShaderLibrary>(new ShaderLibrary()); }
+    return mInstance;
+}
+
+ShaderLibrary::ShaderLibrary(){
     // Default program
     std::shared_ptr<ShaderProgram> defaultProgram = createProgram("vertex.glsl", "fragmentSolid.glsl", NULL, NULL);
     std::shared_ptr<ShaderProgram> alphaProgram = createProgram("vertex.glsl", "fragmentAlphaTested.glsl", NULL, NULL);
@@ -13,7 +18,7 @@ void ShaderLibrary::init(){
     
     shaders.insert(std::pair<std::string, std::shared_ptr<ShaderProgram>>("defaultSolid", defaultProgram));
     shaders.insert(std::pair<std::string, std::shared_ptr<ShaderProgram>>("defaultAlphaTested", alphaProgram));
-    shaders.insert(std::pair<std::string, std::shared_ptr<ShaderProgram>>("defaultTransparent", transparentProgram));    
+    shaders.insert(std::pair<std::string, std::shared_ptr<ShaderProgram>>("defaultTransparent", transparentProgram));
 }
 
 std::shared_ptr<ShaderProgram> ShaderLibrary::getProgram(std::string name){
@@ -25,8 +30,8 @@ std::shared_ptr<ShaderProgram> ShaderLibrary::createProgram(const char *vertexSh
 
     std::shared_ptr<ShaderProgram> program(new ShaderProgram());
 
-    std::shared_ptr<Shader> vertexShader = ShaderLibrary::loadShader(GL_VERTEX_SHADER, vertexShaderFilename);
-    std::shared_ptr<Shader> fragmentShader = ShaderLibrary::loadShader(GL_FRAGMENT_SHADER, fragmentShaderFilename);
+    std::shared_ptr<Shader> vertexShader = loadShader(GL_VERTEX_SHADER, vertexShaderFilename);
+    std::shared_ptr<Shader> fragmentShader = loadShader(GL_FRAGMENT_SHADER, fragmentShaderFilename);
     program->drawCallback = drawCallback;
     program->bindAttribCallback = bindCallback;
     
