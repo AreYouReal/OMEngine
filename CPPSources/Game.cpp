@@ -49,6 +49,7 @@ void materialDrawCallback(void *ptr){
         }else if(!strcmp(program->uniformArray[i].name.c_str(), "uShininess")){
             glUniform1f(program->uniformArray[i].location, mat->specularExponent);
         }else if(!strcmp(program->uniformArray[i].name.c_str(), "uLightPos")){
+            lightPosition = (lightPosition * ModelViewMatrix);
              glUniform3fv(program->uniformArray[i].location, 1, &lightPosition.x);
         }
     }

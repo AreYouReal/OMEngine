@@ -117,6 +117,23 @@ v4d operator*(const m4d& m, v4d& vec){
     return rVec4;
 }
 
+v4d operator*(const m4d &m, const v4d &v){
+    return v4d(m.m[0][0] * v.x + m.m[0][1] * v.y + m.m[0][2] * v.z + m.m[0][3] * v.w,
+                  m.m[1][0] * v.x + m.m[1][1] * v.y + m.m[1][2] * v.z + m.m[1][3] * v.w,
+                  m.m[2][0] * v.x + m.m[2][1] * v.y + m.m[2][2] * v.z + m.m[2][3] * v.w,
+                  m.m[3][0] * v.x + m.m[3][1] * v.y + m.m[3][2] * v.z + m.m[3][3] * v.w);
+}
+
+v3d operator*(const v3d &v, const m4d &m){
+    return v3d(m.m[0][0] * v.x + m.m[0][1] * v.y + m.m[0][2] * v.z,
+               m.m[1][0] * v.x + m.m[1][1] * v.y + m.m[1][2] * v.z,
+               m.m[2][0] * v.x + m.m[2][1] * v.y + m.m[2][2] * v.z);
+}
+
+v4d operator*(const v4d &v, const m4d &m){
+    return operator*(m, v);
+}
+
 float* m4d::pointer(){
     return &(m[0][0]);
 }
