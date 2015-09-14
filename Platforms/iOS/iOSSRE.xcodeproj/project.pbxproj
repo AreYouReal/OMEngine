@@ -27,10 +27,6 @@
 		947FA31D1BA4854A00695A4E /* char_ram_col.png in Resources */ = {isa = PBXBuildFile; fileRef = 947FA31A1BA4854A00695A4E /* char_ram_col.png */; };
 		947FA31E1BA4854A00695A4E /* ram.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 947FA31B1BA4854A00695A4E /* ram.mtl */; };
 		947FA31F1BA4854A00695A4E /* ram.obj in Resources */ = {isa = PBXBuildFile; fileRef = 947FA31C1BA4854A00695A4E /* ram.obj */; };
-		947FA3271BA4909F00695A4E /* NvTriStrip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 947FA3211BA4909F00695A4E /* NvTriStrip.cpp */; };
-		947FA3281BA4909F00695A4E /* NvTriStripObjects.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 947FA3231BA4909F00695A4E /* NvTriStripObjects.cpp */; };
-		947FA3291BA4909F00695A4E /* VertexCache.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 947FA3251BA4909F00695A4E /* VertexCache.cpp */; };
-		948C6A081B2C162600D61689 /* lodepng.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 948C6A061B2C162600D61689 /* lodepng.cpp */; };
 		94C5DB551B63E5DB005E706E /* model.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 94C5DB511B63E5DB005E706E /* model.mtl */; };
 		94C5DB561B63E5DB005E706E /* model.obj in Resources */ = {isa = PBXBuildFile; fileRef = 94C5DB521B63E5DB005E706E /* model.obj */; };
 		94C5DB571B63E5DB005E706E /* vertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 94C5DB531B63E5DB005E706E /* vertex.glsl */; };
@@ -47,6 +43,10 @@
 		F33425671BA0684F00E727F5 /* fragmentSolid.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F33425641BA0684F00E727F5 /* fragmentSolid.glsl */; };
 		F33425681BA0684F00E727F5 /* fragmentTransparent.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F33425651BA0684F00E727F5 /* fragmentTransparent.glsl */; };
 		F340F7891BA034B20021445C /* ObjMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F340F7871BA034B20021445C /* ObjMesh.cpp */; };
+		F368E8C01BA6AC9F00F322AF /* lodepng.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F368E8B71BA6AC9F00F322AF /* lodepng.cpp */; };
+		F368E8C11BA6AC9F00F322AF /* NvTriStrip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F368E8BA1BA6AC9F00F322AF /* NvTriStrip.cpp */; };
+		F368E8C21BA6AC9F00F322AF /* NvTriStripObjects.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F368E8BC1BA6AC9F00F322AF /* NvTriStripObjects.cpp */; };
+		F368E8C31BA6AC9F00F322AF /* VertexCache.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F368E8BE1BA6AC9F00F322AF /* VertexCache.cpp */; };
 		F3944FCA1B8AE0890090FF01 /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3944FC91B8AE0890090FF01 /* Texture.cpp */; };
 		F3D5E1081AF8F23E00DD216B /* iOSSRETests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3D5E1071AF8F23E00DD216B /* iOSSRETests-Info.plist */; };
 		F3D5E10B1AF8F24400DD216B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F3D5E1091AF8F24400DD216B /* InfoPlist.strings */; };
@@ -94,15 +94,7 @@
 		947FA31A1BA4854A00695A4E /* char_ram_col.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = char_ram_col.png; path = SREngine/Platforms/Android/assets/char_ram_col.png; sourceTree = "<group>"; };
 		947FA31B1BA4854A00695A4E /* ram.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ram.mtl; path = SREngine/Platforms/Android/assets/ram.mtl; sourceTree = "<group>"; };
 		947FA31C1BA4854A00695A4E /* ram.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ram.obj; path = SREngine/Platforms/Android/assets/ram.obj; sourceTree = "<group>"; };
-		947FA3211BA4909F00695A4E /* NvTriStrip.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NvTriStrip.cpp; sourceTree = "<group>"; };
-		947FA3221BA4909F00695A4E /* NvTriStrip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NvTriStrip.h; sourceTree = "<group>"; };
-		947FA3231BA4909F00695A4E /* NvTriStripObjects.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NvTriStripObjects.cpp; sourceTree = "<group>"; };
-		947FA3241BA4909F00695A4E /* NvTriStripObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NvTriStripObjects.h; sourceTree = "<group>"; };
-		947FA3251BA4909F00695A4E /* VertexCache.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VertexCache.cpp; sourceTree = "<group>"; };
-		947FA3261BA4909F00695A4E /* VertexCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VertexCache.h; sourceTree = "<group>"; };
 		948BACC21B6DFB5C004A052C /* Typedefs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Typedefs.h; sourceTree = "<group>"; };
-		948C6A061B2C162600D61689 /* lodepng.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lodepng.cpp; sourceTree = "<group>"; };
-		948C6A071B2C162600D61689 /* lodepng.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lodepng.h; sourceTree = "<group>"; };
 		94C5DB511B63E5DB005E706E /* model.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = model.mtl; path = SREngine/Platforms/Android/assets/model.mtl; sourceTree = "<group>"; };
 		94C5DB521B63E5DB005E706E /* model.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = model.obj; path = SREngine/Platforms/Android/assets/model.obj; sourceTree = "<group>"; };
 		94C5DB531B63E5DB005E706E /* vertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = vertex.glsl; path = SREngine/Platforms/Android/assets/vertex.glsl; sourceTree = "<group>"; };
@@ -130,6 +122,14 @@
 		F340F7871BA034B20021445C /* ObjMesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ObjMesh.cpp; path = OBJ/ObjMesh.cpp; sourceTree = "<group>"; };
 		F340F7881BA034B20021445C /* ObjMesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ObjMesh.h; path = OBJ/ObjMesh.h; sourceTree = "<group>"; };
 		F340F78B1BA036390021445C /* ObjMaterial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ObjMaterial.h; path = OBJ/ObjMaterial.h; sourceTree = "<group>"; };
+		F368E8B71BA6AC9F00F322AF /* lodepng.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lodepng.cpp; sourceTree = "<group>"; };
+		F368E8B81BA6AC9F00F322AF /* lodepng.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lodepng.h; sourceTree = "<group>"; };
+		F368E8BA1BA6AC9F00F322AF /* NvTriStrip.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NvTriStrip.cpp; sourceTree = "<group>"; };
+		F368E8BB1BA6AC9F00F322AF /* NvTriStrip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NvTriStrip.h; sourceTree = "<group>"; };
+		F368E8BC1BA6AC9F00F322AF /* NvTriStripObjects.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NvTriStripObjects.cpp; sourceTree = "<group>"; };
+		F368E8BD1BA6AC9F00F322AF /* NvTriStripObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NvTriStripObjects.h; sourceTree = "<group>"; };
+		F368E8BE1BA6AC9F00F322AF /* VertexCache.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VertexCache.cpp; sourceTree = "<group>"; };
+		F368E8BF1BA6AC9F00F322AF /* VertexCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VertexCache.h; sourceTree = "<group>"; };
 		F3944FC91B8AE0890090FF01 /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cpp; sourceTree = "<group>"; };
 		F3D5E1051AF8F23400DD216B /* iOSSRETests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iOSSRETests.m; path = iOSSRETests/iOSSRETests.m; sourceTree = SOURCE_ROOT; };
 		F3D5E1071AF8F23E00DD216B /* iOSSRETests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "iOSSRETests-Info.plist"; path = "iOSSRETests/iOSSRETests-Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -316,9 +316,8 @@
 		9453DEDE1B2A080F00C79DB3 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				947FA3201BA4909F00695A4E /* nvtristrip */,
+				F368E8B51BA6AC9F00F322AF /* 3dPart */,
 				F33B0B841B6B6B46006305C1 /* OBJ */,
-				948C6A051B2C162600D61689 /* loadpng */,
 				9453DEDF1B2A0A2700C79DB3 /* SRUtils.cpp */,
 				9453DEE01B2A0A2700C79DB3 /* SRUtils.h */,
 				948BACC21B6DFB5C004A052C /* Typedefs.h */,
@@ -327,29 +326,6 @@
 			);
 			name = Utils;
 			path = ../../CPPSources/Utils;
-			sourceTree = SOURCE_ROOT;
-		};
-		947FA3201BA4909F00695A4E /* nvtristrip */ = {
-			isa = PBXGroup;
-			children = (
-				947FA3211BA4909F00695A4E /* NvTriStrip.cpp */,
-				947FA3221BA4909F00695A4E /* NvTriStrip.h */,
-				947FA3231BA4909F00695A4E /* NvTriStripObjects.cpp */,
-				947FA3241BA4909F00695A4E /* NvTriStripObjects.h */,
-				947FA3251BA4909F00695A4E /* VertexCache.cpp */,
-				947FA3261BA4909F00695A4E /* VertexCache.h */,
-			);
-			path = nvtristrip;
-			sourceTree = "<group>";
-		};
-		948C6A051B2C162600D61689 /* loadpng */ = {
-			isa = PBXGroup;
-			children = (
-				948C6A061B2C162600D61689 /* lodepng.cpp */,
-				948C6A071B2C162600D61689 /* lodepng.h */,
-			);
-			name = loadpng;
-			path = ../../CPPSources/Utils/loadpng;
 			sourceTree = SOURCE_ROOT;
 		};
 		F33B0B841B6B6B46006305C1 /* OBJ */ = {
@@ -364,6 +340,37 @@
 				F340F78B1BA036390021445C /* ObjMaterial.h */,
 			);
 			name = OBJ;
+			sourceTree = "<group>";
+		};
+		F368E8B51BA6AC9F00F322AF /* 3dPart */ = {
+			isa = PBXGroup;
+			children = (
+				F368E8B61BA6AC9F00F322AF /* loadpng */,
+				F368E8B91BA6AC9F00F322AF /* nvtristrip */,
+			);
+			path = 3dPart;
+			sourceTree = "<group>";
+		};
+		F368E8B61BA6AC9F00F322AF /* loadpng */ = {
+			isa = PBXGroup;
+			children = (
+				F368E8B71BA6AC9F00F322AF /* lodepng.cpp */,
+				F368E8B81BA6AC9F00F322AF /* lodepng.h */,
+			);
+			path = loadpng;
+			sourceTree = "<group>";
+		};
+		F368E8B91BA6AC9F00F322AF /* nvtristrip */ = {
+			isa = PBXGroup;
+			children = (
+				F368E8BA1BA6AC9F00F322AF /* NvTriStrip.cpp */,
+				F368E8BB1BA6AC9F00F322AF /* NvTriStrip.h */,
+				F368E8BC1BA6AC9F00F322AF /* NvTriStripObjects.cpp */,
+				F368E8BD1BA6AC9F00F322AF /* NvTriStripObjects.h */,
+				F368E8BE1BA6AC9F00F322AF /* VertexCache.cpp */,
+				F368E8BF1BA6AC9F00F322AF /* VertexCache.h */,
+			);
+			path = nvtristrip;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -487,17 +494,17 @@
 				94CE87D61B62B51900752D5C /* ShaderHelper.cpp in Sources */,
 				94CE87CC1B62B4D000752D5C /* m4d.cpp in Sources */,
 				F340F7891BA034B20021445C /* ObjMesh.cpp in Sources */,
+				F368E8C01BA6AC9F00F322AF /* lodepng.cpp in Sources */,
+				F368E8C11BA6AC9F00F322AF /* NvTriStrip.cpp in Sources */,
+				F368E8C21BA6AC9F00F322AF /* NvTriStripObjects.cpp in Sources */,
 				F3FAE8B81B6B77D6007AF169 /* ShaderProgram.cpp in Sources */,
-				947FA3271BA4909F00695A4E /* NvTriStrip.cpp in Sources */,
-				947FA3281BA4909F00695A4E /* NvTriStripObjects.cpp in Sources */,
 				94CE87E11B62B59800752D5C /* AppDelegate.mm in Sources */,
 				F3FAE8BB1B6B7885007AF169 /* Shader.cpp in Sources */,
 				94CE87E21B62B59800752D5C /* FileWrapper.mm in Sources */,
 				94CE87D91B62B53500752D5C /* Game.cpp in Sources */,
 				94CE87CE1B62B4D000752D5C /* v3d.cpp in Sources */,
+				F368E8C31BA6AC9F00F322AF /* VertexCache.cpp in Sources */,
 				94CE87CD1B62B4D000752D5C /* q4d.cpp in Sources */,
-				947FA3291BA4909F00695A4E /* VertexCache.cpp in Sources */,
-				948C6A081B2C162600D61689 /* lodepng.cpp in Sources */,
 				9453DEE11B2A0A2700C79DB3 /* SRUtils.cpp in Sources */,
 				F3FAE8B21B6B6BC7007AF169 /* obj.cpp in Sources */,
 				94CE87E71B62B5A400752D5C /* ViewController.mm in Sources */,

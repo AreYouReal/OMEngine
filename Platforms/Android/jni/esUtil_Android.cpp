@@ -4,7 +4,7 @@
 #include <android/log.h>
 #include <android_native_app_glue.h>
 #include <time.h>
-#include "Main.h"
+#include "Game.h"
 
 #define LOGI(...) ((void)__android_log_print(ANDROID_LOG_INFO, "esUtil", __VA_ARGS__))
 
@@ -61,7 +61,7 @@ static void HandleCommand ( struct android_app *pApp, int32_t cmd ){
          context->eglNativeDisplay = EGL_DEFAULT_DISPLAY;
          context->eglNativeWindow = pApp->window;
          // Call the main entrypoint for the app
-         if ( SRGraphics::Main ( context ) != GL_TRUE ){
+         if ( Game::Main ( context ) != GL_TRUE ){
             exit ( 0 ); //@TEMP better way to exit?
          }
          break;
