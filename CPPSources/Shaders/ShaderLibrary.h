@@ -16,6 +16,8 @@ public:
     std::shared_ptr<Shader> loadShader(GLenum shaderType, std::string shaderSource);
     
 private:
+    
+    static std::shared_ptr<ShaderLibrary> mInstance;
 // Fields
     std::map<std::string, std::shared_ptr<ShaderProgram>> shaders;
     

@@ -2,11 +2,8 @@
 #include "SRUtils.h"
 
 struct FileContent{
-    
-    FileContent(char* contentChars, long cSize){ content = contentChars; size = cSize;}
-    ~FileContent(){ if(content) delete[] content;
-//        logMessage("FILE CONTENT DESTRUCTOR!");
-    }
+    FileContent(char* contentChars, long cSize) : content(contentChars), size(cSize){}
+    ~FileContent(){ if(content) delete[] content; }
 
     const char   *content;
     long         size;

@@ -47,6 +47,7 @@
 		F368E8CA1BA6AE5A00F322AF /* fragmentSolid.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F368E8C61BA6AE5A00F322AF /* fragmentSolid.glsl */; };
 		F368E8CB1BA6AE5A00F322AF /* fragmentTransparent.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F368E8C71BA6AE5A00F322AF /* fragmentTransparent.glsl */; };
 		F368E8CC1BA6AE5A00F322AF /* vertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F368E8C81BA6AE5A00F322AF /* vertex.glsl */; };
+		F3710A151BA6CA6000235C68 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3710A131BA6CA6000235C68 /* Camera.cpp */; };
 		F3944FCA1B8AE0890090FF01 /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3944FC91B8AE0890090FF01 /* Texture.cpp */; };
 		F3D5E1081AF8F23E00DD216B /* iOSSRETests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3D5E1071AF8F23E00DD216B /* iOSSRETests-Info.plist */; };
 		F3D5E10B1AF8F24400DD216B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F3D5E1091AF8F24400DD216B /* InfoPlist.strings */; };
@@ -130,6 +131,8 @@
 		F368E8C61BA6AE5A00F322AF /* fragmentSolid.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fragmentSolid.glsl; sourceTree = "<group>"; };
 		F368E8C71BA6AE5A00F322AF /* fragmentTransparent.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fragmentTransparent.glsl; sourceTree = "<group>"; };
 		F368E8C81BA6AE5A00F322AF /* vertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = vertex.glsl; sourceTree = "<group>"; };
+		F3710A131BA6CA6000235C68 /* Camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Camera.cpp; path = SREngine/CPPSources/Camera/Camera.cpp; sourceTree = "<group>"; };
+		F3710A141BA6CA6000235C68 /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Camera.h; path = SREngine/CPPSources/Camera/Camera.h; sourceTree = "<group>"; };
 		F3944FC91B8AE0890090FF01 /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cpp; sourceTree = "<group>"; };
 		F3D5E1051AF8F23400DD216B /* iOSSRETests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iOSSRETests.m; path = iOSSRETests/iOSSRETests.m; sourceTree = SOURCE_ROOT; };
 		F3D5E1071AF8F23E00DD216B /* iOSSRETests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "iOSSRETests-Info.plist"; path = "iOSSRETests/iOSSRETests-Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -227,6 +230,7 @@
 		7626523F17F10E6C007CCD43 /* iOSSRE */ = {
 			isa = PBXGroup;
 			children = (
+				F3710A0F1BA6C95D00235C68 /* Camera */,
 				9453DEDE1B2A080F00C79DB3 /* Utils */,
 				944E39671B01191F003806EB /* Math */,
 				9420DCE41B007E0D006D2A7E /* Shaders */,
@@ -382,6 +386,15 @@
 			path = SREngine/Platforms/Android/assets/shaders;
 			sourceTree = "<group>";
 		};
+		F3710A0F1BA6C95D00235C68 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				F3710A131BA6CA6000235C68 /* Camera.cpp */,
+				F3710A141BA6CA6000235C68 /* Camera.h */,
+			);
+			name = Camera;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -510,6 +523,7 @@
 				94CE87E11B62B59800752D5C /* AppDelegate.mm in Sources */,
 				F3FAE8BB1B6B7885007AF169 /* Shader.cpp in Sources */,
 				94CE87E21B62B59800752D5C /* FileWrapper.mm in Sources */,
+				F3710A151BA6CA6000235C68 /* Camera.cpp in Sources */,
 				94CE87D91B62B53500752D5C /* Game.cpp in Sources */,
 				94CE87CE1B62B4D000752D5C /* v3d.cpp in Sources */,
 				F368E8C31BA6AC9F00F322AF /* VertexCache.cpp in Sources */,

@@ -3,7 +3,7 @@
 
 #pragma mark Public
 
-static std::shared_ptr<ShaderLibrary> mInstance;
+std::shared_ptr<ShaderLibrary> ShaderLibrary::mInstance = NULL;
 
 std::shared_ptr<ShaderLibrary> ShaderLibrary::instance(){
     if(!mInstance){ mInstance = std::shared_ptr<ShaderLibrary>(new ShaderLibrary()); }
