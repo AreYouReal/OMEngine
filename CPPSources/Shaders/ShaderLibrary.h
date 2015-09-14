@@ -13,6 +13,8 @@ public:
 
     std::shared_ptr<ShaderProgram> getProgram(std::string name);
     std::shared_ptr<ShaderProgram> createProgram(const char *vertexShaderFilename, const char* fragmentShaderFilename, BindAttribCallback *bindCallback, DrawCallback *drawCallback);
+    
+    std::shared_ptr<ShaderProgram> createProgram(std::shared_ptr<Shader> vertexShader, std::shared_ptr<Shader> fragmentShader, BindAttribCallback *bindCallback = NULL, DrawCallback *drawCallback = NULL);
     std::shared_ptr<Shader> loadShader(GLenum shaderType, std::string shaderSource);
     
 private:

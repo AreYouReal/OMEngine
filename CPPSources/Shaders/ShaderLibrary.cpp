@@ -12,13 +12,23 @@ std::shared_ptr<ShaderLibrary> ShaderLibrary::instance(){
 
 ShaderLibrary::ShaderLibrary(){
     // Default program
-    std::shared_ptr<ShaderProgram> defaultProgram = createProgram("vertex.glsl", "fragmentSolid.glsl", NULL, NULL);
-    std::shared_ptr<ShaderProgram> alphaProgram = createProgram("vertex.glsl", "fragmentAlphaTested.glsl", NULL, NULL);
-    std::shared_ptr<ShaderProgram> transparentProgram = createProgram("vertex.glsl", "fragmentTransparent.glsl", NULL, NULL);
+    // Use normal as color in shader
+    std::shared_ptr<Shader> vertexShader = loadShader(GL_VERTEX_SHADER, "pos_norm_vertex.glsl");
+    std::shared_ptr<Shader> fragmentShader = loadShader(GL_FRAGMENT_SHADER, "norm_as_color_fragment.glsl");
+    std::shared_ptr<ShaderProgram> program = createProgram(vertexShader, fragmentShader);
+    shaders.insert(std::pair<std::string, std::shared_ptr<ShaderProgram>>("norm_as_color", program));
+    //--------------------------------------------------------
     
-    shaders.insert(std::pair<std::string, std::shared_ptr<ShaderProgram>>("defaultSolid", defaultProgram));
-    shaders.insert(std::pair<std::string, std::shared_ptr<ShaderProgram>>("defaultAlphaTested", alphaProgram));
-    shaders.insert(std::pair<std::string, std::shared_ptr<ShaderProgram>>("defaultTransparent", transparentProgram));
+    
+    
+    
+//    std::shared_ptr<ShaderProgram> defaultProgram = createProgram("vertex.glsl", "fragmentSolid.glsl", NULL, NULL);
+//    std::shared_ptr<ShaderProgram> alphaProgram = createProgram("vertex.glsl", "fragmentAlphaTested.glsl", NULL, NULL);
+//    std::shared_ptr<ShaderProgram> transparentProgram = createProgram("vertex.glsl", "fragmentTransparent.glsl", NULL, NULL);
+//    
+//    shaders.insert(std::pair<std::string, std::shared_ptr<ShaderProgram>>("defaultSolid", defaultProgram));
+//    shaders.insert(std::pair<std::string, std::shared_ptr<ShaderProgram>>("defaultAlphaTested", alphaProgram));
+//    shaders.insert(std::pair<std::string, std::shared_ptr<ShaderProgram>>("defaultTransparent", transparentProgram));
 }
 
 std::shared_ptr<ShaderProgram> ShaderLibrary::getProgram(std::string name){
@@ -27,14 +37,15 @@ std::shared_ptr<ShaderProgram> ShaderLibrary::getProgram(std::string name){
 }
 
 std::shared_ptr<ShaderProgram> ShaderLibrary::createProgram(const char *vertexShaderFilename,const char* fragmentShaderFilename, BindAttribCallback *bindCallback, DrawCallback *drawCallback){
-
-    std::shared_ptr<ShaderProgram> program(new ShaderProgram());
-
     std::shared_ptr<Shader> vertexShader = loadShader(GL_VERTEX_SHADER, vertexShaderFilename);
     std::shared_ptr<Shader> fragmentShader = loadShader(GL_FRAGMENT_SHADER, fragmentShaderFilename);
+    return createProgram(vertexShader, fragmentShader);
+}
+
+std::shared_ptr<ShaderProgram> ShaderLibrary::createProgram(std::shared_ptr<Shader> vertexShader, std::shared_ptr<Shader> fragmentShader, BindAttribCallback *bindCallback, DrawCallback *drawCallback){
+    std::shared_ptr<ShaderProgram> program(new ShaderProgram());
     program->drawCallback = drawCallback;
     program->bindAttribCallback = bindCallback;
-    
     program->ID = glCreateProgram();
     glAttachShader(program->ID, vertexShader->ID);
     glAttachShader(program->ID, fragmentShader->ID);
@@ -58,7 +69,7 @@ std::shared_ptr<ShaderProgram> ShaderLibrary::createProgram(const char *vertexSh
             attrib.name = name;
             attrib.type = type;
         }
-
+        
         glGetProgramiv(program->ID, GL_ACTIVE_UNIFORMS, &total);
         program->uniformArray = std::vector<Uniform>(total);
         for(unsigned int i = 0; i < total; i++){
@@ -76,6 +87,7 @@ std::shared_ptr<ShaderProgram> ShaderLibrary::createProgram(const char *vertexSh
     ShaderLibrary::printProgramInfoLog(program->ID);
     
     return program;
+
 }
 
 #pragma mark Helpers
