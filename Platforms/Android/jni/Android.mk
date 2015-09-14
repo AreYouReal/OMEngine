@@ -9,7 +9,7 @@ LOCAL_CFLAGS    += -std=c++11
 
 LOCAL_SRC_FILES := $(LOCAL_PATH)/esUtil_Android.cpp \
 				   $(SRC_PATH)/CPPSources/Game.cpp \
-				   $(SRC_PATH)/CPPSources/Shaders/ShaderHelper.cpp \
+				   $(SRC_PATH)/CPPSources/Shaders/ShaderLibrary.cpp \
 				   $(SRC_PATH)/CPPSources/Shaders/ShaderProgram.cpp \
 				   $(SRC_PATH)/CPPSources/Shaders/Shader.cpp \
 				   $(SRC_PATH)/CPPSources/Utils/SRUtils.cpp \
