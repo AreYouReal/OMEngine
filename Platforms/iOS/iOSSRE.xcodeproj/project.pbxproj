@@ -29,7 +29,6 @@
 		947FA31F1BA4854A00695A4E /* ram.obj in Resources */ = {isa = PBXBuildFile; fileRef = 947FA31C1BA4854A00695A4E /* ram.obj */; };
 		94C5DB551B63E5DB005E706E /* model.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 94C5DB511B63E5DB005E706E /* model.mtl */; };
 		94C5DB561B63E5DB005E706E /* model.obj in Resources */ = {isa = PBXBuildFile; fileRef = 94C5DB521B63E5DB005E706E /* model.obj */; };
-		94C5DB571B63E5DB005E706E /* vertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 94C5DB531B63E5DB005E706E /* vertex.glsl */; };
 		94CE87CC1B62B4D000752D5C /* m4d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94CE87C61B62B4D000752D5C /* m4d.cpp */; };
 		94CE87CD1B62B4D000752D5C /* q4d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94CE87C81B62B4D000752D5C /* q4d.cpp */; };
 		94CE87CE1B62B4D000752D5C /* v3d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94CE87CA1B62B4D000752D5C /* v3d.cpp */; };
@@ -39,14 +38,15 @@
 		94CE87E21B62B59800752D5C /* FileWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 94CE87E01B62B59800752D5C /* FileWrapper.mm */; };
 		94CE87E61B62B5A400752D5C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 94CE87E31B62B5A400752D5C /* main.m */; };
 		94CE87E71B62B5A400752D5C /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 94CE87E51B62B5A400752D5C /* ViewController.mm */; };
-		F33425661BA0684F00E727F5 /* fragmentAlphaTested.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F33425631BA0684F00E727F5 /* fragmentAlphaTested.glsl */; };
-		F33425671BA0684F00E727F5 /* fragmentSolid.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F33425641BA0684F00E727F5 /* fragmentSolid.glsl */; };
-		F33425681BA0684F00E727F5 /* fragmentTransparent.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F33425651BA0684F00E727F5 /* fragmentTransparent.glsl */; };
 		F340F7891BA034B20021445C /* ObjMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F340F7871BA034B20021445C /* ObjMesh.cpp */; };
 		F368E8C01BA6AC9F00F322AF /* lodepng.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F368E8B71BA6AC9F00F322AF /* lodepng.cpp */; };
 		F368E8C11BA6AC9F00F322AF /* NvTriStrip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F368E8BA1BA6AC9F00F322AF /* NvTriStrip.cpp */; };
 		F368E8C21BA6AC9F00F322AF /* NvTriStripObjects.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F368E8BC1BA6AC9F00F322AF /* NvTriStripObjects.cpp */; };
 		F368E8C31BA6AC9F00F322AF /* VertexCache.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F368E8BE1BA6AC9F00F322AF /* VertexCache.cpp */; };
+		F368E8C91BA6AE5A00F322AF /* fragmentAlphaTested.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F368E8C51BA6AE5A00F322AF /* fragmentAlphaTested.glsl */; };
+		F368E8CA1BA6AE5A00F322AF /* fragmentSolid.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F368E8C61BA6AE5A00F322AF /* fragmentSolid.glsl */; };
+		F368E8CB1BA6AE5A00F322AF /* fragmentTransparent.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F368E8C71BA6AE5A00F322AF /* fragmentTransparent.glsl */; };
+		F368E8CC1BA6AE5A00F322AF /* vertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F368E8C81BA6AE5A00F322AF /* vertex.glsl */; };
 		F3944FCA1B8AE0890090FF01 /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3944FC91B8AE0890090FF01 /* Texture.cpp */; };
 		F3D5E1081AF8F23E00DD216B /* iOSSRETests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3D5E1071AF8F23E00DD216B /* iOSSRETests-Info.plist */; };
 		F3D5E10B1AF8F24400DD216B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F3D5E1091AF8F24400DD216B /* InfoPlist.strings */; };
@@ -97,7 +97,6 @@
 		948BACC21B6DFB5C004A052C /* Typedefs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Typedefs.h; sourceTree = "<group>"; };
 		94C5DB511B63E5DB005E706E /* model.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = model.mtl; path = SREngine/Platforms/Android/assets/model.mtl; sourceTree = "<group>"; };
 		94C5DB521B63E5DB005E706E /* model.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = model.obj; path = SREngine/Platforms/Android/assets/model.obj; sourceTree = "<group>"; };
-		94C5DB531B63E5DB005E706E /* vertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = vertex.glsl; path = SREngine/Platforms/Android/assets/vertex.glsl; sourceTree = "<group>"; };
 		94CE87C61B62B4D000752D5C /* m4d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = m4d.cpp; path = ../../CPPSources/Math/m4d.cpp; sourceTree = SOURCE_ROOT; };
 		94CE87C71B62B4D000752D5C /* m4d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = m4d.h; path = ../../CPPSources/Math/m4d.h; sourceTree = SOURCE_ROOT; };
 		94CE87C81B62B4D000752D5C /* q4d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = q4d.cpp; path = ../../CPPSources/Math/q4d.cpp; sourceTree = SOURCE_ROOT; };
@@ -116,9 +115,6 @@
 		94CE87E41B62B5A400752D5C /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = iOSSRE/ViewController.h; sourceTree = SOURCE_ROOT; };
 		94CE87E51B62B5A400752D5C /* ViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ViewController.mm; path = iOSSRE/ViewController.mm; sourceTree = SOURCE_ROOT; };
 		94E5A0DD1BA3FF0700066CC5 /* FileContent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileContent.h; sourceTree = "<group>"; };
-		F33425631BA0684F00E727F5 /* fragmentAlphaTested.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = fragmentAlphaTested.glsl; path = SREngine/Platforms/Android/assets/fragmentAlphaTested.glsl; sourceTree = "<group>"; };
-		F33425641BA0684F00E727F5 /* fragmentSolid.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = fragmentSolid.glsl; path = SREngine/Platforms/Android/assets/fragmentSolid.glsl; sourceTree = "<group>"; };
-		F33425651BA0684F00E727F5 /* fragmentTransparent.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = fragmentTransparent.glsl; path = SREngine/Platforms/Android/assets/fragmentTransparent.glsl; sourceTree = "<group>"; };
 		F340F7871BA034B20021445C /* ObjMesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ObjMesh.cpp; path = OBJ/ObjMesh.cpp; sourceTree = "<group>"; };
 		F340F7881BA034B20021445C /* ObjMesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ObjMesh.h; path = OBJ/ObjMesh.h; sourceTree = "<group>"; };
 		F340F78B1BA036390021445C /* ObjMaterial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ObjMaterial.h; path = OBJ/ObjMaterial.h; sourceTree = "<group>"; };
@@ -130,6 +126,10 @@
 		F368E8BD1BA6AC9F00F322AF /* NvTriStripObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NvTriStripObjects.h; sourceTree = "<group>"; };
 		F368E8BE1BA6AC9F00F322AF /* VertexCache.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VertexCache.cpp; sourceTree = "<group>"; };
 		F368E8BF1BA6AC9F00F322AF /* VertexCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VertexCache.h; sourceTree = "<group>"; };
+		F368E8C51BA6AE5A00F322AF /* fragmentAlphaTested.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fragmentAlphaTested.glsl; sourceTree = "<group>"; };
+		F368E8C61BA6AE5A00F322AF /* fragmentSolid.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fragmentSolid.glsl; sourceTree = "<group>"; };
+		F368E8C71BA6AE5A00F322AF /* fragmentTransparent.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fragmentTransparent.glsl; sourceTree = "<group>"; };
+		F368E8C81BA6AE5A00F322AF /* vertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = vertex.glsl; sourceTree = "<group>"; };
 		F3944FC91B8AE0890090FF01 /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cpp; sourceTree = "<group>"; };
 		F3D5E1051AF8F23400DD216B /* iOSSRETests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iOSSRETests.m; path = iOSSRETests/iOSSRETests.m; sourceTree = SOURCE_ROOT; };
 		F3D5E1071AF8F23E00DD216B /* iOSSRETests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "iOSSRETests-Info.plist"; path = "iOSSRETests/iOSSRETests-Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -242,12 +242,10 @@
 		7626524017F10E6C007CCD43 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F368E8C41BA6AE5A00F322AF /* shaders */,
 				947FA31A1BA4854A00695A4E /* char_ram_col.png */,
 				947FA31B1BA4854A00695A4E /* ram.mtl */,
 				947FA31C1BA4854A00695A4E /* ram.obj */,
-				F33425631BA0684F00E727F5 /* fragmentAlphaTested.glsl */,
-				F33425641BA0684F00E727F5 /* fragmentSolid.glsl */,
-				F33425651BA0684F00E727F5 /* fragmentTransparent.glsl */,
 				9472226F1B9AD466008D601B /* background.png */,
 				947222701B9AD466008D601B /* balloon.png */,
 				947222711B9AD466008D601B /* grass.png */,
@@ -258,7 +256,6 @@
 				947222761B9AD466008D601B /* tree.png */,
 				94C5DB511B63E5DB005E706E /* model.mtl */,
 				94C5DB521B63E5DB005E706E /* model.obj */,
-				94C5DB531B63E5DB005E706E /* vertex.glsl */,
 				F3D5E10F1AF8F2CD00DD216B /* InfoPlist.strings */,
 				F3D5E10C1AF8F2C600DD216B /* iOSSRE-Info.plist */,
 				F3D5E10D1AF8F2C600DD216B /* iOSSRE-Prefix.pch */,
@@ -373,6 +370,18 @@
 			path = nvtristrip;
 			sourceTree = "<group>";
 		};
+		F368E8C41BA6AE5A00F322AF /* shaders */ = {
+			isa = PBXGroup;
+			children = (
+				F368E8C51BA6AE5A00F322AF /* fragmentAlphaTested.glsl */,
+				F368E8C61BA6AE5A00F322AF /* fragmentSolid.glsl */,
+				F368E8C71BA6AE5A00F322AF /* fragmentTransparent.glsl */,
+				F368E8C81BA6AE5A00F322AF /* vertex.glsl */,
+			);
+			name = shaders;
+			path = SREngine/Platforms/Android/assets/shaders;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -449,11 +458,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F33425671BA0684F00E727F5 /* fragmentSolid.glsl in Resources */,
 				F3D5E1111AF8F2CD00DD216B /* InfoPlist.strings in Resources */,
 				F3D5E1191AF8F32E00DD216B /* Images.xcassets in Resources */,
 				9472227C1B9AD466008D601B /* scene.mtl in Resources */,
 				94C5DB561B63E5DB005E706E /* model.obj in Resources */,
+				F368E8CB1BA6AE5A00F322AF /* fragmentTransparent.glsl in Resources */,
 				9472227A1B9AD466008D601B /* leaf.png in Resources */,
 				947FA31F1BA4854A00695A4E /* ram.obj in Resources */,
 				947FA31D1BA4854A00695A4E /* char_ram_col.png in Resources */,
@@ -461,17 +470,17 @@
 				F3D5E1161AF8F32600DD216B /* Main_iPad.storyboard in Resources */,
 				F3D5E1171AF8F32600DD216B /* Main_iPhone.storyboard in Resources */,
 				9472227D1B9AD466008D601B /* scene.obj in Resources */,
-				F33425681BA0684F00E727F5 /* fragmentTransparent.glsl in Resources */,
+				F368E8CC1BA6AE5A00F322AF /* vertex.glsl in Resources */,
+				F368E8C91BA6AE5A00F322AF /* fragmentAlphaTested.glsl in Resources */,
 				94C5DB551B63E5DB005E706E /* model.mtl in Resources */,
 				9472227E1B9AD466008D601B /* tree.png in Resources */,
 				947222791B9AD466008D601B /* grass.png in Resources */,
+				F368E8CA1BA6AE5A00F322AF /* fragmentSolid.glsl in Resources */,
 				F3D5E1081AF8F23E00DD216B /* iOSSRETests-Info.plist in Resources */,
 				9472227B1B9AD466008D601B /* momo.png in Resources */,
 				947222781B9AD466008D601B /* balloon.png in Resources */,
 				947FA31E1BA4854A00695A4E /* ram.mtl in Resources */,
 				947222771B9AD466008D601B /* background.png in Resources */,
-				94C5DB571B63E5DB005E706E /* vertex.glsl in Resources */,
-				F33425661BA0684F00E727F5 /* fragmentAlphaTested.glsl in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -55,7 +55,10 @@ std::shared_ptr<ShaderProgram> ShaderHelper::createProgram(const char *vertexSha
 }
 
 #pragma mark Helpers
-std::shared_ptr<Shader> ShaderHelper::loadShader(GLenum shaderType, const char *vertexShaderFilename){
+std::shared_ptr<Shader> ShaderHelper::loadShader(GLenum shaderType, std::string vertexShaderFilename){
+#ifdef ANDROID
+    vertexShaderFilename = "shaders/" + vertexShaderFilename;
+#endif
     std::shared_ptr<Shader> shader = std::shared_ptr<Shader>(new Shader());
     shader->name = vertexShaderFilename;
     shader->type = GL_VERTEX_SHADER;

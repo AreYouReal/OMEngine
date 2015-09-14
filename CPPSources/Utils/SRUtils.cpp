@@ -247,14 +247,14 @@ std::vector<unsigned char> loadPNG ( void *ioContext, const char *fileName, unsi
 }
 
 #pragma mark READ SHADER
-std::unique_ptr<FileContent> readTextFile( void *ioContext, const char *fileName){
+std::unique_ptr<FileContent> readTextFile( void *ioContext, std::string fileName){
     srFile      *fp;
     // Open the file for reading
-    fp = fileOpen ( ioContext, fileName );
+    fp = fileOpen ( ioContext, fileName.c_str() );
     
     if ( fp == NULL ){
         // Log error as 'error in opening the input file from apk'
-        logMessage ( "read file has FAILED to load : { %s }\n", fileName );
+        logMessage ( "read file has FAILED to load : { %s }\n", fileName.c_str() );
         return std::unique_ptr<FileContent>();
     }
     long fSize = getFileSize(fp);

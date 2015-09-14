@@ -193,7 +193,7 @@ void Obj::optimizeMesh(unsigned int meshIndex, unsigned int vertexCacheSize){
         PrimitiveGroup *primitiveGroup;
         if( GenerateStrips(&mesh->tLists[i]->indices[0], (unsigned int)mesh->tLists[i]->indices.size(), &primitiveGroup, &nGroup, true)){
             if(primitiveGroup[0].numIndices < mesh->tLists[i]->indices.size()){
-                logMessage("\n%d VS %d\n", mesh->tLists[i]->indices.size(), primitiveGroup[0].numIndices);
+//                logMessage("\n%d VS %d\n", mesh->tLists[i]->indices.size(), primitiveGroup[0].numIndices);
                 mesh->tLists[i]->mode = GL_TRIANGLE_STRIP;
                 unsigned int size = primitiveGroup[0].numIndices * sizeof(unsigned short);
                 mesh->tLists[i]->indices.resize(primitiveGroup[0].numIndices);
