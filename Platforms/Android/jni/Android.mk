@@ -22,7 +22,8 @@ LOCAL_SRC_FILES := $(LOCAL_PATH)/esUtil_Android.cpp \
 				   $(SRC_PATH)/CPPSources/Math/q4d.cpp \
 				   $(SRC_PATH)/CPPSources/Utils/OBJ/obj.cpp \
 				   $(SRC_PATH)/CPPSources/Utils/OBJ/ObjMesh.cpp \
-				   $(SRC_PATH)/CPPSources/Utils/Texture.cpp
+				   $(SRC_PATH)/CPPSources/Utils/Texture.cpp \
+				   $(SRC_PATH)/CPPSources/Camera/Camera.cpp
 
 LOCAL_C_INCLUDES	:= $(SRC_PATH) \
 					   $(COMMON_INC_PATH) \
@@ -33,6 +34,7 @@ LOCAL_C_INCLUDES	:= $(SRC_PATH) \
 					   $(SRC_PATH)/CPPSources/Utils/3dPart/nvtristrip \
 					   $(SRC_PATH)/CPPSources/Utils/OBJ \
 					   $(SRC_PATH)/CPPSources/Math \
+					   $(SRC_PATH)/CPPSources/Camera \
 				   
 LOCAL_LDLIBS    := -llog -landroid -lEGL -lGLESv3
 

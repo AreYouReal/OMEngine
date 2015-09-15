@@ -63,7 +63,8 @@
  /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/OBJ/ObjMesh.h \
  /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/OBJ/ObjMaterial.h \
  /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/Texture.h \
- /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/nvtristrip/NvTriStrip.h
+ /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/nvtristrip/NvTriStrip.h \
+ /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Camera/Camera.h
 
 /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Game.h:
 
@@ -192,3 +193,5 @@
 /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/Texture.h:
 
 /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/nvtristrip/NvTriStrip.h:
+
+/Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Camera/Camera.h:
