@@ -2,6 +2,7 @@
 #include "ShaderLibrary.h"
 #include "obj.h"
 #include "Texture.h"
+#include "Camera.h"
 
 typedef struct{ } UserData;
 
@@ -49,21 +50,18 @@ void materialDrawCallback(void *ptr){
         }else if(!strcmp(program->uniformArray[i].name.c_str(), "uShininess")){
             glUniform1f(program->uniformArray[i].location, mat->specularExponent);
         }else if(!strcmp(program->uniformArray[i].name.c_str(), "uLightPos")){
-            lightPosition = (lightPosition * ModelViewMatrix);
+            lightPosition = (lightPosition * Camera::instance()->viewMatrix());
              glUniform3fv(program->uniformArray[i].location, 1, &lightPosition.x);
         }
     }
 }
 
 void calculateMatrices(float width, float height){
-    v3d eye(0.0f, -3.0f, 1.35f);
-    v3d lookAt(0.0f, -1.0f, 1.35f);
-    v3d up(0.0f, 0.0f, 1.0f);
     rotateObjMatrix = m4d::rotate(rotateAngel, 0, 0, 1); // * m4d::rotate(rotateAngel, 1, 0, 0);
     
-    ModelViewMatrix     = m4d::lookAt(eye, lookAt, up) * rotateObjMatrix;
-    ProjectionMatrix    = m4d::perspective(90, width, height, 0.1, 100);
-    NormalMatrix        = m4d::inverseTranspose(ModelViewMatrix);
+    ModelViewMatrix     = Camera::instance()->viewMatrix() * rotateObjMatrix;
+    ProjectionMatrix    = Camera::instance()->projectionMatrix();
+    NormalMatrix        = m4d::inverseTranspose(ModelViewMatrix);    
 }
 
 
@@ -86,6 +84,7 @@ int Game::Init ( SRContext *context ){
     object = std::shared_ptr<Obj>(new Obj("scene.obj"));
     
     ShaderLibrary::instance();
+    Camera::createCamera();
     
     for(unsigned int i = 0; i < object->meshesSize(); ++i){
         object->optimizeMesh(i, 0);
