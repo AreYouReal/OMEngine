@@ -19,16 +19,19 @@ ShaderLibrary::ShaderLibrary(){
     shaders.insert(std::pair<std::string, std::shared_ptr<ShaderProgram>>("norm_as_color", program));
     //--------------------------------------------------------
     
+    std::shared_ptr<Shader> vShader = loadShader(GL_VERTEX_SHADER, "vertex.glsl");
+    std::shared_ptr<Shader> fSolidShader = loadShader(GL_FRAGMENT_SHADER, "fragmentSolid.glsl");
+    std::shared_ptr<ShaderProgram> solidProgram = createProgram(vShader, fSolidShader);
     
+    std::shared_ptr<Shader> fATShader = loadShader(GL_FRAGMENT_SHADER, "fragmentAlphaTested.glsl");
+    std::shared_ptr<ShaderProgram> alphaProgram = createProgram(vShader, fATShader);
     
-    
-//    std::shared_ptr<ShaderProgram> defaultProgram = createProgram("vertex.glsl", "fragmentSolid.glsl", NULL, NULL);
-//    std::shared_ptr<ShaderProgram> alphaProgram = createProgram("vertex.glsl", "fragmentAlphaTested.glsl", NULL, NULL);
-//    std::shared_ptr<ShaderProgram> transparentProgram = createProgram("vertex.glsl", "fragmentTransparent.glsl", NULL, NULL);
-//    
-//    shaders.insert(std::pair<std::string, std::shared_ptr<ShaderProgram>>("defaultSolid", defaultProgram));
-//    shaders.insert(std::pair<std::string, std::shared_ptr<ShaderProgram>>("defaultAlphaTested", alphaProgram));
-//    shaders.insert(std::pair<std::string, std::shared_ptr<ShaderProgram>>("defaultTransparent", transparentProgram));
+    std::shared_ptr<Shader> fTransShader = loadShader(GL_FRAGMENT_SHADER, "fragmentTransparent.glsl");
+    std::shared_ptr<ShaderProgram> transProgram = createProgram(vShader, fTransShader);
+
+    shaders.insert(std::pair<std::string, std::shared_ptr<ShaderProgram>>("defaultSolid", solidProgram));
+    shaders.insert(std::pair<std::string, std::shared_ptr<ShaderProgram>>("defaultAlphaTested", alphaProgram));
+    shaders.insert(std::pair<std::string, std::shared_ptr<ShaderProgram>>("defaultTransparent", transProgram));
 }
 
 std::shared_ptr<ShaderProgram> ShaderLibrary::getProgram(std::string name){
