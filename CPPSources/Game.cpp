@@ -50,8 +50,8 @@ void materialDrawCallback(void *ptr){
         }else if(!strcmp(program->uniformArray[i].name.c_str(), "uShininess")){
             glUniform1f(program->uniformArray[i].location, mat->specularExponent);
         }else if(!strcmp(program->uniformArray[i].name.c_str(), "uLightPos")){
-            lightPosition = (lightPosition * Camera::instance()->viewMatrix());
-             glUniform3fv(program->uniformArray[i].location, 1, &lightPosition.x);
+            v3d modifLP = lightPosition * Camera::instance()->viewMatrix();
+             glUniform3fv(program->uniformArray[i].location, 1, &modifLP.x);
         }
     }
 }
@@ -163,9 +163,12 @@ void Game::Touch(SRContext *context, int event, int x, int y){
             startX = x;
             startY = y;
             break;
-        case TOUCH_EVENT::MOVED  :
-            rotateAngel -= ((startX - x) + (startY - y))/20;
+        case TOUCH_EVENT::MOVED  :{
+            float deltaAngle =((startX - x) + (startY - y))/20;
+            rotateAngel -= deltaAngle;
             rotateAngel %= 360;
+            Camera::instance()->move(deltaAngle > 0);
+        }
             break;
         case TOUCH_EVENT::ENDED  :
         case TOUCH_EVENT::CANCELLED  :

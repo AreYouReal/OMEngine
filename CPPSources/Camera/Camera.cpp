@@ -49,6 +49,13 @@ const m4d& Camera::projectionMatrix() const{
     return mProjectionMatrix;
 }
 
+void Camera::move(bool forward){
+    if(forward){
+        mPosition = mPosition + mFront * 0.1f;
+    }else mPosition = mPosition - mFront * 0.1f;
+    refreshViewMatrix();
+}
+
 
 
 #pragma mark PRIVATE(HELPERS)

@@ -19,6 +19,8 @@ public:
     void setFront(v3d front);
     void setUp(v3d up);
     
+    void move(bool forward);
+    
 private:
     float mFovy, mWidth, mHeight, mNear, mFar;
     
