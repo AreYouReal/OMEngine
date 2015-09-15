@@ -58,7 +58,7 @@ void materialDrawCallback(void *ptr){
 
 void calculateMatrices(float width, float height){
     rotateObjMatrix = m4d::rotate(rotateAngel, 0, 0, 1); // * m4d::rotate(rotateAngel, 1, 0, 0);
-    
+    Camera::instance()->setWidthAndHeight(width, height);
     ModelViewMatrix     = Camera::instance()->viewMatrix() * rotateObjMatrix;
     ProjectionMatrix    = Camera::instance()->projectionMatrix();
     NormalMatrix        = m4d::inverseTranspose(ModelViewMatrix);    

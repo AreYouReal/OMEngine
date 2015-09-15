@@ -14,6 +14,7 @@ public:
     const m4d& viewMatrix() const;
     const m4d& projectionMatrix() const;
     
+    void setWidthAndHeight(float width, float height);
     void setPosition(v3d pos);
     void setFront(v3d front);
     void setUp(v3d up);
@@ -27,4 +28,8 @@ private:
     
     m4d mViewMatrix;
     m4d mProjectionMatrix;
+    
+    
+    void refreshViewMatrix();
+    void refreshProjMatrix();
 };

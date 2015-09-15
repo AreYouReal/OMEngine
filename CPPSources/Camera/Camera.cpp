@@ -22,9 +22,24 @@ Camera::Camera(float fovy, float width, float height, float near, float far)
 }
 
 
-void Camera::setPosition(v3d pos){  mPosition = pos;    }
-void Camera::setFront(v3d front){   mFront = front;     }
-void Camera::setUp(v3d up){         mUp = up;           }
+void Camera::setPosition(v3d pos){
+    mPosition = pos;
+    refreshViewMatrix();
+}
+void Camera::setFront(v3d front){
+    mFront = front;
+    refreshViewMatrix();
+}
+void Camera::setUp(v3d up){
+    mUp = up;
+    refreshViewMatrix();
+}
+void Camera::setWidthAndHeight(float width, float height){
+    if(mWidth == width && mHeight == height) return;
+    mWidth = width;
+    mHeight = height;
+    refreshProjMatrix();
+}
 
 const m4d& Camera::viewMatrix() const{
     return mViewMatrix;
@@ -34,6 +49,11 @@ const m4d& Camera::projectionMatrix() const{
     return mProjectionMatrix;
 }
 
+
+
+#pragma mark PRIVATE(HELPERS)
+inline void Camera::refreshViewMatrix(){ mViewMatrix = m4d::lookAt(mPosition, mFront, mUp); }
+inline void Camera::refreshProjMatrix(){ mProjectionMatrix = m4d::perspective(mFovy, mWidth, mHeight, mNear, mFar);}
 
 
 
