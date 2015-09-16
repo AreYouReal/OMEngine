@@ -51,9 +51,8 @@ void materialDrawCallback(void *ptr){
         }else if(!strcmp(program->uniformArray[i].name.c_str(), "uShininess")){
             glUniform1f(program->uniformArray[i].location, mat->specularExponent);
         }else if(!strcmp(program->uniformArray[i].name.c_str(), "uLightPos")){
-            v3d modifLP = lightPosition * Camera::instance()->viewMatrix();
-             glUniform3fv(program->uniformArray[i].location, 1, &modifLP.x);
-            //uSamplerBump;
+            v3d lightInEyeSpace = lightPosition * Camera::instance()->viewMatrix();
+             glUniform3fv(program->uniformArray[i].location, 1, &lightInEyeSpace.x);
         }else if(!strcmp(program->uniformArray[i].name.c_str(), "uSamplerBump")){
             glUniform1i(program->uniformArray[i].location, 4);
         }

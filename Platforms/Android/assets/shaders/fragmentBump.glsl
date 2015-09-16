@@ -19,9 +19,14 @@ out vec4 fragColor;
 
 void main(){
     lowp vec3 normal = texture(uSamplerBump, texCoord.xy).rgb * 2.0 - 1.0;
-    lowp float intensity = max(dot(lightDirectionTS, normal), 0.0);
+    lowp float intensity = max(dot(normal, lightDirectionTS), 0.0);
     fragColor = vec4(0.1);
     if(intensity > 0.0){
-        fragColor += (vec4(uDiffuse, 1.0) * intensity) * texture(uSamplerDiffuse, texCoord.xy);
-    }    
+        lowp vec3 reflectionVec = normalize(-reflect(lightDirectionTS, normal));
+        vec4 reflectiveComponent = vec4(uSpecular, 1.0) * pow(max(dot(reflectionVec, position), 0.0), uShininess);
+        fragColor += (vec4(uDiffuse, 1.0) * intensity) * texture(uSamplerDiffuse, texCoord.xy) + reflectiveComponent;
+    }
+    
+    
+
 }
