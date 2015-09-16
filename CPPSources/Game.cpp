@@ -81,7 +81,7 @@ int Game::Init ( SRContext *context ){
     
     appContext = context;
     
-    object = std::shared_ptr<Obj>(new Obj("scene.obj"));
+    object = std::shared_ptr<Obj>(new Obj("ram.obj"));
     
     ShaderLibrary::instance();
     Camera::createCamera();
@@ -167,7 +167,7 @@ void Game::Touch(SRContext *context, int event, int x, int y){
             float deltaAngle =((startX - x) + (startY - y))/20;
             rotateAngel -= deltaAngle;
             rotateAngel %= 360;
-            Camera::instance()->move(deltaAngle > 0);
+//            Camera::instance()->move(deltaAngle > 0);
         }
             break;
         case TOUCH_EVENT::ENDED  :
