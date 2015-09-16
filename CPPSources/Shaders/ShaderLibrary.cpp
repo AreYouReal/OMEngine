@@ -3,6 +3,9 @@
 
 #pragma mark Public
 
+typedef std::shared_ptr<Shader>         SHADER;
+typedef std::shared_ptr<ShaderProgram>  PROGRAM;
+
 std::shared_ptr<ShaderLibrary> ShaderLibrary::mInstance = NULL;
 
 std::shared_ptr<ShaderLibrary> ShaderLibrary::instance(){
@@ -19,6 +22,11 @@ ShaderLibrary::ShaderLibrary(){
     shaders.insert(std::pair<std::string, std::shared_ptr<ShaderProgram>>("norm_as_color", program));
     //--------------------------------------------------------
     
+    SHADER vertexBump = loadShader(GL_VERTEX_SHADER, "vertexBump.glsl");
+    SHADER fragmentBump = loadShader(GL_FRAGMENT_SHADER, "fragmentBump.glsl");
+    PROGRAM bumpProgram = createProgram(vertexBump, fragmentBump);
+    shaders.insert(std::pair<std::string, PROGRAM>("bump", bumpProgram));
+    
     std::shared_ptr<Shader> vShader = loadShader(GL_VERTEX_SHADER, "vertex.glsl");
     std::shared_ptr<Shader> fSolidShader = loadShader(GL_FRAGMENT_SHADER, "fragmentSolid.glsl");
     std::shared_ptr<ShaderProgram> solidProgram = createProgram(vShader, fSolidShader);
@@ -29,6 +37,8 @@ ShaderLibrary::ShaderLibrary(){
     std::shared_ptr<Shader> fTransShader = loadShader(GL_FRAGMENT_SHADER, "fragmentTransparent.glsl");
     std::shared_ptr<ShaderProgram> transProgram = createProgram(vShader, fTransShader);
 
+    
+    
     shaders.insert(std::pair<std::string, std::shared_ptr<ShaderProgram>>("defaultSolid", solidProgram));
     shaders.insert(std::pair<std::string, std::shared_ptr<ShaderProgram>>("defaultAlphaTested", alphaProgram));
     shaders.insert(std::pair<std::string, std::shared_ptr<ShaderProgram>>("defaultTransparent", transProgram));

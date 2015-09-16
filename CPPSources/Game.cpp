@@ -25,6 +25,7 @@ void programBindAttributes(void *ptr){
     glBindAttribLocation(program->ID, 0, "aPosition");
     glBindAttribLocation(program->ID, 1, "aNormal");
     glBindAttribLocation(program->ID, 2, "aTexCoord");
+    glBindAttribLocation(program->ID, 3, "aTangent");
 }
 
 void materialDrawCallback(void *ptr){
@@ -52,6 +53,9 @@ void materialDrawCallback(void *ptr){
         }else if(!strcmp(program->uniformArray[i].name.c_str(), "uLightPos")){
             v3d modifLP = lightPosition * Camera::instance()->viewMatrix();
              glUniform3fv(program->uniformArray[i].location, 1, &modifLP.x);
+            //uSamplerBump;
+        }else if(!strcmp(program->uniformArray[i].name.c_str(), "uSamplerBump")){
+            glUniform1i(program->uniformArray[i].location, 4);
         }
     }
 }

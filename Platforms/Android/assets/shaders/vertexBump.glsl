@@ -1,11 +1,8 @@
 #version 300 es
-precision mediump vec3;
-precision mediump mat4;
-
 uniform mat4 uModelViewM;
 uniform mat4 uProjectionM;
 uniform mat4 uNormalM;
-uniform vec3 uLightPoisiton;
+uniform vec3 uLightPos;
 
 layout(location = 0) in vec4 aPosition;
 layout(location = 1) in vec4 aNormal;
@@ -19,14 +16,14 @@ out vec3 lightDirectionTS;
 
 void main(){
     vec3 tmp;
-    lowp vec3 normal    = uNormalM * aNormal;
-    lowp vec3 tangent   = uNormalM * aTangent;
+    lowp vec3 normal    = vec3(uNormalM * aNormal);
+    lowp vec3 tangent   = vec3(uNormalM * vec4(aTangent, 1.0));
     lowp vec3 binormal  = cross(normal, tangent);
     
     position = vec3(uModelViewM * aPosition);
     gl_Position = uProjectionM * vec4(position, 1.0);
     
-    lowp vec3 lightDirectionES = normalize(uLightPoisiton - position);
+    lowp vec3 lightDirectionES = normalize(uLightPos - position);
     
     lightDirectionTS.x = dot(lightDirectionES, tangent);
     lightDirectionTS.y = dot(lightDirectionES, binormal);

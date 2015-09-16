@@ -37,7 +37,7 @@ struct Obj{
             materials[matIndex]->program = ShaderLibrary::instance()->getProgram("defaultAlphaTested");
             materials[matIndex]->program->bindAttribCallback = bindCallback;
         }else if(matDissolve == 1.0f){
-            materials[matIndex]->program = ShaderLibrary::instance()->getProgram("defaultSolid");
+            materials[matIndex]->program = ShaderLibrary::instance()->getProgram("bump");
             materials[matIndex]->program->bindAttribCallback = bindCallback;
         }else
             materials[matIndex]->program = ShaderLibrary::instance()->getProgram("defaultTransparent");
