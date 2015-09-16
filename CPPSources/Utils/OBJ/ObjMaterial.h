@@ -22,15 +22,15 @@ struct ObjMaterial{
             glActiveTexture(GL_TEXTURE2);
             glBindTexture(tSpecular->target, tSpecular->ID);
         }
-        if(tAmbient){
+        if(tDisp){
             glActiveTexture(GL_TEXTURE3);
             glBindTexture(tDisp->target, tDisp->ID);
         }
-        if(tAmbient){
+        if(tBump){
             glActiveTexture(GL_TEXTURE4);
             glBindTexture(tBump->target, tBump->ID);
         }
-        if(tAmbient){
+        if(tTranslucency){
             glActiveTexture(GL_TEXTURE5);
             glBindTexture(tTranslucency->target, tTranslucency->ID);
         }

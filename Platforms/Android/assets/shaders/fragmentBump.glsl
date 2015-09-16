@@ -22,6 +22,6 @@ void main(){
     lowp float intensity = max(dot(lightDirectionTS, normal), 0.0);
     fragColor = vec4(0.1);
     if(intensity > 0.0){
-        fragColor += vec4(uDiffuse, 1.0) * intensity;
-    }
+        fragColor += (vec4(uDiffuse, 1.0) * intensity) * texture(uSamplerDiffuse, texCoord.xy);
+    }    
 }

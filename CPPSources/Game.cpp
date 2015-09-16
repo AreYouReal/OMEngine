@@ -11,7 +11,7 @@ static SRContext       *appContext;
 m4d ModelViewMatrix;
 m4d ProjectionMatrix;
 m4d NormalMatrix;
-v3d lightPosition(0.0f, 0.0f, 3.0f);
+v3d lightPosition(0.0f, -3.0f, -4.0f);
 
 v3d bve;
 
