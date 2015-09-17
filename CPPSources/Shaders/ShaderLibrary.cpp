@@ -21,27 +21,24 @@ ShaderLibrary::ShaderLibrary(){
     std::shared_ptr<ShaderProgram> program = createProgram(vertexShader, fragmentShader);
     shaders.insert(std::pair<std::string, std::shared_ptr<ShaderProgram>>("norm_as_color", program));
     //--------------------------------------------------------
-    
+    // Per vertex lighting
+    SHADER vertexPerVertexLighting = loadShader(GL_VERTEX_SHADER, "vertexPerVertex.glsl");
+    SHADER fragmentPerVertexLighting = loadShader(GL_FRAGMENT_SHADER, "fragmentPerVertex.glsl");
+    PROGRAM perVertexProgram = createProgram(vertexPerVertexLighting, fragmentPerVertexLighting);
+    shaders.insert(std::pair<std::string, PROGRAM>("defaultPerVertex", perVertexProgram));
+    //--------------------------
+    // Solid, alpha tested and transparent programs with per pixel lighting.
+    std::shared_ptr<Shader> vShader = loadShader(GL_VERTEX_SHADER, "vertexPerPixel.glsl");
+    std::shared_ptr<Shader> fSolidShader = loadShader(GL_FRAGMENT_SHADER, "fragmentPerPixel.glsl");
+    std::shared_ptr<ShaderProgram> solidProgram = createProgram(vShader, fSolidShader);
+    shaders.insert(std::pair<std::string, std::shared_ptr<ShaderProgram>>("defaultPerPixel", solidProgram));
+    //--------------------------
+    // Bump shader
     SHADER vertexBump = loadShader(GL_VERTEX_SHADER, "vertexBump.glsl");
     SHADER fragmentBump = loadShader(GL_FRAGMENT_SHADER, "fragmentBump.glsl");
     PROGRAM bumpProgram = createProgram(vertexBump, fragmentBump);
     shaders.insert(std::pair<std::string, PROGRAM>("bump", bumpProgram));
-    
-    std::shared_ptr<Shader> vShader = loadShader(GL_VERTEX_SHADER, "vertex.glsl");
-    std::shared_ptr<Shader> fSolidShader = loadShader(GL_FRAGMENT_SHADER, "fragmentSolid.glsl");
-    std::shared_ptr<ShaderProgram> solidProgram = createProgram(vShader, fSolidShader);
-    
-    std::shared_ptr<Shader> fATShader = loadShader(GL_FRAGMENT_SHADER, "fragmentAlphaTested.glsl");
-    std::shared_ptr<ShaderProgram> alphaProgram = createProgram(vShader, fATShader);
-    
-    std::shared_ptr<Shader> fTransShader = loadShader(GL_FRAGMENT_SHADER, "fragmentTransparent.glsl");
-    std::shared_ptr<ShaderProgram> transProgram = createProgram(vShader, fTransShader);
-
-    
-    
-    shaders.insert(std::pair<std::string, std::shared_ptr<ShaderProgram>>("defaultSolid", solidProgram));
-    shaders.insert(std::pair<std::string, std::shared_ptr<ShaderProgram>>("defaultAlphaTested", alphaProgram));
-    shaders.insert(std::pair<std::string, std::shared_ptr<ShaderProgram>>("defaultTransparent", transProgram));
+    //---------------------------------------------------------
 }
 
 std::shared_ptr<ShaderProgram> ShaderLibrary::getProgram(std::string name){
@@ -71,6 +68,7 @@ std::shared_ptr<ShaderProgram> ShaderLibrary::createProgram(std::shared_ptr<Shad
     char name[ buffSize ];
     glGetProgramiv(program->ID, GL_LINK_STATUS, &status);
     if(!status){
+        printProgramInfoLog(program->ID);
         return NULL;
     }else{
         glGetProgramiv(program->ID, GL_ACTIVE_ATTRIBUTES, &total);

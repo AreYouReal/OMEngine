@@ -32,16 +32,8 @@ struct Obj{
         textures[textureIndex]->generateID(flags, filter);
     }
     void        SetMaterialProgram(unsigned int matIndex, BindAttribCallback bindCallback){
-        float matDissolve = materials[matIndex]->dissolve;
-        if(matDissolve == 0.0f){
-            materials[matIndex]->program = ShaderLibrary::instance()->getProgram("defaultAlphaTested");
-            materials[matIndex]->program->bindAttribCallback = bindCallback;
-        }else if(matDissolve == 1.0f){
-            materials[matIndex]->program = ShaderLibrary::instance()->getProgram("bump");
-            materials[matIndex]->program->bindAttribCallback = bindCallback;
-        }else
-            materials[matIndex]->program = ShaderLibrary::instance()->getProgram("defaultTransparent");
-            materials[matIndex]->program->bindAttribCallback = bindCallback;
+        materials[matIndex]->program = ShaderLibrary::instance()->getProgram("defaultPerVertex");
+        materials[matIndex]->program->bindAttribCallback = bindCallback;
     }
     
     void        SetMaterialCallback(unsigned int matIndex, DrawCallback callback){

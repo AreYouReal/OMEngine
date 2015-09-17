@@ -11,7 +11,7 @@ static SRContext       *appContext;
 m4d ModelViewMatrix;
 m4d ProjectionMatrix;
 m4d NormalMatrix;
-v3d lightPosition(0.0f, -3.0f, -4.0f);
+v3d lightPosition(0.0f, -3.0f, 0.0f);
 
 v3d bve;
 
@@ -84,7 +84,7 @@ int Game::Init ( SRContext *context ){
     
     appContext = context;
     
-    object = std::shared_ptr<Obj>(new Obj("ram.obj"));
+    object = std::shared_ptr<Obj>(new Obj("scene.obj"));
     
     ShaderLibrary::instance();
     Camera::createCamera();
@@ -113,7 +113,7 @@ int Game::Init ( SRContext *context ){
 // Draw a triangle using the shader pair created in Init()
 //
 void Game::Draw ( SRContext *context ){
-//    Stopwatch drawTimer;
+    Stopwatch drawTimer;
     
 #ifdef ANDROID
 //    logMessage("%d, %d, %d, %d, %d\n", context->eglNativeDisplay, context->eglNativeWindow, context->eglDisplay, context->eglContext, context->eglSurface );
@@ -151,7 +151,7 @@ void Game::Draw ( SRContext *context ){
             glDisable(GL_BLEND);
         }
     }
-//    logMessage("FPS: %f", drawTimer.fps());
+    logMessage("FPS: %f", drawTimer.fps());
 }
 
 

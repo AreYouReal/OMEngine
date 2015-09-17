@@ -19,7 +19,8 @@ in mediump  vec3 texCoord;
 
 void main(){
     lowp vec4 diffuseColor = texture( uSamplerDiffuse, texCoord.xy );
-
+    
+    lowp float alpha = diffuseColor.a;
     mediump vec3 L = normalize(uLightPos - position);
     mediump vec3 E = normalize(-position);
     mediump vec3 R = normalize(-reflect(L, normal));
@@ -27,9 +28,16 @@ void main(){
     mediump vec4 diffuse = vec4( uDiffuse * diffuseColor.rgb, 1.0) * max(dot(normal, L), 0.0);
     mediump vec4 specular = vec4( uSpecular, 1.0) * pow(max(dot(R,E), 0.0), uShininess * 0.3 );
     
-    diffuseColor = vec4(0.1) + ambient + diffuse + specular;
-    diffuseColor.a = uDissolve;
+    vec4 resultColor = vec4(0.1) + ambient + diffuse + specular;
     
-    fragColor = diffuseColor;
+    if(uDissolve == 0.0){
+        if(alpha < 0.1) discard;
+    }else if(uDissolve == 1.0){
+        resultColor.a = alpha;
+    }else{
+        resultColor.a = uDissolve;
+    }
+    
+    
+    fragColor = resultColor;
 }
-
