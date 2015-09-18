@@ -208,6 +208,36 @@ unsigned int Obj::drawMesh(unsigned int meshIndex){
     return meshes[meshIndex]->draw();
 }
 
+unsigned int Obj::materialsSize(){ return (unsigned int)materials.size();  }
+unsigned int Obj::meshesSize()   { return (unsigned int)meshes.size();     }
+unsigned int Obj::texturesSize() { return (unsigned int)textures.size();   }
+void         Obj::generateTextureID(unsigned int textureIndex, unsigned int flags, unsigned int filter){
+    textures[textureIndex]->generateID(flags, filter);
+}
+void        Obj::SetMaterialProgram(unsigned int matIndex, BindAttribCallback bindCallback){
+    materials[matIndex]->program = ShaderLibrary::instance()->getProgram("defaultPerVertex");
+    materials[matIndex]->program->bindAttribCallback = bindCallback;
+}
+
+void        Obj::SetMaterialCallback(unsigned int matIndex, DrawCallback callback){
+    materials[matIndex]->materialDrawCalback = callback;
+}
+
+RenderObjectType Obj::renderObjectType(unsigned int meshIndex){
+    std::shared_ptr<ObjMesh> mesh = meshes[meshIndex];
+    if(mesh->currentMaterial){
+        float dissolve = mesh->currentMaterial->dissolve;
+        if(dissolve == 0.0f){
+            return ALPHA_TESTED;
+        }else if(dissolve == 1.0f){
+            return SOLID;
+        }else return TRANSPARENT;
+    }
+    return SOLID;
+}
+
+
+
 
 void Obj::updateBoundMesh(unsigned int meshIndex){
     std::shared_ptr<ObjMesh> mesh = meshes[meshIndex];
@@ -443,5 +473,6 @@ void Obj::buildMaterial(unsigned int matIndex, std::shared_ptr<ShaderProgram> pr
     }
     if(program) mat->program = program;
 }
+
 
 
