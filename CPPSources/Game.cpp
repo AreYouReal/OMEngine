@@ -90,7 +90,7 @@ int Game::Init ( SRContext *context ){
     Camera::createCamera();
     
     for(unsigned int i = 0; i < object->meshesSize(); ++i){
-        object->optimizeMesh(i, 0);
+//        object->optimizeMesh(i, 0);
         object->buildMesh(i);
         // Free object mesh data if needed here
     }

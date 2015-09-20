@@ -24,7 +24,11 @@ Obj::Obj(const char* fileName){
             // go to next object line
         }else if( line[0] == 'f' && line[1] == ' '){    // Read face indices...
             bool useUVs; int vertexIndex[3]  = {0, 0, 0}, normalIndex[3] = {0, 0, 0}, uvIndex[3] = {0, 0, 0};
-            Obj::readIndices(line, vertexIndex, normalIndex, uvIndex, useUVs);
+            if(!Obj::readIndices(line, vertexIndex, normalIndex, uvIndex, useUVs)){
+                last = line[0];
+                line = strtok(NULL, "\n");
+                continue;
+            }
             if( last != 'f') addMesh(currentMesh, currentTList, name, usemtl, useUVs);
             --vertexIndex[0];--vertexIndex[1];--vertexIndex[2]; --uvIndex[0];--uvIndex[1];--uvIndex[2];             // Why? Because vertexIndex in obj file starts from 1! We count from 0...
             for(unsigned short i = 0; i < 3; ++i) currentMesh->addVertexData(currentTList, vertexIndex[i], uvIndex[i]);
@@ -66,20 +70,26 @@ Obj::Obj(const char* fileName){
 
 
 #pragma mark Helpers
-void Obj::readIndices(const char* line, int v[], int n[], int uv[], bool &useUVs){
+bool Obj::readIndices(const char* line, int v[], int n[], int uv[], bool &useUVs){
     if( sscanf(line, "f %d %d %d", &v[0], &v[1], &v[2]) == 3){
         useUVs = false;
+        return true;
     }else if( sscanf(line, "f %d//%d %d//%d %d//%d", &v[0], &n[0], &v[1], &n[1], &v[2], &n[2]) == 6){
         useUVs = false;
+        return true;
     }else if( sscanf(line, "f %d/%d %d/%d %d/%d", &v[0], &uv[0], &v[1], &uv[1], &v[2], &uv[2]) == 6){
         useUVs = true;
+        return true;
     }else{
-        sscanf( line, "f %d/%d/%d %d/%d/%d %d/%d/%d", &v[0], &uv[0], &n[0],
+        if(sscanf( line, "f %d/%d/%d %d/%d/%d %d/%d/%d", &v[0], &uv[0], &n[0],
                &v[1], &uv[1], &n[1],
-               &v[2], &uv[2], &n[2]);
-        
-        useUVs = true;
+                  &v[2], &uv[2], &n[2]) == 9){
+            useUVs = true;
+            return true;
+        }
     }
+    logMessage("Error: Unknown format! %s", line);
+    return false;
 }
 
 void Obj::addMesh(std::shared_ptr<ObjMesh> &mesh, std::shared_ptr<ObjTriangleList> &tList, char* name, char* usemtl, bool useUVs){
@@ -103,6 +113,9 @@ void Obj::addMesh(std::shared_ptr<ObjMesh> &mesh, std::shared_ptr<ObjTriangleLis
 
 void ObjMesh::addVertexData(std::shared_ptr<ObjTriangleList> otl, int vIndex, int uvIndex){
     unsigned short index;
+    if(vIndex < 0){
+        int qweqwe = 0;
+    }
     for(index = 0; index < vertexData.size(); ++index){
         if(vIndex == vertexData[index].vIndex){
             if(uvIndex == -1 || uvIndex == vertexData[index].uvIndex){
@@ -155,7 +168,6 @@ void Obj::builNormalsAndTangents(){
     for(unsigned int i = 0; i < meshes.size(); ++i){
         for(unsigned int j = 0; j < meshes[i]->vertexData.size(); ++j){
             index = meshes[i]->vertexData[j].vIndex;
-                
             normals[index] = v3d::normalize(normals[index]);
             if(meshes[i]->vertexData[j].uvIndex != -1){
                 tangents[index] = v3d::normalize(tangents[index]);
@@ -215,7 +227,7 @@ void         Obj::generateTextureID(unsigned int textureIndex, unsigned int flag
     textures[textureIndex]->generateID(flags, filter);
 }
 void        Obj::SetMaterialProgram(unsigned int matIndex, BindAttribCallback bindCallback){
-    materials[matIndex]->program = ShaderLibrary::instance()->getProgram("defaultPerVertex");
+    materials[matIndex]->program = ShaderLibrary::instance()->getProgram("defaultPerPixel");
     materials[matIndex]->program->bindAttribCallback = bindCallback;
 }
 
@@ -358,7 +370,6 @@ void Obj::loadMaterial(const char *filename){
         if(!line[0] || line[0] == '#' ){ line = strtok( NULL, "\n" ); continue;
         }else if( sscanf(line, "newmtl %s", str) == 1){
 //            logMessage("newmtl line %s", str);
-
             materials.push_back(std::shared_ptr<ObjMaterial>(new ObjMaterial()));
             mat = materials.back();
             mat->name = str;

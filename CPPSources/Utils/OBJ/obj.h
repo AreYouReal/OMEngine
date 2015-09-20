@@ -56,7 +56,7 @@ private:
     void addMesh(std::shared_ptr<ObjMesh> &mesh, std::shared_ptr<ObjTriangleList> &tList, char* name, char* usemtl, bool useUVs);
     void builNormalsAndTangents();
     
-    static void readIndices(const char* line, int v[], int n[], int uv[], bool &useUVs);
+    static bool readIndices(const char* line, int v[], int n[], int uv[], bool &useUVs);
     
 // Helpers
     void    loadMaterial(const char* filename);
