@@ -22,6 +22,12 @@ ShaderLibrary::ShaderLibrary(){
     shaders.insert(std::pair<std::string, std::shared_ptr<ShaderProgram>>("norm_as_color", program));
     //--------------------------------------------------------
     // Per vertex lighting
+    std::shared_ptr<Shader> defVShader = loadShader(GL_VERTEX_SHADER, "default_gray_vertex.glsl");
+    std::shared_ptr<Shader> defFShader = loadShader(GL_FRAGMENT_SHADER, "default_gray_fragment.glsl");
+    std::shared_ptr<ShaderProgram> defProg = createProgram(defVShader, defFShader);
+    shaders.insert(std::pair<std::string, std::shared_ptr<ShaderProgram>>("default_gray", defProg));
+    //--------------------------------------------------------
+    // Per vertex lighting
     SHADER vertexPerVertexLighting = loadShader(GL_VERTEX_SHADER, "vertexPerVertex.glsl");
     SHADER fragmentPerVertexLighting = loadShader(GL_FRAGMENT_SHADER, "fragmentPerVertex.glsl");
     PROGRAM perVertexProgram = createProgram(vertexPerVertexLighting, fragmentPerVertexLighting);

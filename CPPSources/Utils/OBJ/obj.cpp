@@ -227,7 +227,7 @@ void         Obj::generateTextureID(unsigned int textureIndex, unsigned int flag
     textures[textureIndex]->generateID(flags, filter);
 }
 void        Obj::SetMaterialProgram(unsigned int matIndex, BindAttribCallback bindCallback){
-    materials[matIndex]->program = ShaderLibrary::instance()->getProgram("norm_as_color");
+    materials[matIndex]->program = ShaderLibrary::instance()->getProgram("default_gray");
     materials[matIndex]->program->bindAttribCallback = bindCallback;
 }
 

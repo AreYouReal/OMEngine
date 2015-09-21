@@ -56,6 +56,8 @@
 		F3944FCA1B8AE0890090FF01 /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3944FC91B8AE0890090FF01 /* Texture.cpp */; };
 		F3CAEEE11BB0191000DCF182 /* samurai_monastry.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F3CAEEE01BB0191000DCF182 /* samurai_monastry.mtl */; settings = {ASSET_TAGS = (); }; };
 		F3CAEEE31BB0194000DCF182 /* samurai_monastry.obj in Resources */ = {isa = PBXBuildFile; fileRef = F3CAEEE21BB0194000DCF182 /* samurai_monastry.obj */; settings = {ASSET_TAGS = (); }; };
+		F3CAEEE51BB01A7600DCF182 /* default_gray_vertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F3CAEEE41BB01A7600DCF182 /* default_gray_vertex.glsl */; settings = {ASSET_TAGS = (); }; };
+		F3CAEEE71BB01B8800DCF182 /* default_gray_fragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F3CAEEE61BB01B8800DCF182 /* default_gray_fragment.glsl */; settings = {ASSET_TAGS = (); }; };
 		F3D5E1081AF8F23E00DD216B /* iOSSRETests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3D5E1071AF8F23E00DD216B /* iOSSRETests-Info.plist */; };
 		F3D5E10B1AF8F24400DD216B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F3D5E1091AF8F24400DD216B /* InfoPlist.strings */; };
 		F3D5E1111AF8F2CD00DD216B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F3D5E10F1AF8F2CD00DD216B /* InfoPlist.strings */; };
@@ -148,6 +150,8 @@
 		F3944FC91B8AE0890090FF01 /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cpp; sourceTree = "<group>"; };
 		F3CAEEE01BB0191000DCF182 /* samurai_monastry.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = samurai_monastry.mtl; path = SREngine/Platforms/Android/assets/samurai_monastry.mtl; sourceTree = "<group>"; };
 		F3CAEEE21BB0194000DCF182 /* samurai_monastry.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = samurai_monastry.obj; path = SREngine/Platforms/Android/assets/samurai_monastry.obj; sourceTree = "<group>"; };
+		F3CAEEE41BB01A7600DCF182 /* default_gray_vertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = default_gray_vertex.glsl; sourceTree = "<group>"; };
+		F3CAEEE61BB01B8800DCF182 /* default_gray_fragment.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = default_gray_fragment.glsl; sourceTree = "<group>"; };
 		F3D5E1051AF8F23400DD216B /* iOSSRETests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iOSSRETests.m; path = iOSSRETests/iOSSRETests.m; sourceTree = SOURCE_ROOT; };
 		F3D5E1071AF8F23E00DD216B /* iOSSRETests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "iOSSRETests-Info.plist"; path = "iOSSRETests/iOSSRETests-Info.plist"; sourceTree = SOURCE_ROOT; };
 		F3D5E10A1AF8F24400DD216B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = iOSSRETests/en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
@@ -394,6 +398,8 @@
 		F368E8C41BA6AE5A00F322AF /* shaders */ = {
 			isa = PBXGroup;
 			children = (
+				F3CAEEE61BB01B8800DCF182 /* default_gray_fragment.glsl */,
+				F3CAEEE41BB01A7600DCF182 /* default_gray_vertex.glsl */,
 				F38A22E61BAAA40500FADEC0 /* fragmentPerVertex.glsl */,
 				F38A22E21BAAA15400FADEC0 /* vertexPerVertex.glsl */,
 				F38A22E01BAA979700FADEC0 /* vertexPerPixel.glsl */,
@@ -492,6 +498,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3CAEEE51BB01A7600DCF182 /* default_gray_vertex.glsl in Resources */,
 				943869881BA8949D005A0594 /* vertexBump.glsl in Resources */,
 				F3D5E1111AF8F2CD00DD216B /* InfoPlist.strings in Resources */,
 				F3D5E1191AF8F32E00DD216B /* Images.xcassets in Resources */,
@@ -504,6 +511,7 @@
 				947FA31D1BA4854A00695A4E /* char_ram_col.png in Resources */,
 				F38A22E71BAAA40500FADEC0 /* fragmentPerVertex.glsl in Resources */,
 				F3D5E10B1AF8F24400DD216B /* InfoPlist.strings in Resources */,
+				F3CAEEE71BB01B8800DCF182 /* default_gray_fragment.glsl in Resources */,
 				F3D5E1161AF8F32600DD216B /* Main_iPad.storyboard in Resources */,
 				F3D5E1171AF8F32600DD216B /* Main_iPhone.storyboard in Resources */,
 				9472227D1B9AD466008D601B /* scene.obj in Resources */,
