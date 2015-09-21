@@ -17,11 +17,6 @@
 		7626526217F10E6C007CCD43 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7626523917F10E6C007CCD43 /* UIKit.framework */; };
 		943869871BA8949D005A0594 /* fragmentBump.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 943869851BA8949D005A0594 /* fragmentBump.glsl */; };
 		943869881BA8949D005A0594 /* vertexBump.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 943869861BA8949D005A0594 /* vertexBump.glsl */; };
-		9439F2F41BAE941200F66F0A /* cube.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 9439F2F21BAE941200F66F0A /* cube.mtl */; };
-		9439F2F51BAE941200F66F0A /* cube.obj in Resources */ = {isa = PBXBuildFile; fileRef = 9439F2F31BAE941200F66F0A /* cube.obj */; };
-		9439F2F81BAE985B00F66F0A /* plane.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 9439F2F61BAE985B00F66F0A /* plane.mtl */; };
-		9439F2F91BAE985B00F66F0A /* plane.obj in Resources */ = {isa = PBXBuildFile; fileRef = 9439F2F71BAE985B00F66F0A /* plane.obj */; };
-		9439F2FB1BAE988000F66F0A /* samurai_monastry.obj in Resources */ = {isa = PBXBuildFile; fileRef = 9439F2FA1BAE988000F66F0A /* samurai_monastry.obj */; };
 		9453DEE11B2A0A2700C79DB3 /* SRUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9453DEDF1B2A0A2700C79DB3 /* SRUtils.cpp */; };
 		947222771B9AD466008D601B /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 9472226F1B9AD466008D601B /* background.png */; };
 		947222781B9AD466008D601B /* balloon.png in Resources */ = {isa = PBXBuildFile; fileRef = 947222701B9AD466008D601B /* balloon.png */; };
@@ -59,6 +54,8 @@
 		F38A22E71BAAA40500FADEC0 /* fragmentPerVertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F38A22E61BAAA40500FADEC0 /* fragmentPerVertex.glsl */; };
 		F38A22E91BAAAD8800FADEC0 /* tree.png in Resources */ = {isa = PBXBuildFile; fileRef = F38A22E81BAAAD8800FADEC0 /* tree.png */; };
 		F3944FCA1B8AE0890090FF01 /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3944FC91B8AE0890090FF01 /* Texture.cpp */; };
+		F3CAEEE11BB0191000DCF182 /* samurai_monastry.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F3CAEEE01BB0191000DCF182 /* samurai_monastry.mtl */; settings = {ASSET_TAGS = (); }; };
+		F3CAEEE31BB0194000DCF182 /* samurai_monastry.obj in Resources */ = {isa = PBXBuildFile; fileRef = F3CAEEE21BB0194000DCF182 /* samurai_monastry.obj */; settings = {ASSET_TAGS = (); }; };
 		F3D5E1081AF8F23E00DD216B /* iOSSRETests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3D5E1071AF8F23E00DD216B /* iOSSRETests-Info.plist */; };
 		F3D5E10B1AF8F24400DD216B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F3D5E1091AF8F24400DD216B /* InfoPlist.strings */; };
 		F3D5E1111AF8F2CD00DD216B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F3D5E10F1AF8F2CD00DD216B /* InfoPlist.strings */; };
@@ -94,11 +91,6 @@
 		941D13521B8A1A2800A1DD00 /* Texture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Texture.h; sourceTree = "<group>"; };
 		943869851BA8949D005A0594 /* fragmentBump.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fragmentBump.glsl; sourceTree = "<group>"; };
 		943869861BA8949D005A0594 /* vertexBump.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = vertexBump.glsl; sourceTree = "<group>"; };
-		9439F2F21BAE941200F66F0A /* cube.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = cube.mtl; path = "../Downloads/bullet3-master/data/cube.mtl"; sourceTree = "<group>"; };
-		9439F2F31BAE941200F66F0A /* cube.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = cube.obj; path = "../Downloads/bullet3-master/data/cube.obj"; sourceTree = "<group>"; };
-		9439F2F61BAE985B00F66F0A /* plane.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = plane.mtl; path = "../Downloads/bullet3-master/data/plane.mtl"; sourceTree = "<group>"; };
-		9439F2F71BAE985B00F66F0A /* plane.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = plane.obj; path = "../Downloads/bullet3-master/data/plane.obj"; sourceTree = "<group>"; };
-		9439F2FA1BAE988000F66F0A /* samurai_monastry.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = samurai_monastry.obj; path = "../Downloads/bullet3-master/data/samurai_monastry.obj"; sourceTree = "<group>"; };
 		9453DEDF1B2A0A2700C79DB3 /* SRUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SRUtils.cpp; path = ../../CPPSources/Utils/SRUtils.cpp; sourceTree = SOURCE_ROOT; };
 		9453DEE01B2A0A2700C79DB3 /* SRUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SRUtils.h; path = ../../CPPSources/Utils/SRUtils.h; sourceTree = SOURCE_ROOT; };
 		9472226F1B9AD466008D601B /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background.png; path = SREngine/Platforms/Android/assets/background.png; sourceTree = "<group>"; };
@@ -154,6 +146,8 @@
 		F38A22E61BAAA40500FADEC0 /* fragmentPerVertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fragmentPerVertex.glsl; sourceTree = "<group>"; };
 		F38A22E81BAAAD8800FADEC0 /* tree.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tree.png; path = SREngine/Platforms/Android/assets/tree.png; sourceTree = "<group>"; };
 		F3944FC91B8AE0890090FF01 /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cpp; sourceTree = "<group>"; };
+		F3CAEEE01BB0191000DCF182 /* samurai_monastry.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = samurai_monastry.mtl; path = SREngine/Platforms/Android/assets/samurai_monastry.mtl; sourceTree = "<group>"; };
+		F3CAEEE21BB0194000DCF182 /* samurai_monastry.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = samurai_monastry.obj; path = SREngine/Platforms/Android/assets/samurai_monastry.obj; sourceTree = "<group>"; };
 		F3D5E1051AF8F23400DD216B /* iOSSRETests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iOSSRETests.m; path = iOSSRETests/iOSSRETests.m; sourceTree = SOURCE_ROOT; };
 		F3D5E1071AF8F23E00DD216B /* iOSSRETests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "iOSSRETests-Info.plist"; path = "iOSSRETests/iOSSRETests-Info.plist"; sourceTree = SOURCE_ROOT; };
 		F3D5E10A1AF8F24400DD216B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = iOSSRETests/en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
@@ -266,11 +260,8 @@
 		7626524017F10E6C007CCD43 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				9439F2FA1BAE988000F66F0A /* samurai_monastry.obj */,
-				9439F2F61BAE985B00F66F0A /* plane.mtl */,
-				9439F2F71BAE985B00F66F0A /* plane.obj */,
-				9439F2F21BAE941200F66F0A /* cube.mtl */,
-				9439F2F31BAE941200F66F0A /* cube.obj */,
+				F3CAEEE21BB0194000DCF182 /* samurai_monastry.obj */,
+				F3CAEEE01BB0191000DCF182 /* samurai_monastry.mtl */,
 				F38A22E81BAAAD8800FADEC0 /* tree.png */,
 				F340D11A1BA95E4500187B1E /* char_ram_nor.png */,
 				F368E8C41BA6AE5A00F322AF /* shaders */,
@@ -503,19 +494,15 @@
 			files = (
 				943869881BA8949D005A0594 /* vertexBump.glsl in Resources */,
 				F3D5E1111AF8F2CD00DD216B /* InfoPlist.strings in Resources */,
-				9439F2F91BAE985B00F66F0A /* plane.obj in Resources */,
 				F3D5E1191AF8F32E00DD216B /* Images.xcassets in Resources */,
+				F3CAEEE31BB0194000DCF182 /* samurai_monastry.obj in Resources */,
 				F38A22E91BAAAD8800FADEC0 /* tree.png in Resources */,
 				9472227C1B9AD466008D601B /* scene.mtl in Resources */,
 				94C5DB561B63E5DB005E706E /* model.obj in Resources */,
-				9439F2F51BAE941200F66F0A /* cube.obj in Resources */,
 				9472227A1B9AD466008D601B /* leaf.png in Resources */,
-				9439F2FB1BAE988000F66F0A /* samurai_monastry.obj in Resources */,
-				9439F2F41BAE941200F66F0A /* cube.mtl in Resources */,
 				947FA31F1BA4854A00695A4E /* ram.obj in Resources */,
 				947FA31D1BA4854A00695A4E /* char_ram_col.png in Resources */,
 				F38A22E71BAAA40500FADEC0 /* fragmentPerVertex.glsl in Resources */,
-				9439F2F81BAE985B00F66F0A /* plane.mtl in Resources */,
 				F3D5E10B1AF8F24400DD216B /* InfoPlist.strings in Resources */,
 				F3D5E1161AF8F32600DD216B /* Main_iPad.storyboard in Resources */,
 				F3D5E1171AF8F32600DD216B /* Main_iPhone.storyboard in Resources */,
@@ -524,6 +511,7 @@
 				94C5DB551B63E5DB005E706E /* model.mtl in Resources */,
 				94EF0C601BA70F6700EBF5EE /* norm_as_color_fragment.glsl in Resources */,
 				947222791B9AD466008D601B /* grass.png in Resources */,
+				F3CAEEE11BB0191000DCF182 /* samurai_monastry.mtl in Resources */,
 				F368E8CA1BA6AE5A00F322AF /* fragmentPerPixel.glsl in Resources */,
 				943869871BA8949D005A0594 /* fragmentBump.glsl in Resources */,
 				F3D5E1081AF8F23E00DD216B /* iOSSRETests-Info.plist in Resources */,

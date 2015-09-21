@@ -60,7 +60,7 @@ void materialDrawCallback(void *ptr){
 }
 
 void calculateMatrices(float width, float height){
-    rotateObjMatrix = m4d::rotate(rotateAngel, 0, 0, 1); // * m4d::rotate(rotateAngel, 1, 0, 0);
+    rotateObjMatrix = m4d::rotate(rotateAngel, 0, 1, 0); // * m4d::rotate(rotateAngel, 1, 0, 0);
     Camera::instance()->setWidthAndHeight(width, height);
     ModelViewMatrix     = Camera::instance()->viewMatrix() * rotateObjMatrix;
     ProjectionMatrix    = Camera::instance()->projectionMatrix();
@@ -84,7 +84,7 @@ int Game::Init ( SRContext *context ){
     
     appContext = context;
     
-    object = std::shared_ptr<Obj>(new Obj("scene.obj"));
+    object = std::shared_ptr<Obj>(new Obj("samurai_monastry.obj"));
     
     ShaderLibrary::instance();
     Camera::createCamera();
