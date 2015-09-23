@@ -65,6 +65,7 @@
 		F3D5E1171AF8F32600DD216B /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3D5E1141AF8F32600DD216B /* Main_iPhone.storyboard */; };
 		F3D5E1191AF8F32E00DD216B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3D5E1181AF8F32E00DD216B /* Images.xcassets */; };
 		F3D5E1321AF8F4DD00DD216B /* iOSSRETests.m in Sources */ = {isa = PBXBuildFile; fileRef = F3D5E1051AF8F23400DD216B /* iOSSRETests.m */; };
+		F3F9006C1BB2E95A00E0051F /* physics.obj in Resources */ = {isa = PBXBuildFile; fileRef = F3F9006B1BB2E95A00E0051F /* physics.obj */; settings = {ASSET_TAGS = (); }; };
 		F3FAE8B21B6B6BC7007AF169 /* obj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3FAE8B01B6B6BC7007AF169 /* obj.cpp */; };
 		F3FAE8B81B6B77D6007AF169 /* ShaderProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3FAE8B61B6B77D6007AF169 /* ShaderProgram.cpp */; };
 		F3FAE8BB1B6B7885007AF169 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3FAE8B91B6B7885007AF169 /* Shader.cpp */; };
@@ -161,6 +162,7 @@
 		F3D5E1131AF8F32600DD216B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = iOSSRE/Base.lproj/Main_iPad.storyboard; sourceTree = SOURCE_ROOT; };
 		F3D5E1151AF8F32600DD216B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = iOSSRE/Base.lproj/Main_iPhone.storyboard; sourceTree = SOURCE_ROOT; };
 		F3D5E1181AF8F32E00DD216B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = iOSSRE/Images.xcassets; sourceTree = SOURCE_ROOT; };
+		F3F9006B1BB2E95A00E0051F /* physics.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = physics.obj; path = SREngine/Platforms/Android/assets/physics.obj; sourceTree = "<group>"; };
 		F3FAE8B01B6B6BC7007AF169 /* obj.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = obj.cpp; path = OBJ/obj.cpp; sourceTree = "<group>"; };
 		F3FAE8B11B6B6BC7007AF169 /* obj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = obj.h; path = OBJ/obj.h; sourceTree = "<group>"; };
 		F3FAE8B61B6B77D6007AF169 /* ShaderProgram.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShaderProgram.cpp; path = SREngine/CPPSources/Shaders/ShaderProgram.cpp; sourceTree = "<group>"; };
@@ -264,6 +266,7 @@
 		7626524017F10E6C007CCD43 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F3F9006B1BB2E95A00E0051F /* physics.obj */,
 				F3CAEEE21BB0194000DCF182 /* samurai_monastry.obj */,
 				F3CAEEE01BB0191000DCF182 /* samurai_monastry.mtl */,
 				F38A22E81BAAAD8800FADEC0 /* tree.png */,
@@ -526,6 +529,7 @@
 				9472227B1B9AD466008D601B /* momo.png in Resources */,
 				947222781B9AD466008D601B /* balloon.png in Resources */,
 				F38A22E31BAAA15400FADEC0 /* vertexPerVertex.glsl in Resources */,
+				F3F9006C1BB2E95A00E0051F /* physics.obj in Resources */,
 				947FA31E1BA4854A00695A4E /* ram.mtl in Resources */,
 				94EF0C5E1BA70E5400EBF5EE /* pos_norm_vertex.glsl in Resources */,
 				947222771B9AD466008D601B /* background.png in Resources */,
