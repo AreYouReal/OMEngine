@@ -29,8 +29,7 @@ struct ShaderProgram{
     unsigned int                ID;
     std::vector<Uniform>        uniformArray;
     std::vector<VertexAttrib>   attribArray;
-    
-    DrawCallback        *drawCallback;
+ 
     BindAttribCallback  *bindAttribCallback;
     
     void                use();

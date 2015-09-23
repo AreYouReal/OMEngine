@@ -60,7 +60,6 @@ std::shared_ptr<ShaderProgram> ShaderLibrary::createProgram(const char *vertexSh
 
 std::shared_ptr<ShaderProgram> ShaderLibrary::createProgram(std::shared_ptr<Shader> vertexShader, std::shared_ptr<Shader> fragmentShader, BindAttribCallback *bindCallback, DrawCallback *drawCallback){
     std::shared_ptr<ShaderProgram> program(new ShaderProgram());
-    program->drawCallback = drawCallback;
     program->bindAttribCallback = bindCallback;
     program->ID = glCreateProgram();
     glAttachShader(program->ID, vertexShader->ID);

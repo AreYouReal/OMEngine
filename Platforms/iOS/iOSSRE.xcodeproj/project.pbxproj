@@ -18,6 +18,7 @@
 		943869871BA8949D005A0594 /* fragmentBump.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 943869851BA8949D005A0594 /* fragmentBump.glsl */; };
 		943869881BA8949D005A0594 /* vertexBump.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 943869861BA8949D005A0594 /* vertexBump.glsl */; };
 		9453DEE11B2A0A2700C79DB3 /* SRUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9453DEDF1B2A0A2700C79DB3 /* SRUtils.cpp */; };
+		946849011BB305D900D82F18 /* ObjMaterial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 946849001BB305D900D82F18 /* ObjMaterial.cpp */; };
 		947222771B9AD466008D601B /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 9472226F1B9AD466008D601B /* background.png */; };
 		947222781B9AD466008D601B /* balloon.png in Resources */ = {isa = PBXBuildFile; fileRef = 947222701B9AD466008D601B /* balloon.png */; };
 		947222791B9AD466008D601B /* grass.png in Resources */ = {isa = PBXBuildFile; fileRef = 947222711B9AD466008D601B /* grass.png */; };
@@ -54,10 +55,10 @@
 		F38A22E71BAAA40500FADEC0 /* fragmentPerVertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F38A22E61BAAA40500FADEC0 /* fragmentPerVertex.glsl */; };
 		F38A22E91BAAAD8800FADEC0 /* tree.png in Resources */ = {isa = PBXBuildFile; fileRef = F38A22E81BAAAD8800FADEC0 /* tree.png */; };
 		F3944FCA1B8AE0890090FF01 /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3944FC91B8AE0890090FF01 /* Texture.cpp */; };
-		F3CAEEE11BB0191000DCF182 /* samurai_monastry.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F3CAEEE01BB0191000DCF182 /* samurai_monastry.mtl */; settings = {ASSET_TAGS = (); }; };
-		F3CAEEE31BB0194000DCF182 /* samurai_monastry.obj in Resources */ = {isa = PBXBuildFile; fileRef = F3CAEEE21BB0194000DCF182 /* samurai_monastry.obj */; settings = {ASSET_TAGS = (); }; };
-		F3CAEEE51BB01A7600DCF182 /* default_gray_vertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F3CAEEE41BB01A7600DCF182 /* default_gray_vertex.glsl */; settings = {ASSET_TAGS = (); }; };
-		F3CAEEE71BB01B8800DCF182 /* default_gray_fragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F3CAEEE61BB01B8800DCF182 /* default_gray_fragment.glsl */; settings = {ASSET_TAGS = (); }; };
+		F3CAEEE11BB0191000DCF182 /* samurai_monastry.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F3CAEEE01BB0191000DCF182 /* samurai_monastry.mtl */; };
+		F3CAEEE31BB0194000DCF182 /* samurai_monastry.obj in Resources */ = {isa = PBXBuildFile; fileRef = F3CAEEE21BB0194000DCF182 /* samurai_monastry.obj */; };
+		F3CAEEE51BB01A7600DCF182 /* default_gray_vertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F3CAEEE41BB01A7600DCF182 /* default_gray_vertex.glsl */; };
+		F3CAEEE71BB01B8800DCF182 /* default_gray_fragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F3CAEEE61BB01B8800DCF182 /* default_gray_fragment.glsl */; };
 		F3D5E1081AF8F23E00DD216B /* iOSSRETests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3D5E1071AF8F23E00DD216B /* iOSSRETests-Info.plist */; };
 		F3D5E10B1AF8F24400DD216B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F3D5E1091AF8F24400DD216B /* InfoPlist.strings */; };
 		F3D5E1111AF8F2CD00DD216B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F3D5E10F1AF8F2CD00DD216B /* InfoPlist.strings */; };
@@ -65,7 +66,7 @@
 		F3D5E1171AF8F32600DD216B /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3D5E1141AF8F32600DD216B /* Main_iPhone.storyboard */; };
 		F3D5E1191AF8F32E00DD216B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3D5E1181AF8F32E00DD216B /* Images.xcassets */; };
 		F3D5E1321AF8F4DD00DD216B /* iOSSRETests.m in Sources */ = {isa = PBXBuildFile; fileRef = F3D5E1051AF8F23400DD216B /* iOSSRETests.m */; };
-		F3F9006C1BB2E95A00E0051F /* physics.obj in Resources */ = {isa = PBXBuildFile; fileRef = F3F9006B1BB2E95A00E0051F /* physics.obj */; settings = {ASSET_TAGS = (); }; };
+		F3F9006C1BB2E95A00E0051F /* physics.obj in Resources */ = {isa = PBXBuildFile; fileRef = F3F9006B1BB2E95A00E0051F /* physics.obj */; };
 		F3FAE8B21B6B6BC7007AF169 /* obj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3FAE8B01B6B6BC7007AF169 /* obj.cpp */; };
 		F3FAE8B81B6B77D6007AF169 /* ShaderProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3FAE8B61B6B77D6007AF169 /* ShaderProgram.cpp */; };
 		F3FAE8BB1B6B7885007AF169 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3FAE8B91B6B7885007AF169 /* Shader.cpp */; };
@@ -96,6 +97,7 @@
 		943869861BA8949D005A0594 /* vertexBump.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = vertexBump.glsl; sourceTree = "<group>"; };
 		9453DEDF1B2A0A2700C79DB3 /* SRUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SRUtils.cpp; path = ../../CPPSources/Utils/SRUtils.cpp; sourceTree = SOURCE_ROOT; };
 		9453DEE01B2A0A2700C79DB3 /* SRUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SRUtils.h; path = ../../CPPSources/Utils/SRUtils.h; sourceTree = SOURCE_ROOT; };
+		946849001BB305D900D82F18 /* ObjMaterial.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ObjMaterial.cpp; path = OBJ/ObjMaterial.cpp; sourceTree = "<group>"; };
 		9472226F1B9AD466008D601B /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background.png; path = SREngine/Platforms/Android/assets/background.png; sourceTree = "<group>"; };
 		947222701B9AD466008D601B /* balloon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = balloon.png; path = SREngine/Platforms/Android/assets/balloon.png; sourceTree = "<group>"; };
 		947222711B9AD466008D601B /* grass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = grass.png; path = SREngine/Platforms/Android/assets/grass.png; sourceTree = "<group>"; };
@@ -363,6 +365,7 @@
 				F340F7871BA034B20021445C /* ObjMesh.cpp */,
 				F340F7881BA034B20021445C /* ObjMesh.h */,
 				F340F78B1BA036390021445C /* ObjMaterial.h */,
+				946849001BB305D900D82F18 /* ObjMaterial.cpp */,
 			);
 			name = OBJ;
 			sourceTree = "<group>";
@@ -553,6 +556,7 @@
 			files = (
 				F3944FCA1B8AE0890090FF01 /* Texture.cpp in Sources */,
 				94CE87E61B62B5A400752D5C /* main.m in Sources */,
+				946849011BB305D900D82F18 /* ObjMaterial.cpp in Sources */,
 				94CE87D61B62B51900752D5C /* ShaderLibrary.cpp in Sources */,
 				94CE87CC1B62B4D000752D5C /* m4d.cpp in Sources */,
 				F340F7891BA034B20021445C /* ObjMesh.cpp in Sources */,
