@@ -52,13 +52,13 @@ std::shared_ptr<ShaderProgram> ShaderLibrary::getProgram(std::string name){
     return shaders[name];
 }
 
-std::shared_ptr<ShaderProgram> ShaderLibrary::createProgram(const char *vertexShaderFilename,const char* fragmentShaderFilename, BindAttribCallback *bindCallback, DrawCallback *drawCallback){
+std::shared_ptr<ShaderProgram> ShaderLibrary::createProgram(const char *vertexShaderFilename,const char* fragmentShaderFilename, BindAttribCallback *bindCallback){
     std::shared_ptr<Shader> vertexShader = loadShader(GL_VERTEX_SHADER, vertexShaderFilename);
     std::shared_ptr<Shader> fragmentShader = loadShader(GL_FRAGMENT_SHADER, fragmentShaderFilename);
     return createProgram(vertexShader, fragmentShader);
 }
 
-std::shared_ptr<ShaderProgram> ShaderLibrary::createProgram(std::shared_ptr<Shader> vertexShader, std::shared_ptr<Shader> fragmentShader, BindAttribCallback *bindCallback, DrawCallback *drawCallback){
+std::shared_ptr<ShaderProgram> ShaderLibrary::createProgram(std::shared_ptr<Shader> vertexShader, std::shared_ptr<Shader> fragmentShader, BindAttribCallback *bindCallback){
     std::shared_ptr<ShaderProgram> program(new ShaderProgram());
     program->bindAttribCallback = bindCallback;
     program->ID = glCreateProgram();
