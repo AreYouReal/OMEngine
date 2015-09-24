@@ -39,3 +39,15 @@ void ObjMesh::setAttributes(){
         glVertexAttribPointer(3, size, GL_FLOAT, GL_FALSE, stride, (char *)NULL + offset[4]);
     }
 }
+
+RenderObjectType ObjMesh::renderObjectType(){
+    if(currentMaterial){
+        float dissolve = currentMaterial->dissolve;
+        if(dissolve == 0.0f){
+            return ALPHA_TESTED;
+        }else if(dissolve == 1.0f){
+            return SOLID;
+        }else return TRANSPARENT;
+    }
+    return SOLID;
+}

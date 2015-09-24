@@ -3,6 +3,8 @@
 #include "SRUtils.h"
 #include "ObjMaterial.h"
 
+enum RenderObjectType{ SOLID, ALPHA_TESTED, TRANSPARENT };
+
 // Hold all the vertex and UV indices for the particular triangle.
 struct ObjTriangleIndex{ int vertexIndex[3], uvIndex[3]; };
 
@@ -23,6 +25,8 @@ struct ObjVertexData{ int vIndex, uvIndex; };
 struct ObjMesh{
     unsigned int draw();
     void setAttributes();
+    
+    RenderObjectType renderObjectType();
     
     // Fields
     std::string                     name;           // Mesh name.

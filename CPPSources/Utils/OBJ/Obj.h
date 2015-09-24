@@ -11,8 +11,6 @@
 
 
 
-enum RenderObjectType{ SOLID, ALPHA_TESTED, TRANSPARENT };
-
 struct Obj{
 
 // Cons(des)tructor
@@ -34,7 +32,6 @@ struct Obj{
     unsigned int materialsSize();
     unsigned int meshesSize();
     unsigned int texturesSize();
-    RenderObjectType renderObjectType(unsigned int meshIndex);
     
 // Fields
 private:

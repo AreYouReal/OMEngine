@@ -29,7 +29,7 @@ int Game::Init ( SRContext *context ){
     
     appContext = context;
     
-    object = std::shared_ptr<Obj>(new Obj("samurai_monastry.obj"));
+    object = std::shared_ptr<Obj>(new Obj("scene.obj"));
     
     ShaderLibrary::instance();
     Camera::createCamera();
@@ -79,7 +79,7 @@ void Game::Draw ( SRContext *context ){
     
     // Solid objects goes here
     for(unsigned int i = 0; i < object->meshesSize(); ++i){
-        if(object->renderObjectType(i) == SOLID) object->drawMesh(i);
+        if(object->getMesh(i)->renderObjectType() == SOLID) object->drawMesh(i);
     }
 //
 ////    for(unsigned int i = 0; i < object->meshesSize(); ++i){
@@ -92,7 +92,7 @@ void Game::Draw ( SRContext *context ){
 ////    }
 //    
     for(unsigned int i = 0; i < object->meshesSize(); ++i){
-        if(object->renderObjectType(i) != SOLID){
+        if(object->getMesh(i)->renderObjectType() != SOLID){
             glEnable(GL_BLEND);
             glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
             glCullFace(GL_FRONT);

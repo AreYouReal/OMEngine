@@ -234,22 +234,6 @@ void        Obj::SetMaterialProgram(unsigned int matIndex){
     materials[matIndex]->program = ShaderLibrary::instance()->getProgram("default_gray");
 }
 
-RenderObjectType Obj::renderObjectType(unsigned int meshIndex){
-    std::shared_ptr<ObjMesh> mesh = meshes[meshIndex];
-    if(mesh->currentMaterial){
-        float dissolve = mesh->currentMaterial->dissolve;
-        if(dissolve == 0.0f){
-            return ALPHA_TESTED;
-        }else if(dissolve == 1.0f){
-            return SOLID;
-        }else return TRANSPARENT;
-    }
-    return SOLID;
-}
-
-
-
-
 void Obj::updateBoundMesh(unsigned int meshIndex){
     std::shared_ptr<ObjMesh> mesh = meshes[meshIndex];
     
