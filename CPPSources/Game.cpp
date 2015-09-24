@@ -29,18 +29,17 @@ int Game::Init ( SRContext *context ){
     
     appContext = context;
     
-    object = std::shared_ptr<Obj>(new Obj("scene.obj"));
+    object = std::shared_ptr<Obj>(new Obj("samurai_monastry.obj"));
     
     ShaderLibrary::instance();
     Camera::createCamera();
     Illuminator::instance();
     
     
-    
     // TODO: UNITE THREE LOOPS
     for(unsigned int i = 0; i < object->meshesSize(); ++i){
 //        object->optimizeMesh(i, 0);
-        object->buildMesh(i);
+        object->getMesh(i)->build();
         // Free object mesh data if needed here
     }
     

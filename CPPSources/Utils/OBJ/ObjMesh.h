@@ -2,6 +2,7 @@
 
 #include "SRUtils.h"
 #include "ObjMaterial.h"
+#include "Obj.h"
 
 enum RenderObjectType{ SOLID, ALPHA_TESTED, TRANSPARENT };
 
@@ -18,21 +19,28 @@ struct ObjTriangleList{
     unsigned int                    vbo;
 };
 
+class Obj;
+
+typedef std::shared_ptr<ObjTriangleList> OBJ_T_LIST;
+
 // Holds the unique vertex data index
 struct ObjVertexData{ int vIndex, uvIndex; };
 
-
-struct ObjMesh{
+class ObjMesh{
+    friend class Obj;
+public:
     unsigned int draw();
+    void build();
     void setAttributes();
     
     RenderObjectType renderObjectType();
     
+private:
     // Fields
     std::string                     name;           // Mesh name.
     bool                            visible;        // If true - it's visible.
     std::vector<ObjVertexData>      vertexData;     // All vertex data (vertex index & uv index)
-    std::vector<std::shared_ptr<ObjTriangleList>>    tLists;         // Triangle lists...
+    std::vector<OBJ_T_LIST>         tLists;         // Triangle lists...
     std::shared_ptr<ObjMaterial>    currentMaterial;
 
     v3d                             min;
@@ -47,8 +55,12 @@ struct ObjMesh{
     unsigned int                    offset[ 5 ];     // The VBO offset(????)
     unsigned int                    vao;             // The VAO ID maintaned by GLES
     
+    std::shared_ptr<Obj>                             obj;
+    
     // Helpers
     void            addVertexData(std::shared_ptr<ObjTriangleList> otl, int vIndex, int uvIndex);
+    void            buildVBO();
+    
 };
 
 

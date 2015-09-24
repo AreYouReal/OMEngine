@@ -9,20 +9,21 @@
 
 #include "NvTriStrip.h"
 
+struct ObjTriangleList;
+class ObjMesh;
 
 
-struct Obj{
 
-// Cons(des)tructor
+class Obj{
+    friend class ObjMesh;
+public:
+    // Cons(des)tructor
     Obj(const char* filename);
-    
-// Mesh related
-    void buildMesh(unsigned int meshIndex);
-    void optimizeMesh(unsigned int meshIndex, unsigned int vertexCacheSize);
 
+    void optimizeMesh(unsigned int meshIndex, unsigned int vertexCacheSize);
     unsigned int drawMesh(unsigned int meshIndex);
     
-    OBJMESH getMesh(unsigned int index);
+    std::shared_ptr<ObjMesh> getMesh(unsigned int index);
      
 // Material related
     void buildMaterial(unsigned int matIndex, std::shared_ptr<ShaderProgram> program);
@@ -49,8 +50,6 @@ private:
     std::vector<v3d>            faceNormals;
     std::vector<v3d>            tangents;
     std::vector<v3d>            UVs;
-
-
     
 // Static
     void addMesh(std::shared_ptr<ObjMesh> &mesh, std::shared_ptr<ObjTriangleList> &tList, char* name, char* usemtl, bool useUVs);
@@ -68,7 +67,6 @@ private:
     void updateBoundMesh(unsigned int meshIndex);
     void updateMin(v3d &min, v3d &vertex);
     void updateMax(v3d &max, v3d &vertex);
-    void buildVBOMesh(unsigned int meshIndex);
 };
 
 typedef std::shared_ptr<Obj> OBJ;

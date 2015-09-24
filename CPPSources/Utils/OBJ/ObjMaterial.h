@@ -4,13 +4,19 @@
 #include "ShaderProgram.h"
 #include "Texture.h"
 
+
+
 // Object material structure definition
-struct ObjMaterial{
+class ObjMaterial{
+    friend class ObjMesh;
+    friend class Obj;
+public:
     
     ObjMaterial(std::string name = "default");
     
     void use();
     
+private:
     std::string name;                                   // The material name!
     v4d         ambient     {0.1f, 0.1f, 0.1f, 1.0f};   // Ambient material color.
     v4d         diffuse     {0.5f, 0.5f, 0.5f, 1.0f};   // Diffuse material color.
