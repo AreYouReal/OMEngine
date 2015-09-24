@@ -5,11 +5,15 @@
 #include "Camera.h"
 #include "Illuminator.hpp"
 
+#include "GameObject.hpp"
+
 typedef struct{ } UserData;
 
 static SRContext       *appContext;
 
 std::shared_ptr<Obj>     object;
+
+std::shared_ptr<GameObject> gameObject(new GameObject());
 
 SRContext* Game::getAppContext(){ return appContext; }
 
@@ -32,6 +36,8 @@ int Game::Init ( SRContext *context ){
     Illuminator::instance();
     
     
+    
+    // TODO: UNITE THREE LOOPS
     for(unsigned int i = 0; i < object->meshesSize(); ++i){
 //        object->optimizeMesh(i, 0);
         object->buildMesh(i);
@@ -47,6 +53,8 @@ int Game::Init ( SRContext *context ){
         object->buildMaterial(i, NULL);
         object->SetMaterialProgram(i);
     }
+    
+    gameObject->addObjMesh(object->getMesh(0));
     
     return true;
 }
@@ -67,32 +75,33 @@ void Game::Draw ( SRContext *context ){
     glClearColor(0.0f, 0.3f, 0.0f, 1.0f);
     glClear( GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT );
 
+    gameObject->draw();
     
     // Solid objects goes here
-    for(unsigned int i = 0; i < object->meshesSize(); ++i){
-        if(object->renderObjectType(i) == SOLID) object->drawMesh(i);
-    }
-//
-////    for(unsigned int i = 0; i < object->meshesSize(); ++i){
-////        if(object->renderObjectType(i) == ALPHA_TESTED){
-////            glCullFace(GL_FRONT);
-////            object->drawMesh(i);
-////            glCullFace(GL_BACK);
-////            object->drawMesh(i);
-////        }
-////    }
-//    
-    for(unsigned int i = 0; i < object->meshesSize(); ++i){
-        if(object->renderObjectType(i) != SOLID){
-            glEnable(GL_BLEND);
-            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-            glCullFace(GL_FRONT);
-            object->drawMesh(i);
-            glCullFace(GL_BACK);
-            object->drawMesh(i);
-            glDisable(GL_BLEND);
-        }
-    }
+//    for(unsigned int i = 0; i < object->meshesSize(); ++i){
+//        if(object->renderObjectType(i) == SOLID) object->drawMesh(i);
+//    }
+////
+//////    for(unsigned int i = 0; i < object->meshesSize(); ++i){
+//////        if(object->renderObjectType(i) == ALPHA_TESTED){
+//////            glCullFace(GL_FRONT);
+//////            object->drawMesh(i);
+//////            glCullFace(GL_BACK);
+//////            object->drawMesh(i);
+//////        }
+//////    }
+////    
+//    for(unsigned int i = 0; i < object->meshesSize(); ++i){
+//        if(object->renderObjectType(i) != SOLID){
+//            glEnable(GL_BLEND);
+//            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+//            glCullFace(GL_FRONT);
+//            object->drawMesh(i);
+//            glCullFace(GL_BACK);
+//            object->drawMesh(i);
+//            glDisable(GL_BLEND);
+//        }
+//    }
 //    logMessage("FPS: %f", drawTimer.fps());
 }
 

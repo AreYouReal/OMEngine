@@ -9,6 +9,8 @@
 
 #include "NvTriStrip.h"
 
+
+
 enum RenderObjectType{ SOLID, ALPHA_TESTED, TRANSPARENT };
 
 struct Obj{
@@ -21,6 +23,8 @@ struct Obj{
     void optimizeMesh(unsigned int meshIndex, unsigned int vertexCacheSize);
 
     unsigned int drawMesh(unsigned int meshIndex);
+    
+    OBJMESH getMesh(unsigned int index);
      
 // Material related
     void buildMaterial(unsigned int matIndex, std::shared_ptr<ShaderProgram> program);
@@ -69,3 +73,5 @@ private:
     void updateMax(v3d &max, v3d &vertex);
     void buildVBOMesh(unsigned int meshIndex);
 };
+
+typedef std::shared_ptr<Obj> OBJ;

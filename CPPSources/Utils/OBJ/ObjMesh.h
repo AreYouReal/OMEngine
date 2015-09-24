@@ -46,3 +46,6 @@ struct ObjMesh{
     // Helpers
     void            addVertexData(std::shared_ptr<ObjTriangleList> otl, int vIndex, int uvIndex);
 };
+
+
+typedef std::shared_ptr<ObjMesh> OBJMESH;

@@ -220,6 +220,10 @@ unsigned int Obj::drawMesh(unsigned int meshIndex){
     return meshes[meshIndex]->draw();
 }
 
+OBJMESH Obj::getMesh(unsigned int index){
+    return meshes[index];
+}
+
 unsigned int Obj::materialsSize(){ return (unsigned int)materials.size();  }
 unsigned int Obj::meshesSize()   { return (unsigned int)meshes.size();     }
 unsigned int Obj::texturesSize() { return (unsigned int)textures.size();   }
