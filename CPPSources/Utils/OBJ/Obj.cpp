@@ -231,7 +231,7 @@ void         Obj::generateTextureID(unsigned int textureIndex, unsigned int flag
     textures[textureIndex]->generateID(flags, filter);
 }
 void        Obj::SetMaterialProgram(unsigned int matIndex){
-    materials[matIndex]->program = ShaderLibrary::instance()->getProgram("defaultPerVertex");
+    materials[matIndex]->program = ShaderLibrary::instance()->getProgram("default_gray");
 }
 
 RenderObjectType Obj::renderObjectType(unsigned int meshIndex){

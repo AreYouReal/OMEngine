@@ -29,7 +29,7 @@ int Game::Init ( SRContext *context ){
     
     appContext = context;
     
-    object = std::shared_ptr<Obj>(new Obj("physics.obj"));
+    object = std::shared_ptr<Obj>(new Obj("samurai_monastry.obj"));
     
     ShaderLibrary::instance();
     Camera::createCamera();
@@ -75,33 +75,33 @@ void Game::Draw ( SRContext *context ){
     glClearColor(0.0f, 0.3f, 0.0f, 1.0f);
     glClear( GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT );
 
-    gameObject->draw();
+//    gameObject->draw();
     
     // Solid objects goes here
-//    for(unsigned int i = 0; i < object->meshesSize(); ++i){
-//        if(object->renderObjectType(i) == SOLID) object->drawMesh(i);
-//    }
-////
-//////    for(unsigned int i = 0; i < object->meshesSize(); ++i){
-//////        if(object->renderObjectType(i) == ALPHA_TESTED){
-//////            glCullFace(GL_FRONT);
-//////            object->drawMesh(i);
-//////            glCullFace(GL_BACK);
-//////            object->drawMesh(i);
-//////        }
-//////    }
-////    
-//    for(unsigned int i = 0; i < object->meshesSize(); ++i){
-//        if(object->renderObjectType(i) != SOLID){
-//            glEnable(GL_BLEND);
-//            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-//            glCullFace(GL_FRONT);
-//            object->drawMesh(i);
-//            glCullFace(GL_BACK);
-//            object->drawMesh(i);
-//            glDisable(GL_BLEND);
-//        }
-//    }
+    for(unsigned int i = 0; i < object->meshesSize(); ++i){
+        if(object->renderObjectType(i) == SOLID) object->drawMesh(i);
+    }
+//
+////    for(unsigned int i = 0; i < object->meshesSize(); ++i){
+////        if(object->renderObjectType(i) == ALPHA_TESTED){
+////            glCullFace(GL_FRONT);
+////            object->drawMesh(i);
+////            glCullFace(GL_BACK);
+////            object->drawMesh(i);
+////        }
+////    }
+//    
+    for(unsigned int i = 0; i < object->meshesSize(); ++i){
+        if(object->renderObjectType(i) != SOLID){
+            glEnable(GL_BLEND);
+            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+            glCullFace(GL_FRONT);
+            object->drawMesh(i);
+            glCullFace(GL_BACK);
+            object->drawMesh(i);
+            glDisable(GL_BLEND);
+        }
+    }
 //    logMessage("FPS: %f", drawTimer.fps());
 }
 
