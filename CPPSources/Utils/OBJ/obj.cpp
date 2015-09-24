@@ -227,12 +227,8 @@ void         Obj::generateTextureID(unsigned int textureIndex, unsigned int flag
     textures[textureIndex]->generateID(flags, filter);
 }
 void        Obj::SetMaterialProgram(unsigned int matIndex, BindAttribCallback bindCallback){
-    materials[matIndex]->program = ShaderLibrary::instance()->getProgram("default_gray");
+    materials[matIndex]->program = ShaderLibrary::instance()->getProgram("defaultPerVertex");
     materials[matIndex]->program->bindAttribCallback = bindCallback;
-}
-
-void        Obj::SetMaterialCallback(unsigned int matIndex, DrawCallback callback){
-    materials[matIndex]->materialDrawCalback = callback;
 }
 
 RenderObjectType Obj::renderObjectType(unsigned int meshIndex){
@@ -443,6 +439,10 @@ std::shared_ptr<ObjMaterial> Obj::getMaterial(const char *name){
             mat = materials[i];
             break;
         }
+    }
+    if(mat == nullptr){
+        mat = std::shared_ptr<ObjMaterial>(new ObjMaterial());
+        mat->program = ShaderLibrary::instance()->getProgram("norm_as_color");
     }
     return mat;
 }

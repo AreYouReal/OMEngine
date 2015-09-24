@@ -55,6 +55,8 @@
 		F38A22E71BAAA40500FADEC0 /* fragmentPerVertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F38A22E61BAAA40500FADEC0 /* fragmentPerVertex.glsl */; };
 		F38A22E91BAAAD8800FADEC0 /* tree.png in Resources */ = {isa = PBXBuildFile; fileRef = F38A22E81BAAAD8800FADEC0 /* tree.png */; };
 		F3944FCA1B8AE0890090FF01 /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3944FC91B8AE0890090FF01 /* Texture.cpp */; };
+		F39A501E1BB3EE9B0080B846 /* LightSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F39A501C1BB3EE9B0080B846 /* LightSource.cpp */; settings = {ASSET_TAGS = (); }; };
+		F39A50211BB3F0090080B846 /* Illuminator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F39A501F1BB3F0090080B846 /* Illuminator.cpp */; settings = {ASSET_TAGS = (); }; };
 		F3CAEEE11BB0191000DCF182 /* samurai_monastry.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F3CAEEE01BB0191000DCF182 /* samurai_monastry.mtl */; };
 		F3CAEEE31BB0194000DCF182 /* samurai_monastry.obj in Resources */ = {isa = PBXBuildFile; fileRef = F3CAEEE21BB0194000DCF182 /* samurai_monastry.obj */; };
 		F3CAEEE51BB01A7600DCF182 /* default_gray_vertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F3CAEEE41BB01A7600DCF182 /* default_gray_vertex.glsl */; };
@@ -151,6 +153,10 @@
 		F38A22E61BAAA40500FADEC0 /* fragmentPerVertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fragmentPerVertex.glsl; sourceTree = "<group>"; };
 		F38A22E81BAAAD8800FADEC0 /* tree.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tree.png; path = SREngine/Platforms/Android/assets/tree.png; sourceTree = "<group>"; };
 		F3944FC91B8AE0890090FF01 /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cpp; sourceTree = "<group>"; };
+		F39A501C1BB3EE9B0080B846 /* LightSource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LightSource.cpp; sourceTree = "<group>"; };
+		F39A501D1BB3EE9B0080B846 /* LightSource.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LightSource.hpp; sourceTree = "<group>"; };
+		F39A501F1BB3F0090080B846 /* Illuminator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Illuminator.cpp; sourceTree = "<group>"; };
+		F39A50201BB3F0090080B846 /* Illuminator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Illuminator.hpp; sourceTree = "<group>"; };
 		F3CAEEE01BB0191000DCF182 /* samurai_monastry.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = samurai_monastry.mtl; path = SREngine/Platforms/Android/assets/samurai_monastry.mtl; sourceTree = "<group>"; };
 		F3CAEEE21BB0194000DCF182 /* samurai_monastry.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = samurai_monastry.obj; path = SREngine/Platforms/Android/assets/samurai_monastry.obj; sourceTree = "<group>"; };
 		F3CAEEE41BB01A7600DCF182 /* default_gray_vertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = default_gray_vertex.glsl; sourceTree = "<group>"; };
@@ -252,6 +258,7 @@
 		7626523F17F10E6C007CCD43 /* iOSSRE */ = {
 			isa = PBXGroup;
 			children = (
+				F39A501B1BB3EE8E0080B846 /* Light */,
 				F3710A0F1BA6C95D00235C68 /* Camera */,
 				9453DEDE1B2A080F00C79DB3 /* Utils */,
 				944E39671B01191F003806EB /* Math */,
@@ -428,6 +435,18 @@
 			name = Camera;
 			sourceTree = "<group>";
 		};
+		F39A501B1BB3EE8E0080B846 /* Light */ = {
+			isa = PBXGroup;
+			children = (
+				F39A501C1BB3EE9B0080B846 /* LightSource.cpp */,
+				F39A501D1BB3EE9B0080B846 /* LightSource.hpp */,
+				F39A501F1BB3F0090080B846 /* Illuminator.cpp */,
+				F39A50201BB3F0090080B846 /* Illuminator.hpp */,
+			);
+			name = Light;
+			path = SREngine/CPPSources/Light;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -554,12 +573,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F39A501E1BB3EE9B0080B846 /* LightSource.cpp in Sources */,
 				F3944FCA1B8AE0890090FF01 /* Texture.cpp in Sources */,
 				94CE87E61B62B5A400752D5C /* main.m in Sources */,
 				946849011BB305D900D82F18 /* ObjMaterial.cpp in Sources */,
 				94CE87D61B62B51900752D5C /* ShaderLibrary.cpp in Sources */,
 				94CE87CC1B62B4D000752D5C /* m4d.cpp in Sources */,
 				F340F7891BA034B20021445C /* ObjMesh.cpp in Sources */,
+				F39A50211BB3F0090080B846 /* Illuminator.cpp in Sources */,
 				F368E8C01BA6AC9F00F322AF /* lodepng.cpp in Sources */,
 				F368E8C11BA6AC9F00F322AF /* NvTriStrip.cpp in Sources */,
 				F368E8C21BA6AC9F00F322AF /* NvTriStripObjects.cpp in Sources */,

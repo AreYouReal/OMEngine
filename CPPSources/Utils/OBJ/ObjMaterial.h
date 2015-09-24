@@ -30,5 +30,5 @@ struct ObjMaterial{
     std::shared_ptr<Texture> tAmbient, tDiffuse, tSpecular, tTranslucency, tDisp, tBump;
     std::shared_ptr<ShaderProgram>  program;
     
-    DrawCallback    *materialDrawCalback;
+    virtual void setUniforms();
 };
