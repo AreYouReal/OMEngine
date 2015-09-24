@@ -25,7 +25,7 @@ int Game::Init ( SRContext *context ){
     
     appContext = context;
     
-    object = std::shared_ptr<Obj>(new Obj("scene.obj"));
+    object = std::shared_ptr<Obj>(new Obj("physics.obj"));
     
     ShaderLibrary::instance();
     Camera::createCamera();
