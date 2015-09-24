@@ -9,29 +9,9 @@ typedef struct{ } UserData;
 
 static SRContext       *appContext;
 
-m4d ModelViewMatrix;
-m4d ProjectionMatrix;
-m4d NormalMatrix;
-v3d lightPosition(0.0f, 30.0f, 0.0f);
-
-v3d bve;
-
 std::shared_ptr<Obj>     object;
 
-int rotateAngel = 0;
-m4d rotateObjMatrix;
-
-void programBindAttributes(void *ptr){
-    ShaderProgram *program = (ShaderProgram*) ptr;
-    glBindAttribLocation(program->ID, 0, "aPosition");
-    glBindAttribLocation(program->ID, 1, "aNormal");
-    glBindAttribLocation(program->ID, 2, "aTexCoord");
-    glBindAttribLocation(program->ID, 3, "aTangent");
-}
-
-SRContext* Game::getAppContext(){
-    return appContext;
-}
+SRContext* Game::getAppContext(){ return appContext; }
 
 ///
 // Initialize the shader and program object
@@ -65,7 +45,7 @@ int Game::Init ( SRContext *context ){
     
     for(unsigned int i = 0; i < object->materialsSize(); ++i){
         object->buildMaterial(i, NULL);
-        object->SetMaterialProgram(i, programBindAttributes);
+        object->SetMaterialProgram(i);
     }
     
     return true;
@@ -81,6 +61,8 @@ void Game::Draw ( SRContext *context ){
 //    logMessage("%d, %d, %d, %d, %d\n", context->eglNativeDisplay, context->eglNativeWindow, context->eglDisplay, context->eglContext, context->eglSurface );
     if(!context->eglDisplay) return;
 #endif
+    
+    Camera::instance()->setWidthAndHeight(context->width, context->height);
 
     glClearColor(0.0f, 0.3f, 0.0f, 1.0f);
     glClear( GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT );
@@ -128,9 +110,7 @@ void Game::Touch(SRContext *context, int event, int x, int y){
             break;
         case TOUCH_EVENT::MOVED  :{
             float deltaAngle =((startX - x) + (startY - y))/20;
-            rotateAngel -= deltaAngle;
-            rotateAngel %= 360;
-//            Camera::instance()->move(deltaAngle > 0);
+            Camera::instance()->move(deltaAngle > 0);
         }
             break;
         case TOUCH_EVENT::ENDED  :

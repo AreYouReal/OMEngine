@@ -226,9 +226,8 @@ unsigned int Obj::texturesSize() { return (unsigned int)textures.size();   }
 void         Obj::generateTextureID(unsigned int textureIndex, unsigned int flags, unsigned int filter){
     textures[textureIndex]->generateID(flags, filter);
 }
-void        Obj::SetMaterialProgram(unsigned int matIndex, BindAttribCallback bindCallback){
+void        Obj::SetMaterialProgram(unsigned int matIndex){
     materials[matIndex]->program = ShaderLibrary::instance()->getProgram("defaultPerVertex");
-    materials[matIndex]->program->bindAttribCallback = bindCallback;
 }
 
 RenderObjectType Obj::renderObjectType(unsigned int meshIndex){

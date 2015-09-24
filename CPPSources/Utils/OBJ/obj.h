@@ -25,7 +25,7 @@ struct Obj{
 // Material related
     void buildMaterial(unsigned int matIndex, std::shared_ptr<ShaderProgram> program);
     void generateTextureID(unsigned int textureIndex, unsigned int flags, unsigned int filter);
-    void SetMaterialProgram(unsigned int matIndex, BindAttribCallback bindCallback);
+    void SetMaterialProgram(unsigned int matIndex);
     
     unsigned int materialsSize();
     unsigned int meshesSize();

@@ -36,5 +36,8 @@ void main(){
     if(intensity > 0.0){
         diffuseColor = vec4( uDiffuse, 1.0) * intensity;
         specularColor = vec4( uSpecular, 1.0) * pow(max(dot(R,E), 0.0), uShininess * 0.3 );
+    }else{
+        diffuseColor = vec4(0.0f, 0.0f, 0.0f, 1.0f);
+        specularColor = vec4(0.0f, 0.0f, .0f, 1.0f);
     }
 }

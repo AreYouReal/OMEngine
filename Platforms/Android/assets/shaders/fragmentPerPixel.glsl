@@ -28,7 +28,7 @@ void main(){
     mediump vec4 diffuse = vec4( uDiffuse * diffuseColor.rgb, 1.0) * max(dot(normal, L), 0.0);
     mediump vec4 specular = vec4( uSpecular, 1.0) * pow(max(dot(R,E), 0.0), uShininess * 0.3 );
     
-    vec4 resultColor = vec4(0.1) + ambient + diffuse + specular;
+    vec4 resultColor = ambient + diffuse + specular;
     
     if(uDissolve == 0.0){
         if(alpha < 0.1) discard;

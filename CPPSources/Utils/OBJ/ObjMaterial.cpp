@@ -62,7 +62,7 @@ void ObjMaterial::setUniforms(){
         }else if(!strcmp(program->uniformArray[i].name.c_str(), "uShininess")){
             glUniform1f(program->uniformArray[i].location, specularExponent);
         }else if(!strcmp(program->uniformArray[i].name.c_str(), "uLightPos")){
-            v4d lightInEyeSpace = Illuminator::instance()->getLightSource()->getPosition();
+            v4d lightInEyeSpace = Illuminator::instance()->getLightSource()->getPositionInEyeSpace();
             glUniform3fv(program->uniformArray[i].location, 1, &lightInEyeSpace.x);
         }else if(!strcmp(program->uniformArray[i].name.c_str(), "uSamplerBump")){
             glUniform1i(program->uniformArray[i].location, 4);

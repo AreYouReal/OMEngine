@@ -20,5 +20,12 @@ int ShaderProgram::getVertexAttribLocation(const char *name){
 void ShaderProgram::use(){
     glUseProgram(ID);
     
-    if(bindAttribCallback) bindAttribCallback((void*)this);
+    bindAttributes();
+}
+
+void ShaderProgram::bindAttributes(){
+    glBindAttribLocation(ID, 0, "aPosition");
+    glBindAttribLocation(ID, 1, "aNormal");
+    glBindAttribLocation(ID, 2, "aTexCoord");
+    glBindAttribLocation(ID, 3, "aTangent");
 }

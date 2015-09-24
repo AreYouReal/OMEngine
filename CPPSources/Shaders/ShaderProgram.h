@@ -17,9 +17,6 @@ struct VertexAttrib{
     int             location;
 };
 
-typedef void(DrawCallback(void*));
-typedef void(BindAttribCallback(void*));
-
 struct ShaderProgram{
    
      ~ShaderProgram();
@@ -30,9 +27,10 @@ struct ShaderProgram{
     std::vector<Uniform>        uniformArray;
     std::vector<VertexAttrib>   attribArray;
  
-    BindAttribCallback  *bindAttribCallback;
     
     void                use();
     int                 getVertexAttribLocation(const char* name);
     int                 getUniformLocation(const char* name);
+    
+    virtual void bindAttributes();
 };

@@ -25,8 +25,8 @@ private:
     
     float mFovy, mWidth, mHeight, mNear, mFar;
     
-    v3d mPosition{0.0f, -9.8f, 0.5f};
-    v3d mFront{0.0f,  0.0, 0.0f };
+    v3d mPosition{0.0f, -9.8f, 3.5f};
+    v3d mFront{0.0f,  1.0, 0.0f };
     v3d mUp{0.0f,  0.0f, 1.0f};
     
     m4d mViewMatrix;
