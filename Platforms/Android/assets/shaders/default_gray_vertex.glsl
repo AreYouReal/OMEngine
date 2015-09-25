@@ -20,6 +20,8 @@ void main(){
     float intensity = max(dot(normal.xyz, L), 0.0);
     if(intensity > 0.0){
         color = vec4(.5, .5, .5, 1.0) * intensity;
+    }else{
+        color = vec4(0.0, 0.0, 0.0, 1.0);
     }
     
     gl_Position = uProjectionM * vec4(position, 1.0);

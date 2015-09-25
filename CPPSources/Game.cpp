@@ -29,7 +29,7 @@ int Game::Init ( SRContext *context ){
     
     appContext = context;
     
-    object = std::shared_ptr<Obj>(new Obj("samurai_monastry.obj"));
+    object = std::shared_ptr<Obj>(new Obj("scene.obj"));
     
     ShaderLibrary::instance();
     Camera::createCamera();
