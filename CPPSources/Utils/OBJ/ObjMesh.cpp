@@ -67,6 +67,40 @@ void ObjMesh::build(){
     glBindVertexArray(0);
 }
 
+void ObjMesh::updateBounds(){
+    min.x = min.y = min.z = 9999.99f;
+    max.x = max.y = max.z = -9999.99f;
+    
+    unsigned int index;
+    for(unsigned int i = 0; i < vertexData.size(); ++i){
+        index = vertexData[i].vIndex;
+        updateMin(min, obj->vertices[index]);
+        updateMax(max, obj->vertices[index]);
+    }
+    
+    location = (min + max) * 0.5f;
+    dimension = max - min;
+    //    mesh->radius =  mesh->dimension.x >= mesh->dimension.y ?
+    //                    mesh->dimension.x :
+    //                    mesh->dimension.y;
+    //    mesh->radius =  mesh->radius >= mesh->dimension.x ?
+    //                    mesh->radius * 0.5f :
+    //                    mesh->dimension.z * 0.5f;
+    radius = v3d::length(max - min) * 0.5f;
+}
+
+void ObjMesh::updateMax(v3d &max, v3d &vertex){
+    if(vertex.x > max.x) max.x = vertex.x;
+    if(vertex.y > max.y) max.y = vertex.y;
+    if(vertex.z > max.z) max.z = vertex.z;
+}
+
+void ObjMesh::updateMin(v3d &min, v3d &vertex){
+    if(vertex.x < min.x) min.x = vertex.x;
+    if(vertex.y < min.y) min.y = vertex.y;
+    if(vertex.z < min.z) min.z = vertex.z;
+}
+
 void ObjMesh::buildVBO(){
     unsigned int v3dSize = sizeof(v3d);
     stride = v3dSize;

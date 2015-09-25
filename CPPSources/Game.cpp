@@ -43,11 +43,6 @@ int Game::Init ( SRContext *context ){
         // Free object mesh data if needed here
     }
     
-    for(unsigned int i = 0; i < object->texturesSize(); ++i){
-        object->generateTextureID(i, 0, 0);
-//        object->textures[i].generateID(TEXTURE_MIPMAP, TEXTURE_FILTER_2X);  // !!!!!!
-    }
-    
     gameObject->addObjMesh(object->getMesh(0));
     
     return true;

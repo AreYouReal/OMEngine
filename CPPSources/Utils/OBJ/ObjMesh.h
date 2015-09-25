@@ -58,8 +58,11 @@ private:
     std::shared_ptr<Obj>                             obj;
     
     // Helpers
-    void            addVertexData(std::shared_ptr<ObjTriangleList> otl, int vIndex, int uvIndex);
-    void            buildVBO();
+    void    addVertexData(std::shared_ptr<ObjTriangleList> otl, int vIndex, int uvIndex);
+    void    buildVBO();
+    void    updateBounds();
+    void    updateMin(v3d &min, v3d &vertex);
+    void    updateMax(v3d &max, v3d &vertex);
     
 };
 
