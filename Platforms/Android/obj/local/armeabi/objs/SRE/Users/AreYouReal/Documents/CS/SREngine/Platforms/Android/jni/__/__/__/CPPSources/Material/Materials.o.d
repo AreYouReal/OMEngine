@@ -1,31 +1,15 @@
-/Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/obj/local/armeabi/objs/SRE//Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/__/__/__/CPPSources/Game.o: \
- /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Game.cpp \
- /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Game.h \
+/Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/obj/local/armeabi/objs/SRE//Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/__/__/__/CPPSources/Material/Materials.o: \
+ /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Material/Materials.cpp \
+ /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Material/Materials.hpp \
+ /Users/AreYouReal/Documents/SOK/android-ndk-r10b/sources/cxx-stl/gnu-libstdc++/4.8/include/memory \
+ /Users/AreYouReal/Documents/SOK/android-ndk-r10b/sources/cxx-stl/gnu-libstdc++/4.8/include/map \
+ /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Texture/Texture.h \
  /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/SRUtils.h \
- /Users/AreYouReal/Documents/SOK/android-ndk-r10b/platforms/android-18/arch-arm/usr/include/stdio.h \
- /Users/AreYouReal/Documents/SOK/android-ndk-r10b/platforms/android-18/arch-arm/usr/include/sys/cdefs.h \
- /Users/AreYouReal/Documents/SOK/android-ndk-r10b/platforms/android-18/arch-arm/usr/include/sys/cdefs_elf.h \
- /Users/AreYouReal/Documents/SOK/android-ndk-r10b/platforms/android-18/arch-arm/usr/include/android/api-level.h \
- /Users/AreYouReal/Documents/SOK/android-ndk-r10b/platforms/android-18/arch-arm/usr/include/sys/types.h \
- /Users/AreYouReal/Documents/SOK/android-ndk-r10b/platforms/android-18/arch-arm/usr/include/stdint.h \
- /Users/AreYouReal/Documents/SOK/android-ndk-r10b/platforms/android-18/arch-arm/usr/include/sys/_types.h \
- /Users/AreYouReal/Documents/SOK/android-ndk-r10b/platforms/android-18/arch-arm/usr/include/machine/_types.h \
- /Users/AreYouReal/Documents/SOK/android-ndk-r10b/platforms/android-18/arch-arm/usr/include/linux/posix_types.h \
- /Users/AreYouReal/Documents/SOK/android-ndk-r10b/platforms/android-18/arch-arm/usr/include/linux/stddef.h \
- /Users/AreYouReal/Documents/SOK/android-ndk-r10b/platforms/android-18/arch-arm/usr/include/linux/compiler.h \
- /Users/AreYouReal/Documents/SOK/android-ndk-r10b/platforms/android-18/arch-arm/usr/include/asm/posix_types.h \
- /Users/AreYouReal/Documents/SOK/android-ndk-r10b/platforms/android-18/arch-arm/usr/include/asm/types.h \
- /Users/AreYouReal/Documents/SOK/android-ndk-r10b/platforms/android-18/arch-arm/usr/include/linux/types.h \
- /Users/AreYouReal/Documents/SOK/android-ndk-r10b/platforms/android-18/arch-arm/usr/include/machine/kernel.h \
- /Users/AreYouReal/Documents/SOK/android-ndk-r10b/platforms/android-18/arch-arm/usr/include/sys/sysmacros.h \
  /Users/AreYouReal/Documents/SOK/android-ndk-r10b/platforms/android-18/arch-arm/usr/include/stdlib.h \
- /Users/AreYouReal/Documents/SOK/android-ndk-r10b/platforms/android-18/arch-arm/usr/include/string.h \
- /Users/AreYouReal/Documents/SOK/android-ndk-r10b/platforms/android-18/arch-arm/usr/include/malloc.h \
  /Users/AreYouReal/Documents/SOK/android-ndk-r10b/platforms/android-18/arch-arm/usr/include/alloca.h \
  /Users/AreYouReal/Documents/SOK/android-ndk-r10b/platforms/android-18/arch-arm/usr/include/strings.h \
  /Users/AreYouReal/Documents/SOK/android-ndk-r10b/platforms/android-18/arch-arm/usr/include/memory.h \
  /Users/AreYouReal/Documents/SOK/android-ndk-r10b/sources/cxx-stl/gnu-libstdc++/4.8/include/vector \
- /Users/AreYouReal/Documents/SOK/android-ndk-r10b/sources/cxx-stl/gnu-libstdc++/4.8/include/memory \
  /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/loadpng/lodepng.h \
  /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/FileContent.h \
  /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/Stopwatch.h \
@@ -54,63 +38,24 @@
  /Users/AreYouReal/Documents/SOK/android-ndk-r10b/platforms/android-18/arch-arm/usr/include/jni.h \
  /Users/AreYouReal/Documents/SOK/android-ndk-r10b/platforms/android-18/arch-arm/usr/include/android/input.h \
  /Users/AreYouReal/Documents/SOK/android-ndk-r10b/platforms/android-18/arch-arm/usr/include/android/keycodes.h \
- /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Shaders/ShaderLibrary.h \
+ /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Material/ObjMaterial.h \
  /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Shaders/ShaderProgram.h \
  /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Shaders/Shader.h \
- /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/Typedefs.h \
- /Users/AreYouReal/Documents/SOK/android-ndk-r10b/sources/cxx-stl/gnu-libstdc++/4.8/include/map \
- /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Texture/Texture.h \
- /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Camera/Camera.h \
- /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Light/Illuminator.hpp \
- /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Light/LightSource.hpp \
- /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/GameObject/GameObject.hpp \
- /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/OBJ/ObjMesh.h \
- /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Material/ObjMaterial.h \
- /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Material/Materials.hpp \
- /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/OBJ/ObjData.h \
- /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/nvtristrip/NvTriStrip.h
+ /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Game.h \
+ /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Shaders/ShaderLibrary.h \
+ /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/Typedefs.h
 
-/Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Game.h:
+/Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Material/Materials.hpp:
+
+/Users/AreYouReal/Documents/SOK/android-ndk-r10b/sources/cxx-stl/gnu-libstdc++/4.8/include/memory:
+
+/Users/AreYouReal/Documents/SOK/android-ndk-r10b/sources/cxx-stl/gnu-libstdc++/4.8/include/map:
+
+/Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Texture/Texture.h:
 
 /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/SRUtils.h:
 
-/Users/AreYouReal/Documents/SOK/android-ndk-r10b/platforms/android-18/arch-arm/usr/include/stdio.h:
-
-/Users/AreYouReal/Documents/SOK/android-ndk-r10b/platforms/android-18/arch-arm/usr/include/sys/cdefs.h:
-
-/Users/AreYouReal/Documents/SOK/android-ndk-r10b/platforms/android-18/arch-arm/usr/include/sys/cdefs_elf.h:
-
-/Users/AreYouReal/Documents/SOK/android-ndk-r10b/platforms/android-18/arch-arm/usr/include/android/api-level.h:
-
-/Users/AreYouReal/Documents/SOK/android-ndk-r10b/platforms/android-18/arch-arm/usr/include/sys/types.h:
-
-/Users/AreYouReal/Documents/SOK/android-ndk-r10b/platforms/android-18/arch-arm/usr/include/stdint.h:
-
-/Users/AreYouReal/Documents/SOK/android-ndk-r10b/platforms/android-18/arch-arm/usr/include/sys/_types.h:
-
-/Users/AreYouReal/Documents/SOK/android-ndk-r10b/platforms/android-18/arch-arm/usr/include/machine/_types.h:
-
-/Users/AreYouReal/Documents/SOK/android-ndk-r10b/platforms/android-18/arch-arm/usr/include/linux/posix_types.h:
-
-/Users/AreYouReal/Documents/SOK/android-ndk-r10b/platforms/android-18/arch-arm/usr/include/linux/stddef.h:
-
-/Users/AreYouReal/Documents/SOK/android-ndk-r10b/platforms/android-18/arch-arm/usr/include/linux/compiler.h:
-
-/Users/AreYouReal/Documents/SOK/android-ndk-r10b/platforms/android-18/arch-arm/usr/include/asm/posix_types.h:
-
-/Users/AreYouReal/Documents/SOK/android-ndk-r10b/platforms/android-18/arch-arm/usr/include/asm/types.h:
-
-/Users/AreYouReal/Documents/SOK/android-ndk-r10b/platforms/android-18/arch-arm/usr/include/linux/types.h:
-
-/Users/AreYouReal/Documents/SOK/android-ndk-r10b/platforms/android-18/arch-arm/usr/include/machine/kernel.h:
-
-/Users/AreYouReal/Documents/SOK/android-ndk-r10b/platforms/android-18/arch-arm/usr/include/sys/sysmacros.h:
-
 /Users/AreYouReal/Documents/SOK/android-ndk-r10b/platforms/android-18/arch-arm/usr/include/stdlib.h:
-
-/Users/AreYouReal/Documents/SOK/android-ndk-r10b/platforms/android-18/arch-arm/usr/include/string.h:
-
-/Users/AreYouReal/Documents/SOK/android-ndk-r10b/platforms/android-18/arch-arm/usr/include/malloc.h:
 
 /Users/AreYouReal/Documents/SOK/android-ndk-r10b/platforms/android-18/arch-arm/usr/include/alloca.h:
 
@@ -119,8 +64,6 @@
 /Users/AreYouReal/Documents/SOK/android-ndk-r10b/platforms/android-18/arch-arm/usr/include/memory.h:
 
 /Users/AreYouReal/Documents/SOK/android-ndk-r10b/sources/cxx-stl/gnu-libstdc++/4.8/include/vector:
-
-/Users/AreYouReal/Documents/SOK/android-ndk-r10b/sources/cxx-stl/gnu-libstdc++/4.8/include/memory:
 
 /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/loadpng/lodepng.h:
 
@@ -178,32 +121,14 @@
 
 /Users/AreYouReal/Documents/SOK/android-ndk-r10b/platforms/android-18/arch-arm/usr/include/android/keycodes.h:
 
-/Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Shaders/ShaderLibrary.h:
+/Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Material/ObjMaterial.h:
 
 /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Shaders/ShaderProgram.h:
 
 /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Shaders/Shader.h:
 
+/Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Game.h:
+
+/Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Shaders/ShaderLibrary.h:
+
 /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/Typedefs.h:
-
-/Users/AreYouReal/Documents/SOK/android-ndk-r10b/sources/cxx-stl/gnu-libstdc++/4.8/include/map:
-
-/Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Texture/Texture.h:
-
-/Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Camera/Camera.h:
-
-/Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Light/Illuminator.hpp:
-
-/Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Light/LightSource.hpp:
-
-/Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/GameObject/GameObject.hpp:
-
-/Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/OBJ/ObjMesh.h:
-
-/Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Material/ObjMaterial.h:
-
-/Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Material/Materials.hpp:
-
-/Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/OBJ/ObjData.h:
-
-/Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/nvtristrip/NvTriStrip.h:

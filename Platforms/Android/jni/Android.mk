@@ -20,10 +20,11 @@ LOCAL_SRC_FILES := $(LOCAL_PATH)/esUtil_Android.cpp \
 				   $(SRC_PATH)/CPPSources/Math/m4d.cpp \
 				   $(SRC_PATH)/CPPSources/Math/v3d.cpp \
 				   $(SRC_PATH)/CPPSources/Math/q4d.cpp \
-				   $(SRC_PATH)/CPPSources/Utils/OBJ/obj.cpp \
+				   $(SRC_PATH)/CPPSources/Utils/OBJ/ObjData.cpp \
 				   $(SRC_PATH)/CPPSources/Utils/OBJ/ObjMesh.cpp \
-				   $(SRC_PATH)/CPPSources/Utils/OBJ/ObjMaterial.cpp \
-				   $(SRC_PATH)/CPPSources/Utils/Texture.cpp \
+				   $(SRC_PATH)/CPPSources/Material/ObjMaterial.cpp \
+				   $(SRC_PATH)/CPPSources/Material/Materials.cpp \
+				   $(SRC_PATH)/CPPSources/Texture/Texture.cpp \
 				   $(SRC_PATH)/CPPSources/Camera/Camera.cpp \
 				   $(SRC_PATH)/CPPSources/Light/Illuminator.cpp \
 				   $(SRC_PATH)/CPPSources/Light/LightSource.cpp \
@@ -41,7 +42,9 @@ LOCAL_C_INCLUDES	:= $(SRC_PATH) \
 					   $(SRC_PATH)/CPPSources/Math \
 					   $(SRC_PATH)/CPPSources/Camera \
 					   $(SRC_PATH)/CPPSources/Light \
-					   $(SRC_PATH)/CPPSources/GameObject
+					   $(SRC_PATH)/CPPSources/GameObject \
+					   $(SRC_PATH)/CPPSources/Material \
+					   $(SRC_PATH)/CPPSources/Texture \
 				   
 LOCAL_LDLIBS    := -llog -landroid -lEGL -lGLESv3
 

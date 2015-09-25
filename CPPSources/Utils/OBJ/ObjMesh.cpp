@@ -54,7 +54,7 @@ RenderObjectType ObjMesh::renderObjectType(){
 }
 
 void ObjMesh::build(){
-//    updateBoundMesh();
+    updateBounds();
     buildVBO();
 
     glGenVertexArrays(1, &vao);

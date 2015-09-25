@@ -18,7 +18,6 @@
 		943869871BA8949D005A0594 /* fragmentBump.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 943869851BA8949D005A0594 /* fragmentBump.glsl */; };
 		943869881BA8949D005A0594 /* vertexBump.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 943869861BA8949D005A0594 /* vertexBump.glsl */; };
 		9453DEE11B2A0A2700C79DB3 /* SRUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9453DEDF1B2A0A2700C79DB3 /* SRUtils.cpp */; };
-		946849011BB305D900D82F18 /* ObjMaterial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 946849001BB305D900D82F18 /* ObjMaterial.cpp */; };
 		947222771B9AD466008D601B /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 9472226F1B9AD466008D601B /* background.png */; };
 		947222781B9AD466008D601B /* balloon.png in Resources */ = {isa = PBXBuildFile; fileRef = 947222701B9AD466008D601B /* balloon.png */; };
 		947222791B9AD466008D601B /* grass.png in Resources */ = {isa = PBXBuildFile; fileRef = 947222711B9AD466008D601B /* grass.png */; };
@@ -45,6 +44,8 @@
 		F340D11B1BA95E4500187B1E /* char_ram_nor.png in Resources */ = {isa = PBXBuildFile; fileRef = F340D11A1BA95E4500187B1E /* char_ram_nor.png */; };
 		F340F7891BA034B20021445C /* ObjMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F340F7871BA034B20021445C /* ObjMesh.cpp */; };
 		F34129D01BB52BB7006F4D4D /* Materials.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F34129CE1BB52BB7006F4D4D /* Materials.cpp */; settings = {ASSET_TAGS = (); }; };
+		F34129D51BB53D6E006F4D4D /* ObjMaterial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F34129D31BB53D6E006F4D4D /* ObjMaterial.cpp */; settings = {ASSET_TAGS = (); }; };
+		F34129D81BB53DBC006F4D4D /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F34129D61BB53DBC006F4D4D /* Texture.cpp */; settings = {ASSET_TAGS = (); }; };
 		F368E8C01BA6AC9F00F322AF /* lodepng.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F368E8B71BA6AC9F00F322AF /* lodepng.cpp */; };
 		F368E8C11BA6AC9F00F322AF /* NvTriStrip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F368E8BA1BA6AC9F00F322AF /* NvTriStrip.cpp */; };
 		F368E8C21BA6AC9F00F322AF /* NvTriStripObjects.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F368E8BC1BA6AC9F00F322AF /* NvTriStripObjects.cpp */; };
@@ -55,7 +56,6 @@
 		F38A22E31BAAA15400FADEC0 /* vertexPerVertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F38A22E21BAAA15400FADEC0 /* vertexPerVertex.glsl */; };
 		F38A22E71BAAA40500FADEC0 /* fragmentPerVertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F38A22E61BAAA40500FADEC0 /* fragmentPerVertex.glsl */; };
 		F38A22E91BAAAD8800FADEC0 /* tree.png in Resources */ = {isa = PBXBuildFile; fileRef = F38A22E81BAAAD8800FADEC0 /* tree.png */; };
-		F3944FCA1B8AE0890090FF01 /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3944FC91B8AE0890090FF01 /* Texture.cpp */; };
 		F39A501E1BB3EE9B0080B846 /* LightSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F39A501C1BB3EE9B0080B846 /* LightSource.cpp */; settings = {ASSET_TAGS = (); }; };
 		F39A50211BB3F0090080B846 /* Illuminator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F39A501F1BB3F0090080B846 /* Illuminator.cpp */; settings = {ASSET_TAGS = (); }; };
 		F39A50261BB40E5B0080B846 /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F39A50241BB40E5B0080B846 /* GameObject.cpp */; settings = {ASSET_TAGS = (); }; };
@@ -96,12 +96,10 @@
 		7626525E17F10E6C007CCD43 /* iOSSRETests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSSRETests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7626525F17F10E6C007CCD43 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		940CF4291B98C220005B6F19 /* Stopwatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stopwatch.h; sourceTree = "<group>"; };
-		941D13521B8A1A2800A1DD00 /* Texture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Texture.h; path = ../Utils/Texture.h; sourceTree = "<group>"; };
 		943869851BA8949D005A0594 /* fragmentBump.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fragmentBump.glsl; sourceTree = "<group>"; };
 		943869861BA8949D005A0594 /* vertexBump.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = vertexBump.glsl; sourceTree = "<group>"; };
 		9453DEDF1B2A0A2700C79DB3 /* SRUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SRUtils.cpp; path = ../../CPPSources/Utils/SRUtils.cpp; sourceTree = SOURCE_ROOT; };
 		9453DEE01B2A0A2700C79DB3 /* SRUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SRUtils.h; path = ../../CPPSources/Utils/SRUtils.h; sourceTree = SOURCE_ROOT; };
-		946849001BB305D900D82F18 /* ObjMaterial.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ObjMaterial.cpp; path = ../Utils/OBJ/ObjMaterial.cpp; sourceTree = "<group>"; };
 		9472226F1B9AD466008D601B /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background.png; path = SREngine/Platforms/Android/assets/background.png; sourceTree = "<group>"; };
 		947222701B9AD466008D601B /* balloon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = balloon.png; path = SREngine/Platforms/Android/assets/balloon.png; sourceTree = "<group>"; };
 		947222711B9AD466008D601B /* grass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = grass.png; path = SREngine/Platforms/Android/assets/grass.png; sourceTree = "<group>"; };
@@ -138,9 +136,12 @@
 		F340D11A1BA95E4500187B1E /* char_ram_nor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = char_ram_nor.png; path = SREngine/Platforms/Android/assets/char_ram_nor.png; sourceTree = "<group>"; };
 		F340F7871BA034B20021445C /* ObjMesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ObjMesh.cpp; path = OBJ/ObjMesh.cpp; sourceTree = "<group>"; };
 		F340F7881BA034B20021445C /* ObjMesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ObjMesh.h; path = OBJ/ObjMesh.h; sourceTree = "<group>"; };
-		F340F78B1BA036390021445C /* ObjMaterial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ObjMaterial.h; path = ../Utils/OBJ/ObjMaterial.h; sourceTree = "<group>"; };
 		F34129CE1BB52BB7006F4D4D /* Materials.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Materials.cpp; sourceTree = "<group>"; };
 		F34129CF1BB52BB7006F4D4D /* Materials.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Materials.hpp; sourceTree = "<group>"; };
+		F34129D31BB53D6E006F4D4D /* ObjMaterial.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ObjMaterial.cpp; sourceTree = "<group>"; };
+		F34129D41BB53D6E006F4D4D /* ObjMaterial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjMaterial.h; sourceTree = "<group>"; };
+		F34129D61BB53DBC006F4D4D /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cpp; sourceTree = "<group>"; };
+		F34129D71BB53DBC006F4D4D /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Texture.h; sourceTree = "<group>"; };
 		F368E8B71BA6AC9F00F322AF /* lodepng.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lodepng.cpp; sourceTree = "<group>"; };
 		F368E8B81BA6AC9F00F322AF /* lodepng.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lodepng.h; sourceTree = "<group>"; };
 		F368E8BA1BA6AC9F00F322AF /* NvTriStrip.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NvTriStrip.cpp; sourceTree = "<group>"; };
@@ -156,7 +157,6 @@
 		F38A22E21BAAA15400FADEC0 /* vertexPerVertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = vertexPerVertex.glsl; sourceTree = "<group>"; };
 		F38A22E61BAAA40500FADEC0 /* fragmentPerVertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fragmentPerVertex.glsl; sourceTree = "<group>"; };
 		F38A22E81BAAAD8800FADEC0 /* tree.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tree.png; path = SREngine/Platforms/Android/assets/tree.png; sourceTree = "<group>"; };
-		F3944FC91B8AE0890090FF01 /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Texture.cpp; path = ../Utils/Texture.cpp; sourceTree = "<group>"; };
 		F39A501C1BB3EE9B0080B846 /* LightSource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LightSource.cpp; sourceTree = "<group>"; };
 		F39A501D1BB3EE9B0080B846 /* LightSource.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LightSource.hpp; sourceTree = "<group>"; };
 		F39A501F1BB3F0090080B846 /* Illuminator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Illuminator.cpp; sourceTree = "<group>"; };
@@ -385,8 +385,8 @@
 		F34129CC1BB52B63006F4D4D /* Material */ = {
 			isa = PBXGroup;
 			children = (
-				F340F78B1BA036390021445C /* ObjMaterial.h */,
-				946849001BB305D900D82F18 /* ObjMaterial.cpp */,
+				F34129D31BB53D6E006F4D4D /* ObjMaterial.cpp */,
+				F34129D41BB53D6E006F4D4D /* ObjMaterial.h */,
 				F34129CE1BB52BB7006F4D4D /* Materials.cpp */,
 				F34129CF1BB52BB7006F4D4D /* Materials.hpp */,
 			);
@@ -397,8 +397,8 @@
 		F34129CD1BB52B63006F4D4D /* Texture */ = {
 			isa = PBXGroup;
 			children = (
-				941D13521B8A1A2800A1DD00 /* Texture.h */,
-				F3944FC91B8AE0890090FF01 /* Texture.cpp */,
+				F34129D61BB53DBC006F4D4D /* Texture.cpp */,
+				F34129D71BB53DBC006F4D4D /* Texture.h */,
 			);
 			name = Texture;
 			path = SREngine/CPPSources/Texture;
@@ -611,9 +611,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F39A501E1BB3EE9B0080B846 /* LightSource.cpp in Sources */,
-				F3944FCA1B8AE0890090FF01 /* Texture.cpp in Sources */,
 				94CE87E61B62B5A400752D5C /* main.m in Sources */,
-				946849011BB305D900D82F18 /* ObjMaterial.cpp in Sources */,
 				94CE87D61B62B51900752D5C /* ShaderLibrary.cpp in Sources */,
 				94CE87CC1B62B4D000752D5C /* m4d.cpp in Sources */,
 				F340F7891BA034B20021445C /* ObjMesh.cpp in Sources */,
@@ -627,6 +625,8 @@
 				F3FAE8BB1B6B7885007AF169 /* Shader.cpp in Sources */,
 				94CE87E21B62B59800752D5C /* FileWrapper.mm in Sources */,
 				F3710A151BA6CA6000235C68 /* Camera.cpp in Sources */,
+				F34129D81BB53DBC006F4D4D /* Texture.cpp in Sources */,
+				F34129D51BB53D6E006F4D4D /* ObjMaterial.cpp in Sources */,
 				94CE87D91B62B53500752D5C /* Game.cpp in Sources */,
 				94CE87CE1B62B4D000752D5C /* v3d.cpp in Sources */,
 				F368E8C31BA6AC9F00F322AF /* VertexCache.cpp in Sources */,
