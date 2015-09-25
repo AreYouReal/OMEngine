@@ -56,7 +56,7 @@ Obj::Obj(const char* fileName){
             if(strstr( str, "off") || strstr(str, "0") ) useSmoothNormals = false;
         }else if(sscanf(line, "mtllib %s", str) == 1){
             unsigned char position = ( char *) line - objSource->content + strlen(line) + 1;
-            loadMaterial(str);
+            Materials::instance()->loadMaterial(str);
             line = strtok((char *) &objSource->content[position], "\n");
             continue;
         }
@@ -106,7 +106,7 @@ void Obj::addMesh(std::shared_ptr<ObjMesh> &mesh, std::shared_ptr<ObjTriangleLis
     
     tList->mode = GL_TRIANGLES;
     if(useUVs) tList->useUVs = useUVs;
-    if(usemtl[0]) tList->material = getMaterial(usemtl);
+    if(usemtl[0]) tList->material = Materials::instance()->getMaterial(usemtl);
     name[0]     = 0;
     usemtl[0]   = 0;
     mesh->obj = std::shared_ptr<Obj>(this);
@@ -252,139 +252,7 @@ void Obj::updateMax(v3d &max, v3d &vertex){
     if(vertex.z > max.z) max.z = vertex.z;
 }
 #pragma mark Material loading
-void Obj::loadMaterial(const char *filename){
-    std::unique_ptr<FileContent> objSource = readOBJFromFile(Game::getAppContext(), filename);
-    
-    if(!objSource.get()) return;
-    
-    std::shared_ptr<ObjMaterial> mat = NULL;
-    char *line = strtok((char*)objSource->content, "\n"),
-                 str[255] = {""};
-    
-    v3d v;
-    
-    while(line){
-        if(!line[0] || line[0] == '#' ){ line = strtok( NULL, "\n" ); continue;
-        }else if( sscanf(line, "newmtl %s", str) == 1){
-//            logMessage("newmtl line %s", str);
-            materials.push_back(std::shared_ptr<ObjMaterial>(new ObjMaterial()));
-            mat = materials.back();
-            mat->name = str;
-        }else if(sscanf(line, "Ka %f %f %f", &v.x, &v.y, &v.z) == 3){
-            memcpy(&mat->ambient, &v, sizeof(v3d));
-        }else if(sscanf(line, "Kd %f %f %f", &v.x, &v.y, &v.z) == 3){
-            memcpy(&mat->diffuse, &v, sizeof(v3d));
-        }else if(sscanf(line, "Ks %f %f %f", &v.x, &v.y, &v.z) == 3){
-            memcpy(&mat->specular, &v, sizeof(v3d));
-        }else if(sscanf(line, "Tf %f %f %f", &v.x, &v.y, &v.z) == 3){
-            memcpy(&mat->transmissionFilter, &v, sizeof(v3d));
-        }else if(sscanf( line, "illum %f", &v.x ) == 1 ){
-            mat->illuminationModel = (int)v.x;
-        }else if(sscanf(line, "d %f", &v.x) == 1){
-            mat->ambient.w = v.x;
-            mat->diffuse.w = v.x;
-            mat->specular.w= v.x;
-            mat->dissolve   = v.x;
-        }else if(sscanf(line, "Ns %f",  &v.x) == 1){
-            mat->specularExponent   = v.x;
-        }else if(sscanf(line, "Ni %f", &v.x) == 1){
-            mat->opticalDensity = v.x;
-        }else if(sscanf(line, "map_Ka %s", str) == 1){
-            mat->mapAmbient = str;
-            addTexture(str);
-        }else if(sscanf(line, "map_Kd %s", str) == 1){
-            mat->mapDiffuse = str;
-            addTexture(str);
-        }else if(sscanf(line, "map_Ks %s", str) == 1){
-            mat->mapSpecular = str;
-            addTexture(str);
-        }else if(sscanf(line, "map_Tr %s", str) == 1){
-            mat->mapTranslucency = str;
-            addTexture(str);
-        }else if( sscanf( line, "map_disp %s", str ) == 1 ||
-                 sscanf( line, "map_Disp %s", str ) == 1 ||
-                 sscanf( line, "disp %s"    , str ) == 1 ){
-            mat->mapDisp = str;
-            addTexture(str);
-        }else if( sscanf( line, "map_bump %s", str ) == 1 ||
-                 sscanf( line, "map_Bump %s", str ) == 1 ||
-                 sscanf( line, "bump %s"	, str ) == 1 ){
-            mat->mapBump = str;
-            addTexture(str);
-        }
-        
-        
-        line = strtok( NULL, "\n" );
-    }
-    
-    logMessage("%s", objSource->content);
-}
 
-void Obj::addTexture(const char *filename){
-    if(getTextureIndex(filename) < 0){
-        textures.push_back(Texture::load(Game::getAppContext(), filename, TextureSource::PNG));
-    }
-}
-
-int Obj::getTextureIndex(const char *filename){
-    for(unsigned int i = 0; i < textures.size(); ++i){
-        if( !strcmp(textures[i]->filename.c_str(), filename) ) return i;
-    }
-    return -1;
-}
-
-std::shared_ptr<ObjMaterial> Obj::getMaterial(const char *name){
-    std::shared_ptr<ObjMaterial> mat = nullptr;
-    for(unsigned int i = 0; i < materials.size(); ++i){
-        if(!strcmp(materials[i]->name.c_str(), name)){
-            mat = materials[i];
-            break;
-        }
-    }
-    if(mat == nullptr){
-        mat = std::shared_ptr<ObjMaterial>(new ObjMaterial());
-        mat->program = ShaderLibrary::instance()->getProgram("norm_as_color");
-    }
-    return mat;
-}
-
-void Obj::buildMaterial(unsigned int matIndex, std::shared_ptr<ShaderProgram> program){
-    std::shared_ptr<ObjMaterial> mat = materials[matIndex];
-
-    if(textures.size() > 0){
-        int index;
-        if(mat->mapAmbient[0]){
-            index = getTextureIndex(mat->mapAmbient.c_str());
-            if(index >= 0) mat->tAmbient = textures[index];
-        }
-        
-        if(mat->mapDiffuse[0]){
-            index = getTextureIndex(mat->mapDiffuse.c_str());
-            if(index >= 0) mat->tDiffuse = textures[index];
-        }
-        
-        if(mat->mapSpecular[0]){
-            index = getTextureIndex(mat->mapSpecular.c_str());
-            if(index >= 0) mat->tSpecular = textures[index];
-        }
-        
-        if(mat->mapTranslucency[0]){
-            index = getTextureIndex(mat->mapTranslucency.c_str());
-            if(index >= 0) mat->tTranslucency = textures[index];
-        }
-        
-        if(mat->mapDisp[0]){
-            index = getTextureIndex(mat->mapDisp.c_str());
-            if(index >= 0) mat->tDisp = textures[index];
-        }
-        
-        if(mat->mapBump[0]){
-            index = getTextureIndex(mat->mapBump.c_str());
-            if(index >= 0) mat->tBump = textures[index];
-        }        
-    }
-    if(program) mat->program = program;
-}
 
 
 

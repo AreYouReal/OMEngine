@@ -6,8 +6,12 @@
 #include "ObjMaterial.h"
 #include "ShaderLibrary.h"
 #include "Texture.h"
+#include "Materials.hpp"
+
 
 #include "NvTriStrip.h"
+
+
 
 struct ObjTriangleList;
 class ObjMesh;
@@ -26,7 +30,6 @@ public:
     std::shared_ptr<ObjMesh> getMesh(unsigned int index);
      
 // Material related
-    void buildMaterial(unsigned int matIndex, std::shared_ptr<ShaderProgram> program);
     void generateTextureID(unsigned int textureIndex, unsigned int flags, unsigned int filter);
     void SetMaterialProgram(unsigned int matIndex);
     
@@ -56,12 +59,6 @@ private:
     void builNormalsAndTangents();
     
     static bool readIndices(const char* line, int v[], int n[], int uv[], bool &useUVs);
-    
-// Helpers
-    void    loadMaterial(const char* filename);
-    void    addTexture(const char* filename);
-    int     getTextureIndex(const char* filename);
-    std::shared_ptr<ObjMaterial> getMaterial(const char* name);
     
 // Mesh related
     void updateBoundMesh(unsigned int meshIndex);

@@ -24,7 +24,7 @@ std::shared_ptr<Texture> Texture::load(void *context, const char *filename, Text
 
 
 void Texture::generateID(unsigned int flags, unsigned char filter){
-    if(ID) glDeleteTextures( 1, &ID );
+    if(ID) return;
  
     glGenTextures(1, &ID);
     glBindTexture(target, ID);

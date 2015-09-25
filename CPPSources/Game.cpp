@@ -48,11 +48,6 @@ int Game::Init ( SRContext *context ){
 //        object->textures[i].generateID(TEXTURE_MIPMAP, TEXTURE_FILTER_2X);  // !!!!!!
     }
     
-    for(unsigned int i = 0; i < object->materialsSize(); ++i){
-        object->buildMaterial(i, NULL);
-        object->SetMaterialProgram(i);
-    }
-    
     gameObject->addObjMesh(object->getMesh(0));
     
     return true;

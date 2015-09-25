@@ -40,3 +40,5 @@ struct Texture{
 private:
     Texture(void* context, const char* filename, unsigned int texelType = GL_UNSIGNED_BYTE, unsigned char byte = 4, unsigned int format = GL_RGBA, unsigned int target = GL_TEXTURE_2D, unsigned int ID = 0);
 };
+
+typedef std::shared_ptr<Texture> TEXTURE;

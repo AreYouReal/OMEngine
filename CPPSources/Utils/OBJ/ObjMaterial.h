@@ -3,6 +3,7 @@
 #include "SRUtils.h"
 #include "ShaderProgram.h"
 #include "Texture.h"
+#include "Materials.hpp"
 
 
 
@@ -10,11 +11,14 @@
 class ObjMaterial{
     friend class ObjMesh;
     friend class Obj;
+    friend class Materials;
 public:
     
     ObjMaterial(std::string name = "default");
-    
+    void loadTextures();
+    void linkWithProgram(std::shared_ptr<ShaderProgram> prog);
     void use();
+    
     
 private:
     std::string name;                                   // The material name!

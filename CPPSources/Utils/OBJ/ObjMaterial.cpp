@@ -37,6 +37,41 @@ void ObjMaterial::use(){
     setUniforms();
 }
 
+void ObjMaterial::linkWithProgram(std::shared_ptr<ShaderProgram> prog){
+    if(program == nullptr) program = prog;
+}
+
+void ObjMaterial::loadTextures(){
+    if(mapAmbient[0]){
+        TEXTURE txt(Materials::instance()->getTexture(mapAmbient));
+        if(txt != nullptr) tAmbient = txt;
+    }
+    if(mapDiffuse[0]){
+        TEXTURE txt(Materials::instance()->getTexture(mapDiffuse));
+        if(txt != nullptr) tDiffuse = txt;
+    }
+    
+    if(mapSpecular[0]){
+        TEXTURE txt(Materials::instance()->getTexture(mapSpecular));
+        if(txt != nullptr) tSpecular = txt;
+    }
+    
+    if(mapTranslucency[0]){
+        TEXTURE txt(Materials::instance()->getTexture(mapTranslucency));
+        if(txt != nullptr) tTranslucency = txt;
+    }
+    
+    if(mapDisp[0]){
+        TEXTURE txt(Materials::instance()->getTexture(mapDisp));
+        if(txt != nullptr) tDisp = txt;
+    }
+
+    if(mapBump[0]){
+        TEXTURE txt(Materials::instance()->getTexture(mapBump));
+        if(txt != nullptr) tBump = txt;
+    }
+}
+
 void ObjMaterial::setUniforms(){
     m4d matrix;
     for(unsigned short i = 0; i < program->uniformArray.size(); ++i){
