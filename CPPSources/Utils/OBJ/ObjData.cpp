@@ -1,17 +1,16 @@
-#include "obj.h"
+#include "ObjData.h"
 #include "Game.h"
 
-Obj::Obj(const char* fileName){
-
-    std::unique_ptr<FileContent> objSource = readOBJFromFile(Game::getAppContext(), fileName);
+OBJDATA ObjData::load(const char *filename){
+    std::unique_ptr<FileContent> objSource = readOBJFromFile(Game::getAppContext(), filename);
 #pragma warning throw exception here
-    if(!objSource.get()) return;
+    if(!objSource.get()) return nullptr;
     
     std::shared_ptr<ObjMesh> currentMesh = nullptr;
     std::shared_ptr<ObjTriangleList> currentTList = nullptr;
-    
+    std::shared_ptr<ObjData> data(new ObjData());
     v3d v;
-
+    
     char* line = strtok((char*)objSource->content, "\n");
     char last = 0;
     
@@ -24,12 +23,12 @@ Obj::Obj(const char* fileName){
             // go to next object line
         }else if( line[0] == 'f' && line[1] == ' '){    // Read face indices...
             bool useUVs; int vertexIndex[3]  = {0, 0, 0}, normalIndex[3] = {0, 0, 0}, uvIndex[3] = {0, 0, 0};
-            if(!Obj::readIndices(line, vertexIndex, normalIndex, uvIndex, useUVs)){
+            if(!ObjData::readIndices(line, vertexIndex, normalIndex, uvIndex, useUVs)){
                 last = line[0];
                 line = strtok(NULL, "\n");
                 continue;
             }
-            if( last != 'f') addMesh(currentMesh, currentTList, name, usemtl, useUVs);
+            if( last != 'f') data->addMesh(currentMesh, currentTList, name, usemtl, group, useUVs);
             --vertexIndex[0];--vertexIndex[1];--vertexIndex[2]; --uvIndex[0];--uvIndex[1];--uvIndex[2];             // Why? Because vertexIndex in obj file starts from 1! We count from 0...
             for(unsigned short i = 0; i < 3; ++i) currentMesh->addVertexData(currentTList, vertexIndex[i], uvIndex[i]);
             currentTList->tIndices.push_back(ObjTriangleIndex());
@@ -38,15 +37,15 @@ Obj::Obj(const char* fileName){
                 currentTList->tIndices.back().uvIndex[i]     = uvIndex[i];
             }
         }else if(sscanf(line, "v %f %f %f", &v.x, &v.y, &v.z) == 3){    // Read vertices and fill in dummy normals, fNormals and tangets.
-            vertices.push_back(v);              // Vertex
-            normals.push_back(v3d(0.0f));       // Normal
-            faceNormals.push_back(v3d(0.0f));   // Face normal
-            tangents.push_back(v3d(0.0f));      // Tangent
+            data->vertices.push_back(v);              // Vertex
+            data->normals.push_back(v3d(0.0f));       // Normal
+            data->faceNormals.push_back(v3d(0.0f));   // Face normal
+            data->tangents.push_back(v3d(0.0f));      // Tangent
         } else if(sscanf(line, "vn %f %f %f", &v.x, &v.y, &v.z) == 3){   // Drop the normals.
             // go to next object line
         } else if(sscanf(line, "vt %f %f", &v.x, &v.y) == 2){           // Read UVs.
             v.y = 1.0f - v.y;
-            UVs.push_back(v);
+            data->UVs.push_back(v);
         }else if(line[0] == 'v' && line[1] == 'n' ){    last = line[0];
         }else if(sscanf(line, "usemtl %s", str) == 1){  strcpy(usemtl, str);
         }else if(sscanf(line, "o %s", str) == 1){       strcpy(name, str);
@@ -64,13 +63,17 @@ Obj::Obj(const char* fileName){
         last = line[0];
         line = strtok(NULL, "\n");
     }
-    builNormalsAndTangents();
+    data->builNormalsAndTangents();
+    return data;
+}
+
+#pragma mark Helpers
+ObjData::ObjData(){
+    
 }
 
 
-
-#pragma mark Helpers
-bool Obj::readIndices(const char* line, int v[], int n[], int uv[], bool &useUVs){
+bool ObjData::readIndices(const char* line, int v[], int n[], int uv[], bool &useUVs){
     if( sscanf(line, "f %d %d %d", &v[0], &v[1], &v[2]) == 3){
         useUVs = false;
         return true;
@@ -92,14 +95,14 @@ bool Obj::readIndices(const char* line, int v[], int n[], int uv[], bool &useUVs
     return false;
 }
 
-void Obj::addMesh(std::shared_ptr<ObjMesh> &mesh, std::shared_ptr<ObjTriangleList> &tList, char* name, char* usemtl, bool useUVs){
+void ObjData::addMesh(std::shared_ptr<ObjMesh> &mesh, std::shared_ptr<ObjTriangleList> &tList, char* name, char* usemtl, char* group, bool useUVs){
     logMessage("Add new mesh to OBJ");
     meshes.push_back(std::shared_ptr<ObjMesh>(new ObjMesh()));
     mesh = meshes.back();
     mesh->visible = true;
     if(name[0]) mesh->name = name;
     else if(usemtl[0]) mesh->name = name;
-    //if( group[ 0 ] ) strcpy( objmesh->group, group );
+    if( group[ 0 ] ) mesh->group = group;
     //objmesh->use_smooth_normals = use_smooth_normals;
     mesh->tLists.push_back(std::shared_ptr<ObjTriangleList>(new ObjTriangleList()));
     tList = mesh->tLists.back();
@@ -109,7 +112,7 @@ void Obj::addMesh(std::shared_ptr<ObjMesh> &mesh, std::shared_ptr<ObjTriangleLis
     if(usemtl[0]) tList->material = Materials::instance()->getMaterial(usemtl);
     name[0]     = 0;
     usemtl[0]   = 0;
-    mesh->obj = std::shared_ptr<Obj>(this);
+    mesh->data = std::shared_ptr<ObjData>(this);
 }
 
 void ObjMesh::addVertexData(std::shared_ptr<ObjTriangleList> otl, int vIndex, int uvIndex){
@@ -129,7 +132,7 @@ void ObjMesh::addVertexData(std::shared_ptr<ObjTriangleList> otl, int vIndex, in
     otl->indices.push_back(index);
 }
 
-void Obj::builNormalsAndTangents(){
+void ObjData::builNormalsAndTangents(){
     for(unsigned int i = 0; i < meshes.size(); ++i){
         std::shared_ptr<ObjMesh> mesh = meshes[i];
         for(unsigned int j = 0; j < mesh->tLists.size(); ++j){
@@ -177,7 +180,7 @@ void Obj::builNormalsAndTangents(){
 
 
 #pragma mark Mesh building
-void Obj::optimizeMesh(unsigned int meshIndex, unsigned int vertexCacheSize){
+void ObjData::optimizeMesh(unsigned int meshIndex, unsigned int vertexCacheSize){
     std::shared_ptr<ObjMesh> mesh = meshes[meshIndex];
     if(vertexCacheSize) SetCacheSize(vertexCacheSize);
     
@@ -197,12 +200,12 @@ void Obj::optimizeMesh(unsigned int meshIndex, unsigned int vertexCacheSize){
     }
 }
 
-unsigned int Obj::drawMesh(unsigned int meshIndex){
+unsigned int ObjData::drawMesh(unsigned int meshIndex){
     return meshes[meshIndex]->draw();
 }
 
-OBJMESH Obj::getMesh(unsigned int index){
+OBJMESH ObjData::getMesh(unsigned int index){
     return meshes[index];
 }
 
-unsigned int Obj::meshesSize()   { return (unsigned int)meshes.size();     }
+unsigned int ObjData::meshesSize()   { return (unsigned int)meshes.size();     }

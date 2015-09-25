@@ -13,12 +13,14 @@
 
 struct  ObjTriangleList;
 class   ObjMesh;
+class   ObjData;
 
-class Obj{
+typedef std::shared_ptr<ObjData> OBJDATA;
+class ObjData{
     friend class ObjMesh;
 public:
     // Constructor
-    Obj(const char* filename);
+    static OBJDATA load(const char* filename);
 
     void        optimizeMesh(unsigned int meshIndex, unsigned int vertexCacheSize);
     unsigned int drawMesh(unsigned int meshIndex);
@@ -28,6 +30,8 @@ public:
     
 // Fields
 private:
+    ObjData();
+    
     std::vector<std::shared_ptr<ObjMesh>> meshes;
     std::vector<v3d>            vertices;
     std::vector<v3d>            normals;
@@ -36,11 +40,13 @@ private:
     std::vector<v3d>            UVs;
     
 // Static
-    void addMesh(std::shared_ptr<ObjMesh> &mesh, std::shared_ptr<ObjTriangleList> &tList, char* name, char* usemtl, bool useUVs);
+    void addMesh(std::shared_ptr<ObjMesh> &mesh, std::shared_ptr<ObjTriangleList> &tList, char* name, char* usemtl, char* group, bool useUVs);
     void builNormalsAndTangents();
     static bool readIndices(const char* line, int v[], int n[], int uv[], bool &useUVs);
     
 // Mesh related
 };
 
-typedef std::shared_ptr<Obj> OBJ;
+
+
+

@@ -74,8 +74,8 @@ void ObjMesh::updateBounds(){
     unsigned int index;
     for(unsigned int i = 0; i < vertexData.size(); ++i){
         index = vertexData[i].vIndex;
-        updateMin(min, obj->vertices[index]);
-        updateMax(max, obj->vertices[index]);
+        updateMin(min, data->vertices[index]);
+        updateMax(max, data->vertices[index]);
     }
     
     location = (min + max) * 0.5f;
@@ -120,19 +120,19 @@ void ObjMesh::buildVBO(){
     unsigned int index;
     for(unsigned int i = 0; i < vertexData.size(); ++i){
         index = vertexData[i].vIndex;
-        memcpy(vertexArray, &obj->vertices[index], v3dSize);
+        memcpy(vertexArray, &data->vertices[index], v3dSize);
         // Center the pivot
         //        v3d centerThePivot = vertices[index] - mesh->location;      // ??????????
         //        memcpy(vertexArray, &centerThePivot, v3dSize);              // ??????????
         vertexArray += v3dSize;
-        memcpy(vertexArray, &obj->normals[index], v3dSize);
+        memcpy(vertexArray, &data->normals[index], v3dSize);
         vertexArray += v3dSize;
-        memcpy(vertexArray, &obj->faceNormals[index], v3dSize);
+        memcpy(vertexArray, &data->faceNormals[index], v3dSize);
         vertexArray += v3dSize;
         if(vertexData[0].uvIndex != -1){
-            memcpy(vertexArray, &obj->UVs[vertexData[i].uvIndex], v3dSize);
+            memcpy(vertexArray, &data->UVs[vertexData[i].uvIndex], v3dSize);
             vertexArray += v3dSize;
-            memcpy(vertexArray, &obj->tangents[index], v3dSize);
+            memcpy(vertexArray, &data->tangents[index], v3dSize);
             vertexArray += v3dSize;
         }
     }

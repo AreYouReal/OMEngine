@@ -71,7 +71,7 @@
 		F3D5E1191AF8F32E00DD216B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3D5E1181AF8F32E00DD216B /* Images.xcassets */; };
 		F3D5E1321AF8F4DD00DD216B /* iOSSRETests.m in Sources */ = {isa = PBXBuildFile; fileRef = F3D5E1051AF8F23400DD216B /* iOSSRETests.m */; };
 		F3F9006C1BB2E95A00E0051F /* physics.obj in Resources */ = {isa = PBXBuildFile; fileRef = F3F9006B1BB2E95A00E0051F /* physics.obj */; };
-		F3FAE8B21B6B6BC7007AF169 /* Obj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3FAE8B01B6B6BC7007AF169 /* Obj.cpp */; };
+		F3FAE8B21B6B6BC7007AF169 /* ObjData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3FAE8B01B6B6BC7007AF169 /* ObjData.cpp */; };
 		F3FAE8B81B6B77D6007AF169 /* ShaderProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3FAE8B61B6B77D6007AF169 /* ShaderProgram.cpp */; };
 		F3FAE8BB1B6B7885007AF169 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3FAE8B91B6B7885007AF169 /* Shader.cpp */; };
 /* End PBXBuildFile section */
@@ -177,8 +177,8 @@
 		F3D5E1151AF8F32600DD216B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = iOSSRE/Base.lproj/Main_iPhone.storyboard; sourceTree = SOURCE_ROOT; };
 		F3D5E1181AF8F32E00DD216B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = iOSSRE/Images.xcassets; sourceTree = SOURCE_ROOT; };
 		F3F9006B1BB2E95A00E0051F /* physics.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = physics.obj; path = SREngine/Platforms/Android/assets/physics.obj; sourceTree = "<group>"; };
-		F3FAE8B01B6B6BC7007AF169 /* Obj.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Obj.cpp; path = OBJ/Obj.cpp; sourceTree = "<group>"; };
-		F3FAE8B11B6B6BC7007AF169 /* Obj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Obj.h; path = OBJ/Obj.h; sourceTree = "<group>"; };
+		F3FAE8B01B6B6BC7007AF169 /* ObjData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ObjData.cpp; path = OBJ/ObjData.cpp; sourceTree = "<group>"; };
+		F3FAE8B11B6B6BC7007AF169 /* ObjData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ObjData.h; path = OBJ/ObjData.h; sourceTree = "<group>"; };
 		F3FAE8B61B6B77D6007AF169 /* ShaderProgram.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShaderProgram.cpp; path = SREngine/CPPSources/Shaders/ShaderProgram.cpp; sourceTree = "<group>"; };
 		F3FAE8B71B6B77D6007AF169 /* ShaderProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShaderProgram.h; path = SREngine/CPPSources/Shaders/ShaderProgram.h; sourceTree = "<group>"; };
 		F3FAE8B91B6B7885007AF169 /* Shader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Shader.cpp; path = SREngine/CPPSources/Shaders/Shader.cpp; sourceTree = "<group>"; };
@@ -374,8 +374,8 @@
 		F33B0B841B6B6B46006305C1 /* OBJ */ = {
 			isa = PBXGroup;
 			children = (
-				F3FAE8B01B6B6BC7007AF169 /* Obj.cpp */,
-				F3FAE8B11B6B6BC7007AF169 /* Obj.h */,
+				F3FAE8B01B6B6BC7007AF169 /* ObjData.cpp */,
+				F3FAE8B11B6B6BC7007AF169 /* ObjData.h */,
 				F340F7871BA034B20021445C /* ObjMesh.cpp */,
 				F340F7881BA034B20021445C /* ObjMesh.h */,
 			);
@@ -633,7 +633,7 @@
 				94CE87CD1B62B4D000752D5C /* q4d.cpp in Sources */,
 				F34129D01BB52BB7006F4D4D /* Materials.cpp in Sources */,
 				9453DEE11B2A0A2700C79DB3 /* SRUtils.cpp in Sources */,
-				F3FAE8B21B6B6BC7007AF169 /* Obj.cpp in Sources */,
+				F3FAE8B21B6B6BC7007AF169 /* ObjData.cpp in Sources */,
 				94CE87E71B62B5A400752D5C /* ViewController.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

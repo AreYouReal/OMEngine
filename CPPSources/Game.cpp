@@ -1,17 +1,17 @@
 #include "Game.h"
 #include "ShaderLibrary.h"
-#include "obj.h"
 #include "Texture.h"
 #include "Camera.h"
 #include "Illuminator.hpp"
 
 #include "GameObject.hpp"
+#include "ObjData.h"
 
 typedef struct{ } UserData;
 
 static SRContext       *appContext;
 
-std::shared_ptr<Obj>     object;
+std::shared_ptr<ObjData>     object;
 
 std::shared_ptr<GameObject> gameObject(new GameObject());
 
@@ -29,16 +29,14 @@ int Game::Init ( SRContext *context ){
     
     appContext = context;
     
-    object = std::shared_ptr<Obj>(new Obj("scene.obj"));
+    object = ObjData::load("scene.obj");
     
     ShaderLibrary::instance();
     Camera::createCamera();
     Illuminator::instance();
     
-    
-    // TODO: UNITE THREE LOOPS
+
     for(unsigned int i = 0; i < object->meshesSize(); ++i){
-//        object->optimizeMesh(i, 0);
         object->getMesh(i)->build();
         // Free object mesh data if needed here
     }
@@ -70,16 +68,7 @@ void Game::Draw ( SRContext *context ){
     for(unsigned int i = 0; i < object->meshesSize(); ++i){
         if(object->getMesh(i)->renderObjectType() == SOLID) object->drawMesh(i);
     }
-//
-////    for(unsigned int i = 0; i < object->meshesSize(); ++i){
-////        if(object->renderObjectType(i) == ALPHA_TESTED){
-////            glCullFace(GL_FRONT);
-////            object->drawMesh(i);
-////            glCullFace(GL_BACK);
-////            object->drawMesh(i);
-////        }
-////    }
-//    
+
     for(unsigned int i = 0; i < object->meshesSize(); ++i){
         if(object->getMesh(i)->renderObjectType() != SOLID){
             glEnable(GL_BLEND);
