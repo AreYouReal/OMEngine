@@ -37,7 +37,7 @@ void ObjMaterial::use(){
     setUniforms();
 }
 
-void ObjMaterial::linkWithProgram(std::shared_ptr<ShaderProgram> prog){
+void ObjMaterial::setProgram(std::shared_ptr<ShaderProgram> prog){
     if(program == nullptr) program = prog;
 }
 

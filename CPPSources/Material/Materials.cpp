@@ -113,10 +113,7 @@ TEXTURE Materials::getTexture(const std::string &name){
 
 OBJMATERIAL Materials::getMaterial(const std::string &name){
     if(materials.find(name) != materials.end()){
-        materials[name]->loadTextures();
-        materials[name]->linkWithProgram(ShaderLibrary::instance()->getProgram("defaultPerVertex"));
         return materials[name];
-        
     }else{
         OBJMATERIAL mat(new ObjMaterial());
         mat->program = ShaderLibrary::instance()->getProgram("norm_as_color");

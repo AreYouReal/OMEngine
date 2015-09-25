@@ -56,6 +56,7 @@ RenderObjectType ObjMesh::renderObjectType(){
 void ObjMesh::build(){
     updateBounds();
     buildVBO();
+    initMaterial();
 
     glGenVertexArrays(1, &vao);
     glBindVertexArray(vao);
@@ -162,6 +163,15 @@ void ObjMesh::buildVBO(){
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, tLists[i]->vbo);
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, tLists[i]->indices.size() * sizeof(unsigned short), &tLists[i]->indices[0], GL_STATIC_DRAW);
         //        logMessage("tList VBO: %d\n", mesh->tLists[i].vbo);
+    }
+}
+
+void ObjMesh::initMaterial(){
+    for(unsigned int i = 0; i < tLists.size(); ++i){
+        if(tLists[i]->material != nullptr){
+            tLists[i]->material->loadTextures();
+            tLists[i]->material->setProgram(ShaderLibrary::instance()->getProgram("defaultPerVertex"));
+        }
     }
 }
 

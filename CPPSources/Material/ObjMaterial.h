@@ -16,7 +16,7 @@ public:
     
     ObjMaterial(std::string name = "default");
     void loadTextures();
-    void linkWithProgram(std::shared_ptr<ShaderProgram> prog);
+    void setProgram(std::shared_ptr<ShaderProgram> prog);
     void use();
     
     
