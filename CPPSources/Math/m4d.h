@@ -15,7 +15,6 @@ public:
     void operator=(const m4d& m4);
     float* pointer();
     
-    
     float m[4][4];
     
     static float determinant(const m4d& m4);
