@@ -1,5 +1,5 @@
 #include "q4d.h"
-#include "m4d.h"
+
 
 q4d::q4d(){}
 q4d::q4d(const q4d& quaternion){
@@ -69,11 +69,12 @@ q4d::q4d(const float angle, float x, float y, float z) : q4d(angle, v3d(x, y, z)
 
 q4d::q4d(const float angle, const v3d& vec){
     float rads      = PI / 180 * angle;
-    float imCoef    = sinf(rads/2);
-    float realCoef  = cosf(rads/2);
-    x = vec.x * imCoef;
-    y = vec.y * imCoef;
-    z = vec.z * imCoef;
+    float imCoef    = sin(rads * 0.5f);
+    float realCoef  = cos(rads * 0.5f);
+    v3d nAxis = v3d::normalize(vec);
+    x = nAxis.x * imCoef;
+    y = nAxis.y * imCoef;
+    z = nAxis.z * imCoef;
     w = realCoef;
     normalize();
 }
@@ -95,6 +96,11 @@ q4d q4d::operator*(const float scale){
     q4d quaternion = q4d(x * scale, y * scale, z * scale, w * scale);
     return quaternion;
 }
+
+void q4d::operator*=(const q4d& quat){
+    *this = (*this * quat);
+}
+
 float q4d::magnitude(){
     return sqrtf( x * x + y * y + z * z + w * w );
 }

@@ -236,6 +236,10 @@ m4d m4d::rotate(float angle, float x, float y, float z){
     v3d axis(x, y, z);
     return m4d::rotate(angle, axis);
 }
+m4d m4d::rotate(v3d &angles){
+    return m4d::rotate(angles.x, 1.0f, .0f, .0f) * m4d::rotate(angles.y, .0f, 1.0f, .0f) * m4d::rotate(angles.z, .0f, .0f, 1.0f);
+}
+
 m4d m4d::rotate(float angle, v3d& axis){
     float degree = PI / 180 * angle;
     v3d nAxis = v3d::normalize(axis);

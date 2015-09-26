@@ -1,6 +1,7 @@
 #pragma once
 
 #include "v3d.h"
+#include "m4d.h"
 
 struct q4d{
 public:
@@ -15,6 +16,7 @@ public:
     float operator[](int i);
     void operator=(const q4d& quat);
     q4d operator*(const float scale);
+    void operator*=(const q4d& quat);
     
     float magnitude();
     q4d conjugate();
@@ -28,8 +30,6 @@ public:
     static void print(const q4d& quat);
     static q4d lerp(const q4d& q1, const q4d& q2, float t);
 };
-
-
 
 q4d operator*(const q4d& q1, const q4d& q2);
 q4d operator*(const q4d& q1, const float scale);

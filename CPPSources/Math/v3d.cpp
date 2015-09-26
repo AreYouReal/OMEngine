@@ -17,8 +17,13 @@ float v3d::operator[](int i){
     }
 };
 
-void v3d::operator=(const v3d& vec3){
+v3d& v3d::operator=(const v3d& vec3){
     x = vec3.x;	y = vec3.y;	z = vec3.z;
+    return *this;
+}
+
+void v3d::operator+=(const v3d &vec){
+    x += vec.x; y += vec.y; z += vec.z;
 }
 
 // Global v3d operator definitions
@@ -97,8 +102,9 @@ float v4d::operator[](int i){
         default: return x;
     }
 }
-void v4d::operator=(const v4d& vec){
+v4d& v4d::operator=(const v4d& vec){
     x = vec.x; y = vec.y; z = vec.z; w = vec.w;
+    return *this;
 }
 
 void v4d::print(const v4d& vec4){

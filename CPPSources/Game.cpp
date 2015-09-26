@@ -42,6 +42,7 @@ int Game::Init ( SRContext *context ){
     }
     
     gameObject->addObjMesh(object->getMesh(0));
+  
     
     return true;
 }
