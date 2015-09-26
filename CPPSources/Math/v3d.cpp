@@ -5,9 +5,7 @@
 v3d::v3d(){}
 v3d::v3d(float a):x(a), y(a),z(a){}
 v3d::v3d(float x, float y, float z): x(x), y(y), z(z){}
-v3d::v3d(const v4d& vec){
-    x = vec.x / vec.w; y = vec.y / vec.w; z = vec.z / vec.w;
-}
+v3d::v3d(const v4d& vec): x(vec.x/vec.w), y(vec.y/vec.w), z(vec.z/vec.w){ }
 float v3d::operator[](int i){
     switch (i) {
         case 0: return x;
@@ -91,7 +89,7 @@ float* v3d::pointer(){
 #pragma mark 4D
 v4d::v4d(){}
 v4d::v4d(float x, float y, float z, float w):x(x), y(y), z(z), w(w){}
-v4d::v4d(const v3d& vec){ x = vec.x; y = vec.y; z = vec.z; w = 1.0f; }
+v4d::v4d(const v3d& vec): x(vec.x), y(vec.y), z(vec.z), w(1.0f){}
 
 float v4d::operator[](int i){
     switch (i) {
