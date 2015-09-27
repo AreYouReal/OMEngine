@@ -53,8 +53,8 @@ int Game::Init ( SRContext *context ){
 // Draw a triangle using the shader pair created in Init()
 //
 void Game::Draw ( SRContext *context ){
-//    Stopwatch drawTimer;
-    
+    Stopwatch drawTimer;
+    static float elapsedTime;
 #ifdef ANDROID
 //    logMessage("%d, %d, %d, %d, %d\n", context->eglNativeDisplay, context->eglNativeWindow, context->eglDisplay, context->eglContext, context->eglSurface );
     if(!context->eglDisplay) return;
@@ -83,7 +83,14 @@ void Game::Draw ( SRContext *context ){
             glDisable(GL_BLEND);
         }
     }
-//    logMessage("FPS: %f", drawTimer.fps());
+    elapsedTime+= drawTimer.elapsedTime();
+    static int fps = 0;
+    fps++;
+    if(elapsedTime >= 1.0f){
+        logMessage("FPS: %d\n",fps );
+        fps = 0;
+        elapsedTime = 0.0f;
+    }
 }
 
 
@@ -103,7 +110,7 @@ void Game::Touch(SRContext *context, int event, int x, int y){
             deltaX = deltaX * 0.9f + 0.1f * CLAMP(touchX - x, -0.1f, 0.1f);
             deltaY = deltaY * 0.9f + 0.1f * CLAMP(touchY - y, -2.0f, 2.0f);
             touchX = x; touchY = y;
-            Camera::instance()->rotate(-deltaX * 10, 0.0f, 0.0f, 1.0f);
+            Camera::instance()->rotate(deltaX * 10, 0.0f, 0.0f, 1.0f);
             Camera::instance()->move(deltaY * 0.1f);
             break;
         case TOUCH_EVENT::ENDED  :

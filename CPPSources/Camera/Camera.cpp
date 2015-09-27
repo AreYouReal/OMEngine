@@ -18,9 +18,8 @@ Camera::Camera(float fovy, float width, float height, float near, float far)
     transform->mPosition = v3d(0.0f, -3.8f, 2.5f);;
     transform->mFront = v3d(0.0f, 1.0f, 0.0f);;
     transform->mUp = v3d(0.0f, 0.0f, 1.0f);
-    mViewMatrix = m4d::lookAt(transform->mPosition, transform->mFront, transform->mUp);
-    mProjectionMatrix = m4d::perspective(mFovy, mWidth, mHeight, mNear, mFar);
-    mNormalMatrix = m4d::inverseTranspose(mViewMatrix);
+    refreshViewAndNormalMatrix();
+    refreshProjMatrix();
 }
 
 
