@@ -22,7 +22,7 @@ public:
     static m4d inverse(const m4d& m4);
     static m4d inverseTranspose(const m4d& m4);
     static m4d lookAt(float eyeX, float eyeY, float eyeZ, float lookAtX, float lookAtY, float lookAtZ, float upX, float upY, float upZ);
-    static m4d lookAt(v3d& eye, v3d& lookAt, v3d& up);
+    static m4d lookAt(const v3d& eye, const v3d& lookAt, const v3d& up);
     static m4d ortho(float l, float r, float t, float b, float n, float f);
     static m4d perspective(float fovy, float w, float h, float n, float f);
     static m4d rotate(float angle, float x, float y, float z);

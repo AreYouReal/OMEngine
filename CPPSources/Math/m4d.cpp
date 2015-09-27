@@ -191,7 +191,7 @@ m4d m4d::lookAt(float eyeX, float eyeY, float eyeZ, float lookAtX, float lookAtY
     v3d up(upX, upY, upZ);
     return m4d::lookAt(eye, lookAt, up);
 }
-m4d m4d::lookAt(v3d& eye, v3d& lookAt, v3d& up){
+m4d m4d::lookAt(const v3d& eye, const v3d& lookAt, const v3d& up){
     m4d rMat4;
     v3d w = v3d::normalize(eye - lookAt);
     v3d u = v3d::normalize(v3d::cross(up, w));

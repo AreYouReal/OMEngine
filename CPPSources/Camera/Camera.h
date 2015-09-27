@@ -2,6 +2,7 @@
 
 #include <memory>
 #include "m4d.h"
+#include "Transform.hpp"
 
 class Camera{
 public:
@@ -25,9 +26,7 @@ private:
     
     float mFovy, mWidth, mHeight, mNear, mFar;
     
-    v3d mPosition{0.0f, -3.8f, 2.5f};
-    v3d mFront{0.0f,  1.0, 0.0f };
-    v3d mUp{0.0f,  0.0f, 1.0f};
+    std::shared_ptr<Transform> transform;
     
     m4d mViewMatrix;
     m4d mProjectionMatrix;
