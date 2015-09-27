@@ -19,7 +19,9 @@ public:
     void setFront(v3d front);
     void setUp(v3d up);
     
-    void move(bool forward);
+    void move(float velocity);
+    void rotate(float angle, float x, float y, float z);
+    void rotate(float angle, v3d& axis);
     
 private:
     Camera(float fovy = 90, float width = 640, float height = 960, float near = 1, float far = 100);

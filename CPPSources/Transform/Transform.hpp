@@ -14,9 +14,11 @@ public:
     void translate(float deltaX, float deltaY, float deltaZ);
     void translate(v3d tVector);
     void rotate(float xRad, float yRad, float zRad);
-    void rotate(float rad, v3d axis);
+    void rotate(float deg, v3d axis);
     void scale(float xFactor, float yFactor, float zFactor);
     void scale(v3d& scaleVec);
+    
+    void moveForward(float velocity);
 
     v3d mPosition;
     v3d mScale;

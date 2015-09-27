@@ -7,6 +7,8 @@
 #include "GameObject.hpp"
 #include "ObjData.h"
 
+#define CLAMP(x, min, max) ((x < min) ? min : ((x > max) ? max : x));
+
 typedef struct{ } UserData;
 
 static SRContext       *appContext;
@@ -51,7 +53,7 @@ int Game::Init ( SRContext *context ){
 // Draw a triangle using the shader pair created in Init()
 //
 void Game::Draw ( SRContext *context ){
-    Stopwatch drawTimer;
+//    Stopwatch drawTimer;
     
 #ifdef ANDROID
 //    logMessage("%d, %d, %d, %d, %d\n", context->eglNativeDisplay, context->eglNativeWindow, context->eglDisplay, context->eglContext, context->eglSurface );
@@ -81,7 +83,7 @@ void Game::Draw ( SRContext *context ){
             glDisable(GL_BLEND);
         }
     }
-    logMessage("FPS: %f", drawTimer.fps());
+//    logMessage("FPS: %f", drawTimer.fps());
 }
 
 
@@ -89,21 +91,24 @@ void Game::Shutdown ( SRContext *context ){
 //    logMessage("ShutDown function\n");
 }
 
-int startX, startY;
+
+float touchX, touchY, deltaX, deltaY;
 void Game::Touch(SRContext *context, int event, int x, int y){
     switch (event) {
         case TOUCH_EVENT::BEGAN  :
-            startX = x;
-            startY = y;
+            touchX = x;
+            touchY = y;
             break;
-        case TOUCH_EVENT::MOVED  :{
-            float deltaAngle =((startX - x) + (startY - y))/20;
-            Camera::instance()->move(deltaAngle > 0);
-        }
+        case TOUCH_EVENT::MOVED  :
+            deltaX = deltaX * 0.9f + 0.1f * CLAMP(touchX - x, -0.1f, 0.1f);
+            deltaY = deltaY * 0.9f + 0.1f * CLAMP(touchY - y, -2.0f, 2.0f);
+            touchX = x; touchY = y;
+            Camera::instance()->rotate(-deltaX * 10, 0.0f, 0.0f, 1.0f);
+            Camera::instance()->move(deltaY * 0.1f);
             break;
         case TOUCH_EVENT::ENDED  :
         case TOUCH_EVENT::CANCELLED  :
-            startX = startY = 0;
+            touchX = touchY = 0;
             break;
         default:
             break;

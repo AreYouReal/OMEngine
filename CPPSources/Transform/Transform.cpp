@@ -1,7 +1,7 @@
 #include "Transform.hpp"
 
 
-Transform::Transform() : mPosition(v3d(0.0f, 0.0f, 0.0f)), mRotation(v3d(0.0f, 0.0f, 0.0f)), mScale(v3d(1.0f, 1.0f, 1.0f) ){}
+Transform::Transform() : mPosition(0.0f, 0.0f, 0.0f), mRotation(0.0f, 0.0f, 0.0f, 0.0f), mScale(1.0f, 1.0f, 1.0f) {}
 
 Transform::Transform(v3d& position): Transform() {
     mPosition = position;
@@ -18,13 +18,22 @@ inline void Transform::translate(float deltaX, float deltaY, float deltaZ){
 }
 
 void Transform::rotate(float xRad, float yRad, float zRad){
-    mRotation = q4d(xRad, 1.0f, 0.0f, 0.0f) * q4d(yRad, 0.0f, 1.0f, 0.0f) * q4d(zRad, 0.0f, 0.0f, 1.0f) * mRotation;
-//    mFront = mFront * mRotation.matrix();
-//    mUp = mUp * mRotation.matrix();
+    mRotation = q4d(xRad, 1.0f, 0.0f, 0.0f) * q4d(yRad, 0.0f, 1.0f, 0.0f) * q4d(zRad, 0.0f, 0.0f, 1.0f);
+    
+    mFront = mFront * mRotation.matrix();
+    mUp = mUp * mRotation.matrix();
+    
+    refreshTransformMatrix();
 }
 
-void Transform::rotate(float rad, v3d axis){
-    mRotation = q4d(rad, axis) * mRotation;
+void Transform::rotate(float deg, v3d axis){
+    mRotation = q4d(deg, axis);
+    m4d rotMatrix = mRotation.matrix();;
+    mFront = mFront * rotMatrix;
+    v3d::print(mFront);
+    mUp = mUp * mRotation.matrix();
+    
+    refreshTransformMatrix();
 }
 
 void Transform::scale(float xFactor, float yFactor, float zFactor){
@@ -35,6 +44,9 @@ void Transform::scale(v3d &scaleVec){
     scale(scaleVec.x, scaleVec.y, scaleVec.z);
 }
 
+void Transform::moveForward(float velocity){
+    mPosition += v3d::normalize(mFront) * velocity;
+}
 
 #pragma mark helpers
 void Transform::refreshTransformMatrix(){

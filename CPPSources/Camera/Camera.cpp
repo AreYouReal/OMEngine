@@ -55,16 +55,25 @@ const m4d& Camera::normalMatrix() const{
     return mNormalMatrix;
 }
 
-void Camera::move(bool forward){
-    if(forward){
-        transform->translate(transform->mFront);
-    }else transform->translate(-transform->mFront);
+void Camera::move(float velocity){
+    transform->moveForward(velocity);
+    refreshViewAndNormalMatrix();
+}
+
+void Camera::rotate(float angle, float x, float y, float z){
+    v3d axis(x, y, z);
+    transform->rotate(angle, axis);
+    refreshViewAndNormalMatrix();
+}
+
+void Camera::rotate(float deg, v3d &axis){
+    transform->rotate(deg, axis);
     refreshViewAndNormalMatrix();
 }
 
 #pragma mark PRIVATE(HELPERS)
 inline void Camera::refreshViewAndNormalMatrix(){
-    mViewMatrix = m4d::lookAt(transform->mPosition, transform->mFront, transform->mUp);
+    mViewMatrix = m4d::lookAt(transform->mPosition, transform->mPosition + transform->mFront, transform->mUp);
     mNormalMatrix = m4d::inverseTranspose(mViewMatrix);
 }
 inline void Camera::refreshProjMatrix(){ mProjectionMatrix = m4d::perspective(mFovy, mWidth, mHeight, mNear, mFar);}
