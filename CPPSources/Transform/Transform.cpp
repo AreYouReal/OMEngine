@@ -7,12 +7,6 @@ Transform::Transform(v3d& position): Transform() {
     mPosition = position;
 }
 
-void Transform::setRotation (v3d& rotation) { mRotation = q4d(rotation); }
-void Transform::setPosition (v3d &position) { mPosition = position; }
-void Transform::setScale    (v3d &scale)    { mScale = scale; }
-void Transform::setFront    (v3d &front)    { mFront = front; }
-void Transform::setUp       (v3d &up)       { mUp = up; }
-
 const m4d& Transform::transformMatrix() const { return mTransformMatrix; }
 
 void Transform::translate(v3d tVector){
@@ -41,17 +35,6 @@ void Transform::scale(v3d &scaleVec){
     scale(scaleVec.x, scaleVec.y, scaleVec.z);
 }
 
-const v3d& Transform::position() const{
-    return mPosition;
-}
-
-const v3d& Transform::front() const{
-    return mFront;
-}
-
-const v3d& Transform::up() const{
-    return mUp;
-}
 
 #pragma mark helpers
 void Transform::refreshTransformMatrix(){
