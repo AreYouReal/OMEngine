@@ -14,6 +14,9 @@ typedef struct{ } UserData;
 static SRContext       *appContext;
 
 OBJMESHDATA    object;
+std::shared_ptr<ShaderLibrary> sLibrary;
+std::shared_ptr<Camera> cam;
+std::shared_ptr<Illuminator> ill;
 
 std::shared_ptr<GameObject> gameObject(new GameObject());
 
@@ -33,9 +36,9 @@ int Game::Init ( SRContext *context ){
     
     object = ObjMeshData::load("scene.obj");
     
-    ShaderLibrary::instance();
-    Camera::createCamera();
-    Illuminator::instance();
+    sLibrary = ShaderLibrary::instance();
+    cam = Camera::instance();
+    ill = Illuminator::instance();
     
 
     for(unsigned int i = 0; i < object->meshesSize(); ++i){
@@ -95,7 +98,11 @@ void Game::Draw ( SRContext *context ){
 
 
 void Game::Shutdown ( SRContext *context ){
-//    logMessage("ShutDown function\n");
+    object.reset();
+    sLibrary.reset();
+    cam.reset();
+    ill.reset();
+    logMessage("ShutDown function\n");
 }
 
 

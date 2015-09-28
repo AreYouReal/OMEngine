@@ -10,6 +10,7 @@ public:
     static std::shared_ptr<ShaderLibrary> instance();
     
     ShaderLibrary();
+    ~ShaderLibrary();
 
     std::shared_ptr<ShaderProgram> getProgram(std::string name);
     std::shared_ptr<ShaderProgram> createProgram(const char *vertexShaderFilename, const char* fragmentShaderFilename);

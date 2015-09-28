@@ -29,6 +29,8 @@ struct ObjVertexData{ int vIndex, uvIndex; };
 class ObjMesh{
     friend class ObjMeshData;
 public:
+    ~ObjMesh();
+    
     unsigned int draw();
     void build();
     void setAttributes();

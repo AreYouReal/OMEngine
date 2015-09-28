@@ -47,6 +47,10 @@ ShaderLibrary::ShaderLibrary(){
     //---------------------------------------------------------
 }
 
+ShaderLibrary::~ShaderLibrary(){
+    logMessage("ShaderLibrary destructor!\n");
+}
+
 std::shared_ptr<ShaderProgram> ShaderLibrary::getProgram(std::string name){
     if(shaders.find(name) == shaders.end()) return nullptr;
     return shaders[name];

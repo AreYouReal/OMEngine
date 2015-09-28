@@ -1,6 +1,10 @@
 #include "ObjMesh.h"
 
 
+ObjMesh::~ObjMesh(){
+    logMessage("ObjMesh destructor! %s \n" , name.c_str());
+}
+
 unsigned int ObjMesh::draw(){
     unsigned int n = 0;
     

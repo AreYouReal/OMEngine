@@ -19,7 +19,9 @@ typedef std::shared_ptr<ObjMeshData> OBJMESHDATA;
 class ObjMeshData{
     friend class ObjMesh;
 public:
-    // Constructor
+    ~ObjMeshData();
+    
+    
     static OBJMESHDATA load(const char* filename);
 
     void        optimizeMesh(unsigned int meshIndex, unsigned int vertexCacheSize);

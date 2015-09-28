@@ -1,6 +1,7 @@
 
 
 #include "Illuminator.hpp"
+#include "SRUtils.h"
 
 std::shared_ptr<Illuminator> Illuminator::mInstance = NULL;
 
@@ -13,6 +14,10 @@ std::shared_ptr<Illuminator> Illuminator::instance(){
 
 Illuminator::Illuminator(){
     lightSources.push_back(LIGHTSOURCE(new LightSource()));
+}
+
+Illuminator::~Illuminator(){
+    logMessage("Illuminator destructor\n");
 }
 
 LIGHTSOURCE Illuminator::getLightSource(){

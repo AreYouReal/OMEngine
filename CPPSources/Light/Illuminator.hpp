@@ -6,6 +6,8 @@
 
 class Illuminator{
 public:
+    ~Illuminator();
+    
     static std::shared_ptr<Illuminator> mInstance;
     static std::shared_ptr<Illuminator> instance();
 
@@ -16,6 +18,7 @@ public:
 private:
     
     Illuminator();
+
     
     std::vector<LIGHTSOURCE> lightSources;
 };
