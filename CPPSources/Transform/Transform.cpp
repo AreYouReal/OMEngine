@@ -28,10 +28,9 @@ void Transform::rotate(float xRad, float yRad, float zRad){
 
 void Transform::rotate(float deg, v3d axis){
     mRotation = q4d(deg, axis);
-    m4d rotMatrix = mRotation.matrix();;
-    mFront = mFront * rotMatrix;
-    v3d::print(mFront);
-    mUp = mUp * mRotation.matrix();
+    m4d roMatrix = mRotation.matrix();
+    mFront = mFront * roMatrix;
+    mUp = mUp * roMatrix;
     
     refreshTransformMatrix();
 }

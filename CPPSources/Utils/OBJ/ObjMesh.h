@@ -2,7 +2,7 @@
 
 #include "SRUtils.h"
 #include "ObjMaterial.h"
-#include "ObjData.h"
+#include "ObjMeshData.h"
 
 enum RenderObjectType{ SOLID, ALPHA_TESTED, TRANSPARENT };
 
@@ -19,7 +19,7 @@ struct ObjTriangleList{
     unsigned int                    vbo;
 };
 
-class ObjData;
+class ObjMeshData;
 
 typedef std::shared_ptr<ObjTriangleList> OBJ_T_LIST;
 
@@ -27,7 +27,7 @@ typedef std::shared_ptr<ObjTriangleList> OBJ_T_LIST;
 struct ObjVertexData{ int vIndex, uvIndex; };
 
 class ObjMesh{
-    friend class ObjData;
+    friend class ObjMeshData;
 public:
     unsigned int draw();
     void build();
@@ -56,7 +56,7 @@ private:
     unsigned int                    offset[ 5 ];     // The VBO offset(????)
     unsigned int                    vao;             // The VAO ID maintaned by GLES
     
-    std::shared_ptr<ObjData>        data;
+    std::shared_ptr<ObjMeshData>    data;
     
     // Helpers
     void    addVertexData(std::shared_ptr<ObjTriangleList> otl, int vIndex, int uvIndex);

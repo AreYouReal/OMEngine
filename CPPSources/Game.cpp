@@ -5,7 +5,7 @@
 #include "Illuminator.hpp"
 
 #include "GameObject.hpp"
-#include "ObjData.h"
+#include "ObjMeshData.h"
 
 #define CLAMP(x, min, max) ((x < min) ? min : ((x > max) ? max : x));
 
@@ -13,7 +13,7 @@ typedef struct{ } UserData;
 
 static SRContext       *appContext;
 
-std::shared_ptr<ObjData>     object;
+OBJMESHDATA    object;
 
 std::shared_ptr<GameObject> gameObject(new GameObject());
 
@@ -31,7 +31,7 @@ int Game::Init ( SRContext *context ){
     
     appContext = context;
     
-    object = ObjData::load("scene.obj");
+    object = ObjMeshData::load("scene.obj");
     
     ShaderLibrary::instance();
     Camera::createCamera();

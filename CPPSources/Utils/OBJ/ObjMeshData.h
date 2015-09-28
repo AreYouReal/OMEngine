@@ -13,14 +13,14 @@
 
 struct  ObjTriangleList;
 class   ObjMesh;
-class   ObjData;
+class   ObjMeshData;
 
-typedef std::shared_ptr<ObjData> OBJDATA;
-class ObjData{
+typedef std::shared_ptr<ObjMeshData> OBJMESHDATA;
+class ObjMeshData{
     friend class ObjMesh;
 public:
     // Constructor
-    static OBJDATA load(const char* filename);
+    static OBJMESHDATA load(const char* filename);
 
     void        optimizeMesh(unsigned int meshIndex, unsigned int vertexCacheSize);
     unsigned int drawMesh(unsigned int meshIndex);
@@ -30,7 +30,7 @@ public:
     
 // Fields
 private:
-    ObjData();
+    ObjMeshData();
     
     std::vector<std::shared_ptr<ObjMesh>> meshes;
     std::vector<v3d>            vertices;
