@@ -23,6 +23,8 @@ public:
     void rotate(float angle, float x, float y, float z);
     void rotate(float angle, v3d& axis);
     
+    float sphereDistanceInFrustum(v3d *location, float radius);
+    
 private:
     Camera(float fovy = 90, float width = 640, float height = 960, float near = 1, float far = 100);
     
@@ -33,7 +35,10 @@ private:
     m4d mViewMatrix;
     m4d mProjectionMatrix;
     m4d mNormalMatrix;
+    v4d frustum[6];
     
     void refreshViewAndNormalMatrix();
     void refreshProjMatrix();
+    void buildFrustum();
+    
 };
