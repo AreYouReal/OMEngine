@@ -10,59 +10,83 @@ q4d::q4d(const v4d& vec){
     x = vec.x; y = vec.y; z = vec.z; w = vec.w;
     normalize();
 }
-q4d::q4d(const v3d& vec){
-    q4d(v4d(vec));
-}
+//q4d::q4d(const v3d& vec){
+//    q4d(v4d(vec));
+//}
 q4d::q4d(const m4d& mat){
-    float trace = mat.m[0][0] + mat.m[1][1] + mat.m[2][2];
-    if(trace > 0.0f){
-        float s = sqrt(trace + 1.0f);
-        w = s * 0.5f;
-        
-        float t = 0.5f / s;
-        x = (mat.m[2][1] - mat.m[1][2]) * t;
-        y = (mat.m[0][2] - mat.m[2][0]) * t;
-        z = (mat.m[1][0] - mat.m[0][1]) * t;
-    }else{
-        int i = 0;
-        if(mat.m[1][1] > mat.m[0][0]) i = 1;
-        if(mat.m[2][2] > mat.m[i][i]) i = 2;
-        
-        static const int NEXT[3] = {1, 2, 0};
-        int j = NEXT[i];
-        int k = NEXT[j];
-        
-        float s = sqrt((mat.m[i][j] - (mat.m[j][j] + mat.m[k][k])) + 1.0f);
-//        q[i] = s * 0.5f;
-        switch (i) {
-            case 0: x = s * 0.5f; break;
-            case 1: y = s * 0.5f; break;
-            case 2: z = s * 0.5f; break;
-            case 3: w = s * 0.5f; break;
-            default: break;
-        }
-        float t;
-        if(s != 0.0) t = 0.5f / s;
-        else         t = s;
-        
-        w = (mat.m[k][j] - mat.m[j][k]) * t;
-        switch (j) {
-            case 0: x = (mat.m[j][i] - mat.m[i][j]) * t; break;
-            case 1: y = (mat.m[j][i] - mat.m[i][j]) * t; break;
-            case 2: z = (mat.m[j][i] - mat.m[i][j]) * t; break;
-            case 3: w = (mat.m[j][i] - mat.m[i][j]) * t; break;
-            default: break;
-        }
-        switch (k) {
-            case 0: x = (mat.m[k][i] - mat.m[i][k]) * t; break;
-            case 1: y = (mat.m[k][i] - mat.m[i][k]) * t; break;
-            case 2: z = (mat.m[k][i] - mat.m[i][k]) * t; break;
-            case 3: w = (mat.m[k][i] - mat.m[i][k]) * t; break;
-            default: break;
-        }
-//        q[j] = (mat.m[j][i] - mat.m[i][j]) * t;
-//        q[k] = (mat.m[k][i] - mat.m[i][k]) * t;
-    }
+//    float trace = mat.m[0].x + mat.m[1].y + mat.m[2].z;
+//    if(trace > 0.0f){
+//        float s = sqrt(trace + 1.0f);
+//        w = s * 0.5f;
+//        
+//        float t = 0.5f / s;
+//        x = (mat.m[2].y - mat.m[1].z) * t;
+//        y = (mat.m[0].z - mat.m[2].x) * t;
+//        z = (mat.m[1].x - mat.m[0].y) * t;
+//    }else{
+//        int i = 0;
+//        if(mat.m[1].y > mat.m[0].x) i = 1;
+//        switch (i) {
+//            case 0: if(mat.m[2].z > mat.m[0].x) i = 2; break;
+//            case 1: if(mat.m[2].z > mat.m[1].y) i = 2; break;
+//            case 2: if(mat.m[2].z > mat.m[2].z) i = 2; break;
+//            case 3: if(mat.m[2].z > mat.m[3].w) i = 2; break;
+//            default: break;
+//        }
+//
+//        
+//        static const int NEXT[3] = {1, 2, 0};
+//        int j = NEXT[i];
+//        int k = NEXT[j];
+//        
+//        float a = 0.0f;
+//        switch (j) {
+//            case 0: a = mat.m[i].x - mat.m[j].x; break;
+//            case 1: a = mat.m[i].y - mat.m[j].y; break;
+//            case 2: a = mat.m[i].z - mat.m[j].z; break;
+//            case 3: a = mat.m[i].w - mat.m[j].w; break;
+//            default: break;
+//        }
+//        float b = 0.0f;
+//        switch (k) {
+//            case 0: b = mat.m[k].x; break;
+//            case 1: b = mat.m[k].y; break;
+//            case 2: b = mat.m[k].z; break;
+//            case 3: b = mat.m[k].w; break;
+//            default: break;
+//        }
+//        
+//        float s = sqrt((a + b) + 1.0f);
+//        
+////        q[i] = s * 0.5f;
+//        switch (i) {
+//            case 0: x = s * 0.5f; break;
+//            case 1: y = s * 0.5f; break;
+//            case 2: z = s * 0.5f; break;
+//            case 3: w = s * 0.5f; break;
+//            default: break;
+//        }
+//        float t;
+//        if(s != 0.0) t = 0.5f / s;
+//        else         t = s;
+//        w = (mat.m[k][j] - mat.m[j][k]) * t;
+//        switch (j) {
+//            case 0: x = (mat.m[j][i] - mat.m[i][j]) * t; break;
+//            case 1: y = (mat.m[j][i] - mat.m[i][j]) * t; break;
+//            case 2: z = (mat.m[j][i] - mat.m[i][j]) * t; break;
+//            case 3: w = (mat.m[j][i] - mat.m[i][j]) * t; break;
+//            default: break;
+//        }
+//        switch (k) {
+//            case 0: x = (mat.m[k][i] - mat.m[i][k]) * t; break;
+//            case 1: y = (mat.m[k][i] - mat.m[i][k]) * t; break;
+//            case 2: z = (mat.m[k][i] - mat.m[i][k]) * t; break;
+//            case 3: w = (mat.m[k][i] - mat.m[i][k]) * t; break;
+//            default: break;
+//        }
+////        q[j] = (mat.m[j][i] - mat.m[i][j]) * t;
+////        q[k] = (mat.m[k][i] - mat.m[i][k]) * t;
+//    }
 }
 q4d::q4d(const float angle, float x, float y, float z) : q4d(angle, v3d(x, y, z)){}
 

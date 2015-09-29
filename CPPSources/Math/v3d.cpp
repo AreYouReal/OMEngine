@@ -5,7 +5,8 @@
 v3d::v3d(){}
 v3d::v3d(float a):x(a), y(a),z(a){}
 v3d::v3d(float x, float y, float z): x(x), y(y), z(z){}
-v3d::v3d(const v4d& vec): x(vec.x/vec.w), y(vec.y/vec.w), z(vec.z/vec.w){ }
+v3d::v3d(const v4d& vec){ x = vec.x / vec.w; y = vec.y / vec.w; z = vec.z / vec.w;}
+
 float v3d::operator[](int i){
     switch (i) {
         case 0: return x;
@@ -89,9 +90,11 @@ float* v3d::pointer(){
 #pragma mark 4D
 v4d::v4d(){}
 v4d::v4d(float x, float y, float z, float w):x(x), y(y), z(z), w(w){}
-v4d::v4d(const v3d& vec): x(vec.x), y(vec.y), z(vec.z), w(1.0f){}
+v4d::v4d(const v4d& v) : x(v.x), y(v.y), z(v.z), w(v.w){}
+v4d::v4d(const v3d& vec){ x = vec.x; y = vec.y; z = vec.z; w = 1.0f; }
+v4d::v4d(const v3d& vec, const float w) : x(vec.x), y(vec.y), z(vec.z), w(w){}
 
-float v4d::operator[](int i){
+const float& v4d::operator[](int i){
     switch (i) {
         case 0: return x;
         case 1: return y;
@@ -100,6 +103,7 @@ float v4d::operator[](int i){
         default: return x;
     }
 }
+
 v4d& v4d::operator=(const v4d& vec){
     x = vec.x; y = vec.y; z = vec.z; w = vec.w;
     return *this;
@@ -109,6 +113,21 @@ void v4d::print(const v4d& vec4){
     std::cout << "[ " << vec4.x << ", " << vec4.y << ", " << vec4.z << ", " << vec4.w << " ]" << std::endl;
 }
 
+float v4d::dot(const v4d &v1, const v4d &v2){
+    return (v1.x * v2.x + v1.y * v2.y + v1.z * v2.z + v1.w * v2.w);
+}
+
+v4d operator+(const v4d& v1, const v4d& v2){
+    return v4d(v1.x + v2.x, v1.y + v2.y, v1.z + v2.z, v1.w + v2.w);
+}
+
+v4d operator-(const v4d& v1, const v4d& v2){
+    return v4d(v1.x - v2.x, v1.y - v2.y, v1.z - v2.z, v1.w - v2.w);
+}
+
+v4d operator*(const v4d& vec4, const float scalar){
+    return v4d(vec4.x * scalar, vec4.y * scalar, vec4.z * scalar, vec4.w * scalar);
+}
 
 
 

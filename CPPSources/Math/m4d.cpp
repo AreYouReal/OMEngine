@@ -1,76 +1,38 @@
 #include "m4d.h"
 #include "v3d.h"
 
-m4d::m4d(){
-    for(int i = 0; i < 4; i++){
-        for(int j = 0; j < 4; j++){
-            if(i == j)  m[i][j] = 1.0f;
-            else        m[i][j] = 0.0f;
-        }
-    }
-}
-m4d::m4d(const m4d& m4){
-    for(int i = 0; i < 4; i++){
-        for(int j = 0; j < 4; j++){
-            m[i][j] = m4.m[i][j];
-        }
-    }
-}
-m4d::m4d(const float arr[16]){
-    int offset = 0;
-    for(int i = 0; i < 4; i++){
-        for(int j = 0; j < 4; j++){
-            m[i][j] = arr[offset++];
-        }
-    }
+#pragma mark Constructors
+m4d::m4d():m4d(1.0f, .0f, .0f, .0f, .0f, 1.0f, .0f, .0f, .0f, .0f, 1.0f, .0f, .0f, .0f, .0f, 1.0f){}
+m4d::m4d(const m4d& m4){ for(unsigned char i = 0; i < 4; i++){ m[i] = m4.m[i]; } }
+m4d::m4d(const float arr[16]) : m4d(arr[0], arr[1], arr[2], arr[3], arr[4], arr[5], arr[6], arr[7], arr[8],arr[9], arr[10], arr[11], arr[12], arr[13], arr[14], arr[15]){}
+m4d::m4d(const float m00, const float m01, const float m02, const float m03,
+         const float m10, const float m11, const float m12, const float m13,
+         const float m20, const float m21, const float m22, const float m23,
+         const float m30, const float m31, const float m32, const float m33){
+    m[0] = v4d(m00, m01, m02, m03); m[1] = v4d(m10, m11, m12, m13); m[2] = v4d(m20, m21, m22, m23); m[3] = v4d(m30, m31, m32, m33);
 }
 
-m4d::m4d(float m00, float m01, float m02, float m03,
-         float m10, float m11, float m12, float m13,
-         float m20, float m21, float m22, float m23,
-         float m30, float m31, float m32, float m33){
-    m[0][0] = m00; m[0][1] = m01; m[0][2] = m02; m[0][3] = m03;
-    m[1][0] = m10; m[1][1] = m11; m[1][2] = m12; m[1][3] = m13;
-    m[2][0] = m20; m[2][1] = m21; m[2][2] = m22; m[2][3] = m23;
-    m[3][0] = m30; m[3][1] = m31; m[3][2] = m32; m[3][3] = m33;
-}
+void m4d::operator=(const m4d& m4){ for(unsigned char i = 0; i < 4; i++){ m[i] = m4.m[i]; } }
 
-void m4d::operator=(const m4d& m4){
-    for(int i = 0; i < 4; i++){
-        for(int j = 0; j < 4; j++){
-            m[i][j] = m4.m[i][j];
-        }
-    }
-}
+void m4d::print(const m4d& m){ for(int i = 0; i < 4; i++){ v4d::print(m.m[i]); } std::cout << std::endl; }
 
-void m4d::print(const m4d& m){
-    for(int i = 0; i < 4; i++){
-        for(int j = 0; j < 4; j++){
-            std::cout << m.m[i][j] << "  ";
-        }
-        std::cout << std::endl;
-    }
-    std::cout << std::endl;
-}
 m4d operator*(const m4d& m1, const m4d& m2){
     m4d rMat4;
+    m4d m2Transpose = m4d::transpose(m2);
+    v4d temp;
     for(int row = 0; row < 4; row++){
-        for(int col = 0; col < 4; col++){
-            float temp = 0;
-            for(int i = 0; i < 4; i++){
-                temp += m1.m[row][i] * m2.m[i][col];
-            }
-            rMat4.m[row][col] = temp;
-        }
+        temp.x = v4d::dot(m1.m[row], m2Transpose.m[0]);
+        temp.y = v4d::dot(m1.m[row], m2Transpose.m[1]);
+        temp.z = v4d::dot(m1.m[row], m2Transpose.m[2]);
+        temp.w = v4d::dot(m1.m[row], m2Transpose.m[3]);
+        rMat4.m[row] = temp;
     }
     return rMat4;
 }
 m4d operator*(const float scalar, const m4d& m4){
     m4d rMat4;
     for(int i = 0; i < 4; i++){
-        for(int j = 0; j < 4; j++){
-            rMat4.m[i][j] = scalar * m4.m[i][j];
-        }
+        rMat4.m[i] = (m4.m[i] * scalar);
     }
     return rMat4;
 }
@@ -83,51 +45,38 @@ m4d operator/(const m4d& m4, const float scalar){
 m4d operator+(const m4d& m1, const m4d& m2){
     m4d rMat4;
     for(int i = 0; i < 4; i++){
-        for(int j = 0; j < 4; j++){
-            rMat4.m[i][j] = m1.m[i][j] + m2.m[i][j];
-        }
+        rMat4.m[i] = m1.m[i] + m2.m[i];
     }
     return rMat4;
 }
 m4d operator-(const m4d& m1, const m4d& m2){
     m4d rMat4;
     for(int i = 0; i < 4; i++){
-        for(int j = 0; j < 4; j++){
-            rMat4.m[i][j] = m1.m[i][j] - m2.m[i][j];
-        }
+        rMat4.m[i] = m1.m[i] - m2.m[i];
     }
     return rMat4;
 }
 
-v4d operator*(const m4d& m, v4d& vec){
-    v4d rVec4;
-    for(int row = 0; row < 4; row++){
-        float result = 0;
-        for(int col = 0; col < 4; col++){
-            result += m.m[row][col] * vec[col];
-        }
-        switch (row) {
-            case 0: rVec4.x = result; break;
-            case 1: rVec4.y = result; break;
-            case 2: rVec4.z = result; break;
-            case 3: rVec4.w = result; break;
-            default: break;
-        }
-    }
-    return rVec4;
-}
+//v4d operator*(const m4d& m, v4d& vec){
+//    v4d rVec4;
+//    rVec4.x = v4d::dot(m.m[0], vec);
+//    rVec4.x = v4d::dot(m.m[1], vec);
+//    rVec4.x = v4d::dot(m.m[2], vec);
+//    rVec4.x = v4d::dot(m.m[3], vec);
+//    return rVec4;
+//}
 
 v4d operator*(const m4d &m, const v4d &v){
-    return v4d(m.m[0][0] * v.x + m.m[0][1] * v.y + m.m[0][2] * v.z + m.m[0][3] * v.w,
-                  m.m[1][0] * v.x + m.m[1][1] * v.y + m.m[1][2] * v.z + m.m[1][3] * v.w,
-                  m.m[2][0] * v.x + m.m[2][1] * v.y + m.m[2][2] * v.z + m.m[2][3] * v.w,
-                  m.m[3][0] * v.x + m.m[3][1] * v.y + m.m[3][2] * v.z + m.m[3][3] * v.w);
+    return v4d(m.m[0].x * v.x + m.m[0].y * v.y + m.m[0].z * v.z + m.m[0].w * v.w,
+                  m.m[1].x * v.x + m.m[1].y * v.y + m.m[1].z * v.z + m.m[1].w * v.w,
+                  m.m[2].x * v.x + m.m[2].y * v.y + m.m[2].z * v.z + m.m[2].w * v.w,
+                  m.m[3].x * v.x + m.m[3].y * v.y + m.m[3].z * v.z + m.m[3].w * v.w);
 }
 
 v3d operator*(const v3d &v, const m4d &m){
-    return v3d(m.m[0][0] * v.x + m.m[0][1] * v.y + m.m[0][2] * v.z,
-               m.m[1][0] * v.x + m.m[1][1] * v.y + m.m[1][2] * v.z,
-               m.m[2][0] * v.x + m.m[2][1] * v.y + m.m[2][2] * v.z);
+    return v3d(m.m[0].x * v.x + m.m[0].y * v.y + m.m[0].z * v.z,
+               m.m[1].x * v.x + m.m[1].y * v.y + m.m[1].z * v.z,
+               m.m[2].x * v.x + m.m[2].y * v.y + m.m[2].z * v.z);
 }
 
 v4d operator*(const v4d &v, const m4d &m){
@@ -135,48 +84,47 @@ v4d operator*(const v4d &v, const m4d &m){
 }
 
 float* m4d::pointer(){
-    return &(m[0][0]);
+    return &(m[0].x);
 }
 
 // m4d operation definitions (all requared transformations)
 float m4d::determinant(const m4d& m4){
     return
-    m4.m[0][0] * (m4.m[1][1] * (m4.m[2][2] * m4.m[3][3] - m4.m[3][2] * m4.m[2][3]) - m4.m[1][2] * (m4.m[2][1] * m4.m[3][3] - m4.m[3][1] * m4.m[2][3]) + m4.m[1][3] * (m4.m[2][1] * m4.m[3][2] - m4.m[3][1] * m4.m[2][2]) )
-    - m4.m[0][1] * (m4.m[1][0] * (m4.m[2][2] * m4.m[3][3] - m4.m[3][2] * m4.m[2][3]) - m4.m[1][2] * (m4.m[2][0] * m4.m[3][3] - m4.m[3][0] * m4.m[2][3]) + m4.m[1][3] * (m4.m[2][0] * m4.m[3][2] - m4.m[3][0] * m4.m[2][2]) )
-    + m4.m[0][2] * (m4.m[1][0] * (m4.m[2][1] * m4.m[3][3] - m4.m[3][1] * m4.m[2][3]) - m4.m[1][1] * (m4.m[2][0] * m4.m[3][3] - m4.m[3][0] * m4.m[2][3]) + m4.m[1][3] * (m4.m[2][0] * m4.m[3][1] - m4.m[3][0] * m4.m[2][1]) )
-    - m4.m[0][3] * (m4.m[1][0] * (m4.m[2][1] * m4.m[3][2] - m4.m[3][1] * m4.m[2][2]) - m4.m[1][1] * (m4.m[2][0] * m4.m[3][2] - m4.m[3][0] * m4.m[2][2]) + m4.m[1][2] * (m4.m[2][0] * m4.m[3][1] - m4.m[3][0] * m4.m[2][1]) );
+    m4.m[0].x * (m4.m[1].y * (m4.m[2].z * m4.m[3].w - m4.m[3].z * m4.m[2].w) - m4.m[1].z * (m4.m[2].y * m4.m[3].w - m4.m[3].y * m4.m[2].w) + m4.m[1].w * (m4.m[2].y * m4.m[3].z - m4.m[3].y * m4.m[2].z) )
+    - m4.m[0].y * (m4.m[1].x * (m4.m[2].z * m4.m[3].w - m4.m[3].z * m4.m[2].w) - m4.m[1].z * (m4.m[2].x * m4.m[3].w - m4.m[3].x * m4.m[2].w) + m4.m[1].w * (m4.m[2].x * m4.m[3].z - m4.m[3].x * m4.m[2].z) )
+    + m4.m[0].z * (m4.m[1].x * (m4.m[2].y * m4.m[3].w - m4.m[3].y * m4.m[2].w) - m4.m[1].y * (m4.m[2].x * m4.m[3].w - m4.m[3].x * m4.m[2].w) + m4.m[1].w * (m4.m[2].x * m4.m[3].y - m4.m[3].x * m4.m[2].y) )
+    - m4.m[0].w * (m4.m[1].x * (m4.m[2].y * m4.m[3].z - m4.m[3].y * m4.m[2].z) - m4.m[1].y * (m4.m[2].x * m4.m[3].z - m4.m[3].x * m4.m[2].z) + m4.m[1].z * (m4.m[2].x * m4.m[3].y - m4.m[3].x * m4.m[2].y) );
 }
 m4d m4d::transpose(const m4d& m4){
     m4d rMat4;
-    for(int i = 0; i < 4; i++){
-        for(int j = 0; j < 4; j++){
-            rMat4.m[i][j] = m4.m[j][i];
-        }
-    }
+    rMat4.m[0] = v4d(m4.m[0].x, m4.m[1].x, m4.m[2].x, m4.m[3].x);
+    rMat4.m[1] = v4d(m4.m[0].y, m4.m[1].y, m4.m[2].y, m4.m[3].y);
+    rMat4.m[2] = v4d(m4.m[0].z, m4.m[1].z, m4.m[2].z, m4.m[3].z);
+    rMat4.m[3] = v4d(m4.m[0].w, m4.m[1].w, m4.m[2].w, m4.m[3].w);
     return rMat4;
 }
 
 m4d m4d::inverse(const m4d& m4){
     m4d rMat4;
-    rMat4.m[0][0] = m4.m[1][1] * m4.m[2][2] * m4.m[3][3] + m4.m[1][2] * m4.m[2][3] * m4.m[3][1] + m4.m[1][3] * m4.m[2][1] * m4.m[3][2] - m4.m[1][1] * m4.m[2][3] * m4.m[3][2] - m4.m[1][2] * m4.m[2][1] * m4.m[3][3] - m4.m[1][3] * m4.m[2][2] * m4.m[3][1];
-    rMat4.m[0][1] = m4.m[0][1] * m4.m[2][3] * m4.m[3][2] + m4.m[0][2] * m4.m[2][1] * m4.m[3][3] + m4.m[0][3] * m4.m[2][2] * m4.m[3][1] - m4.m[0][1] * m4.m[2][2] * m4.m[3][3] - m4.m[0][2] * m4.m[2][3] * m4.m[3][1] - m4.m[0][3] * m4.m[2][1] * m4.m[3][2];
-    rMat4.m[0][2] = m4.m[0][1] * m4.m[1][2] * m4.m[3][3] + m4.m[0][2] * m4.m[1][3] * m4.m[3][1] + m4.m[0][3] * m4.m[1][1] * m4.m[3][2] - m4.m[0][1] * m4.m[1][3] * m4.m[3][2] - m4.m[0][2] * m4.m[1][1] * m4.m[3][3] - m4.m[0][3] * m4.m[1][2] * m4.m[3][1];
-    rMat4.m[0][3] = m4.m[0][1] * m4.m[1][3] * m4.m[2][2] + m4.m[0][2] * m4.m[1][1] * m4.m[2][3] + m4.m[0][3] * m4.m[1][2] * m4.m[2][1] - m4.m[0][1] * m4.m[1][2] * m4.m[2][3] - m4.m[0][2] * m4.m[1][3] * m4.m[2][1] - m4.m[0][3] * m4.m[1][1] * m4.m[2][2];
+    rMat4.m[0].x = m4.m[1].y * m4.m[2].z * m4.m[3].w + m4.m[1].z * m4.m[2].w * m4.m[3].y + m4.m[1].w * m4.m[2].y * m4.m[3].z - m4.m[1].y * m4.m[2].w * m4.m[3].z - m4.m[1].z * m4.m[2].y * m4.m[3].w - m4.m[1].w * m4.m[2].z * m4.m[3].y;
+    rMat4.m[0].y = m4.m[0].y * m4.m[2].w * m4.m[3].z + m4.m[0].z * m4.m[2].y * m4.m[3].w + m4.m[0].w * m4.m[2].z * m4.m[3].y - m4.m[0].y * m4.m[2].z * m4.m[3].w - m4.m[0].z * m4.m[2].w * m4.m[3].y - m4.m[0].w * m4.m[2].y * m4.m[3].z;
+    rMat4.m[0].z = m4.m[0].y * m4.m[1].z * m4.m[3].w + m4.m[0].z * m4.m[1].w * m4.m[3].y + m4.m[0].w * m4.m[1].y * m4.m[3].z - m4.m[0].y * m4.m[1].w * m4.m[3].z - m4.m[0].z * m4.m[1].y * m4.m[3].w - m4.m[0].w * m4.m[1].z * m4.m[3].y;
+    rMat4.m[0].w = m4.m[0].y * m4.m[1].w * m4.m[2].z + m4.m[0].z * m4.m[1].y * m4.m[2].w + m4.m[0].w * m4.m[1].z * m4.m[2].y - m4.m[0].y * m4.m[1].z * m4.m[2].w - m4.m[0].z * m4.m[1].w * m4.m[2].y - m4.m[0].w * m4.m[1].y * m4.m[2].z;
     
-    rMat4.m[1][0] = m4.m[1][0] * m4.m[2][3] * m4.m[3][2] + m4.m[1][2] * m4.m[2][0] * m4.m[3][3] + m4.m[1][3] * m4.m[2][2] * m4.m[3][0] - m4.m[1][0] * m4.m[2][2] * m4.m[3][3] - m4.m[1][2] * m4.m[2][3] * m4.m[3][0] - m4.m[1][3] * m4.m[2][0] * m4.m[3][2];
-    rMat4.m[1][1] = m4.m[0][0] * m4.m[2][2] * m4.m[3][3] + m4.m[0][2] * m4.m[2][3] * m4.m[3][0] + m4.m[0][3] * m4.m[2][0] * m4.m[3][2] - m4.m[0][0] * m4.m[2][3] * m4.m[3][2] - m4.m[0][2] * m4.m[2][0] * m4.m[3][3] - m4.m[0][3] * m4.m[2][2] * m4.m[3][0];
-    rMat4.m[1][2] = m4.m[0][0] * m4.m[1][3] * m4.m[3][2] + m4.m[0][2] * m4.m[1][0] * m4.m[3][3] + m4.m[0][3] * m4.m[1][2] * m4.m[3][0] - m4.m[0][0] * m4.m[1][2] * m4.m[3][3] - m4.m[0][2] * m4.m[1][3] * m4.m[3][0] - m4.m[0][3] * m4.m[1][0] * m4.m[3][2];
-    rMat4.m[1][3] = m4.m[0][0] * m4.m[1][2] * m4.m[2][3] + m4.m[0][2] * m4.m[1][3] * m4.m[2][0] + m4.m[0][3] * m4.m[1][0] * m4.m[2][2] - m4.m[0][0] * m4.m[1][3] * m4.m[2][2] - m4.m[0][2] * m4.m[1][0] * m4.m[2][3] - m4.m[0][3] * m4.m[1][2] * m4.m[2][0];
+    rMat4.m[1].x = m4.m[1].x * m4.m[2].w * m4.m[3].z + m4.m[1].z * m4.m[2].x * m4.m[3].w + m4.m[1].w * m4.m[2].z * m4.m[3].x - m4.m[1].x * m4.m[2].z * m4.m[3].w - m4.m[1].z * m4.m[2].w * m4.m[3].x - m4.m[1].w * m4.m[2].x * m4.m[3].z;
+    rMat4.m[1].y = m4.m[0].x * m4.m[2].z * m4.m[3].w + m4.m[0].z * m4.m[2].w * m4.m[3].x + m4.m[0].w * m4.m[2].x * m4.m[3].z - m4.m[0].x * m4.m[2].w * m4.m[3].z - m4.m[0].z * m4.m[2].x * m4.m[3].w - m4.m[0].w * m4.m[2].z * m4.m[3].x;
+    rMat4.m[1].z = m4.m[0].x * m4.m[1].w * m4.m[3].z + m4.m[0].z * m4.m[1].x * m4.m[3].w + m4.m[0].w * m4.m[1].z * m4.m[3].x - m4.m[0].x * m4.m[1].z * m4.m[3].w - m4.m[0].z * m4.m[1].w * m4.m[3].x - m4.m[0].w * m4.m[1].x * m4.m[3].z;
+    rMat4.m[1].w = m4.m[0].x * m4.m[1].z * m4.m[2].w + m4.m[0].z * m4.m[1].w * m4.m[2].x + m4.m[0].w * m4.m[1].x * m4.m[2].z - m4.m[0].x * m4.m[1].w * m4.m[2].z - m4.m[0].z * m4.m[1].x * m4.m[2].w - m4.m[0].w * m4.m[1].z * m4.m[2].x;
     
-    rMat4.m[2][0] = m4.m[1][0] * m4.m[2][1] * m4.m[3][3] + m4.m[1][1] * m4.m[2][3] * m4.m[3][0] + m4.m[1][3] * m4.m[2][0] * m4.m[3][1] - m4.m[1][0] * m4.m[2][3] * m4.m[3][1] - m4.m[1][1] * m4.m[2][0] * m4.m[3][3] - m4.m[1][3] * m4.m[2][1] * m4.m[3][0];
-    rMat4.m[2][1] = m4.m[0][0] * m4.m[2][3] * m4.m[3][1] + m4.m[0][1] * m4.m[2][0] * m4.m[3][3] + m4.m[0][3] * m4.m[2][1] * m4.m[3][0] - m4.m[0][0] * m4.m[2][1] * m4.m[3][3] - m4.m[0][1] * m4.m[2][3] * m4.m[3][0] - m4.m[0][3] * m4.m[2][0] * m4.m[3][1];
-    rMat4.m[2][2] = m4.m[0][0] * m4.m[1][1] * m4.m[3][3] + m4.m[0][1] * m4.m[1][3] * m4.m[3][0] + m4.m[0][3] * m4.m[1][0] * m4.m[3][1] - m4.m[0][0] * m4.m[1][3] * m4.m[3][1] - m4.m[0][1] * m4.m[1][0] * m4.m[3][3] - m4.m[0][3] * m4.m[1][1] * m4.m[3][0];
-    rMat4.m[2][3] = m4.m[0][0] * m4.m[1][3] * m4.m[2][1] + m4.m[0][1] * m4.m[1][0] * m4.m[2][3] + m4.m[0][3] * m4.m[1][1] * m4.m[2][0] - m4.m[0][0] * m4.m[1][1] * m4.m[2][3] - m4.m[0][1] * m4.m[1][3] * m4.m[2][0] - m4.m[0][3] * m4.m[1][0] * m4.m[2][1];
+    rMat4.m[2].x = m4.m[1].x * m4.m[2].y * m4.m[3].w + m4.m[1].y * m4.m[2].w * m4.m[3].x + m4.m[1].w * m4.m[2].x * m4.m[3].y - m4.m[1].x * m4.m[2].w * m4.m[3].y - m4.m[1].y * m4.m[2].x * m4.m[3].w - m4.m[1].w * m4.m[2].y * m4.m[3].x;
+    rMat4.m[2].y = m4.m[0].x * m4.m[2].w * m4.m[3].y + m4.m[0].y * m4.m[2].x * m4.m[3].w + m4.m[0].w * m4.m[2].y * m4.m[3].x - m4.m[0].x * m4.m[2].y * m4.m[3].w - m4.m[0].y * m4.m[2].w * m4.m[3].x - m4.m[0].w * m4.m[2].x * m4.m[3].y;
+    rMat4.m[2].z = m4.m[0].x * m4.m[1].y * m4.m[3].w + m4.m[0].y * m4.m[1].w * m4.m[3].x + m4.m[0].w * m4.m[1].x * m4.m[3].y - m4.m[0].x * m4.m[1].w * m4.m[3].y - m4.m[0].y * m4.m[1].x * m4.m[3].w - m4.m[0].w * m4.m[1].y * m4.m[3].x;
+    rMat4.m[2].w = m4.m[0].x * m4.m[1].w * m4.m[2].y + m4.m[0].y * m4.m[1].x * m4.m[2].w + m4.m[0].w * m4.m[1].y * m4.m[2].x - m4.m[0].x * m4.m[1].y * m4.m[2].w - m4.m[0].y * m4.m[1].w * m4.m[2].x - m4.m[0].w * m4.m[1].x * m4.m[2].y;
     
-    rMat4.m[3][0] = m4.m[1][0] * m4.m[2][2] * m4.m[3][1] + m4.m[1][1] * m4.m[2][0] * m4.m[3][2] + m4.m[1][2] * m4.m[2][1] * m4.m[3][0] - m4.m[1][0] * m4.m[2][1] * m4.m[3][2] - m4.m[1][1] * m4.m[2][2] * m4.m[3][0] - m4.m[1][2] * m4.m[2][0] * m4.m[3][1];
-    rMat4.m[3][1] = m4.m[0][0] * m4.m[2][1] * m4.m[3][2] + m4.m[0][1] * m4.m[2][2] * m4.m[3][0] + m4.m[0][2] * m4.m[2][0] * m4.m[3][1] - m4.m[0][0] * m4.m[2][2] * m4.m[3][1] - m4.m[0][1] * m4.m[2][0] * m4.m[3][2] - m4.m[0][2] * m4.m[2][1] * m4.m[3][0];
-    rMat4.m[3][2] = m4.m[0][0] * m4.m[1][2] * m4.m[3][1] + m4.m[0][1] * m4.m[1][0] * m4.m[3][2] + m4.m[0][2] * m4.m[1][1] * m4.m[3][0] - m4.m[0][0] * m4.m[1][1] * m4.m[3][2] - m4.m[0][1] * m4.m[1][2] * m4.m[3][0] - m4.m[0][2] * m4.m[1][0] * m4.m[3][1];
-    rMat4.m[3][3] = m4.m[0][0] * m4.m[1][1] * m4.m[2][2] + m4.m[0][1] * m4.m[1][2] * m4.m[2][0] + m4.m[0][2] * m4.m[1][0] * m4.m[2][1] - m4.m[0][0] * m4.m[1][2] * m4.m[2][1] - m4.m[0][1] * m4.m[1][0] * m4.m[2][2] - m4.m[0][2] * m4.m[1][1] * m4.m[2][0];
+    rMat4.m[3].x = m4.m[1].x * m4.m[2].z * m4.m[3].y + m4.m[1].y * m4.m[2].x * m4.m[3].z + m4.m[1].z * m4.m[2].y * m4.m[3].x - m4.m[1].x * m4.m[2].y * m4.m[3].z - m4.m[1].y * m4.m[2].z * m4.m[3].x - m4.m[1].z * m4.m[2].x * m4.m[3].y;
+    rMat4.m[3].y = m4.m[0].x * m4.m[2].y * m4.m[3].z + m4.m[0].y * m4.m[2].z * m4.m[3].x + m4.m[0].z * m4.m[2].x * m4.m[3].y - m4.m[0].x * m4.m[2].z * m4.m[3].y - m4.m[0].y * m4.m[2].x * m4.m[3].z - m4.m[0].z * m4.m[2].y * m4.m[3].x;
+    rMat4.m[3].z = m4.m[0].x * m4.m[1].z * m4.m[3].y + m4.m[0].y * m4.m[1].x * m4.m[3].z + m4.m[0].z * m4.m[1].y * m4.m[3].x - m4.m[0].x * m4.m[1].y * m4.m[3].z - m4.m[0].y * m4.m[1].z * m4.m[3].x - m4.m[0].z * m4.m[1].x * m4.m[3].y;
+    rMat4.m[3].w = m4.m[0].x * m4.m[1].y * m4.m[2].z + m4.m[0].y * m4.m[1].z * m4.m[2].x + m4.m[0].z * m4.m[1].x * m4.m[2].y - m4.m[0].x * m4.m[1].z * m4.m[2].y - m4.m[0].y * m4.m[1].x * m4.m[2].z - m4.m[0].z * m4.m[1].y * m4.m[2].x;
     
     rMat4 = rMat4 / determinant(m4);
     return rMat4;
@@ -191,19 +139,14 @@ m4d m4d::lookAt(float eyeX, float eyeY, float eyeZ, float lookAtX, float lookAtY
     v3d up(upX, upY, upZ);
     return m4d::lookAt(eye, lookAt, up);
 }
-m4d m4d::lookAt(const v3d& eye, const v3d& lookAt, const v3d& up){
+m4d m4d::lookAt(v3d& eye, v3d& lookAt, v3d& up){
     m4d rMat4;
     v3d w = v3d::normalize(eye - lookAt);
     v3d u = v3d::normalize(v3d::cross(up, w));
     v3d v = v3d::normalize(v3d::cross(w, u));
-    for(int i = 0; i < 3; i++){
-        rMat4.m[0][i] = u[i];
-        rMat4.m[1][i] = v[i];
-        rMat4.m[2][i] = w[i];
-    }
-    rMat4.m[0][3] = v3d::dot(u, -eye);
-    rMat4.m[1][3] = v3d::dot(v, -eye);
-    rMat4.m[2][3] = v3d::dot(w, -eye);
+    rMat4.m[0] = v4d(u, v3d::dot(u, -eye));
+    rMat4.m[1] = v4d(v, v3d::dot(v, -eye));
+    rMat4.m[2] = v4d(w, v3d::dot(w, -eye));
     return rMat4;
 }
 

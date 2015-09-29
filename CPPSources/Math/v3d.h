@@ -16,19 +16,19 @@ struct v4d{
 public:
     v4d();
     v4d(float x, float y, float z, float w = 0.0f);
+    v4d(const v4d& v);
     v4d(const v3d& vec3);
+    v4d(const v3d& vec3, const float w);
     
-    float operator[](int i);
+    const float& operator[](int i);
     v4d& operator=(const v4d& vec);
     
     float x, y, z, w;
     
+    static float dot(const v4d& v1, const v4d& v2);
+    
     static void print(const v4d& vec4);
 };
-
-
-
-v4d operator*(const m4d& m, v4d& vec);
 
 struct v3d{
     v3d();
@@ -60,3 +60,6 @@ v3d operator-(const v3d& v1, const v3d& v2);
 v3d operator-(const v3d& vec);
 v3d operator/(v3d& vec3, const float scalar);
 
+v4d operator+(const v4d& v1, const v4d& v2);
+v4d operator-(const v4d& v1, const v4d& v2);
+v4d operator*(const v4d& vec4, const float scalar);
