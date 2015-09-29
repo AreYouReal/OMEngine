@@ -11,6 +11,8 @@ struct ObjTriangleIndex{ int vertexIndex[3], uvIndex[3]; };
 
 // Represent the one triangle list onside ObjMesh
 struct ObjTriangleList{
+    ObjTriangleList(){logMessage("ObjTriangleList Constructor!\n");}
+    ~ObjTriangleList(){logMessage("ObjTriangleList Destructor!\n"); }
     std::vector<ObjTriangleIndex>   tIndices;
     std::vector<unsigned short>     indices;
     std::shared_ptr<ObjMaterial>    material;  // Pointer to the material to use when draw this list.
@@ -21,14 +23,13 @@ struct ObjTriangleList{
 
 class ObjMeshData;
 
-typedef std::shared_ptr<ObjTriangleList> OBJ_T_LIST;
-
 // Holds the unique vertex data index
 struct ObjVertexData{ int vIndex, uvIndex; };
 
 class ObjMesh{
     friend class ObjMeshData;
 public:
+    ObjMesh();
     ~ObjMesh();
     
     unsigned int draw();
@@ -43,7 +44,7 @@ private:
     std::string                     group;
     bool                            visible;        // If true - it's visible.
     std::vector<ObjVertexData>      vertexData;     // All vertex data (vertex index & uv index)
-    std::vector<OBJ_T_LIST>         tLists;         // Triangle lists...
+    std::vector<ObjTriangleList>    tLists;         // Triangle lists...
     std::shared_ptr<ObjMaterial>    currentMaterial;
 
     v3d                             min;
@@ -58,10 +59,10 @@ private:
     unsigned int                    offset[ 5 ];     // The VBO offset(????)
     unsigned int                    vao;             // The VAO ID maintaned by GLES
     
-    std::shared_ptr<ObjMeshData>    data;
+    ObjMeshData                     *data;
     
     // Helpers
-    void    addVertexData(std::shared_ptr<ObjTriangleList> otl, int vIndex, int uvIndex);
+    void    addVertexData(ObjTriangleList *otl, int vIndex, int uvIndex);
     void    buildVBO();
     void    initMaterial();
     void    updateBounds();

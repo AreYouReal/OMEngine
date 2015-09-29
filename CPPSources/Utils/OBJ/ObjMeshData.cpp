@@ -13,7 +13,7 @@ OBJMESHDATA ObjMeshData::load(const char *filename){
     if(!objSource.get()) return nullptr;
     
     std::shared_ptr<ObjMesh> currentMesh = nullptr;
-    std::shared_ptr<ObjTriangleList> currentTList = nullptr;
+    ObjTriangleList *currentTList = nullptr;
     std::shared_ptr<ObjMeshData> data(new ObjMeshData());
     v3d v;
     
@@ -34,7 +34,7 @@ OBJMESHDATA ObjMeshData::load(const char *filename){
                 line = strtok(NULL, "\n");
                 continue;
             }
-            if( last != 'f') data->addMesh(currentMesh, currentTList, name, usemtl, group, useUVs);
+            if( last != 'f') data->addMesh(currentMesh, &currentTList, name, usemtl, group, useUVs);
             --vertexIndex[0];--vertexIndex[1];--vertexIndex[2]; --uvIndex[0];--uvIndex[1];--uvIndex[2];             // Why? Because vertexIndex in obj file starts from 1! We count from 0...
             for(unsigned short i = 0; i < 3; ++i) currentMesh->addVertexData(currentTList, vertexIndex[i], uvIndex[i]);
             currentTList->tIndices.push_back(ObjTriangleIndex());
@@ -101,8 +101,8 @@ bool ObjMeshData::readIndices(const char* line, int v[], int n[], int uv[], bool
     return false;
 }
 
-void ObjMeshData::addMesh(std::shared_ptr<ObjMesh> &mesh, std::shared_ptr<ObjTriangleList> &tList, char* name, char* usemtl, char* group, bool useUVs){
-    logMessage("Add new mesh to OBJ");
+void ObjMeshData::addMesh(std::shared_ptr<ObjMesh> &mesh, ObjTriangleList **tList, char* name, char* usemtl, char* group, bool useUVs){
+    logMessage("Add new mesh to OBJ\n");
     meshes.push_back(std::shared_ptr<ObjMesh>(new ObjMesh()));
     mesh = meshes.back();
     mesh->visible = true;
@@ -110,18 +110,19 @@ void ObjMeshData::addMesh(std::shared_ptr<ObjMesh> &mesh, std::shared_ptr<ObjTri
     else if(usemtl[0]) mesh->name = name;
     if( group[ 0 ] ) mesh->group = group;
     //objmesh->use_smooth_normals = use_smooth_normals;
-    mesh->tLists.push_back(std::shared_ptr<ObjTriangleList>(new ObjTriangleList()));
-    tList = mesh->tLists.back();
+    mesh->tLists.push_back(ObjTriangleList());
+    ObjTriangleList *listPtr = &mesh->tLists.back();
     
-    tList->mode = GL_TRIANGLES;
-    if(useUVs) tList->useUVs = useUVs;
-    if(usemtl[0]) tList->material = Materials::instance()->getMaterial(usemtl);
+    listPtr->mode = GL_TRIANGLES;
+    if(useUVs) listPtr->useUVs = useUVs;
+    if(usemtl[0]) listPtr->material = Materials::instance()->getMaterial(usemtl);
     name[0]     = 0;
     usemtl[0]   = 0;
-    mesh->data = std::shared_ptr<ObjMeshData>(this);
+    mesh->data = this;
+    *tList = listPtr;
 }
 
-void ObjMesh::addVertexData(std::shared_ptr<ObjTriangleList> otl, int vIndex, int uvIndex){
+void ObjMesh::addVertexData(ObjTriangleList *otl, int vIndex, int uvIndex){
     unsigned short index;
     for(index = 0; index < vertexData.size(); ++index){
         if(vIndex == vertexData[index].vIndex){
@@ -142,7 +143,7 @@ void ObjMeshData::builNormalsAndTangents(){
     for(unsigned int i = 0; i < meshes.size(); ++i){
         std::shared_ptr<ObjMesh> mesh = meshes[i];
         for(unsigned int j = 0; j < mesh->tLists.size(); ++j){
-            std::shared_ptr<ObjTriangleList> list = mesh->tLists[j];
+            ObjTriangleList *list = &mesh->tLists[j];
             for(unsigned int k = 0; k < list->tIndices.size(); ++k){
                 v3d v1, v2, normal;
                 v1 = vertices[list->tIndices[k].vertexIndex[0]] - vertices[list->tIndices[k].vertexIndex[1]];
@@ -193,13 +194,13 @@ void ObjMeshData::optimizeMesh(unsigned int meshIndex, unsigned int vertexCacheS
     unsigned short nGroup = 0;
     for(unsigned int i = 0; i < mesh->tLists.size(); ++i){
         PrimitiveGroup *primitiveGroup;
-        if( GenerateStrips(&mesh->tLists[i]->indices[0], (unsigned int)mesh->tLists[i]->indices.size(), &primitiveGroup, &nGroup, true)){
-            if(primitiveGroup[0].numIndices < mesh->tLists[i]->indices.size()){
+        if( GenerateStrips(&mesh->tLists[i].indices[0], (unsigned int)mesh->tLists[i].indices.size(), &primitiveGroup, &nGroup, true)){
+            if(primitiveGroup[0].numIndices < mesh->tLists[i].indices.size()){
 //                logMessage("\n%d VS %d\n", mesh->tLists[i]->indices.size(), primitiveGroup[0].numIndices);
-                mesh->tLists[i]->mode = GL_TRIANGLE_STRIP;
+                mesh->tLists[i].mode = GL_TRIANGLE_STRIP;
                 unsigned int size = primitiveGroup[0].numIndices * sizeof(unsigned short);
-                mesh->tLists[i]->indices.resize(primitiveGroup[0].numIndices);
-                memcpy(&mesh->tLists[i]->indices[0], &primitiveGroup[0].indices[0], size);
+                mesh->tLists[i].indices.resize(primitiveGroup[0].numIndices);
+                memcpy(&mesh->tLists[i].indices[0], &primitiveGroup[0].indices[0], size);
             }
             delete [] primitiveGroup;
         }

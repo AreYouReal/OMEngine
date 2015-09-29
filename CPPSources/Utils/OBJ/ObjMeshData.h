@@ -42,7 +42,7 @@ private:
     std::vector<v3d>            UVs;
     
 // Static
-    void addMesh(std::shared_ptr<ObjMesh> &mesh, std::shared_ptr<ObjTriangleList> &tList, char* name, char* usemtl, char* group, bool useUVs);
+    void addMesh(std::shared_ptr<ObjMesh> &mesh, ObjTriangleList **tList, char* name, char* usemtl, char* group, bool useUVs);
     void builNormalsAndTangents();
     static bool readIndices(const char* line, int v[], int n[], int uv[], bool &useUVs);
     

@@ -4,6 +4,11 @@
 
 ObjMaterial::ObjMaterial(std::string name){
     this->name = name;
+    logMessage("ObjMaterial constructor!%s\n", name.c_str());
+}
+
+ObjMaterial::~ObjMaterial(){
+logMessage("ObjMaterial destructor!%s\n", name.c_str());
 }
 
 void ObjMaterial::use(){
