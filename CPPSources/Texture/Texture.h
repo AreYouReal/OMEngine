@@ -21,6 +21,8 @@ struct PVRHeader{
 
 struct Texture{
     
+    ~Texture();
+    
     static std::shared_ptr<Texture> load(void *context, const char *filename, TextureSource sourceType);
         
     void generateID(unsigned int flags, unsigned char filter);

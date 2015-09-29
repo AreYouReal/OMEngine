@@ -18,7 +18,7 @@ struct VertexAttrib{
 };
 
 struct ShaderProgram{
-   
+    ShaderProgram();
      ~ShaderProgram();
     
     

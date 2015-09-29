@@ -9,6 +9,7 @@ class Transform{
 public:
     Transform();
     Transform(v3d& position);
+    ~Transform();
     
     const m4d& transformMatrix() const;
     void translate(float deltaX, float deltaY, float deltaZ);

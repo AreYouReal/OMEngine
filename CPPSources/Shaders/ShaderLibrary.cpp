@@ -14,6 +14,7 @@ std::shared_ptr<ShaderLibrary> ShaderLibrary::instance(){
 }
 
 ShaderLibrary::ShaderLibrary(){
+    logMessage("ShaderLibrary constructor!\n");
     // Default program
     // Use normal as color in shader
     std::shared_ptr<Shader> vertexShader = loadShader(GL_VERTEX_SHADER, "pos_norm_vertex.glsl");

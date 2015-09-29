@@ -1,7 +1,12 @@
 #include "ShaderProgram.h"
+
+ShaderProgram::ShaderProgram(){
+    logMessage("Shader program constructor!\n");
+}
+
 ShaderProgram::~ShaderProgram(){
     if(ID) glDeleteProgram(ID);
-    logMessage("Shader program destructor: %d", ID );
+    logMessage("Shader program destructor: %d\n", ID );
 }
 
 

@@ -14,7 +14,13 @@ std::shared_ptr<Materials> Materials::instance(){
     return mInstance;
 }
 
-Materials::Materials(){ }
+Materials::Materials(){
+    logMessage("Materials constructor!\n");
+}
+
+Materials::~Materials(){
+    logMessage("Materials destructor!\n");
+}
 
 
 bool Materials::loadMaterial(const std::string &name){

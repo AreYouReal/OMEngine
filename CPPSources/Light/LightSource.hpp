@@ -15,6 +15,7 @@ public:
     
     LightSource();
     LightSource(v4d position);
+    ~LightSource();
     
     const v4d& getPosition() const{ return mPosition; }
     const v4d getPositionInEyeSpace() const{ return (mPosition * Camera::instance()->viewMatrix()); }

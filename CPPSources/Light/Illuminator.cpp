@@ -14,6 +14,7 @@ std::shared_ptr<Illuminator> Illuminator::instance(){
 
 Illuminator::Illuminator(){
     lightSources.push_back(LIGHTSOURCE(new LightSource()));
+    logMessage("Illuminator constructor!\n");
 }
 
 Illuminator::~Illuminator(){

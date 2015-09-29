@@ -6,6 +6,8 @@
 
 class Camera{
 public:
+    ~Camera();
+    
     static void createCamera(float fovy = 90, float width = 640, float height = 960, float near = 0.1, float far = 100);
     static std::shared_ptr<Camera> mCamera;
     static std::shared_ptr<Camera> instance();

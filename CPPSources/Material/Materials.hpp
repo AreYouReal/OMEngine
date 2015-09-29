@@ -10,6 +10,9 @@ class ObjMaterial;
 
 class Materials{
 public:
+    
+    ~Materials();
+    
     static std::shared_ptr<Materials> instance();
     
     bool        loadMaterial(const std::string &name);

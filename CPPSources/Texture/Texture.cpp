@@ -6,6 +6,11 @@
 Texture::Texture(void* context, const char* filename, unsigned int texelType, unsigned char byte, unsigned int format, unsigned int target, unsigned int ID) : texelType(texelType), byte(4), format(format), target(target), ID(ID){
     this->filename = filename;
     texelArray = loadRawPNGData(context, filename, width, height);
+    logMessage("Texture constructor!\n");
+}
+
+Texture::~Texture(){
+    logMessage("Texture destructor!\n");
 }
 
 std::shared_ptr<Texture> Texture::load(void *context, const char *filename, TextureSource sourceType){
