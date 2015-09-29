@@ -15,7 +15,7 @@ struct ObjTriangleList{
     ~ObjTriangleList(){logMessage("ObjTriangleList Destructor!\n"); }
     std::vector<ObjTriangleIndex>   tIndices;
     std::vector<unsigned short>     indices;
-    std::shared_ptr<ObjMaterial>    material;  // Pointer to the material to use when draw this list.
+    ObjMaterial                     *material;  // Pointer to the material to use when draw this list.
     bool                            useUVs;     // True if triangle list is using UVs.
     int                             mode;       // Drawing mode (Default: GL_TRIANGLES).
     unsigned int                    vbo;
@@ -45,7 +45,7 @@ private:
     bool                            visible;        // If true - it's visible.
     std::vector<ObjVertexData>      vertexData;     // All vertex data (vertex index & uv index)
     std::vector<ObjTriangleList>    tLists;         // Triangle lists...
-    std::shared_ptr<ObjMaterial>    currentMaterial;
+    ObjMaterial                     *currentMaterial = 0;
 
     v3d                             min;
     v3d                             max;

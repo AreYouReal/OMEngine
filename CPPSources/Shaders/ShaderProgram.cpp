@@ -5,7 +5,6 @@ ShaderProgram::ShaderProgram(){
 }
 
 ShaderProgram::~ShaderProgram(){
-    if(ID) glDeleteProgram(ID);
     logMessage("Shader program destructor: %d\n", ID );
 }
 

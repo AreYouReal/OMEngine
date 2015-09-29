@@ -12,17 +12,15 @@ public:
     ShaderLibrary();
     ~ShaderLibrary();
 
-    std::shared_ptr<ShaderProgram> getProgram(std::string name);
-    std::shared_ptr<ShaderProgram> createProgram(const char *vertexShaderFilename, const char* fragmentShaderFilename);
+    ShaderProgram *getProgram(std::string name);
+    ShaderProgram createProgram(const char *vertexShaderFilename, const char* fragmentShaderFilename);
     
-    std::shared_ptr<ShaderProgram> createProgram(std::shared_ptr<Shader> vertexShader, std::shared_ptr<Shader> fragmentShader);
+    ShaderProgram createProgram(std::shared_ptr<Shader> vertexShader, std::shared_ptr<Shader> fragmentShader);
     std::shared_ptr<Shader> loadShader(GLenum shaderType, std::string shaderSource);
     
 private:
-    
-    static std::shared_ptr<ShaderLibrary> mInstance;
 // Fields
-    std::map<std::string, std::shared_ptr<ShaderProgram>> shaders;
+    std::map<std::string, ShaderProgram> shaders;
     
 // Helper functions
     static void     printShaderInfoLog(GLuint shader);

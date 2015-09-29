@@ -42,38 +42,38 @@ void ObjMaterial::use(){
     setUniforms();
 }
 
-void ObjMaterial::setProgram(std::shared_ptr<ShaderProgram> prog){
+void ObjMaterial::setProgram(ShaderProgram* prog){
     if(program == nullptr) program = prog;
 }
 
 void ObjMaterial::loadTextures(){
     if(mapAmbient[0]){
         TEXTURE txt(Materials::instance()->getTexture(mapAmbient));
-        if(txt != nullptr) tAmbient = txt;
+        if(txt != nullptr) tAmbient = txt.get();
     }
     if(mapDiffuse[0]){
         TEXTURE txt(Materials::instance()->getTexture(mapDiffuse));
-        if(txt != nullptr) tDiffuse = txt;
+        if(txt != nullptr) tDiffuse = txt.get();
     }
     
     if(mapSpecular[0]){
         TEXTURE txt(Materials::instance()->getTexture(mapSpecular));
-        if(txt != nullptr) tSpecular = txt;
+        if(txt != nullptr) tSpecular = txt.get();
     }
     
     if(mapTranslucency[0]){
         TEXTURE txt(Materials::instance()->getTexture(mapTranslucency));
-        if(txt != nullptr) tTranslucency = txt;
+        if(txt != nullptr) tTranslucency = txt.get();
     }
     
     if(mapDisp[0]){
         TEXTURE txt(Materials::instance()->getTexture(mapDisp));
-        if(txt != nullptr) tDisp = txt;
+        if(txt != nullptr) tDisp = txt.get();
     }
 
     if(mapBump[0]){
         TEXTURE txt(Materials::instance()->getTexture(mapBump));
-        if(txt != nullptr) tBump = txt;
+        if(txt != nullptr) tBump = txt.get();
     }
 }
 

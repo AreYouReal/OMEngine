@@ -115,7 +115,7 @@ void ObjMeshData::addMesh(std::shared_ptr<ObjMesh> &mesh, ObjTriangleList **tLis
     
     listPtr->mode = GL_TRIANGLES;
     if(useUVs) listPtr->useUVs = useUVs;
-    if(usemtl[0]) listPtr->material = Materials::instance()->getMaterial(usemtl);
+    if(usemtl[0]) listPtr->material = Materials::instance()->getMaterial(usemtl).get();
     name[0]     = 0;
     usemtl[0]   = 0;
     mesh->data = this;

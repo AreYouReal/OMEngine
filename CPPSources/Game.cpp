@@ -98,7 +98,7 @@ void Game::Draw ( SRContext *context ){
 
 
 void Game::Shutdown ( SRContext *context ){
-    object.reset();
+//    object.reset();
     sLibrary.reset();
     cam.reset();
     ill.reset();

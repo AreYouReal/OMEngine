@@ -17,7 +17,7 @@ public:
     ObjMaterial(std::string name = "default");
     ~ObjMaterial();
     void loadTextures();
-    void setProgram(std::shared_ptr<ShaderProgram> prog);
+    void setProgram(ShaderProgram *prog);
     void use();
     
     
@@ -38,8 +38,8 @@ private:
     std::string mapDisp;              // The displacement....
     std::string mapBump;              // The bump map(aka Normal Map)
     
-    std::shared_ptr<Texture> tAmbient, tDiffuse, tSpecular, tTranslucency, tDisp, tBump;
-    std::shared_ptr<ShaderProgram>  program;
+    Texture *tAmbient = 0, *tDiffuse = 0, *tSpecular = 0, *tTranslucency = 0, *tDisp = 0, *tBump = 0;
+    ShaderProgram  *program = 0;
     
     virtual void setUniforms();
 };
