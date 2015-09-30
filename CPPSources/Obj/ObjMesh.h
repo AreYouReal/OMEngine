@@ -68,6 +68,8 @@ private:
     void    updateBounds();
     void    updateMin(v3d &min, v3d &vertex);
     void    updateMax(v3d &max, v3d &vertex);
+    
+    void    clear();
 };
 
 

@@ -9,10 +9,10 @@ public:
     GameObject();
     virtual ~GameObject();
     
-    void addObjMesh(OBJMESH objToAdd);
+    void addObjMesh(ObjMesh *objToAdd);
     
     void draw();
     
 private:
-    OBJMESH objMesh;
+    ObjMesh *objMesh;
 };

@@ -30,15 +30,13 @@ SRContext* Game::getAppContext(){
 // Initialize the shader and program object
 //
 int Game::Init ( SRContext *context ){
-        appContext = context;
+    appContext = context;
     atexit(Exit);
     glViewport ( 0, 0, context->width, context->height );
     glEnable( GL_DEPTH_TEST );
     glEnable( GL_CULL_FACE  );
     glEnable(GL_TEXTURE_2D);
-    
 
-    
     mats = std::shared_ptr<Materials>(Materials::instance());
     sLibrary = std::shared_ptr<ShaderLibrary>(ShaderLibrary::instance());
     cam = std::shared_ptr<Camera>(Camera::instance());
@@ -47,12 +45,11 @@ int Game::Init ( SRContext *context ){
     object = ObjMeshData::load("scene.obj");
 
     for(unsigned int i = 0; i < object->meshesSize(); ++i){
-        object->getMesh(i)->build();
+        ObjMesh *mesh = object->getMesh(i);
+        mesh->build();
         // Free object mesh data if needed here
     }
-    
-    gameObject->addObjMesh(object->getMesh(0));
-  
+    object->clear();
     
     return true;
 }

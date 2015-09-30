@@ -182,4 +182,7 @@ void ObjMesh::initMaterial(){
     }
 }
 
+void ObjMesh::clear(){
+    vertexData.clear();
+}
 

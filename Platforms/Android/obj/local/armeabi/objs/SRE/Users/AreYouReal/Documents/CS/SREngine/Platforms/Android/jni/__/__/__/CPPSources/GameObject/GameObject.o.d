@@ -54,14 +54,14 @@
  /Users/AreYouReal/Documents/SOK/android-ndk-r10b/platforms/android-18/arch-arm/usr/include/jni.h \
  /Users/AreYouReal/Documents/SOK/android-ndk-r10b/platforms/android-18/arch-arm/usr/include/android/input.h \
  /Users/AreYouReal/Documents/SOK/android-ndk-r10b/platforms/android-18/arch-arm/usr/include/android/keycodes.h \
- /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/OBJ/ObjMesh.h \
+ /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Obj/ObjMesh.h \
  /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Material/ObjMaterial.h \
  /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Shaders/ShaderProgram.h \
  /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Shaders/Shader.h \
  /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Texture/Texture.h \
  /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Material/Materials.hpp \
  /Users/AreYouReal/Documents/SOK/android-ndk-r10b/sources/cxx-stl/gnu-libstdc++/4.8/include/map \
- /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/OBJ/ObjMeshData.h \
+ /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Obj/ObjMeshData.h \
  /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Shaders/ShaderLibrary.h \
  /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/Typedefs.h \
  /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/nvtristrip/NvTriStrip.h
@@ -174,7 +174,7 @@
 
 /Users/AreYouReal/Documents/SOK/android-ndk-r10b/platforms/android-18/arch-arm/usr/include/android/keycodes.h:
 
-/Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/OBJ/ObjMesh.h:
+/Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Obj/ObjMesh.h:
 
 /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Material/ObjMaterial.h:
 
@@ -188,7 +188,7 @@
 
 /Users/AreYouReal/Documents/SOK/android-ndk-r10b/sources/cxx-stl/gnu-libstdc++/4.8/include/map:
 
-/Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/OBJ/ObjMeshData.h:
+/Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Obj/ObjMeshData.h:
 
 /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Shaders/ShaderLibrary.h:
 

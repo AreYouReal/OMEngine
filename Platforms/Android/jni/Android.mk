@@ -20,8 +20,8 @@ LOCAL_SRC_FILES := $(LOCAL_PATH)/esUtil_Android.cpp \
 				   $(SRC_PATH)/CPPSources/Math/m4d.cpp \
 				   $(SRC_PATH)/CPPSources/Math/v3d.cpp \
 				   $(SRC_PATH)/CPPSources/Math/q4d.cpp \
-				   $(SRC_PATH)/CPPSources/Utils/OBJ/ObjMeshData.cpp \
-				   $(SRC_PATH)/CPPSources/Utils/OBJ/ObjMesh.cpp \
+				   $(SRC_PATH)/CPPSources/Obj/ObjMeshData.cpp \
+				   $(SRC_PATH)/CPPSources/Obj/ObjMesh.cpp \
 				   $(SRC_PATH)/CPPSources/Material/ObjMaterial.cpp \
 				   $(SRC_PATH)/CPPSources/Material/Materials.cpp \
 				   $(SRC_PATH)/CPPSources/Texture/Texture.cpp \
@@ -39,7 +39,7 @@ LOCAL_C_INCLUDES	:= $(SRC_PATH) \
 					   $(SRC_PATH)/CPPSources/Utils \
 					   $(SRC_PATH)/CPPSources/Utils/3dPart/loadpng \
 					   $(SRC_PATH)/CPPSources/Utils/3dPart/nvtristrip \
-					   $(SRC_PATH)/CPPSources/Utils/OBJ \
+					   $(SRC_PATH)/CPPSources/Obj \
 					   $(SRC_PATH)/CPPSources/Math \
 					   $(SRC_PATH)/CPPSources/Camera \
 					   $(SRC_PATH)/CPPSources/Light \
