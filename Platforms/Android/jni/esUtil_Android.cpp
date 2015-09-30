@@ -58,6 +58,7 @@ static void HandleCommand ( struct android_app *pApp, int32_t cmd ){
       case APP_CMD_INPUT_CHANGED:      break; // 0
       //______________________________________
       case APP_CMD_INIT_WINDOW:              // 1
+         context->platformData = ( void * ) pApp->activity->assetManager;
          context->eglNativeDisplay = EGL_DEFAULT_DISPLAY;
          context->eglNativeWindow = pApp->window;
          // Call the main entrypoint for the app
