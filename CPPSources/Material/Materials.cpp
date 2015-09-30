@@ -5,11 +5,11 @@
 #include "ShaderLibrary.h"
 
 #pragma mark Singleton related
-std::shared_ptr<Materials> Materials::mInstance = NULL;
+Materials* Materials::mInstance = NULL;
 
-std::shared_ptr<Materials> Materials::instance(){
+Materials *Materials::instance(){
     if(!mInstance){
-        mInstance = std::shared_ptr<Materials>(new Materials());
+        mInstance = new Materials();
     }
     return mInstance;
 }
@@ -19,6 +19,13 @@ Materials::Materials(){
 }
 
 Materials::~Materials(){
+    for (std::map<std::string, ObjMaterial*>::iterator it= materials.begin(); it!=materials.end(); ++it){
+        ObjMaterial *mat = it->second;
+        if(mat){
+            delete mat;
+            mat = 0;
+        }
+    }
     logMessage("Materials destructor!\n");
 }
 
@@ -36,7 +43,7 @@ bool Materials::loadMaterial(const std::string &name){
         return false;
     }
     
-    OBJMATERIAL mat = NULL;
+    ObjMaterial *mat = NULL;
     char *line = strtok((char*)objSource->content, "\n"),
     str[255] = {""};
     
@@ -45,8 +52,8 @@ bool Materials::loadMaterial(const std::string &name){
     while(line){
         if(!line[0] || line[0] == '#' ){ line = strtok( NULL, "\n" ); continue;
         }else if( sscanf(line, "newmtl %s", str) == 1){
-            mat = OBJMATERIAL(new ObjMaterial()); mat->name = str;
-            materials.insert(std::pair<std::string, OBJMATERIAL>(mat->name, mat));
+            mat = new ObjMaterial(); mat->name = str;
+            materials.insert(std::pair<std::string, ObjMaterial*>(mat->name, mat));
         }else if(sscanf(line, "Ka %f %f %f", &v.x, &v.y, &v.z) == 3){
             memcpy(&mat->ambient, &v, sizeof(v3d));
         }else if(sscanf(line, "Kd %f %f %f", &v.x, &v.y, &v.z) == 3){
@@ -117,11 +124,12 @@ TEXTURE Materials::getTexture(const std::string &name){
     return nullptr;
 }
 
-OBJMATERIAL Materials::getMaterial(const std::string &name){
+ObjMaterial *Materials::getMaterial(const std::string &name){
     if(materials.find(name) != materials.end()){
         return materials[name];
     }else{
-        OBJMATERIAL mat(new ObjMaterial());
+        logMessage("cant find material %s\n", name.c_str());
+        ObjMaterial* mat = new ObjMaterial();
         mat->program = ShaderLibrary::instance()->getProgram("norm_as_color");
         return mat;
     }

@@ -9,8 +9,8 @@ public:
     ~Camera();
     
     static void createCamera(float fovy = 90, float width = 640, float height = 960, float near = 0.1, float far = 100);
-    static std::shared_ptr<Camera> mCamera;
-    static std::shared_ptr<Camera> instance();
+
+    static Camera *instance();
 
     const m4d& viewMatrix() const;
     const m4d& projectionMatrix() const;
@@ -29,6 +29,7 @@ public:
     
 private:
     Camera(float fovy = 90, float width = 640, float height = 960, float near = 1, float far = 100);
+    static Camera *mInstance;
     
     float mFovy, mWidth, mHeight, mNear, mFar;
     

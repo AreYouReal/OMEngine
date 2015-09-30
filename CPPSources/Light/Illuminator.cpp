@@ -3,11 +3,11 @@
 #include "Illuminator.hpp"
 #include "SRUtils.h"
 
-std::shared_ptr<Illuminator> Illuminator::mInstance = NULL;
+Illuminator *Illuminator::mInstance = NULL;
 
-std::shared_ptr<Illuminator> Illuminator::instance(){
+Illuminator *Illuminator::instance(){
     if(!mInstance){
-        mInstance = std::shared_ptr<Illuminator>(new Illuminator());
+        mInstance = new Illuminator();
     }
     return mInstance;
 }

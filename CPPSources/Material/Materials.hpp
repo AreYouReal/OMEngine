@@ -13,11 +13,11 @@ public:
     
     ~Materials();
     
-    static std::shared_ptr<Materials> instance();
+    static Materials *instance();
     
     bool        loadMaterial(const std::string &name);
     bool        loadTexture (const std::string &name);
-    std::shared_ptr<ObjMaterial> getMaterial (const std::string &name);
+    ObjMaterial *getMaterial (const std::string &name);
     TEXTURE     getTexture  (const std::string &name);
     
 private:
@@ -26,9 +26,9 @@ private:
     
 // Fields
     // Static
-    static std::shared_ptr<Materials> mInstance;
+    static Materials *mInstance;
 
     // Member
-    std::map<std::string, std::shared_ptr<ObjMaterial>> materials;
+    std::map<std::string, ObjMaterial*> materials;
     std::map<std::string, TEXTURE>     textures;
 };

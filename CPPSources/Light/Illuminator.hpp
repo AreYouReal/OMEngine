@@ -8,8 +8,8 @@ class Illuminator{
 public:
     ~Illuminator();
     
-    static std::shared_ptr<Illuminator> mInstance;
-    static std::shared_ptr<Illuminator> instance();
+
+    static Illuminator *instance();
 
     bool AddLightSource(LIGHTSOURCE lSource);
     
@@ -17,6 +17,7 @@ public:
     
 private:
     
+    static Illuminator *mInstance;
     Illuminator();
 
     

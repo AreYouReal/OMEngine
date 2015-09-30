@@ -2,16 +2,17 @@
 
 #include "SRUtils.h"
 
-std::shared_ptr<Camera> Camera::mCamera = NULL;
+Camera *Camera::mInstance = NULL;
+
 void Camera::createCamera(float fovy, float width, float height, float near, float far){
-    mCamera = std::shared_ptr<Camera>(new Camera(fovy, width, height, near, far));
+    mInstance = new Camera(fovy, width, height, near, far);
 }
 
-std::shared_ptr<Camera> Camera::instance(){
-    if(!mCamera){
-        mCamera = std::shared_ptr<Camera>(new Camera());
+Camera* Camera::instance(){
+    if(!mInstance){
+        mInstance = new Camera();
     }
-    return mCamera;
+    return mInstance;
 }
 
 Camera::~Camera(){

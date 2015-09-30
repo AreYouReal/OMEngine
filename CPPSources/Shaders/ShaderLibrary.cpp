@@ -6,15 +6,13 @@
 typedef std::shared_ptr<Shader>         SHADER;
 typedef std::shared_ptr<ShaderProgram>  PROGRAM;
 
-std::weak_ptr<ShaderLibrary> mInstance;
+ShaderLibrary *ShaderLibrary::mInstance = NULL;
 
-std::shared_ptr<ShaderLibrary> ShaderLibrary::instance(){
-    if(mInstance.expired()){
-        std::shared_ptr<ShaderLibrary> shared = std::shared_ptr<ShaderLibrary>(new ShaderLibrary());
-        mInstance = std::weak_ptr<ShaderLibrary>(shared);
-        return shared;
+ShaderLibrary *ShaderLibrary::instance(){
+    if(!mInstance){
+        mInstance = new ShaderLibrary();
     }
-    return std::shared_ptr<ShaderLibrary>(mInstance);
+    return mInstance;
 }
 
 ShaderLibrary::ShaderLibrary(){
@@ -54,6 +52,7 @@ ShaderLibrary::ShaderLibrary(){
 
 ShaderLibrary::~ShaderLibrary(){
     logMessage("ShaderLibrary destructor!\n");
+    
 }
 
 ShaderProgram* ShaderLibrary::getProgram(std::string name){

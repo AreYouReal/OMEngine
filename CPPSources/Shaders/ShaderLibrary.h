@@ -7,7 +7,7 @@
 
 class ShaderLibrary{
 public:
-    static std::shared_ptr<ShaderLibrary> instance();
+    static ShaderLibrary *instance();
     
     ShaderLibrary();
     ~ShaderLibrary();
@@ -20,6 +20,9 @@ public:
     
 private:
 // Fields
+    
+    static ShaderLibrary *mInstance;
+    
     std::map<std::string, ShaderProgram> shaders;
     
 // Helper functions
