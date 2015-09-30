@@ -8,6 +8,7 @@
 Materials* Materials::mInstance = NULL;
 
 Materials *Materials::instance(){
+    logMessage("Materials::Instance() : %d", mInstance);
     if(!mInstance){
         mInstance = new Materials();
     }
@@ -15,22 +16,23 @@ Materials *Materials::instance(){
 }
 
 Materials::Materials(){
+    materials.clear();
     logMessage("Materials constructor!\n");
 }
 
 Materials::~Materials(){
     for (std::map<std::string, ObjMaterial*>::iterator it= materials.begin(); it!=materials.end(); ++it){
         ObjMaterial *mat = it->second;
-        if(mat){
-            delete mat;
-            mat = 0;
-        }
+        if(mat){ delete mat; mat = 0; }
     }
+    materials.clear();
+    mInstance = 0;
     logMessage("Materials destructor!\n");
 }
 
 
 bool Materials::loadMaterial(const std::string &name){
+    logMessage("Starting loading materials! %d\n", materials.size());
     if(materials.find(name) != materials.end()){
         logMessage("Material is already loaded: %s\n", name.c_str());
         return false;
@@ -48,6 +50,8 @@ bool Materials::loadMaterial(const std::string &name){
     str[255] = {""};
     
     v3d v;
+    
+    logMessage("Line processing! %d\n", materials.size());
     
     while(line){
         if(!line[0] || line[0] == '#' ){ line = strtok( NULL, "\n" ); continue;

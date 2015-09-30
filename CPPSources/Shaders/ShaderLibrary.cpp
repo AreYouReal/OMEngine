@@ -51,8 +51,8 @@ ShaderLibrary::ShaderLibrary(){
 }
 
 ShaderLibrary::~ShaderLibrary(){
+    mInstance = 0;
     logMessage("ShaderLibrary destructor!\n");
-    
 }
 
 ShaderProgram* ShaderLibrary::getProgram(std::string name){

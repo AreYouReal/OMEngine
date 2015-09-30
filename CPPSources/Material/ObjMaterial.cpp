@@ -8,7 +8,7 @@ ObjMaterial::ObjMaterial(std::string name){
 }
 
 ObjMaterial::~ObjMaterial(){
-logMessage("ObjMaterial destructor!%s\n", name.c_str());
+    logMessage("ObjMaterial destructor!%s\n", name.c_str());
 }
 
 void ObjMaterial::use(){
