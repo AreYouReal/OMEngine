@@ -15,12 +15,15 @@ typedef struct{ } UserData;
 static SRContext       *appContext;
 
 OBJMESHDATA    object;
-std::shared_ptr<ShaderLibrary> sLibrary;
-std::shared_ptr<Camera> cam;
-std::shared_ptr<Illuminator> ill;
-std::shared_ptr<Materials>  mats;
+std::shared_ptr<ShaderLibrary>  sLibrary;
+std::shared_ptr<Camera>         cam;
+std::shared_ptr<Illuminator>    ill;
+std::shared_ptr<Materials>      mats;
 
-std::unique_ptr<Scene>  scene;
+std::unique_ptr<Scene>          scene;
+
+std::vector<GameObject>         gameObjects;
+
 
 SRContext* Game::getAppContext(){
     if(!appContext) logMessage("\nAppContext is NULL!\n");
@@ -38,20 +41,21 @@ int Game::Init ( SRContext *context ){
     glEnable( GL_CULL_FACE  );
     glEnable(GL_TEXTURE_2D);
 
-    mats = std::shared_ptr<Materials>(Materials::instance());
-    sLibrary = std::shared_ptr<ShaderLibrary>(ShaderLibrary::instance());
-    cam = std::shared_ptr<Camera>(Camera::instance());
-    ill = std::shared_ptr<Illuminator>(Illuminator::instance());
-    scene = std::unique_ptr<Scene>(Scene::instance());
+    mats        = std::shared_ptr<Materials>(Materials::instance());
+    sLibrary    = std::shared_ptr<ShaderLibrary>(ShaderLibrary::instance());
+    cam         = std::shared_ptr<Camera>(Camera::instance());
+    ill         = std::shared_ptr<Illuminator>(Illuminator::instance());
+    scene       = std::unique_ptr<Scene>(Scene::instance());
     
     object = ObjMeshData::load("scene.obj");
 
     for(unsigned int i = 0; i < object->meshesSize(); ++i){
         ObjMesh *mesh = object->getMesh(i);
         mesh->build();
-        // Free object mesh data if needed here
     }
-    object->clear();
+    object->clear(); // Free mesh data.
+    
+    /// TEST CODE
     v3d firstPos(0, 0, 2);
     Transform *rotateABit = new Transform();
     rotateABit->rotate(90, v3d(0.0f, 1.0f, 0.0f));
@@ -65,7 +69,7 @@ int Game::Init ( SRContext *context ){
     scene->addChild(thirdNode);
     
     scene->addChild(firstNode);
-    
+    /// __________________________
     
     return true;
 }
@@ -85,27 +89,10 @@ void Game::Draw ( SRContext *context ){
 
     glClearColor(0.0f, 0.3f, 0.0f, 1.0f);
     glClear( GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT );
-
-//    gameObject->draw();
     
-    // Solid objects goes here
+    // Draw all objects on the scene
     scene->update();    
-    
-//    for(unsigned int i = 0; i < object->meshesSize(); ++i){
-//        if(object->getMesh(i)->renderObjectType() == SOLID) object->drawMesh(i);
-//    }
-//
-//    for(unsigned int i = 0; i < object->meshesSize(); ++i){
-//        if(object->getMesh(i)->renderObjectType() != SOLID){
-//            glEnable(GL_BLEND);
-//            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-//            glCullFace(GL_FRONT);
-//            object->drawMesh(i);
-//            glCullFace(GL_BACK);
-//            object->drawMesh(i);
-//            glDisable(GL_BLEND);
-//        }
-//    }
+
     elapsedTime+= drawTimer.elapsedTime();
     static int fps = 0;
     fps++;

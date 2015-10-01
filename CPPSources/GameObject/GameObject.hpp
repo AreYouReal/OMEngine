@@ -2,6 +2,7 @@
 
 #include "SRUtils.h"
 #include "ObjMesh.h"
+#include "Transform.hpp"
 
 class GameObject{
     
@@ -14,5 +15,7 @@ public:
     void draw();
     
 private:
-    ObjMesh *objMesh;
+    
+    Transform   transform;
+    ObjMesh     *objMesh;
 };

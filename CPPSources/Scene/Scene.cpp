@@ -10,7 +10,9 @@ Scene *Scene::instance(){
     return mInstance;
 }
 
-Scene::Scene(){}
+Scene::Scene(){
+    logMessage("Scene constructor!\n");
+}
 
 Scene::~Scene(){
     for(auto rootNode : mRoots){
@@ -21,6 +23,7 @@ Scene::~Scene(){
         delete mInstance;
         mInstance = 0;
     }
+    logMessage("Scene destructor!\n");
 }
 
 void Scene::addChild(ASceneNode *newNode){

@@ -30,6 +30,8 @@ LOCAL_SRC_FILES := $(LOCAL_PATH)/esUtil_Android.cpp \
 				   $(SRC_PATH)/CPPSources/Light/Illuminator.cpp \
 				   $(SRC_PATH)/CPPSources/Light/LightSource.cpp \
 				   $(SRC_PATH)/CPPSources/GameObject/GameObject.cpp \
+				   $(SRC_PATH)/CPPSources/Scene/ASceneNode.cpp \
+				   $(SRC_PATH)/CPPSources/Scene/Scene.cpp \
 
 
 LOCAL_C_INCLUDES	:= $(SRC_PATH) \
@@ -47,6 +49,7 @@ LOCAL_C_INCLUDES	:= $(SRC_PATH) \
 					   $(SRC_PATH)/CPPSources/Material \
 					   $(SRC_PATH)/CPPSources/Texture \
 					   $(SRC_PATH)/CPPSources/Transform \
+					   $(SRC_PATH)/CPPSources/Scene \
 				   
 LOCAL_LDLIBS    := -llog -landroid -lEGL -lGLESv3
 

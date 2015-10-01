@@ -60,6 +60,7 @@
  /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Material/Materials.hpp \
  /Users/AreYouReal/Documents/SOK/android-ndk-r10b/sources/cxx-stl/gnu-libstdc++/4.8/include/map \
  /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Camera/Camera.h \
+ /Users/AreYouReal/Documents/SOK/android-ndk-r10b/sources/cxx-stl/gnu-libstdc++/4.8/include/stack \
  /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Transform/Transform.hpp \
  /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Math/q4d.h \
  /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Light/Illuminator.hpp \
@@ -184,6 +185,8 @@
 /Users/AreYouReal/Documents/SOK/android-ndk-r10b/sources/cxx-stl/gnu-libstdc++/4.8/include/map:
 
 /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Camera/Camera.h:
+
+/Users/AreYouReal/Documents/SOK/android-ndk-r10b/sources/cxx-stl/gnu-libstdc++/4.8/include/stack:
 
 /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Transform/Transform.hpp:
 

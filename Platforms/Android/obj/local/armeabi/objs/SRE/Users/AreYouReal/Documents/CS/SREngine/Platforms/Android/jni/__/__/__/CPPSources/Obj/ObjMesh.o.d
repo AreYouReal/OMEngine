@@ -63,7 +63,11 @@
  /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Obj/ObjMeshData.h \
  /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Shaders/ShaderLibrary.h \
  /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/Typedefs.h \
- /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/nvtristrip/NvTriStrip.h
+ /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/nvtristrip/NvTriStrip.h \
+ /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Scene/Scene.hpp \
+ /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Scene/ASceneNode.hpp \
+ /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Transform/Transform.hpp \
+ /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Math/q4d.h
 
 /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Obj/ObjMesh.h:
 
@@ -192,3 +196,11 @@
 /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/Typedefs.h:
 
 /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/nvtristrip/NvTriStrip.h:
+
+/Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Scene/Scene.hpp:
+
+/Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Scene/ASceneNode.hpp:
+
+/Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Transform/Transform.hpp:
+
+/Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Math/q4d.h:
