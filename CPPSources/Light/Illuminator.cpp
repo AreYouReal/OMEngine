@@ -13,16 +13,19 @@ Illuminator *Illuminator::instance(){
 }
 
 Illuminator::Illuminator(){
-    lightSources.push_back(LIGHTSOURCE(new LightSource()));
+    lightSources.push_back(LightSource());
     logMessage("Illuminator constructor!\n");
 }
 
 Illuminator::~Illuminator(){
-    mInstance = 0;
+    if(mInstance){
+        delete  mInstance;
+        mInstance = 0;
+    }
     logMessage("Illuminator destructor\n");
 }
 
-LIGHTSOURCE Illuminator::getLightSource(){
-    if(lightSources.size() > 0) return lightSources[0];
+LightSource* Illuminator::getLightSource(){
+    if(lightSources.size() > 0) return &lightSources[0];
     return nullptr;
 }

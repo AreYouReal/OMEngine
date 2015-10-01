@@ -223,7 +223,7 @@ void ObjMeshData::clear(){
     faceNormals.clear();
     tangents.clear();
     UVs.clear();
-    for(std::vector<ObjMesh>::iterator it = meshes.begin(); it != meshes.end(); ++it){
+    for(auto it = meshes.begin(); it != meshes.end(); ++it){
         it->clear();
     }
 }

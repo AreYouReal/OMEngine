@@ -83,7 +83,7 @@ void ObjMaterial::setUniforms(){
         if(!strcmp(program->uniformArray[i].name.c_str(), "uSamplerDiffuse")){
             glUniform1i(program->uniformArray[i].location, 1);
         }else if(!strcmp(program->uniformArray[i].name.c_str(), "uModelViewM")){
-            matrix = Camera::instance()->viewMatrix();
+            matrix = Camera::instance()->modelViewMatrix();
             glUniformMatrix4fv(program->uniformArray[i].location, 1, GL_TRUE, matrix.pointer());
         }else if(!strcmp(program->uniformArray[i].name.c_str(), "uProjectionM")){
             matrix = Camera::instance()->projectionMatrix();

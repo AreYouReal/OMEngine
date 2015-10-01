@@ -1,6 +1,8 @@
 #pragma once
 
 #include <memory>
+#include <stack>
+
 #include "m4d.h"
 #include "Transform.hpp"
 
@@ -12,6 +14,7 @@ public:
 
     static Camera *instance();
 
+    const m4d& modelViewMatrix() const;
     const m4d& viewMatrix() const;
     const m4d& projectionMatrix() const;
     const m4d& normalMatrix() const;
@@ -27,6 +30,9 @@ public:
     
     float sphereDistanceInFrustum(v3d *location, float radius);
     
+    void pushMVMatrix(m4d matrix);
+    void popMVMatrix();
+    
 private:
     Camera(float fovy = 90, float width = 640, float height = 960, float near = 1, float far = 100);
     static Camera *mInstance;
@@ -40,8 +46,9 @@ private:
     m4d mNormalMatrix;
     v4d frustum[6];
     
+    std::stack<m4d> mMVstack;
+    
     void refreshViewAndNormalMatrix();
     void refreshProjMatrix();
     void buildFrustum();
-    
 };

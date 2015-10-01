@@ -51,7 +51,10 @@ ShaderLibrary::ShaderLibrary(){
 }
 
 ShaderLibrary::~ShaderLibrary(){
-    mInstance = 0;
+    if(mInstance){
+        delete mInstance;
+        mInstance = 0;
+    }
     logMessage("ShaderLibrary destructor!\n");
 }
 

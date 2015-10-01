@@ -8,6 +8,7 @@ Transform::Transform() : mPosition(0.0f, 0.0f, 0.0f), mRotation(0.0f, 0.0f, 0.0f
 
 Transform::Transform(v3d& position): Transform() {
     mPosition = position;
+    refreshTransformMatrix();
 }
 
 Transform::~Transform(){

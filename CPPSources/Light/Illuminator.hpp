@@ -13,7 +13,7 @@ public:
 
     bool AddLightSource(LIGHTSOURCE lSource);
     
-    LIGHTSOURCE getLightSource();
+    LightSource* getLightSource();
     
 private:
     
@@ -21,5 +21,5 @@ private:
     Illuminator();
 
     
-    std::vector<LIGHTSOURCE> lightSources;
+    std::vector<LightSource> lightSources;
 };

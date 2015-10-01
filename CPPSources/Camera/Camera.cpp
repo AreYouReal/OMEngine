@@ -16,7 +16,10 @@ Camera* Camera::instance(){
 }
 
 Camera::~Camera(){
-    mInstance = 0;
+    if(mInstance){
+        delete mInstance;
+        mInstance = 0;
+    }
     logMessage("Camera destructor!");
 }
 
@@ -61,6 +64,11 @@ const m4d& Camera::projectionMatrix() const{
 
 const m4d& Camera::normalMatrix() const{
     return mNormalMatrix;
+}
+
+const m4d& Camera::modelViewMatrix() const{
+    if(mMVstack.empty()) return mViewMatrix;
+    return mMVstack.top();
 }
 
 void Camera::move(float velocity){
@@ -272,6 +280,15 @@ void Camera::buildFrustum(){
     frustum[ 5 ].z *= t;
     frustum[ 5 ].w *= t;
 }
+
+void Camera::pushMVMatrix(m4d matrix){
+    mMVstack.push(matrix);
+}
+
+void Camera::popMVMatrix(){
+    return mMVstack.pop();
+}
+
 
 
 

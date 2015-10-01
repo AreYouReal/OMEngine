@@ -61,6 +61,8 @@
 		F39A501E1BB3EE9B0080B846 /* LightSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F39A501C1BB3EE9B0080B846 /* LightSource.cpp */; };
 		F39A50211BB3F0090080B846 /* Illuminator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F39A501F1BB3F0090080B846 /* Illuminator.cpp */; };
 		F39A50261BB40E5B0080B846 /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F39A50241BB40E5B0080B846 /* GameObject.cpp */; };
+		F3C52B291BBD01F3009F3604 /* ASceneNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3C52B271BBD01F3009F3604 /* ASceneNode.cpp */; settings = {ASSET_TAGS = (); }; };
+		F3C52B2C1BBD079F009F3604 /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3C52B2A1BBD079F009F3604 /* Scene.cpp */; settings = {ASSET_TAGS = (); }; };
 		F3CAEEE11BB0191000DCF182 /* samurai_monastry.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F3CAEEE01BB0191000DCF182 /* samurai_monastry.mtl */; };
 		F3CAEEE31BB0194000DCF182 /* samurai_monastry.obj in Resources */ = {isa = PBXBuildFile; fileRef = F3CAEEE21BB0194000DCF182 /* samurai_monastry.obj */; };
 		F3CAEEE51BB01A7600DCF182 /* default_gray_vertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F3CAEEE41BB01A7600DCF182 /* default_gray_vertex.glsl */; };
@@ -168,6 +170,10 @@
 		F39A50201BB3F0090080B846 /* Illuminator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Illuminator.hpp; sourceTree = "<group>"; };
 		F39A50241BB40E5B0080B846 /* GameObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameObject.cpp; sourceTree = "<group>"; };
 		F39A50251BB40E5B0080B846 /* GameObject.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GameObject.hpp; sourceTree = "<group>"; };
+		F3C52B271BBD01F3009F3604 /* ASceneNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ASceneNode.cpp; sourceTree = "<group>"; };
+		F3C52B281BBD01F3009F3604 /* ASceneNode.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ASceneNode.hpp; sourceTree = "<group>"; };
+		F3C52B2A1BBD079F009F3604 /* Scene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Scene.cpp; sourceTree = "<group>"; };
+		F3C52B2B1BBD079F009F3604 /* Scene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Scene.hpp; sourceTree = "<group>"; };
 		F3CAEEE01BB0191000DCF182 /* samurai_monastry.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = samurai_monastry.mtl; path = SREngine/Platforms/Android/assets/samurai_monastry.mtl; sourceTree = "<group>"; };
 		F3CAEEE21BB0194000DCF182 /* samurai_monastry.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = samurai_monastry.obj; path = SREngine/Platforms/Android/assets/samurai_monastry.obj; sourceTree = "<group>"; };
 		F3CAEEE41BB01A7600DCF182 /* default_gray_vertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = default_gray_vertex.glsl; sourceTree = "<group>"; };
@@ -267,6 +273,7 @@
 		7626523F17F10E6C007CCD43 /* iOSSRE */ = {
 			isa = PBXGroup;
 			children = (
+				F3C52B261BBD01CC009F3604 /* Scene */,
 				F380B78B1BBBDC550049E755 /* Obj */,
 				94D85AC31BB65447008ED8CF /* Transform */,
 				F34129CC1BB52B63006F4D4D /* Material */,
@@ -499,6 +506,18 @@
 			path = SREngine/CPPSources/GameObject;
 			sourceTree = "<group>";
 		};
+		F3C52B261BBD01CC009F3604 /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				F3C52B271BBD01F3009F3604 /* ASceneNode.cpp */,
+				F3C52B281BBD01F3009F3604 /* ASceneNode.hpp */,
+				F3C52B2A1BBD079F009F3604 /* Scene.cpp */,
+				F3C52B2B1BBD079F009F3604 /* Scene.hpp */,
+			);
+			name = Scene;
+			path = SREngine/CPPSources/Scene;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -633,6 +652,7 @@
 				94D85AC61BB65477008ED8CF /* Transform.cpp in Sources */,
 				F39A50261BB40E5B0080B846 /* GameObject.cpp in Sources */,
 				F368E8C01BA6AC9F00F322AF /* lodepng.cpp in Sources */,
+				F3C52B2C1BBD079F009F3604 /* Scene.cpp in Sources */,
 				F368E8C11BA6AC9F00F322AF /* NvTriStrip.cpp in Sources */,
 				F368E8C21BA6AC9F00F322AF /* NvTriStripObjects.cpp in Sources */,
 				F3FAE8B81B6B77D6007AF169 /* ShaderProgram.cpp in Sources */,
@@ -641,6 +661,7 @@
 				94CE87E21B62B59800752D5C /* FileWrapper.mm in Sources */,
 				F380B7911BBBDC550049E755 /* ObjMeshData.cpp in Sources */,
 				F3710A151BA6CA6000235C68 /* Camera.cpp in Sources */,
+				F3C52B291BBD01F3009F3604 /* ASceneNode.cpp in Sources */,
 				F34129D81BB53DBC006F4D4D /* Texture.cpp in Sources */,
 				F34129D51BB53D6E006F4D4D /* ObjMaterial.cpp in Sources */,
 				94CE87D91B62B53500752D5C /* Game.cpp in Sources */,

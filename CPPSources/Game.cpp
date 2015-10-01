@@ -3,6 +3,7 @@
 #include "Texture.h"
 #include "Camera.h"
 #include "Illuminator.hpp"
+#include "Scene.hpp"
 
 #include "GameObject.hpp"
 #include "ObjMeshData.h"
@@ -19,7 +20,7 @@ std::shared_ptr<Camera> cam;
 std::shared_ptr<Illuminator> ill;
 std::shared_ptr<Materials>  mats;
 
-std::shared_ptr<GameObject> gameObject(new GameObject());
+std::unique_ptr<Scene>  scene;
 
 SRContext* Game::getAppContext(){
     if(!appContext) logMessage("\nAppContext is NULL!\n");
@@ -41,6 +42,7 @@ int Game::Init ( SRContext *context ){
     sLibrary = std::shared_ptr<ShaderLibrary>(ShaderLibrary::instance());
     cam = std::shared_ptr<Camera>(Camera::instance());
     ill = std::shared_ptr<Illuminator>(Illuminator::instance());
+    scene = std::unique_ptr<Scene>(Scene::instance());
     
     object = ObjMeshData::load("scene.obj");
 
@@ -50,6 +52,13 @@ int Game::Init ( SRContext *context ){
         // Free object mesh data if needed here
     }
     object->clear();
+    v3d firstPos(0, 0, 2);
+    ASceneNode *firstNode = new ASceneNode(new Transform(firstPos), object->getMesh(0));
+    ASceneNode *secondNode = new ASceneNode(new Transform(), object->getMesh(1));
+    firstNode->addChild(secondNode);
+    
+    scene->addNode(firstNode);
+    
     
     return true;
 }
@@ -73,21 +82,23 @@ void Game::Draw ( SRContext *context ){
 //    gameObject->draw();
     
     // Solid objects goes here
-    for(unsigned int i = 0; i < object->meshesSize(); ++i){
-        if(object->getMesh(i)->renderObjectType() == SOLID) object->drawMesh(i);
-    }
-
-    for(unsigned int i = 0; i < object->meshesSize(); ++i){
-        if(object->getMesh(i)->renderObjectType() != SOLID){
-            glEnable(GL_BLEND);
-            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-            glCullFace(GL_FRONT);
-            object->drawMesh(i);
-            glCullFace(GL_BACK);
-            object->drawMesh(i);
-            glDisable(GL_BLEND);
-        }
-    }
+    scene->update();    
+    
+//    for(unsigned int i = 0; i < object->meshesSize(); ++i){
+//        if(object->getMesh(i)->renderObjectType() == SOLID) object->drawMesh(i);
+//    }
+//
+//    for(unsigned int i = 0; i < object->meshesSize(); ++i){
+//        if(object->getMesh(i)->renderObjectType() != SOLID){
+//            glEnable(GL_BLEND);
+//            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+//            glCullFace(GL_FRONT);
+//            object->drawMesh(i);
+//            glCullFace(GL_BACK);
+//            object->drawMesh(i);
+//            glDisable(GL_BLEND);
+//        }
+//    }
     elapsedTime+= drawTimer.elapsedTime();
     static int fps = 0;
     fps++;

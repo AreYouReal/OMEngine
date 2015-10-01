@@ -17,11 +17,15 @@ Materials *Materials::instance(){
 
 Materials::Materials(){
     materials.clear();
+    if(mInstance){
+        delete mInstance;
+        mInstance = 0;
+    }
     logMessage("Materials constructor!\n");
 }
 
 Materials::~Materials(){
-    for (std::map<std::string, ObjMaterial*>::iterator it= materials.begin(); it!=materials.end(); ++it){
+    for (auto it= materials.begin(); it!=materials.end(); ++it){
         ObjMaterial *mat = it->second;
         if(mat){ delete mat; mat = 0; }
     }
