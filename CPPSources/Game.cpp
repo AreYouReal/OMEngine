@@ -109,6 +109,7 @@ void Game::Shutdown ( SRContext *context ){
     sLibrary.reset();
     cam.reset();
     ill.reset();
+    scene.reset();
     logMessage("ShutDown function\n");
 }
 

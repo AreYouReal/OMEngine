@@ -17,10 +17,7 @@ Materials *Materials::instance(){
 
 Materials::Materials(){
     materials.clear();
-    if(mInstance){
-        delete mInstance;
-        mInstance = 0;
-    }
+    mInstance = 0;
     logMessage("Materials constructor!\n");
 }
 

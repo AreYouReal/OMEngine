@@ -19,14 +19,12 @@ Scene::~Scene(){
         delete rootNode;
     }
     mRoots.clear();
-    if(mInstance){
-        delete mInstance;
-        mInstance = 0;
-    }
+    mInstance = 0;
     logMessage("Scene destructor!\n");
 }
 
 void Scene::addChild(ASceneNode *newNode){
+    logMessage("Roots count: %d\t%d\n", mRoots.size(), newNode);
     mRoots.push_back(newNode);
 }
 
