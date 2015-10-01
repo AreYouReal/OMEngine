@@ -10,25 +10,30 @@ Scene *Scene::instance(){
     return mInstance;
 }
 
-Scene::Scene(){
-    mRoot = new ASceneNode(NULL, NULL);
-}
+Scene::Scene(){}
 
 Scene::~Scene(){
-    if(mRoot){
-        delete mRoot;
-        mRoot = 0;
+    for(auto rootNode : mRoots){
+        delete rootNode;
     }
+    mRoots.clear();
     if(mInstance){
         delete mInstance;
         mInstance = 0;
     }
 }
 
-void Scene::addNode(ASceneNode *newNode){
-    mRoot->addChild(newNode);
+void Scene::addChild(ASceneNode *newNode){
+    mRoots.push_back(newNode);
 }
 
 void Scene::update(){
-    mRoot->update();
+    for(auto rootNode : mRoots){
+        rootNode->update();
+    }
+
+}
+
+void Scene::setRenderObjectState(RenderObjectType newState){
+    if(mDrawingState != newState) mDrawingState = newState;
 }

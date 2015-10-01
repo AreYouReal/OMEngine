@@ -53,11 +53,18 @@ int Game::Init ( SRContext *context ){
     }
     object->clear();
     v3d firstPos(0, 0, 2);
+    Transform *rotateABit = new Transform();
+    rotateABit->rotate(90, v3d(0.0f, 1.0f, 0.0f));
     ASceneNode *firstNode = new ASceneNode(new Transform(firstPos), object->getMesh(0));
     ASceneNode *secondNode = new ASceneNode(new Transform(), object->getMesh(1));
+    ASceneNode *thirdNode = new ASceneNode(rotateABit, object->getMesh(2));
+    ASceneNode *onveMoreNode = new ASceneNode(new Transform(), object->getMesh(3));
+    thirdNode->addChild(onveMoreNode);
     firstNode->addChild(secondNode);
     
-    scene->addNode(firstNode);
+    scene->addChild(thirdNode);
+    
+    scene->addChild(firstNode);
     
     
     return true;

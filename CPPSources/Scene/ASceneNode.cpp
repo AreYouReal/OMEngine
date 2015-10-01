@@ -26,16 +26,32 @@ void ASceneNode::destroyChildren(){
 #pragma mark virtual
 void ASceneNode::update(){
     m4d modelM;
-    if(transform){
-        modelM = transform->transformMatrix();
-    }
+    if(transform){ modelM = transform->transformMatrix(); }
+    
     Camera::instance()->pushMVMatrix(Camera::instance()->modelViewMatrix() * modelM);
+
     if(mesh){
-        mesh->draw();
+        if(mesh->renderObjectType() == SOLID){
+            mesh->draw();
+        }else{
+            glEnable(GL_BLEND);
+            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+            glCullFace(GL_FRONT);
+            mesh->draw();
+            glCullFace(GL_BACK);
+            mesh->draw();
+            glDisable(GL_BLEND);
+        }
+
     }
     for(auto child : mChildren){
         child->update();
     }
+    
+    
     Camera::instance()->popMVMatrix();
 }
+
+
+
 

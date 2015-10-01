@@ -20,5 +20,5 @@ private:
     std::vector<ASceneNode*> mChildren;
     
     Transform   *transform;
-    ObjMesh     *mesh;
+    ObjMesh     *mesh;    
 };

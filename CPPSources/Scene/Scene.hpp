@@ -10,11 +10,16 @@ public:
     Scene();
     ~Scene();
     
-    void addNode(ASceneNode *newNode);
+    void addChild(ASceneNode *newNode);
     
     void update();
     
+    void        setRenderObjectState(RenderObjectType newState);
+    
 private:
+    
+    RenderObjectType  mDrawingState = RenderObjectType::SOLID;
+    
 
-    ASceneNode *mRoot;
+    std::vector<ASceneNode*> mRoots;
 };

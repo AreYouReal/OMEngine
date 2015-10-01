@@ -1,4 +1,5 @@
 #include "ObjMesh.h"
+#include "Scene.hpp"
 
 ObjMesh::ObjMesh(){
     logMessage("ObjMesh constructor! %s \n" , name.c_str());
@@ -12,6 +13,8 @@ unsigned int ObjMesh::draw(){
     unsigned int n = 0;
     
     if(!visible) return n;
+    
+    Scene::instance()->setRenderObjectState(renderObjectType());
     
     if(vao) glBindVertexArray(vao);
     else setAttributes();
