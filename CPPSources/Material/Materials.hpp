@@ -18,7 +18,7 @@ public:
     bool        loadMaterial(const std::string &name);
     bool        loadTexture (const std::string &name);
     ObjMaterial *getMaterial (const std::string &name);
-    TEXTURE     getTexture  (const std::string &name);
+    sp<Texture> getTexture  (const std::string &name);
     
 private:
 // Constructor
@@ -30,5 +30,5 @@ private:
 
     // Member
     std::map<std::string, ObjMaterial*> materials;
-    std::map<std::string, TEXTURE>     textures;
+    std::map<std::string, sp<Texture>>  textures;
 };

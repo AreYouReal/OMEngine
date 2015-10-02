@@ -15,14 +15,13 @@ struct  ObjTriangleList;
 class   ObjMesh;
 class   ObjMeshData;
 
-typedef std::shared_ptr<ObjMeshData> OBJMESHDATA;
 class ObjMeshData{
     friend class ObjMesh;
 public:
     ~ObjMeshData();
     
     
-    static OBJMESHDATA load(const char* filename);
+    static sp<ObjMeshData> load(const char* filename);
     
     void clear();
 

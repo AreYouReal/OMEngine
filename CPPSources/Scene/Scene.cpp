@@ -19,7 +19,7 @@ Scene::~Scene(){
         delete rootNode;
     }
     mRoots.clear();
-    mInstance = 0;
+    mInstance = nullptr;
     logMessage("Scene destructor!\n");
 }
 

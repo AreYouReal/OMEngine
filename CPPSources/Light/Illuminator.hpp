@@ -2,7 +2,11 @@
 
 #include <memory>
 #include <vector>
+
+#include "Shortcuts.h"
+
 #include "LightSource.hpp"
+
 
 class Illuminator{
 public:
@@ -11,7 +15,7 @@ public:
 
     static Illuminator *instance();
 
-    bool AddLightSource(LIGHTSOURCE lSource);
+    bool AddLightSource(sp<LightSource> lSource);
     
     LightSource* getLightSource();
     

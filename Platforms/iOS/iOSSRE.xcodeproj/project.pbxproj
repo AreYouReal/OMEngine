@@ -113,7 +113,7 @@
 		947FA31A1BA4854A00695A4E /* char_ram_col.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = char_ram_col.png; path = SREngine/Platforms/Android/assets/char_ram_col.png; sourceTree = "<group>"; };
 		947FA31B1BA4854A00695A4E /* ram.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ram.mtl; path = SREngine/Platforms/Android/assets/ram.mtl; sourceTree = "<group>"; };
 		947FA31C1BA4854A00695A4E /* ram.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ram.obj; path = SREngine/Platforms/Android/assets/ram.obj; sourceTree = "<group>"; };
-		948BACC21B6DFB5C004A052C /* Typedefs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Typedefs.h; sourceTree = "<group>"; };
+		948BACC21B6DFB5C004A052C /* Shortcuts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Shortcuts.h; sourceTree = "<group>"; };
 		94C5DB511B63E5DB005E706E /* model.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = model.mtl; path = SREngine/Platforms/Android/assets/model.mtl; sourceTree = "<group>"; };
 		94C5DB521B63E5DB005E706E /* model.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = model.obj; path = SREngine/Platforms/Android/assets/model.obj; sourceTree = "<group>"; };
 		94CE87C61B62B4D000752D5C /* m4d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = m4d.cpp; path = ../../CPPSources/Math/m4d.cpp; sourceTree = SOURCE_ROOT; };
@@ -374,7 +374,7 @@
 				F368E8B51BA6AC9F00F322AF /* 3dPart */,
 				9453DEDF1B2A0A2700C79DB3 /* SRUtils.cpp */,
 				9453DEE01B2A0A2700C79DB3 /* SRUtils.h */,
-				948BACC21B6DFB5C004A052C /* Typedefs.h */,
+				948BACC21B6DFB5C004A052C /* Shortcuts.h */,
 				940CF4291B98C220005B6F19 /* Stopwatch.h */,
 				94E5A0DD1BA3FF0700066CC5 /* FileContent.h */,
 			);

@@ -2,7 +2,6 @@
 
 #include "SRUtils.h"
 #include "ShaderProgram.h"
-#include "Typedefs.h"
 #include <map>
 
 class ShaderLibrary{

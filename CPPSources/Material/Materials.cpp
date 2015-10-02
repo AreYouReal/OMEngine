@@ -16,8 +16,6 @@ Materials *Materials::instance(){
 }
 
 Materials::Materials(){
-    materials.clear();
-    mInstance = 0;
     logMessage("Materials constructor!\n");
 }
 
@@ -27,7 +25,7 @@ Materials::~Materials(){
         if(mat){ delete mat; mat = 0; }
     }
     materials.clear();
-    mInstance = 0;
+    mInstance = nullptr;
     logMessage("Materials destructor!\n");
 }
 
@@ -112,16 +110,16 @@ bool Materials::loadTexture(const std::string &name){
     if(textures.find(name) != textures.end()){
         logMessage("Texture is already loaded: %s\n", name.c_str());
     }
-    TEXTURE texture(Texture::load(Game::getAppContext(), name.c_str(), TextureSource::PNG));
+    sp<Texture> texture(Texture::load(Game::getAppContext(), name.c_str(), TextureSource::PNG));
     if(texture == nullptr){
         logMessage("Unable to load texture: %s\n", name.c_str());
         return false;
     }
-    textures.insert(std::pair<std::string, TEXTURE>(texture->filename, texture));
+    textures.insert(std::pair<std::string, sp<Texture>>(texture->filename, texture));
     return true;
 }
 
-TEXTURE Materials::getTexture(const std::string &name){
+sp<Texture> Materials::getTexture(const std::string &name){
     if(textures.find(name) != textures.end()){
         textures[name]->generateID(0, 0);
         return textures[name];

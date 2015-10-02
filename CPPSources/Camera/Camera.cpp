@@ -16,7 +16,7 @@ Camera* Camera::instance(){
 }
 
 Camera::~Camera(){
-    mInstance = 0;
+    mInstance = nullptr;
     logMessage("Camera destructor!");
 }
 

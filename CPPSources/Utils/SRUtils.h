@@ -24,9 +24,9 @@
 #include <android/log.h>
 #include <android_native_app_glue.h>
 #include <android/asset_manager.h>
-typedef AAsset srFile;
+using srFile = AAsset;
 #else
-typedef FILE srFile;
+using srFile = FILE;
 #endif
 
 #define SRUTIL_API
@@ -39,6 +39,9 @@ typedef FILE srFile;
 #define ES_WINDOW_MULTISAMPLE   8   /// SRCreateWindow flat - multi-sample buffer
 
 enum TOUCH_EVENT{ BEGAN, MOVED, CANCELLED, ENDED };
+
+template<typename T>
+using sp = std::shared_ptr<T>;
 
 #pragma GENERAL
 struct SRContext{

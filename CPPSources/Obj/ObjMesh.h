@@ -71,6 +71,3 @@ private:
     
     void    clear();
 };
-
-
-typedef std::shared_ptr<ObjMesh> OBJMESH;

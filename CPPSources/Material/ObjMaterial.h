@@ -43,5 +43,3 @@ private:
     
     virtual void setUniforms();
 };
-
-typedef std::shared_ptr<ObjMaterial> OBJMATERIAL;

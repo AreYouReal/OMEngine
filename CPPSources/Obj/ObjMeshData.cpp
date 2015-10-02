@@ -6,7 +6,7 @@ ObjMeshData::~ObjMeshData(){
     logMessage("ObjMeshData destructor! %d \n",  meshes.size());
 }
 
-OBJMESHDATA ObjMeshData::load(const char *filename){
+sp<ObjMeshData> ObjMeshData::load(const char *filename){
     std::unique_ptr<FileContent> objSource = readOBJFromFile(Game::getAppContext(), filename);
 #pragma warning throw exception here
     if(!objSource.get()) return nullptr;

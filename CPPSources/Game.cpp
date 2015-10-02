@@ -10,19 +10,19 @@
 
 #define CLAMP(x, min, max) ((x < min) ? min : ((x > max) ? max : x));
 
-typedef struct{ } UserData;
+using UserData = struct{};
 
 static SRContext       *appContext;
 
-OBJMESHDATA    object;
-std::shared_ptr<ShaderLibrary>  sLibrary;
-std::shared_ptr<Camera>         cam;
-std::shared_ptr<Illuminator>    ill;
-std::shared_ptr<Materials>      mats;
+sp<ObjMeshData>    object;
+sp<ShaderLibrary>  sLibrary;
+sp<Camera>         cam;
+sp<Illuminator>    ill;
+sp<Materials>      mats;
 
-std::unique_ptr<Scene>          scene;
+up<Scene>          scene;
 
-std::vector<GameObject>         gameObjects;
+sp<GameObject>         gameObjects;
 
 
 SRContext* Game::getAppContext(){

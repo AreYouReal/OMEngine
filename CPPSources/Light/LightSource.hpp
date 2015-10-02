@@ -24,5 +24,3 @@ private:
     v4d mPosition;
     LightType lightType;
 };
-
-typedef std::shared_ptr<LightSource> LIGHTSOURCE;

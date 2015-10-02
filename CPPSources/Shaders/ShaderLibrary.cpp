@@ -3,9 +3,6 @@
 
 #pragma mark Public
 
-typedef std::shared_ptr<Shader>         SHADER;
-typedef std::shared_ptr<ShaderProgram>  PROGRAM;
-
 ShaderLibrary *ShaderLibrary::mInstance = NULL;
 
 ShaderLibrary *ShaderLibrary::instance(){
@@ -31,8 +28,8 @@ ShaderLibrary::ShaderLibrary(){
     shaders.insert(std::pair<std::string, ShaderProgram>("default_gray", defProg));
     //--------------------------------------------------------
     // Per vertex lighting
-    SHADER vertexPerVertexLighting = loadShader(GL_VERTEX_SHADER, "vertexPerVertex.glsl");
-    SHADER fragmentPerVertexLighting = loadShader(GL_FRAGMENT_SHADER, "fragmentPerVertex.glsl");
+    sp<Shader> vertexPerVertexLighting = loadShader(GL_VERTEX_SHADER, "vertexPerVertex.glsl");
+    sp<Shader> fragmentPerVertexLighting = loadShader(GL_FRAGMENT_SHADER, "fragmentPerVertex.glsl");
     ShaderProgram perVertexProgram = createProgram(vertexPerVertexLighting, fragmentPerVertexLighting);
     shaders.insert(std::pair<std::string, ShaderProgram>("defaultPerVertex", perVertexProgram));
     //--------------------------
@@ -43,15 +40,15 @@ ShaderLibrary::ShaderLibrary(){
     shaders.insert(std::pair<std::string, ShaderProgram>("defaultPerPixel", solidProgram));
     //--------------------------
     // Bump shader
-    SHADER vertexBump = loadShader(GL_VERTEX_SHADER, "vertexBump.glsl");
-    SHADER fragmentBump = loadShader(GL_FRAGMENT_SHADER, "fragmentBump.glsl");
+    sp<Shader> vertexBump = loadShader(GL_VERTEX_SHADER, "vertexBump.glsl");
+    sp<Shader> fragmentBump = loadShader(GL_FRAGMENT_SHADER, "fragmentBump.glsl");
     ShaderProgram bumpProgram = createProgram(vertexBump, fragmentBump);
     shaders.insert(std::pair<std::string, ShaderProgram>("bump", bumpProgram));
     //---------------------------------------------------------
 }
 
 ShaderLibrary::~ShaderLibrary(){
-    mInstance = 0;
+    mInstance = nullptr;
     logMessage("ShaderLibrary destructor!\n");
 }
 

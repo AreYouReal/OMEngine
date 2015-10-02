@@ -18,7 +18,7 @@ Illuminator::Illuminator(){
 }
 
 Illuminator::~Illuminator(){
-    mInstance = 0;
+    mInstance = nullptr;
     logMessage("Illuminator destructor\n");
 }
 
