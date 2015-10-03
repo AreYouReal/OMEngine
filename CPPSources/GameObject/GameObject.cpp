@@ -14,7 +14,3 @@ void GameObject::addObjMesh(ObjMesh* objToAdd){
     objMesh = objToAdd;
 }
 
-void GameObject::draw(){
-    objMesh->draw();
-}
-
