@@ -14,14 +14,13 @@ using UserData = struct{};
 
 static SRContext       *appContext;
 
-sp<ObjMeshData>    object;
-sp<ShaderLibrary>  sLibrary;
-sp<Camera>         cam;
-sp<Illuminator>    ill;
-sp<Materials>      mats;
-
+up<ShaderLibrary>  sLibrary;
+up<Camera>         cam;
+up<Illuminator>    ill;
+up<Materials>      mats;
 up<Scene>          scene;
 
+sp<ObjMeshData>    object;
 sp<GameObject>         gameObjects;
 
 
@@ -41,11 +40,11 @@ int Game::Init ( SRContext *context ){
     glEnable( GL_CULL_FACE  );
     glEnable(GL_TEXTURE_2D);
 
-    mats        = std::shared_ptr<Materials>(Materials::instance());
-    sLibrary    = std::shared_ptr<ShaderLibrary>(ShaderLibrary::instance());
-    cam         = std::shared_ptr<Camera>(Camera::instance());
-    ill         = std::shared_ptr<Illuminator>(Illuminator::instance());
-    scene       = std::unique_ptr<Scene>(Scene::instance());
+    mats        = up<Materials>(Materials::instance());
+    sLibrary    = up<ShaderLibrary>(ShaderLibrary::instance());
+    cam         = up<Camera>(Camera::instance());
+    ill         = up<Illuminator>(Illuminator::instance());
+    scene       = up<Scene>(Scene::instance());
     
     object = ObjMeshData::load("scene.obj");
 

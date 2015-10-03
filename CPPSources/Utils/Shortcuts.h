@@ -7,4 +7,4 @@ using sp = std::shared_ptr<T>;
 template<typename T>
 using up = std::unique_ptr<T>;
 template<typename T>
-using wp = std::unique_ptr<T>;
+using wp = std::weak_ptr<T>;

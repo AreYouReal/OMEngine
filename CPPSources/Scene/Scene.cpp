@@ -1,7 +1,7 @@
 #include "Scene.hpp"
 
 
-static Scene   *mInstance = NULL;
+static Scene *mInstance = nullptr;
 
 Scene *Scene::instance(){
     if(!mInstance){

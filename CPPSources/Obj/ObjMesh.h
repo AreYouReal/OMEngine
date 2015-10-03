@@ -4,7 +4,7 @@
 #include "ObjMaterial.h"
 #include "ObjMeshData.h"
 
-enum RenderObjectType{ SOLID, ALPHA_TESTED, TRANSPARENT };
+enum class RenderObjectType{ SOLID, ALPHA_TESTED, TRANSPARENT };
 
 // Hold all the vertex and UV indices for the particular triangle.
 struct ObjTriangleIndex{ int vertexIndex[3], uvIndex[3]; };

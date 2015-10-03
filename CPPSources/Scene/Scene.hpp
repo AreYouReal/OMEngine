@@ -1,6 +1,10 @@
 #pragma once
 
+#include "Shortcuts.h"
+
 #include "ASceneNode.hpp"
+
+
 
 class Scene{
 public:
