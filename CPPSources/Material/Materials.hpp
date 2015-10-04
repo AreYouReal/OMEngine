@@ -10,8 +10,11 @@ class ObjMaterial;
 
 class Materials{
 public:
-    
+
+    Materials(const Materials& rhs) = delete;
+    Materials& operator=(const Materials& rhs) = delete;
     ~Materials();
+    
     
     static Materials *instance();
     

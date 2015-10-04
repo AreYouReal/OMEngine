@@ -12,7 +12,12 @@ public:
     static Scene *instance();
     
     Scene();
+    Scene(const Scene& rhs) = delete;
+    Scene& operator=(const Scene& rhs) = delete;
+    
     ~Scene();
+    
+    
     
     void addChild(ASceneNode *newNode);
     

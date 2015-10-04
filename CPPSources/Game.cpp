@@ -21,7 +21,7 @@ up<Materials>      mats;
 up<Scene>          scene;
 
 sp<ObjMeshData>    object;
-sp<GameObject>         gameObjects;
+sp<GameObject>     gameObjects;
 
 
 SRContext* Game::getAppContext(){
@@ -75,8 +75,7 @@ int Game::Init ( SRContext *context ){
 
 
 void Game::Update(SRContext *context, float deltaTime){
-    logMessage("FPS %f\n", 1.0f/deltaTime);
-    logMessage("deltaTime: %f\n", deltaTime);
+    logMessage("UPDATE \n");
 }
 
 
@@ -84,6 +83,7 @@ void Game::Update(SRContext *context, float deltaTime){
 // Draw a triangle using the shader pair created in Init()
 //
 void Game::Draw ( SRContext *context ){
+    logMessage("DRAW \n");
 #ifdef ANDROID
 //    logMessage("%d, %d, %d, %d, %d\n", context->eglNativeDisplay, context->eglNativeWindow, context->eglDisplay, context->eglContext, context->eglSurface );
     if(!context->eglDisplay) return;
@@ -113,6 +113,7 @@ void Game::Shutdown ( SRContext *context ){
 
 float touchX, touchY, deltaX, deltaY;
 void Game::Touch(SRContext *context, int event, int x, int y){
+    logMessage("TOUCH\n");
     switch (event) {
         case TOUCH_EVENT::BEGAN  :
             touchX = x;

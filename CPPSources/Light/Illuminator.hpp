@@ -10,6 +10,10 @@
 
 class Illuminator{
 public:
+    
+    
+    Illuminator(const Illuminator& rhs) = delete;
+    Illuminator& operator=(const Illuminator& rhs) = delete;
     ~Illuminator();
     
 

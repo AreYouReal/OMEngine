@@ -8,6 +8,9 @@
 
 class Camera{
 public:
+    
+    Camera(const Camera& rhs) = delete;
+    Camera& operator=(const Camera& rhs) = delete;
     ~Camera();
     
     static void createCamera(float fovy = 90, float width = 640, float height = 960, float near = 0.1, float far = 100);
