@@ -22,7 +22,7 @@ Camera::~Camera(){
 
 Camera::Camera(float fovy, float width, float height, float near, float far)
 :mFovy(fovy), mWidth(width), mHeight(height), mNear(near), mFar(far){
-    transform = std::shared_ptr<Transform>(new Transform());
+    transform = std::shared_ptr<Transform>(std::make_shared<Transform>());
     transform->mPosition = v3d(0.0f, -3.8f, 2.5f);;
     transform->mFront = v3d(0.0f, 1.0f, 0.0f);;
     transform->mUp = v3d(0.0f, 0.0f, 1.0f);
