@@ -13,8 +13,10 @@ class Materials : public Singleton<Materials>{
 public:
 
     Materials();
+    Materials(const Materials& rhs) = delete;
+    Materials& operator=(const Materials& rhs) = delete;
     ~Materials();
-    
+
     bool        loadMaterial(const std::string &name);
     bool        loadTexture (const std::string &name);
     ObjMaterial *getMaterial (const std::string &name);

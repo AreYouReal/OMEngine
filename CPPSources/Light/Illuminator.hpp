@@ -11,7 +11,9 @@
 
 class Illuminator : public Singleton<Illuminator>{
 public:
-        Illuminator();
+    Illuminator();
+    Illuminator(const Illuminator& rhs) = delete;
+    Illuminator& operator=(const Illuminator& rhs) = delete;
     ~Illuminator();
 
     bool AddLightSource(sp<LightSource> lSource);

@@ -104,7 +104,7 @@ std::shared_ptr<Shader> ShaderLibrary::loadShader(GLenum shaderType, std::string
 #ifdef ANDROID
     vertexShaderFilename = "shaders/" + vertexShaderFilename;
 #endif
-    std::shared_ptr<Shader> shader = std::shared_ptr<Shader>(new Shader());
+    std::shared_ptr<Shader> shader = std::shared_ptr<Shader>(std::make_shared<Shader>());
     shader->name = vertexShaderFilename;
     shader->type = GL_VERTEX_SHADER;
     std::unique_ptr<FileContent> shaderSource = readTextFile(Game::getAppContext(), vertexShaderFilename);

@@ -31,7 +31,7 @@ void ASceneNode::update(){
     Camera::instance()->pushMVMatrix(Camera::instance()->modelViewMatrix() * modelM);
 
     if(mesh){
-        if(mesh->renderObjectType() == SOLID){
+        if(mesh->renderObjectType() == RenderObjectType::SOLID){
             mesh->draw();
         }else{
             glEnable(GL_BLEND);

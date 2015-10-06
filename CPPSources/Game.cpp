@@ -14,15 +14,15 @@ using UserData = struct{};
 
 static SRContext       *appContext;
 
-sp<ObjMeshData>    object;
 sp<ShaderLibrary>  sLibrary;
 sp<Camera>         cam;
 sp<Illuminator>    ill;
 sp<Materials>      mats;
-
 sp<Scene>          scene;
 
-sp<GameObject>         gameObjects;
+
+sp<ObjMeshData>    object;
+sp<GameObject>     gameObjects;
 
 
 SRContext* Game::getAppContext(){
@@ -46,6 +46,7 @@ int Game::Init ( SRContext *context ){
     cam         = Camera::instance();
     ill         = Illuminator::instance();
     scene       = Scene::instance();
+
     
     object = ObjMeshData::load("scene.obj");
 
@@ -74,12 +75,17 @@ int Game::Init ( SRContext *context ){
     return true;
 }
 
+
+void Game::Update(SRContext *context, float deltaTime){
+    logMessage("UPDATE \n");
+}
+
+
 ///
 // Draw a triangle using the shader pair created in Init()
 //
 void Game::Draw ( SRContext *context ){
-    Stopwatch drawTimer;
-    static float elapsedTime;
+    logMessage("DRAW \n");
 #ifdef ANDROID
 //    logMessage("%d, %d, %d, %d, %d\n", context->eglNativeDisplay, context->eglNativeWindow, context->eglDisplay, context->eglContext, context->eglSurface );
     if(!context->eglDisplay) return;
@@ -89,18 +95,11 @@ void Game::Draw ( SRContext *context ){
 
     glClearColor(0.0f, 0.3f, 0.0f, 1.0f);
     glClear( GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT );
+
+        scene->update();
     
     // Draw all objects on the scene
-    scene->update();    
-
-    elapsedTime+= drawTimer.elapsedTime();
-    static int fps = 0;
-    fps++;
-    if(elapsedTime >= 1.0f){
-        logMessage("FPS: %d\n",fps );
-        fps = 0;
-        elapsedTime = 0.0f;
-    }
+//    scene->update();
 }
 
 
@@ -116,6 +115,7 @@ void Game::Shutdown ( SRContext *context ){
 
 float touchX, touchY, deltaX, deltaY;
 void Game::Touch(SRContext *context, int event, int x, int y){
+    logMessage("TOUCH\n");
     switch (event) {
         case TOUCH_EVENT::BEGAN  :
             touchX = x;
@@ -140,11 +140,12 @@ void Game::Touch(SRContext *context, int event, int x, int y){
 int Game::Main ( SRContext *context ){
     context->userData = malloc ( sizeof ( UserData ) );
 
-    SRCreateWindow( context, "Hello Triangle", 320, 240, ES_WINDOW_RGB );
+    SRCreateWindow( context, "Hello Triangle", context->width, context->height, ES_WINDOW_RGB );
 
     if ( !Game::Init ( context ) ){ return GL_FALSE; }
 
     SRRegisterShutdownFunc ( context, Shutdown );
+    SRRegisterUpdateFunc(context, Update);
     SRRegisterDrawFunc ( context, Draw );
     SRRegisterTouchFunc( context, Touch );
 

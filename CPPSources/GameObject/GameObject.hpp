@@ -12,7 +12,7 @@ public:
     
     void addObjMesh(ObjMesh *objToAdd);
     
-    void draw();
+    void update();
     
 private:
     

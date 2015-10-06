@@ -55,12 +55,12 @@ RenderObjectType ObjMesh::renderObjectType(){
     if(currentMaterial){
         float dissolve = currentMaterial->dissolve;
         if(dissolve == 0.0f){
-            return ALPHA_TESTED;
+            return RenderObjectType::ALPHA_TESTED;
         }else if(dissolve == 1.0f){
-            return SOLID;
-        }else return TRANSPARENT;
+            return RenderObjectType::SOLID;
+        }else return RenderObjectType::TRANSPARENT;
     }
-    return SOLID;
+    return RenderObjectType::SOLID;
 }
 
 void ObjMesh::build(){

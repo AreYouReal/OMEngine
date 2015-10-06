@@ -1,12 +1,20 @@
 #pragma once
 
+#include "Shortcuts.h"
+
 #include "ASceneNode.hpp"
 
 class Scene : public Singleton<Scene>{
+
 public:
     
     Scene();
+    Scene(const Scene& rhs) = delete;
+    Scene& operator=(const Scene& rhs) = delete;
+    
     ~Scene();
+    
+    
     
     void addChild(ASceneNode *newNode);
     

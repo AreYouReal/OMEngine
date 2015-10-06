@@ -7,8 +7,9 @@
 
 class ShaderLibrary: public Singleton<ShaderLibrary> {
 public:
-    
-    ShaderLibrary();
+        ShaderLibrary();
+    ShaderLibrary(const ShaderLibrary& rhs) = delete;
+    ShaderLibrary& operator=(const ShaderLibrary& rhs) = delete;
     ~ShaderLibrary();
     
     ShaderProgram *getProgram(std::string name);
@@ -18,8 +19,8 @@ public:
     std::shared_ptr<Shader> loadShader(GLenum shaderType, std::string shaderSource);
     
 private:
+    
 // Fields
-
     
     std::map<std::string, ShaderProgram> shaders;
     
