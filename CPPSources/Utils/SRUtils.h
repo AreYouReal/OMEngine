@@ -11,6 +11,7 @@
 #include "FileContent.h"
 #include "Stopwatch.h"
 #include "m4d.h"        // ALL MATH
+#include "Shortcuts.h"
 
 #ifdef __APPLE__
 #include <OpenGLES/ES3/gl.h>

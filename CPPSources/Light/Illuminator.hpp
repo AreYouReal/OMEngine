@@ -3,27 +3,22 @@
 #include <memory>
 #include <vector>
 
-#include "Shortcuts.h"
+#include "Singleton.hpp"
 
+#include "Shortcuts.h"
 #include "LightSource.hpp"
 
 
-class Illuminator{
+class Illuminator : public Singleton<Illuminator>{
 public:
+        Illuminator();
     ~Illuminator();
-    
-
-    static Illuminator *instance();
 
     bool AddLightSource(sp<LightSource> lSource);
     
     LightSource* getLightSource();
     
 private:
-    
-    static Illuminator *mInstance;
-    Illuminator();
-
-    
+  
     std::vector<LightSource> lightSources;
 };

@@ -1,16 +1,16 @@
 #pragma once
 
 #include "SRUtils.h"
+#include "Singleton.hpp"
 #include "ShaderProgram.h"
 #include <map>
 
-class ShaderLibrary{
+class ShaderLibrary: public Singleton<ShaderLibrary> {
 public:
-    static ShaderLibrary *instance();
     
     ShaderLibrary();
     ~ShaderLibrary();
-
+    
     ShaderProgram *getProgram(std::string name);
     ShaderProgram createProgram(const char *vertexShaderFilename, const char* fragmentShaderFilename);
     
@@ -19,8 +19,7 @@ public:
     
 private:
 // Fields
-    
-    static ShaderLibrary *mInstance;
+
     
     std::map<std::string, ShaderProgram> shaders;
     
@@ -31,4 +30,5 @@ private:
     static GLint    checkLinkStatus(GLuint program);
     static void     printShaderInfo(GLuint shader, GLenum pname);
     static void     printShaderProgramInfo(GLuint program, GLenum pname);
+
 };

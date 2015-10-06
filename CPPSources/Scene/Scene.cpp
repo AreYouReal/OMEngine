@@ -1,15 +1,5 @@
 #include "Scene.hpp"
 
-
-static Scene   *mInstance = NULL;
-
-Scene *Scene::instance(){
-    if(!mInstance){
-        mInstance = new Scene();
-    }
-    return mInstance;
-}
-
 Scene::Scene(){
     logMessage("Scene constructor!\n");
 }
@@ -19,7 +9,6 @@ Scene::~Scene(){
         delete rootNode;
     }
     mRoots.clear();
-    mInstance = nullptr;
     logMessage("Scene destructor!\n");
 }
 

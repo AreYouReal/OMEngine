@@ -3,16 +3,18 @@
 #include <memory>
 #include <stack>
 
+#include "Singleton.hpp"
+
 #include "m4d.h"
 #include "Transform.hpp"
 
-class Camera{
+class Camera : public Singleton<Camera>{
 public:
+    
+    Camera(float fovy = 90, float width = 640, float height = 960, float near = 1, float far = 100);
     ~Camera();
     
     static void createCamera(float fovy = 90, float width = 640, float height = 960, float near = 0.1, float far = 100);
-
-    static Camera *instance();
 
     const m4d& modelViewMatrix() const;
     const m4d& viewMatrix() const;
@@ -34,8 +36,6 @@ public:
     void popMVMatrix();
     
 private:
-    Camera(float fovy = 90, float width = 640, float height = 960, float near = 1, float far = 100);
-    static Camera *mInstance;
     
     float mFovy, mWidth, mHeight, mNear, mFar;
     

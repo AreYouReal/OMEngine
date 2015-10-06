@@ -2,21 +2,7 @@
 
 #include "SRUtils.h"
 
-Camera *Camera::mInstance = NULL;
-
-void Camera::createCamera(float fovy, float width, float height, float near, float far){
-    mInstance = new Camera(fovy, width, height, near, far);
-}
-
-Camera* Camera::instance(){
-    if(!mInstance){
-        mInstance = new Camera();
-    }
-    return mInstance;
-}
-
 Camera::~Camera(){
-    mInstance = nullptr;
     logMessage("Camera destructor!");
 }
 

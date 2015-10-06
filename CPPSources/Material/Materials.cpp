@@ -4,17 +4,6 @@
 #include "SRUtils.h"
 #include "ShaderLibrary.h"
 
-#pragma mark Singleton related
-Materials* Materials::mInstance = NULL;
-
-Materials *Materials::instance(){
-    logMessage("Materials::Instance() : %d", mInstance);
-    if(!mInstance){
-        mInstance = new Materials();
-    }
-    return mInstance;
-}
-
 Materials::Materials(){
     logMessage("Materials constructor!\n");
 }
@@ -25,7 +14,6 @@ Materials::~Materials(){
         if(mat){ delete mat; mat = 0; }
     }
     materials.clear();
-    mInstance = nullptr;
     logMessage("Materials destructor!\n");
 }
 

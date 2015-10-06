@@ -2,10 +2,8 @@
 
 #include "ASceneNode.hpp"
 
-class Scene{
+class Scene : public Singleton<Scene>{
 public:
-    
-    static Scene *instance();
     
     Scene();
     ~Scene();

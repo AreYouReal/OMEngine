@@ -3,14 +3,6 @@
 
 #pragma mark Public
 
-ShaderLibrary *ShaderLibrary::mInstance = NULL;
-
-ShaderLibrary *ShaderLibrary::instance(){
-    if(!mInstance){
-        mInstance = new ShaderLibrary();
-    }
-    return mInstance;
-}
 
 ShaderLibrary::ShaderLibrary(){
     logMessage("ShaderLibrary constructor!\n");
@@ -48,7 +40,6 @@ ShaderLibrary::ShaderLibrary(){
 }
 
 ShaderLibrary::~ShaderLibrary(){
-    mInstance = nullptr;
     logMessage("ShaderLibrary destructor!\n");
 }
 

@@ -20,7 +20,7 @@ sp<Camera>         cam;
 sp<Illuminator>    ill;
 sp<Materials>      mats;
 
-up<Scene>          scene;
+sp<Scene>          scene;
 
 sp<GameObject>         gameObjects;
 
@@ -41,11 +41,11 @@ int Game::Init ( SRContext *context ){
     glEnable( GL_CULL_FACE  );
     glEnable(GL_TEXTURE_2D);
 
-    mats        = std::shared_ptr<Materials>(Materials::instance());
-    sLibrary    = std::shared_ptr<ShaderLibrary>(ShaderLibrary::instance());
-    cam         = std::shared_ptr<Camera>(Camera::instance());
-    ill         = std::shared_ptr<Illuminator>(Illuminator::instance());
-    scene       = std::unique_ptr<Scene>(Scene::instance());
+    mats        = Materials::instance();
+    sLibrary    = ShaderLibrary::instance();
+    cam         = Camera::instance();
+    ill         = Illuminator::instance();
+    scene       = Scene::instance();
     
     object = ObjMeshData::load("scene.obj");
 
