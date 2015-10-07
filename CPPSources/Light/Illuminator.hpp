@@ -18,9 +18,9 @@ public:
 
     bool AddLightSource(sp<LightSource> lSource);
     
-    LightSource* getLightSource();
+    sp<LightSource> getLightSource();
     
 private:
   
-    std::vector<LightSource> lightSources;
+    std::vector<sp<LightSource>> lightSources;
 };

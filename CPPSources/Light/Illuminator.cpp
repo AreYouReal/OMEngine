@@ -4,7 +4,7 @@
 #include "SRUtils.h"
 
 Illuminator::Illuminator(){
-    lightSources.push_back(LightSource());
+    lightSources.push_back(std::make_shared<LightSource>());
     logMessage("Illuminator constructor!\n");
 }
 
@@ -12,7 +12,7 @@ Illuminator::~Illuminator(){
     logMessage("Illuminator destructor\n");
 }
 
-LightSource* Illuminator::getLightSource(){
-    if(lightSources.size() > 0) return &lightSources[0];
+sp<LightSource> Illuminator::getLightSource(){
+    if(lightSources.size() > 0) return lightSources[0];
     return nullptr;
 }

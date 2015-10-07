@@ -10,7 +10,7 @@ GameObject::~GameObject(){
 }
 
 
-void GameObject::addObjMesh(ObjMesh* objToAdd){
+void GameObject::addObjMesh(sp<ObjMesh> objToAdd){
     objMesh = objToAdd;
 }
 

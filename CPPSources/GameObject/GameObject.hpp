@@ -10,12 +10,12 @@ public:
     GameObject();
     virtual ~GameObject();
     
-    void addObjMesh(ObjMesh *objToAdd);
+    void addObjMesh(sp<ObjMesh> objToAdd);
     
     void update();
     
 private:
     
-    Transform   transform;
-    ObjMesh     *objMesh;
+    sp<Transform>   transform;
+    sp<ObjMesh> objMesh;
 };
