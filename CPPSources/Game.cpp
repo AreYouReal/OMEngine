@@ -22,7 +22,6 @@ sp<Scene>          scene;
 
 
 sp<ObjMeshData>    object;
-sp<GameObject>     gameObjects;
 
 
 SRContext* Game::getAppContext(){
@@ -79,7 +78,7 @@ int Game::Init ( SRContext *context ){
 
 
 void Game::Update(SRContext *context, float deltaTime){
-    logMessage("UPDATE \n");
+//    logMessage("UPDATE \n");
 }
 
 
@@ -87,7 +86,7 @@ void Game::Update(SRContext *context, float deltaTime){
 // Draw a triangle using the shader pair created in Init()
 //
 void Game::Draw ( SRContext *context ){
-    logMessage("DRAW \n");
+//    logMessage("DRAW \n");
 #ifdef ANDROID
 //    logMessage("%d, %d, %d, %d, %d\n", context->eglNativeDisplay, context->eglNativeWindow, context->eglDisplay, context->eglContext, context->eglSurface );
     if(!context->eglDisplay) return;
@@ -111,13 +110,18 @@ void Game::Shutdown ( SRContext *context ){
     cam.reset();
     ill.reset();
     scene.reset();
+    mats.reset();
+    
+    logMessage("obj: %d\n sl: %d\n cam: %d\n ill: %d\n scene: %d\n mats: %d\n", object.use_count(), sLibrary.use_count(), cam.use_count(), ill.use_count(), scene.use_count(), mats.use_count());
+    
+    
     logMessage("ShutDown function\n");
 }
 
 
 float touchX, touchY, deltaX, deltaY;
 void Game::Touch(SRContext *context, int event, int x, int y){
-    logMessage("TOUCH\n");
+//    logMessage("TOUCH\n");
     switch (event) {
         case TOUCH_EVENT::BEGAN  :
             touchX = x;

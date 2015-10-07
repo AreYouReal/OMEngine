@@ -20,15 +20,15 @@ unsigned int ObjMesh::draw(){
     else setAttributes();
     
     for(unsigned int i = 0; i < tLists.size(); ++i){
-        currentMaterial = tLists[i].material;
+        currentMaterial = tLists[i]->material;
         if(currentMaterial) currentMaterial->use();
         if(vao){
-            if(tLists.size() != 1) glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, tLists[i].vbo);
+            if(tLists.size() != 1) glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, tLists[i]->vbo);
         }else{
-            glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, tLists[i].vbo);
+            glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, tLists[i]->vbo);
         }
-        glDrawElements(tLists[i].mode, (unsigned int)tLists[i].indices.size(), GL_UNSIGNED_SHORT, (void*)NULL);
-        n += tLists[i].indices.size();
+        glDrawElements(tLists[i]->mode, (unsigned int)tLists[i]->indices.size(), GL_UNSIGNED_SHORT, (void*)NULL);
+        n += tLists[i]->indices.size();
     }
     return n;
 }
@@ -73,7 +73,7 @@ void ObjMesh::build(){
     
     setAttributes();
     
-    if(tLists.size() == 1){ glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, tLists[0].vbo); }
+    if(tLists.size() == 1){ glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, tLists[0]->vbo); }
     
     glBindVertexArray(0);
 }
@@ -179,18 +179,18 @@ void ObjMesh::buildVBO(){
     }
     
     for(unsigned int i = 0; i < tLists.size(); ++i){
-        glGenBuffers(1, &tLists[i].vbo);
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, tLists[i].vbo);
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER, tLists[i].indices.size() * sizeof(unsigned short), &tLists[i].indices[0], GL_STATIC_DRAW);
+        glGenBuffers(1, &tLists[i]->vbo);
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, tLists[i]->vbo);
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER, tLists[i]->indices.size() * sizeof(unsigned short), &tLists[i]->indices[0], GL_STATIC_DRAW);
         //        logMessage("tList VBO: %d\n", mesh->tLists[i].vbo);
     }
 }
 
 void ObjMesh::initMaterial(){
     for(unsigned int i = 0; i < tLists.size(); ++i){
-        if(tLists[i].material != nullptr){
-            tLists[i].material->loadTextures();
-            tLists[i].material->setProgram(ShaderLibrary::instance()->getProgram("defaultPerVertex"));
+        if(tLists[i]->material != nullptr){
+            tLists[i]->material->loadTextures();
+            tLists[i]->material->setProgram(ShaderLibrary::instance()->getProgram("defaultPerVertex"));
         }
     }
 }

@@ -44,7 +44,7 @@ private:
     std::string                     group;
     bool                            visible;        // If true - it's visible.
     std::vector<ObjVertexData>      vertexData;     // All vertex data (vertex index & uv index)
-    std::vector<ObjTriangleList>    tLists;         // Triangle lists...
+    std::vector<sp<ObjTriangleList>>tLists;         // Triangle lists...
     sp<ObjMaterial>                 currentMaterial = nullptr;
 
     v3d                             min;
@@ -62,7 +62,7 @@ private:
     wp<ObjMeshData>                 weakData;
     
     // Helpers
-    void    addVertexData(ObjTriangleList *otl, int vIndex, int uvIndex);
+    void    addVertexData(sp<ObjTriangleList> otl, int vIndex, int uvIndex);
     void    buildVBO();
     void    initMaterial();
     void    updateBounds();

@@ -20,7 +20,6 @@ class ObjMeshData : public std::enable_shared_from_this<ObjMeshData>{
 public:
     ~ObjMeshData();
     
-    
     static sp<ObjMeshData> load(const char* filename);
     
     void clear();
@@ -43,7 +42,7 @@ private:
     std::vector<v3d>            UVs;
     
 // Static
-    void addMesh(sp<ObjMesh> mesh, ObjTriangleList **tList, char* name, char* usemtl, char* group, bool useUVs);
+    void addMesh(sp<ObjMesh> mesh, sp<ObjTriangleList> tList, char* name, char* usemtl, char* group, bool useUVs);
     void builNormalsAndTangents();
     static bool readIndices(const char* line, int v[], int n[], int uv[], bool &useUVs);
     
