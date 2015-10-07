@@ -2,7 +2,7 @@
 
 #include "Camera.h"
 
-ASceneNode::ASceneNode(Transform *tr, ObjMesh *m) : transform(tr), mesh(m){ }
+ASceneNode::ASceneNode(sp<Transform> tr, sp<ObjMesh> m) : transform(tr), mesh(m){ }
 
 ASceneNode::~ASceneNode(){
     destroyChildren();
@@ -12,14 +12,11 @@ void ASceneNode::release(){
     delete this;
 }
 
-void ASceneNode::addChild(ASceneNode *child){
-    mChildren.push_back(child);
+void ASceneNode::addChild(up<ASceneNode> child){
+    mChildren.push_back(std::move(child));
 }
 
 void ASceneNode::destroyChildren(){
-    for(auto child : mChildren){
-        child->release();
-    }
     mChildren.clear();
 }
 
@@ -44,7 +41,7 @@ void ASceneNode::update(){
         }
 
     }
-    for(auto child : mChildren){
+    for(auto const &child : mChildren){
         child->update();
     }
     

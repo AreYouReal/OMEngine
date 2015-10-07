@@ -34,6 +34,7 @@
  /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Math/v3d.h \
  /Users/AreYouReal/Documents/SOK/android-ndk-r10b/sources/cxx-stl/gnu-libstdc++/4.8/include/cmath \
  /Users/AreYouReal/Documents/SOK/android-ndk-r10b/sources/cxx-stl/gnu-libstdc++/4.8/include/iostream \
+ /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/Shortcuts.h \
  /Users/AreYouReal/Documents/SOK/android-ndk-r10b/platforms/android-18/arch-arm/usr/include/GLES3/gl3.h \
  /Users/AreYouReal/Documents/SOK/android-ndk-r10b/platforms/android-18/arch-arm/usr/include/GLES3/gl3platform.h \
  /Users/AreYouReal/Documents/SOK/android-ndk-r10b/platforms/android-18/arch-arm/usr/include/KHR/khrplatform.h \
@@ -59,6 +60,7 @@
  /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Texture/Texture.h \
  /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Material/Materials.hpp \
  /Users/AreYouReal/Documents/SOK/android-ndk-r10b/sources/cxx-stl/gnu-libstdc++/4.8/include/map \
+ /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/Singleton.hpp \
  /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Camera/Camera.h \
  /Users/AreYouReal/Documents/SOK/android-ndk-r10b/sources/cxx-stl/gnu-libstdc++/4.8/include/stack \
  /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Transform/Transform.hpp \
@@ -134,6 +136,8 @@
 
 /Users/AreYouReal/Documents/SOK/android-ndk-r10b/sources/cxx-stl/gnu-libstdc++/4.8/include/iostream:
 
+/Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/Shortcuts.h:
+
 /Users/AreYouReal/Documents/SOK/android-ndk-r10b/platforms/android-18/arch-arm/usr/include/GLES3/gl3.h:
 
 /Users/AreYouReal/Documents/SOK/android-ndk-r10b/platforms/android-18/arch-arm/usr/include/GLES3/gl3platform.h:
@@ -183,6 +187,8 @@
 /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Material/Materials.hpp:
 
 /Users/AreYouReal/Documents/SOK/android-ndk-r10b/sources/cxx-stl/gnu-libstdc++/4.8/include/map:
+
+/Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/Singleton.hpp:
 
 /Users/AreYouReal/Documents/CS/SREngine/Platforms/Android/jni/../../../CPPSources/Camera/Camera.h:
 

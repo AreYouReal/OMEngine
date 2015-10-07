@@ -13,18 +13,8 @@ Texture::~Texture(){
     logMessage("Texture destructor!\n");
 }
 
-std::shared_ptr<Texture> Texture::load(void *context, const char *filename, TextureSource sourceType){
-    switch (sourceType) {
-        case TextureSource::PNG :
-            return std::shared_ptr<Texture>(std::shared_ptr<Texture>(new Texture(context, filename)));
-            break;
-        case TextureSource::PVR:
-            // load pvr texture here...
-            break;
-        default:
-            break;
-    }
-    return nullptr;
+std::shared_ptr<Texture> Texture::load(void *context, const char *filename){
+    return std::shared_ptr<Texture>(std::shared_ptr<Texture>(new Texture(context, filename)));
 }
 
 

@@ -17,17 +17,15 @@ public:
     Materials& operator=(const Materials& rhs) = delete;
     ~Materials();
 
-    bool        loadMaterial(const std::string &name);
-    bool        loadTexture (const std::string &name);
-    ObjMaterial *getMaterial (const std::string &name);
-    sp<Texture> getTexture  (const std::string &name);
+    bool            loadMaterial(const std::string &name);
+    bool            loadTexture (const std::string &name);
+    sp<ObjMaterial> getMaterial (const std::string &name);
+    sp<Texture>     getTexture  (const std::string &name);
     
 private:
 // Fields
     
     // Member
-    std::map<std::string, ObjMaterial*> materials;
-    std::map<std::string, sp<Texture>>  textures;
-    
-
+    std::map<std::string, sp<ObjMaterial>>  materials;
+    std::map<std::string, sp<Texture>>      textures;
 };

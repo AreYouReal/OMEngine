@@ -11,7 +11,7 @@ sp<ObjMeshData> ObjMeshData::load(const char *filename){
 #pragma warning throw exception here
     if(!objSource.get()) return nullptr;
     
-    ObjMesh *currentMesh = nullptr;
+    sp<ObjMesh>     currentMesh = nullptr;
     ObjTriangleList *currentTList = nullptr;
     std::shared_ptr<ObjMeshData> data(new ObjMeshData());
     v3d v;
@@ -33,7 +33,10 @@ sp<ObjMeshData> ObjMeshData::load(const char *filename){
                 line = strtok(NULL, "\n");
                 continue;
             }
-            if( last != 'f') data->addMesh(&currentMesh, &currentTList, name, usemtl, group, useUVs);
+            if( last != 'f'){
+                currentMesh = std::make_shared<ObjMesh>();
+                data->addMesh(currentMesh, &currentTList, name, usemtl, group, useUVs);
+            }
             --vertexIndex[0];--vertexIndex[1];--vertexIndex[2]; --uvIndex[0];--uvIndex[1];--uvIndex[2];             // Why? Because vertexIndex in obj file starts from 1! We count from 0...
             for(unsigned short i = 0; i < 3; ++i) currentMesh->addVertexData(currentTList, vertexIndex[i], uvIndex[i]);
             currentTList->tIndices.push_back(ObjTriangleIndex());
@@ -100,25 +103,24 @@ bool ObjMeshData::readIndices(const char* line, int v[], int n[], int uv[], bool
     return false;
 }
 
-void ObjMeshData::addMesh(ObjMesh **mesh, ObjTriangleList **tList, char* name, char* usemtl, char* group, bool useUVs){
+void ObjMeshData::addMesh(sp<ObjMesh> mesh, ObjTriangleList **tList, char* name, char* usemtl, char* group, bool useUVs){
     logMessage("Add new mesh to OBJ\n");
-    meshes.push_back(ObjMesh());
-    ObjMesh *meshPtr = &meshes.back();
-    meshPtr->visible = true;
-    if(name[0]) meshPtr->name = name;
-    else if(usemtl[0]) meshPtr->name = name;
-    if( group[ 0 ] ) meshPtr->group = group;
+    meshes.push_back(mesh);
+    mesh = meshes.back();
+    mesh->visible = true;
+    if(name[0]) mesh->name = name;
+    else if(usemtl[0]) mesh->name = name;
+    if( group[ 0 ] ) mesh->group = group;
     //objmesh->use_smooth_normals = use_smooth_normals;
-    meshPtr->tLists.push_back(ObjTriangleList());
-    ObjTriangleList *listPtr = &meshPtr->tLists.back();
+    mesh->tLists.push_back(ObjTriangleList());
+    ObjTriangleList *listPtr = &mesh->tLists.back();
     
     listPtr->mode = GL_TRIANGLES;
     if(useUVs) listPtr->useUVs = useUVs;
     if(usemtl[0]) listPtr->material = Materials::instance()->getMaterial(usemtl);
     name[0]         = 0;
     usemtl[0]       = 0;
-    meshPtr->data   = this;
-    *mesh = meshPtr;
+    mesh->weakData  = shared_from_this();
     *tList = listPtr;
 }
 
@@ -141,7 +143,7 @@ void ObjMesh::addVertexData(ObjTriangleList *otl, int vIndex, int uvIndex){
 
 void ObjMeshData::builNormalsAndTangents(){
     for(unsigned int i = 0; i < meshes.size(); ++i){
-        ObjMesh *mesh = &meshes[i];
+        sp<ObjMesh> mesh = meshes[i];
         for(unsigned int j = 0; j < mesh->tLists.size(); ++j){
             ObjTriangleList *list = &mesh->tLists[j];
             for(unsigned int k = 0; k < list->tIndices.size(); ++k){
@@ -174,10 +176,10 @@ void ObjMeshData::builNormalsAndTangents(){
         
     unsigned int index;
     for(unsigned int i = 0; i < meshes.size(); ++i){
-        for(unsigned int j = 0; j < meshes[i].vertexData.size(); ++j){
-            index = meshes[i].vertexData[j].vIndex;
+        for(unsigned int j = 0; j < meshes[i]->vertexData.size(); ++j){
+            index = meshes[i]->vertexData[j].vIndex;
             normals[index] = v3d::normalize(normals[index]);
-            if(meshes[i].vertexData[j].uvIndex != -1){
+            if(meshes[i]->vertexData[j].uvIndex != -1){
                 tangents[index] = v3d::normalize(tangents[index]);
             }
                 
@@ -188,7 +190,7 @@ void ObjMeshData::builNormalsAndTangents(){
 
 #pragma mark Mesh building
 void ObjMeshData::optimizeMesh(unsigned int meshIndex, unsigned int vertexCacheSize){
-    ObjMesh *mesh = &meshes[meshIndex];
+    sp<ObjMesh> mesh = meshes[meshIndex];
     if(vertexCacheSize) SetCacheSize(vertexCacheSize);
     
     unsigned short nGroup = 0;
@@ -208,11 +210,11 @@ void ObjMeshData::optimizeMesh(unsigned int meshIndex, unsigned int vertexCacheS
 }
 
 unsigned int ObjMeshData::drawMesh(unsigned int meshIndex){
-    return meshes[meshIndex].draw();
+    return meshes[meshIndex]->draw();
 }
 
-ObjMesh *ObjMeshData::getMesh(unsigned int index){
-    return &meshes[index];
+sp<ObjMesh> ObjMeshData::getMesh(unsigned int index){
+    return meshes[index];
 }
 
 unsigned int ObjMeshData::meshesSize()   { return (unsigned int)meshes.size();     }
@@ -223,7 +225,4 @@ void ObjMeshData::clear(){
     faceNormals.clear();
     tangents.clear();
     UVs.clear();
-    for(auto it = meshes.begin(); it != meshes.end(); ++it){
-        it->clear();
-    }
 }

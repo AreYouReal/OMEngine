@@ -15,7 +15,7 @@ struct  ObjTriangleList;
 class   ObjMesh;
 class   ObjMeshData;
 
-class ObjMeshData{
+class ObjMeshData : public std::enable_shared_from_this<ObjMeshData>{
     friend class ObjMesh;
 public:
     ~ObjMeshData();
@@ -28,14 +28,14 @@ public:
     void        optimizeMesh(unsigned int meshIndex, unsigned int vertexCacheSize);
     unsigned int drawMesh(unsigned int meshIndex);
     
-    ObjMesh     *getMesh(unsigned int index);
+    sp<ObjMesh>  getMesh(unsigned int index);
     unsigned int meshesSize();
     
 // Fields
 private:
     ObjMeshData();
     
-    std::vector<ObjMesh>        meshes;
+    std::vector<sp<ObjMesh>>    meshes;
     std::vector<v3d>            vertices;
     std::vector<v3d>            normals;
     std::vector<v3d>            faceNormals;
@@ -43,7 +43,7 @@ private:
     std::vector<v3d>            UVs;
     
 // Static
-    void addMesh(ObjMesh **mesh, ObjTriangleList **tList, char* name, char* usemtl, char* group, bool useUVs);
+    void addMesh(sp<ObjMesh> mesh, ObjTriangleList **tList, char* name, char* usemtl, char* group, bool useUVs);
     void builNormalsAndTangents();
     static bool readIndices(const char* line, int v[], int n[], int uv[], bool &useUVs);
     

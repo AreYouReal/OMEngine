@@ -10,32 +10,32 @@ ShaderLibrary::ShaderLibrary(){
     // Use normal as color in shader
     std::shared_ptr<Shader> vertexShader = loadShader(GL_VERTEX_SHADER, "pos_norm_vertex.glsl");
     std::shared_ptr<Shader> fragmentShader = loadShader(GL_FRAGMENT_SHADER, "norm_as_color_fragment.glsl");
-    ShaderProgram program = createProgram(vertexShader, fragmentShader);
-    shaders.insert(std::pair<std::string, ShaderProgram>("norm_as_color", program));
+    sp<ShaderProgram> program = createProgram(vertexShader, fragmentShader);
+    shaders.insert(std::pair<std::string, sp<ShaderProgram>>("norm_as_color", program));
     //--------------------------------------------------------
     // Per vertex lighting
     std::shared_ptr<Shader> defVShader = loadShader(GL_VERTEX_SHADER, "default_gray_vertex.glsl");
     std::shared_ptr<Shader> defFShader = loadShader(GL_FRAGMENT_SHADER, "default_gray_fragment.glsl");
-    ShaderProgram defProg = createProgram(defVShader, defFShader);
-    shaders.insert(std::pair<std::string, ShaderProgram>("default_gray", defProg));
+    sp<ShaderProgram> defProg = createProgram(defVShader, defFShader);
+    shaders.insert(std::pair<std::string, sp<ShaderProgram>>("default_gray", defProg));
     //--------------------------------------------------------
     // Per vertex lighting
     sp<Shader> vertexPerVertexLighting = loadShader(GL_VERTEX_SHADER, "vertexPerVertex.glsl");
     sp<Shader> fragmentPerVertexLighting = loadShader(GL_FRAGMENT_SHADER, "fragmentPerVertex.glsl");
-    ShaderProgram perVertexProgram = createProgram(vertexPerVertexLighting, fragmentPerVertexLighting);
-    shaders.insert(std::pair<std::string, ShaderProgram>("defaultPerVertex", perVertexProgram));
+    sp<ShaderProgram> perVertexProgram = createProgram(vertexPerVertexLighting, fragmentPerVertexLighting);
+    shaders.insert(std::pair<std::string, sp<ShaderProgram>>("defaultPerVertex", perVertexProgram));
     //--------------------------
     // Solid, alpha tested and transparent programs with per pixel lighting.
     std::shared_ptr<Shader> vShader = loadShader(GL_VERTEX_SHADER, "vertexPerPixel.glsl");
     std::shared_ptr<Shader> fSolidShader = loadShader(GL_FRAGMENT_SHADER, "fragmentPerPixel.glsl");
-    ShaderProgram solidProgram = createProgram(vShader, fSolidShader);
-    shaders.insert(std::pair<std::string, ShaderProgram>("defaultPerPixel", solidProgram));
+    sp<ShaderProgram> solidProgram = createProgram(vShader, fSolidShader);
+    shaders.insert(std::pair<std::string, sp<ShaderProgram>>("defaultPerPixel", solidProgram));
     //--------------------------
     // Bump shader
     sp<Shader> vertexBump = loadShader(GL_VERTEX_SHADER, "vertexBump.glsl");
     sp<Shader> fragmentBump = loadShader(GL_FRAGMENT_SHADER, "fragmentBump.glsl");
-    ShaderProgram bumpProgram = createProgram(vertexBump, fragmentBump);
-    shaders.insert(std::pair<std::string, ShaderProgram>("bump", bumpProgram));
+    sp<ShaderProgram> bumpProgram = createProgram(vertexBump, fragmentBump);
+    shaders.insert(std::pair<std::string, sp<ShaderProgram>>("bump", bumpProgram));
     //---------------------------------------------------------
 }
 
@@ -43,49 +43,49 @@ ShaderLibrary::~ShaderLibrary(){
     logMessage("ShaderLibrary destructor!\n");
 }
 
-ShaderProgram* ShaderLibrary::getProgram(std::string name){
+sp<ShaderProgram> ShaderLibrary::getProgram(std::string name){
     if(shaders.find(name) == shaders.end()) return nullptr;
-    return &shaders[name];
+    return shaders[name];
 }
 
-ShaderProgram ShaderLibrary::createProgram(const char *vertexShaderFilename,const char* fragmentShaderFilename){
+sp<ShaderProgram> ShaderLibrary::createProgram(const char *vertexShaderFilename,const char* fragmentShaderFilename){
     std::shared_ptr<Shader> vertexShader = loadShader(GL_VERTEX_SHADER, vertexShaderFilename);
     std::shared_ptr<Shader> fragmentShader = loadShader(GL_FRAGMENT_SHADER, fragmentShaderFilename);
     return createProgram(vertexShader, fragmentShader);
 }
 
-ShaderProgram ShaderLibrary::createProgram(std::shared_ptr<Shader> vertexShader, std::shared_ptr<Shader> fragmentShader){
-    ShaderProgram program;
-    program.ID = glCreateProgram();
-    glAttachShader(program.ID, vertexShader->ID);
-    glAttachShader(program.ID, fragmentShader->ID);
-    glLinkProgram(program.ID);
+sp<ShaderProgram> ShaderLibrary::createProgram(std::shared_ptr<Shader> vertexShader, std::shared_ptr<Shader> fragmentShader){
+    sp<ShaderProgram> program = std::make_shared<ShaderProgram>();
+    program->ID = glCreateProgram();
+    glAttachShader(program->ID, vertexShader->ID);
+    glAttachShader(program->ID, fragmentShader->ID);
+    glLinkProgram(program->ID);
     
     int status, total, len, size;
     unsigned int type;
     unsigned short buffSize = 255;
     char name[ buffSize ];
-    glGetProgramiv(program.ID, GL_LINK_STATUS, &status);
+    glGetProgramiv(program->ID, GL_LINK_STATUS, &status);
     if(!status){
-        printProgramInfoLog(program.ID);
+        printProgramInfoLog(program->ID);
         return program;
     }else{
-        glGetProgramiv(program.ID, GL_ACTIVE_ATTRIBUTES, &total);
-        program.attribArray = std::vector<VertexAttrib>(total);
+        glGetProgramiv(program->ID, GL_ACTIVE_ATTRIBUTES, &total);
+        program->attribArray = std::vector<VertexAttrib>(total);
         for(unsigned int i = 0; i < total; i++){
-            glGetActiveAttrib(program.ID, i, buffSize, &len, &size, &type, name );
-            VertexAttrib &attrib = program.attribArray[i];
-            attrib.location = glGetAttribLocation(program.ID, name);
+            glGetActiveAttrib(program->ID, i, buffSize, &len, &size, &type, name );
+            VertexAttrib &attrib = program->attribArray[i];
+            attrib.location = glGetAttribLocation(program->ID, name);
             attrib.name = name;
             attrib.type = type;
         }
         
-        glGetProgramiv(program.ID, GL_ACTIVE_UNIFORMS, &total);
-        program.uniformArray = std::vector<Uniform>(total);
+        glGetProgramiv(program->ID, GL_ACTIVE_UNIFORMS, &total);
+        program->uniformArray = std::vector<Uniform>(total);
         for(unsigned int i = 0; i < total; i++){
-            glGetActiveUniform(program.ID, i, buffSize, &len, &size, &type, name);
-            Uniform &uniform = program.uniformArray[i];
-            uniform.location = glGetUniformLocation(program.ID, name);
+            glGetActiveUniform(program->ID, i, buffSize, &len, &size, &type, name);
+            Uniform &uniform = program->uniformArray[i];
+            uniform.location = glGetUniformLocation(program->ID, name);
             uniform.name = name;
             uniform.type = type;
         }
@@ -94,7 +94,7 @@ ShaderProgram ShaderLibrary::createProgram(std::shared_ptr<Shader> vertexShader,
     glDeleteShader(vertexShader->ID);
     glDeleteShader(fragmentShader->ID);
     
-    ShaderLibrary::printProgramInfoLog(program.ID);
+    ShaderLibrary::printProgramInfoLog(program->ID);
     
     return program;
 }

@@ -9,10 +9,6 @@ Materials::Materials(){
 }
 
 Materials::~Materials(){
-    for (auto it= materials.begin(); it!=materials.end(); ++it){
-        ObjMaterial *mat = it->second;
-        if(mat){ delete mat; mat = 0; }
-    }
     materials.clear();
     logMessage("Materials destructor!\n");
 }
@@ -32,7 +28,7 @@ bool Materials::loadMaterial(const std::string &name){
         return false;
     }
     
-    ObjMaterial *mat = NULL;
+    sp<ObjMaterial> mat = nullptr;
     char *line = strtok((char*)objSource->content, "\n"),
     str[255] = {""};
     
@@ -43,8 +39,8 @@ bool Materials::loadMaterial(const std::string &name){
     while(line){
         if(!line[0] || line[0] == '#' ){ line = strtok( NULL, "\n" ); continue;
         }else if( sscanf(line, "newmtl %s", str) == 1){
-            mat = new ObjMaterial(); mat->name = str;
-            materials.insert(std::pair<std::string, ObjMaterial*>(mat->name, mat));
+            mat = std::make_shared<ObjMaterial>(); mat->name = str;
+            materials.insert(std::pair<std::string, sp<ObjMaterial>>(mat->name, mat));
         }else if(sscanf(line, "Ka %f %f %f", &v.x, &v.y, &v.z) == 3){
             memcpy(&mat->ambient, &v, sizeof(v3d));
         }else if(sscanf(line, "Kd %f %f %f", &v.x, &v.y, &v.z) == 3){
@@ -98,7 +94,7 @@ bool Materials::loadTexture(const std::string &name){
     if(textures.find(name) != textures.end()){
         logMessage("Texture is already loaded: %s\n", name.c_str());
     }
-    sp<Texture> texture(Texture::load(Game::getAppContext(), name.c_str(), TextureSource::PNG));
+    sp<Texture> texture(Texture::load(Game::getAppContext(), name.c_str()));
     if(texture == nullptr){
         logMessage("Unable to load texture: %s\n", name.c_str());
         return false;
@@ -115,12 +111,12 @@ sp<Texture> Materials::getTexture(const std::string &name){
     return nullptr;
 }
 
-ObjMaterial *Materials::getMaterial(const std::string &name){
+sp<ObjMaterial> Materials::getMaterial(const std::string &name){
     if(materials.find(name) != materials.end()){
         return materials[name];
     }else{
         logMessage("cant find material %s\n", name.c_str());
-        ObjMaterial* mat = new ObjMaterial();
+        auto mat = std::make_shared<ObjMaterial>();
         mat->program = ShaderLibrary::instance()->getProgram("norm_as_color");
         return mat;
     }

@@ -51,25 +51,27 @@ int Game::Init ( SRContext *context ){
     object = ObjMeshData::load("scene.obj");
 
     for(unsigned int i = 0; i < object->meshesSize(); ++i){
-        ObjMesh *mesh = object->getMesh(i);
-        mesh->build();
+        object->getMesh(i)->build();
     }
     object->clear(); // Free mesh data.
     
     /// TEST CODE
-    v3d firstPos(0, 0, 2);
-    Transform *rotateABit = new Transform();
-    rotateABit->rotate(90, v3d(0.0f, 1.0f, 0.0f));
-    ASceneNode *firstNode = new ASceneNode(new Transform(firstPos), object->getMesh(0));
-    ASceneNode *secondNode = new ASceneNode(new Transform(), object->getMesh(1));
-    ASceneNode *thirdNode = new ASceneNode(rotateABit, object->getMesh(2));
-    ASceneNode *onveMoreNode = new ASceneNode(new Transform(), object->getMesh(3));
-    thirdNode->addChild(onveMoreNode);
-    firstNode->addChild(secondNode);
+    v3d firstPos(0, 0, 0);
+    sp<Transform> rotateABit = sp<Transform>(new Transform());
+    rotateABit->rotate(0, v3d(0.0f, 1.0f, 0.0f));
     
-    scene->addChild(thirdNode);
-    
-    scene->addChild(firstNode);
+    up<ASceneNode> firstNode = up<ASceneNode>(new ASceneNode(sp<Transform>(new Transform(firstPos)), object->getMesh(0)));
+    up<ASceneNode> secondNode = up<ASceneNode>(new ASceneNode(sp<Transform>(new Transform()), object->getMesh(1)));
+    up<ASceneNode> thirdNode = up<ASceneNode>(new ASceneNode(rotateABit, object->getMesh(2)));
+    up<ASceneNode> onveMoreNode = up<ASceneNode>(new ASceneNode(sp<Transform>(new Transform()), object->getMesh(3)));
+    up<ASceneNode> moreNODE = up<ASceneNode>(new ASceneNode(sp<Transform>(new Transform()), object->getMesh(4)));
+    up<ASceneNode> leafts = up<ASceneNode>(new ASceneNode(sp<Transform>(new Transform()), object->getMesh(5)));
+    thirdNode->addChild(std::move(onveMoreNode));
+    firstNode->addChild(std::move(secondNode));
+    scene->addChild(std::move(thirdNode));
+    scene->addChild(std::move(firstNode));
+    scene->addChild(std::move(moreNODE));
+    scene->addChild(std::move(leafts));
     /// __________________________
     
     return true;

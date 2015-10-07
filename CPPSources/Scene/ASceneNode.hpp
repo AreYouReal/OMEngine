@@ -6,19 +6,19 @@
 
 class ASceneNode{
 public:
-    ASceneNode(Transform *tr, ObjMesh *m);
+    ASceneNode(sp<Transform> tr, sp<ObjMesh> m);
     virtual ~ASceneNode();
     
     void release();
     
-    void addChild(ASceneNode *child);
+    void addChild(up<ASceneNode> child);
     void destroyChildren();
     
     virtual void update();
 
 private:
-    std::vector<ASceneNode*> mChildren;
+    std::vector<up<ASceneNode>> mChildren;
     
-    Transform   *transform;
-    ObjMesh     *mesh;    
+    sp<Transform>   transform;
+    sp<ObjMesh>     mesh;
 };

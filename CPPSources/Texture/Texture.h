@@ -2,8 +2,6 @@
 
 #include "SRUtils.h"
 
-enum TextureSource{ PNG, PVR };
-
 enum{ TEXTURE_CLAMP        = ( 1 << 0 ),
       TEXTURE_MIPMAP       = ( 1 << 1 ),
       TEXTURE_16_BITS      = ( 1 << 2 ),
@@ -23,7 +21,7 @@ struct Texture{
     
     ~Texture();
     
-    static std::shared_ptr<Texture> load(void *context, const char *filename, TextureSource sourceType);
+    static std::shared_ptr<Texture> load(void *context, const char *filename);
         
     void generateID(unsigned int flags, unsigned char filter);
 

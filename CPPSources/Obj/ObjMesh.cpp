@@ -83,6 +83,11 @@ void ObjMesh::updateBounds(){
     max.x = max.y = max.z = -9999.99f;
     
     unsigned int index;
+    auto data = weakData.lock();
+    if(!data){
+        logMessage("Unable to reach the data for mesh!");
+        return;
+    }
     for(unsigned int i = 0; i < vertexData.size(); ++i){
         index = vertexData[i].vIndex;
         updateMin(min, data->vertices[index]);
@@ -129,6 +134,11 @@ void ObjMesh::buildVBO(){
     unsigned char *vertexStart = vertexArray;
     
     unsigned int index;
+    auto data = weakData.lock();
+    if(!data){
+        logMessage("Unable to reach the data for mesh!");
+        return;
+    }
     for(unsigned int i = 0; i < vertexData.size(); ++i){
         index = vertexData[i].vIndex;
         memcpy(vertexArray, &data->vertices[index], v3dSize);

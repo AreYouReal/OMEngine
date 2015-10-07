@@ -16,7 +16,7 @@ public:
     
     
     
-    void addChild(ASceneNode *newNode);
+    void addChild(up<ASceneNode> newNode);
     
     void update();
     
@@ -27,5 +27,5 @@ private:
     RenderObjectType  mDrawingState = RenderObjectType::SOLID;
     
 
-    std::vector<ASceneNode*> mRoots;
+    std::vector<up<ASceneNode>> mRoots;
 };
