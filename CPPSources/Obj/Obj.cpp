@@ -1,19 +1,19 @@
-#include "ObjMeshData.h"
+#include "Obj.h"
 #include "Game.h"
 
 
-ObjMeshData::~ObjMeshData(){
-    logMessage("ObjMeshData destructor! %d \n",  meshes.size());
+Obj::~Obj(){
+    logMessage("Obj destructor! %d \n",  meshes.size());
 }
 
-sp<ObjMeshData> ObjMeshData::load(const char *filename){
+sp<Obj> Obj::load(const char *filename){
     std::unique_ptr<FileContent> objSource = readOBJFromFile(Game::getAppContext(), filename);
 #pragma warning throw exception here
     if(!objSource.get()) return nullptr;
     
     sp<ObjMesh>         currentMesh     = nullptr;
     sp<ObjTriangleList> currentTList    = nullptr;
-    std::shared_ptr<ObjMeshData> data(new ObjMeshData());
+    std::shared_ptr<Obj> data(new Obj());
     v3d v;
     
     char* line = strtok((char*)objSource->content, "\n");
@@ -28,7 +28,7 @@ sp<ObjMeshData> ObjMeshData::load(const char *filename){
             // go to next object line
         }else if( line[0] == 'f' && line[1] == ' '){    // Read face indices...
             bool useUVs; int vertexIndex[3]  = {0, 0, 0}, normalIndex[3] = {0, 0, 0}, uvIndex[3] = {0, 0, 0};
-            if(!ObjMeshData::readIndices(line, vertexIndex, normalIndex, uvIndex, useUVs)){
+            if(!Obj::readIndices(line, vertexIndex, normalIndex, uvIndex, useUVs)){
                 last = line[0];
                 line = strtok(NULL, "\n");
                 continue;
@@ -77,12 +77,12 @@ sp<ObjMeshData> ObjMeshData::load(const char *filename){
 }
 
 #pragma mark Helpers
-ObjMeshData::ObjMeshData(){
+Obj::Obj(){
     
 }
 
 
-bool ObjMeshData::readIndices(const char* line, int v[], int n[], int uv[], bool &useUVs){
+bool Obj::readIndices(const char* line, int v[], int n[], int uv[], bool &useUVs){
     if( sscanf(line, "f %d %d %d", &v[0], &v[1], &v[2]) == 3){
         useUVs = false;
         return true;
@@ -104,10 +104,9 @@ bool ObjMeshData::readIndices(const char* line, int v[], int n[], int uv[], bool
     return false;
 }
 
-void ObjMeshData::addMesh(sp<ObjMesh> mesh, sp<ObjTriangleList> tList, char* name, char* usemtl, char* group, bool useUVs){
+void Obj::addMesh(sp<ObjMesh> mesh, sp<ObjTriangleList> tList, char* name, char* usemtl, char* group, bool useUVs){
     logMessage("Add new mesh to OBJ\n");
-    meshes.push_back(mesh);
-    mesh = meshes.back();
+    meshes.insert(pair<str, sp<ObjMesh>>(name, mesh));
     mesh->visible = true;
     if(name[0]) mesh->name = name;
     else if(usemtl[0]) mesh->name = name;
@@ -142,22 +141,23 @@ void ObjMesh::addVertexData(sp<ObjTriangleList> otl, int vIndex, int uvIndex){
     otl->indices.push_back(index);
 }
 
-void ObjMeshData::builNormalsAndTangents(){
-    for(unsigned int i = 0; i < meshes.size(); ++i){
-        sp<ObjMesh> mesh = meshes[i];
+void Obj::builNormalsAndTangents(){
+    
+    for(auto const &meshEntry : meshes){
+        sp<ObjMesh> mesh = meshEntry.second;
         for(unsigned int j = 0; j < mesh->tLists.size(); ++j){
             sp<ObjTriangleList> list = mesh->tLists[j];
             for(unsigned int k = 0; k < list->tIndices.size(); ++k){
                 v3d v1, v2, normal;
                 v1 = vertices[list->tIndices[k].vertexIndex[0]] - vertices[list->tIndices[k].vertexIndex[1]];
                 v2 = vertices[list->tIndices[k].vertexIndex[0]] - vertices[list->tIndices[k].vertexIndex[2]];
-                    
+                
                 normal = v3d::normalize(v3d::cross(v1, v2));
                 for(unsigned short e = 0; e < 3; ++e) memcpy(&faceNormals[list->tIndices[k].vertexIndex[e]], normal.pointer(), sizeof(v3d));
                 
                 for(unsigned short e = 0; e < 3; ++e) normals[list->tIndices[k].vertexIndex[e]] = normals[list->tIndices[k].vertexIndex[e]] + normal;
                 
-                    
+                
                 if(list->useUVs){
                     v3d tangent;
                     v3d uv1, uv2;
@@ -174,24 +174,25 @@ void ObjMeshData::builNormalsAndTangents(){
             }
         }
     }
-        
+    
     unsigned int index;
-    for(unsigned int i = 0; i < meshes.size(); ++i){
-        for(unsigned int j = 0; j < meshes[i]->vertexData.size(); ++j){
-            index = meshes[i]->vertexData[j].vIndex;
+    for(auto const &meshEntry : meshes){
+        sp<ObjMesh> mesh = meshEntry.second;
+        for(unsigned int j = 0; j < mesh->vertexData.size(); ++j){
+            index = mesh->vertexData[j].vIndex;
             normals[index] = v3d::normalize(normals[index]);
-            if(meshes[i]->vertexData[j].uvIndex != -1){
+            if(mesh->vertexData[j].uvIndex != -1){
                 tangents[index] = v3d::normalize(tangents[index]);
             }
-                
+            
         }
     }
 }
 
 
 #pragma mark Mesh building
-void ObjMeshData::optimizeMesh(unsigned int meshIndex, unsigned int vertexCacheSize){
-    sp<ObjMesh> mesh = meshes[meshIndex];
+void Obj::optimizeMesh(str meshName, unsigned int vertexCacheSize){
+    sp<ObjMesh> mesh = meshes[meshName];
     if(vertexCacheSize) SetCacheSize(vertexCacheSize);
     
     unsigned short nGroup = 0;
@@ -210,17 +211,22 @@ void ObjMeshData::optimizeMesh(unsigned int meshIndex, unsigned int vertexCacheS
     }
 }
 
-unsigned int ObjMeshData::drawMesh(unsigned int meshIndex){
-    return meshes[meshIndex]->draw();
+sp<ObjMesh> Obj::getMesh(str meshName){
+    if(meshes.find(meshName) != meshes.end())
+    return meshes[meshName];
+    
+    return nullptr;
 }
 
-sp<ObjMesh> ObjMeshData::getMesh(unsigned int index){
-    return meshes[index];
+unsigned int Obj::meshesSize()   { return (unsigned int)meshes.size();     }
+
+void Obj::build(){
+    for(auto const &meshEntry : meshes){
+        meshEntry.second->build();
+    }
 }
 
-unsigned int ObjMeshData::meshesSize()   { return (unsigned int)meshes.size();     }
-
-void ObjMeshData::clear(){
+void Obj::clear(){
     vertices.clear();
     normals.clear();
     faceNormals.clear();

@@ -53,7 +53,7 @@
 		F368E8CA1BA6AE5A00F322AF /* fragmentPerPixel.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F368E8C61BA6AE5A00F322AF /* fragmentPerPixel.glsl */; };
 		F3710A151BA6CA6000235C68 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3710A131BA6CA6000235C68 /* Camera.cpp */; };
 		F380B7901BBBDC550049E755 /* ObjMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F380B78C1BBBDC550049E755 /* ObjMesh.cpp */; settings = {ASSET_TAGS = (); }; };
-		F380B7911BBBDC550049E755 /* ObjMeshData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F380B78E1BBBDC550049E755 /* ObjMeshData.cpp */; settings = {ASSET_TAGS = (); }; };
+		F380B7911BBBDC550049E755 /* Obj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F380B78E1BBBDC550049E755 /* Obj.cpp */; settings = {ASSET_TAGS = (); }; };
 		F38A22E11BAA979700FADEC0 /* vertexPerPixel.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F38A22E01BAA979700FADEC0 /* vertexPerPixel.glsl */; };
 		F38A22E31BAAA15400FADEC0 /* vertexPerVertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F38A22E21BAAA15400FADEC0 /* vertexPerVertex.glsl */; };
 		F38A22E71BAAA40500FADEC0 /* fragmentPerVertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F38A22E61BAAA40500FADEC0 /* fragmentPerVertex.glsl */; };
@@ -159,8 +159,8 @@
 		F3710A141BA6CA6000235C68 /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Camera.h; path = SREngine/CPPSources/Camera/Camera.h; sourceTree = "<group>"; };
 		F380B78C1BBBDC550049E755 /* ObjMesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ObjMesh.cpp; sourceTree = "<group>"; };
 		F380B78D1BBBDC550049E755 /* ObjMesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjMesh.h; sourceTree = "<group>"; };
-		F380B78E1BBBDC550049E755 /* ObjMeshData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ObjMeshData.cpp; sourceTree = "<group>"; };
-		F380B78F1BBBDC550049E755 /* ObjMeshData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjMeshData.h; sourceTree = "<group>"; };
+		F380B78E1BBBDC550049E755 /* Obj.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Obj.cpp; sourceTree = "<group>"; };
+		F380B78F1BBBDC550049E755 /* Obj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Obj.h; sourceTree = "<group>"; };
 		F38A22E01BAA979700FADEC0 /* vertexPerPixel.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = vertexPerPixel.glsl; sourceTree = "<group>"; };
 		F38A22E21BAAA15400FADEC0 /* vertexPerVertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = vertexPerVertex.glsl; sourceTree = "<group>"; };
 		F38A22E61BAAA40500FADEC0 /* fragmentPerVertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fragmentPerVertex.glsl; sourceTree = "<group>"; };
@@ -477,8 +477,8 @@
 			children = (
 				F380B78C1BBBDC550049E755 /* ObjMesh.cpp */,
 				F380B78D1BBBDC550049E755 /* ObjMesh.h */,
-				F380B78E1BBBDC550049E755 /* ObjMeshData.cpp */,
-				F380B78F1BBBDC550049E755 /* ObjMeshData.h */,
+				F380B78E1BBBDC550049E755 /* Obj.cpp */,
+				F380B78F1BBBDC550049E755 /* Obj.h */,
 			);
 			name = Obj;
 			path = SREngine/CPPSources/Obj;
@@ -658,7 +658,7 @@
 				94CE87E11B62B59800752D5C /* AppDelegate.mm in Sources */,
 				F3FAE8BB1B6B7885007AF169 /* Shader.cpp in Sources */,
 				94CE87E21B62B59800752D5C /* FileWrapper.mm in Sources */,
-				F380B7911BBBDC550049E755 /* ObjMeshData.cpp in Sources */,
+				F380B7911BBBDC550049E755 /* Obj.cpp in Sources */,
 				F3710A151BA6CA6000235C68 /* Camera.cpp in Sources */,
 				F34129D81BB53DBC006F4D4D /* Texture.cpp in Sources */,
 				F34129D51BB53D6E006F4D4D /* ObjMaterial.cpp in Sources */,

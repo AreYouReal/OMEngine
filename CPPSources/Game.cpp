@@ -6,12 +6,12 @@
 #include "Scene.hpp"
 
 #include "GameObject.hpp"
-#include "ObjMeshData.h"
+#include "Obj.h"
 
 
 // DEBUG AND TEST STUFF GOES HERE
 
-void createTestScene(sp<Scene> scene, sp<ObjMeshData> object){
+void createTestScene(sp<Scene> scene, sp<Obj> object){
     /// TEST CODE
     v3d firstPos(0, 0, 0);
     sp<Transform> rotateABit = sp<Transform>(new Transform());
@@ -19,7 +19,7 @@ void createTestScene(sp<Scene> scene, sp<ObjMeshData> object){
     
     sp<GameObject> firstObj = std::make_shared<GameObject>();
     firstObj->mTransform = std::make_shared<Transform>(firstPos);
-    firstObj->addObjMesh(object->getMesh(0));
+    firstObj->addObjMesh(object->getMesh("leaf"));
     scene->addObjOnScene(firstObj);
     
     
@@ -58,7 +58,7 @@ sp<Materials>      mats;
 sp<Scene>          scene;
 
 
-sp<ObjMeshData>    object;
+sp<Obj>    object;
 
 
 SRContext* Game::getAppContext(){
@@ -84,11 +84,10 @@ int Game::Init ( SRContext *context ){
     scene       = Scene::instance();
 
     
-    object = ObjMeshData::load("scene.obj");
+    object = Obj::load("scene.obj");
+    object->build();
+    
 
-    for(unsigned int i = 0; i < object->meshesSize(); ++i){
-        object->getMesh(i)->build();
-    }
     object->clear(); // Free mesh data.
 
     createTestScene(scene, object);

@@ -13,28 +13,30 @@
 
 struct  ObjTriangleList;
 class   ObjMesh;
-class   ObjMeshData;
+class   Obj;
 
-class ObjMeshData : public std::enable_shared_from_this<ObjMeshData>{
+class Obj : public std::enable_shared_from_this<Obj>{
     friend class ObjMesh;
 public:
-    ~ObjMeshData();
+    ~Obj();
     
-    static sp<ObjMeshData> load(const char* filename);
+    static sp<Obj> load(const char* filename);
+    
+    void build();
     
     void clear();
 
-    void        optimizeMesh(unsigned int meshIndex, unsigned int vertexCacheSize);
+    void        optimizeMesh(str meshName, unsigned int vertexCacheSize);
     unsigned int drawMesh(unsigned int meshIndex);
     
-    sp<ObjMesh>  getMesh(unsigned int index);
+    sp<ObjMesh>  getMesh(str meshName);
     unsigned int meshesSize();
     
 // Fields
 private:
-    ObjMeshData();
+    Obj();
     
-    std::vector<sp<ObjMesh>>    meshes;
+    std::map<str, sp<ObjMesh>>  meshes;
     std::vector<v3d>            vertices;
     std::vector<v3d>            normals;
     std::vector<v3d>            faceNormals;

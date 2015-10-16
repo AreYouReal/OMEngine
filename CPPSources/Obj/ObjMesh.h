@@ -2,7 +2,7 @@
 
 #include "SRUtils.h"
 #include "ObjMaterial.h"
-#include "ObjMeshData.h"
+#include "Obj.h"
 
 enum class RenderObjectType{ SOLID, ALPHA_TESTED, TRANSPARENT };
 
@@ -21,13 +21,13 @@ struct ObjTriangleList{
     unsigned int                    vbo;
 };
 
-class ObjMeshData;
+class Obj;
 
 // Holds the unique vertex data index
 struct ObjVertexData{ int vIndex, uvIndex; };
 
 class ObjMesh{
-    friend class ObjMeshData;
+    friend class Obj;
 public:
     ObjMesh();
     ~ObjMesh();
@@ -59,7 +59,7 @@ private:
     unsigned int                    offset[ 5 ];     // The VBO offset(????)
     unsigned int                    vao;             // The VAO ID maintaned by GLES
     
-    wp<ObjMeshData>                 weakData;
+    wp<Obj>                 weakData;
     
     // Helpers
     void    addVertexData(sp<ObjTriangleList> otl, int vIndex, int uvIndex);
