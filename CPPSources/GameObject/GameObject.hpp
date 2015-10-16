@@ -29,5 +29,5 @@ private:
     
     std::vector<sp<GameObject>> mChildren;
     
-    sp<ObjMesh>     mObjMesh;
+    std::vector<sp<ObjMesh>>     mObjMeshes;
 };

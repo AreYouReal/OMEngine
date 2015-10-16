@@ -9,6 +9,8 @@ class Transform{
 public:
     Transform();
     Transform(v3d& position);
+    Transform(v3d&& position);
+    
     ~Transform();
     
     const m4d& transformMatrix() const;

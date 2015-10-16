@@ -27,21 +27,23 @@ void GameObject::draw(){
     if(mTransform){ modelM = mTransform->transformMatrix(); }
     
     Camera::instance()->pushMVMatrix(Camera::instance()->modelViewMatrix() * modelM);
-    
-    if(mObjMesh){
-        if(mObjMesh->renderObjectType() == RenderObjectType::SOLID){
-            mObjMesh->draw();
-        }else{
-            glEnable(GL_BLEND);
-            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-            glCullFace(GL_FRONT);
-            mObjMesh->draw();
-            glCullFace(GL_BACK);
-            mObjMesh->draw();
-            glDisable(GL_BLEND);
+    for (auto const& mesh : mObjMeshes) {
+        if(mesh){
+            if(mesh->renderObjectType() == RenderObjectType::SOLID){
+                mesh->draw();
+            }else{
+                glEnable(GL_BLEND);
+                glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+                glCullFace(GL_FRONT);
+                mesh->draw();
+                glCullFace(GL_BACK);
+                mesh->draw();
+                glDisable(GL_BLEND);
+            }
+            
         }
-        
     }
+
     for(auto const &child : mChildren){
         child->draw();
     }
@@ -51,6 +53,6 @@ void GameObject::draw(){
 
 
 void GameObject::addObjMesh(sp<ObjMesh> objToAdd){
-    mObjMesh = objToAdd;
+    mObjMeshes.push_back(std::move(objToAdd));
 }
 

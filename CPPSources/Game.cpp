@@ -14,13 +14,24 @@
 void createTestScene(sp<Scene> scene, sp<Obj> object){
     /// TEST CODE
     v3d firstPos(0, 0, 0);
-    sp<Transform> rotateABit = sp<Transform>(new Transform());
-    rotateABit->rotate(0, v3d(0.0f, 1.0f, 0.0f));
+
+    sp<GameObject> treeAndLeafs = std::make_shared<GameObject>();
+    treeAndLeafs->mTransform = std::make_shared<Transform>(v3d(3, 0, 0));
+    treeAndLeafs->addObjMesh(object->getMesh("leaf"));
+    treeAndLeafs->addObjMesh(object->getMesh("tree"));
+    scene->addObjOnScene(treeAndLeafs);
     
-    sp<GameObject> firstObj = std::make_shared<GameObject>();
-    firstObj->mTransform = std::make_shared<Transform>(firstPos);
-    firstObj->addObjMesh(object->getMesh("leaf"));
-    scene->addObjOnScene(firstObj);
+    
+    sp<GameObject> momo = std::make_shared<GameObject>();
+    momo->mTransform = std::make_shared<Transform>(v3d(0, 0, 2.5));
+    momo->addObjMesh(object->getMesh("momo"));
+    treeAndLeafs->addChild(momo);
+    
+    sp<GameObject> ground = std::make_shared<GameObject>();
+    ground->mTransform = std::make_shared<Transform>(v3d(0, 0, 0));
+    ground->addObjMesh(object->getMesh("grass_ground"));
+    scene->addObjOnScene(ground);
+    
     
     
     

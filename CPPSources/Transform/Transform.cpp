@@ -11,6 +11,11 @@ Transform::Transform(v3d& position): Transform() {
     refreshTransformMatrix();
 }
 
+Transform::Transform(v3d&& position): Transform() {
+    mPosition = std::move(position);
+    refreshTransformMatrix();
+}
+
 Transform::~Transform(){
     logMessage("Transform destructor!\n");
 }
