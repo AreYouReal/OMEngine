@@ -8,6 +8,43 @@
 #include "GameObject.hpp"
 #include "ObjMeshData.h"
 
+
+// DEBUG AND TEST STUFF GOES HERE
+
+void createTestScene(sp<Scene> scene, sp<ObjMeshData> object){
+    /// TEST CODE
+    v3d firstPos(0, 0, 0);
+    sp<Transform> rotateABit = sp<Transform>(new Transform());
+    rotateABit->rotate(0, v3d(0.0f, 1.0f, 0.0f));
+    
+    sp<GameObject> firstObj = std::make_shared<GameObject>();
+    firstObj->mTransform = std::make_shared<Transform>(firstPos);
+    firstObj->addObjMesh(object->getMesh(0));
+    scene->addObjOnScene(firstObj);
+    
+    
+    
+    
+//    up<GameObject> firstNode = up<ASceneNode>(new ASceneNode(sp<Transform>(new Transform(firstPos)), object->getMesh(0)));
+//    up<ASceneNode> secondNode = up<ASceneNode>(new ASceneNode(sp<Transform>(new Transform()), object->getMesh(1)));
+//    up<ASceneNode> thirdNode = up<ASceneNode>(new ASceneNode(rotateABit, object->getMesh(2)));
+//    up<ASceneNode> onveMoreNode = up<ASceneNode>(new ASceneNode(sp<Transform>(new Transform()), object->getMesh(3)));
+//    up<ASceneNode> moreNODE = up<ASceneNode>(new ASceneNode(sp<Transform>(new Transform()), object->getMesh(4)));
+//    up<ASceneNode> leafts = up<ASceneNode>(new ASceneNode(sp<Transform>(new Transform()), object->getMesh(5)));
+//    thirdNode->addChild(std::move(onveMoreNode));
+//    firstNode->addChild(std::move(secondNode));
+//    scene->addChild(std::move(thirdNode));
+//    scene->addChild(std::move(firstNode));
+//    scene->addChild(std::move(moreNODE));
+//    scene->addChild(std::move(leafts));
+    /// __________________________
+
+}
+
+
+
+
+
 #define CLAMP(x, min, max) ((x < min) ? min : ((x > max) ? max : x));
 
 using UserData = struct{};
@@ -53,25 +90,9 @@ int Game::Init ( SRContext *context ){
         object->getMesh(i)->build();
     }
     object->clear(); // Free mesh data.
+
+    createTestScene(scene, object);
     
-    /// TEST CODE
-    v3d firstPos(0, 0, 0);
-    sp<Transform> rotateABit = sp<Transform>(new Transform());
-    rotateABit->rotate(0, v3d(0.0f, 1.0f, 0.0f));
-    
-    up<ASceneNode> firstNode = up<ASceneNode>(new ASceneNode(sp<Transform>(new Transform(firstPos)), object->getMesh(0)));
-    up<ASceneNode> secondNode = up<ASceneNode>(new ASceneNode(sp<Transform>(new Transform()), object->getMesh(1)));
-    up<ASceneNode> thirdNode = up<ASceneNode>(new ASceneNode(rotateABit, object->getMesh(2)));
-    up<ASceneNode> onveMoreNode = up<ASceneNode>(new ASceneNode(sp<Transform>(new Transform()), object->getMesh(3)));
-    up<ASceneNode> moreNODE = up<ASceneNode>(new ASceneNode(sp<Transform>(new Transform()), object->getMesh(4)));
-    up<ASceneNode> leafts = up<ASceneNode>(new ASceneNode(sp<Transform>(new Transform()), object->getMesh(5)));
-    thirdNode->addChild(std::move(onveMoreNode));
-    firstNode->addChild(std::move(secondNode));
-    scene->addChild(std::move(thirdNode));
-    scene->addChild(std::move(firstNode));
-    scene->addChild(std::move(moreNODE));
-    scene->addChild(std::move(leafts));
-    /// __________________________
     
     return true;
 }
@@ -161,5 +182,9 @@ int Game::Main ( SRContext *context ){
 void Game::Exit(){
     logMessage("Exit function\n");
 }
+
+
+
+
 
 

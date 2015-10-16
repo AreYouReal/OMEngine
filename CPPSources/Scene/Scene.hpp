@@ -1,8 +1,9 @@
 #pragma once
 
 #include "Shortcuts.h"
-
-#include "ASceneNode.hpp"
+#include "IRenderable.h"
+#include "Singleton.hpp"
+#include "ObjMesh.h"
 
 class Scene : public Singleton<Scene>{
 
@@ -14,9 +15,7 @@ public:
     
     ~Scene();
     
-    
-    
-    void addChild(up<ASceneNode> newNode);
+    void addObjOnScene(sp<IRenderable> newNode);
     
     void update();
     
@@ -27,5 +26,5 @@ private:
     RenderObjectType  mDrawingState = RenderObjectType::SOLID;
     
 
-    std::vector<up<ASceneNode>> mRoots;
+    std::vector<sp<IRenderable>> mRoots;
 };

@@ -9,13 +9,13 @@ Scene::~Scene(){
     logMessage("Scene destructor!\n");
 }
 
-void Scene::addChild(up<ASceneNode> newNode){
+void Scene::addObjOnScene(sp<IRenderable> newNode){
     mRoots.push_back(std::move(newNode));
 }
 
 void Scene::update(){
     for(auto const &rootNode : mRoots){
-        rootNode->update();
+        rootNode->draw();
     }
 
 }
