@@ -38,6 +38,10 @@ public:
     
     RenderObjectType renderObjectType();
     
+    float                           radius;
+    std::string                     getName(){ return name; }
+    
+    
 private:
     // Fields
     std::string                     name;           // Mesh name.
@@ -51,7 +55,7 @@ private:
     v3d                             max;
     v3d                             location;
     v3d                             dimension;
-    float                           radius;
+
     
     unsigned int                    vbo;             // The vertex buffer VBO ID maintaned by GLES.
     unsigned int                    stride;          // Stride size in bytes to determine next data chunk location.

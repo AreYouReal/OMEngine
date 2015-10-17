@@ -72,9 +72,12 @@ void Camera::rotate(float deg, v3d &axis){
 
 float Camera::sphereDistanceInFrustum(v3d *location, float radius){
     float d;
-    for(unsigned char i = 0; i < 6; ++i){
+    for(unsigned int i = 0; i < 6; ++i){
         d = frustum[i].x * location->x + frustum[i].y * location->y + frustum[i].z * location->z + frustum[i].w;
-        if(d < -radius) return 0.0f;
+        if(d < -radius){
+            logMessage("d: %f\n", d);
+            return 0.0f;
+        }
     }
     return d + radius;
 }
@@ -84,6 +87,7 @@ void Camera::refreshViewAndNormalMatrix(){
     v3d lookAt = transform->mPosition + transform->mFront;
     mViewMatrix = m4d::lookAt(transform->mPosition, lookAt, transform->mUp);
     mNormalMatrix = m4d::inverseTranspose(mViewMatrix);
+    buildFrustum();
 }
 void Camera::refreshProjMatrix(){ mProjectionMatrix = m4d::perspective(mFovy, mWidth, mHeight, mNear, mFar);}
 
