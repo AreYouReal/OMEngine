@@ -6,6 +6,10 @@
 #include "Camera.h"
 #include "Transform.hpp"
 
+// Bullet
+#include "btRigidBody.h"
+
+
 class GameObject : public IRenderable{
     
 public:
@@ -25,9 +29,14 @@ public:
     
     sp<Transform>   mTransform;
     
+    sp<btRigidBody> pBody;          // Physics "body" of the mesh
+    
+    
+    v3d getDimensions();
+    
 private:
     
     std::vector<sp<GameObject>> mChildren;
     
-    std::vector<sp<ObjMesh>>     mObjMeshes;
+    std::vector<sp<ObjMesh>>    mObjMeshes;
 };

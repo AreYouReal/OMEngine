@@ -1,5 +1,6 @@
 #pragma once
 
+// SREngine
 #include "SRUtils.h"
 #include "ObjMaterial.h"
 #include "Obj.h"
@@ -38,9 +39,14 @@ public:
     
     RenderObjectType renderObjectType();
     
-    float                           radius;
+    
     std::string                     getName(){ return name; }
     
+    float                           radius;
+    v3d                             min;
+    v3d                             max;
+    v3d                             location;
+    v3d                             dimension;
     
 private:
     // Fields
@@ -51,10 +57,7 @@ private:
     std::vector<sp<ObjTriangleList>>tLists;         // Triangle lists...
     sp<ObjMaterial>                 currentMaterial = nullptr;
 
-    v3d                             min;
-    v3d                             max;
-    v3d                             location;
-    v3d                             dimension;
+
 
     
     unsigned int                    vbo;             // The vertex buffer VBO ID maintaned by GLES.
@@ -63,7 +66,9 @@ private:
     unsigned int                    offset[ 5 ];     // The VBO offset(????)
     unsigned int                    vao;             // The VAO ID maintaned by GLES
     
-    wp<Obj>                 weakData;
+    wp<Obj>                         weakData;
+
+    
     
     // Helpers
     void    addVertexData(sp<ObjTriangleList> otl, int vIndex, int uvIndex);

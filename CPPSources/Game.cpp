@@ -29,6 +29,10 @@
 #include "btSequentialImpulseConstraintSolver.h"
 #include "btSoftRigidDynamicsWorld.h"
 
+#include "btBoxShape.h"
+
+#include "btDefaultMotionState.h"
+
 sp<btSoftBodyRigidBodyCollisionConfiguration>   cConfig     = nullptr;
 sp<btCollisionDispatcher>                       cDispatcher = nullptr;
 sp<btBroadphaseInterface>                       cInterface  = nullptr;
@@ -37,7 +41,7 @@ sp<btSoftRigidDynamicsWorld>                    physicsWorld= nullptr;
 
 void initPhysicsWorld(){
     cConfig      = std::make_shared<btSoftBodyRigidBodyCollisionConfiguration>();
-    cDispatcher  = std::make_shared<btCollisionDispatcher>();
+    cDispatcher  = std::make_shared<btCollisionDispatcher>(cConfig.get());
     cInterface   = std::make_shared<btDbvtBroadphase>();
     cSolver      = std::make_shared<btSequentialImpulseConstraintSolver>();
     
@@ -45,54 +49,70 @@ void initPhysicsWorld(){
                                                               cInterface.get(),
                                                               cSolver.get(),
                                                               cConfig.get());
-    physicsWorld->setGravity(btVector3(0, 0, -9.8f));
+    physicsWorld->setGravity(btVector3(0, 0, -0.8f));
 }
 
+
+// Do I actualy need this when using smart-pointers? Think carefully...
+void freePhysicsWorld(){
+    while(physicsWorld->getNumCollisionObjects()){
+        btCollisionObject *btCObject = physicsWorld->getCollisionObjectArray()[0];
+        btRigidBody *rBody = btRigidBody::upcast(btCObject);
+        if(rBody){
+            delete rBody->getCollisionShape();
+            delete rBody->getMotionState();
+            physicsWorld->removeRigidBody(rBody);
+            physicsWorld->removeCollisionObject(btCObject);
+            delete rBody;
+        }
+    }
+}
 
 //------------------------------------
 
 
+void addRigidBodyToTheGameObject(sp<GameObject> go, float mass){
+    v3d goDimensions = go->getDimensions();
+    btCollisionShape *cShape = new btBoxShape(btVector3(goDimensions.x * 0.5f,
+                                                                         goDimensions.y * 0.5f,
+                                                                         goDimensions.z * 0.5f));
+    btTransform bttransform;
+    m4d transformM = m4d::transpose(go->mTransform->transformMatrix());
+    bttransform.setFromOpenGLMatrix(transformM.pointer());
+    btDefaultMotionState *defMState = new btDefaultMotionState(bttransform);
+    btVector3 localInertia(0.0f, 0.0f, 0.0f);
+    if(mass > 0.0f) cShape->calculateLocalInertia( mass, localInertia );
+    go->pBody = std::make_shared<btRigidBody>(mass, defMState, cShape, localInertia);
+    go->pBody->setUserPointer(go.get());
+    physicsWorld->addRigidBody(go->pBody.get());
+}
+
 // DEBUG AND TEST STUFF GOES HERE
+
+sp<GameObject> treeAndLeafs;
+sp<GameObject> ground;
+sp<GameObject> momo;
 
 void createTestScene(sp<Scene> scene, sp<Obj> object){
     /// TEST CODE
     v3d firstPos(0, 0, 0);
 
-    sp<GameObject> treeAndLeafs = std::make_shared<GameObject>();
-    treeAndLeafs->mTransform = std::make_shared<Transform>(v3d(3, 0, 0));
+    treeAndLeafs = std::make_shared<GameObject>();
+    treeAndLeafs->mTransform = std::make_shared<Transform>(v3d(0, 0, 5));
     treeAndLeafs->addObjMesh(object->getMesh("leaf"));
     treeAndLeafs->addObjMesh(object->getMesh("tree"));
     scene->addObjOnScene(treeAndLeafs);
     
     
-    sp<GameObject> momo = std::make_shared<GameObject>();
-    momo->mTransform = std::make_shared<Transform>(v3d(0, 0, 0));
+    momo = std::make_shared<GameObject>();
+    momo->mTransform = std::make_shared<Transform>(v3d(0, 0, 2));
     momo->addObjMesh(object->getMesh("momo"));
-    treeAndLeafs->addChild(momo);
+    scene->addObjOnScene(momo);
     
-    sp<GameObject> ground = std::make_shared<GameObject>();
+    ground = std::make_shared<GameObject>();
     ground->mTransform = std::make_shared<Transform>(v3d(0, 0, 0));
     ground->addObjMesh(object->getMesh("grass_ground"));
     scene->addObjOnScene(ground);
-    
-    
-    
-    
-    
-//    up<GameObject> firstNode = up<ASceneNode>(new ASceneNode(sp<Transform>(new Transform(firstPos)), object->getMesh(0)));
-//    up<ASceneNode> secondNode = up<ASceneNode>(new ASceneNode(sp<Transform>(new Transform()), object->getMesh(1)));
-//    up<ASceneNode> thirdNode = up<ASceneNode>(new ASceneNode(rotateABit, object->getMesh(2)));
-//    up<ASceneNode> onveMoreNode = up<ASceneNode>(new ASceneNode(sp<Transform>(new Transform()), object->getMesh(3)));
-//    up<ASceneNode> moreNODE = up<ASceneNode>(new ASceneNode(sp<Transform>(new Transform()), object->getMesh(4)));
-//    up<ASceneNode> leafts = up<ASceneNode>(new ASceneNode(sp<Transform>(new Transform()), object->getMesh(5)));
-//    thirdNode->addChild(std::move(onveMoreNode));
-//    firstNode->addChild(std::move(secondNode));
-//    scene->addChild(std::move(thirdNode));
-//    scene->addChild(std::move(firstNode));
-//    scene->addChild(std::move(moreNODE));
-//    scene->addChild(std::move(leafts));
-    /// __________________________
-
 }
 
 
@@ -140,19 +160,22 @@ int Game::Init ( SRContext *context ){
     
     object = Obj::load("scene.obj");
     object->build();
-    
-
     object->clear(); // Free mesh data.
 
     createTestScene(scene, object);
     
-    
+    initPhysicsWorld();
+    addRigidBodyToTheGameObject(treeAndLeafs, 0.001f );
+    addRigidBodyToTheGameObject(ground, 0.0f);
+    addRigidBodyToTheGameObject(momo, 1.0f);
+
     return true;
 }
 
 
 void Game::Update(SRContext *context, float deltaTime){
 //    logMessage("UPDATE \n");
+        physicsWorld->stepSimulation( 1.0f / 10.f );
 }
 
 
@@ -171,10 +194,7 @@ void Game::Draw ( SRContext *context ){
     glClearColor(0.0f, 0.3f, 0.0f, 1.0f);
     glClear( GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT );
 
-        scene->update();
-    
-    // Draw all objects on the scene
-//    scene->update();
+    scene->update();
 }
 
 
