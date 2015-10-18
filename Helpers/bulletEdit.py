@@ -1,6 +1,5 @@
 
-import os, sys, ntpath
-
+import os, sys, ntpath, re
 
 
 def iterateThrougFiles(dir):
@@ -13,14 +12,17 @@ def iterateThrougFiles(dir):
 
 
 def cutInclude(filename):
-	print("CutInclude for file " + filename)
 	fileContent = ""
 	s = open(filename)
 	for line in s.readlines():
 		if line.startswith("#include"):
-			includeHeader = ntpath.basename(line[10:])
-			if(includeHeader.startswith("bt") or includeHeader.startswith("b3")):
-				fileContent += "#include "  +  "\"" + includeHeader
+			betweenQuotes = re.findall(r'"([^"]*)"', line)
+			if len(betweenQuotes) > 0:
+				includeHeader = ntpath.basename(re.findall(r'"([^"]*)"', line)[0])
+				if(includeHeader.startswith("bt") or includeHeader.startswith("b3")):
+					fileContent += "#include "  +  "\"" + includeHeader + "\"\n"
+				else:
+					fileContent += line
 			else:
 				fileContent += line
 		else:
