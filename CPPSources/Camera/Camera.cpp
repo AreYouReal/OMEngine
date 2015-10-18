@@ -75,7 +75,6 @@ float Camera::sphereDistanceInFrustum(v3d *location, float radius){
     for(unsigned int i = 0; i < 6; ++i){
         d = frustum[i].x * location->x + frustum[i].y * location->y + frustum[i].z * location->z + frustum[i].w;
         if(d < -radius){
-            logMessage("d: %f\n", d);
             return 0.0f;
         }
     }

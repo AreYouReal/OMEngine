@@ -8,6 +8,49 @@
 #include "GameObject.hpp"
 #include "Obj.h"
 
+//#include "bullet/btAlignedAllocator.h"
+//#include "bullet/btBulletDynamicsCommon.h"
+//#include "bullet/btSoftRigidDynamicsWorld.h"
+//#include "bullet/btSoftBodyRigidBodyCollisionConfiguration.h"
+//#include "bullet/btShapeHull.h"
+//#include "bullet/btSoftBodyHelpers.h"
+//#include "bullet/btSoftBody.h"
+//#include "bullet/btGImpactShape.h"
+//#include "bullet/btGImpactCollisionAlgorithm.h"
+//#include "bullet/btBulletWorldImporter.h"
+
+// Buillet physics test code goes here
+#include "btSoftBodyRigidBodyCollisionConfiguration.h"
+
+#include "btDbvtBroadphase.h"
+#include "btCollisionDispatcher.h"
+#include "btBroadphaseInterface.h"
+#include "btConstraintSolver.h"
+#include "btSequentialImpulseConstraintSolver.h"
+#include "btSoftRigidDynamicsWorld.h"
+
+sp<btSoftBodyRigidBodyCollisionConfiguration>   cConfig     = nullptr;
+sp<btCollisionDispatcher>                       cDispatcher = nullptr;
+sp<btBroadphaseInterface>                       cInterface  = nullptr;
+sp<btConstraintSolver>                          cSolver     = nullptr;
+sp<btSoftRigidDynamicsWorld>                    physicsWorld= nullptr;
+
+void initPhysicsWorld(){
+    cConfig      = std::make_shared<btSoftBodyRigidBodyCollisionConfiguration>();
+    cDispatcher  = std::make_shared<btCollisionDispatcher>();
+    cInterface   = std::make_shared<btDbvtBroadphase>();
+    cSolver      = std::make_shared<btSequentialImpulseConstraintSolver>();
+    
+    physicsWorld = std::make_shared<btSoftRigidDynamicsWorld>(cDispatcher.get(),
+                                                              cInterface.get(),
+                                                              cSolver.get(),
+                                                              cConfig.get());
+    physicsWorld->setGravity(btVector3(0, 0, -9.8f));
+}
+
+
+//------------------------------------
+
 
 // DEBUG AND TEST STUFF GOES HERE
 
@@ -23,7 +66,7 @@ void createTestScene(sp<Scene> scene, sp<Obj> object){
     
     
     sp<GameObject> momo = std::make_shared<GameObject>();
-    momo->mTransform = std::make_shared<Transform>(v3d(0, 0, 2.5));
+    momo->mTransform = std::make_shared<Transform>(v3d(0, 0, 0));
     momo->addObjMesh(object->getMesh("momo"));
     treeAndLeafs->addChild(momo);
     
