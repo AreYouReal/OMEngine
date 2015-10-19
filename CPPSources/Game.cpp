@@ -85,6 +85,7 @@ int Game::Init ( SRContext *context ){
     createTestScene(scene, object);
     
     pWorld->addPBodyToGameObject(momo, PhysicalBodyShape::BOX, 1.0f, momo->getDimensions());
+    pWorld->addPBodyToGameObject(treeAndLeafs, PhysicalBodyShape::BOX, 1.0f, treeAndLeafs->getDimensions());
     pWorld->addPBodyToGameObject(ground, PhysicalBodyShape::BOX, 0.0f, ground->getDimensions());
     
     return true;
