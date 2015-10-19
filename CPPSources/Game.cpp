@@ -49,7 +49,7 @@ void initPhysicsWorld(){
                                                               cInterface.get(),
                                                               cSolver.get(),
                                                               cConfig.get());
-    physicsWorld->setGravity(btVector3(0, 0, -0.8f));
+    physicsWorld->setGravity(btVector3(0, 0, -9.8f));
 }
 
 
@@ -72,9 +72,10 @@ void freePhysicsWorld(){
 
 
 void addRigidBodyToTheGameObject(sp<GameObject> go, float mass){
+    if(!go) return;
     v3d goDimensions = go->getDimensions();
     btCollisionShape *cShape = new btBoxShape(btVector3(goDimensions.x * 0.5f,
-                                                                         goDimensions.y * 0.5f,
+                                                                        goDimensions.y * 0.5f,
                                                                          goDimensions.z * 0.5f));
     btTransform bttransform;
     m4d transformM = m4d::transpose(go->mTransform->transformMatrix());
@@ -82,9 +83,9 @@ void addRigidBodyToTheGameObject(sp<GameObject> go, float mass){
     btDefaultMotionState *defMState = new btDefaultMotionState(bttransform);
     btVector3 localInertia(0.0f, 0.0f, 0.0f);
     if(mass > 0.0f) cShape->calculateLocalInertia( mass, localInertia );
-    go->pBody = std::make_shared<btRigidBody>(mass, defMState, cShape, localInertia);
+    go->pBody = new btRigidBody(mass, defMState, cShape, localInertia);
     go->pBody->setUserPointer(go.get());
-    physicsWorld->addRigidBody(go->pBody.get());
+    physicsWorld->addRigidBody(go->pBody);
 }
 
 // DEBUG AND TEST STUFF GOES HERE
@@ -105,7 +106,7 @@ void createTestScene(sp<Scene> scene, sp<Obj> object){
     
     
     momo = std::make_shared<GameObject>();
-    momo->mTransform = std::make_shared<Transform>(v3d(0, 0, 2));
+    momo->mTransform = std::make_shared<Transform>(v3d(2.3, 0, 7));
     momo->addObjMesh(object->getMesh("momo"));
     scene->addObjOnScene(momo);
     
@@ -114,10 +115,6 @@ void createTestScene(sp<Scene> scene, sp<Obj> object){
     ground->addObjMesh(object->getMesh("grass_ground"));
     scene->addObjOnScene(ground);
 }
-
-
-
-
 
 #define CLAMP(x, min, max) ((x < min) ? min : ((x > max) ? max : x));
 
@@ -165,7 +162,7 @@ int Game::Init ( SRContext *context ){
     createTestScene(scene, object);
     
     initPhysicsWorld();
-    addRigidBodyToTheGameObject(treeAndLeafs, 0.001f );
+    addRigidBodyToTheGameObject(treeAndLeafs, 1.0f );
     addRigidBodyToTheGameObject(ground, 0.0f);
     addRigidBodyToTheGameObject(momo, 1.0f);
 
@@ -183,7 +180,8 @@ void Game::Update(SRContext *context, float deltaTime){
 // Draw a triangle using the shader pair created in Init()
 //
 void Game::Draw ( SRContext *context ){
-//    logMessage("DRAW \n");
+    Stopwatch stopwatch;
+    //    logMessage("DRAW \n");
 #ifdef ANDROID
 //    logMessage("%d, %d, %d, %d, %d\n", context->eglNativeDisplay, context->eglNativeWindow, context->eglDisplay, context->eglContext, context->eglSurface );
     if(!context->eglDisplay) return;
@@ -195,6 +193,7 @@ void Game::Draw ( SRContext *context ){
     glClear( GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT );
 
     scene->update();
+    logMessage("%f\n", stopwatch.fps());
 }
 
 
@@ -208,6 +207,7 @@ void Game::Shutdown ( SRContext *context ){
     
     logMessage("obj: %d\n sl: %d\n cam: %d\n ill: %d\n scene: %d\n mats: %d\n", object.use_count(), sLibrary.use_count(), cam.use_count(), ill.use_count(), scene.use_count(), mats.use_count());
     
+    freePhysicsWorld();
     
     logMessage("ShutDown function\n");
 }

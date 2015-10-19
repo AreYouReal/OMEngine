@@ -33,13 +33,14 @@ void GameObject::draw(){
 //        logMessage("%s %f, %f, %f\n", mObjMeshes[0]->getName().c_str(), pBody->getWorldTransform().m_origin[0], pBody->getWorldTransform().m_origin[1], pBody->getWorldTransform().m_origin[2]);
     }else {
         if(mTransform){ modelM = mTransform->transformMatrix(); }
+        else{ logMessage("Something went wrong. There is no physical body or transform... "); }
     }
 
     
     Camera::instance()->pushMVMatrix(Camera::instance()->modelViewMatrix() * modelM);
     for (auto const& mesh : mObjMeshes) {
 //        if(!Camera::instance()->sphereDistanceInFrustum(&mTransform->mPosition, mesh->radius)){
-////            logMessage("skip %s mesh\n", mesh->getName().c_str());
+//            logMessage("skip %s mesh\n", mesh->getName().c_str());
 //            continue;
 //        }
         if(mesh){
@@ -81,7 +82,7 @@ v3d GameObject::getDimensions(){
         if(max.y < mesh->max.y) max.y = mesh->max.y;
         if(max.z < mesh->max.z) max.z = mesh->max.z;
     }
-    v3d::print((max - min));
+    v3d::print(mObjMeshes[0]->max - mObjMeshes[0]->min);
     
-    return (max - min);
+    return (mObjMeshes[0]->max - mObjMeshes[0]->min);
 }
