@@ -70,7 +70,25 @@
  /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Camera/Camera.h \
  /Users/veronika/Documents/ADT/android-ndk-r9d/sources/cxx-stl/gnu-libstdc++/4.8/include/stack \
  /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Transform/Transform.hpp \
- /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Math/q4d.h
+ /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Math/q4d.h \
+ /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/BulletDynamics/Dynamics/btRigidBody.h \
+ /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/LinearMath/btAlignedObjectArray.h \
+ /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/LinearMath/btScalar.h \
+ /Users/veronika/Documents/ADT/android-ndk-r9d/platforms/android-18/arch-arm/usr/include/assert.h \
+ /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/LinearMath/btAlignedAllocator.h \
+ /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/LinearMath/btTransform.h \
+ /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/LinearMath/btMatrix3x3.h \
+ /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/LinearMath/btVector3.h \
+ /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/LinearMath/btMinMax.h \
+ /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/LinearMath/btQuaternion.h \
+ /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/LinearMath/btQuadWord.h \
+ /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/BulletCollision/BroadphaseCollision/btBroadphaseProxy.h \
+ /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/LinearMath/btScalar.h \
+ /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/LinearMath/btVector3.h \
+ /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/LinearMath/btAlignedAllocator.h \
+ /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/BulletCollision/CollisionDispatch/btCollisionObject.h \
+ /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/LinearMath/btMotionState.h \
+ /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/LinearMath/btTransform.h
 
 /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/GameObject/GameObject.hpp:
 
@@ -213,3 +231,39 @@
 /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Transform/Transform.hpp:
 
 /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Math/q4d.h:
+
+/Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/BulletDynamics/Dynamics/btRigidBody.h:
+
+/Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/LinearMath/btAlignedObjectArray.h:
+
+/Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/LinearMath/btScalar.h:
+
+/Users/veronika/Documents/ADT/android-ndk-r9d/platforms/android-18/arch-arm/usr/include/assert.h:
+
+/Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/LinearMath/btAlignedAllocator.h:
+
+/Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/LinearMath/btTransform.h:
+
+/Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/LinearMath/btMatrix3x3.h:
+
+/Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/LinearMath/btVector3.h:
+
+/Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/LinearMath/btMinMax.h:
+
+/Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/LinearMath/btQuaternion.h:
+
+/Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/LinearMath/btQuadWord.h:
+
+/Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/BulletCollision/BroadphaseCollision/btBroadphaseProxy.h:
+
+/Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/LinearMath/btScalar.h:
+
+/Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/LinearMath/btVector3.h:
+
+/Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/LinearMath/btAlignedAllocator.h:
+
+/Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/BulletCollision/CollisionDispatch/btCollisionObject.h:
+
+/Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/LinearMath/btMotionState.h:
+
+/Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/LinearMath/btTransform.h:
