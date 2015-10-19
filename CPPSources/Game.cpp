@@ -9,31 +9,6 @@
 #include "GameObject.hpp"
 #include "Obj.h"
 
-
-
-
-
-
-//------------------------------------
-
-
-//void addRigidBodyToTheGameObject(sp<GameObject> go, float mass){
-//    if(!go) return;
-//    v3d goDimensions = go->getDimensions();
-//    btCollisionShape *cShape = new btBoxShape(btVector3(goDimensions.x * 0.5f,
-//                                                                        goDimensions.y * 0.5f,
-//                                                                         goDimensions.z * 0.5f));
-//    btTransform bttransform;
-//    m4d transformM = m4d::transpose(go->mTransform->transformMatrix());
-//    bttransform.setFromOpenGLMatrix(transformM.pointer());
-//    btDefaultMotionState *defMState = new btDefaultMotionState(bttransform);
-//    btVector3 localInertia(0.0f, 0.0f, 0.0f);
-//    if(mass > 0.0f) cShape->calculateLocalInertia( mass, localInertia );
-//    go->pBody = new btRigidBody(mass, defMState, cShape, localInertia);
-//    go->pBody->setUserPointer(go.get());
-//    physicsWorld->addRigidBody(go->pBody);
-//}
-
 // DEBUG AND TEST STUFF GOES HERE
 
 sp<GameObject> treeAndLeafs;
@@ -109,18 +84,16 @@ int Game::Init ( SRContext *context ){
 
     createTestScene(scene, object);
     
-
-//    addRigidBodyToTheGameObject(treeAndLeafs, 1.0f );
-//    addRigidBodyToTheGameObject(ground, 0.0f);
-//    addRigidBodyToTheGameObject(momo, 1.0f);
-
+    pWorld->addPBodyToGameObject(momo, PhysicalBodyShape::BOX, 1.0f, momo->getDimensions());
+    pWorld->addPBodyToGameObject(ground, PhysicalBodyShape::BOX, 0.0f, ground->getDimensions());
+    
     return true;
 }
 
 
 void Game::Update(SRContext *context, float deltaTime){
 //    logMessage("UPDATE \n");
-//        physicsWorld->stepSimulation( 1.0f / 10.f );
+    pWorld->update();
 }
 
 
