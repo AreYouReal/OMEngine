@@ -19,6 +19,7 @@ $(SRC_PATH)/CPPSources/Math/q4d.cpp\
 $(SRC_PATH)/CPPSources/Math/v3d.cpp\
 $(SRC_PATH)/CPPSources/Obj/Obj.cpp\
 $(SRC_PATH)/CPPSources/Obj/ObjMesh.cpp\
+$(SRC_PATH)/CPPSources/Physics/PhysicalWorld.cpp\
 $(SRC_PATH)/CPPSources/Scene/Scene.cpp\
 $(SRC_PATH)/CPPSources/Shaders/Shader.cpp\
 $(SRC_PATH)/CPPSources/Shaders/ShaderLibrary.cpp\
@@ -184,6 +185,7 @@ $(SRC_PATH)/CPPSources/Light\
 $(SRC_PATH)/CPPSources/Material\
 $(SRC_PATH)/CPPSources/Math\
 $(SRC_PATH)/CPPSources/Obj\
+$(SRC_PATH)/CPPSources/Physics\
 $(SRC_PATH)/CPPSources/Scene\
 $(SRC_PATH)/CPPSources/Shaders\
 $(SRC_PATH)/CPPSources/Texture\
