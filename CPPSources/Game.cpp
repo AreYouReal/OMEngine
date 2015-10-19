@@ -8,17 +8,6 @@
 #include "GameObject.hpp"
 #include "Obj.h"
 
-//#include "bullet/btAlignedAllocator.h"
-//#include "bullet/btBulletDynamicsCommon.h"
-//#include "bullet/btSoftRigidDynamicsWorld.h"
-//#include "bullet/btSoftBodyRigidBodyCollisionConfiguration.h"
-//#include "bullet/btShapeHull.h"
-//#include "bullet/btSoftBodyHelpers.h"
-//#include "bullet/btSoftBody.h"
-//#include "bullet/btGImpactShape.h"
-//#include "bullet/btGImpactCollisionAlgorithm.h"
-//#include "bullet/btBulletWorldImporter.h"
-
 // Buillet physics test code goes here
 #include "btSoftBodyRigidBodyCollisionConfiguration.h"
 
@@ -180,7 +169,7 @@ void Game::Update(SRContext *context, float deltaTime){
 // Draw a triangle using the shader pair created in Init()
 //
 void Game::Draw ( SRContext *context ){
-    Stopwatch stopwatch;
+//    Stopwatch stopwatch;
     //    logMessage("DRAW \n");
 #ifdef ANDROID
 //    logMessage("%d, %d, %d, %d, %d\n", context->eglNativeDisplay, context->eglNativeWindow, context->eglDisplay, context->eglContext, context->eglSurface );
@@ -193,7 +182,7 @@ void Game::Draw ( SRContext *context ){
     glClear( GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT );
 
     scene->update();
-    logMessage("%f\n", stopwatch.fps());
+//    logMessage("%f\n", stopwatch.fps());
 }
 
 
