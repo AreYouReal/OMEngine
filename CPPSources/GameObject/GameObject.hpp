@@ -29,7 +29,7 @@ public:
     
     sp<Transform>   mTransform;
     
-    btRigidBody *pBody;          // Physics "body" of the mesh
+    btRigidBody *pBody = nullptr;          // Physics "body" of the mesh
     
     
     v3d getDimensions();

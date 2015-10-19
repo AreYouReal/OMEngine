@@ -4,78 +4,35 @@
 #include "Camera.h"
 #include "Illuminator.hpp"
 #include "Scene.hpp"
+#include "PhysicalWorld.hpp"
 
 #include "GameObject.hpp"
 #include "Obj.h"
 
-// Buillet physics test code goes here
-#include "btSoftBodyRigidBodyCollisionConfiguration.h"
-
-#include "btDbvtBroadphase.h"
-#include "btCollisionDispatcher.h"
-#include "btBroadphaseInterface.h"
-#include "btConstraintSolver.h"
-#include "btSequentialImpulseConstraintSolver.h"
-#include "btSoftRigidDynamicsWorld.h"
-
-#include "btBoxShape.h"
-
-#include "btDefaultMotionState.h"
-
-sp<btSoftBodyRigidBodyCollisionConfiguration>   cConfig     = nullptr;
-sp<btCollisionDispatcher>                       cDispatcher = nullptr;
-sp<btBroadphaseInterface>                       cInterface  = nullptr;
-sp<btConstraintSolver>                          cSolver     = nullptr;
-sp<btSoftRigidDynamicsWorld>                    physicsWorld= nullptr;
-
-void initPhysicsWorld(){
-    cConfig      = std::make_shared<btSoftBodyRigidBodyCollisionConfiguration>();
-    cDispatcher  = std::make_shared<btCollisionDispatcher>(cConfig.get());
-    cInterface   = std::make_shared<btDbvtBroadphase>();
-    cSolver      = std::make_shared<btSequentialImpulseConstraintSolver>();
-    
-    physicsWorld = std::make_shared<btSoftRigidDynamicsWorld>(cDispatcher.get(),
-                                                              cInterface.get(),
-                                                              cSolver.get(),
-                                                              cConfig.get());
-    physicsWorld->setGravity(btVector3(0, 0, -9.8f));
-}
 
 
-// Do I actualy need this when using smart-pointers? Think carefully...
-void freePhysicsWorld(){
-    while(physicsWorld->getNumCollisionObjects()){
-        btCollisionObject *btCObject = physicsWorld->getCollisionObjectArray()[0];
-        btRigidBody *rBody = btRigidBody::upcast(btCObject);
-        if(rBody){
-            delete rBody->getCollisionShape();
-            delete rBody->getMotionState();
-            physicsWorld->removeRigidBody(rBody);
-            physicsWorld->removeCollisionObject(btCObject);
-            delete rBody;
-        }
-    }
-}
+
+
 
 //------------------------------------
 
 
-void addRigidBodyToTheGameObject(sp<GameObject> go, float mass){
-    if(!go) return;
-    v3d goDimensions = go->getDimensions();
-    btCollisionShape *cShape = new btBoxShape(btVector3(goDimensions.x * 0.5f,
-                                                                        goDimensions.y * 0.5f,
-                                                                         goDimensions.z * 0.5f));
-    btTransform bttransform;
-    m4d transformM = m4d::transpose(go->mTransform->transformMatrix());
-    bttransform.setFromOpenGLMatrix(transformM.pointer());
-    btDefaultMotionState *defMState = new btDefaultMotionState(bttransform);
-    btVector3 localInertia(0.0f, 0.0f, 0.0f);
-    if(mass > 0.0f) cShape->calculateLocalInertia( mass, localInertia );
-    go->pBody = new btRigidBody(mass, defMState, cShape, localInertia);
-    go->pBody->setUserPointer(go.get());
-    physicsWorld->addRigidBody(go->pBody);
-}
+//void addRigidBodyToTheGameObject(sp<GameObject> go, float mass){
+//    if(!go) return;
+//    v3d goDimensions = go->getDimensions();
+//    btCollisionShape *cShape = new btBoxShape(btVector3(goDimensions.x * 0.5f,
+//                                                                        goDimensions.y * 0.5f,
+//                                                                         goDimensions.z * 0.5f));
+//    btTransform bttransform;
+//    m4d transformM = m4d::transpose(go->mTransform->transformMatrix());
+//    bttransform.setFromOpenGLMatrix(transformM.pointer());
+//    btDefaultMotionState *defMState = new btDefaultMotionState(bttransform);
+//    btVector3 localInertia(0.0f, 0.0f, 0.0f);
+//    if(mass > 0.0f) cShape->calculateLocalInertia( mass, localInertia );
+//    go->pBody = new btRigidBody(mass, defMState, cShape, localInertia);
+//    go->pBody->setUserPointer(go.get());
+//    physicsWorld->addRigidBody(go->pBody);
+//}
 
 // DEBUG AND TEST STUFF GOES HERE
 
@@ -116,6 +73,7 @@ sp<Camera>         cam;
 sp<Illuminator>    ill;
 sp<Materials>      mats;
 sp<Scene>          scene;
+sp<PhysicalWorld>  pWorld;
 
 
 sp<Obj>    object;
@@ -142,6 +100,7 @@ int Game::Init ( SRContext *context ){
     cam         = Camera::instance();
     ill         = Illuminator::instance();
     scene       = Scene::instance();
+    pWorld      = PhysicalWorld::instance();
 
     
     object = Obj::load("scene.obj");
@@ -150,10 +109,10 @@ int Game::Init ( SRContext *context ){
 
     createTestScene(scene, object);
     
-    initPhysicsWorld();
-    addRigidBodyToTheGameObject(treeAndLeafs, 1.0f );
-    addRigidBodyToTheGameObject(ground, 0.0f);
-    addRigidBodyToTheGameObject(momo, 1.0f);
+
+//    addRigidBodyToTheGameObject(treeAndLeafs, 1.0f );
+//    addRigidBodyToTheGameObject(ground, 0.0f);
+//    addRigidBodyToTheGameObject(momo, 1.0f);
 
     return true;
 }
@@ -161,7 +120,7 @@ int Game::Init ( SRContext *context ){
 
 void Game::Update(SRContext *context, float deltaTime){
 //    logMessage("UPDATE \n");
-        physicsWorld->stepSimulation( 1.0f / 10.f );
+//        physicsWorld->stepSimulation( 1.0f / 10.f );
 }
 
 
@@ -193,10 +152,11 @@ void Game::Shutdown ( SRContext *context ){
     ill.reset();
     scene.reset();
     mats.reset();
+    pWorld.reset();
     
     logMessage("obj: %d\n sl: %d\n cam: %d\n ill: %d\n scene: %d\n mats: %d\n", object.use_count(), sLibrary.use_count(), cam.use_count(), ill.use_count(), scene.use_count(), mats.use_count());
     
-    freePhysicsWorld();
+
     
     logMessage("ShutDown function\n");
 }

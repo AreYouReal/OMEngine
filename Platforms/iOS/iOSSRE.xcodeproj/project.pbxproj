@@ -168,6 +168,7 @@
 		947890341BD4CFD200B55A25 /* btQuickprof.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94788F9C1BD4CFD200B55A25 /* btQuickprof.cpp */; settings = {ASSET_TAGS = (); }; };
 		947890351BD4CFD200B55A25 /* btSerializer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94788FA01BD4CFD200B55A25 /* btSerializer.cpp */; settings = {ASSET_TAGS = (); }; };
 		947890361BD4CFD200B55A25 /* btVector3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94788FA61BD4CFD200B55A25 /* btVector3.cpp */; settings = {ASSET_TAGS = (); }; };
+		9478903A1BD4D1A800B55A25 /* PhysicalWorld.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 947890381BD4D1A800B55A25 /* PhysicalWorld.cpp */; settings = {ASSET_TAGS = (); }; };
 		947FA31D1BA4854A00695A4E /* char_ram_col.png in Resources */ = {isa = PBXBuildFile; fileRef = 947FA31A1BA4854A00695A4E /* char_ram_col.png */; };
 		947FA31E1BA4854A00695A4E /* ram.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 947FA31B1BA4854A00695A4E /* ram.mtl */; };
 		947FA31F1BA4854A00695A4E /* ram.obj in Resources */ = {isa = PBXBuildFile; fileRef = 947FA31C1BA4854A00695A4E /* ram.obj */; };
@@ -619,6 +620,8 @@
 		94788FA51BD4CFD200B55A25 /* btTransformUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = btTransformUtil.h; sourceTree = "<group>"; };
 		94788FA61BD4CFD200B55A25 /* btVector3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = btVector3.cpp; sourceTree = "<group>"; };
 		94788FA71BD4CFD200B55A25 /* btVector3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = btVector3.h; sourceTree = "<group>"; };
+		947890381BD4D1A800B55A25 /* PhysicalWorld.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PhysicalWorld.cpp; sourceTree = "<group>"; };
+		947890391BD4D1A800B55A25 /* PhysicalWorld.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PhysicalWorld.hpp; sourceTree = "<group>"; };
 		947FA31A1BA4854A00695A4E /* char_ram_col.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = char_ram_col.png; path = SREngine/Platforms/Android/assets/char_ram_col.png; sourceTree = "<group>"; };
 		947FA31B1BA4854A00695A4E /* ram.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ram.mtl; path = SREngine/Platforms/Android/assets/ram.mtl; sourceTree = "<group>"; };
 		947FA31C1BA4854A00695A4E /* ram.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ram.obj; path = SREngine/Platforms/Android/assets/ram.obj; sourceTree = "<group>"; };
@@ -782,6 +785,7 @@
 		7626523F17F10E6C007CCD43 /* iOSSRE */ = {
 			isa = PBXGroup;
 			children = (
+				947890371BD4D17F00B55A25 /* Physics */,
 				F3C52B261BBD01CC009F3604 /* Scene */,
 				F380B78B1BBBDC550049E755 /* Obj */,
 				94D85AC31BB65447008ED8CF /* Transform */,
@@ -1386,6 +1390,16 @@
 			path = LinearMath;
 			sourceTree = "<group>";
 		};
+		947890371BD4D17F00B55A25 /* Physics */ = {
+			isa = PBXGroup;
+			children = (
+				947890381BD4D1A800B55A25 /* PhysicalWorld.cpp */,
+				947890391BD4D1A800B55A25 /* PhysicalWorld.hpp */,
+			);
+			name = Physics;
+			path = SREngine/CPPSources/Physics;
+			sourceTree = "<group>";
+		};
 		94D85AC31BB65447008ED8CF /* Transform */ = {
 			isa = PBXGroup;
 			children = (
@@ -1695,6 +1709,7 @@
 				947890261BD4CFD200B55A25 /* btWheelInfo.cpp in Sources */,
 				947890221BD4CFD200B55A25 /* btDantzigLCP.cpp in Sources */,
 				94788FD01BD4CFD200B55A25 /* btCollisionShape.cpp in Sources */,
+				9478903A1BD4D1A800B55A25 /* PhysicalWorld.cpp in Sources */,
 				947890141BD4CFD200B55A25 /* btSliderConstraint.cpp in Sources */,
 				F3C52B2C1BBD079F009F3604 /* Scene.cpp in Sources */,
 				947890111BD4CFD200B55A25 /* btNNCGConstraintSolver.cpp in Sources */,

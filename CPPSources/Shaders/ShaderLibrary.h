@@ -7,7 +7,7 @@
 
 class ShaderLibrary: public Singleton<ShaderLibrary> {
 public:
-        ShaderLibrary();
+    ShaderLibrary();
     ShaderLibrary(const ShaderLibrary& rhs) = delete;
     ShaderLibrary& operator=(const ShaderLibrary& rhs) = delete;
     ~ShaderLibrary();
