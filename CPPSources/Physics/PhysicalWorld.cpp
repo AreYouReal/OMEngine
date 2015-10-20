@@ -19,7 +19,7 @@ void PhysicalWorld::update(float deltaTime){
     physicsWorld->stepSimulation( deltaTime );
 }
 
-bool PhysicalWorld::addPBodyToGameObject(sp<GameObject> go, PhysicalBodyShape shape, float mass, v3d dimension,PhysicContactCallback contactCallback ){
+bool PhysicalWorld::addPBodyToGameObject(sp<GameObject> go, PhysicalBodyShape shape, float mass, v3d dimension,PhysicContactCallback contactCallback, PhysicNearCallback nearCallback ){
     if(!go) return false;
     v3d goDimensions = go->getDimensions();
     
@@ -38,6 +38,7 @@ bool PhysicalWorld::addPBodyToGameObject(sp<GameObject> go, PhysicalBodyShape sh
         go->pBody->setCollisionFlags(go->pBody->getCollisionFlags() | btCollisionObject::CF_CUSTOM_MATERIAL_CALLBACK);
         gContactAddedCallback = contactCallback;
     }
+    if(nearCallback) cDispatcher->setNearCallback(nearCallback);
     return true;
 }
 

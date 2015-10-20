@@ -27,6 +27,7 @@ void createTestScene(sp<Scene> scene, sp<Obj> object){
     
     
     momo = std::make_shared<GameObject>();
+    momo->name = "momo";
     momo->mTransform = std::make_shared<Transform>(v3d(2.3, 0, 7));
     momo->addObjMesh(object->getMesh("momo"));
     scene->addObjOnScene(momo);
@@ -95,7 +96,13 @@ int Game::Init ( SRContext *context ){
     
     pWorld->addPBodyToGameObject(momo, PhysicalBodyShape::BOX, 1.0f, momo->getDimensions());
     pWorld->addPBodyToGameObject(treeAndLeafs, PhysicalBodyShape::BOX, 1.0f, treeAndLeafs->getDimensions());
-    pWorld->addPBodyToGameObject(ground, PhysicalBodyShape::BOX, 0.0f, ground->getDimensions());
+    pWorld->addPBodyToGameObject(ground, PhysicalBodyShape::BOX, 0.0f, ground->getDimensions(), nullptr, [](btBroadphasePair &pair, btCollisionDispatcher &dispatcher, const btDispatcherInfo &info){
+        logMessage("nearCallback");
+        GameObject *go = (GameObject*)((btRigidBody*)(pair.m_pProxy0->m_clientObject))->getUserPointer();
+        if(go->name.compare("momo")) return;
+        
+        dispatcher.defaultNearCallback(pair, dispatcher, info);
+    });
     
     return true;
 }
