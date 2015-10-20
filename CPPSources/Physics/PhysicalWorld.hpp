@@ -19,6 +19,9 @@
 
 enum class PhysicalBodyShape{ BOX, SPHERE };
 
+using PhysicContactCallback = bool(*)(btManifoldPoint &point, const btCollisionObjectWrapper *obj0, int part0, int index0,
+                               const btCollisionObjectWrapper *obj1, int part1, int index1);
+
 class PhysicalWorld : public Singleton<PhysicalWorld>{
 
 public:
@@ -27,9 +30,9 @@ public:
     PhysicalWorld& operator=(const PhysicalWorld& rhs) = delete;
     ~PhysicalWorld();
     
-    bool addPBodyToGameObject(sp<GameObject> go, PhysicalBodyShape shape, float mass, v3d dimension);
+    bool addPBodyToGameObject(sp<GameObject> go, PhysicalBodyShape shape, float mass, v3d dimension, PhysicContactCallback contactCallback = nullptr);
     
-    void update();
+    void update(float deltaTime);
     
 private:
     

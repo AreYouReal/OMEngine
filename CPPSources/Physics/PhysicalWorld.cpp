@@ -1,6 +1,8 @@
 
 #include "PhysicalWorld.hpp"
 
+#include "btManifoldPoint.h"
+
 #include "SRUtils.h"
 
 PhysicalWorld::PhysicalWorld(){
@@ -13,11 +15,11 @@ PhysicalWorld::~PhysicalWorld(){
     logMessage("PhysicalWorld destructor!\n");
 }
 
-void PhysicalWorld::update(){
-    physicsWorld->stepSimulation( 1.0f / 60.f );
+void PhysicalWorld::update(float deltaTime){
+    physicsWorld->stepSimulation( deltaTime );
 }
 
-bool PhysicalWorld::addPBodyToGameObject(sp<GameObject> go, PhysicalBodyShape shape, float mass, v3d dimension){
+bool PhysicalWorld::addPBodyToGameObject(sp<GameObject> go, PhysicalBodyShape shape, float mass, v3d dimension,PhysicContactCallback contactCallback ){
     if(!go) return false;
     v3d goDimensions = go->getDimensions();
     
@@ -32,6 +34,10 @@ bool PhysicalWorld::addPBodyToGameObject(sp<GameObject> go, PhysicalBodyShape sh
     go->pBody = new btRigidBody(mass, defMState, cShape, localInertia);
     go->pBody->setUserPointer(go.get());
     physicsWorld->addRigidBody(go->pBody);
+    if(contactCallback) {
+        go->pBody->setCollisionFlags(go->pBody->getCollisionFlags() | btCollisionObject::CF_CUSTOM_MATERIAL_CALLBACK);
+        gContactAddedCallback = contactCallback;
+    }
     return true;
 }
 
@@ -62,3 +68,4 @@ void PhysicalWorld::destroyTheWorld(){
         }
     }
 }
+

@@ -54,6 +54,15 @@ sp<PhysicalWorld>  pWorld;
 sp<Obj>    object;
 
 
+void createMomo(sp<Scene> scene, sp<Obj> object){
+    sp<GameObject> m = std::make_shared<GameObject>();
+    m->mTransform = std::make_shared<Transform>(v3d(2, 0, 10));
+    m->addObjMesh(object->getMesh("momo"));
+    scene->addObjOnScene(m);
+    
+    pWorld->addPBodyToGameObject(m, PhysicalBodyShape::BOX, 1.0f, m->getDimensions());
+}
+
 SRContext* Game::getAppContext(){
     if(!appContext) logMessage("\nAppContext is NULL!\n");
     return appContext;
@@ -94,7 +103,7 @@ int Game::Init ( SRContext *context ){
 
 void Game::Update(SRContext *context, float deltaTime){
 //    logMessage("UPDATE \n");
-    pWorld->update();
+    pWorld->update(deltaTime);
 }
 
 
@@ -154,6 +163,7 @@ void Game::Touch(SRContext *context, int event, int x, int y){
         case TOUCH_EVENT::ENDED  :
         case TOUCH_EVENT::CANCELLED  :
             touchX = touchY = 0;
+            createMomo(scene, object);
             break;
         default:
             break;
