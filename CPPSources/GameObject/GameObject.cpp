@@ -24,7 +24,8 @@ void GameObject::destroyChildren(){
 
 
 void GameObject::draw(){
-    m4d modelM;
+    // O_o
+    m4d ATTRIBUTE_ALIGNED16(modelM);
     if(pBody){
         pBody->getWorldTransform().getOpenGLMatrix(modelM.pointer());
         modelM = m4d::transpose(modelM);
@@ -37,10 +38,10 @@ void GameObject::draw(){
     
     Camera::instance()->pushMVMatrix(Camera::instance()->modelViewMatrix() * modelM);
     for (auto const& mesh : mObjMeshes) {
-//        if(!Camera::instance()->sphereDistanceInFrustum(&mTransform->mPosition, mesh->radius)){
-//            logMessage("skip %s mesh\n", mesh->getName().c_str());
-//            continue;
-//        }
+        if(!Camera::instance()->sphereDistanceInFrustum(getPosition(), mesh->radius)){
+            logMessage("skip %s mesh\n", mesh->getName().c_str());
+            continue;
+        }
         if(mesh){
             if(mesh->renderObjectType() == RenderObjectType::SOLID){
                 mesh->draw();
@@ -83,4 +84,16 @@ v3d GameObject::getDimensions(){
     v3d::print(mObjMeshes[0]->max - mObjMeshes[0]->min);
     
     return (mObjMeshes[0]->max - mObjMeshes[0]->min);
+}
+
+
+v3d GameObject::getPosition(){
+    if(pBody){
+        btVector3 origin = pBody->getWorldTransform().getOrigin();
+        return v3d(origin.x(), origin.y(), origin.z());
+    }else{
+        if(mTransform)
+            return mTransform->mPosition;
+    }
+    return v3d();
 }

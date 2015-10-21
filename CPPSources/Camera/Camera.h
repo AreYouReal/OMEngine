@@ -34,7 +34,7 @@ public:
     void rotate(float angle, float x, float y, float z);
     void rotate(float angle, v3d& axis);
     
-    float sphereDistanceInFrustum(v3d *location, float radius);
+    float sphereDistanceInFrustum(v3d location, float radius);
     
     void pushMVMatrix(m4d matrix);
     void popMVMatrix();

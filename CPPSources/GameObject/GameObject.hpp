@@ -33,8 +33,9 @@ public:
     
     btRigidBody *pBody = nullptr;          // Physics "body" of the mesh
     
-    
     v3d getDimensions();
+    
+    v3d getPosition();
     
 private:
     
