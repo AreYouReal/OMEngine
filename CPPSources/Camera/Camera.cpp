@@ -9,8 +9,8 @@ Camera::~Camera(){
 Camera::Camera(float fovy, float width, float height, float near, float far)
 :mFovy(fovy), mWidth(width), mHeight(height), mNear(near), mFar(far){
     transform = std::shared_ptr<Transform>(std::make_shared<Transform>());
-    transform->mPosition = v3d(0.0f, -3.8f, 2.5f);;
-    transform->mFront = v3d(0.0f, 1.0f, 0.0f);;
+    transform->mPosition = v3d(0.0f, -3.8f, 2.5f);
+    transform->mFront = v3d(0.0f, 1.0f, 0.0f);
     transform->mUp = v3d(0.0f, 0.0f, 1.0f);
     refreshViewAndNormalMatrix();
     refreshProjMatrix();
@@ -88,7 +88,10 @@ void Camera::refreshViewAndNormalMatrix(){
     mNormalMatrix = m4d::inverseTranspose(mViewMatrix);
     buildFrustum();
 }
-void Camera::refreshProjMatrix(){ mProjectionMatrix = m4d::perspective(mFovy, mWidth, mHeight, mNear, mFar);}
+void Camera::refreshProjMatrix(){
+    mProjectionMatrix = m4d::perspective(mFovy, mWidth, mHeight, mNear, mFar);
+    buildFrustum();
+}
 
 void Camera::buildFrustum(){
     m4d c;
@@ -96,83 +99,93 @@ void Camera::buildFrustum(){
     float t;
     
     c.m[ 0 ].x = mViewMatrix.m[ 0 ].x * mProjectionMatrix.m[ 0 ].x +
-    mViewMatrix.m[ 0 ].y * mProjectionMatrix.m[ 1 ].x +
-    mViewMatrix.m[ 0 ].z * mProjectionMatrix.m[ 2 ].x +
-    mViewMatrix.m[ 0 ].w * mProjectionMatrix.m[ 3 ].x;
+    mViewMatrix.m[ 1 ].x * mProjectionMatrix.m[ 0 ].y +
+    mViewMatrix.m[ 2 ].x * mProjectionMatrix.m[ 0 ].z +
+    mViewMatrix.m[ 3 ].x * mProjectionMatrix.m[ 0 ].w;
     
-    c.m[ 0 ].y = mViewMatrix.m[ 0 ].x * mProjectionMatrix.m[ 0 ].y +
-    mViewMatrix.m[ 0 ].y * mProjectionMatrix.m[ 1 ].y +
-    mViewMatrix.m[ 0 ].z * mProjectionMatrix.m[ 2 ].y +
-    mViewMatrix.m[ 0 ].w * mProjectionMatrix.m[ 3 ].y;
     
-    c.m[ 0 ].z = mViewMatrix.m[ 0 ].x * mProjectionMatrix.m[ 0 ].z +
-    mViewMatrix.m[ 0 ].y * mProjectionMatrix.m[ 1 ].z +
-    mViewMatrix.m[ 0 ].z * mProjectionMatrix.m[ 2 ].z +
-    mViewMatrix.m[ 0 ].w * mProjectionMatrix.m[ 3 ].z;
+    c.m[ 0 ].y = mViewMatrix.m[ 0 ].x * mProjectionMatrix.m[ 1 ].x +
+    mViewMatrix.m[ 1 ].x * mProjectionMatrix.m[ 1 ].y +
+    mViewMatrix.m[ 2 ].x * mProjectionMatrix.m[ 1 ].z +
+    mViewMatrix.m[ 3 ].x * mProjectionMatrix.m[ 1 ].w;
     
-    c.m[ 0 ].w = mViewMatrix.m[ 0 ].x * mProjectionMatrix.m[ 0 ].w +
-    mViewMatrix.m[ 0 ].y * mProjectionMatrix.m[ 1 ].w +
-    mViewMatrix.m[ 0 ].z * mProjectionMatrix.m[ 2 ].w +
-    mViewMatrix.m[ 0 ].w * mProjectionMatrix.m[ 3 ].w;
     
-    c.m[ 1 ].x = mViewMatrix.m[ 1 ].x * mProjectionMatrix.m[ 0 ].x +
-    mViewMatrix.m[ 1 ].y * mProjectionMatrix.m[ 1 ].x +
-    mViewMatrix.m[ 1 ].z * mProjectionMatrix.m[ 2 ].x +
-    mViewMatrix.m[ 1 ].w * mProjectionMatrix.m[ 3 ].x;
+    c.m[ 0 ].z = mViewMatrix.m[ 0 ].x * mProjectionMatrix.m[ 2 ].x +
+    mViewMatrix.m[ 1 ].x * mProjectionMatrix.m[ 2 ].y +
+    mViewMatrix.m[ 2 ].x * mProjectionMatrix.m[ 2 ].z +
+    mViewMatrix.m[ 3 ].x * mProjectionMatrix.m[ 2 ].w;
     
-    c.m[ 1 ].y = mViewMatrix.m[ 1 ].x * mProjectionMatrix.m[ 0 ].y +
+    
+    c.m[ 0 ].w = mViewMatrix.m[ 0 ].x * mProjectionMatrix.m[ 3 ].x +
+    mViewMatrix.m[ 1 ].x * mProjectionMatrix.m[ 3 ].y +
+    mViewMatrix.m[ 2 ].x * mProjectionMatrix.m[ 3 ].z +
+    mViewMatrix.m[ 3 ].x * mProjectionMatrix.m[ 3 ].w;
+    
+    c.m[ 1 ].x = mViewMatrix.m[ 0 ].y * mProjectionMatrix.m[ 0 ].x +
+    mViewMatrix.m[ 1 ].y * mProjectionMatrix.m[ 0 ].y +
+    mViewMatrix.m[ 2 ].y * mProjectionMatrix.m[ 0 ].z +
+    mViewMatrix.m[ 3 ].y * mProjectionMatrix.m[ 0 ].w;
+    
+    
+    c.m[ 1 ].y = mViewMatrix.m[ 0 ].y * mProjectionMatrix.m[ 1 ].x +
     mViewMatrix.m[ 1 ].y * mProjectionMatrix.m[ 1 ].y +
-    mViewMatrix.m[ 1 ].z * mProjectionMatrix.m[ 2 ].y +
-    mViewMatrix.m[ 1 ].w * mProjectionMatrix.m[ 3 ].y;
-    
-    c.m[ 1 ].z = mViewMatrix.m[ 1 ].x * mProjectionMatrix.m[ 0 ].z +
-    mViewMatrix.m[ 1 ].y * mProjectionMatrix.m[ 1 ].z +
-    mViewMatrix.m[ 1 ].z * mProjectionMatrix.m[ 2 ].z +
-    mViewMatrix.m[ 1 ].w * mProjectionMatrix.m[ 3 ].z;
-    
-    c.m[ 1 ].w = mViewMatrix.m[ 1 ].x * mProjectionMatrix.m[ 0 ].w +
-    mViewMatrix.m[ 1 ].y * mProjectionMatrix.m[ 1 ].w +
-    mViewMatrix.m[ 1 ].z * mProjectionMatrix.m[ 2 ].w +
-    mViewMatrix.m[ 1 ].w * mProjectionMatrix.m[ 3 ].w;
-    
-    c.m[ 2 ].x = mViewMatrix.m[ 2 ].x * mProjectionMatrix.m[ 0 ].x +
-    mViewMatrix.m[ 2 ].y * mProjectionMatrix.m[ 1 ].x +
-    mViewMatrix.m[ 2 ].z * mProjectionMatrix.m[ 2 ].x +
-    mViewMatrix.m[ 2 ].w * mProjectionMatrix.m[ 3 ].x;
-    
-    c.m[ 2 ].y = mViewMatrix.m[ 2 ].x * mProjectionMatrix.m[ 0 ].y +
-    mViewMatrix.m[ 2 ].y * mProjectionMatrix.m[ 1 ].y +
-    mViewMatrix.m[ 2 ].z * mProjectionMatrix.m[ 2 ].y +
-    mViewMatrix.m[ 2 ].w * mProjectionMatrix.m[ 3 ].y;
-    
-    c.m[ 2 ].z = mViewMatrix.m[ 2 ].x * mProjectionMatrix.m[ 0 ].z +
     mViewMatrix.m[ 2 ].y * mProjectionMatrix.m[ 1 ].z +
+    mViewMatrix.m[ 3 ].y * mProjectionMatrix.m[ 1 ].w;
+    
+    
+    
+    c.m[ 1 ].z = mViewMatrix.m[ 0 ].y * mProjectionMatrix.m[ 2 ].x +
+    mViewMatrix.m[ 1 ].y * mProjectionMatrix.m[ 2 ].y +
+    mViewMatrix.m[ 2 ].y * mProjectionMatrix.m[ 2 ].z +
+    mViewMatrix.m[ 3 ].y * mProjectionMatrix.m[ 2 ].w;
+    
+    
+    
+    c.m[ 1 ].w = mViewMatrix.m[ 0 ].y * mProjectionMatrix.m[ 3 ].x +
+    mViewMatrix.m[ 1 ].y * mProjectionMatrix.m[ 3 ].y +
+    mViewMatrix.m[ 2 ].y * mProjectionMatrix.m[ 3 ].z +
+    mViewMatrix.m[ 3 ].y * mProjectionMatrix.m[ 3 ].w;
+    
+    
+    
+    c.m[ 2 ].x = mViewMatrix.m[ 0 ].z * mProjectionMatrix.m[ 0 ].x +
+    mViewMatrix.m[ 1 ].z * mProjectionMatrix.m[ 0 ].y +
+    mViewMatrix.m[ 2 ].z * mProjectionMatrix.m[ 0 ].z +
+    mViewMatrix.m[ 3 ].z * mProjectionMatrix.m[ 0 ].w;
+    
+    c.m[ 2 ].y = mViewMatrix.m[ 0 ].z * mProjectionMatrix.m[ 1 ].x +
+    mViewMatrix.m[ 1 ].z * mProjectionMatrix.m[ 1 ].y +
+    mViewMatrix.m[ 2 ].z * mProjectionMatrix.m[ 1 ].z +
+    mViewMatrix.m[ 3 ].z * mProjectionMatrix.m[ 1 ].w;
+    
+    c.m[ 2 ].z = mViewMatrix.m[ 0 ].z * mProjectionMatrix.m[ 2 ].x +
+    mViewMatrix.m[ 1 ].z * mProjectionMatrix.m[ 2 ].y +
     mViewMatrix.m[ 2 ].z * mProjectionMatrix.m[ 2 ].z +
-    mViewMatrix.m[ 2 ].w * mProjectionMatrix.m[ 3 ].z;
+    mViewMatrix.m[ 3 ].z * mProjectionMatrix.m[ 2 ].w;
     
-    c.m[ 2 ].w = mViewMatrix.m[ 2 ].x * mProjectionMatrix.m[ 0 ].w +
-    mViewMatrix.m[ 2 ].y * mProjectionMatrix.m[ 1 ].w +
-    mViewMatrix.m[ 2 ].z * mProjectionMatrix.m[ 2 ].w +
-    mViewMatrix.m[ 2 ].w * mProjectionMatrix.m[ 3 ].w;
+    c.m[ 2 ].w = mViewMatrix.m[ 0 ].z * mProjectionMatrix.m[ 3 ].x +
+    mViewMatrix.m[ 1 ].z * mProjectionMatrix.m[ 3 ].y +
+    mViewMatrix.m[ 2 ].z * mProjectionMatrix.m[ 3 ].z +
+    mViewMatrix.m[ 3 ].z * mProjectionMatrix.m[ 3 ].w;
     
-    c.m[ 3 ].x = mViewMatrix.m[ 3 ].x * mProjectionMatrix.m[ 0 ].x +
-    mViewMatrix.m[ 3 ].y * mProjectionMatrix.m[ 1 ].x +
-    mViewMatrix.m[ 3 ].z * mProjectionMatrix.m[ 2 ].x +
-    mViewMatrix.m[ 3 ].w * mProjectionMatrix.m[ 3 ].x;
+    c.m[ 3 ].x = mViewMatrix.m[ 0 ].w * mProjectionMatrix.m[ 0 ].x +
+    mViewMatrix.m[ 1 ].w * mProjectionMatrix.m[ 0 ].y +
+    mViewMatrix.m[ 2 ].w * mProjectionMatrix.m[ 0 ].z +
+    mViewMatrix.m[ 3 ].w * mProjectionMatrix.m[ 0 ].w;
     
-    c.m[ 3 ].y = mViewMatrix.m[ 3 ].x * mProjectionMatrix.m[ 0 ].y +
-    mViewMatrix.m[ 3 ].y * mProjectionMatrix.m[ 1 ].y +
-    mViewMatrix.m[ 3 ].z * mProjectionMatrix.m[ 2 ].y +
-    mViewMatrix.m[ 3 ].w * mProjectionMatrix.m[ 3 ].y;
+    c.m[ 3 ].y = mViewMatrix.m[ 0 ].w * mProjectionMatrix.m[ 1 ].x +
+    mViewMatrix.m[ 1 ].w * mProjectionMatrix.m[ 1 ].y +
+    mViewMatrix.m[ 2 ].w * mProjectionMatrix.m[ 1 ].z +
+    mViewMatrix.m[ 3 ].w * mProjectionMatrix.m[ 1 ].w;
     
-    c.m[ 3 ].z = mViewMatrix.m[ 3 ].x * mProjectionMatrix.m[ 0 ].z +
-    mViewMatrix.m[ 3 ].y * mProjectionMatrix.m[ 1 ].z +
-    mViewMatrix.m[ 3 ].z * mProjectionMatrix.m[ 2 ].z +
-    mViewMatrix.m[ 3 ].w * mProjectionMatrix.m[ 3 ].z;
+    c.m[ 3 ].z = mViewMatrix.m[ 0 ].w * mProjectionMatrix.m[ 2 ].x +
+    mViewMatrix.m[ 1 ].w * mProjectionMatrix.m[ 2 ].y +
+    mViewMatrix.m[ 2 ].w * mProjectionMatrix.m[ 2 ].z +
+    mViewMatrix.m[ 3 ].w * mProjectionMatrix.m[ 2 ].w;
     
-    c.m[ 3 ].w = mViewMatrix.m[ 3 ].x * mProjectionMatrix.m[ 0 ].w +
-    mViewMatrix.m[ 3 ].y * mProjectionMatrix.m[ 1 ].w +
-    mViewMatrix.m[ 3 ].z * mProjectionMatrix.m[ 2 ].w +
+    c.m[ 3 ].w = mViewMatrix.m[ 0 ].w * mProjectionMatrix.m[ 3 ].x +
+    mViewMatrix.m[ 1 ].w * mProjectionMatrix.m[ 3 ].y +
+    mViewMatrix.m[ 2 ].w * mProjectionMatrix.m[ 3 ].z +
     mViewMatrix.m[ 3 ].w * mProjectionMatrix.m[ 3 ].w;
     
     

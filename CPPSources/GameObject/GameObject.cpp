@@ -38,10 +38,10 @@ void GameObject::draw(){
     
     Camera::instance()->pushMVMatrix(Camera::instance()->modelViewMatrix() * modelM);
     for (auto const& mesh : mObjMeshes) {
-//        if(!Camera::instance()->sphereDistanceInFrustum(getPosition(), mesh->outlines.radius)){
+        if(!Camera::instance()->sphereDistanceInFrustum(getPosition(), mesh->outlines.radius)){
 //            logMessage("skip %s mesh\n", mesh->getName().c_str());
-//            continue;
-//        }
+            continue;
+        }
         if(mesh){
             if(mesh->renderObjectType() == RenderObjectType::SOLID){
                 mesh->draw();
