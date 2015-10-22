@@ -4,6 +4,8 @@
 #include "SRUtils.h"
 #include "ObjMaterial.h"
 #include "Obj.h"
+#include "MeshOutlines.h"
+#include "MeshGLInfo.h"
 
 enum class RenderObjectType{ SOLID, ALPHA_TESTED, TRANSPARENT };
 
@@ -39,14 +41,8 @@ public:
     
     RenderObjectType renderObjectType();
     
-    
     std::string                     getName(){ return name; }
-    
-    float                           radius;
-    v3d                             min;
-    v3d                             max;
-    v3d                             location;
-    v3d                             dimension;
+    MeshOutlines                    outlines;
     
 private:
     // Fields
@@ -56,19 +52,8 @@ private:
     std::vector<ObjVertexData>      vertexData;     // All vertex data (vertex index & uv index)
     std::vector<sp<ObjTriangleList>>tLists;         // Triangle lists...
     sp<ObjMaterial>                 currentMaterial = nullptr;
-
-
-
-    
-    unsigned int                    vbo;             // The vertex buffer VBO ID maintaned by GLES.
-    unsigned int                    stride;          // Stride size in bytes to determine next data chunk location.
-    unsigned int                    size;            // Total size of the vertex data array in bytes.
-    unsigned int                    offset[ 5 ];     // The VBO offset(????)
-    unsigned int                    vao;             // The VAO ID maintaned by GLES
-    
     wp<Obj>                         weakData;
-
-    
+    MeshGLInfo                      glInfo;
     
     // Helpers
     void    addVertexData(sp<ObjTriangleList> otl, int vIndex, int uvIndex);

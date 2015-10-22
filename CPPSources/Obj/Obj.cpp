@@ -120,8 +120,6 @@ void Obj::addMesh(sp<ObjMesh> mesh, sp<ObjTriangleList> tList, char* name, char*
     name[0]         = 0;
     usemtl[0]       = 0;
     mesh->weakData  = shared_from_this();
-    
-    auto sharedPTR = mesh->weakData.lock();
 }
 
 void ObjMesh::addVertexData(sp<ObjTriangleList> otl, int vIndex, int uvIndex){

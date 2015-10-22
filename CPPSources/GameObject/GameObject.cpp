@@ -38,10 +38,10 @@ void GameObject::draw(){
     
     Camera::instance()->pushMVMatrix(Camera::instance()->modelViewMatrix() * modelM);
     for (auto const& mesh : mObjMeshes) {
-        if(!Camera::instance()->sphereDistanceInFrustum(getPosition(), mesh->radius)){
-            logMessage("skip %s mesh\n", mesh->getName().c_str());
-            continue;
-        }
+//        if(!Camera::instance()->sphereDistanceInFrustum(getPosition(), mesh->outlines.radius)){
+//            logMessage("skip %s mesh\n", mesh->getName().c_str());
+//            continue;
+//        }
         if(mesh){
             if(mesh->renderObjectType() == RenderObjectType::SOLID){
                 mesh->draw();
@@ -74,16 +74,16 @@ void GameObject::addObjMesh(sp<ObjMesh> objToAdd){
 v3d GameObject::getDimensions(){
     v3d min, max;
     for(auto const &mesh : mObjMeshes){
-        if(min.x > mesh->min.x) min.x = mesh->min.x;
-        if(min.y > mesh->min.y) min.y = mesh->min.y;
-        if(min.z > mesh->min.z) min.z = mesh->min.z;
-        if(max.x < mesh->max.x) max.x = mesh->max.x;
-        if(max.y < mesh->max.y) max.y = mesh->max.y;
-        if(max.z < mesh->max.z) max.z = mesh->max.z;
+        if(min.x > mesh->outlines.min.x) min.x = mesh->outlines.min.x;
+        if(min.y > mesh->outlines.min.y) min.y = mesh->outlines.min.y;
+        if(min.z > mesh->outlines.min.z) min.z = mesh->outlines.min.z;
+        if(max.x < mesh->outlines.max.x) max.x = mesh->outlines.max.x;
+        if(max.y < mesh->outlines.max.y) max.y = mesh->outlines.max.y;
+        if(max.z < mesh->outlines.max.z) max.z = mesh->outlines.max.z;
     }
-    v3d::print(mObjMeshes[0]->max - mObjMeshes[0]->min);
+    v3d::print(mObjMeshes[0]->outlines.max - mObjMeshes[0]->outlines.min);
     
-    return (mObjMeshes[0]->max - mObjMeshes[0]->min);
+    return (mObjMeshes[0]->outlines.max - mObjMeshes[0]->outlines.min);
 }
 
 

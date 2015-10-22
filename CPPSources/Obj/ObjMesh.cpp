@@ -16,13 +16,13 @@ unsigned int ObjMesh::draw(){
     
     Scene::instance()->setRenderObjectState(renderObjectType());
     
-    if(vao) glBindVertexArray(vao);
+    if(glInfo.vao) glBindVertexArray(glInfo.vao);
     else setAttributes();
     
     for(unsigned int i = 0; i < tLists.size(); ++i){
         currentMaterial = tLists[i]->material;
         if(currentMaterial) currentMaterial->use();
-        if(vao){
+        if(glInfo.vao){
             if(tLists.size() != 1) glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, tLists[i]->vbo);
         }else{
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, tLists[i]->vbo);
@@ -34,20 +34,20 @@ unsigned int ObjMesh::draw(){
 }
 
 void ObjMesh::setAttributes(){
-    glBindBuffer(GL_ARRAY_BUFFER, vbo);
+    glBindBuffer(GL_ARRAY_BUFFER, glInfo.vbo);
     
     unsigned char size = sizeof(v3d)/sizeof(float);
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, size, GL_FLOAT, GL_FALSE, stride, (char *)NULL);
+    glVertexAttribPointer(0, size, GL_FLOAT, GL_FALSE, glInfo.stride, (char *)NULL);
     glEnableVertexAttribArray(1);
-    glVertexAttribPointer(1, size, GL_FLOAT, GL_FALSE, stride, (char *)NULL + offset[1]);
+    glVertexAttribPointer(1, size, GL_FLOAT, GL_FALSE, glInfo.stride, (char *)NULL + glInfo.offset[1]);
     glEnableVertexAttribArray(4);
-    glVertexAttribPointer(4, size, GL_FLOAT, GL_FALSE, stride, (char *)NULL + offset[2]);
-    if(offset[3] != -1){
+    glVertexAttribPointer(4, size, GL_FLOAT, GL_FALSE, glInfo.stride, (char *)NULL + glInfo.offset[2]);
+    if(glInfo.offset[3] != -1){
         glEnableVertexAttribArray(2);
-        glVertexAttribPointer(2, size, GL_FLOAT, GL_FALSE, stride, (char *)NULL + offset[3]);
+        glVertexAttribPointer(2, size, GL_FLOAT, GL_FALSE, glInfo.stride, (char *)NULL + glInfo.offset[3]);
         glEnableVertexAttribArray(3);
-        glVertexAttribPointer(3, size, GL_FLOAT, GL_FALSE, stride, (char *)NULL + offset[4]);
+        glVertexAttribPointer(3, size, GL_FLOAT, GL_FALSE, glInfo.stride, (char *)NULL + glInfo.offset[4]);
     }
 }
 
@@ -68,8 +68,8 @@ void ObjMesh::build(){
     buildVBO();
     initMaterial();
 
-    glGenVertexArrays(1, &vao);
-    glBindVertexArray(vao);
+    glGenVertexArrays(1, &glInfo.vao);
+    glBindVertexArray(glInfo.vao);
     
     setAttributes();
     
@@ -79,8 +79,8 @@ void ObjMesh::build(){
 }
 
 void ObjMesh::updateBounds(){
-    min.x = min.y = min.z = 9999.99f;
-    max.x = max.y = max.z = -9999.99f;
+    outlines.min.x = outlines.min.y = outlines.min.z = 9999.99f;
+    outlines.max.x = outlines.max.y = outlines.max.z = -9999.99f;
     
     unsigned int index;
     auto data = weakData.lock();
@@ -90,19 +90,19 @@ void ObjMesh::updateBounds(){
     }
     for(unsigned int i = 0; i < vertexData.size(); ++i){
         index = vertexData[i].vIndex;
-        updateMin(min, data->vertices[index]);
-        updateMax(max, data->vertices[index]);
+        updateMin(outlines.min, data->vertices[index]);
+        updateMax(outlines.max, data->vertices[index]);
     }
     
-    location = (min + max) * 0.5f;
-    dimension = max - min;
+    outlines.location = (outlines.min + outlines.max) * 0.5f;
+    outlines.dimension = outlines.max - outlines.min;
     //    mesh->radius =  mesh->dimension.x >= mesh->dimension.y ?
     //                    mesh->dimension.x :
     //                    mesh->dimension.y;
     //    mesh->radius =  mesh->radius >= mesh->dimension.x ?
     //                    mesh->radius * 0.5f :
     //                    mesh->dimension.z * 0.5f;
-    radius = v3d::length(max - min) * 0.5f;
+    outlines.radius = v3d::length(outlines.max - outlines.min) * 0.5f;
 }
 
 void ObjMesh::updateMax(v3d &max, v3d &vertex){
@@ -119,18 +119,18 @@ void ObjMesh::updateMin(v3d &min, v3d &vertex){
 
 void ObjMesh::buildVBO(){
     unsigned int v3dSize = sizeof(v3d);
-    stride = v3dSize;
-    stride += v3dSize;
-    stride += v3dSize;
+    glInfo.stride = v3dSize;
+    glInfo.stride += v3dSize;
+    glInfo.stride += v3dSize;
     
     if(vertexData[0].uvIndex != -1){
-        stride += v3dSize;
-        stride += v3dSize;
+        glInfo.stride += v3dSize;
+        glInfo.stride += v3dSize;
     }
     
-    size = (unsigned int)vertexData.size() * stride;
+    glInfo.size = (unsigned int)vertexData.size() * glInfo.stride;
     
-    unsigned char *vertexArray = (unsigned char*) malloc(size);
+    unsigned char *vertexArray = (unsigned char*) malloc(glInfo.size);
     unsigned char *vertexStart = vertexArray;
     
     unsigned int index;
@@ -143,8 +143,8 @@ void ObjMesh::buildVBO(){
         index = vertexData[i].vIndex;
         memcpy(vertexArray, &data->vertices[index], v3dSize);
         // Center the pivot
-                v3d centerThePivot = data->vertices[index] - location;      // ??????????
-                memcpy(vertexArray, &centerThePivot, v3dSize);              // ??????????
+        v3d centerThePivot = data->vertices[index] - outlines.location;      // ??????????
+        memcpy(vertexArray, &centerThePivot, v3dSize);              // ??????????
         vertexArray += v3dSize;
         memcpy(vertexArray, &data->normals[index], v3dSize);
         vertexArray += v3dSize;
@@ -158,24 +158,24 @@ void ObjMesh::buildVBO(){
         }
     }
     
-    glGenBuffers(1, &vbo);
-    glBindBuffer(GL_ARRAY_BUFFER, vbo);
-    glBufferData(GL_ARRAY_BUFFER, size, vertexStart, GL_STATIC_DRAW);
+    glGenBuffers(1, &glInfo.vbo);
+    glBindBuffer(GL_ARRAY_BUFFER, glInfo.vbo);
+    glBufferData(GL_ARRAY_BUFFER, glInfo.size, vertexStart, GL_STATIC_DRAW);
     free(vertexStart);
     
     //    logMessage("Mesh vertices vbo:  ARRAY  %d\n", mesh->vbo);
     
     unsigned int off = 0;
-    offset[0] = off;
+    glInfo.offset[0] = off;
     off += v3dSize;
-    offset[1] = off;
+    glInfo.offset[1] = off;
     off += v3dSize;
-    offset[2] = off;
+    glInfo.offset[2] = off;
     if(vertexData[0].uvIndex != -1){
         off += v3dSize;
-        offset[3] = off;
+        glInfo.offset[3] = off;
         off += v3dSize;
-        offset[4] = off;
+        glInfo.offset[4] = off;
     }
     
     for(unsigned int i = 0; i < tLists.size(); ++i){
