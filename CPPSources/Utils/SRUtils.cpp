@@ -158,6 +158,10 @@ void logMessage(const char *formatString, ...){
     va_end(params);
 }
 
+void printGLString(str name, GLenum s){
+    logMessage("GL %s = %s\n", name.c_str(), (const char *)glGetString(s));
+}
+
 #pragma mark FILE RELATED
 srFile  *fileOpen       ( void *ioContext, const char *fileName ){
     srFile *pFile = NULL;

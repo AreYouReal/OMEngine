@@ -73,6 +73,8 @@ SRContext* Game::getAppContext(){
 // Initialize the shader and program object
 //
 int Game::Init ( SRContext *context ){
+    printGLInfo();
+    
     appContext = context;
     atexit(Exit);
     glViewport ( 0, 0, context->width, context->height );
@@ -199,8 +201,14 @@ void Game::Exit(){
     logMessage("Exit function\n");
 }
 
-
-
+#pragma Helpers
+void Game::printGLInfo(){
+    printGLString("Version",        GL_VERSION);
+    printGLString("Vendor",         GL_VENDOR);
+    printGLString("Renderer",       GL_RENDERER);
+    printGLString("Extensions",     GL_EXTENSIONS);
+    printGLString("GLSL version",   GL_SHADING_LANGUAGE_VERSION);
+}
 
 
 

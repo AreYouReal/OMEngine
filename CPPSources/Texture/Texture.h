@@ -12,11 +12,6 @@ enum{ TEXTURE_FILTER_0X = 0,
       TEXTURE_FILTER_2X = 2,
       TEXTURE_FILTER_3X = 3 };
 
-
-struct PVRHeader{
-    unsigned int headerSize, height, width, nMipMap, flags, dataSize, bpp, bitRed, bitGreen, bitBlue, bitAlpha, tag, nSurface;
-};
-
 struct Texture{
     
     ~Texture();
