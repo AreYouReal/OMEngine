@@ -32,20 +32,30 @@ struct ObjVertexData{ int vIndex, uvIndex; };
 class ObjMesh{
     friend class Obj;
 public:
+// Functions
     ObjMesh();
     ~ObjMesh();
     
-    unsigned int draw();
-    void build();
-    void setAttributes();
+    unsigned int    draw();
+    void            build();
+    void            setAttributes();
     
     RenderObjectType renderObjectType();
-    
-    std::string                     getName(){ return name; }
+    std::string     getName(){ return name; }
+// Fields
     MeshOutlines                    outlines;
     
 private:
-    // Fields
+// Helpers
+    void    addVertexData(sp<ObjTriangleList> otl, int vIndex, int uvIndex);
+    void    buildVBO();
+    void    initMaterial();
+    void    updateBounds();
+    void    updateMin(v3d &min, v3d &vertex);
+    void    updateMax(v3d &max, v3d &vertex);
+    void    clear();
+    
+// Fields
     std::string                     name;           // Mesh name.
     std::string                     group;
     bool                            visible;        // If true - it's visible.
@@ -54,14 +64,4 @@ private:
     sp<ObjMaterial>                 currentMaterial = nullptr;
     wp<Obj>                         weakData;
     MeshGLInfo                      glInfo;
-    
-    // Helpers
-    void    addVertexData(sp<ObjTriangleList> otl, int vIndex, int uvIndex);
-    void    buildVBO();
-    void    initMaterial();
-    void    updateBounds();
-    void    updateMin(v3d &min, v3d &vertex);
-    void    updateMax(v3d &max, v3d &vertex);
-    
-    void    clear();
 };
