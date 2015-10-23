@@ -6,22 +6,25 @@ template<typename T>
 class Singleton{
 public:
 
-    virtual ~Singleton(){}
-
-    static sp<T> instance(){
-        auto retVal = mInstance.lock();
-        if (!retVal) {
-            retVal = std::make_shared<T>();
-            mInstance = retVal;
+    virtual ~Singleton(){
+        if(mInstance){
+            delete mInstance;
+            mInstance = nullptr;
         }
-        return retVal;
+    }
+
+    static T* instance(){
+        if (!mInstance) {
+            mInstance = new T();
+        }
+        return mInstance;
     }
     
 protected:
     Singleton(){}
-    static wp<T> mInstance;
+    static T* mInstance;
     
 };
 
 template<typename T>
-wp<T> Singleton<T>::mInstance;
+T* Singleton<T>::mInstance;

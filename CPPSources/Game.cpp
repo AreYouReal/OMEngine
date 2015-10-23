@@ -15,7 +15,7 @@ sp<GameObject> treeAndLeafs;
 sp<GameObject> ground;
 sp<GameObject> momo;
 
-void createTestScene(sp<Scene> scene, sp<Obj> object){
+void createTestScene(Scene *scene, sp<Obj> object){
     /// TEST CODE
     v3d firstPos(0, 0, 0);
 
@@ -44,18 +44,18 @@ using UserData = struct{};
 
 static SRContext       *appContext;
 
-sp<ShaderLibrary>  sLibrary;
-sp<Camera>         cam;
-sp<Illuminator>    ill;
-sp<Materials>      mats;
-sp<Scene>          scene;
-sp<PhysicalWorld>  pWorld;
+up<ShaderLibrary>  sLibrary;
+up<Camera>         cam;
+up<Illuminator>    ill;
+up<Materials>      mats;
+up<Scene>          scene;
+up<PhysicalWorld>  pWorld;
 
 
 sp<Obj>    object;
 
 
-void createMomo(sp<Scene> scene, sp<Obj> object){
+void createMomo(Scene *scene, sp<Obj> object){
     sp<GameObject> m = std::make_shared<GameObject>();
     m->mTransform = std::make_shared<Transform>(v3d(2, 0, 10));
     m->addObjMesh(object->getMesh("momo"));
@@ -82,19 +82,19 @@ int Game::Init ( SRContext *context ){
     glEnable( GL_CULL_FACE  );
     glEnable(GL_TEXTURE_2D);
 
-    mats        = Materials::instance();
-    sLibrary    = ShaderLibrary::instance();
-    cam         = Camera::instance();
-    ill         = Illuminator::instance();
-    scene       = Scene::instance();
-    pWorld      = PhysicalWorld::instance();
+    mats        = up<Materials>( Materials::instance() );
+    sLibrary    = up<ShaderLibrary>( ShaderLibrary::instance() );
+    cam         = up<Camera>( Camera::instance() );
+    ill         = up<Illuminator>( Illuminator::instance() );
+    scene       = up<Scene>( Scene::instance() );
+    pWorld      = up<PhysicalWorld>( PhysicalWorld::instance() );
 
     
     object = Obj::load("scene.obj");
     object->build();
     object->clear(); // Free mesh data.
 
-    createTestScene(scene, object);
+    createTestScene(scene.get(), object);
     
     pWorld->addPBodyToGameObject(momo, PhysicalBodyShape::BOX, 1.0f, momo->getDimensions());
     pWorld->addPBodyToGameObject(treeAndLeafs, PhysicalBodyShape::BOX, 1.0f, treeAndLeafs->getDimensions());
@@ -149,10 +149,6 @@ void Game::Shutdown ( SRContext *context ){
     mats.reset();
     pWorld.reset();
     
-    logMessage("obj: %d\n sl: %d\n cam: %d\n ill: %d\n scene: %d\n mats: %d\n", object.use_count(), sLibrary.use_count(), cam.use_count(), ill.use_count(), scene.use_count(), mats.use_count());
-    
-
-    
     logMessage("ShutDown function\n");
 }
 
@@ -175,7 +171,7 @@ void Game::Touch(SRContext *context, int event, int x, int y){
         case TOUCH_EVENT::ENDED  :
         case TOUCH_EVENT::CANCELLED  :
             touchX = touchY = 0;
-            createMomo(scene, object);
+            createMomo(scene.get(), object);
             break;
         default:
             break;
