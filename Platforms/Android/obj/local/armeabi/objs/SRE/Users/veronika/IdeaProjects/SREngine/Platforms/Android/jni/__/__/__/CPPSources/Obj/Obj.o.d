@@ -65,7 +65,6 @@
  /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/Singleton.hpp \
  /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Obj/MeshOutlines.h \
  /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Obj/MeshGLInfo.h \
- /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Shaders/ShaderLibrary.h \
  /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/nvtristrip/NvTriStrip.h \
  /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Game.h
 
@@ -198,8 +197,6 @@
 /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Obj/MeshOutlines.h:
 
 /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Obj/MeshGLInfo.h:
-
-/Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Shaders/ShaderLibrary.h:
 
 /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/nvtristrip/NvTriStrip.h:
 

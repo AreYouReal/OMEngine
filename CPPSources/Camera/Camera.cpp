@@ -8,10 +8,9 @@ Camera::~Camera(){
 
 Camera::Camera(float fovy, float width, float height, float near, float far)
 :mFovy(fovy), mWidth(width), mHeight(height), mNear(near), mFar(far){
-    transform = std::shared_ptr<Transform>(std::make_shared<Transform>());
-    transform->mPosition = v3d(0.0f, -3.8f, 2.5f);
-    transform->mFront = v3d(0.0f, 1.0f, 0.0f);
-    transform->mUp = v3d(0.0f, 0.0f, 1.0f);
+    transform.mPosition = v3d(0.0f, -3.8f, 2.5f);
+    transform.mFront = v3d(0.0f, 1.0f, 0.0f);
+    transform.mUp = v3d(0.0f, 0.0f, 1.0f);
     refreshViewAndNormalMatrix();
     refreshProjMatrix();
     logMessage("Camera constructor!");
@@ -19,15 +18,15 @@ Camera::Camera(float fovy, float width, float height, float near, float far)
 
 
 void Camera::setPosition(v3d pos){
-    transform->mPosition = pos;
+    transform.mPosition = pos;
     refreshViewAndNormalMatrix();
 }
 void Camera::setFront(v3d front){
-    transform->mFront = front;
+    transform.mFront = front;
     refreshViewAndNormalMatrix();
 }
 void Camera::setUp(v3d up){
-    transform->mUp = up;
+    transform.mUp = up;
     refreshViewAndNormalMatrix();
 }
 void Camera::setWidthAndHeight(float width, float height){
@@ -55,18 +54,18 @@ const m4d& Camera::modelViewMatrix() const{
 }
 
 void Camera::move(float velocity){
-    transform->moveForward(velocity);
+    transform.moveForward(velocity);
     refreshViewAndNormalMatrix();
 }
 
 void Camera::rotate(float angle, float x, float y, float z){
     v3d axis(x, y, z);
-    transform->rotate(angle, axis);
+    transform.rotate(angle, axis);
     refreshViewAndNormalMatrix();
 }
 
 void Camera::rotate(float deg, v3d &axis){
-    transform->rotate(deg, axis);
+    transform.rotate(deg, axis);
     refreshViewAndNormalMatrix();
 }
 
@@ -83,8 +82,8 @@ float Camera::sphereDistanceInFrustum(v3d location, float radius){
 
 #pragma mark PRIVATE(HELPERS)
 void Camera::refreshViewAndNormalMatrix(){
-    v3d lookAt = transform->mPosition + transform->mFront;
-    mViewMatrix = m4d::lookAt(transform->mPosition, lookAt, transform->mUp);
+    v3d lookAt = transform.mPosition + transform.mFront;
+    mViewMatrix = m4d::lookAt(transform.mPosition, lookAt, transform.mUp);
     mNormalMatrix = m4d::inverseTranspose(mViewMatrix);
     buildFrustum();
 }

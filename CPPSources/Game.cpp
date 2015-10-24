@@ -43,11 +43,11 @@ using UserData = struct{};
 
 static SRContext       *appContext;
 
-up<Camera>         cam;
-up<Illuminator>    ill;
-up<Materials>      mats;
-up<Scene>          scene;
-up<PhysicalWorld>  pWorld;
+sp<Camera>         cam;
+sp<Illuminator>    ill;
+sp<Materials>      mats;
+sp<Scene>          scene;
+sp<PhysicalWorld>  pWorld;
 
 
 sp<Obj>    object;
@@ -71,7 +71,7 @@ SRContext* Game::getAppContext(){
 // Initialize the shader and program object
 //
 int Game::Init ( SRContext *context ){
-//    printGLInfo();
+    printGLInfo();
     
     appContext = context;
     atexit(Exit);
@@ -139,11 +139,16 @@ void Game::Draw ( SRContext *context ){
 
 void Game::Shutdown ( SRContext *context ){
     object.reset();
-    cam.reset();
-    ill.reset();
-    scene.reset();
-    mats.reset();
-    pWorld.reset();
+    Camera::destroy();
+    Illuminator::destroy();
+    Scene::destroy();
+    Materials::destroy();
+    PhysicalWorld::destroy();
+    cam = nullptr;
+    ill = nullptr;
+    scene = nullptr;
+    mats = nullptr;
+    pWorld = nullptr;
     
     logMessage("ShutDown function\n");
 }
@@ -176,7 +181,7 @@ void Game::Touch(SRContext *context, int event, int x, int y){
 
 int Game::Main ( SRContext *context ){
     context->userData = malloc ( sizeof ( UserData ) );
-
+    logMessage("Context value: %d\n", context);
     SRCreateWindow( context, "Hello Triangle", context->width, context->height, ES_WINDOW_RGB );
 
     if ( !Game::Init ( context ) ){ return GL_FALSE; }
@@ -198,8 +203,8 @@ void Game::printGLInfo(){
     printGLString("Version",        GL_VERSION);
     printGLString("Vendor",         GL_VENDOR);
     printGLString("Renderer",       GL_RENDERER);
-    printGLString("Extensions",     GL_EXTENSIONS);
-    printGLString("GLSL version",   GL_SHADING_LANGUAGE_VERSION);
+//    printGLString("Extensions",     GL_EXTENSIONS);
+//    printGLString("GLSL version",   GL_SHADING_LANGUAGE_VERSION);
 }
 
 

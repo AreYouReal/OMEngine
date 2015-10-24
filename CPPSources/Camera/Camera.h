@@ -43,7 +43,7 @@ private:
     
     float mFovy, mWidth, mHeight, mNear, mFar;
     
-    std::shared_ptr<Transform> transform;
+    Transform transform;
     
     m4d mViewMatrix;
     m4d mProjectionMatrix;

@@ -76,6 +76,7 @@ static void HandleCommand ( struct android_app *pApp, int32_t cmd ){
                   free ( context->userData );
               }
               memset ( context, 0, sizeof ( SRContext ) );
+              context = 0;
               break;
       //______________________________________
       case APP_CMD_WINDOW_RESIZED:        break;

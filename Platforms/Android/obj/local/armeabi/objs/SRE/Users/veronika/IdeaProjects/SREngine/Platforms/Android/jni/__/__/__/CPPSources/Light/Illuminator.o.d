@@ -5,15 +5,6 @@
  /Users/veronika/Documents/ADT/android-ndk-r9d/sources/cxx-stl/gnu-libstdc++/4.8/include/vector \
  /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/Singleton.hpp \
  /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/Shortcuts.h \
- /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Light/LightSource.hpp \
- /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Math/v3d.h \
- /Users/veronika/Documents/ADT/android-ndk-r9d/sources/cxx-stl/gnu-libstdc++/4.8/include/cmath \
- /Users/veronika/Documents/ADT/android-ndk-r9d/sources/cxx-stl/gnu-libstdc++/4.8/include/iostream \
- /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Camera/Camera.h \
- /Users/veronika/Documents/ADT/android-ndk-r9d/sources/cxx-stl/gnu-libstdc++/4.8/include/stack \
- /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Math/m4d.h \
- /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Transform/Transform.hpp \
- /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Math/q4d.h \
  /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/SRUtils.h \
  /Users/veronika/Documents/ADT/android-ndk-r9d/platforms/android-18/arch-arm/usr/include/stdlib.h \
  /Users/veronika/Documents/ADT/android-ndk-r9d/platforms/android-18/arch-arm/usr/include/alloca.h \
@@ -23,6 +14,10 @@
  /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/FileContent.h \
  /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/Stopwatch.h \
  /Users/veronika/Documents/ADT/android-ndk-r9d/sources/cxx-stl/gnu-libstdc++/4.8/include/ctime \
+ /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Math/m4d.h \
+ /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Math/v3d.h \
+ /Users/veronika/Documents/ADT/android-ndk-r9d/sources/cxx-stl/gnu-libstdc++/4.8/include/cmath \
+ /Users/veronika/Documents/ADT/android-ndk-r9d/sources/cxx-stl/gnu-libstdc++/4.8/include/iostream \
  /Users/veronika/Documents/ADT/android-ndk-r9d/platforms/android-18/arch-arm/usr/include/GLES3/gl3.h \
  /Users/veronika/Documents/ADT/android-ndk-r9d/platforms/android-18/arch-arm/usr/include/GLES3/gl3platform.h \
  /Users/veronika/Documents/ADT/android-ndk-r9d/platforms/android-18/arch-arm/usr/include/KHR/khrplatform.h \
@@ -42,7 +37,12 @@
  /Users/veronika/Documents/ADT/android-ndk-r9d/platforms/android-18/arch-arm/usr/include/android/native_activity.h \
  /Users/veronika/Documents/ADT/android-ndk-r9d/platforms/android-18/arch-arm/usr/include/jni.h \
  /Users/veronika/Documents/ADT/android-ndk-r9d/platforms/android-18/arch-arm/usr/include/android/input.h \
- /Users/veronika/Documents/ADT/android-ndk-r9d/platforms/android-18/arch-arm/usr/include/android/keycodes.h
+ /Users/veronika/Documents/ADT/android-ndk-r9d/platforms/android-18/arch-arm/usr/include/android/keycodes.h \
+ /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Light/LightSource.hpp \
+ /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Camera/Camera.h \
+ /Users/veronika/Documents/ADT/android-ndk-r9d/sources/cxx-stl/gnu-libstdc++/4.8/include/stack \
+ /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Transform/Transform.hpp \
+ /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Math/q4d.h
 
 /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Light/Illuminator.hpp:
 
@@ -53,24 +53,6 @@
 /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/Singleton.hpp:
 
 /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/Shortcuts.h:
-
-/Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Light/LightSource.hpp:
-
-/Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Math/v3d.h:
-
-/Users/veronika/Documents/ADT/android-ndk-r9d/sources/cxx-stl/gnu-libstdc++/4.8/include/cmath:
-
-/Users/veronika/Documents/ADT/android-ndk-r9d/sources/cxx-stl/gnu-libstdc++/4.8/include/iostream:
-
-/Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Camera/Camera.h:
-
-/Users/veronika/Documents/ADT/android-ndk-r9d/sources/cxx-stl/gnu-libstdc++/4.8/include/stack:
-
-/Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Math/m4d.h:
-
-/Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Transform/Transform.hpp:
-
-/Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Math/q4d.h:
 
 /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/SRUtils.h:
 
@@ -89,6 +71,14 @@
 /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/Stopwatch.h:
 
 /Users/veronika/Documents/ADT/android-ndk-r9d/sources/cxx-stl/gnu-libstdc++/4.8/include/ctime:
+
+/Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Math/m4d.h:
+
+/Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Math/v3d.h:
+
+/Users/veronika/Documents/ADT/android-ndk-r9d/sources/cxx-stl/gnu-libstdc++/4.8/include/cmath:
+
+/Users/veronika/Documents/ADT/android-ndk-r9d/sources/cxx-stl/gnu-libstdc++/4.8/include/iostream:
 
 /Users/veronika/Documents/ADT/android-ndk-r9d/platforms/android-18/arch-arm/usr/include/GLES3/gl3.h:
 
@@ -129,3 +119,13 @@
 /Users/veronika/Documents/ADT/android-ndk-r9d/platforms/android-18/arch-arm/usr/include/android/input.h:
 
 /Users/veronika/Documents/ADT/android-ndk-r9d/platforms/android-18/arch-arm/usr/include/android/keycodes.h:
+
+/Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Light/LightSource.hpp:
+
+/Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Camera/Camera.h:
+
+/Users/veronika/Documents/ADT/android-ndk-r9d/sources/cxx-stl/gnu-libstdc++/4.8/include/stack:
+
+/Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Transform/Transform.hpp:
+
+/Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Math/q4d.h:

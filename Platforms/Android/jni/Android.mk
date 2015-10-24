@@ -22,7 +22,7 @@ $(SRC_PATH)/CPPSources/Obj/ObjMesh.cpp\
 $(SRC_PATH)/CPPSources/Physics/PhysicalWorld.cpp\
 $(SRC_PATH)/CPPSources/Scene/Scene.cpp\
 $(SRC_PATH)/CPPSources/Shaders/Shader.cpp\
-$(SRC_PATH)/CPPSources/Shaders/ShaderLibrary.cpp\
+$(SRC_PATH)/CPPSources/Shaders/ShaderHelper.cpp\
 $(SRC_PATH)/CPPSources/Shaders/ShaderProgram.cpp\
 $(SRC_PATH)/CPPSources/Texture/Texture.cpp\
 $(SRC_PATH)/CPPSources/Transform/Transform.cpp\

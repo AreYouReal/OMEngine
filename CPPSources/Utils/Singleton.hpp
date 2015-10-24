@@ -2,22 +2,26 @@
 
 #include "Shortcuts.h"
 
+#include "SRUtils.h"
+
 template<typename T>
 class Singleton{
 public:
 
-    virtual ~Singleton(){
-        if(mInstance){
-            delete mInstance;
-            mInstance = nullptr;
-        }
-    }
+    virtual ~Singleton(){}
 
     static T* instance(){
         if (!mInstance) {
             mInstance = new T();
         }
         return mInstance;
+    }
+    
+    static void destroy(){
+        if(mInstance){
+            delete mInstance;
+            mInstance = nullptr;
+        }
     }
     
 protected:

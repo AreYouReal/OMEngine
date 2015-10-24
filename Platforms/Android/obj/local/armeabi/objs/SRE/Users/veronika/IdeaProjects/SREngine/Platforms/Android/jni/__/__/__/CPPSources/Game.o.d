@@ -55,14 +55,10 @@
  /Users/veronika/Documents/ADT/android-ndk-r9d/platforms/android-18/arch-arm/usr/include/jni.h \
  /Users/veronika/Documents/ADT/android-ndk-r9d/platforms/android-18/arch-arm/usr/include/android/input.h \
  /Users/veronika/Documents/ADT/android-ndk-r9d/platforms/android-18/arch-arm/usr/include/android/keycodes.h \
- /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Shaders/ShaderLibrary.h \
- /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/Singleton.hpp \
- /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Shaders/ShaderProgram.h \
- /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Shaders/Shader.h \
- /Users/veronika/Documents/ADT/android-ndk-r9d/sources/cxx-stl/gnu-libstdc++/4.8/include/map \
  /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Texture/Texture.h \
  /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Camera/Camera.h \
  /Users/veronika/Documents/ADT/android-ndk-r9d/sources/cxx-stl/gnu-libstdc++/4.8/include/stack \
+ /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/Singleton.hpp \
  /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Transform/Transform.hpp \
  /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Math/q4d.h \
  /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Light/Illuminator.hpp \
@@ -71,7 +67,10 @@
  /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Scene/IRenderable.h \
  /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Obj/ObjMesh.h \
  /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Material/ObjMaterial.h \
+ /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Shaders/ShaderProgram.h \
+ /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Shaders/Shader.h \
  /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Material/Materials.hpp \
+ /Users/veronika/Documents/ADT/android-ndk-r9d/sources/cxx-stl/gnu-libstdc++/4.8/include/map \
  /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Obj/Obj.h \
  /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/nvtristrip/NvTriStrip.h \
  /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Obj/MeshOutlines.h \
@@ -263,21 +262,13 @@
 
 /Users/veronika/Documents/ADT/android-ndk-r9d/platforms/android-18/arch-arm/usr/include/android/keycodes.h:
 
-/Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Shaders/ShaderLibrary.h:
-
-/Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/Singleton.hpp:
-
-/Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Shaders/ShaderProgram.h:
-
-/Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Shaders/Shader.h:
-
-/Users/veronika/Documents/ADT/android-ndk-r9d/sources/cxx-stl/gnu-libstdc++/4.8/include/map:
-
 /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Texture/Texture.h:
 
 /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Camera/Camera.h:
 
 /Users/veronika/Documents/ADT/android-ndk-r9d/sources/cxx-stl/gnu-libstdc++/4.8/include/stack:
+
+/Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/Singleton.hpp:
 
 /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Transform/Transform.hpp:
 
@@ -295,7 +286,13 @@
 
 /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Material/ObjMaterial.h:
 
+/Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Shaders/ShaderProgram.h:
+
+/Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Shaders/Shader.h:
+
 /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Material/Materials.hpp:
+
+/Users/veronika/Documents/ADT/android-ndk-r9d/sources/cxx-stl/gnu-libstdc++/4.8/include/map:
 
 /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Obj/Obj.h:
 
