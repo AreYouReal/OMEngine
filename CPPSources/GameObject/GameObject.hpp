@@ -14,9 +14,9 @@ class GameObject : public IRenderable{
     
 public:
     
-    str name;
+    string name;
     
-    GameObject(sp<Transform>, sp<ObjMesh>, str n = "noname");
+    GameObject(sp<Transform>, sp<ObjMesh>, string n = "noname");
     GameObject();
     virtual ~GameObject();
     

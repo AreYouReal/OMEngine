@@ -190,7 +190,7 @@ void ObjMesh::initMaterial(){
     for(unsigned int i = 0; i < tLists.size(); ++i){
         if(tLists[i]->material != nullptr){
             tLists[i]->material->loadTextures();
-            tLists[i]->material->setProgram(ShaderLibrary::instance()->getProgram("defaultPerVertex"));
+            tLists[i]->material->setProgram(Materials::instance()->getProgram("defaultPerVertex"));
         }
     }
 }

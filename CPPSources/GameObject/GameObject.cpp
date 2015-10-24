@@ -8,7 +8,7 @@ GameObject::GameObject(){
     logMessage("GameObject constructor");
 }
 
-GameObject::GameObject(sp<Transform>, sp<ObjMesh>, str n) : name(n){ }
+GameObject::GameObject(sp<Transform>, sp<ObjMesh>, string n) : name(n){ }
 
 GameObject::~GameObject(){
     logMessage("GameObject destructor");

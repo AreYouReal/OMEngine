@@ -74,6 +74,8 @@
  /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Material/Materials.hpp \
  /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Obj/Obj.h \
  /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/nvtristrip/NvTriStrip.h \
+ /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Obj/MeshOutlines.h \
+ /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Obj/MeshGLInfo.h \
  /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Physics/PhysicalWorld.hpp \
  /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/GameObject/GameObject.hpp \
  /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/BulletDynamics/Dynamics/btRigidBody.h \
@@ -298,6 +300,10 @@
 /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Obj/Obj.h:
 
 /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/nvtristrip/NvTriStrip.h:
+
+/Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Obj/MeshOutlines.h:
+
+/Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Obj/MeshGLInfo.h:
 
 /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Physics/PhysicalWorld.hpp:
 

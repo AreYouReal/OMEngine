@@ -2,9 +2,10 @@
 #include "Materials.hpp"
 #include "Game.h"
 #include "SRUtils.h"
-#include "ShaderLibrary.h"
+#include "ShaderHelper.h"
 
 Materials::Materials(){
+    loadPrograms();
     logMessage("Materials constructor!\n");
 }
 
@@ -117,8 +118,49 @@ sp<ObjMaterial> Materials::getMaterial(const std::string &name){
     }else{
         logMessage("cant find material %s\n", name.c_str());
         auto mat = std::make_shared<ObjMaterial>();
-        mat->program = ShaderLibrary::instance()->getProgram("norm_as_color");
+        mat->program = getProgram("norm_as_color");
         return mat;
     }
+}
+
+sp<ShaderProgram> Materials::getProgram(const string &name){
+    if(programs.find(name) != programs.end())
+        return programs[name];
+    
+    return nullptr;
+}
+
+void Materials::loadPrograms(){
+    logMessage("ShaderLibrary constructor!\n");
+    // Default program
+    // Use normal as color in shader
+    Shader vertexShader = ShaderHelper::loadShader(GL_VERTEX_SHADER, "pos_norm_vertex.glsl");
+    Shader fragmentShader = ShaderHelper::loadShader(GL_FRAGMENT_SHADER, "norm_as_color_fragment.glsl");
+    sp<ShaderProgram> program = ShaderHelper::createProgram(vertexShader, fragmentShader);
+    programs.insert(std::pair<std::string, sp<ShaderProgram>>("norm_as_color", program));
+    //--------------------------------------------------------
+    // Per vertex lighting
+    Shader defVShader = ShaderHelper::loadShader(GL_VERTEX_SHADER, "default_gray_vertex.glsl");
+    Shader defFShader = ShaderHelper::loadShader(GL_FRAGMENT_SHADER, "default_gray_fragment.glsl");
+    sp<ShaderProgram> defProg = ShaderHelper::createProgram(defVShader, defFShader);
+    programs.insert(std::pair<std::string, sp<ShaderProgram>>("default_gray", defProg));
+    //--------------------------------------------------------
+    // Per vertex lighting
+    Shader vertexPerVertexLighting = ShaderHelper::loadShader(GL_VERTEX_SHADER, "vertexPerVertex.glsl");
+    Shader fragmentPerVertexLighting = ShaderHelper::loadShader(GL_FRAGMENT_SHADER, "fragmentPerVertex.glsl");
+    sp<ShaderProgram> perVertexProgram = ShaderHelper::createProgram(vertexPerVertexLighting, fragmentPerVertexLighting);
+    programs.insert(std::pair<std::string, sp<ShaderProgram>>("defaultPerVertex", perVertexProgram));
+    //--------------------------
+    // Solid, alpha tested and transparent programs with per pixel lighting.
+    Shader vShader = ShaderHelper::loadShader(GL_VERTEX_SHADER, "vertexPerPixel.glsl");
+    Shader fSolidShader = ShaderHelper::loadShader(GL_FRAGMENT_SHADER, "fragmentPerPixel.glsl");
+    sp<ShaderProgram> solidProgram = ShaderHelper::createProgram(vShader, fSolidShader);
+    programs.insert(std::pair<std::string, sp<ShaderProgram>>("defaultPerPixel", solidProgram));
+    //--------------------------
+    // Bump shader
+    Shader vertexBump = ShaderHelper::loadShader(GL_VERTEX_SHADER, "vertexBump.glsl");
+    Shader fragmentBump = ShaderHelper::loadShader(GL_FRAGMENT_SHADER, "fragmentBump.glsl");
+    sp<ShaderProgram> bumpProgram = ShaderHelper::createProgram(vertexBump, fragmentBump);
+    programs.insert(std::pair<std::string, sp<ShaderProgram>>("bump", bumpProgram));
 }
 

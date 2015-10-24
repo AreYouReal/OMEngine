@@ -4,7 +4,6 @@
 #include "m4d.h"
 #include "ObjMesh.h"
 #include "ObjMaterial.h"
-#include "ShaderLibrary.h"
 #include "Texture.h"
 #include "Materials.hpp"
 
@@ -26,17 +25,17 @@ public:
     
     void clear();
 
-    void        optimizeMesh(str meshName, unsigned int vertexCacheSize);
+    void        optimizeMesh(string meshName, unsigned int vertexCacheSize);
     unsigned int drawMesh(unsigned int meshIndex);
     
-    sp<ObjMesh>  getMesh(str meshName);
+    sp<ObjMesh>  getMesh(string meshName);
     unsigned int meshesSize();
     
 // Fields
 private:
     Obj();
     
-    std::map<str, sp<ObjMesh>>  meshes;
+    std::map<string, sp<ObjMesh>>  meshes;
     std::vector<v3d>            vertices;
     std::vector<v3d>            normals;
     std::vector<v3d>            faceNormals;

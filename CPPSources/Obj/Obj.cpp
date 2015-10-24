@@ -106,7 +106,7 @@ bool Obj::readIndices(const char* line, int v[], int n[], int uv[], bool &useUVs
 
 void Obj::addMesh(sp<ObjMesh> mesh, sp<ObjTriangleList> tList, char* name, char* usemtl, char* group, bool useUVs){
     logMessage("Add new mesh to OBJ %s\n", name);
-    meshes.insert(pair<str, sp<ObjMesh>>(name, mesh));
+    meshes.insert(pair<string, sp<ObjMesh>>(name, mesh));
     mesh->visible = true;
     if(name[0]) mesh->name = name;
     else if(usemtl[0]) mesh->name = name;
@@ -189,7 +189,7 @@ void Obj::builNormalsAndTangents(){
 
 
 #pragma mark Mesh building
-void Obj::optimizeMesh(str meshName, unsigned int vertexCacheSize){
+void Obj::optimizeMesh(string meshName, unsigned int vertexCacheSize){
     sp<ObjMesh> mesh = meshes[meshName];
     if(vertexCacheSize) SetCacheSize(vertexCacheSize);
     
@@ -209,7 +209,7 @@ void Obj::optimizeMesh(str meshName, unsigned int vertexCacheSize){
     }
 }
 
-sp<ObjMesh> Obj::getMesh(str meshName){
+sp<ObjMesh> Obj::getMesh(string meshName){
     if(meshes.find(meshName) != meshes.end())
     return meshes[meshName];
     

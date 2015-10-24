@@ -1,5 +1,4 @@
 #include "Game.h"
-#include "ShaderLibrary.h"
 #include "Texture.h"
 #include "Camera.h"
 #include "Illuminator.hpp"
@@ -44,7 +43,6 @@ using UserData = struct{};
 
 static SRContext       *appContext;
 
-up<ShaderLibrary>  sLibrary;
 up<Camera>         cam;
 up<Illuminator>    ill;
 up<Materials>      mats;
@@ -73,7 +71,7 @@ SRContext* Game::getAppContext(){
 // Initialize the shader and program object
 //
 int Game::Init ( SRContext *context ){
-    printGLInfo();
+//    printGLInfo();
     
     appContext = context;
     atexit(Exit);
@@ -83,7 +81,6 @@ int Game::Init ( SRContext *context ){
     glEnable(GL_TEXTURE_2D);
 
     mats        = up<Materials>( Materials::instance() );
-    sLibrary    = up<ShaderLibrary>( ShaderLibrary::instance() );
     cam         = up<Camera>( Camera::instance() );
     ill         = up<Illuminator>( Illuminator::instance() );
     scene       = up<Scene>( Scene::instance() );
@@ -142,7 +139,6 @@ void Game::Draw ( SRContext *context ){
 
 void Game::Shutdown ( SRContext *context ){
     object.reset();
-    sLibrary.reset();
     cam.reset();
     ill.reset();
     scene.reset();

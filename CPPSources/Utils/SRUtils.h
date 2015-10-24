@@ -83,7 +83,7 @@ void SRUTIL_API SRRegisterTouchFunc ( SRContext *context,
 
 #pragma LOGGING
 void logMessage(const char *formatString, ...);
-void printGLString(str name, GLenum s);
+void printGLString(string name, GLenum s);
 
 
 #pragma mark FILE IO

@@ -48,7 +48,9 @@
  /Users/veronika/Documents/ADT/android-ndk-r9d/sources/cxx-stl/gnu-libstdc++/4.8/include/map \
  /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Obj/Obj.h \
  /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Shaders/ShaderLibrary.h \
- /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/nvtristrip/NvTriStrip.h
+ /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/nvtristrip/NvTriStrip.h \
+ /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Obj/MeshOutlines.h \
+ /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Obj/MeshGLInfo.h
 
 /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Scene/Scene.hpp:
 
@@ -147,3 +149,7 @@
 /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Shaders/ShaderLibrary.h:
 
 /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/nvtristrip/NvTriStrip.h:
+
+/Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Obj/MeshOutlines.h:
+
+/Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Obj/MeshGLInfo.h:

@@ -158,7 +158,7 @@ void logMessage(const char *formatString, ...){
     va_end(params);
 }
 
-void printGLString(str name, GLenum s){
+void printGLString(string name, GLenum s){
     logMessage("GL %s = %s\n", name.c_str(), (const char *)glGetString(s));
 }
 
