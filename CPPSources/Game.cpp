@@ -43,13 +43,6 @@ using UserData = struct{};
 
 static SRContext       *appContext;
 
-sp<Camera>         cam;
-sp<Illuminator>    ill;
-sp<Materials>      mats;
-sp<Scene>          scene;
-sp<PhysicalWorld>  pWorld;
-
-
 sp<Obj>    object;
 
 
@@ -59,7 +52,7 @@ void createMomo(Scene *scene, sp<Obj> object){
     m->addObjMesh(object->getMesh("momo"));
     scene->addObjOnScene(m);
     
-    pWorld->addPBodyToGameObject(m, PhysicalBodyShape::BOX, 1.0f, m->getDimensions());
+    PhysicalWorld::instance()->addPBodyToGameObject(m, PhysicalBodyShape::BOX, 1.0f, m->getDimensions());
 }
 
 SRContext* Game::getAppContext(){
@@ -80,22 +73,16 @@ int Game::Init ( SRContext *context ){
     glEnable( GL_CULL_FACE  );
     glEnable(GL_TEXTURE_2D);
 
-    mats        = up<Materials>( Materials::instance() );
-    cam         = up<Camera>( Camera::instance() );
-    ill         = up<Illuminator>( Illuminator::instance() );
-    scene       = up<Scene>( Scene::instance() );
-    pWorld      = up<PhysicalWorld>( PhysicalWorld::instance() );
-
     
     object = Obj::load("scene.obj");
     object->build();
     object->clear(); // Free mesh data.
 
-    createTestScene(scene.get(), object);
+    createTestScene(Scene::instance(), object);
     
-    pWorld->addPBodyToGameObject(momo, PhysicalBodyShape::BOX, 1.0f, momo->getDimensions());
-    pWorld->addPBodyToGameObject(treeAndLeafs, PhysicalBodyShape::BOX, 1.0f, treeAndLeafs->getDimensions());
-    pWorld->addPBodyToGameObject(ground, PhysicalBodyShape::BOX, 0.0f, ground->getDimensions());
+    PhysicalWorld::instance()->addPBodyToGameObject(momo, PhysicalBodyShape::BOX, 1.0f, momo->getDimensions());
+    PhysicalWorld::instance()->addPBodyToGameObject(treeAndLeafs, PhysicalBodyShape::BOX, 1.0f, treeAndLeafs->getDimensions());
+    PhysicalWorld::instance()->addPBodyToGameObject(ground, PhysicalBodyShape::BOX, 0.0f, ground->getDimensions());
     
 //    
 //    , nullptr, [](btBroadphasePair &pair, btCollisionDispatcher &dispatcher, const btDispatcherInfo &info){
@@ -112,7 +99,7 @@ int Game::Init ( SRContext *context ){
 
 void Game::Update(SRContext *context, float deltaTime){
 //    logMessage("UPDATE \n");
-    pWorld->update(deltaTime);
+    PhysicalWorld::instance()->update(deltaTime);
 }
 
 
@@ -132,7 +119,7 @@ void Game::Draw ( SRContext *context ){
     glClearColor(0.0f, 0.3f, 0.0f, 1.0f);
     glClear( GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT );
 
-    scene->update();
+    Scene::instance()->update();
 //    logMessage("%f\n", stopwatch.fps());
 }
 
@@ -144,12 +131,6 @@ void Game::Shutdown ( SRContext *context ){
     Scene::destroy();
     Materials::destroy();
     PhysicalWorld::destroy();
-    cam = nullptr;
-    ill = nullptr;
-    scene = nullptr;
-    mats = nullptr;
-    pWorld = nullptr;
-    
     logMessage("ShutDown function\n");
 }
 
@@ -172,7 +153,7 @@ void Game::Touch(SRContext *context, int event, int x, int y){
         case TOUCH_EVENT::ENDED  :
         case TOUCH_EVENT::CANCELLED  :
             touchX = touchY = 0;
-            createMomo(scene.get(), object);
+            createMomo(Scene::instance(), object);
             break;
         default:
             break;
