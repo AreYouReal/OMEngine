@@ -23,8 +23,8 @@ public:
     ~GameObject();
     
     
-    void addComponent(const string &name, const up<IComponent> comp);
-    IComponent *getComponent(const string &name);
+    void addComponent(const ComponentEnum &name, const up<IComponent> comp);
+    IComponent *getComponent(const ComponentEnum &name);
     
     
     void release();
@@ -44,5 +44,5 @@ public:
     
 private:
 
-    std::map<string, up<IComponent>> mComponents;
+    std::map<ComponentEnum, up<IComponent>> mComponents;
 };

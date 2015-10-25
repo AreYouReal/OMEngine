@@ -22,11 +22,11 @@ void GameObject::destroyChildren(){
     mChildren.clear();
 }
 
-void GameObject::addComponent(const string &name, up<IComponent> comp){
-    mComponents.insert(std::pair<string, up<IComponent>>(name, std::move(comp)));
+void GameObject::addComponent(const ComponentEnum &name, up<IComponent> comp){
+    mComponents.insert(std::pair<ComponentEnum, up<IComponent>>(name, std::move(comp)));
 }
 
-IComponent *GameObject::getComponent(const string &name){
+IComponent *GameObject::getComponent(const ComponentEnum &name){
     if(mComponents.find(name) != mComponents.end()) return mComponents[name].get();
     return nullptr;
 }

@@ -58,7 +58,7 @@ void MeshRendererComponent::update(){
     }
     
     for(auto const &child : go->mChildren){
-        IComponent *meshRendererComp = child->getComponent("MeshRender");
+        IComponent *meshRendererComp = child->getComponent(ComponentEnum::MESH_RENDERER);
         if(meshRendererComp){
             meshRendererComp->update();
         }

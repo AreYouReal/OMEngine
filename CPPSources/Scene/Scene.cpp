@@ -39,7 +39,7 @@ void Scene::update(float deltaTime){
 
 void Scene::draw(){
     for(const auto& go : mObjects){
-        IComponent *mrc = go->getComponent("MeshRenderer");
+        IComponent *mrc = go->getComponent(ComponentEnum::MESH_RENDERER);
         if(mrc){ mrc->update(); }
     }
 }
@@ -59,18 +59,15 @@ void Scene::createTestScene(sp<Obj> object){
     
     
     // Tree
-
     
     up<GameObject> treeAndLeafs = std::unique_ptr<GameObject>(new GameObject());
-
     
     up<MeshRendererComponent> mrc_1 = up<MeshRendererComponent>(new MeshRendererComponent(treeAndLeafs.get()));
     mrc_1->addMesh(object->getMesh("leaf"));
     mrc_1->addMesh(object->getMesh("tree"));
     
-    
     treeAndLeafs->mTransform = std::make_shared<Transform>(v3d(0, 0, 5));
-    treeAndLeafs->addComponent("MeshRenderer", std::move(mrc_1));
+    treeAndLeafs->addComponent(ComponentEnum::MESH_RENDERER, std::move(mrc_1));
     
     PhysicalWorld::instance()->addPBodyToGameObject(treeAndLeafs.get(), PhysicalBodyShape::BOX, 1.0f, treeAndLeafs->getDimensions());
     
@@ -78,9 +75,6 @@ void Scene::createTestScene(sp<Obj> object){
     addObjOnScene(std::move(treeAndLeafs));
     
     // MOMO
-    
-
-    
     up<GameObject> momo = std::unique_ptr<GameObject>(new GameObject());
 
     mrc_1 = up<MeshRendererComponent>(new MeshRendererComponent(momo.get()));
@@ -88,7 +82,7 @@ void Scene::createTestScene(sp<Obj> object){
     
     momo->name = "momo";
     momo->mTransform = std::make_shared<Transform>(v3d(2.3, 0, 7));
-    momo->addComponent("MeshRenderer", std::move(mrc_1));
+    momo->addComponent(ComponentEnum::MESH_RENDERER, std::move(mrc_1));
     
     
     PhysicalWorld::instance()->addPBodyToGameObject(momo.get(), PhysicalBodyShape::BOX, 1.0f, momo->getDimensions());
@@ -105,7 +99,7 @@ void Scene::createTestScene(sp<Obj> object){
     mrc_1 = up<MeshRendererComponent>(new MeshRendererComponent(ground.get()));
     mrc_1->addMesh(object->getMesh("grass_ground"));
     
-    ground->addComponent("MeshRenderer", std::move(mrc_1));
+    ground->addComponent(ComponentEnum::MESH_RENDERER, std::move(mrc_1));
     
     PhysicalWorld::instance()->addPBodyToGameObject(ground.get(), PhysicalBodyShape::BOX, 0.0f, v3d(10, 10, 1));
     
@@ -133,7 +127,7 @@ void Scene::createMOMO(){
     up<MeshRendererComponent> mrc_1 = up<MeshRendererComponent>(new MeshRendererComponent(m.get()));
     mrc_1->addMesh(mObjRess["scene"]->getMesh("momo"));
     
-    m->addComponent("MeshRenderer", std::move(mrc_1));
+    m->addComponent(ComponentEnum::MESH_RENDERER, std::move(mrc_1));
     
     PhysicalWorld::instance()->addPBodyToGameObject(m.get(), PhysicalBodyShape::BOX, 1.0f, m->getDimensions());
     

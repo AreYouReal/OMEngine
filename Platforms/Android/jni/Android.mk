@@ -8,6 +8,7 @@ LOCAL_CFLAGS    += -std=c++11
 
 LOCAL_SRC_FILES := $(LOCAL_PATH)/esUtil_Android.cpp \
 $(SRC_PATH)/CPPSources/Camera/Camera.cpp\
+$(SRC_PATH)/CPPSources/Component/MeshRendererComponent.cpp\
 $(SRC_PATH)/CPPSources/Game.cpp\
 $(SRC_PATH)/CPPSources/GameObject/GameObject.cpp\
 $(SRC_PATH)/CPPSources/Light/Illuminator.cpp\
@@ -179,6 +180,7 @@ $(SRC_PATH)/CPPSources/Utils/SRUtils.cpp\
 LOCAL_C_INCLUDES	:= $(SRC_PATH) \
  $(COMMON_INC_PATH) \
 $(SRC_PATH)/CPPSources/Camera\
+$(SRC_PATH)/CPPSources/Component\
 $(SRC_PATH)/CPPSources\
 $(SRC_PATH)/CPPSources/GameObject\
 $(SRC_PATH)/CPPSources/Light\

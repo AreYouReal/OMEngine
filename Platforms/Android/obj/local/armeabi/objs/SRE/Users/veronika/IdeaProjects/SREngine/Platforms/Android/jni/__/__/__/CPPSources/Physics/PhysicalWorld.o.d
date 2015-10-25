@@ -73,6 +73,7 @@
  /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/BulletCollision/CollisionDispatch/btCollisionObject.h \
  /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/LinearMath/btMotionState.h \
  /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/LinearMath/btTransform.h \
+ /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Component/IComponent.hpp \
  /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/BulletSoftBody/btSoftBodyRigidBodyCollisionConfiguration.h \
  /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/BulletCollision/CollisionDispatch/btDefaultCollisionConfiguration.h \
  /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/BulletCollision/CollisionDispatch/btCollisionConfiguration.h \
@@ -275,6 +276,8 @@
 /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/LinearMath/btMotionState.h:
 
 /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/LinearMath/btTransform.h:
+
+/Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Component/IComponent.hpp:
 
 /Users/veronika/IdeaProjects/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/BulletSoftBody/btSoftBodyRigidBodyCollisionConfiguration.h:
 

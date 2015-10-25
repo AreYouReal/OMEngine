@@ -2,6 +2,8 @@
 
 class GameObject;
 
+enum class ComponentEnum{ MESH_RENDERER };
+
 class IComponent{
 public:
     
