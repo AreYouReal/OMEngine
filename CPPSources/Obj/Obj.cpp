@@ -106,7 +106,7 @@ bool Obj::readIndices(const char* line, int v[], int n[], int uv[], bool &useUVs
 
 void Obj::addMesh(sp<ObjMesh> mesh, sp<ObjTriangleList> tList, char* name, char* usemtl, char* group, bool useUVs){
     logMessage("Add new mesh to OBJ %s\n", name);
-    meshes.insert(pair<string, sp<ObjMesh>>(name, mesh));
+    meshes.insert(std::pair<string, sp<ObjMesh>>(name, mesh));
     mesh->visible = true;
     if(name[0]) mesh->name = name;
     else if(usemtl[0]) mesh->name = name;

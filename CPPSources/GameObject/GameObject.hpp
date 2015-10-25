@@ -9,25 +9,28 @@
 // Bullet
 #include "btRigidBody.h"
 
+// Components
+#include "IComponent.hpp"
 
-class GameObject : public IRenderable{
-    
+
+class GameObject{
 public:
     
     string name;
     
     GameObject(sp<Transform>, sp<ObjMesh>, string n = "noname");
     GameObject();
-    virtual ~GameObject();
+    ~GameObject();
     
-    void addObjMesh(sp<ObjMesh> objToAdd);
+    
+    void addComponent(const string &name, const up<IComponent> comp);
+    IComponent *getComponent(const string &name);
+    
     
     void release();
     
     void addChild(sp<GameObject> child);
     void destroyChildren();
-    
-    virtual void draw() override;
     
     sp<Transform>   mTransform;
     
@@ -37,9 +40,9 @@ public:
     
     v3d getPosition();
     
+        std::vector<sp<GameObject>> mChildren;
+    
 private:
-    
-    std::vector<sp<GameObject>> mChildren;
-    
-    std::vector<sp<ObjMesh>>    mObjMeshes;
+
+    std::map<string, up<IComponent>> mComponents;
 };

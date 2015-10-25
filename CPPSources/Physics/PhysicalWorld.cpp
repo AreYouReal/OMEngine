@@ -21,10 +21,8 @@ void PhysicalWorld::update(float deltaTime){
 
 bool PhysicalWorld::addPBodyToGameObject(GameObject *go, PhysicalBodyShape shape, float mass, v3d dimension,PhysicContactCallback contactCallback, PhysicNearCallback nearCallback ){
     if(!go) return false;
-    v3d goDimensions = go->getDimensions();
-    
     // Collision shape choosing goes here...
-    btCollisionShape *cShape = new btBoxShape(btVector3(goDimensions.x * 0.5f, goDimensions.y * 0.5f, goDimensions.z * 0.5f));
+    btCollisionShape *cShape = new btBoxShape(btVector3(dimension.x * 0.5f, dimension.y * 0.5f, dimension.z * 0.5f));
     btTransform bttransform;
     m4d transformM = m4d::transpose(go->mTransform->transformMatrix());
     bttransform.setFromOpenGLMatrix(transformM.pointer());

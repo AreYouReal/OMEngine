@@ -15,6 +15,7 @@
 		7626526017F10E6C007CCD43 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7626525F17F10E6C007CCD43 /* XCTest.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		7626526117F10E6C007CCD43 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7626523517F10E6C007CCD43 /* Foundation.framework */; };
 		7626526217F10E6C007CCD43 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7626523917F10E6C007CCD43 /* UIKit.framework */; };
+		940E28EE1BDCB19C00B47533 /* MeshRendererComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 940E28EC1BDCB19C00B47533 /* MeshRendererComponent.cpp */; };
 		943869871BA8949D005A0594 /* fragmentBump.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 943869851BA8949D005A0594 /* fragmentBump.glsl */; };
 		943869881BA8949D005A0594 /* vertexBump.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 943869861BA8949D005A0594 /* vertexBump.glsl */; };
 		9453DEE11B2A0A2700C79DB3 /* SRUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9453DEDF1B2A0A2700C79DB3 /* SRUtils.cpp */; };
@@ -242,6 +243,9 @@
 		7626525E17F10E6C007CCD43 /* iOSSRE.temp_caseinsensitive_rename.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSSRE.temp_caseinsensitive_rename.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7626525F17F10E6C007CCD43 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		940CF4291B98C220005B6F19 /* Stopwatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stopwatch.h; sourceTree = "<group>"; };
+		940E28EA1BDCB11600B47533 /* IComponent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = IComponent.hpp; sourceTree = "<group>"; };
+		940E28EC1BDCB19C00B47533 /* MeshRendererComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MeshRendererComponent.cpp; sourceTree = "<group>"; };
+		940E28ED1BDCB19C00B47533 /* MeshRendererComponent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MeshRendererComponent.hpp; sourceTree = "<group>"; };
 		942762991BD8AA6600E345EA /* MeshOutlines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MeshOutlines.h; sourceTree = "<group>"; };
 		943869851BA8949D005A0594 /* fragmentBump.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fragmentBump.glsl; sourceTree = "<group>"; };
 		943869861BA8949D005A0594 /* vertexBump.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = vertexBump.glsl; sourceTree = "<group>"; };
@@ -787,6 +791,7 @@
 		7626523F17F10E6C007CCD43 /* iOSSRE */ = {
 			isa = PBXGroup;
 			children = (
+				940E28E81BDCB0F300B47533 /* Component */,
 				947890371BD4D17F00B55A25 /* Physics */,
 				F3C52B261BBD01CC009F3604 /* Scene */,
 				F380B78B1BBBDC550049E755 /* Obj */,
@@ -853,6 +858,17 @@
 				F3D5E1071AF8F23E00DD216B /* iOSSRE.temp_caseinsensitive_renameTests-Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		940E28E81BDCB0F300B47533 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				940E28EA1BDCB11600B47533 /* IComponent.hpp */,
+				940E28EC1BDCB19C00B47533 /* MeshRendererComponent.cpp */,
+				940E28ED1BDCB19C00B47533 /* MeshRendererComponent.hpp */,
+			);
+			name = Component;
+			path = SREngine/CPPSources/Component;
 			sourceTree = "<group>";
 		};
 		9420DCE41B007E0D006D2A7E /* Shaders */ = {
@@ -1835,6 +1851,7 @@
 				94CE87E71B62B5A400752D5C /* ViewController.mm in Sources */,
 				94788FA81BD4CFD200B55A25 /* btAxisSweep3.cpp in Sources */,
 				9478900D1BD4CFD200B55A25 /* btGeneric6DofSpring2Constraint.cpp in Sources */,
+				940E28EE1BDCB19C00B47533 /* MeshRendererComponent.cpp in Sources */,
 				94788FB81BD4CFD200B55A25 /* btCollisionWorld.cpp in Sources */,
 				94788FC51BD4CFD200B55A25 /* btManifoldResult.cpp in Sources */,
 			);
