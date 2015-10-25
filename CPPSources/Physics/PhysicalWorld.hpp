@@ -34,7 +34,7 @@ public:
     PhysicalWorld& operator=(const PhysicalWorld& rhs) = delete;
     ~PhysicalWorld();
     
-    bool addPBodyToGameObject(sp<GameObject> go, PhysicalBodyShape shape, float mass, v3d dimension, PhysicContactCallback contactCallback = nullptr, PhysicNearCallback nearCallback = nullptr);
+    bool addPBodyToGameObject(GameObject *go, PhysicalBodyShape shape, float mass, v3d dimension, PhysicContactCallback contactCallback = nullptr, PhysicNearCallback nearCallback = nullptr);
     
     void update(float deltaTime);
     

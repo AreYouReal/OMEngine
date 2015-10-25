@@ -3,7 +3,11 @@
 #include "Shortcuts.h"
 #include "IRenderable.h"
 #include "Singleton.hpp"
-#include "ObjMesh.h"
+#include "GameObject.hpp"
+
+#include "PhysicalWorld.hpp"
+#include "Illuminator.hpp"
+
 
 class Scene : public Singleton<Scene>{
 
@@ -15,16 +19,30 @@ public:
     
     ~Scene();
     
-    void addObjOnScene(sp<IRenderable> newNode);
+    void addObjOnScene(up<GameObject> go);
+    void update(float deltaTime);
+    void draw();
+    void setRenderObjectState(RenderObjectType newState);
     
-    void update();
-    
-    void        setRenderObjectState(RenderObjectType newState);
+// DEBUG
+    void createMOMO();
     
 private:
-    
-    RenderObjectType  mDrawingState = RenderObjectType::SOLID;
-    
 
-    std::vector<sp<IRenderable>> mRoots;
+// Fields
+    RenderObjectType  mDrawingState = RenderObjectType::SOLID;
+
+    std::vector<up<GameObject>> mObjects;
+    
+    std::map<string, sp<Obj>> mObjRess;
+    
+//Helpers
+    
+    void createCamera();
+    void createIlluminator();
+    void createMaterials();
+    
+// DEbug
+    void createTestScene(sp<Obj> object);
+    
 };
