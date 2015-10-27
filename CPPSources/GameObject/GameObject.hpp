@@ -32,7 +32,7 @@ public:
     void addChild(sp<GameObject> child);
     void destroyChildren();
     
-    sp<Transform>   mTransform;
+    Transform   mTransform{};
     
     btRigidBody *pBody = nullptr;          // Physics "body" of the mesh
     

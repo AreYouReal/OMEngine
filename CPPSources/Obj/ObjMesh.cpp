@@ -144,7 +144,7 @@ void ObjMesh::buildVBO(){
         memcpy(vertexArray, &data->vertices[index], v3dSize);
         // Center the pivot
         v3d centerThePivot = data->vertices[index] - outlines.location;      // ??????????
-        memcpy(vertexArray, &centerThePivot, v3dSize);              // ??????????
+        memcpy(vertexArray, &centerThePivot, v3dSize);                       // ??????????
         vertexArray += v3dSize;
         memcpy(vertexArray, &data->normals[index], v3dSize);
         vertexArray += v3dSize;

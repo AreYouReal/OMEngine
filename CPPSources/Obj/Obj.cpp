@@ -216,6 +216,14 @@ sp<ObjMesh> Obj::getMesh(string meshName){
     return nullptr;
 }
 
+std::vector<sp<ObjMesh>> Obj::getAllMeshes(){
+    std::vector<sp<ObjMesh>> retVec;
+    for (const auto &mesh : meshes) {
+        retVec.push_back(mesh.second);
+    }
+    return retVec;
+}
+
 unsigned int Obj::meshesSize()   { return (unsigned int)meshes.size();     }
 
 void Obj::build(){

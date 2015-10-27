@@ -29,6 +29,7 @@ public:
     unsigned int drawMesh(unsigned int meshIndex);
     
     sp<ObjMesh>  getMesh(string meshName);
+    std::vector<sp<ObjMesh>> getAllMeshes();
     unsigned int meshesSize();
     
 // Fields

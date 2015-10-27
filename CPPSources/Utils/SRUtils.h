@@ -39,7 +39,7 @@ using srFile = FILE;
 #define ES_WINDOW_STENCIL       4   /// SRCreateWindow flag - stencil buffer
 #define ES_WINDOW_MULTISAMPLE   8   /// SRCreateWindow flat - multi-sample buffer
 
-enum TOUCH_EVENT{ BEGAN, MOVED, CANCELLED, ENDED };
+enum class TouchState{ BEGIN, MOVED, CANCELLED, ENDED };
 
 template<typename T>
 using sp = std::shared_ptr<T>;

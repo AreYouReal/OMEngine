@@ -26,7 +26,15 @@ public:
     void setRenderObjectState(RenderObjectType newState);
     
 // DEBUG
+    
+    // Ground, bg, tree and momos...
     void createMOMO();
+    void createTestScene();
+    
+    // Balls
+    
+    void createBallsScene();
+    
     
 private:
 
@@ -39,11 +47,5 @@ private:
     
 //Helpers
     
-    void createCamera();
-    void createIlluminator();
-    void createMaterials();
-    
-// DEbug
-    void createTestScene(sp<Obj> object);
     
 };

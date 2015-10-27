@@ -29,19 +29,20 @@ void MeshRendererComponent::update(){
         modelM = m4d::transpose(modelM);
         //        logMessage("%s %f, %f, %f\n", mObjMeshes[0]->getName().c_str(), pBody->getWorldTransform().m_origin[0], pBody->getWorldTransform().m_origin[1], pBody->getWorldTransform().m_origin[2]);
     }else {
-        if(go->mTransform){ modelM = go->mTransform->transformMatrix(); }
-        else{ logMessage("Something went wrong. There is no physical body or transform... "); }
+        modelM = go->mTransform.transformMatrix();
     }
-    
-    
     Camera::instance()->pushMVMatrix(Camera::instance()->modelViewMatrix() * modelM);
     for (auto const& mesh : mMeshes) {
+
         if(mesh){
-            logMessage("Name: %s\n", mesh->getName().c_str());
+            logMessage("Name: %s\n", mesh->getName().c_str() );
             if(!Camera::instance()->sphereDistanceInFrustum(go->getPosition(), mesh->outlines.radius)){
                 //            logMessage("skip %s mesh\n", mesh->getName().c_str());
                 continue;
             }
+            modelM =  m4d::translate(mesh->outlines.location);
+            Camera::instance()->pushMVMatrix(Camera::instance()->modelViewMatrix() * modelM);
+            
             if(mesh->renderObjectType() == RenderObjectType::SOLID){
                 mesh->draw();
             }else{
@@ -53,7 +54,9 @@ void MeshRendererComponent::update(){
                 mesh->draw();
                 glDisable(GL_BLEND);
             }
+         
             
+            Camera::instance()->popMVMatrix();
         }
     }
     
@@ -63,9 +66,7 @@ void MeshRendererComponent::update(){
             meshRendererComp->update();
         }
     }
-    
     Camera::instance()->popMVMatrix();
-
 }
 
 

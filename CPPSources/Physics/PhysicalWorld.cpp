@@ -24,7 +24,7 @@ bool PhysicalWorld::addPBodyToGameObject(GameObject *go, PhysicalBodyShape shape
     // Collision shape choosing goes here...
     btCollisionShape *cShape = new btBoxShape(btVector3(dimension.x * 0.5f, dimension.y * 0.5f, dimension.z * 0.5f));
     btTransform bttransform;
-    m4d transformM = m4d::transpose(go->mTransform->transformMatrix());
+    m4d transformM = m4d::transpose(go->mTransform.transformMatrix());
     bttransform.setFromOpenGLMatrix(transformM.pointer());
     btDefaultMotionState *defMState = new btDefaultMotionState(bttransform);
     btVector3 localInertia(0.0f, 0.0f, 0.0f);

@@ -2,6 +2,8 @@
 
 #include "SRUtils.h"
 
+#define CLAMP(x, min, max) ((x < min) ? min : ((x > max) ? max : x));
+
 Camera::~Camera(){
     logMessage("Camera destructor!");
 }
@@ -16,6 +18,27 @@ Camera::Camera(float fovy, float width, float height, float near, float far)
     logMessage("Camera constructor!");
 }
 
+
+void Camera::onTouchBegin(const int x, const int y){
+    touchX = x;
+    touchY = y;
+    logMessage("Camera::onTouchBegin [ %d, %d ]", x, y);
+}
+
+void Camera::onTouchMove(const int x, const int y){
+    deltaX = deltaX * 0.9f + 0.1f * CLAMP(touchX - x, -0.1f, 0.1f);
+    deltaY = deltaY * 0.9f + 0.1f * CLAMP(touchY - y, -2.0f, 2.0f);
+    touchX = x; touchY = y;
+    rotate(deltaX * 10, 0.0f, 0.0f, 1.0f);
+    move(deltaY * 0.1f);
+    logMessage("Camera::onTouchMove [ %d, %d ]", x, y);
+}
+
+
+void Camera::onTouchEnd(const int x, const int y){
+    touchX = touchY = 0;
+    logMessage("Camera::onTouchEnd [ %d, %d ]", x, y);
+}
 
 void Camera::setPosition(v3d pos){
     transform.mPosition = pos;

@@ -7,13 +7,9 @@ Scene::Scene(){
     Materials::instance();
     PhysicalWorld::instance();
     
-    sp<Obj> object = Obj::load("scene.obj");
-    object->build();
-    object->clear(); // Free mesh data.
-
-    mObjRess.insert(std::pair<string, sp<Obj>>("scene", object));
+    createBallsScene();
     
-    createTestScene(object);
+//    createTestScene();
     
     logMessage("Scene constructor!\n");
 }
@@ -51,7 +47,14 @@ void Scene::setRenderObjectState(RenderObjectType newState){
 // DEBUG AND TEST STUFF GOES HERE
 
 
-void Scene::createTestScene(sp<Obj> object){
+void Scene::createTestScene(){
+    
+    sp<Obj> object = Obj::load("scene.obj");
+    object->build();
+    object->clear(); // Free mesh data.
+    
+    mObjRess.insert(std::pair<string, sp<Obj>>("scene", object));
+    
     /// TEST CODE
     v3d firstPos(0, 0, 0);
     
@@ -66,7 +69,7 @@ void Scene::createTestScene(sp<Obj> object){
     mrc_1->addMesh(object->getMesh("leaf"));
     mrc_1->addMesh(object->getMesh("tree"));
     
-    treeAndLeafs->mTransform = std::make_shared<Transform>(v3d(0, 0, 5));
+    treeAndLeafs->mTransform = (v3d(0, 0, 5));
     treeAndLeafs->addComponent(ComponentEnum::MESH_RENDERER, std::move(mrc_1));
     
     PhysicalWorld::instance()->addPBodyToGameObject(treeAndLeafs.get(), PhysicalBodyShape::BOX, 1.0f, treeAndLeafs->getDimensions());
@@ -81,7 +84,7 @@ void Scene::createTestScene(sp<Obj> object){
     mrc_1->addMesh(object->getMesh("momo"));
     
     momo->name = "momo";
-    momo->mTransform = std::make_shared<Transform>(v3d(2.3, 0, 7));
+    momo->mTransform = (v3d(2.3, 0, 7));
     momo->addComponent(ComponentEnum::MESH_RENDERER, std::move(mrc_1));
     
     
@@ -93,7 +96,7 @@ void Scene::createTestScene(sp<Obj> object){
     // GROUND
     
     ground = std::unique_ptr<GameObject>(new GameObject());
-    ground->mTransform = std::make_shared<Transform>(v3d(0, 0, 0));
+    ground->mTransform = (v3d(0, 0, 0));
 
     
     mrc_1 = up<MeshRendererComponent>(new MeshRendererComponent(ground.get()));
@@ -120,9 +123,11 @@ void Scene::createTestScene(sp<Obj> object){
 }
 
 
+
+
 void Scene::createMOMO(){    
     up<GameObject> m = std::unique_ptr<GameObject>(new GameObject());
-    m->mTransform = std::make_shared<Transform>(v3d(2, 0, 10));
+    m->mTransform = (v3d(2, 0, 10));
     
     up<MeshRendererComponent> mrc_1 = up<MeshRendererComponent>(new MeshRendererComponent(m.get()));
     mrc_1->addMesh(mObjRess["scene"]->getMesh("momo"));
@@ -132,4 +137,24 @@ void Scene::createMOMO(){
     PhysicalWorld::instance()->addPBodyToGameObject(m.get(), PhysicalBodyShape::BOX, 1.0f, m->getDimensions());
     
     addObjOnScene(std::move(m));
+}
+
+
+
+void Scene::createBallsScene(){
+    
+    sp<Obj> object = Obj::load("ballsScene.obj");
+    object->build();
+    object->clear();
+    
+    mObjRess.insert(std::pair<string, sp<Obj>>("ballsScene", object));
+    
+    up<GameObject> allSceneInOneObject = std::unique_ptr<GameObject>(new GameObject());
+    
+    up<MeshRendererComponent> mrc = up<MeshRendererComponent>(new MeshRendererComponent(allSceneInOneObject.get(), mObjRess["ballsScene"]->getAllMeshes()));
+    
+    allSceneInOneObject->addComponent(ComponentEnum::MESH_RENDERER, std::move(mrc));
+
+    addObjOnScene(std::move(allSceneInOneObject));
+    
 }

@@ -12,13 +12,15 @@ class Camera : public Singleton<Camera>{
 public:
     
     Camera(float fovy = 80, float width = 640, float height = 960, float near = 0.1, float far = 100);
-
     Camera(const Camera& rhs) = delete;
     Camera& operator=(const Camera& rhs) = delete;
-
     ~Camera();
     
-    static void createCamera(float fovy = 90, float width = 640, float height = 960, float near = 0.1, float far = 100);
+// Touch related
+    void onTouchBegin   (const int x, const int y);
+    void onTouchMove    (const int x, const int y);
+    void onTouchEnd     (const int x, const int y);
+//------------
 
     const m4d& modelViewMatrix() const;
     const m4d& viewMatrix() const;
@@ -40,6 +42,12 @@ public:
     void popMVMatrix();
     
 private:
+    
+// Touch related variables
+    float screenSize = 0.0f;    // Screen width in landscape mode
+    
+    float touchX, touchY, deltaX, deltaY;
+//------------------------
     
     float mFovy, mWidth, mHeight, mNear, mFar;
     

@@ -8,10 +8,6 @@
 #include "GameObject.hpp"
 #include "Obj.h"
 
-
-
-#define CLAMP(x, min, max) ((x < min) ? min : ((x > max) ? max : x));
-
 using UserData = struct{};
 
 static SRContext       *appContext;
@@ -40,7 +36,7 @@ int Game::Init ( SRContext *context ){
 }
 
 
-void Game::Update(SRContext *context, float deltaTime){
+void Game::Update(SRContext *context, const float deltaTime){
 //    logMessage("UPDATE \n");
     Scene::instance()->update(deltaTime);
 }
@@ -73,25 +69,19 @@ void Game::Shutdown ( SRContext *context ){
 }
 
 
-float touchX, touchY, deltaX, deltaY;
-void Game::Touch(SRContext *context, int event, int x, int y){
+
+void Game::Touch(SRContext *context, const int event, const int x, const int y){
 //    logMessage("TOUCH\n");
     switch (event) {
-        case TOUCH_EVENT::BEGAN  :
-            touchX = x;
-            touchY = y;
+        case static_cast<int>(TouchState::BEGIN):
+            Camera::instance()->onTouchBegin(x, y);
             break;
-        case TOUCH_EVENT::MOVED  :
-            deltaX = deltaX * 0.9f + 0.1f * CLAMP(touchX - x, -0.1f, 0.1f);
-            deltaY = deltaY * 0.9f + 0.1f * CLAMP(touchY - y, -2.0f, 2.0f);
-            touchX = x; touchY = y;
-            Camera::instance()->rotate(deltaX * 10, 0.0f, 0.0f, 1.0f);
-            Camera::instance()->move(deltaY * 0.1f);
+        case static_cast<int>(TouchState::MOVED):
+            Camera::instance()->onTouchMove(x, y);
             break;
-        case TOUCH_EVENT::ENDED  :
-        case TOUCH_EVENT::CANCELLED  :
-            touchX = touchY = 0;
-            Scene::instance()->createMOMO();
+        case static_cast<int>(TouchState::ENDED):
+        case static_cast<int>(TouchState::CANCELLED):
+            Camera::instance()->onTouchEnd(x, y);
             break;
         default:
             break;
