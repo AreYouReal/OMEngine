@@ -23,7 +23,7 @@ public:
     const float& operator[](int i);
     v4d& operator=(const v4d& vec);
     
-    float x, y, z, w;
+    float x{0}, y{0}, z{0}, w{1};
     
     static float dot(const v4d& v1, const v4d& v2);
     
@@ -42,7 +42,7 @@ struct v3d{
     
     float* pointer();
     
-    float x, y, z;
+    float x{0}, y{0}, z{0};
 
     static float dot(const v3d& v1, const v3d& v2);
     static v3d cross(const v3d& v1, const v3d& v2);
@@ -51,6 +51,15 @@ struct v3d{
     
     static void print(const v3d& vec3);
 };
+
+struct v2d{
+    v2d();
+    v2d(float x, float y);
+    float x{0}, y{0};
+};
+
+v2d operator+(const v2d &lhs, const v2d &rhs);
+v2d operator-(const v2d &lhs, const v2d &rhs);
 
 
 v3d operator*(const float scalar, const v3d& vec3);

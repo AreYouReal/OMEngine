@@ -1,5 +1,20 @@
 #include "v3d.h"
 
+#pragma mark 2D
+v2d::v2d():x(0), y(0){}
+v2d::v2d(float x, float y): x(x), y(y){}
+
+v2d operator+(const v2d &lhs, const v2d &rhs){
+    float x = lhs.x + rhs.x;
+    float y = lhs.y + rhs.y;
+    return v2d(x, y);
+}
+
+v2d operator-(const v2d &lhs, const v2d &rhs){
+    float x = lhs.x - rhs.x;
+    float y = lhs.y - rhs.y;
+    return v2d(x, y);
+}
 
 #pragma mark 3D
 v3d::v3d(){}
