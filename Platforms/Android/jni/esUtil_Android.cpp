@@ -123,13 +123,13 @@ int32_t handle_input(struct android_app* pApp, AInputEvent* event) {
                     int action = AKeyEvent_getAction(event) & AMOTION_EVENT_ACTION_MASK;
                     switch(action){
                         case AMOTION_EVENT_ACTION_DOWN:
-                           if(context->touchFunc != NULL) context->touchFunc(context, TOUCH_EVENT::BEGAN, AMotionEvent_getX(event, 0), AMotionEvent_getY(event, 0));
+                           if(context->touchFunc != NULL) context->touchFunc(context, (int)TouchState::BEGIN, AMotionEvent_getX(event, 0), AMotionEvent_getY(event, 0));
                         break;
                         case AMOTION_EVENT_ACTION_UP:
-                           if(context->touchFunc != NULL) context->touchFunc(context, TOUCH_EVENT::ENDED, AMotionEvent_getX(event, 0), AMotionEvent_getY(event, 0));
+                           if(context->touchFunc != NULL) context->touchFunc(context, (int)TouchState::ENDED, AMotionEvent_getX(event, 0), AMotionEvent_getY(event, 0));
                         break;
                         case AMOTION_EVENT_ACTION_MOVE:
-                           if(context->touchFunc != NULL) context->touchFunc(context, TOUCH_EVENT::MOVED, AMotionEvent_getX(event, 0), AMotionEvent_getY(event, 0));
+                           if(context->touchFunc != NULL) context->touchFunc(context, (int)TouchState::MOVED, AMotionEvent_getX(event, 0), AMotionEvent_getY(event, 0));
                         break;
                     }
                 break;

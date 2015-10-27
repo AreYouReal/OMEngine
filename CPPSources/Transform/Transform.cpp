@@ -60,6 +60,11 @@ void Transform::moveForward(float velocity){
     mPosition += v3d::normalize(mFront) * velocity;
 }
 
+void Transform::moveRight(float velocity){
+    v3d rightDirection = v3d::cross(mFront, mUp).normalize();
+    mPosition += rightDirection * velocity;
+}
+
 #pragma mark helpers
 void Transform::refreshTransformMatrix(){
     mTransformMatrix = m4d::translate(mPosition) * mRotation.matrix() * m4d::scale(mScale);

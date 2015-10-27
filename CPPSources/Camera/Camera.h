@@ -31,8 +31,7 @@ public:
     void setPosition(v3d pos);
     void setFront(v3d front);
     void setUp(v3d up);
-    
-    void move(float velocity);
+
     void rotate(float angle, float x, float y, float z);
     void rotate(float angle, v3d& axis);
     
@@ -44,9 +43,8 @@ public:
 private:
     
 // Touch related variables
-    float screenSize = 0.0f;    // Screen width in landscape mode
-    
-    float touchX, touchY, deltaX, deltaY;
+    v2d viewLocation, viewDelta{.0f, .0f};
+    v3d moveLocation{.0f, .0f, .0f}, moveDelta;
 //------------------------
     
     float mFovy, mWidth, mHeight, mNear, mFar;

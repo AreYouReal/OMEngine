@@ -35,7 +35,7 @@ void MeshRendererComponent::update(){
     for (auto const& mesh : mMeshes) {
 
         if(mesh){
-            logMessage("Name: %s\n", mesh->getName().c_str() );
+//            logMessage("Name: %s\n", mesh->getName().c_str() );
             if(!Camera::instance()->sphereDistanceInFrustum(go->getPosition(), mesh->outlines.radius)){
                 //            logMessage("skip %s mesh\n", mesh->getName().c_str());
                 continue;

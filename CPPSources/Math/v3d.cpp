@@ -98,6 +98,10 @@ v3d v3d::normalize(const v3d& vec3){
     return rVec3;
 }
 
+v3d v3d::normalize(){
+    return v3d::normalize(*this);
+}
+
 float* v3d::pointer(){
     return &x;
 }

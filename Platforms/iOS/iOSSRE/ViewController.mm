@@ -78,9 +78,11 @@
     }
 }
 
+
+// Question here: Why use rect? Why rect.size = view.size / 3 ???
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect{
-    _SRContext.width = view.drawableWidth;
-    _SRContext.height = view.drawableHeight;
+    _SRContext.width = rect.size.width;
+    _SRContext.height = rect.size.height;
     
     if ( _SRContext.drawFunc ){
         _SRContext.drawFunc( &_SRContext );
@@ -98,8 +100,9 @@
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
     UITouch *touch = [[event allTouches] anyObject];
     CGPoint location = [touch locationInView:touch.view];
+    
     if(_SRContext.touchFunc) _SRContext.touchFunc(&_SRContext, (int)TouchState::MOVED, location.x, location.y);
-    //    NSLog(@"touchMOVED, %f, %f", location.x, location.y);
+//        NSLog(@"touchMOVED, %f, %f", location.x, location.y);
 }
 
 -(void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event{

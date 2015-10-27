@@ -22,7 +22,9 @@ public:
     void scale(v3d& scaleVec);
     
     void moveForward(float velocity);
-
+    void moveRight(float velocity);
+    
+    
     v3d mPosition;
     v3d mScale;
     q4d mRotation;

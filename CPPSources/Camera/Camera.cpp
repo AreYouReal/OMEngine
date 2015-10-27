@@ -4,6 +4,8 @@
 
 #define CLAMP(x, min, max) ((x < min) ? min : ((x > max) ? max : x));
 
+#define SIGN(x) (x >= 0 ? 1 : -1);
+
 Camera::~Camera(){
     logMessage("Camera destructor!");
 }
@@ -20,24 +22,68 @@ Camera::Camera(float fovy, float width, float height, float near, float far)
 
 
 void Camera::onTouchBegin(const int x, const int y){
-    touchX = x;
-    touchY = y;
-    logMessage("Camera::onTouchBegin [ %d, %d ]", x, y);
+    if(x < mWidth * 0.5f){
+        moveLocation.x = x;
+        moveLocation.y = y;
+    }else{
+        viewLocation.x = x;
+        viewLocation.y = y;
+    }
+//    logMessage("Camera::onTouchBegin [ %d, %d ]\n", x, y);
 }
 
 void Camera::onTouchMove(const int x, const int y){
-    deltaX = deltaX * 0.9f + 0.1f * CLAMP(touchX - x, -0.1f, 0.1f);
-    deltaY = deltaY * 0.9f + 0.1f * CLAMP(touchY - y, -2.0f, 2.0f);
-    touchX = x; touchY = y;
-    rotate(deltaX * 10, 0.0f, 0.0f, 1.0f);
-    move(deltaY * 0.1f);
-    logMessage("Camera::onTouchMove [ %d, %d ]", x, y);
+    if((x > (mWidth * 0.5f) - (mWidth * 0.05f)) && (x < (mWidth * 0.5f) + (mWidth * 0.05f))){
+        moveDelta = {.0f, .0f, .0f};
+        moveLocation.x = x; moveLocation.y = y;
+        viewLocation.x = x; viewLocation.y = y;
+    }else if( x < (mWidth * 0.5f)){
+        v3d touch(x, y, 0.0f);
+        moveDelta = (touch - moveLocation).normalize();
+        moveDelta.z = CLAMP(v3d::length(moveLocation - touch) / 256.0f, 0.0f, 1.0f);
+    }else{
+        viewDelta.x = viewDelta.x * 0.75f + (x - viewLocation.x) * 0.25f;
+        viewDelta.y = viewDelta.y * 0.75f + (y - viewLocation.y) * 0.25f;
+        viewLocation.x = x; viewLocation.y = y;
+    }
+    
+    if(viewDelta.x || viewDelta.y){
+        if(viewDelta.y){
+//            logMessage("viewDelta.y: %f\n", viewDelta.y);
+            v3d axis(1.0f, 0.0f, 0.0f);
+            rotate(viewDelta.y, axis);
+        }
+        
+        if(viewDelta.x){
+//            logMessage("viewDelta.x: %f\n", viewDelta.x);
+            rotate(viewDelta.x, .0f, .0f, 1.0f);
+        }
+        
+        viewDelta.x = 0; viewDelta.y = 0;
+    }
+    
+    if(moveDelta.z){
+        if(moveDelta.y){
+            int sign = SIGN(moveDelta.y);
+            transform.moveForward(sign * moveDelta.z );
+        }
+        if(moveDelta.x){
+            int sign = SIGN(moveDelta.x);
+            transform.moveRight(sign * moveDelta.z);
+        }
+//        logMessage("Move delta Z: %f\n", moveDelta.z);
+        refreshViewAndNormalMatrix();
+    }
+    
+    
+//    logMessage("Camera::onTouchMove [ %d, %d ]\n", x, y);
 }
 
 
 void Camera::onTouchEnd(const int x, const int y){
-    touchX = touchY = 0;
-    logMessage("Camera::onTouchEnd [ %d, %d ]", x, y);
+    moveDelta.z = 0.0f;
+    
+//    logMessage("Camera::onTouchEnd [ %d, %d ]\n", x, y);
 }
 
 void Camera::setPosition(v3d pos){
@@ -74,11 +120,6 @@ const m4d& Camera::normalMatrix() const{
 const m4d& Camera::modelViewMatrix() const{
     if(mMVstack.empty()) return mViewMatrix;
     return mMVstack.top();
-}
-
-void Camera::move(float velocity){
-    transform.moveForward(velocity);
-    refreshViewAndNormalMatrix();
 }
 
 void Camera::rotate(float angle, float x, float y, float z){

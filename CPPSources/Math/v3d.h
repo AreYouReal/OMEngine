@@ -44,6 +44,9 @@ struct v3d{
     
     float x{0}, y{0}, z{0};
 
+    
+    v3d     normalize();
+    
     static float dot(const v3d& v1, const v3d& v2);
     static v3d cross(const v3d& v1, const v3d& v2);
     static float length(const v3d& vec3);
