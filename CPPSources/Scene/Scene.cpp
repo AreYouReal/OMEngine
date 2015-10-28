@@ -49,7 +49,7 @@ void Scene::setRenderObjectState(RenderObjectType newState){
 
 void Scene::createTestScene(){
     
-    sp<Obj> object = Obj::load("scene.obj");
+    sp<Obj> object = Obj::load("treemomo.obj");
     object->build();
     object->clear(); // Free mesh data.
     
@@ -139,11 +139,9 @@ void Scene::createMOMO(){
     addObjOnScene(std::move(m));
 }
 
-
-
 void Scene::createBallsScene(){
     
-    sp<Obj> object = Obj::load("ballsScene.obj");
+    sp<Obj> object = Obj::load("Scene.obj");
     object->build();
     object->clear();
     

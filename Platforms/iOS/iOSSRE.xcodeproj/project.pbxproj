@@ -18,8 +18,6 @@
 		940E28EE1BDCB19C00B47533 /* MeshRendererComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 940E28EC1BDCB19C00B47533 /* MeshRendererComponent.cpp */; };
 		943869871BA8949D005A0594 /* fragmentBump.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 943869851BA8949D005A0594 /* fragmentBump.glsl */; };
 		943869881BA8949D005A0594 /* vertexBump.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 943869861BA8949D005A0594 /* vertexBump.glsl */; };
-		94499BEC1BDD2CD1006E379D /* ballsScene.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 94499BEA1BDD2CD1006E379D /* ballsScene.mtl */; };
-		94499BED1BDD2CD1006E379D /* ballsScene.obj in Resources */ = {isa = PBXBuildFile; fileRef = 94499BEB1BDD2CD1006E379D /* ballsScene.obj */; };
 		94499BF01BDD2FC6006E379D /* ball.png in Resources */ = {isa = PBXBuildFile; fileRef = 94499BEE1BDD2FC6006E379D /* ball.png */; };
 		94499BF11BDD2FC6006E379D /* diffuse.png in Resources */ = {isa = PBXBuildFile; fileRef = 94499BEF1BDD2FC6006E379D /* diffuse.png */; };
 		9453DEE11B2A0A2700C79DB3 /* SRUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9453DEDF1B2A0A2700C79DB3 /* SRUtils.cpp */; };
@@ -28,8 +26,8 @@
 		947222791B9AD466008D601B /* grass.png in Resources */ = {isa = PBXBuildFile; fileRef = 947222711B9AD466008D601B /* grass.png */; };
 		9472227A1B9AD466008D601B /* leaf.png in Resources */ = {isa = PBXBuildFile; fileRef = 947222721B9AD466008D601B /* leaf.png */; };
 		9472227B1B9AD466008D601B /* momo.png in Resources */ = {isa = PBXBuildFile; fileRef = 947222731B9AD466008D601B /* momo.png */; };
-		9472227C1B9AD466008D601B /* scene.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 947222741B9AD466008D601B /* scene.mtl */; };
-		9472227D1B9AD466008D601B /* scene.obj in Resources */ = {isa = PBXBuildFile; fileRef = 947222751B9AD466008D601B /* scene.obj */; };
+		9472227C1B9AD466008D601B /* treemomo.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 947222741B9AD466008D601B /* treemomo.mtl */; };
+		9472227D1B9AD466008D601B /* treemomo.obj in Resources */ = {isa = PBXBuildFile; fileRef = 947222751B9AD466008D601B /* treemomo.obj */; };
 		94788FA81BD4CFD200B55A25 /* btAxisSweep3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94788E2E1BD4CFD100B55A25 /* btAxisSweep3.cpp */; };
 		94788FA91BD4CFD200B55A25 /* btBroadphaseProxy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94788E311BD4CFD100B55A25 /* btBroadphaseProxy.cpp */; };
 		94788FAA1BD4CFD200B55A25 /* btCollisionAlgorithm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94788E331BD4CFD100B55A25 /* btCollisionAlgorithm.cpp */; };
@@ -187,6 +185,9 @@
 		94CE87E61B62B5A400752D5C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 94CE87E31B62B5A400752D5C /* main.m */; };
 		94CE87E71B62B5A400752D5C /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 94CE87E51B62B5A400752D5C /* ViewController.mm */; };
 		94D85AC61BB65477008ED8CF /* Transform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94D85AC41BB65477008ED8CF /* Transform.cpp */; };
+		94DCA2F61BE13C6100435661 /* Scene.bullet in Resources */ = {isa = PBXBuildFile; fileRef = 94DCA2F31BE13C6100435661 /* Scene.bullet */; };
+		94DCA2F71BE13C6100435661 /* Scene.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 94DCA2F41BE13C6100435661 /* Scene.mtl */; };
+		94DCA2F81BE13C6100435661 /* Scene.obj in Resources */ = {isa = PBXBuildFile; fileRef = 94DCA2F51BE13C6100435661 /* Scene.obj */; };
 		94EF0C5E1BA70E5400EBF5EE /* pos_norm_vertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 94EF0C5D1BA70E5400EBF5EE /* pos_norm_vertex.glsl */; };
 		94EF0C601BA70F6700EBF5EE /* norm_as_color_fragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 94EF0C5F1BA70F6700EBF5EE /* norm_as_color_fragment.glsl */; };
 		F340D11B1BA95E4500187B1E /* char_ram_nor.png in Resources */ = {isa = PBXBuildFile; fileRef = F340D11A1BA95E4500187B1E /* char_ram_nor.png */; };
@@ -248,8 +249,6 @@
 		942762991BD8AA6600E345EA /* MeshOutlines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MeshOutlines.h; sourceTree = "<group>"; };
 		943869851BA8949D005A0594 /* fragmentBump.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fragmentBump.glsl; sourceTree = "<group>"; };
 		943869861BA8949D005A0594 /* vertexBump.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = vertexBump.glsl; sourceTree = "<group>"; };
-		94499BEA1BDD2CD1006E379D /* ballsScene.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ballsScene.mtl; path = SREngine/Platforms/Android/assets/ballsScene.mtl; sourceTree = "<group>"; };
-		94499BEB1BDD2CD1006E379D /* ballsScene.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ballsScene.obj; path = SREngine/Platforms/Android/assets/ballsScene.obj; sourceTree = "<group>"; };
 		94499BEE1BDD2FC6006E379D /* ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ball.png; path = SREngine/Platforms/Android/assets/ball.png; sourceTree = "<group>"; };
 		94499BEF1BDD2FC6006E379D /* diffuse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = diffuse.png; path = SREngine/Platforms/Android/assets/diffuse.png; sourceTree = "<group>"; };
 		9453DEDF1B2A0A2700C79DB3 /* SRUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SRUtils.cpp; path = ../../CPPSources/Utils/SRUtils.cpp; sourceTree = SOURCE_ROOT; };
@@ -259,8 +258,8 @@
 		947222711B9AD466008D601B /* grass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = grass.png; path = SREngine/Platforms/Android/assets/grass.png; sourceTree = "<group>"; };
 		947222721B9AD466008D601B /* leaf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = leaf.png; path = SREngine/Platforms/Android/assets/leaf.png; sourceTree = "<group>"; };
 		947222731B9AD466008D601B /* momo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = momo.png; path = SREngine/Platforms/Android/assets/momo.png; sourceTree = "<group>"; };
-		947222741B9AD466008D601B /* scene.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = scene.mtl; path = SREngine/Platforms/Android/assets/scene.mtl; sourceTree = "<group>"; };
-		947222751B9AD466008D601B /* scene.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = scene.obj; path = SREngine/Platforms/Android/assets/scene.obj; sourceTree = "<group>"; };
+		947222741B9AD466008D601B /* treemomo.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = treemomo.mtl; path = SREngine/Platforms/Android/assets/treemomo.mtl; sourceTree = "<group>"; };
+		947222751B9AD466008D601B /* treemomo.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = treemomo.obj; path = SREngine/Platforms/Android/assets/treemomo.obj; sourceTree = "<group>"; };
 		94788E2A1BD4CFD100B55A25 /* btBulletCollisionCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = btBulletCollisionCommon.h; sourceTree = "<group>"; };
 		94788E2B1BD4CFD100B55A25 /* btBulletDynamicsCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = btBulletDynamicsCommon.h; sourceTree = "<group>"; };
 		94788E2E1BD4CFD100B55A25 /* btAxisSweep3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = btAxisSweep3.cpp; sourceTree = "<group>"; };
@@ -654,6 +653,9 @@
 		94D85AC41BB65477008ED8CF /* Transform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Transform.cpp; sourceTree = "<group>"; };
 		94D85AC51BB65477008ED8CF /* Transform.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Transform.hpp; sourceTree = "<group>"; };
 		94D9DA1A1BD0D76D0072AED1 /* IRenderable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IRenderable.h; sourceTree = "<group>"; };
+		94DCA2F31BE13C6100435661 /* Scene.bullet */ = {isa = PBXFileReference; lastKnownFileType = file; name = Scene.bullet; path = SREngine/Platforms/Android/assets/Scene.bullet; sourceTree = "<group>"; };
+		94DCA2F41BE13C6100435661 /* Scene.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Scene.mtl; path = SREngine/Platforms/Android/assets/Scene.mtl; sourceTree = "<group>"; };
+		94DCA2F51BE13C6100435661 /* Scene.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Scene.obj; path = SREngine/Platforms/Android/assets/Scene.obj; sourceTree = "<group>"; };
 		94E5A0DD1BA3FF0700066CC5 /* FileContent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileContent.h; sourceTree = "<group>"; };
 		94EF0C5D1BA70E5400EBF5EE /* pos_norm_vertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pos_norm_vertex.glsl; sourceTree = "<group>"; };
 		94EF0C5F1BA70F6700EBF5EE /* norm_as_color_fragment.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = norm_as_color_fragment.glsl; sourceTree = "<group>"; };
@@ -814,10 +816,11 @@
 		7626524017F10E6C007CCD43 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				94DCA2F31BE13C6100435661 /* Scene.bullet */,
+				94DCA2F41BE13C6100435661 /* Scene.mtl */,
+				94DCA2F51BE13C6100435661 /* Scene.obj */,
 				94499BEE1BDD2FC6006E379D /* ball.png */,
 				94499BEF1BDD2FC6006E379D /* diffuse.png */,
-				94499BEA1BDD2CD1006E379D /* ballsScene.mtl */,
-				94499BEB1BDD2CD1006E379D /* ballsScene.obj */,
 				F38A22E81BAAAD8800FADEC0 /* tree.png */,
 				F340D11A1BA95E4500187B1E /* char_ram_nor.png */,
 				F368E8C41BA6AE5A00F322AF /* shaders */,
@@ -829,8 +832,8 @@
 				947222711B9AD466008D601B /* grass.png */,
 				947222721B9AD466008D601B /* leaf.png */,
 				947222731B9AD466008D601B /* momo.png */,
-				947222741B9AD466008D601B /* scene.mtl */,
-				947222751B9AD466008D601B /* scene.obj */,
+				947222741B9AD466008D601B /* treemomo.mtl */,
+				947222751B9AD466008D601B /* treemomo.obj */,
 				F3D5E10F1AF8F2CD00DD216B /* InfoPlist.strings */,
 				F3D5E10C1AF8F2C600DD216B /* iOSSRE.temp_caseinsensitive_rename-Info.plist */,
 				F3D5E10D1AF8F2C600DD216B /* iOSSRE.temp_caseinsensitive_rename-Prefix.pch */,
@@ -1632,22 +1635,23 @@
 				F3CAEEE51BB01A7600DCF182 /* default_gray_vertex.glsl in Resources */,
 				943869881BA8949D005A0594 /* vertexBump.glsl in Resources */,
 				F3D5E1111AF8F2CD00DD216B /* InfoPlist.strings in Resources */,
+				94DCA2F81BE13C6100435661 /* Scene.obj in Resources */,
 				F3D5E1191AF8F32E00DD216B /* Images.xcassets in Resources */,
 				94499BF11BDD2FC6006E379D /* diffuse.png in Resources */,
 				F38A22E91BAAAD8800FADEC0 /* tree.png in Resources */,
-				9472227C1B9AD466008D601B /* scene.mtl in Resources */,
-				94499BEC1BDD2CD1006E379D /* ballsScene.mtl in Resources */,
+				9472227C1B9AD466008D601B /* treemomo.mtl in Resources */,
+				94DCA2F61BE13C6100435661 /* Scene.bullet in Resources */,
 				9472227A1B9AD466008D601B /* leaf.png in Resources */,
 				947FA31F1BA4854A00695A4E /* ram.obj in Resources */,
 				947FA31D1BA4854A00695A4E /* char_ram_col.png in Resources */,
 				F38A22E71BAAA40500FADEC0 /* fragmentPerVertex.glsl in Resources */,
-				94499BED1BDD2CD1006E379D /* ballsScene.obj in Resources */,
 				F3D5E10B1AF8F24400DD216B /* InfoPlist.strings in Resources */,
 				F3CAEEE71BB01B8800DCF182 /* default_gray_fragment.glsl in Resources */,
 				F3D5E1161AF8F32600DD216B /* Main_iPad.storyboard in Resources */,
 				F3D5E1171AF8F32600DD216B /* Main_iPhone.storyboard in Resources */,
-				9472227D1B9AD466008D601B /* scene.obj in Resources */,
+				9472227D1B9AD466008D601B /* treemomo.obj in Resources */,
 				F340D11B1BA95E4500187B1E /* char_ram_nor.png in Resources */,
+				94DCA2F71BE13C6100435661 /* Scene.mtl in Resources */,
 				94EF0C601BA70F6700EBF5EE /* norm_as_color_fragment.glsl in Resources */,
 				947222791B9AD466008D601B /* grass.png in Resources */,
 				F368E8CA1BA6AE5A00F322AF /* fragmentPerPixel.glsl in Resources */,
