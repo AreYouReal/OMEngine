@@ -34,7 +34,7 @@ EGLint GetContextRenderableType ( EGLDisplay eglDisplay ){
 
 #pragma GENERAL
 
-GLboolean SRUTIL_API SRCreateWindow ( SRContext *context, const char *title, GLint width, GLint height, GLuint flags ){
+GLboolean SRCreateWindow ( SRContext *context, const char *title, GLint width, GLint height, GLuint flags ){
 #ifndef __APPLE__
     EGLConfig config;
     EGLint majorVersion;
@@ -127,19 +127,19 @@ GLboolean SRUTIL_API SRCreateWindow ( SRContext *context, const char *title, GLi
     return GL_TRUE;
 }
 
-void SRUTIL_API SRRegisterDrawFunc ( SRContext *context, void ( SRCALLBACK *drawFunc ) ( SRContext * ) ){
+void SRRegisterDrawFunc ( SRContext *context, DrawFunc drawFunc ){
     context->drawFunc = drawFunc;
 }
 
-void SRUTIL_API SRRegisterShutdownFunc ( SRContext *context, void ( SRCALLBACK *shutdownFunc ) ( SRContext * ) ){
+void SRRegisterShutdownFunc ( SRContext *context, ShutDownFunc shutdownFunc ){
     context->shutdownFunc = shutdownFunc;
 }
 
-void SRUTIL_API SRRegisterUpdateFunc ( SRContext *context, void ( SRCALLBACK *updateFunc ) ( SRContext *, float ) ){
+void SRRegisterUpdateFunc ( SRContext *context, UpdateFunc updateFunc ){
     context->updateFunc = updateFunc;
 }
 
-void SRUTIL_API SRRegisterTouchFunc ( SRContext *context, void ( SRCALLBACK *touchFunc ) ( SRContext *, int , int, int ) ){
+void SRRegisterTouchFunc ( SRContext *context, TouchFunc touchFunc ){
     context->touchFunc = touchFunc;
 }
 

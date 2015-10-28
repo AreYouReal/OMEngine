@@ -31,9 +31,6 @@ using srFile = AAsset;
 using srFile = FILE;
 #endif
 
-#define SRUTIL_API
-#define SRCALLBACK
-
 #define ES_WINDOW_RGB           0   /// SRCreateWindow flag - RGB color buffer
 #define ES_WINDOW_ALPHA         1   /// SRCreateWindow flag - ALPHA color buffer
 #define ES_WINDOW_DEPTH         2   /// SRCreateWindow flag - depth buffer
@@ -44,6 +41,13 @@ enum class TouchState{ BEGIN, MOVED, CANCELLED, ENDED };
 
 template<typename T>
 using sp = std::shared_ptr<T>;
+
+struct SRContext;
+using UpdateFunc    = void(*)(SRContext*, const float);
+using DrawFunc      = void(*)(SRContext*);
+using TouchFunc     = void(*)(SRContext*, const int, const int, const int);
+using ShutDownFunc  = void(*)(SRContext*);
+
 
 #pragma GENERAL
 struct SRContext{
@@ -61,24 +65,24 @@ struct SRContext{
 #endif
     
     /// Callbacks
-    void ( SRCALLBACK *drawFunc ) ( SRContext * );
-    void ( SRCALLBACK *shutdownFunc ) ( SRContext * );
-    void ( SRCALLBACK *touchFunc ) ( SRContext *, int, int, int );
-    void ( SRCALLBACK *updateFunc ) ( SRContext *, float deltaTime );
+    UpdateFunc      updateFunc;
+    DrawFunc        drawFunc;
+    TouchFunc       touchFunc;
+    ShutDownFunc    shutdownFunc;
 };
 
 
+
 #pragma Public Functions
-GLboolean SRUTIL_API SRCreateWindow ( SRContext *context, const char *title, GLint width, GLint height, GLuint flags );
+GLboolean SRCreateWindow ( SRContext *context, const char *title, GLint width, GLint height, GLuint flags );
 
-void SRUTIL_API SRRegisterDrawFunc ( SRContext *context, void ( SRCALLBACK *drawFunc ) ( SRContext * ) );
+void SRRegisterDrawFunc ( SRContext *context, DrawFunc );
 
-void SRUTIL_API SRRegisterShutdownFunc ( SRContext *context, void ( SRCALLBACK *shutdownFunc ) ( SRContext * ) );
+void SRRegisterShutdownFunc ( SRContext *context, ShutDownFunc );
 
-void SRUTIL_API SRRegisterUpdateFunc ( SRContext *context, void ( SRCALLBACK *updateFunc ) ( SRContext *, float ) );
+void SRRegisterUpdateFunc ( SRContext *context, UpdateFunc );
 
-void SRUTIL_API SRRegisterTouchFunc ( SRContext *context,
-                                   void ( SRCALLBACK *touchFunc ) ( SRContext *, int, int, int ) );
+void SRRegisterTouchFunc ( SRContext *context, TouchFunc );
 
 
 
