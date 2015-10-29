@@ -36,6 +36,8 @@ public:
     
     bool addPBodyToGameObject(GameObject *go, PhysicalBodyShape shape, float mass, v3d dimension, PhysicContactCallback contactCallback = nullptr, PhysicNearCallback nearCallback = nullptr);
     
+    bool loadPhysicsWorldFromFile(string filename);
+    
     void update(float deltaTime);
     
 private:

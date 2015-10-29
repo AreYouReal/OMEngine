@@ -40,6 +40,12 @@ bool PhysicalWorld::addPBodyToGameObject(GameObject *go, PhysicalBodyShape shape
     return true;
 }
 
+bool PhysicalWorld::loadPhysicsWorldFromFile(string filename){
+    
+
+    return true;
+}
+
 #pragma mark Helpers
 void PhysicalWorld::init(){
     cConfig      = std::make_shared<btSoftBodyRigidBodyCollisionConfiguration>();

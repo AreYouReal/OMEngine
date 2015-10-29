@@ -7,7 +7,7 @@ Obj::~Obj(){
 }
 
 sp<Obj> Obj::load(const char *filename){
-    std::unique_ptr<FileContent> objSource = readOBJFromFile(Game::getAppContext(), filename);
+    std::unique_ptr<FileContent> objSource = readBytesFromFile(Game::getAppContext(), filename);
 #pragma warning throw exception here
     if(!objSource.get()) return nullptr;
     

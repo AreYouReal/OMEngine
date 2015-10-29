@@ -22,7 +22,7 @@ bool Materials::loadMaterial(const std::string &name){
         return false;
     }
     
-    std::unique_ptr<FileContent> objSource = readOBJFromFile(Game::getAppContext(), name.c_str());
+    std::unique_ptr<FileContent> objSource = readBytesFromFile(Game::getAppContext(), name.c_str());
     
     if(!objSource.get()){
         logMessage("Unable to load material: %s\n", name.c_str());

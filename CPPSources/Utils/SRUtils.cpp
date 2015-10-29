@@ -274,7 +274,7 @@ std::unique_ptr<FileContent> readTextFile( void *ioContext, std::string fileName
 }
 
 #pragma mark READ OBJ FILE
-std::unique_ptr<FileContent> readOBJFromFile(void *ioContext, const char *fileName){
+std::unique_ptr<FileContent> readBytesFromFile(void *ioContext, const char *fileName){
     srFile *fp;
     fp = fileOpen(ioContext, fileName);
     if( fp == NULL){
