@@ -20,6 +20,8 @@ public:
     
     ~Scene();
     
+    bool init();
+    
     void addObjOnScene(up<GameObject> go);
     void update(float deltaTime);
     void draw();

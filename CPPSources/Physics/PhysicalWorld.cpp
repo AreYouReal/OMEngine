@@ -4,6 +4,9 @@
 #include "btManifoldPoint.h"
 
 #include "SRUtils.h"
+#include "Game.h"
+
+#include "btBulletWorldImporter.h"
 
 PhysicalWorld::PhysicalWorld(){
     init();
@@ -40,8 +43,27 @@ bool PhysicalWorld::addPBodyToGameObject(GameObject *go, PhysicalBodyShape shape
     return true;
 }
 
-bool PhysicalWorld::loadPhysicsWorldFromFile(string filename){
+bool PhysicalWorld::loadPhysicsWorldFromFile(string filename, std::vector<GameObject*> objects){
+    up<FileContent> fileContent = readBytesFromFile(Game::getAppContext(), filename.c_str());
+    if(!fileContent) return false;
     
+    btBulletWorldImporter *bulletImporter = new btBulletWorldImporter(physicsWorld.get());
+    bulletImporter->loadFileFromMemory(const_cast<char*>(fileContent->content), fileContent->size);
+    
+    for(unsigned short i = 0; i < bulletImporter->getNumRigidBodies(); ++i){
+        btCollisionObject *co = bulletImporter->getRigidBodyByIndex(i);
+        string name = bulletImporter->getNameForPointer(co);
+        
+        for(const auto go : objects){
+            if(!go->name.compare(name)){
+                go->pBody = (btRigidBody *)co;
+                go->pBody->setUserPointer(go);
+            }
+        }
+        
+        logMessage("Collision shape name loaded from file: %s\n" , name.c_str());
+    }
+    delete bulletImporter;
 
     return true;
 }

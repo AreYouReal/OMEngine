@@ -4,7 +4,8 @@
 #include "SRUtils.h"
 
 
-GameObject::GameObject(){
+
+GameObject::GameObject(string name) : name(name){
     logMessage("GameObject constructor");
 }
 

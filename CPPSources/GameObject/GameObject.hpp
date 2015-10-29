@@ -17,9 +17,8 @@ class GameObject{
 public:
     
     string name;
-    
+    GameObject(string name = "noname");
     GameObject(sp<Transform>, sp<ObjMesh>, string n = "noname");
-    GameObject();
     ~GameObject();
     
     

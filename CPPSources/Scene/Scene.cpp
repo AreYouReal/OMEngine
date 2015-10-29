@@ -7,9 +7,7 @@ Scene::Scene(){
     Materials::instance();
     PhysicalWorld::instance();
     
-    createBallsScene();
-    
-//    createTestScene();
+
     
     logMessage("Scene constructor!\n");
 }
@@ -23,6 +21,14 @@ Scene::~Scene(){
     PhysicalWorld::destroy();
     
     logMessage("Scene destructor!\n");
+}
+
+bool Scene::init(){
+    createBallsScene();
+    
+    //    createTestScene();
+
+    return true;
 }
 
 void Scene::addObjOnScene(up<GameObject> go){
@@ -147,12 +153,23 @@ void Scene::createBallsScene(){
     
     mObjRess.insert(std::pair<string, sp<Obj>>("ballsScene", object));
     
-    up<GameObject> allSceneInOneObject = std::unique_ptr<GameObject>(new GameObject());
+    up<GameObject> interior = std::unique_ptr<GameObject>(new GameObject("interior"));
+    up<MeshRendererComponent> mrc = up<MeshRendererComponent>(new MeshRendererComponent(interior.get(), mObjRess["ballsScene"]->getMesh(interior->name)));
+    interior->addComponent(ComponentEnum::MESH_RENDERER, std::move(mrc));
     
-    up<MeshRendererComponent> mrc = up<MeshRendererComponent>(new MeshRendererComponent(allSceneInOneObject.get(), mObjRess["ballsScene"]->getAllMeshes()));
+    up<GameObject> camera = std::unique_ptr<GameObject>(new GameObject("camera"));
+    mrc = up<MeshRendererComponent>(new MeshRendererComponent(camera.get(), mObjRess["ballsScene"]->getMesh(camera->name)));
+    camera->addComponent(ComponentEnum::MESH_RENDERER, std::move(mrc));
     
-    allSceneInOneObject->addComponent(ComponentEnum::MESH_RENDERER, std::move(mrc));
-
-    addObjOnScene(std::move(allSceneInOneObject));
+    
+    std::vector<GameObject*> objs;
+    objs.push_back(interior.get());
+    objs.push_back(camera.get());
+    
+    PhysicalWorld::instance()->loadPhysicsWorldFromFile("Scene.bullet", objs);
+    
+    addObjOnScene(std::move(interior));
+    addObjOnScene(std::move(camera));
+    
     
 }

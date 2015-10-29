@@ -8,6 +8,7 @@
 class MeshRendererComponent : public IComponent{
 public:
     MeshRendererComponent( GameObject * const gameObject);
+    MeshRendererComponent( GameObject * const gameObject, const sp<ObjMesh> mesh);
     MeshRendererComponent( GameObject * const gameObject, const std::vector<sp<ObjMesh>> &meshes);
     
     virtual ~MeshRendererComponent();

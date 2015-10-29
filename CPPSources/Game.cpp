@@ -30,7 +30,7 @@ int Game::Init ( SRContext *context ){
     glEnable( GL_CULL_FACE  );
     glEnable(GL_TEXTURE_2D);
 
-    Scene::instance();
+    Scene::instance()->init();
 
     return true;
 }

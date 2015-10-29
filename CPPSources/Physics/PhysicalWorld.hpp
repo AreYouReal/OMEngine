@@ -36,7 +36,7 @@ public:
     
     bool addPBodyToGameObject(GameObject *go, PhysicalBodyShape shape, float mass, v3d dimension, PhysicContactCallback contactCallback = nullptr, PhysicNearCallback nearCallback = nullptr);
     
-    bool loadPhysicsWorldFromFile(string filename);
+    bool loadPhysicsWorldFromFile(string filename, std::vector<GameObject*> objects);
     
     void update(float deltaTime);
     

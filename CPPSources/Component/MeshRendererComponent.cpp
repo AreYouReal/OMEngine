@@ -5,6 +5,10 @@ MeshRendererComponent::MeshRendererComponent(GameObject * const gameObject): ICo
     logMessage("MeshRendererComponent constructor!\n");
 }
 
+MeshRendererComponent::MeshRendererComponent( GameObject * const gameObject, const sp<ObjMesh> mesh) : IComponent(gameObject){
+    mMeshes.push_back(mesh);
+}
+
 MeshRendererComponent::MeshRendererComponent(GameObject * const gameObject, const std::vector<sp<ObjMesh>> &meshes) : IComponent(gameObject){
     mMeshes = meshes;
     logMessage("MeshRendererComponent constructor with meshes!\n");
@@ -40,8 +44,8 @@ void MeshRendererComponent::update(){
                 //            logMessage("skip %s mesh\n", mesh->getName().c_str());
                 continue;
             }
-            modelM =  m4d::translate(mesh->outlines.location);
-            Camera::instance()->pushMVMatrix(Camera::instance()->modelViewMatrix() * modelM);
+//            modelM =  m4d::translate(mesh->outlines.location);
+//            Camera::instance()->pushMVMatrix(Camera::instance()->modelViewMatrix() * modelM);
             
             if(mesh->renderObjectType() == RenderObjectType::SOLID){
                 mesh->draw();
@@ -56,7 +60,7 @@ void MeshRendererComponent::update(){
             }
          
             
-            Camera::instance()->popMVMatrix();
+//            Camera::instance()->popMVMatrix();
         }
     }
     
