@@ -42,7 +42,12 @@ void Scene::update(float deltaTime){
 void Scene::draw(){
     for(const auto& go : mObjects){
         IComponent *mrc = go->getComponent(ComponentEnum::MESH_RENDERER);
-        if(mrc){ mrc->update(); }
+        if(mrc){
+            if(!mrc->go->name.compare("player")){
+                Camera::instance()->setFront(mrc->go->getPosition());
+            }
+            mrc->update();
+        }
     }
 }
 
@@ -157,10 +162,9 @@ void Scene::createBallsScene(){
     up<MeshRendererComponent> mrc = up<MeshRendererComponent>(new MeshRendererComponent(interior.get(), mObjRess["ballsScene"]->getMesh(interior->name)));
     interior->addComponent(ComponentEnum::MESH_RENDERER, std::move(mrc));
     
-    up<GameObject> camera = std::unique_ptr<GameObject>(new GameObject("camera"));
+    up<GameObject> camera = std::unique_ptr<GameObject>(new GameObject("player"));
     mrc = up<MeshRendererComponent>(new MeshRendererComponent(camera.get(), mObjRess["ballsScene"]->getMesh(camera->name)));
     camera->addComponent(ComponentEnum::MESH_RENDERER, std::move(mrc));
-    
     
     std::vector<GameObject*> objs;
     objs.push_back(interior.get());

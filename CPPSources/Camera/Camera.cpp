@@ -91,7 +91,8 @@ void Camera::setPosition(v3d pos){
     refreshViewAndNormalMatrix();
 }
 void Camera::setFront(v3d front){
-    transform.mFront = front;
+    v3d::print(front);
+    transform.mFront = front - transform.mPosition;
     refreshViewAndNormalMatrix();
 }
 void Camera::setUp(v3d up){
