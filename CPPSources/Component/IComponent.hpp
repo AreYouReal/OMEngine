@@ -2,7 +2,7 @@
 
 class GameObject;
 
-enum class ComponentEnum{ MESH_RENDERER };
+enum class ComponentEnum{ MESH_RENDERER, RIGID_BODY };
 
 class IComponent{
 public:

@@ -23,21 +23,17 @@ SRContext* Game::getAppContext(){
 ///
 // Initialize the shader and program object
 //
-WiredCube *wc;
 int Game::Init ( SRContext *context ){
     printGLInfo();
     
     appContext = context;
     atexit(Exit);
     glViewport ( 0, 0, context->width, context->height );
-    glEnable( GL_DEPTH_TEST );
+//    glEnable( GL_DEPTH_TEST );
     glEnable( GL_CULL_FACE  );
     glEnable(GL_TEXTURE_2D);
 
     Scene::instance()->init();
-
-    
-    wc = new WiredCube();
     
     return true;
 }
@@ -66,15 +62,8 @@ void Game::Draw ( SRContext *context ){
 
     glClearColor(0.0f, 0.3f, 0.0f, 1.0f);
     glClear( GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT );
-    
-    wc->draw();
-    
-    
+
     Scene::instance()->draw();
-    
-    
-    
-    
 //    logMessage("%f\n", stopwatch.fps());
 }
 

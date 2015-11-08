@@ -39,7 +39,7 @@ public:
     
     v3d getPosition();
     
-        std::vector<sp<GameObject>> mChildren;
+    std::vector<sp<GameObject>> mChildren;
     
 private:
 

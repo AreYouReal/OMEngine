@@ -6,6 +6,9 @@
 
 Materials::Materials(){
     loadPrograms();
+    sp<ObjMaterial> wireMaterial = std::make_shared<ObjMaterial>("wired");
+    wireMaterial->setProgram(getProgram("wired"));
+    materials.insert(std::pair<string, sp<ObjMaterial>>(wireMaterial->name, wireMaterial));
     logMessage("Materials constructor!\n");
 }
 

@@ -1,5 +1,7 @@
 #include "MeshRendererComponent.hpp"
 
+#include "WiredCube.hpp"
+#include "btBoxShape.h"
 
 MeshRendererComponent::MeshRendererComponent(GameObject * const gameObject): IComponent(gameObject){
     logMessage("MeshRendererComponent constructor!\n");
@@ -35,6 +37,7 @@ void MeshRendererComponent::update(){
     }else {
         modelM = go->mTransform.transformMatrix();
     }
+    
     Camera::instance()->pushMVMatrix(Camera::instance()->modelViewMatrix() * modelM);
     for (auto const& mesh : mMeshes) {
 
@@ -48,6 +51,17 @@ void MeshRendererComponent::update(){
 //            Camera::instance()->pushMVMatrix(Camera::instance()->modelViewMatrix() * modelM);
             
             if(mesh->renderObjectType() == RenderObjectType::SOLID){
+                if(true){
+                    WiredCube wc;
+                    btBoxShape *bShape = (btBoxShape*)go->pBody->getCollisionShape();
+                    btVector3 dimensions = bShape->getHalfExtentsWithMargin();
+                    
+                    modelM = m4d::scale(dimensions.x(), dimensions.y(), dimensions.z());
+                    Camera::instance()->pushMVMatrix(Camera::instance()->modelViewMatrix()* modelM);
+                    wc.draw();
+                    
+                    Camera::instance()->popMVMatrix();
+                }
                 mesh->draw();
             }else{
                 glEnable(GL_BLEND);

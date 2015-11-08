@@ -24,9 +24,9 @@ Scene::~Scene(){
 }
 
 bool Scene::init(){
-    createBallsScene();
+//    createBallsScene();
     
-    //    createTestScene();
+        createTestScene();
 
     return true;
 }
