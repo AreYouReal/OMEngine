@@ -15,6 +15,8 @@ using UserData = struct{};
 
 static SRContext       *appContext;
 
+bool Game::debugFlag  = true;
+
 SRContext* Game::getAppContext(){
     if(!appContext) logMessage("\nAppContext is NULL!\n");
     return appContext;
@@ -29,8 +31,8 @@ int Game::Init ( SRContext *context ){
     appContext = context;
     atexit(Exit);
     glViewport ( 0, 0, context->width, context->height );
-//    glEnable( GL_DEPTH_TEST );
-    glEnable( GL_CULL_FACE  );
+    glEnable( GL_DEPTH_TEST );
+//    glEnable( GL_CULL_FACE  );
     glEnable(GL_TEXTURE_2D);
 
     Scene::instance()->init();

@@ -14,6 +14,8 @@ public:
     static void Exit       ();
 
     static    SRContext*      getAppContext();
+    
+    static  bool debugFlag;
 
 private:
     static void printGLInfo();

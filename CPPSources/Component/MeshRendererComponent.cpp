@@ -2,6 +2,7 @@
 
 #include "WiredCube.hpp"
 #include "btBoxShape.h"
+#include "Game.h"
 
 MeshRendererComponent::MeshRendererComponent(GameObject * const gameObject): IComponent(gameObject){
     logMessage("MeshRendererComponent constructor!\n");
@@ -51,17 +52,7 @@ void MeshRendererComponent::update(){
 //            Camera::instance()->pushMVMatrix(Camera::instance()->modelViewMatrix() * modelM);
             
             if(mesh->renderObjectType() == RenderObjectType::SOLID){
-                if(true){
-                    WiredCube wc;
-                    btBoxShape *bShape = (btBoxShape*)go->pBody->getCollisionShape();
-                    btVector3 dimensions = bShape->getHalfExtentsWithMargin();
-                    
-                    modelM = m4d::scale(dimensions.x(), dimensions.y(), dimensions.z());
-                    Camera::instance()->pushMVMatrix(Camera::instance()->modelViewMatrix()* modelM);
-                    wc.draw();
-                    
-                    Camera::instance()->popMVMatrix();
-                }
+                if(Game::debugFlag){ drawDebugPhysicsGeometry(); }
                 mesh->draw();
             }else{
                 glEnable(GL_BLEND);
@@ -94,6 +85,18 @@ void MeshRendererComponent::onDestroy(){
 
 void MeshRendererComponent::addMesh(sp<ObjMesh> mesh){
     mMeshes.push_back(mesh);
+}
+
+void MeshRendererComponent::drawDebugPhysicsGeometry(){
+    WiredCube wc;
+    btBoxShape *bShape = (btBoxShape*)go->pBody->getCollisionShape();
+    btVector3 dimensions = bShape->getHalfExtentsWithMargin();
+    
+    m4d modelM = m4d::scale(dimensions.x() * 2, dimensions.y() * 2, dimensions.z() * 2);
+    Camera::instance()->pushMVMatrix(Camera::instance()->modelViewMatrix()* modelM);
+    wc.draw();
+    
+    Camera::instance()->popMVMatrix();
 }
 
 
