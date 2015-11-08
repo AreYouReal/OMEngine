@@ -106,6 +106,9 @@ void ObjMaterial::setUniforms(){
             glUniform3fv(program->uniformArray[i].location, 1, &lightInEyeSpace.x);
         }else if(!strcmp(program->uniformArray[i].name.c_str(), "uSamplerBump")){
             glUniform1i(program->uniformArray[i].location, 4);
+        }else if(!strcmp(program->uniformArray[i].name.c_str(), "uColor")){
+            v3d color(1, 0, 0);
+            glUniform3fv(program->uniformArray[i].location, 1, &color.x);
         }
     }
 }

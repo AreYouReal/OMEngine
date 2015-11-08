@@ -8,6 +8,9 @@
 #include "GameObject.hpp"
 #include "Obj.h"
 
+
+#include "WiredCube.hpp"
+
 using UserData = struct{};
 
 static SRContext       *appContext;
@@ -20,6 +23,7 @@ SRContext* Game::getAppContext(){
 ///
 // Initialize the shader and program object
 //
+WiredCube *wc;
 int Game::Init ( SRContext *context ){
     printGLInfo();
     
@@ -32,6 +36,9 @@ int Game::Init ( SRContext *context ){
 
     Scene::instance()->init();
 
+    
+    wc = new WiredCube();
+    
     return true;
 }
 
@@ -45,6 +52,9 @@ void Game::Update(SRContext *context, const float deltaTime){
 ///
 // Draw a triangle using the shader pair created in Init()
 //
+
+
+
 void Game::Draw ( SRContext *context ){
 //    Stopwatch stopwatch;
     //    logMessage("DRAW \n");
@@ -57,7 +67,13 @@ void Game::Draw ( SRContext *context ){
     glClearColor(0.0f, 0.3f, 0.0f, 1.0f);
     glClear( GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT );
     
+    wc->draw();
+    
+    
     Scene::instance()->draw();
+    
+    
+    
     
 //    logMessage("%f\n", stopwatch.fps());
 }
