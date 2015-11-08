@@ -167,5 +167,11 @@ void Materials::loadPrograms(){
     sp<ShaderProgram> bumpProgram = ShaderHelper::createProgram(vertexBump, fragmentBump);
     bumpProgram->name = "bump";
     programs.insert(std::pair<std::string, sp<ShaderProgram>>(bumpProgram->name, bumpProgram));
+    // Wired Cube Program
+    Shader vertexWired = ShaderHelper::loadShader(GL_VERTEX_SHADER, "wired_vertex.glsl");
+    Shader fragmentWired = ShaderHelper::loadShader(GL_FRAGMENT_SHADER, "wired_fragment.glsl");
+    sp<ShaderProgram> wiredProgram = ShaderHelper::createProgram(vertexWired, fragmentWired);
+    wiredProgram->name = "wired";
+    programs.insert(std::pair<string, sp<ShaderProgram>>(wiredProgram->name, wiredProgram));
 }
 

@@ -16,6 +16,8 @@
 		7626526117F10E6C007CCD43 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7626523517F10E6C007CCD43 /* Foundation.framework */; };
 		7626526217F10E6C007CCD43 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7626523917F10E6C007CCD43 /* UIKit.framework */; };
 		940E28EE1BDCB19C00B47533 /* MeshRendererComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 940E28EC1BDCB19C00B47533 /* MeshRendererComponent.cpp */; };
+		9435525E1BEF091F00FC4ADA /* wired_fragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 9435525C1BEF091F00FC4ADA /* wired_fragment.glsl */; };
+		9435525F1BEF091F00FC4ADA /* wired_vertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 9435525D1BEF091F00FC4ADA /* wired_vertex.glsl */; };
 		943869871BA8949D005A0594 /* fragmentBump.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 943869851BA8949D005A0594 /* fragmentBump.glsl */; };
 		943869881BA8949D005A0594 /* vertexBump.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 943869861BA8949D005A0594 /* vertexBump.glsl */; };
 		94499BF01BDD2FC6006E379D /* ball.png in Resources */ = {isa = PBXBuildFile; fileRef = 94499BEE1BDD2FC6006E379D /* ball.png */; };
@@ -254,6 +256,8 @@
 		940E28EC1BDCB19C00B47533 /* MeshRendererComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MeshRendererComponent.cpp; sourceTree = "<group>"; };
 		940E28ED1BDCB19C00B47533 /* MeshRendererComponent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MeshRendererComponent.hpp; sourceTree = "<group>"; };
 		942762991BD8AA6600E345EA /* MeshOutlines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MeshOutlines.h; sourceTree = "<group>"; };
+		9435525C1BEF091F00FC4ADA /* wired_fragment.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = wired_fragment.glsl; sourceTree = "<group>"; };
+		9435525D1BEF091F00FC4ADA /* wired_vertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = wired_vertex.glsl; sourceTree = "<group>"; };
 		943869851BA8949D005A0594 /* fragmentBump.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fragmentBump.glsl; sourceTree = "<group>"; };
 		943869861BA8949D005A0594 /* vertexBump.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = vertexBump.glsl; sourceTree = "<group>"; };
 		94499BEE1BDD2FC6006E379D /* ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ball.png; path = SREngine/Platforms/Android/assets/ball.png; sourceTree = "<group>"; };
@@ -1575,6 +1579,10 @@
 		F368E8C41BA6AE5A00F322AF /* shaders */ = {
 			isa = PBXGroup;
 			children = (
+				9435525C1BEF091F00FC4ADA /* wired_fragment.glsl */,
+				9435525D1BEF091F00FC4ADA /* wired_vertex.glsl */,
+				94EF0C5D1BA70E5400EBF5EE /* pos_norm_vertex.glsl */,
+				94EF0C5F1BA70F6700EBF5EE /* norm_as_color_fragment.glsl */,
 				F3CAEEE61BB01B8800DCF182 /* default_gray_fragment.glsl */,
 				F3CAEEE41BB01A7600DCF182 /* default_gray_vertex.glsl */,
 				F38A22E61BAAA40500FADEC0 /* fragmentPerVertex.glsl */,
@@ -1582,8 +1590,6 @@
 				F38A22E01BAA979700FADEC0 /* vertexPerPixel.glsl */,
 				943869851BA8949D005A0594 /* fragmentBump.glsl */,
 				943869861BA8949D005A0594 /* vertexBump.glsl */,
-				94EF0C5F1BA70F6700EBF5EE /* norm_as_color_fragment.glsl */,
-				94EF0C5D1BA70E5400EBF5EE /* pos_norm_vertex.glsl */,
 				F368E8C61BA6AE5A00F322AF /* fragmentPerPixel.glsl */,
 			);
 			name = shaders;
@@ -1725,6 +1731,7 @@
 				F3CAEEE51BB01A7600DCF182 /* default_gray_vertex.glsl in Resources */,
 				943869881BA8949D005A0594 /* vertexBump.glsl in Resources */,
 				F3D5E1111AF8F2CD00DD216B /* InfoPlist.strings in Resources */,
+				9435525F1BEF091F00FC4ADA /* wired_vertex.glsl in Resources */,
 				94DCA2F81BE13C6100435661 /* Scene.obj in Resources */,
 				F3D5E1191AF8F32E00DD216B /* Images.xcassets in Resources */,
 				94499BF11BDD2FC6006E379D /* diffuse.png in Resources */,
@@ -1734,6 +1741,7 @@
 				9472227A1B9AD466008D601B /* leaf.png in Resources */,
 				947FA31F1BA4854A00695A4E /* ram.obj in Resources */,
 				947FA31D1BA4854A00695A4E /* char_ram_col.png in Resources */,
+				9435525E1BEF091F00FC4ADA /* wired_fragment.glsl in Resources */,
 				F38A22E71BAAA40500FADEC0 /* fragmentPerVertex.glsl in Resources */,
 				F3D5E10B1AF8F24400DD216B /* InfoPlist.strings in Resources */,
 				F3CAEEE71BB01B8800DCF182 /* default_gray_fragment.glsl in Resources */,

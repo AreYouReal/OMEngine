@@ -2,15 +2,21 @@
 
 #include "SRUtils.h"
 #include "MeshGLInfo.h"
+#include "ObjMaterial.h"
 
 class WiredCube{
 public:
+    WiredCube();
     void draw();
-
+    
 private:
+  
+    void buildVBO();
+    void initMaterial();
+    void setAttributes();
     
-    static std::vector<v3d>             vertices;
-    static std::vector<unsigned short>  indices;
+    static std::vector<v3d> vertices;
     
-    MeshGLInfo mInfo;
+    sp<ObjMaterial> material;
+    MeshGLInfo glInfo;
 };
