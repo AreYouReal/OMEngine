@@ -11,6 +11,8 @@
 
 #include "WiredCube.hpp"
 
+#include "Font.hpp"
+
 using UserData = struct{};
 
 static SRContext       *appContext;
@@ -36,6 +38,8 @@ int Game::Init ( SRContext *context ){
     glEnable(GL_TEXTURE_2D);
 
     Scene::instance()->init();
+    
+    Font f("foo.ttf", 64, 512, 512, 32, 96);
     
     return true;
 }

@@ -218,6 +218,9 @@
 		F39A501E1BB3EE9B0080B846 /* LightSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F39A501C1BB3EE9B0080B846 /* LightSource.cpp */; };
 		F39A50211BB3F0090080B846 /* Illuminator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F39A501F1BB3F0090080B846 /* Illuminator.cpp */; };
 		F39A50261BB40E5B0080B846 /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F39A50241BB40E5B0080B846 /* GameObject.cpp */; };
+		F3B0F6B71BF0AD9F0044A442 /* stb_truetype.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3B0F6B51BF0AD9F0044A442 /* stb_truetype.cpp */; };
+		F3B0F6BB1BF0ADDC0044A442 /* Font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3B0F6B91BF0ADDC0044A442 /* Font.cpp */; };
+		F3B0F6BF1BF0B7410044A442 /* FFF_Tusj.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3B0F6BE1BF0B5830044A442 /* FFF_Tusj.ttf */; };
 		F3C52B2C1BBD079F009F3604 /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3C52B2A1BBD079F009F3604 /* Scene.cpp */; };
 		F3CAEEE51BB01A7600DCF182 /* default_gray_vertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F3CAEEE41BB01A7600DCF182 /* default_gray_vertex.glsl */; };
 		F3CAEEE71BB01B8800DCF182 /* default_gray_fragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F3CAEEE61BB01B8800DCF182 /* default_gray_fragment.glsl */; };
@@ -721,6 +724,12 @@
 		F39A50201BB3F0090080B846 /* Illuminator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Illuminator.hpp; sourceTree = "<group>"; };
 		F39A50241BB40E5B0080B846 /* GameObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameObject.cpp; sourceTree = "<group>"; };
 		F39A50251BB40E5B0080B846 /* GameObject.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GameObject.hpp; sourceTree = "<group>"; };
+		F3B0F6B51BF0AD9F0044A442 /* stb_truetype.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = stb_truetype.cpp; path = ttf/stb_truetype.cpp; sourceTree = "<group>"; };
+		F3B0F6B61BF0AD9F0044A442 /* stb_truetype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = stb_truetype.h; path = ttf/stb_truetype.h; sourceTree = "<group>"; };
+		F3B0F6B91BF0ADDC0044A442 /* Font.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Font.cpp; path = SREngine/CPPSources/Txt/Font.cpp; sourceTree = "<group>"; };
+		F3B0F6BA1BF0ADDC0044A442 /* Font.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Font.hpp; path = SREngine/CPPSources/Txt/Font.hpp; sourceTree = "<group>"; };
+		F3B0F6BE1BF0B5830044A442 /* FFF_Tusj.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FFF_Tusj.ttf; path = SREngine/Platforms/Android/assets/fonts/FFF_Tusj.ttf; sourceTree = "<group>"; };
+		F3B0F6C01BF0BA250044A442 /* foo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = foo.ttf; path = SREngine/Platforms/Android/assets/fonts/foo.ttf; sourceTree = "<group>"; };
 		F3C52B2A1BBD079F009F3604 /* Scene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Scene.cpp; sourceTree = "<group>"; };
 		F3C52B2B1BBD079F009F3604 /* Scene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Scene.hpp; sourceTree = "<group>"; };
 		F3CAEEE41BB01A7600DCF182 /* default_gray_vertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = default_gray_vertex.glsl; sourceTree = "<group>"; };
@@ -819,6 +828,7 @@
 		7626523F17F10E6C007CCD43 /* iOSSRE */ = {
 			isa = PBXGroup;
 			children = (
+				F3B0F6B81BF0ADB40044A442 /* Txt */,
 				94FAF39B1BEE93800087CC0C /* DEBUG */,
 				940E28E81BDCB0F300B47533 /* Component */,
 				947890371BD4D17F00B55A25 /* Physics */,
@@ -845,6 +855,8 @@
 		7626524017F10E6C007CCD43 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F3B0F6C01BF0BA250044A442 /* foo.ttf */,
+				F3B0F6BE1BF0B5830044A442 /* FFF_Tusj.ttf */,
 				94DCA2F31BE13C6100435661 /* Scene.bullet */,
 				94DCA2F41BE13C6100435661 /* Scene.mtl */,
 				94DCA2F51BE13C6100435661 /* Scene.obj */,
@@ -1547,6 +1559,7 @@
 		F368E8B51BA6AC9F00F322AF /* 3dPart */ = {
 			isa = PBXGroup;
 			children = (
+				F3B0F6B41BF0AD780044A442 /* ttf */,
 				94788E291BD4CFD100B55A25 /* BulletPhysics */,
 				F368E8B61BA6AC9F00F322AF /* loadpng */,
 				F368E8B91BA6AC9F00F322AF /* nvtristrip */,
@@ -1639,6 +1652,24 @@
 			);
 			name = GameObject;
 			path = SREngine/CPPSources/GameObject;
+			sourceTree = "<group>";
+		};
+		F3B0F6B41BF0AD780044A442 /* ttf */ = {
+			isa = PBXGroup;
+			children = (
+				F3B0F6B51BF0AD9F0044A442 /* stb_truetype.cpp */,
+				F3B0F6B61BF0AD9F0044A442 /* stb_truetype.h */,
+			);
+			name = ttf;
+			sourceTree = "<group>";
+		};
+		F3B0F6B81BF0ADB40044A442 /* Txt */ = {
+			isa = PBXGroup;
+			children = (
+				F3B0F6B91BF0ADDC0044A442 /* Font.cpp */,
+				F3B0F6BA1BF0ADDC0044A442 /* Font.hpp */,
+			);
+			name = Txt;
 			sourceTree = "<group>";
 		};
 		F3C52B261BBD01CC009F3604 /* Scene */ = {
@@ -1743,6 +1774,7 @@
 				947FA31D1BA4854A00695A4E /* char_ram_col.png in Resources */,
 				9435525E1BEF091F00FC4ADA /* wired_fragment.glsl in Resources */,
 				F38A22E71BAAA40500FADEC0 /* fragmentPerVertex.glsl in Resources */,
+				F3B0F6BF1BF0B7410044A442 /* FFF_Tusj.ttf in Resources */,
 				F3D5E10B1AF8F24400DD216B /* InfoPlist.strings in Resources */,
 				F3CAEEE71BB01B8800DCF182 /* default_gray_fragment.glsl in Resources */,
 				F3D5E1161AF8F32600DD216B /* Main_iPad.storyboard in Resources */,
@@ -1883,6 +1915,7 @@
 				94788FF61BD4CFD200B55A25 /* btTriangleShapeEx.cpp in Sources */,
 				94788FDD1BD4CFD200B55A25 /* btHeightfieldTerrainShape.cpp in Sources */,
 				F3710A151BA6CA6000235C68 /* Camera.cpp in Sources */,
+				F3B0F6BB1BF0ADDC0044A442 /* Font.cpp in Sources */,
 				947890061BD4CFD200B55A25 /* btVoronoiSimplexSolver.cpp in Sources */,
 				94FAF39E1BEE939F0087CC0C /* WiredCube.cpp in Sources */,
 				94788FEA1BD4CFD200B55A25 /* btTriangleCallback.cpp in Sources */,
@@ -1911,6 +1944,7 @@
 				94CE87D91B62B53500752D5C /* Game.cpp in Sources */,
 				9478900F1BD4CFD200B55A25 /* btHinge2Constraint.cpp in Sources */,
 				947890361BD4CFD200B55A25 /* btVector3.cpp in Sources */,
+				F3B0F6B71BF0AD9F0044A442 /* stb_truetype.cpp in Sources */,
 				94788FB51BD4CFD200B55A25 /* btBoxBoxDetector.cpp in Sources */,
 				94788FEF1BD4CFD200B55A25 /* btUniformScalingShape.cpp in Sources */,
 				947890031BD4CFD200B55A25 /* btPolyhedralContactClipping.cpp in Sources */,
