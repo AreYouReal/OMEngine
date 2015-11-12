@@ -11,6 +11,8 @@ public:
     Font(string name, float fSize, unsigned int tWidth, unsigned int tHeight, int firstChar, int charCount);
     ~Font();
     
+    float length(const string& text);
+    
 private:
     string              name;
     stbtt_bakedchar     *charData;

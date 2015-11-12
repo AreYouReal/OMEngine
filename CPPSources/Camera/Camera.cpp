@@ -6,10 +6,6 @@
 
 #define SIGN(x) (x >= 0 ? 1 : -1);
 
-Camera::~Camera(){
-    logMessage("Camera destructor!");
-}
-
 Camera::Camera(float fovy, float width, float height, float near, float far)
 :mFovy(fovy), mWidth(width), mHeight(height), mNear(near), mFar(far){
     transform.mPosition = v3d(0.0f, -3.8f, 2.5f);
@@ -17,7 +13,12 @@ Camera::Camera(float fovy, float width, float height, float near, float far)
     transform.mUp = v3d(0.0f, 0.0f, 1.0f);
     refreshViewAndNormalMatrix();
     refreshProjMatrix();
+
     logMessage("Camera constructor!");
+}
+
+Camera::~Camera(){
+    logMessage("Camera destructor!");
 }
 
 
@@ -104,6 +105,7 @@ void Camera::setWidthAndHeight(float width, float height){
     mWidth = width;
     mHeight = height;
     refreshProjMatrix();
+    glGetIntegerv(GL_VIEWPORT, viewportMatrix);
 }
 
 const m4d& Camera::viewMatrix() const{

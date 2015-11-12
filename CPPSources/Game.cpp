@@ -28,15 +28,12 @@ SRContext* Game::getAppContext(){
 // Initialize the shader and program object
 //
 int Game::Init ( SRContext *context ){
-    printGLInfo();
-    
     appContext = context;
+    
+    printGLInfo();
+    initOGL(context->width, context->height);
     atexit(Exit);
-    glViewport ( 0, 0, context->width, context->height );
-    glEnable( GL_DEPTH_TEST );
-//    glEnable( GL_CULL_FACE  );
-    glEnable(GL_TEXTURE_2D);
-
+    
     Scene::instance()->init();
     
     Font f("foo.ttf", 64, 512, 512, 32, 96);
@@ -50,13 +47,9 @@ void Game::Update(SRContext *context, const float deltaTime){
     Scene::instance()->update(deltaTime);
 }
 
-
 ///
 // Draw a triangle using the shader pair created in Init()
 //
-
-
-
 void Game::Draw ( SRContext *context ){
 //    Stopwatch stopwatch;
     //    logMessage("DRAW \n");
@@ -125,6 +118,14 @@ void Game::printGLInfo(){
     printGLString("Renderer",       GL_RENDERER);
 //    printGLString("Extensions",     GL_EXTENSIONS);
 //    printGLString("GLSL version",   GL_SHADING_LANGUAGE_VERSION);
+}
+
+
+void Game::initOGL(const float width, const float height){
+    glViewport ( 0, 0, width, height );
+    glEnable( GL_DEPTH_TEST );
+    //    glEnable( GL_CULL_FACE  );
+    glEnable(GL_TEXTURE_2D);
 }
 
 

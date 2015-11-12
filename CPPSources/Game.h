@@ -19,4 +19,5 @@ public:
 
 private:
     static void printGLInfo();
+    static void initOGL(const float width, const float height);
 };

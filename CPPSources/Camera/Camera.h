@@ -55,6 +55,7 @@ private:
     m4d mProjectionMatrix;
     m4d mNormalMatrix;
     v4d frustum[6];
+    int viewportMatrix[4];
     
     std::stack<m4d> mMVstack;
     

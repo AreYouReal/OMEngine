@@ -6,7 +6,7 @@
 
 Font::Font(string name, float fSize, unsigned int tWidth, unsigned int tHeight, int firstChar, int charCount){
     logMessage("Font constructor! %s\n", name.c_str());
-    up<FileContent> content = readBytesFromFile(Game::getAppContext(), "ball.png");
+    up<FileContent> content = readBytesFromFile(Game::getAppContext(), name.c_str());
     if(!content){
         logMessage("Unable to load font file: %s\n", name.c_str());
     }else{
@@ -32,4 +32,15 @@ Font::Font(string name, float fSize, unsigned int tWidth, unsigned int tHeight, 
 
 Font::~Font(){
     logMessage("Font destructor!\n");
+}
+
+float Font::length(const string& text){
+    float l = 0;
+    for(ushort i = 0; i < text.length(); ++i){
+        if(text[i] >= firstCharacter && text[i] <= firstCharacter + characterCount){
+            stbtt_bakedchar *backedChar = charData + text[i] - firstCharacter;
+            l += backedChar->xadvance;
+        }
+    }
+    return l;
 }

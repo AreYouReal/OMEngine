@@ -199,6 +199,9 @@
 		94EF0C5E1BA70E5400EBF5EE /* pos_norm_vertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 94EF0C5D1BA70E5400EBF5EE /* pos_norm_vertex.glsl */; };
 		94EF0C601BA70F6700EBF5EE /* norm_as_color_fragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 94EF0C5F1BA70F6700EBF5EE /* norm_as_color_fragment.glsl */; };
 		94FAF39E1BEE939F0087CC0C /* WiredCube.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94FAF39C1BEE939F0087CC0C /* WiredCube.cpp */; };
+		F328C4FB1BF491930037AC6D /* foo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3B0F6C01BF0BA250044A442 /* foo.ttf */; };
+		F328C4FE1BF4997F0037AC6D /* font_fragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F328C4FC1BF4997F0037AC6D /* font_fragment.glsl */; };
+		F328C4FF1BF4997F0037AC6D /* font_vertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F328C4FD1BF4997F0037AC6D /* font_vertex.glsl */; };
 		F340D11B1BA95E4500187B1E /* char_ram_nor.png in Resources */ = {isa = PBXBuildFile; fileRef = F340D11A1BA95E4500187B1E /* char_ram_nor.png */; };
 		F34129D01BB52BB7006F4D4D /* Materials.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F34129CE1BB52BB7006F4D4D /* Materials.cpp */; };
 		F34129D51BB53D6E006F4D4D /* ObjMaterial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F34129D31BB53D6E006F4D4D /* ObjMaterial.cpp */; };
@@ -691,6 +694,8 @@
 		94FAF39C1BEE939F0087CC0C /* WiredCube.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WiredCube.cpp; sourceTree = "<group>"; };
 		94FAF39D1BEE939F0087CC0C /* WiredCube.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = WiredCube.hpp; sourceTree = "<group>"; };
 		94FFA85E1BD8D95500E44EBE /* MeshGLInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MeshGLInfo.h; sourceTree = "<group>"; };
+		F328C4FC1BF4997F0037AC6D /* font_fragment.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = font_fragment.glsl; sourceTree = "<group>"; };
+		F328C4FD1BF4997F0037AC6D /* font_vertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = font_vertex.glsl; sourceTree = "<group>"; };
 		F340D11A1BA95E4500187B1E /* char_ram_nor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = char_ram_nor.png; path = SREngine/Platforms/Android/assets/char_ram_nor.png; sourceTree = "<group>"; };
 		F34129CE1BB52BB7006F4D4D /* Materials.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Materials.cpp; sourceTree = "<group>"; };
 		F34129CF1BB52BB7006F4D4D /* Materials.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Materials.hpp; sourceTree = "<group>"; };
@@ -1592,6 +1597,8 @@
 		F368E8C41BA6AE5A00F322AF /* shaders */ = {
 			isa = PBXGroup;
 			children = (
+				F328C4FC1BF4997F0037AC6D /* font_fragment.glsl */,
+				F328C4FD1BF4997F0037AC6D /* font_vertex.glsl */,
 				9435525C1BEF091F00FC4ADA /* wired_fragment.glsl */,
 				9435525D1BEF091F00FC4ADA /* wired_vertex.glsl */,
 				94EF0C5D1BA70E5400EBF5EE /* pos_norm_vertex.glsl */,
@@ -1759,11 +1766,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F328C4FE1BF4997F0037AC6D /* font_fragment.glsl in Resources */,
 				F3CAEEE51BB01A7600DCF182 /* default_gray_vertex.glsl in Resources */,
 				943869881BA8949D005A0594 /* vertexBump.glsl in Resources */,
+				F328C4FB1BF491930037AC6D /* foo.ttf in Resources */,
 				F3D5E1111AF8F2CD00DD216B /* InfoPlist.strings in Resources */,
 				9435525F1BEF091F00FC4ADA /* wired_vertex.glsl in Resources */,
 				94DCA2F81BE13C6100435661 /* Scene.obj in Resources */,
+				F328C4FF1BF4997F0037AC6D /* font_vertex.glsl in Resources */,
 				F3D5E1191AF8F32E00DD216B /* Images.xcassets in Resources */,
 				94499BF11BDD2FC6006E379D /* diffuse.png in Resources */,
 				F38A22E91BAAAD8800FADEC0 /* tree.png in Resources */,
