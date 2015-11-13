@@ -12,6 +12,9 @@ public:
     ~Font();
     
     float length(const string& text);
+    void    print(float x, float y,const string &text, v4d *color = nullptr );
+    
+    
     
 private:
     string              name;

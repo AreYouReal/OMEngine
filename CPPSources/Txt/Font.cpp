@@ -2,6 +2,8 @@
 #include "Font.hpp"
 
 #include "Game.h"
+#include "Materials.hpp"
+#include "Camera.h"
 
 
 Font::Font(string name, float fSize, unsigned int tWidth, unsigned int tHeight, int firstChar, int charCount){
@@ -26,6 +28,8 @@ Font::Font(string name, float fSize, unsigned int tWidth, unsigned int tHeight, 
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
         delete [] texelArray;
+        
+        program = Materials::instance()->getProgram("font");
     }
 }
 
@@ -43,4 +47,77 @@ float Font::length(const string& text){
         }
     }
     return l;
+}
+
+void Font::print(float x, float y, const string &text, v4d *color){
+    glBindVertexArray(0);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    
+    glDisable   (GL_CULL_FACE);
+    glDisable   (GL_DEPTH_TEST);
+    glDepthMask (GL_FALSE);
+    glEnable    (GL_BLEND);
+    glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    
+    program->use();
+    m4d m = Camera::instance()->modelViewMatrix();
+    glUniformMatrix4fv(program->getUniformLocation("uModelViewM"), 1, GL_TRUE, m.pointer()) ;
+    m = Camera::instance()->normalMatrix();
+    glUniformMatrix4fv(program->getUniformLocation("uNormalM"), 1, GL_TRUE, m.pointer());
+    m = Camera::instance()->projectionMatrix();
+    glUniformMatrix4fv(program->getUniformLocation("uProjectionM"), 1, GL_TRUE, m.pointer());
+    if(color) glUniform4fv(program->getUniformLocation("uColor"), 1, (*color).pointer());
+    
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, tID);
+    glEnableVertexAttribArray(0);
+    glEnableVertexAttribArray(2);
+    
+    for(ushort i = 0; i < text.length(); ++i){
+        if(text[i] >= firstCharacter && text[i] <= firstCharacter + characterCount){
+            v2d vert[4];
+            v2d uv[4];
+            
+            stbtt_aligned_quad quad;
+            stbtt_bakedchar *backedchar = charData + (text[i] - firstCharacter);
+            int roundX = floorf(x + backedchar->xoff);
+            int roundY = floorf(y - backedchar->yoff);
+            
+            quad.x0 = (float)roundX;
+            quad.y0 = (float)roundY;
+            quad.x1 = (float)roundX + backedchar->x1 - backedchar->x0;
+            quad.y1 = (float)roundY - backedchar->y1 + backedchar->y0;
+            
+            quad.s0 = backedchar->x0 / (float)textureWidth;
+            quad.t0 = backedchar->y0 / (float)textureHeight;
+            quad.s1 = backedchar->x1 / (float)textureWidth;
+            quad.t1 = backedchar->y1 / (float)textureHeight;
+            
+            x += backedchar->xadvance;
+            
+            vert[0].x = quad.x1; vert[0].y = quad.y0;
+            uv[0].x = quad.s1;  uv[0].y = quad.t0;
+            
+            vert[1].x = quad.x0; vert[1].y = quad.y0;
+            uv[1].x = quad.s0; uv[1].y = quad.t0;
+            
+            vert[2].x = quad.x1; vert[2].y = quad.y1;
+            uv[2].x = quad.s1; uv[2].y = quad.t1;
+            
+            vert[3].x = quad.x0; vert[3].y = quad.y1;
+            uv[3].x = quad.s0; uv[3].y = quad.t1;
+            
+            glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, (float *)&vert[0]);
+            glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 0, (float *)&uv[0]);
+            
+            glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+        }
+    }
+    
+    glEnable    (GL_CULL_FACE);
+    glEnable    (GL_DEPTH_TEST);
+    glDepthMask (GL_TRUE);
+    glDisable   (GL_BLEND);
+    
 }

@@ -5,8 +5,8 @@ Shader::Shader(){
 }
 
 Shader::~Shader(){
-    deleteID();
     logMessage("Shader destructor id:%d ! \n", ID);
+    deleteID();
 }
 
 void Shader::deleteID(){

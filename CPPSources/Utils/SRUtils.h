@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <vector>
 #include <memory>
-#include <math.h>
+#include <cmath>
 
 #include "lodepng.h"
 

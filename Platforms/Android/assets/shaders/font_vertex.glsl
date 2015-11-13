@@ -1,10 +1,10 @@
 #version 300 es
-uniform mediump uModelViewM;
-uniform mediump uProjectionM;
-uniform mediump uNormalM;
+uniform mediump mat4 uModelViewM;
+uniform mediump mat4 uProjectionM;
+uniform mediump mat4 uNormalM;
 
-layout(location = 0) in vec4 aPosition;
-layout(locatino = 2) in vec3 aTexCoord;
+layout(location = 0) in vec2 aPosition;
+layout(location = 2) in vec2 aTexCoord;
 
 out lowp vec2 vTexCoord;
 

@@ -135,46 +135,19 @@ sp<ShaderProgram> Materials::getProgram(const string &name){
 
 void Materials::loadPrograms(){
     logMessage("ShaderLibrary constructor!\n");
-    // Default program
-    // Use normal as color in shader
-    Shader vertexShader = ShaderHelper::loadShader(GL_VERTEX_SHADER, "pos_norm_vertex.glsl");
-    Shader fragmentShader = ShaderHelper::loadShader(GL_FRAGMENT_SHADER, "norm_as_color_fragment.glsl");
-    sp<ShaderProgram> program = ShaderHelper::createProgram(vertexShader, fragmentShader);
-    program->name = "norm_as_color";
-    programs.insert(std::pair<std::string, sp<ShaderProgram>>(program->name, program));
-    //--------------------------------------------------------
-    // Per vertex lighting
-    Shader defVShader = ShaderHelper::loadShader(GL_VERTEX_SHADER, "default_gray_vertex.glsl");
-    Shader defFShader = ShaderHelper::loadShader(GL_FRAGMENT_SHADER, "default_gray_fragment.glsl");
-    sp<ShaderProgram> defProg = ShaderHelper::createProgram(defVShader, defFShader);
-    defProg->name = "default_gray";
-    programs.insert(std::pair<std::string, sp<ShaderProgram>>(defProg->name, defProg));
-    //--------------------------------------------------------
-    // Per vertex lighting
-    Shader vertexPerVertexLighting = ShaderHelper::loadShader(GL_VERTEX_SHADER, "vertexPerVertex.glsl");
-    Shader fragmentPerVertexLighting = ShaderHelper::loadShader(GL_FRAGMENT_SHADER, "fragmentPerVertex.glsl");
-    sp<ShaderProgram> perVertexProgram = ShaderHelper::createProgram(vertexPerVertexLighting, fragmentPerVertexLighting);
-    perVertexProgram->name = "defaultPerVertex";
-    programs.insert(std::pair<std::string, sp<ShaderProgram>>(perVertexProgram->name, perVertexProgram));
-    //--------------------------
-    // Solid, alpha tested and transparent programs with per pixel lighting.
-    Shader vShader = ShaderHelper::loadShader(GL_VERTEX_SHADER, "vertexPerPixel.glsl");
-    Shader fSolidShader = ShaderHelper::loadShader(GL_FRAGMENT_SHADER, "fragmentPerPixel.glsl");
-    sp<ShaderProgram> solidProgram = ShaderHelper::createProgram(vShader, fSolidShader);
-    solidProgram->name = "defaultPerPixel";
-    programs.insert(std::pair<std::string, sp<ShaderProgram>>(solidProgram->name, solidProgram));
-    //--------------------------
-    // Bump shader
-    Shader vertexBump = ShaderHelper::loadShader(GL_VERTEX_SHADER, "vertexBump.glsl");
-    Shader fragmentBump = ShaderHelper::loadShader(GL_FRAGMENT_SHADER, "fragmentBump.glsl");
-    sp<ShaderProgram> bumpProgram = ShaderHelper::createProgram(vertexBump, fragmentBump);
-    bumpProgram->name = "bump";
-    programs.insert(std::pair<std::string, sp<ShaderProgram>>(bumpProgram->name, bumpProgram));
-    // Wired Cube Program
-    Shader vertexWired = ShaderHelper::loadShader(GL_VERTEX_SHADER, "wired_vertex.glsl");
-    Shader fragmentWired = ShaderHelper::loadShader(GL_FRAGMENT_SHADER, "wired_fragment.glsl");
-    sp<ShaderProgram> wiredProgram = ShaderHelper::createProgram(vertexWired, fragmentWired);
-    wiredProgram->name = "wired";
-    programs.insert(std::pair<string, sp<ShaderProgram>>(wiredProgram->name, wiredProgram));
+    
+    addProgram(ShaderHelper::createProgram("norm_as_color",     "pos_norm_vertex.glsl",     "norm_as_color_fragment.glsl"   ));
+    addProgram(ShaderHelper::createProgram("default_gray",      "default_gray_vertex.glsl", "default_gray_fragment.glsl"    ));
+    addProgram(ShaderHelper::createProgram("defaultPerVertex",  "vertexPerVertex.glsl",     "fragmentPerVertex.glsl"        ));
+    addProgram(ShaderHelper::createProgram("defaultPerPixel",   "vertexPerPixel.glsl",      "fragmentPerPixel.glsl"         ));
+    addProgram(ShaderHelper::createProgram("bump",              "vertexBump.glsl",          "fragmentBump.glsl"             ));
+    addProgram(ShaderHelper::createProgram("wired",             "wired_vertex.glsl",        "wired_fragment.glsl"           ));
+    addProgram(ShaderHelper::createProgram("font",              "font_vertex.glsl",         "font_fragment.glsl"            ));
 }
+
+void Materials::addProgram(sp<ShaderProgram> program){
+    programs.insert(std::pair<string, sp<ShaderProgram>>(program->name, program));
+}
+
+
 

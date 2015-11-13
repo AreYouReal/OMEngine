@@ -3,13 +3,13 @@
 
 #pragma mark Public
 
-sp<ShaderProgram> ShaderHelper::createProgram(std::string vertexShaderFilename, std::string fragmentShaderFilename){
+sp<ShaderProgram> ShaderHelper::createProgram(string programName, const string vertexShaderFilename, string fragmentShaderFilename){
     Shader vertexShader = loadShader(GL_VERTEX_SHADER, vertexShaderFilename);
     Shader fragmentShader = loadShader(GL_FRAGMENT_SHADER, fragmentShaderFilename);
-    return createProgram(vertexShader, fragmentShader);
+    return createProgram(programName, vertexShader, fragmentShader);
 }
 
-sp<ShaderProgram> ShaderHelper::createProgram(const Shader &vertexShader,const Shader &fragmentShader){
+sp<ShaderProgram> ShaderHelper::createProgram(const string programName, const Shader &vertexShader,const Shader &fragmentShader){
     sp<ShaderProgram> program = std::make_shared<ShaderProgram>();
     program->ID = glCreateProgram();
     glAttachShader(program->ID, vertexShader.ID);
@@ -51,6 +51,7 @@ sp<ShaderProgram> ShaderHelper::createProgram(const Shader &vertexShader,const S
     glDeleteShader(fragmentShader.ID);
     
     ShaderHelper::printProgramInfoLog(program->ID);
+    program->name = programName;
     
     return program;
 }

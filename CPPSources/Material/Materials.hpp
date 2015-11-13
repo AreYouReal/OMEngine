@@ -33,4 +33,5 @@ private:
 
 // Helpers
     void loadPrograms();
+    void addProgram(sp<ShaderProgram> program);
 };

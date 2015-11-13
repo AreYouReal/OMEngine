@@ -19,6 +19,8 @@ static SRContext       *appContext;
 
 bool Game::debugFlag  = true;
 
+Font *f;
+
 SRContext* Game::getAppContext(){
     if(!appContext) logMessage("\nAppContext is NULL!\n");
     return appContext;
@@ -36,7 +38,7 @@ int Game::Init ( SRContext *context ){
     
     Scene::instance()->init();
     
-    Font f("foo.ttf", 64, 512, 512, 32, 96);
+    f = new Font("foo.ttf", 640, 512, 512, 32, 96);
     
     return true;
 }
@@ -62,7 +64,8 @@ void Game::Draw ( SRContext *context ){
     glClearColor(0.0f, 0.3f, 0.0f, 1.0f);
     glClear( GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT );
 
-    Scene::instance()->draw();
+//    Scene::instance()->draw();
+    f->print(0, 0, "QWE");
 //    logMessage("%f\n", stopwatch.fps());
 }
 

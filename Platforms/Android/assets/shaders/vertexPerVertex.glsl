@@ -15,7 +15,7 @@ layout(location = 0) in vec4 aPosition;
 layout(location = 1) in vec4 aNormal;
 layout(location = 2) in vec3 aTexCoord;
 
-out mediump vec3 texCoord;
+out mediump vec2 texCoord;
 out lowp    vec4 ambientColor;
 out lowp    vec4 diffuseColor;
 out lowp    vec4 specularColor;
@@ -30,7 +30,7 @@ void main(){
 
     gl_Position = uProjectionM * uModelViewM * aPosition;
     
-    texCoord = aTexCoord;
+    texCoord = aTexCoord.xy;
     ambientColor = vec4(uAmbient, 1.0);
     float intensity = max(dot(normal, L), 0.0);
     if(intensity > 0.0){
