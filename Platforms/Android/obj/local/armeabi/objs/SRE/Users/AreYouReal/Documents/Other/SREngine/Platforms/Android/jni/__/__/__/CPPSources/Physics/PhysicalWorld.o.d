@@ -10,14 +10,13 @@
  /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/platforms/android-18/arch-arm/usr/include/strings.h \
  /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/platforms/android-18/arch-arm/usr/include/memory.h \
  /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/vector \
- /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/platforms/android-18/arch-arm/usr/include/math.h \
+ /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/cmath \
  /Users/AreYouReal/Documents/Other/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/loadpng/lodepng.h \
  /Users/AreYouReal/Documents/Other/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/FileContent.h \
  /Users/AreYouReal/Documents/Other/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/Stopwatch.h \
  /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/ctime \
  /Users/AreYouReal/Documents/Other/SREngine/Platforms/Android/jni/../../../CPPSources/Math/m4d.h \
  /Users/AreYouReal/Documents/Other/SREngine/Platforms/Android/jni/../../../CPPSources/Math/v3d.h \
- /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/cmath \
  /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/iostream \
  /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/platforms/android-18/arch-arm/usr/include/GLES3/gl3.h \
  /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/platforms/android-18/arch-arm/usr/include/GLES3/gl3platform.h \
@@ -157,7 +156,7 @@
 
 /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/vector:
 
-/Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/platforms/android-18/arch-arm/usr/include/math.h:
+/Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/cmath:
 
 /Users/AreYouReal/Documents/Other/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/loadpng/lodepng.h:
 
@@ -170,8 +169,6 @@
 /Users/AreYouReal/Documents/Other/SREngine/Platforms/Android/jni/../../../CPPSources/Math/m4d.h:
 
 /Users/AreYouReal/Documents/Other/SREngine/Platforms/Android/jni/../../../CPPSources/Math/v3d.h:
-
-/Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/cmath:
 
 /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/iostream:
 

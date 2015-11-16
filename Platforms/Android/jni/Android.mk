@@ -28,6 +28,7 @@ $(SRC_PATH)/CPPSources/Shaders/ShaderHelper.cpp\
 $(SRC_PATH)/CPPSources/Shaders/ShaderProgram.cpp\
 $(SRC_PATH)/CPPSources/Texture/Texture.cpp\
 $(SRC_PATH)/CPPSources/Transform/Transform.cpp\
+$(SRC_PATH)/CPPSources/Txt/Font.cpp\
 $(SRC_PATH)/CPPSources/Utils/3dPart/BulletPhysics/BulletCollision/BroadphaseCollision/btAxisSweep3.cpp\
 $(SRC_PATH)/CPPSources/Utils/3dPart/BulletPhysics/BulletCollision/BroadphaseCollision/btBroadphaseProxy.cpp\
 $(SRC_PATH)/CPPSources/Utils/3dPart/BulletPhysics/BulletCollision/BroadphaseCollision/btCollisionAlgorithm.cpp\
@@ -181,6 +182,7 @@ $(SRC_PATH)/CPPSources/Utils/3dPart/loadpng/lodepng.cpp\
 $(SRC_PATH)/CPPSources/Utils/3dPart/nvtristrip/NvTriStrip.cpp\
 $(SRC_PATH)/CPPSources/Utils/3dPart/nvtristrip/NvTriStripObjects.cpp\
 $(SRC_PATH)/CPPSources/Utils/3dPart/nvtristrip/VertexCache.cpp\
+$(SRC_PATH)/CPPSources/Utils/3dPart/ttf/stb_truetype.cpp\
 $(SRC_PATH)/CPPSources/Utils/SRUtils.cpp\
 
 
@@ -200,6 +202,7 @@ $(SRC_PATH)/CPPSources/Scene\
 $(SRC_PATH)/CPPSources/Shaders\
 $(SRC_PATH)/CPPSources/Texture\
 $(SRC_PATH)/CPPSources/Transform\
+$(SRC_PATH)/CPPSources/Txt\
 $(SRC_PATH)/CPPSources/Utils/3dPart/BulletPhysics\
 $(SRC_PATH)/CPPSources/Utils/3dPart/BulletPhysics/BulletCollision/BroadphaseCollision\
 $(SRC_PATH)/CPPSources/Utils/3dPart/BulletPhysics/BulletCollision/CollisionDispatch\
@@ -219,6 +222,7 @@ $(SRC_PATH)/CPPSources/Utils/3dPart/BulletPhysics/Extras/Serialize/BulletWorldIm
 $(SRC_PATH)/CPPSources/Utils/3dPart/BulletPhysics/LinearMath\
 $(SRC_PATH)/CPPSources/Utils/3dPart/loadpng\
 $(SRC_PATH)/CPPSources/Utils/3dPart/nvtristrip\
+$(SRC_PATH)/CPPSources/Utils/3dPart/ttf\
 $(SRC_PATH)/CPPSources/Utils\
 
 

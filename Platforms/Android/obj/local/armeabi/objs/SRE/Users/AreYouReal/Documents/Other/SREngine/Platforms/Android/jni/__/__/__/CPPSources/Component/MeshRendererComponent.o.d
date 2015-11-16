@@ -11,14 +11,13 @@
  /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/platforms/android-18/arch-arm/usr/include/strings.h \
  /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/platforms/android-18/arch-arm/usr/include/memory.h \
  /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/vector \
- /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/platforms/android-18/arch-arm/usr/include/math.h \
+ /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/cmath \
  /Users/AreYouReal/Documents/Other/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/loadpng/lodepng.h \
  /Users/AreYouReal/Documents/Other/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/FileContent.h \
  /Users/AreYouReal/Documents/Other/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/Stopwatch.h \
  /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/ctime \
  /Users/AreYouReal/Documents/Other/SREngine/Platforms/Android/jni/../../../CPPSources/Math/m4d.h \
  /Users/AreYouReal/Documents/Other/SREngine/Platforms/Android/jni/../../../CPPSources/Math/v3d.h \
- /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/cmath \
  /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/iostream \
  /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/platforms/android-18/arch-arm/usr/include/GLES3/gl3.h \
  /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/platforms/android-18/arch-arm/usr/include/GLES3/gl3platform.h \
@@ -74,7 +73,18 @@
  /Users/AreYouReal/Documents/Other/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/LinearMath/btAlignedAllocator.h \
  /Users/AreYouReal/Documents/Other/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/BulletCollision/CollisionDispatch/btCollisionObject.h \
  /Users/AreYouReal/Documents/Other/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/LinearMath/btMotionState.h \
- /Users/AreYouReal/Documents/Other/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/LinearMath/btTransform.h
+ /Users/AreYouReal/Documents/Other/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/LinearMath/btTransform.h \
+ /Users/AreYouReal/Documents/Other/SREngine/Platforms/Android/jni/../../../CPPSources/DEBUG/WiredCube.hpp \
+ /Users/AreYouReal/Documents/Other/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/BulletCollision/CollisionShapes/btBoxShape.h \
+ /Users/AreYouReal/Documents/Other/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/BulletCollision/CollisionShapes/btPolyhedralConvexShape.h \
+ /Users/AreYouReal/Documents/Other/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/LinearMath/btMatrix3x3.h \
+ /Users/AreYouReal/Documents/Other/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/BulletCollision/CollisionShapes/btConvexInternalShape.h \
+ /Users/AreYouReal/Documents/Other/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/BulletCollision/CollisionShapes/btConvexShape.h \
+ /Users/AreYouReal/Documents/Other/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/BulletCollision/CollisionShapes/btCollisionShape.h \
+ /Users/AreYouReal/Documents/Other/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/BulletCollision/CollisionShapes/btCollisionMargin.h \
+ /Users/AreYouReal/Documents/Other/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/LinearMath/btAabbUtil2.h \
+ /Users/AreYouReal/Documents/Other/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/LinearMath/btMinMax.h \
+ /Users/AreYouReal/Documents/Other/SREngine/Platforms/Android/jni/../../../CPPSources/Game.h
 
 /Users/AreYouReal/Documents/Other/SREngine/Platforms/Android/jni/../../../CPPSources/Component/MeshRendererComponent.hpp:
 
@@ -98,7 +108,7 @@
 
 /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/vector:
 
-/Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/platforms/android-18/arch-arm/usr/include/math.h:
+/Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/cmath:
 
 /Users/AreYouReal/Documents/Other/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/loadpng/lodepng.h:
 
@@ -111,8 +121,6 @@
 /Users/AreYouReal/Documents/Other/SREngine/Platforms/Android/jni/../../../CPPSources/Math/m4d.h:
 
 /Users/AreYouReal/Documents/Other/SREngine/Platforms/Android/jni/../../../CPPSources/Math/v3d.h:
-
-/Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/cmath:
 
 /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/iostream:
 
@@ -225,3 +233,25 @@
 /Users/AreYouReal/Documents/Other/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/LinearMath/btMotionState.h:
 
 /Users/AreYouReal/Documents/Other/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/LinearMath/btTransform.h:
+
+/Users/AreYouReal/Documents/Other/SREngine/Platforms/Android/jni/../../../CPPSources/DEBUG/WiredCube.hpp:
+
+/Users/AreYouReal/Documents/Other/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/BulletCollision/CollisionShapes/btBoxShape.h:
+
+/Users/AreYouReal/Documents/Other/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/BulletCollision/CollisionShapes/btPolyhedralConvexShape.h:
+
+/Users/AreYouReal/Documents/Other/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/LinearMath/btMatrix3x3.h:
+
+/Users/AreYouReal/Documents/Other/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/BulletCollision/CollisionShapes/btConvexInternalShape.h:
+
+/Users/AreYouReal/Documents/Other/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/BulletCollision/CollisionShapes/btConvexShape.h:
+
+/Users/AreYouReal/Documents/Other/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/BulletCollision/CollisionShapes/btCollisionShape.h:
+
+/Users/AreYouReal/Documents/Other/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/BulletCollision/CollisionShapes/btCollisionMargin.h:
+
+/Users/AreYouReal/Documents/Other/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/LinearMath/btAabbUtil2.h:
+
+/Users/AreYouReal/Documents/Other/SREngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/LinearMath/btMinMax.h:
+
+/Users/AreYouReal/Documents/Other/SREngine/Platforms/Android/jni/../../../CPPSources/Game.h:

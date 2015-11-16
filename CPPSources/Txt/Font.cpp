@@ -8,6 +8,9 @@
 
 Font::Font(string name, float fSize, unsigned int tWidth, unsigned int tHeight, int firstChar, int charCount){
     logMessage("Font constructor! %s\n", name.c_str());
+#ifdef ANDROID
+    name = "fonts/" + name;
+#endif
     up<FileContent> content = readBytesFromFile(Game::getAppContext(), name.c_str());
     if(!content){
         logMessage("Unable to load font file: %s\n", name.c_str());
@@ -40,7 +43,7 @@ Font::~Font(){
 
 float Font::length(const string& text){
     float l = 0;
-    for(ushort i = 0; i < text.length(); ++i){
+    for(unsigned short i = 0; i < text.length(); ++i){
         if(text[i] >= firstCharacter && text[i] <= firstCharacter + characterCount){
             stbtt_bakedchar *backedChar = charData + text[i] - firstCharacter;
             l += backedChar->xadvance;
@@ -70,7 +73,7 @@ void Font::print(float x, float y, const string &text, v4d *color){
     glEnableVertexAttribArray(0);
     glEnableVertexAttribArray(2);
     
-    for(ushort i = 0; i < text.length(); ++i){
+    for(unsigned short i = 0; i < text.length(); ++i){
         if(text[i] >= firstCharacter && text[i] <= firstCharacter + characterCount){
             v2d v[4];
             v2d uv[4];

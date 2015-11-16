@@ -73,6 +73,10 @@ void Game::Draw ( SRContext *context ){
 
 void Game::Shutdown ( SRContext *context ){
     Scene::destroy();
+    if(f){
+        delete f;
+        f = 0;
+    }
     logMessage("ShutDown function\n");
 }
 
