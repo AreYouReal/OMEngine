@@ -38,7 +38,7 @@ int Game::Init ( SRContext *context ){
     
     Scene::instance()->init();
     
-    f = new Font("foo.ttf", 16, 512, 512, 32, 96);
+    f = new Font("foo.ttf", 64, 512, 512, 32, 96);
     
     return true;
 }
@@ -65,8 +65,8 @@ void Game::Draw ( SRContext *context ){
     glClear( GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT );
 
     Scene::instance()->draw();
-    v4d fontColor(1.0f, 1.0f, 0.0f, 1.0f);
-    f->print(-10, 0, "GAME OVER!", &fontColor);
+    v4d fontColor(1.0f, .5f, 1.0f, 1.0f);
+    f->print(-100, -100, "Test text", &fontColor);
 //    logMessage("%f\n", stopwatch.fps());
 }
 

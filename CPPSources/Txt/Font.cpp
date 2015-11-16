@@ -50,9 +50,6 @@ float Font::length(const string& text){
 }
 
 void Font::print(float x, float y, const string &text, v4d *color){
-    
-    Camera::instance()->pushMMatrix(m4d::rotate(-90, 1.0f, 0.0f, 0.0f));
-    
     glBindVertexArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
@@ -64,11 +61,7 @@ void Font::print(float x, float y, const string &text, v4d *color){
     glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     
     program->use();
-    m4d m = Camera::instance()->modelViewMatrix();
-    glUniformMatrix4fv(program->getUniformLocation("uModelViewM"), 1, GL_TRUE, m.pointer()) ;
-    m = Camera::instance()->normalMatrix();
-    glUniformMatrix4fv(program->getUniformLocation("uNormalM"), 1, GL_TRUE, m.pointer());
-    m = Camera::instance()->orthoMatrix();
+    m4d m = Camera::instance()->orthoMatrix();
     glUniformMatrix4fv(program->getUniformLocation("uProjectionM"), 1, GL_TRUE, m.pointer());
     if(color) glUniform4fv(program->getUniformLocation("uColor"), 1, (*color).pointer());
     
@@ -79,7 +72,7 @@ void Font::print(float x, float y, const string &text, v4d *color){
     
     for(ushort i = 0; i < text.length(); ++i){
         if(text[i] >= firstCharacter && text[i] <= firstCharacter + characterCount){
-            v2d vert[4];
+            v2d v[4];
             v2d uv[4];
             
             stbtt_aligned_quad quad;
@@ -99,19 +92,19 @@ void Font::print(float x, float y, const string &text, v4d *color){
             
             x += backedchar->xadvance;
             
-            vert[0].x = quad.x1; vert[0].y = quad.y0;
-            uv[0].x = quad.s1;  uv[0].y = quad.t0;
+            v [0].x = quad.x1; v [0].y = quad.y0;
+            uv[0].x = quad.s1; uv[0].y = quad.t1;
+
+            v [1].x = quad.x0; v [1].y = quad.y0;
+            uv[1].x = quad.s0; uv[1].y = quad.t1;
             
-            vert[1].x = quad.x0; vert[1].y = quad.y0;
-            uv[1].x = quad.s0; uv[1].y = quad.t0;
+            v [2].x = quad.x1; v [2].y = quad.y1;
+            uv[2].x = quad.s1; uv[2].y = quad.t0;
             
-            vert[2].x = quad.x1; vert[2].y = quad.y1;
-            uv[2].x = quad.s1; uv[2].y = quad.t1;
+            v [3].x = quad.x0; v [3].y = quad.y1;
+            uv[3].x = quad.s0; uv[3].y = quad.t0;
             
-            vert[3].x = quad.x0; vert[3].y = quad.y1;
-            uv[3].x = quad.s0; uv[3].y = quad.t1;
-            
-            glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, (float *)&vert[0]);
+            glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, (float *)&v[0]);
             glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 0, (float *)&uv[0]);
             
             glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
@@ -122,7 +115,4 @@ void Font::print(float x, float y, const string &text, v4d *color){
     glEnable    (GL_DEPTH_TEST);
     glDepthMask (GL_TRUE);
     glDisable   (GL_BLEND);
-    
-    Camera::instance()->popMMatrix();
-    
 }

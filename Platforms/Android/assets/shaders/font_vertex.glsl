@@ -11,5 +11,5 @@ out lowp vec2 vTexCoord;
 
 void main(){
     vTexCoord = aTexCoord;
-    gl_Position = uProjectionM * uModelViewM * vec4(aPosition.x, aPosition.y, 0.0f, 1.0f);
+    gl_Position = uProjectionM * mat4(1.0f)* vec4(aPosition.x, aPosition.y, 0.0f, 1.0f);
 }

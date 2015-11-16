@@ -59,7 +59,7 @@ private:
     v4d frustum[6];
     int viewportMatrix[4];
     
-    std::stack<m4d> mMVstack;
+    std::stack<m4d> mMstack;
     
     void refreshViewAndNormalMatrix();
     void refreshProjMatrix();
