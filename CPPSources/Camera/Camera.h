@@ -22,10 +22,11 @@ public:
     void onTouchEnd     (const int x, const int y);
 //------------
 
-    const m4d& modelViewMatrix() const;
+    const m4d modelViewMatrix() const;
     const m4d& viewMatrix() const;
     const m4d& projectionMatrix() const;
     const m4d& normalMatrix() const;
+    const m4d& orthoMatrix() const;
     
     void setWidthAndHeight(float width, float height);
     void setPosition(v3d pos);
@@ -37,8 +38,8 @@ public:
     
     float sphereDistanceInFrustum(v3d location, float radius);
     
-    void pushMVMatrix(m4d matrix);
-    void popMVMatrix();
+    void pushMMatrix(m4d matrix);
+    void popMMatrix();
     
 private:
     
@@ -53,6 +54,7 @@ private:
     
     m4d mViewMatrix;
     m4d mProjectionMatrix;
+    m4d mOrthoMatrix;
     m4d mNormalMatrix;
     v4d frustum[6];
     int viewportMatrix[4];

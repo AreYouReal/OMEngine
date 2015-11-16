@@ -120,9 +120,13 @@ const m4d& Camera::normalMatrix() const{
     return mNormalMatrix;
 }
 
-const m4d& Camera::modelViewMatrix() const{
+const m4d& Camera::orthoMatrix() const{
+    return mOrthoMatrix;
+}
+
+const m4d Camera::modelViewMatrix() const{
     if(mMVstack.empty()) return mViewMatrix;
-    return mMVstack.top();
+    return mViewMatrix * mMVstack.top();
 }
 
 void Camera::rotate(float angle, float x, float y, float z){
@@ -156,6 +160,7 @@ void Camera::refreshViewAndNormalMatrix(){
 }
 void Camera::refreshProjMatrix(){
     mProjectionMatrix = m4d::perspective(mFovy, mWidth, mHeight, mNear, mFar);
+    mOrthoMatrix = m4d::ortho(-mWidth * 0.5f, mWidth * 0.5f, -mHeight * 0.5, mHeight * 0.5, mNear, mFar);
     buildFrustum();
 }
 
@@ -346,11 +351,11 @@ void Camera::buildFrustum(){
     frustum[ 5 ].w *= t;
 }
 
-void Camera::pushMVMatrix(m4d matrix){
+void Camera::pushMMatrix(m4d matrix){
     mMVstack.push(matrix);
 }
 
-void Camera::popMVMatrix(){
+void Camera::popMMatrix(){
     return mMVstack.pop();
 }
 

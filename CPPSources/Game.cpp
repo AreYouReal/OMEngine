@@ -38,7 +38,7 @@ int Game::Init ( SRContext *context ){
     
     Scene::instance()->init();
     
-    f = new Font("foo.ttf", 640, 512, 512, 32, 96);
+    f = new Font("foo.ttf", 16, 512, 512, 32, 96);
     
     return true;
 }
@@ -64,8 +64,9 @@ void Game::Draw ( SRContext *context ){
     glClearColor(0.0f, 0.3f, 0.0f, 1.0f);
     glClear( GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT );
 
-//    Scene::instance()->draw();
-    f->print(0, 0, "QWE");
+    Scene::instance()->draw();
+    v4d fontColor(1.0f, 1.0f, 0.0f, 1.0f);
+    f->print(-10, 0, "GAME OVER!", &fontColor);
 //    logMessage("%f\n", stopwatch.fps());
 }
 
@@ -74,8 +75,6 @@ void Game::Shutdown ( SRContext *context ){
     Scene::destroy();
     logMessage("ShutDown function\n");
 }
-
-
 
 void Game::Touch(SRContext *context, const int event, const int x, const int y){
 //    logMessage("TOUCH\n");

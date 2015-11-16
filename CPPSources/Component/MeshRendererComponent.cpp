@@ -39,7 +39,7 @@ void MeshRendererComponent::update(){
         modelM = go->mTransform.transformMatrix();
     }
     
-    Camera::instance()->pushMVMatrix(Camera::instance()->modelViewMatrix() * modelM);
+    Camera::instance()->pushMMatrix(modelM);
     for (auto const& mesh : mMeshes) {
 
         if(mesh){
@@ -49,7 +49,7 @@ void MeshRendererComponent::update(){
                 continue;
             }
 //            modelM =  m4d::translate(mesh->outlines.location);
-//            Camera::instance()->pushMVMatrix(Camera::instance()->modelViewMatrix() * modelM);
+//            Camera::instance()->pushMVMatrix(modelM);
             
             if(mesh->renderObjectType() == RenderObjectType::SOLID){
                 if(Game::debugFlag){ drawDebugPhysicsGeometry(); }
@@ -75,7 +75,7 @@ void MeshRendererComponent::update(){
             meshRendererComp->update();
         }
     }
-    Camera::instance()->popMVMatrix();
+    Camera::instance()->popMMatrix();
 }
 
 
@@ -93,10 +93,10 @@ void MeshRendererComponent::drawDebugPhysicsGeometry(){
     btVector3 dimensions = bShape->getHalfExtentsWithMargin();
     
     m4d modelM = m4d::scale(dimensions.x() * 2, dimensions.y() * 2, dimensions.z() * 2);
-    Camera::instance()->pushMVMatrix(Camera::instance()->modelViewMatrix()* modelM);
+    Camera::instance()->pushMMatrix(modelM);
     wc.draw();
     
-    Camera::instance()->popMVMatrix();
+    Camera::instance()->popMMatrix();
 }
 
 

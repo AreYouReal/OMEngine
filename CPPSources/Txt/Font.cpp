@@ -50,6 +50,9 @@ float Font::length(const string& text){
 }
 
 void Font::print(float x, float y, const string &text, v4d *color){
+    
+    Camera::instance()->pushMMatrix(m4d::rotate(-90, 1.0f, 0.0f, 0.0f));
+    
     glBindVertexArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
@@ -65,7 +68,7 @@ void Font::print(float x, float y, const string &text, v4d *color){
     glUniformMatrix4fv(program->getUniformLocation("uModelViewM"), 1, GL_TRUE, m.pointer()) ;
     m = Camera::instance()->normalMatrix();
     glUniformMatrix4fv(program->getUniformLocation("uNormalM"), 1, GL_TRUE, m.pointer());
-    m = Camera::instance()->projectionMatrix();
+    m = Camera::instance()->orthoMatrix();
     glUniformMatrix4fv(program->getUniformLocation("uProjectionM"), 1, GL_TRUE, m.pointer());
     if(color) glUniform4fv(program->getUniformLocation("uColor"), 1, (*color).pointer());
     
@@ -119,5 +122,7 @@ void Font::print(float x, float y, const string &text, v4d *color){
     glEnable    (GL_DEPTH_TEST);
     glDepthMask (GL_TRUE);
     glDisable   (GL_BLEND);
+    
+    Camera::instance()->popMMatrix();
     
 }
