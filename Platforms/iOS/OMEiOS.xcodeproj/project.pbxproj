@@ -227,7 +227,7 @@
 		F3C52B2C1BBD079F009F3604 /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3C52B2A1BBD079F009F3604 /* Scene.cpp */; };
 		F3CAEEE51BB01A7600DCF182 /* default_gray_vertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F3CAEEE41BB01A7600DCF182 /* default_gray_vertex.glsl */; };
 		F3CAEEE71BB01B8800DCF182 /* default_gray_fragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F3CAEEE61BB01B8800DCF182 /* default_gray_fragment.glsl */; };
-		F3D5E1081AF8F23E00DD216B /* iOSSRE.temp_caseinsensitive_renameTests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3D5E1071AF8F23E00DD216B /* iOSSRE.temp_caseinsensitive_renameTests-Info.plist */; };
+		F3D5E1081AF8F23E00DD216B /* OMEiOS.temp_caseinsensitive_renameTests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3D5E1071AF8F23E00DD216B /* OMEiOS.temp_caseinsensitive_renameTests-Info.plist */; };
 		F3D5E10B1AF8F24400DD216B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F3D5E1091AF8F24400DD216B /* InfoPlist.strings */; };
 		F3D5E1111AF8F2CD00DD216B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F3D5E10F1AF8F2CD00DD216B /* InfoPlist.strings */; };
 		F3D5E1161AF8F32600DD216B /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3D5E1121AF8F32600DD216B /* Main_iPad.storyboard */; };
@@ -249,13 +249,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		7626523217F10E6C007CCD43 /* iOSSRE.temp_caseinsensitive_rename.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSSRE.temp_caseinsensitive_rename.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7626523217F10E6C007CCD43 /* OMEiOS.temp_caseinsensitive_rename.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OMEiOS.temp_caseinsensitive_rename.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7626523517F10E6C007CCD43 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7626523717F10E6C007CCD43 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		7626523917F10E6C007CCD43 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7626523B17F10E6C007CCD43 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		7626523D17F10E6C007CCD43 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
-		7626525E17F10E6C007CCD43 /* iOSSRE.temp_caseinsensitive_rename.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSSRE.temp_caseinsensitive_rename.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7626525E17F10E6C007CCD43 /* OMEiOS.temp_caseinsensitive_rename.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OMEiOS.temp_caseinsensitive_rename.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7626525F17F10E6C007CCD43 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		940CF4291B98C220005B6F19 /* Stopwatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stopwatch.h; sourceTree = "<group>"; };
 		940E28EA1BDCB11600B47533 /* IComponent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = IComponent.hpp; sourceTree = "<group>"; };
@@ -713,8 +713,8 @@
 		F368E8BE1BA6AC9F00F322AF /* VertexCache.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VertexCache.cpp; sourceTree = "<group>"; };
 		F368E8BF1BA6AC9F00F322AF /* VertexCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VertexCache.h; sourceTree = "<group>"; };
 		F368E8C61BA6AE5A00F322AF /* fragmentPerPixel.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = fragmentPerPixel.glsl; path = ../Android/assets/shaders/fragmentPerPixel.glsl; sourceTree = SOURCE_ROOT; };
-		F3710A131BA6CA6000235C68 /* Camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Camera.cpp; path = SREngine/CPPSources/Camera/Camera.cpp; sourceTree = "<group>"; };
-		F3710A141BA6CA6000235C68 /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Camera.h; path = SREngine/CPPSources/Camera/Camera.h; sourceTree = "<group>"; };
+		F3710A131BA6CA6000235C68 /* Camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Camera.cpp; path = ../../CPPSources/Camera/Camera.cpp; sourceTree = SOURCE_ROOT; };
+		F3710A141BA6CA6000235C68 /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Camera.h; path = ../../CPPSources/Camera/Camera.h; sourceTree = SOURCE_ROOT; };
 		F380B78C1BBBDC550049E755 /* ObjMesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ObjMesh.cpp; sourceTree = "<group>"; };
 		F380B78D1BBBDC550049E755 /* ObjMesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjMesh.h; sourceTree = "<group>"; };
 		F380B78E1BBBDC550049E755 /* Obj.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Obj.cpp; sourceTree = "<group>"; };
@@ -724,15 +724,15 @@
 		F38A22E61BAAA40500FADEC0 /* fragmentPerVertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = fragmentPerVertex.glsl; path = ../Android/assets/shaders/fragmentPerVertex.glsl; sourceTree = SOURCE_ROOT; };
 		F38A22E81BAAAD8800FADEC0 /* tree.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tree.png; path = ../Android/assets/tree.png; sourceTree = SOURCE_ROOT; };
 		F39A501C1BB3EE9B0080B846 /* LightSource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LightSource.cpp; sourceTree = "<group>"; };
-		F39A501D1BB3EE9B0080B846 /* LightSource.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LightSource.hpp; sourceTree = "<group>"; };
+		F39A501D1BB3EE9B0080B846 /* LightSource.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = LightSource.hpp; path = ../../CPPSources/Light/LightSource.hpp; sourceTree = SOURCE_ROOT; };
 		F39A501F1BB3F0090080B846 /* Illuminator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Illuminator.cpp; sourceTree = "<group>"; };
 		F39A50201BB3F0090080B846 /* Illuminator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Illuminator.hpp; sourceTree = "<group>"; };
 		F39A50241BB40E5B0080B846 /* GameObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameObject.cpp; sourceTree = "<group>"; };
 		F39A50251BB40E5B0080B846 /* GameObject.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GameObject.hpp; sourceTree = "<group>"; };
 		F3B0F6B51BF0AD9F0044A442 /* stb_truetype.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = stb_truetype.cpp; path = ttf/stb_truetype.cpp; sourceTree = "<group>"; };
 		F3B0F6B61BF0AD9F0044A442 /* stb_truetype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = stb_truetype.h; path = ttf/stb_truetype.h; sourceTree = "<group>"; };
-		F3B0F6B91BF0ADDC0044A442 /* Font.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Font.cpp; path = SREngine/CPPSources/Txt/Font.cpp; sourceTree = "<group>"; };
-		F3B0F6BA1BF0ADDC0044A442 /* Font.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Font.hpp; path = SREngine/CPPSources/Txt/Font.hpp; sourceTree = "<group>"; };
+		F3B0F6B91BF0ADDC0044A442 /* Font.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Font.cpp; path = ../../CPPSources/Txt/Font.cpp; sourceTree = SOURCE_ROOT; };
+		F3B0F6BA1BF0ADDC0044A442 /* Font.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Font.hpp; path = ../../CPPSources/Txt/Font.hpp; sourceTree = SOURCE_ROOT; };
 		F3B0F6BE1BF0B5830044A442 /* FFF_Tusj.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FFF_Tusj.ttf; path = ../Android/assets/fonts/FFF_Tusj.ttf; sourceTree = SOURCE_ROOT; };
 		F3B0F6C01BF0BA250044A442 /* foo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = foo.ttf; path = ../Android/assets/fonts/foo.ttf; sourceTree = SOURCE_ROOT; };
 		F3C52B2A1BBD079F009F3604 /* Scene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Scene.cpp; sourceTree = "<group>"; };
@@ -740,18 +740,18 @@
 		F3CAEEE41BB01A7600DCF182 /* default_gray_vertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = default_gray_vertex.glsl; path = ../Android/assets/shaders/default_gray_vertex.glsl; sourceTree = SOURCE_ROOT; };
 		F3CAEEE61BB01B8800DCF182 /* default_gray_fragment.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = default_gray_fragment.glsl; path = ../Android/assets/shaders/default_gray_fragment.glsl; sourceTree = SOURCE_ROOT; };
 		F3D5E1051AF8F23400DD216B /* iOSSRETests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iOSSRETests.m; path = iOSSRETests/iOSSRETests.m; sourceTree = SOURCE_ROOT; };
-		F3D5E1071AF8F23E00DD216B /* iOSSRE.temp_caseinsensitive_renameTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "iOSSRE.temp_caseinsensitive_renameTests-Info.plist"; path = "iOSSRETests/iOSSRE.temp_caseinsensitive_renameTests-Info.plist"; sourceTree = SOURCE_ROOT; };
+		F3D5E1071AF8F23E00DD216B /* OMEiOS.temp_caseinsensitive_renameTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "OMEiOS.temp_caseinsensitive_renameTests-Info.plist"; path = "iOSSRETests/OMEiOS.temp_caseinsensitive_renameTests-Info.plist"; sourceTree = SOURCE_ROOT; };
 		F3D5E10A1AF8F24400DD216B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = iOSSRETests/en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
-		F3D5E10C1AF8F2C600DD216B /* iOSSRE.temp_caseinsensitive_rename-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "iOSSRE.temp_caseinsensitive_rename-Info.plist"; path = "iOSSRE/iOSSRE.temp_caseinsensitive_rename-Info.plist"; sourceTree = SOURCE_ROOT; };
-		F3D5E10D1AF8F2C600DD216B /* iOSSRE.temp_caseinsensitive_rename-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "iOSSRE.temp_caseinsensitive_rename-Prefix.pch"; path = "iOSSRE/iOSSRE.temp_caseinsensitive_rename-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		F3D5E10C1AF8F2C600DD216B /* OMEiOS.temp_caseinsensitive_rename-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "OMEiOS.temp_caseinsensitive_rename-Info.plist"; path = "SREngine/Platforms/iOS/iOSSRE/OMEiOS.temp_caseinsensitive_rename-Info.plist"; sourceTree = "<group>"; };
+		F3D5E10D1AF8F2C600DD216B /* OMEiOS.temp_caseinsensitive_rename-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "OMEiOS.temp_caseinsensitive_rename-Prefix.pch"; path = "SREngine/Platforms/iOS/iOSSRE/OMEiOS.temp_caseinsensitive_rename-Prefix.pch"; sourceTree = "<group>"; };
 		F3D5E1101AF8F2CD00DD216B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = iOSSRE/en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
 		F3D5E1131AF8F32600DD216B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = iOSSRE/Base.lproj/Main_iPad.storyboard; sourceTree = SOURCE_ROOT; };
 		F3D5E1151AF8F32600DD216B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = iOSSRE/Base.lproj/Main_iPhone.storyboard; sourceTree = SOURCE_ROOT; };
 		F3D5E1181AF8F32E00DD216B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = iOSSRE/Images.xcassets; sourceTree = SOURCE_ROOT; };
-		F3FAE8B61B6B77D6007AF169 /* ShaderProgram.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShaderProgram.cpp; path = SREngine/CPPSources/Shaders/ShaderProgram.cpp; sourceTree = "<group>"; };
-		F3FAE8B71B6B77D6007AF169 /* ShaderProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShaderProgram.h; path = SREngine/CPPSources/Shaders/ShaderProgram.h; sourceTree = "<group>"; };
-		F3FAE8B91B6B7885007AF169 /* Shader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Shader.cpp; path = SREngine/CPPSources/Shaders/Shader.cpp; sourceTree = "<group>"; };
-		F3FAE8BA1B6B7885007AF169 /* Shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Shader.h; path = SREngine/CPPSources/Shaders/Shader.h; sourceTree = "<group>"; };
+		F3FAE8B61B6B77D6007AF169 /* ShaderProgram.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShaderProgram.cpp; path = ../../CPPSources/Shaders/ShaderProgram.cpp; sourceTree = SOURCE_ROOT; };
+		F3FAE8B71B6B77D6007AF169 /* ShaderProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShaderProgram.h; path = ../../CPPSources/Shaders/ShaderProgram.h; sourceTree = SOURCE_ROOT; };
+		F3FAE8B91B6B7885007AF169 /* Shader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Shader.cpp; path = ../../CPPSources/Shaders/Shader.cpp; sourceTree = SOURCE_ROOT; };
+		F3FAE8BA1B6B7885007AF169 /* Shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Shader.h; path = ../../CPPSources/Shaders/Shader.h; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -801,7 +801,7 @@
 		7626522917F10E6C007CCD43 = {
 			isa = PBXGroup;
 			children = (
-				7626523F17F10E6C007CCD43 /* iOSSRE */,
+				7626523F17F10E6C007CCD43 /* OMEiOS */,
 				7626526517F10E6C007CCD43 /* iOSSRETests */,
 				7626523417F10E6C007CCD43 /* Frameworks */,
 				7626523317F10E6C007CCD43 /* Products */,
@@ -811,8 +811,8 @@
 		7626523317F10E6C007CCD43 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7626523217F10E6C007CCD43 /* iOSSRE.temp_caseinsensitive_rename.app */,
-				7626525E17F10E6C007CCD43 /* iOSSRE.temp_caseinsensitive_rename.xctest */,
+				7626523217F10E6C007CCD43 /* OMEiOS.temp_caseinsensitive_rename.app */,
+				7626525E17F10E6C007CCD43 /* OMEiOS.temp_caseinsensitive_rename.xctest */,
 			);
 			name = Products;
 			sourceTree = SOURCE_ROOT;
@@ -830,7 +830,7 @@
 			name = Frameworks;
 			sourceTree = SOURCE_ROOT;
 		};
-		7626523F17F10E6C007CCD43 /* iOSSRE */ = {
+		7626523F17F10E6C007CCD43 /* OMEiOS */ = {
 			isa = PBXGroup;
 			children = (
 				F3B0F6B81BF0ADB40044A442 /* Txt */,
@@ -853,7 +853,7 @@
 				7625BC3617F32A780019C421 /* iOS */,
 				7626524017F10E6C007CCD43 /* Supporting Files */,
 			);
-			name = iOSSRE;
+			name = OMEiOS;
 			path = ../../..;
 			sourceTree = "<group>";
 		};
@@ -881,8 +881,8 @@
 				947222741B9AD466008D601B /* treemomo.mtl */,
 				947222751B9AD466008D601B /* treemomo.obj */,
 				F3D5E10F1AF8F2CD00DD216B /* InfoPlist.strings */,
-				F3D5E10C1AF8F2C600DD216B /* iOSSRE.temp_caseinsensitive_rename-Info.plist */,
-				F3D5E10D1AF8F2C600DD216B /* iOSSRE.temp_caseinsensitive_rename-Prefix.pch */,
+				F3D5E10C1AF8F2C600DD216B /* OMEiOS.temp_caseinsensitive_rename-Info.plist */,
+				F3D5E10D1AF8F2C600DD216B /* OMEiOS.temp_caseinsensitive_rename-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			path = ../../..;
@@ -902,7 +902,7 @@
 			isa = PBXGroup;
 			children = (
 				F3D5E1091AF8F24400DD216B /* InfoPlist.strings */,
-				F3D5E1071AF8F23E00DD216B /* iOSSRE.temp_caseinsensitive_renameTests-Info.plist */,
+				F3D5E1071AF8F23E00DD216B /* OMEiOS.temp_caseinsensitive_renameTests-Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1696,9 +1696,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7626523117F10E6C007CCD43 /* iOSSRE */ = {
+		7626523117F10E6C007CCD43 /* OMEiOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7626526F17F10E6C007CCD43 /* Build configuration list for PBXNativeTarget "iOSSRE" */;
+			buildConfigurationList = 7626526F17F10E6C007CCD43 /* Build configuration list for PBXNativeTarget "OMEiOS" */;
 			buildPhases = (
 				7626522E17F10E6C007CCD43 /* Sources */,
 				7626522F17F10E6C007CCD43 /* Frameworks */,
@@ -1708,14 +1708,14 @@
 			);
 			dependencies = (
 			);
-			name = iOSSRE;
+			name = OMEiOS;
 			productName = Hello_Triangle;
-			productReference = 7626523217F10E6C007CCD43 /* iOSSRE.temp_caseinsensitive_rename.app */;
+			productReference = 7626523217F10E6C007CCD43 /* OMEiOS.temp_caseinsensitive_rename.app */;
 			productType = "com.apple.product-type.application";
 		};
-		7626525D17F10E6C007CCD43 /* iOSSRETests */ = {
+		7626525D17F10E6C007CCD43 /* OMEiOSTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7626527217F10E6C007CCD43 /* Build configuration list for PBXNativeTarget "iOSSRETests" */;
+			buildConfigurationList = 7626527217F10E6C007CCD43 /* Build configuration list for PBXNativeTarget "OMEiOSTests" */;
 			buildPhases = (
 				7626525A17F10E6C007CCD43 /* Sources */,
 				7626525B17F10E6C007CCD43 /* Frameworks */,
@@ -1726,9 +1726,9 @@
 			dependencies = (
 				7626526417F10E6C007CCD43 /* PBXTargetDependency */,
 			);
-			name = iOSSRETests;
+			name = OMEiOSTests;
 			productName = Hello_TriangleTests;
-			productReference = 7626525E17F10E6C007CCD43 /* iOSSRE.temp_caseinsensitive_rename.xctest */;
+			productReference = 7626525E17F10E6C007CCD43 /* OMEiOS.temp_caseinsensitive_rename.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -1745,7 +1745,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 7626522D17F10E6C007CCD43 /* Build configuration list for PBXProject "iOSSRE" */;
+			buildConfigurationList = 7626522D17F10E6C007CCD43 /* Build configuration list for PBXProject "OMEiOS" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -1758,8 +1758,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7626523117F10E6C007CCD43 /* iOSSRE */,
-				7626525D17F10E6C007CCD43 /* iOSSRETests */,
+				7626523117F10E6C007CCD43 /* OMEiOS */,
+				7626525D17F10E6C007CCD43 /* OMEiOSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1799,7 +1799,7 @@
 				947222791B9AD466008D601B /* grass.png in Resources */,
 				F368E8CA1BA6AE5A00F322AF /* fragmentPerPixel.glsl in Resources */,
 				943869871BA8949D005A0594 /* fragmentBump.glsl in Resources */,
-				F3D5E1081AF8F23E00DD216B /* iOSSRE.temp_caseinsensitive_renameTests-Info.plist in Resources */,
+				F3D5E1081AF8F23E00DD216B /* OMEiOS.temp_caseinsensitive_renameTests-Info.plist in Resources */,
 				9472227B1B9AD466008D601B /* momo.png in Resources */,
 				94499BF01BDD2FC6006E379D /* ball.png in Resources */,
 				947222781B9AD466008D601B /* balloon.png in Resources */,
@@ -2022,7 +2022,7 @@
 /* Begin PBXTargetDependency section */
 		7626526417F10E6C007CCD43 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 7626523117F10E6C007CCD43 /* iOSSRE */;
+			target = 7626523117F10E6C007CCD43 /* OMEiOS */;
 			targetProxy = 7626526317F10E6C007CCD43 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -2143,10 +2143,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "iOSSRE/iOSSRE.temp_caseinsensitive_rename-Prefix.pch";
-				INFOPLIST_FILE = "iOSSRE/iOSSRE.temp_caseinsensitive_rename-Info.plist";
+				GCC_PREFIX_HEADER = "iOSSRE/OMEiOS.temp_caseinsensitive_rename-Prefix.pch";
+				INFOPLIST_FILE = "iOSSRE/OMEiOS.temp_caseinsensitive_rename-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "ES3Book.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = iOSSRE.temp_caseinsensitive_rename;
+				PRODUCT_NAME = OMEiOS.temp_caseinsensitive_rename;
 				USER_HEADER_SEARCH_PATHS = ../../../../Common/Include;
 				WRAPPER_EXTENSION = app;
 			};
@@ -2158,10 +2158,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "iOSSRE/iOSSRE.temp_caseinsensitive_rename-Prefix.pch";
-				INFOPLIST_FILE = "iOSSRE/iOSSRE.temp_caseinsensitive_rename-Info.plist";
+				GCC_PREFIX_HEADER = "iOSSRE/OMEiOS.temp_caseinsensitive_rename-Prefix.pch";
+				INFOPLIST_FILE = "iOSSRE/OMEiOS.temp_caseinsensitive_rename-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "ES3Book.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = iOSSRE.temp_caseinsensitive_rename;
+				PRODUCT_NAME = OMEiOS.temp_caseinsensitive_rename;
 				USER_HEADER_SEARCH_PATHS = ../../../../Common/Include;
 				WRAPPER_EXTENSION = app;
 			};
@@ -2176,14 +2176,14 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "iOSSRE/iOSSRE.temp_caseinsensitive_rename-Prefix.pch";
+				GCC_PREFIX_HEADER = "iOSSRE/OMEiOS.temp_caseinsensitive_rename-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "iOSSRETests/iOSSRE.temp_caseinsensitive_renameTests-Info.plist";
+				INFOPLIST_FILE = "iOSSRETests/OMEiOS.temp_caseinsensitive_renameTests-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "ES3Book.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = iOSSRE.temp_caseinsensitive_rename;
+				PRODUCT_NAME = OMEiOS.temp_caseinsensitive_rename;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -2198,10 +2198,10 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "iOSSRE/iOSSRE.temp_caseinsensitive_rename-Prefix.pch";
-				INFOPLIST_FILE = "iOSSRETests/iOSSRE.temp_caseinsensitive_renameTests-Info.plist";
+				GCC_PREFIX_HEADER = "iOSSRE/OMEiOS.temp_caseinsensitive_rename-Prefix.pch";
+				INFOPLIST_FILE = "iOSSRETests/OMEiOS.temp_caseinsensitive_renameTests-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "ES3Book.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = iOSSRE.temp_caseinsensitive_rename;
+				PRODUCT_NAME = OMEiOS.temp_caseinsensitive_rename;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -2210,7 +2210,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		7626522D17F10E6C007CCD43 /* Build configuration list for PBXProject "iOSSRE" */ = {
+		7626522D17F10E6C007CCD43 /* Build configuration list for PBXProject "OMEiOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7626526D17F10E6C007CCD43 /* Debug */,
@@ -2219,7 +2219,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7626526F17F10E6C007CCD43 /* Build configuration list for PBXNativeTarget "iOSSRE" */ = {
+		7626526F17F10E6C007CCD43 /* Build configuration list for PBXNativeTarget "OMEiOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7626527017F10E6C007CCD43 /* Debug */,
@@ -2228,7 +2228,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7626527217F10E6C007CCD43 /* Build configuration list for PBXNativeTarget "iOSSRETests" */ = {
+		7626527217F10E6C007CCD43 /* Build configuration list for PBXNativeTarget "OMEiOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7626527317F10E6C007CCD43 /* Debug */,
