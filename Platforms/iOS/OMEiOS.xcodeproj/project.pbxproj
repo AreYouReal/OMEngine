@@ -224,14 +224,12 @@
 		F3B0F6B71BF0AD9F0044A442 /* stb_truetype.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3B0F6B51BF0AD9F0044A442 /* stb_truetype.cpp */; };
 		F3B0F6BB1BF0ADDC0044A442 /* Font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3B0F6B91BF0ADDC0044A442 /* Font.cpp */; };
 		F3B0F6BF1BF0B7410044A442 /* FFF_Tusj.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3B0F6BE1BF0B5830044A442 /* FFF_Tusj.ttf */; };
+		F3BCACBA1BFF26FE002003B7 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3BCACB61BFF26FE002003B7 /* Main_iPad.storyboard */; };
+		F3BCACBB1BFF26FE002003B7 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3BCACB81BFF26FE002003B7 /* Main_iPhone.storyboard */; };
 		F3C52B2C1BBD079F009F3604 /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3C52B2A1BBD079F009F3604 /* Scene.cpp */; };
 		F3CAEEE51BB01A7600DCF182 /* default_gray_vertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F3CAEEE41BB01A7600DCF182 /* default_gray_vertex.glsl */; };
 		F3CAEEE71BB01B8800DCF182 /* default_gray_fragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F3CAEEE61BB01B8800DCF182 /* default_gray_fragment.glsl */; };
-		F3D5E1081AF8F23E00DD216B /* OMEiOS.temp_caseinsensitive_renameTests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3D5E1071AF8F23E00DD216B /* OMEiOS.temp_caseinsensitive_renameTests-Info.plist */; };
 		F3D5E10B1AF8F24400DD216B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F3D5E1091AF8F24400DD216B /* InfoPlist.strings */; };
-		F3D5E1111AF8F2CD00DD216B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F3D5E10F1AF8F2CD00DD216B /* InfoPlist.strings */; };
-		F3D5E1161AF8F32600DD216B /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3D5E1121AF8F32600DD216B /* Main_iPad.storyboard */; };
-		F3D5E1171AF8F32600DD216B /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3D5E1141AF8F32600DD216B /* Main_iPhone.storyboard */; };
 		F3D5E1191AF8F32E00DD216B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3D5E1181AF8F32E00DD216B /* Images.xcassets */; };
 		F3D5E1321AF8F4DD00DD216B /* iOSSRETests.m in Sources */ = {isa = PBXBuildFile; fileRef = F3D5E1051AF8F23400DD216B /* iOSSRETests.m */; };
 		F3FAE8B81B6B77D6007AF169 /* ShaderProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3FAE8B61B6B77D6007AF169 /* ShaderProgram.cpp */; };
@@ -660,13 +658,13 @@
 		94CE87D41B62B51900752D5C /* ShaderHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShaderHelper.h; path = ../../CPPSources/Shaders/ShaderHelper.h; sourceTree = SOURCE_ROOT; };
 		94CE87D71B62B53500752D5C /* Game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Game.cpp; path = ../../CPPSources/Game.cpp; sourceTree = SOURCE_ROOT; };
 		94CE87D81B62B53500752D5C /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Game.h; path = ../../CPPSources/Game.h; sourceTree = SOURCE_ROOT; };
-		94CE87DD1B62B59800752D5C /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = iOSSRE/AppDelegate.h; sourceTree = SOURCE_ROOT; };
-		94CE87DE1B62B59800752D5C /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = iOSSRE/AppDelegate.mm; sourceTree = SOURCE_ROOT; };
-		94CE87DF1B62B59800752D5C /* FileWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileWrapper.h; path = iOSSRE/FileWrapper.h; sourceTree = SOURCE_ROOT; };
-		94CE87E01B62B59800752D5C /* FileWrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = FileWrapper.mm; path = iOSSRE/FileWrapper.mm; sourceTree = SOURCE_ROOT; };
-		94CE87E31B62B5A400752D5C /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = iOSSRE/main.m; sourceTree = SOURCE_ROOT; };
-		94CE87E41B62B5A400752D5C /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = iOSSRE/ViewController.h; sourceTree = SOURCE_ROOT; };
-		94CE87E51B62B5A400752D5C /* ViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ViewController.mm; path = iOSSRE/ViewController.mm; sourceTree = SOURCE_ROOT; };
+		94CE87DD1B62B59800752D5C /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = OMEiOS/AppDelegate.h; sourceTree = SOURCE_ROOT; };
+		94CE87DE1B62B59800752D5C /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = OMEiOS/AppDelegate.mm; sourceTree = SOURCE_ROOT; };
+		94CE87DF1B62B59800752D5C /* FileWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileWrapper.h; path = OMEiOS/FileWrapper.h; sourceTree = SOURCE_ROOT; };
+		94CE87E01B62B59800752D5C /* FileWrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = FileWrapper.mm; path = OMEiOS/FileWrapper.mm; sourceTree = SOURCE_ROOT; };
+		94CE87E31B62B5A400752D5C /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = OMEiOS/main.m; sourceTree = SOURCE_ROOT; };
+		94CE87E41B62B5A400752D5C /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = OMEiOS/ViewController.h; sourceTree = SOURCE_ROOT; };
+		94CE87E51B62B5A400752D5C /* ViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ViewController.mm; path = OMEiOS/ViewController.mm; sourceTree = SOURCE_ROOT; };
 		94D5DA531BE2018100DFB8BC /* bullet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bullet.h; sourceTree = "<group>"; };
 		94D5DA541BE2018100DFB8BC /* bChunk.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bChunk.cpp; sourceTree = "<group>"; };
 		94D5DA551BE2018100DFB8BC /* bChunk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bChunk.h; sourceTree = "<group>"; };
@@ -735,19 +733,17 @@
 		F3B0F6BA1BF0ADDC0044A442 /* Font.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Font.hpp; path = ../../CPPSources/Txt/Font.hpp; sourceTree = SOURCE_ROOT; };
 		F3B0F6BE1BF0B5830044A442 /* FFF_Tusj.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FFF_Tusj.ttf; path = ../Android/assets/fonts/FFF_Tusj.ttf; sourceTree = SOURCE_ROOT; };
 		F3B0F6C01BF0BA250044A442 /* foo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = foo.ttf; path = ../Android/assets/fonts/foo.ttf; sourceTree = SOURCE_ROOT; };
+		F3BCACB71BFF26FE002003B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = OMEiOS/Base.lproj/Main_iPad.storyboard; sourceTree = SOURCE_ROOT; };
+		F3BCACB91BFF26FE002003B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = OMEiOS/Base.lproj/Main_iPhone.storyboard; sourceTree = SOURCE_ROOT; };
 		F3C52B2A1BBD079F009F3604 /* Scene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Scene.cpp; sourceTree = "<group>"; };
 		F3C52B2B1BBD079F009F3604 /* Scene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Scene.hpp; sourceTree = "<group>"; };
 		F3CAEEE41BB01A7600DCF182 /* default_gray_vertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = default_gray_vertex.glsl; path = ../Android/assets/shaders/default_gray_vertex.glsl; sourceTree = SOURCE_ROOT; };
 		F3CAEEE61BB01B8800DCF182 /* default_gray_fragment.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = default_gray_fragment.glsl; path = ../Android/assets/shaders/default_gray_fragment.glsl; sourceTree = SOURCE_ROOT; };
-		F3D5E1051AF8F23400DD216B /* iOSSRETests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iOSSRETests.m; path = iOSSRETests/iOSSRETests.m; sourceTree = SOURCE_ROOT; };
-		F3D5E1071AF8F23E00DD216B /* OMEiOS.temp_caseinsensitive_renameTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "OMEiOS.temp_caseinsensitive_renameTests-Info.plist"; path = "iOSSRETests/OMEiOS.temp_caseinsensitive_renameTests-Info.plist"; sourceTree = SOURCE_ROOT; };
-		F3D5E10A1AF8F24400DD216B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = iOSSRETests/en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
-		F3D5E10C1AF8F2C600DD216B /* OMEiOS.temp_caseinsensitive_rename-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "OMEiOS.temp_caseinsensitive_rename-Info.plist"; path = "SREngine/Platforms/iOS/iOSSRE/OMEiOS.temp_caseinsensitive_rename-Info.plist"; sourceTree = "<group>"; };
-		F3D5E10D1AF8F2C600DD216B /* OMEiOS.temp_caseinsensitive_rename-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "OMEiOS.temp_caseinsensitive_rename-Prefix.pch"; path = "SREngine/Platforms/iOS/iOSSRE/OMEiOS.temp_caseinsensitive_rename-Prefix.pch"; sourceTree = "<group>"; };
-		F3D5E1101AF8F2CD00DD216B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = iOSSRE/en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
-		F3D5E1131AF8F32600DD216B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = iOSSRE/Base.lproj/Main_iPad.storyboard; sourceTree = SOURCE_ROOT; };
-		F3D5E1151AF8F32600DD216B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = iOSSRE/Base.lproj/Main_iPhone.storyboard; sourceTree = SOURCE_ROOT; };
-		F3D5E1181AF8F32E00DD216B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = iOSSRE/Images.xcassets; sourceTree = SOURCE_ROOT; };
+		F3D5E1051AF8F23400DD216B /* iOSSRETests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iOSSRETests.m; path = OMEiOSTests/iOSSRETests.m; sourceTree = SOURCE_ROOT; };
+		F3D5E10A1AF8F24400DD216B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = OMEiOS/en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
+		F3D5E10C1AF8F2C600DD216B /* OMEiOS.temp_caseinsensitive_rename-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "OMEiOS.temp_caseinsensitive_rename-Info.plist"; path = "../../../OMEngine/Platforms/iOS/OMEiOS/OMEiOS.temp_caseinsensitive_rename-Info.plist"; sourceTree = "<group>"; };
+		F3D5E10D1AF8F2C600DD216B /* OMEiOS.temp_caseinsensitive_rename-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "OMEiOS.temp_caseinsensitive_rename-Prefix.pch"; path = "../../../OMEngine/Platforms/iOS/OMEiOS/OMEiOS.temp_caseinsensitive_rename-Prefix.pch"; sourceTree = "<group>"; };
+		F3D5E1181AF8F32E00DD216B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = OMEiOS/Images.xcassets; sourceTree = SOURCE_ROOT; };
 		F3FAE8B61B6B77D6007AF169 /* ShaderProgram.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShaderProgram.cpp; path = ../../CPPSources/Shaders/ShaderProgram.cpp; sourceTree = SOURCE_ROOT; };
 		F3FAE8B71B6B77D6007AF169 /* ShaderProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShaderProgram.h; path = ../../CPPSources/Shaders/ShaderProgram.h; sourceTree = SOURCE_ROOT; };
 		F3FAE8B91B6B7885007AF169 /* Shader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Shader.cpp; path = ../../CPPSources/Shaders/Shader.cpp; sourceTree = SOURCE_ROOT; };
@@ -783,6 +779,10 @@
 		7625BC3617F32A780019C421 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				F3BCACB61BFF26FE002003B7 /* Main_iPad.storyboard */,
+				F3BCACB81BFF26FE002003B7 /* Main_iPhone.storyboard */,
+				F3D5E10C1AF8F2C600DD216B /* OMEiOS.temp_caseinsensitive_rename-Info.plist */,
+				F3D5E10D1AF8F2C600DD216B /* OMEiOS.temp_caseinsensitive_rename-Prefix.pch */,
 				94CE87E31B62B5A400752D5C /* main.m */,
 				94CE87E41B62B5A400752D5C /* ViewController.h */,
 				94CE87E51B62B5A400752D5C /* ViewController.mm */,
@@ -791,8 +791,6 @@
 				94CE87DF1B62B59800752D5C /* FileWrapper.h */,
 				94CE87E01B62B59800752D5C /* FileWrapper.mm */,
 				F3D5E1181AF8F32E00DD216B /* Images.xcassets */,
-				F3D5E1121AF8F32600DD216B /* Main_iPad.storyboard */,
-				F3D5E1141AF8F32600DD216B /* Main_iPhone.storyboard */,
 			);
 			name = iOS;
 			path = ../../../Common/Source/iOS;
@@ -802,7 +800,7 @@
 			isa = PBXGroup;
 			children = (
 				7626523F17F10E6C007CCD43 /* OMEiOS */,
-				7626526517F10E6C007CCD43 /* iOSSRETests */,
+				7626526517F10E6C007CCD43 /* OMEiOSTests */,
 				7626523417F10E6C007CCD43 /* Frameworks */,
 				7626523317F10E6C007CCD43 /* Products */,
 			);
@@ -880,21 +878,18 @@
 				947222731B9AD466008D601B /* momo.png */,
 				947222741B9AD466008D601B /* treemomo.mtl */,
 				947222751B9AD466008D601B /* treemomo.obj */,
-				F3D5E10F1AF8F2CD00DD216B /* InfoPlist.strings */,
-				F3D5E10C1AF8F2C600DD216B /* OMEiOS.temp_caseinsensitive_rename-Info.plist */,
-				F3D5E10D1AF8F2C600DD216B /* OMEiOS.temp_caseinsensitive_rename-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			path = ../../..;
 			sourceTree = SOURCE_ROOT;
 		};
-		7626526517F10E6C007CCD43 /* iOSSRETests */ = {
+		7626526517F10E6C007CCD43 /* OMEiOSTests */ = {
 			isa = PBXGroup;
 			children = (
 				F3D5E1051AF8F23400DD216B /* iOSSRETests.m */,
 				7626526617F10E6C007CCD43 /* Supporting Files */,
 			);
-			name = iOSSRETests;
+			name = OMEiOSTests;
 			path = Hello_TriangleTests;
 			sourceTree = SOURCE_ROOT;
 		};
@@ -902,7 +897,6 @@
 			isa = PBXGroup;
 			children = (
 				F3D5E1091AF8F24400DD216B /* InfoPlist.strings */,
-				F3D5E1071AF8F23E00DD216B /* OMEiOS.temp_caseinsensitive_renameTests-Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1773,7 +1767,6 @@
 				F3CAEEE51BB01A7600DCF182 /* default_gray_vertex.glsl in Resources */,
 				943869881BA8949D005A0594 /* vertexBump.glsl in Resources */,
 				F328C4FB1BF491930037AC6D /* foo.ttf in Resources */,
-				F3D5E1111AF8F2CD00DD216B /* InfoPlist.strings in Resources */,
 				9435525F1BEF091F00FC4ADA /* wired_vertex.glsl in Resources */,
 				94DCA2F81BE13C6100435661 /* Scene.obj in Resources */,
 				F328C4FF1BF4997F0037AC6D /* font_vertex.glsl in Resources */,
@@ -1783,6 +1776,7 @@
 				9472227C1B9AD466008D601B /* treemomo.mtl in Resources */,
 				94DCA2F61BE13C6100435661 /* Scene.bullet in Resources */,
 				9472227A1B9AD466008D601B /* leaf.png in Resources */,
+				F3BCACBB1BFF26FE002003B7 /* Main_iPhone.storyboard in Resources */,
 				947FA31F1BA4854A00695A4E /* ram.obj in Resources */,
 				947FA31D1BA4854A00695A4E /* char_ram_col.png in Resources */,
 				9435525E1BEF091F00FC4ADA /* wired_fragment.glsl in Resources */,
@@ -1790,16 +1784,14 @@
 				F3B0F6BF1BF0B7410044A442 /* FFF_Tusj.ttf in Resources */,
 				F3D5E10B1AF8F24400DD216B /* InfoPlist.strings in Resources */,
 				F3CAEEE71BB01B8800DCF182 /* default_gray_fragment.glsl in Resources */,
-				F3D5E1161AF8F32600DD216B /* Main_iPad.storyboard in Resources */,
-				F3D5E1171AF8F32600DD216B /* Main_iPhone.storyboard in Resources */,
 				9472227D1B9AD466008D601B /* treemomo.obj in Resources */,
+				F3BCACBA1BFF26FE002003B7 /* Main_iPad.storyboard in Resources */,
 				F340D11B1BA95E4500187B1E /* char_ram_nor.png in Resources */,
 				94DCA2F71BE13C6100435661 /* Scene.mtl in Resources */,
 				94EF0C601BA70F6700EBF5EE /* norm_as_color_fragment.glsl in Resources */,
 				947222791B9AD466008D601B /* grass.png in Resources */,
 				F368E8CA1BA6AE5A00F322AF /* fragmentPerPixel.glsl in Resources */,
 				943869871BA8949D005A0594 /* fragmentBump.glsl in Resources */,
-				F3D5E1081AF8F23E00DD216B /* OMEiOS.temp_caseinsensitive_renameTests-Info.plist in Resources */,
 				9472227B1B9AD466008D601B /* momo.png in Resources */,
 				94499BF01BDD2FC6006E379D /* ball.png in Resources */,
 				947222781B9AD466008D601B /* balloon.png in Resources */,
@@ -2028,37 +2020,28 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		F3BCACB61BFF26FE002003B7 /* Main_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F3BCACB71BFF26FE002003B7 /* Base */,
+			);
+			name = Main_iPad.storyboard;
+			sourceTree = SOURCE_ROOT;
+		};
+		F3BCACB81BFF26FE002003B7 /* Main_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F3BCACB91BFF26FE002003B7 /* Base */,
+			);
+			name = Main_iPhone.storyboard;
+			sourceTree = SOURCE_ROOT;
+		};
 		F3D5E1091AF8F24400DD216B /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				F3D5E10A1AF8F24400DD216B /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		F3D5E10F1AF8F2CD00DD216B /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F3D5E1101AF8F2CD00DD216B /* en */,
-			);
-			name = InfoPlist.strings;
-			path = ../../..;
-			sourceTree = SOURCE_ROOT;
-		};
-		F3D5E1121AF8F32600DD216B /* Main_iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F3D5E1131AF8F32600DD216B /* Base */,
-			);
-			name = Main_iPad.storyboard;
-			sourceTree = "<group>";
-		};
-		F3D5E1141AF8F32600DD216B /* Main_iPhone.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F3D5E1151AF8F32600DD216B /* Base */,
-			);
-			name = Main_iPhone.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -2143,9 +2126,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "iOSSRE/OMEiOS.temp_caseinsensitive_rename-Prefix.pch";
-				INFOPLIST_FILE = "iOSSRE/OMEiOS.temp_caseinsensitive_rename-Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "ES3Book.${PRODUCT_NAME:rfc1034identifier}";
+				GCC_PREFIX_HEADER = "OMEiOS/OMEiOS.temp_caseinsensitive_rename-Prefix.pch";
+				INFOPLIST_FILE = "$(SRCROOT)/OMEiOS/OMEiOS.temp_caseinsensitive_rename-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = onemore.engine.dev;
 				PRODUCT_NAME = OMEiOS.temp_caseinsensitive_rename;
 				USER_HEADER_SEARCH_PATHS = ../../../../Common/Include;
 				WRAPPER_EXTENSION = app;
@@ -2158,9 +2141,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "iOSSRE/OMEiOS.temp_caseinsensitive_rename-Prefix.pch";
-				INFOPLIST_FILE = "iOSSRE/OMEiOS.temp_caseinsensitive_rename-Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "ES3Book.${PRODUCT_NAME:rfc1034identifier}";
+				GCC_PREFIX_HEADER = "OMEiOS/OMEiOS.temp_caseinsensitive_rename-Prefix.pch";
+				INFOPLIST_FILE = "$(SRCROOT)/OMEiOS/OMEiOS.temp_caseinsensitive_rename-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = onemore.engine.dev;
 				PRODUCT_NAME = OMEiOS.temp_caseinsensitive_rename;
 				USER_HEADER_SEARCH_PATHS = ../../../../Common/Include;
 				WRAPPER_EXTENSION = app;
@@ -2176,12 +2159,12 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "iOSSRE/OMEiOS.temp_caseinsensitive_rename-Prefix.pch";
+				GCC_PREFIX_HEADER = "OMEiOS/OMEiOS.temp_caseinsensitive_rename-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "iOSSRETests/OMEiOS.temp_caseinsensitive_renameTests-Info.plist";
+				INFOPLIST_FILE = "OMEiOSTests/OMEiOS.temp_caseinsensitive_renameTests-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "ES3Book.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = OMEiOS.temp_caseinsensitive_rename;
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -2198,8 +2181,8 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "iOSSRE/OMEiOS.temp_caseinsensitive_rename-Prefix.pch";
-				INFOPLIST_FILE = "iOSSRETests/OMEiOS.temp_caseinsensitive_renameTests-Info.plist";
+				GCC_PREFIX_HEADER = "OMEiOS/OMEiOS.temp_caseinsensitive_rename-Prefix.pch";
+				INFOPLIST_FILE = "OMEiOSTests/OMEiOS.temp_caseinsensitive_renameTests-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "ES3Book.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = OMEiOS.temp_caseinsensitive_rename;
 				TEST_HOST = "$(BUNDLE_LOADER)";
