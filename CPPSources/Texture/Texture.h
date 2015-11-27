@@ -1,6 +1,6 @@
 #pragma once
 
-#include "SRUtils.h"
+#include "OMUtils.h"
 
 enum{ TEXTURE_CLAMP        = ( 1 << 0 ),
       TEXTURE_MIPMAP       = ( 1 << 1 ),

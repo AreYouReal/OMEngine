@@ -15,13 +15,13 @@
 
 using UserData = struct{};
 
-static SRContext       *appContext;
+static OMContext       *appContext;
 
 bool Game::debugFlag  = true;
 
 Font *f;
 
-SRContext* Game::getAppContext(){
+OMContext* Game::getAppContext(){
     if(!appContext) logMessage("\nAppContext is NULL!\n");
     return appContext;
 }
@@ -29,7 +29,7 @@ SRContext* Game::getAppContext(){
 ///
 // Initialize the shader and program object
 //
-int Game::Init ( SRContext *context ){
+int Game::Init ( OMContext *context ){
     appContext = context;
     
     printGLInfo();
@@ -44,7 +44,7 @@ int Game::Init ( SRContext *context ){
 }
 
 
-void Game::Update(SRContext *context, const float deltaTime){
+void Game::Update(OMContext *context, const float deltaTime){
 //    logMessage("UPDATE \n");
     Scene::instance()->update(deltaTime);
 }
@@ -52,7 +52,7 @@ void Game::Update(SRContext *context, const float deltaTime){
 ///
 // Draw a triangle using the shader pair created in Init()
 //
-void Game::Draw ( SRContext *context ){
+void Game::Draw ( OMContext *context ){
 //    Stopwatch stopwatch;
     //    logMessage("DRAW \n");
 #ifdef ANDROID
@@ -71,7 +71,7 @@ void Game::Draw ( SRContext *context ){
 }
 
 
-void Game::Shutdown ( SRContext *context ){
+void Game::Shutdown ( OMContext *context ){
     Scene::destroy();
     if(f){
         delete f;
@@ -80,7 +80,7 @@ void Game::Shutdown ( SRContext *context ){
     logMessage("ShutDown function\n");
 }
 
-void Game::Touch(SRContext *context, const int event, const int x, const int y){
+void Game::Touch(OMContext *context, const int event, const int x, const int y){
 //    logMessage("TOUCH\n");
     switch (event) {
         case static_cast<int>(TouchState::BEGIN):
@@ -98,7 +98,7 @@ void Game::Touch(SRContext *context, const int event, const int x, const int y){
     }
 }
 
-int Game::Main ( SRContext *context ){
+int Game::Main ( OMContext *context ){
     context->userData = malloc ( sizeof ( UserData ) );
     logMessage("Context value: %d\n", context);
     SRCreateWindow( context, "Hello Triangle", context->width, context->height, ES_WINDOW_RGB );

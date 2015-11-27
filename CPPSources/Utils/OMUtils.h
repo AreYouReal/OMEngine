@@ -42,15 +42,15 @@ enum class TouchState{ BEGIN, MOVED, CANCELLED, ENDED };
 template<typename T>
 using sp = std::shared_ptr<T>;
 
-struct SRContext;
-using UpdateFunc    = void(*)(SRContext*, const float);
-using DrawFunc      = void(*)(SRContext*);
-using TouchFunc     = void(*)(SRContext*, const int, const int, const int);
-using ShutDownFunc  = void(*)(SRContext*);
+struct OMContext;
+using UpdateFunc    = void(*)(OMContext*, const float);
+using DrawFunc      = void(*)(OMContext*);
+using TouchFunc     = void(*)(OMContext*, const int, const int, const int);
+using ShutDownFunc  = void(*)(OMContext*);
 
 
 #pragma GENERAL
-struct SRContext{
+struct OMContext{
     void       *platformData;    /// Put platform specific data here
     void       *userData;        /// Put your user data here...
     GLint       width;           /// Window width
@@ -74,15 +74,15 @@ struct SRContext{
 
 
 #pragma Public Functions
-GLboolean SRCreateWindow ( SRContext *context, const char *title, GLint width, GLint height, GLuint flags );
+GLboolean SRCreateWindow ( OMContext *context, const char *title, GLint width, GLint height, GLuint flags );
 
-void SRRegisterDrawFunc ( SRContext *context, DrawFunc );
+void SRRegisterDrawFunc ( OMContext *context, DrawFunc );
 
-void SRRegisterShutdownFunc ( SRContext *context, ShutDownFunc );
+void SRRegisterShutdownFunc ( OMContext *context, ShutDownFunc );
 
-void SRRegisterUpdateFunc ( SRContext *context, UpdateFunc );
+void SRRegisterUpdateFunc ( OMContext *context, UpdateFunc );
 
-void SRRegisterTouchFunc ( SRContext *context, TouchFunc );
+void SRRegisterTouchFunc ( OMContext *context, TouchFunc );
 
 
 

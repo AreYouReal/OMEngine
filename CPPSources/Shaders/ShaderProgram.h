@@ -1,7 +1,7 @@
 
 #pragma once
 
-#include "SRUtils.h"
+#include "OMUtils.h"
 #include "Shader.h"
 
 struct Uniform{

@@ -1,6 +1,5 @@
 #pragma once
 
-#include "SRUtils.h"
 #include "MeshGLInfo.h"
 #include "ObjMaterial.h"
 

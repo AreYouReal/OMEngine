@@ -1,10 +1,10 @@
 #import "ViewController.h"
-#include "SRUtils.h"
+#include "OMUtils.h"
 #include "Game.h"
 
 
 @interface ViewController (){
-    SRContext _SRContext;
+    OMContext _SRContext;
 }
 @property (strong, nonatomic) EAGLContext *context;
 @property (strong, nonatomic) GLKBaseEffect *effect;

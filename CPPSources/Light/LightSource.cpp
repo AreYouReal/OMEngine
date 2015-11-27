@@ -1,6 +1,6 @@
 #include "LightSource.hpp"
 
-#include "SRUtils.h"
+#include "OMUtils.h"
 
 
 LightSource::LightSource() : mPosition(v4d(1.0f, 0.0f, 5.0f, 1.0f)){

@@ -3,7 +3,7 @@
 #include "FileWrapper.h"
 #endif
 
-#include "SRUtils.h"
+#include "OMUtils.h"
 
 
 #ifndef __APPLE__
@@ -34,7 +34,7 @@ EGLint GetContextRenderableType ( EGLDisplay eglDisplay ){
 
 #pragma GENERAL
 
-GLboolean SRCreateWindow ( SRContext *context, const char *title, GLint width, GLint height, GLuint flags ){
+GLboolean SRCreateWindow ( OMContext *context, const char *title, GLint width, GLint height, GLuint flags ){
 #ifndef __APPLE__
     EGLConfig config;
     EGLint majorVersion;
@@ -127,19 +127,19 @@ GLboolean SRCreateWindow ( SRContext *context, const char *title, GLint width, G
     return GL_TRUE;
 }
 
-void SRRegisterDrawFunc ( SRContext *context, DrawFunc drawFunc ){
+void SRRegisterDrawFunc ( OMContext *context, DrawFunc drawFunc ){
     context->drawFunc = drawFunc;
 }
 
-void SRRegisterShutdownFunc ( SRContext *context, ShutDownFunc shutdownFunc ){
+void SRRegisterShutdownFunc ( OMContext *context, ShutDownFunc shutdownFunc ){
     context->shutdownFunc = shutdownFunc;
 }
 
-void SRRegisterUpdateFunc ( SRContext *context, UpdateFunc updateFunc ){
+void SRRegisterUpdateFunc ( OMContext *context, UpdateFunc updateFunc ){
     context->updateFunc = updateFunc;
 }
 
-void SRRegisterTouchFunc ( SRContext *context, TouchFunc touchFunc ){
+void SRRegisterTouchFunc ( OMContext *context, TouchFunc touchFunc ){
     context->touchFunc = touchFunc;
 }
 
@@ -169,7 +169,7 @@ srFile  *fileOpen       ( void *ioContext, const char *fileName ){
     
 #ifdef ANDROID
     if ( ioContext != NULL ){
-        AAssetManager *assetManager = ( AAssetManager * ) ((SRContext*)ioContext)->platformData;
+        AAssetManager *assetManager = ( AAssetManager * ) ((OMContext*)ioContext)->platformData;
         pFile = AAssetManager_open ( assetManager, fileName, AASSET_MODE_BUFFER );
     }
 #else

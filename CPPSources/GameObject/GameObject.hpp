@@ -1,6 +1,6 @@
 #pragma once
 
-#include "SRUtils.h"
+#include "OMUtils.h"
 #include "ObjMesh.h"
 #include "IRenderable.h"
 #include "Camera.h"

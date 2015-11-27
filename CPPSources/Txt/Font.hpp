@@ -1,7 +1,6 @@
 #pragma once
 
 #include "stb_truetype.h"
-#include "SRUtils.h"
 #include "ShaderProgram.h"
 #include "Shortcuts.h"
 

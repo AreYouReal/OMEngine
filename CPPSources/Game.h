@@ -1,19 +1,19 @@
 #pragma once
 
-#include "SRUtils.h"
+#include "OMUtils.h"
 
 class Game{
     
 public:
-    static int  Main       ( SRContext * );
-    static int  Init       ( SRContext * );
-    static void Update     ( SRContext *, const float);
-    static void Draw       ( SRContext * );
-    static void Shutdown   ( SRContext * );
-    static void Touch      ( SRContext *, const int, const int, const int );
+    static int  Main       ( OMContext * );
+    static int  Init       ( OMContext * );
+    static void Update     ( OMContext *, const float);
+    static void Draw       ( OMContext * );
+    static void Shutdown   ( OMContext * );
+    static void Touch      ( OMContext *, const int, const int, const int );
     static void Exit       ();
 
-    static    SRContext*      getAppContext();
+    static    OMContext*      getAppContext();
     
     static  bool debugFlag;
 

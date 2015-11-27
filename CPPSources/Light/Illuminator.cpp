@@ -1,7 +1,7 @@
 
 
 #include "Illuminator.hpp"
-#include "SRUtils.h"
+#include "OMUtils.h"
 
 Illuminator::Illuminator(){
     lightSources.push_back(std::make_shared<LightSource>());

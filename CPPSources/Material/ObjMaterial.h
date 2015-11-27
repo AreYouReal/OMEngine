@@ -1,6 +1,6 @@
 #pragma once
 
-#include "SRUtils.h"
+#include "OMUtils.h"
 #include "ShaderProgram.h"
 #include "Texture.h"
 #include "Materials.hpp"

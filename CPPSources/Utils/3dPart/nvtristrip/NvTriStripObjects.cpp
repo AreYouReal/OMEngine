@@ -5,7 +5,7 @@
 #include <set>
 #include "NvTriStripObjects.h"
 #include "VertexCache.h"
-#include "SRUtils.h"
+#include "OMUtils.h"
 
 #define CACHE_INEFFICIENCY 6
 
