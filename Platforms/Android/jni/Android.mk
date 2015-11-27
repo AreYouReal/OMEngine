@@ -3,7 +3,7 @@ SRC_PATH			:= $(LOCAL_PATH)/../../..
 
 include $(CLEAR_VARS)
 
-LOCAL_MODULE    := SRE
+LOCAL_MODULE    := OME
 LOCAL_CFLAGS    += -std=c++11
 
 LOCAL_SRC_FILES := $(LOCAL_PATH)/esUtil_Android.cpp \
@@ -183,7 +183,7 @@ $(SRC_PATH)/CPPSources/Utils/3dPart/nvtristrip/NvTriStrip.cpp\
 $(SRC_PATH)/CPPSources/Utils/3dPart/nvtristrip/NvTriStripObjects.cpp\
 $(SRC_PATH)/CPPSources/Utils/3dPart/nvtristrip/VertexCache.cpp\
 $(SRC_PATH)/CPPSources/Utils/3dPart/ttf/stb_truetype.cpp\
-$(SRC_PATH)/CPPSources/Utils/SRUtils.cpp\
+$(SRC_PATH)/CPPSources/Utils/OMUtils.cpp\
 
 
 LOCAL_C_INCLUDES	:= $(SRC_PATH) \

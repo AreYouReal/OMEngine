@@ -21,6 +21,11 @@ bool Game::debugFlag  = true;
 
 Font *f;
 
+void drawText(){
+    v4d fontColor(1.0f, .5f, 1.0f, 1.0f);
+    f->print(-100, -100, "Test text", &fontColor);
+}
+
 OMContext* Game::getAppContext(){
     if(!appContext) logMessage("\nAppContext is NULL!\n");
     return appContext;
@@ -65,8 +70,10 @@ void Game::Draw ( OMContext *context ){
     glClear( GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT );
 
     Scene::instance()->draw();
-    v4d fontColor(1.0f, .5f, 1.0f, 1.0f);
-    f->print(-100, -100, "Test text", &fontColor);
+    
+    drawText();
+    
+
 //    logMessage("%f\n", stopwatch.fps());
 }
 

@@ -52,7 +52,7 @@ static float GetCurrentTime(){
 //    Android callback for onAppCmd
 //
 static void HandleCommand ( struct android_app *pApp, int32_t cmd ){
-   SRContext *context = ( SRContext * ) pApp->userData;
+   OMContext *context = ( OMContext * ) pApp->userData;
    printCommand(cmd);
    switch ( cmd ){
       case APP_CMD_INPUT_CHANGED:      break; // 0
@@ -75,7 +75,7 @@ static void HandleCommand ( struct android_app *pApp, int32_t cmd ){
               if ( context->userData != NULL ){
                   free ( context->userData );
               }
-              memset ( context, 0, sizeof ( SRContext ) );
+              memset ( context, 0, sizeof ( OMContext ) );
               break;
       //______________________________________
       case APP_CMD_WINDOW_RESIZED:        break;
@@ -114,7 +114,7 @@ static void HandleCommand ( struct android_app *pApp, int32_t cmd ){
 //
 
 int32_t handle_input(struct android_app* pApp, AInputEvent* event) {
-    SRContext *context = ( SRContext * ) pApp->userData;
+    OMContext *context = ( OMContext * ) pApp->userData;
     int32_t eventType = AInputEvent_getType(event);
     switch(eventType){
         case AINPUT_EVENT_TYPE_MOTION:
@@ -147,14 +147,14 @@ int32_t handle_input(struct android_app* pApp, AInputEvent* event) {
 //    Main entrypoint for Android application
 //
 void android_main ( struct android_app *pApp ){
-   SRContext context;
+   OMContext context;
    float lastTime;
 
    // Make sure glue isn't stripped.
    app_dummy();
 
    // Initialize the context
-   memset ( &context, 0, sizeof ( SRContext ) );
+   memset ( &context, 0, sizeof ( OMContext ) );
 
    context.platformData = ( void * ) pApp->activity->assetManager;
 
