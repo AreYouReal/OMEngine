@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 47;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -22,6 +22,7 @@
 		943869881BA8949D005A0594 /* vertexBump.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 943869861BA8949D005A0594 /* vertexBump.glsl */; };
 		94499BF01BDD2FC6006E379D /* ball.png in Resources */ = {isa = PBXBuildFile; fileRef = 94499BEE1BDD2FC6006E379D /* ball.png */; };
 		94499BF11BDD2FC6006E379D /* diffuse.png in Resources */ = {isa = PBXBuildFile; fileRef = 94499BEF1BDD2FC6006E379D /* diffuse.png */; };
+		94538A211C0B6CBC004B5297 /* Boombox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94538A1F1C0B6CBC004B5297 /* Boombox.cpp */; };
 		9453DEE11B2A0A2700C79DB3 /* OMUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9453DEDF1B2A0A2700C79DB3 /* OMUtils.cpp */; };
 		947222771B9AD466008D601B /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 9472226F1B9AD466008D601B /* background.png */; };
 		947222781B9AD466008D601B /* balloon.png in Resources */ = {isa = PBXBuildFile; fileRef = 947222701B9AD466008D601B /* balloon.png */; };
@@ -266,6 +267,8 @@
 		943869861BA8949D005A0594 /* vertexBump.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = vertexBump.glsl; path = ../Android/assets/shaders/vertexBump.glsl; sourceTree = SOURCE_ROOT; };
 		94499BEE1BDD2FC6006E379D /* ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ball.png; path = ../Android/assets/ball.png; sourceTree = SOURCE_ROOT; };
 		94499BEF1BDD2FC6006E379D /* diffuse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = diffuse.png; path = ../Android/assets/diffuse.png; sourceTree = SOURCE_ROOT; };
+		94538A1F1C0B6CBC004B5297 /* Boombox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Boombox.cpp; sourceTree = "<group>"; };
+		94538A201C0B6CBC004B5297 /* Boombox.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Boombox.hpp; sourceTree = "<group>"; };
 		9453DEDF1B2A0A2700C79DB3 /* OMUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OMUtils.cpp; path = ../../CPPSources/Utils/OMUtils.cpp; sourceTree = SOURCE_ROOT; };
 		9453DEE01B2A0A2700C79DB3 /* OMUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OMUtils.h; path = ../../CPPSources/Utils/OMUtils.h; sourceTree = SOURCE_ROOT; };
 		9472226F1B9AD466008D601B /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background.png; path = ../Android/assets/background.png; sourceTree = SOURCE_ROOT; };
@@ -831,6 +834,7 @@
 		7626523F17F10E6C007CCD43 /* OMEiOS */ = {
 			isa = PBXGroup;
 			children = (
+				94538A1E1C0B6CBC004B5297 /* Audio */,
 				F3B0F6B81BF0ADB40044A442 /* Txt */,
 				94FAF39B1BEE93800087CC0C /* DEBUG */,
 				940E28E81BDCB0F300B47533 /* Component */,
@@ -939,6 +943,16 @@
 			name = Math;
 			path = ../../CPPSources/Math;
 			sourceTree = SOURCE_ROOT;
+		};
+		94538A1E1C0B6CBC004B5297 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				94538A1F1C0B6CBC004B5297 /* Boombox.cpp */,
+				94538A201C0B6CBC004B5297 /* Boombox.hpp */,
+			);
+			name = Audio;
+			path = OMEngine/CPPSources/Audio;
+			sourceTree = "<group>";
 		};
 		9453DEDE1B2A080F00C79DB3 /* Utils */ = {
 			isa = PBXGroup;
@@ -1732,7 +1746,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0700;
-				ORGANIZATIONNAME = "Daniel Ginsburg";
+				ORGANIZATIONNAME = "Alexader Kolesnikov";
 				TargetAttributes = {
 					7626525D17F10E6C007CCD43 = {
 						TestTargetID = 7626523117F10E6C007CCD43;
@@ -1740,7 +1754,7 @@
 				};
 			};
 			buildConfigurationList = 7626522D17F10E6C007CCD43 /* Build configuration list for PBXProject "OMEiOS" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 6.3";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -1885,6 +1899,7 @@
 				94788FE51BD4CFD200B55A25 /* btSphereShape.cpp in Sources */,
 				94788FD11BD4CFD200B55A25 /* btCompoundShape.cpp in Sources */,
 				94788FE61BD4CFD200B55A25 /* btStaticPlaneShape.cpp in Sources */,
+				94538A211C0B6CBC004B5297 /* Boombox.cpp in Sources */,
 				947890271BD4CFD200B55A25 /* btDefaultSoftBodySolver.cpp in Sources */,
 				947890321BD4CFD200B55A25 /* btGeometryUtil.cpp in Sources */,
 				94788FF81BD4CFD200B55A25 /* gim_contact.cpp in Sources */,

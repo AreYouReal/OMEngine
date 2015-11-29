@@ -6,8 +6,8 @@ Scene::Scene(){
     Illuminator::instance();
     Materials::instance();
     PhysicalWorld::instance();
+    Boombox::instance();
     
-
     
     logMessage("Scene constructor!\n");
 }
@@ -19,6 +19,8 @@ Scene::~Scene(){
     Illuminator::destroy();
     Materials::destroy();
     PhysicalWorld::destroy();
+    Boombox::destroy();
+    
     
     logMessage("Scene destructor!\n");
 }

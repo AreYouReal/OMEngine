@@ -8,6 +8,9 @@
 #include "PhysicalWorld.hpp"
 #include "Illuminator.hpp"
 
+#include "Boombox.hpp"
+
+
 #include "MeshRendererComponent.hpp"
 
 class Scene : public Singleton<Scene>{
