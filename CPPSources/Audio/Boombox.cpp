@@ -6,6 +6,8 @@
 #include "Game.h"
 
 
+#include "Soundbuffer.hpp"
+
 Boombox::Boombox(){
     logMessage("Boombox constructor!\n");
     
@@ -13,6 +15,15 @@ Boombox::Boombox(){
     context = alcCreateContext(device, NULL);
     alcMakeContextCurrent(context);
     
+    logMessage( "\nAL_VENDOR:     %s\n", ( char * )alGetString ( AL_VENDOR     ) );
+    logMessage( "AL_RENDERER:     %s\n"  , ( char * )alGetString ( AL_RENDERER   ) );
+    logMessage( "AL_VERSION:      %s\n"  , ( char * )alGetString ( AL_VERSION    ) );
+    logMessage( "AL_EXTENSIONS:   %s\n"  , ( char * )alGetString ( AL_EXTENSIONS ) );
+//    
+//    audio.callbacks.read_func  = AUDIO_ogg_read;
+//    audio.callbacks.seek_func  = AUDIO_ogg_seek;
+//    audio.callbacks.tell_func  = AUDIO_ogg_tell;
+//    audio.callbacks.close_func = AUDIO_ogg_close;
     
     createAndLoadSoundBuffer();
 }
@@ -48,3 +59,16 @@ void Boombox::createAndLoadSoundBuffer(){
     alGenSources(1, &sSource);
     alSourcei(sSource, AL_BUFFER, sbuffer);
 }
+
+void Boombox::checkObbFunctionality(){
+    Soundbuffer sb;
+    if(sb.load("lounge.ogg")){
+    
+    }else{
+    
+    }
+
+}
+
+
+

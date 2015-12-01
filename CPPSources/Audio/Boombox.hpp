@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Singleton.hpp"
+#include "vorbisfile.h"
 
 class Boombox : public Singleton<Boombox>{
 public:
@@ -10,8 +11,14 @@ public:
     
     void play();
     
+    ov_callbacks callbacks;
+    
+    
+    void checkObbFunctionality();
+    
 private:
     
+
     
     void createAndLoadSoundBuffer();
     
@@ -22,4 +29,9 @@ private:
     ALuint  sbuffer;
     ALuint  sSource;
     
+    
+    size_t oggRead(void *ptr, size_t size, size_t read, void *memoryPtr);
+    int     oggSeek(void *memoryPtr, ogg_int64_t offset, int stride);
+    long    oggTell(void *memoryPtr);
+    int     oggClose(void *memoryPtr);
 };
