@@ -45,6 +45,9 @@ int Game::Init ( OMContext *context ){
     
     f = new Font("foo.ttf", 64, 512, 512, 32, 96);
     
+    
+    Boombox::instance()->play();
+    
     return true;
 }
 

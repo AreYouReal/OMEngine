@@ -7,9 +7,19 @@ public:
     Boombox();
     virtual ~Boombox();
     
+    
+    void play();
+    
 private:
     
-//    ALCDevice   *device;
-//    ALCcontext  *contex;
+    
+    void createAndLoadSoundBuffer();
+    
+    
+    ALCdevice   *device;
+    ALCcontext  *context;
+    
+    ALuint  sbuffer;
+    ALuint  sSource;
     
 };

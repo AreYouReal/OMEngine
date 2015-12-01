@@ -219,9 +219,11 @@
 		F38A22E31BAAA15400FADEC0 /* vertexPerVertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F38A22E21BAAA15400FADEC0 /* vertexPerVertex.glsl */; };
 		F38A22E71BAAA40500FADEC0 /* fragmentPerVertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F38A22E61BAAA40500FADEC0 /* fragmentPerVertex.glsl */; };
 		F38A22E91BAAAD8800FADEC0 /* tree.png in Resources */ = {isa = PBXBuildFile; fileRef = F38A22E81BAAAD8800FADEC0 /* tree.png */; };
+		F393D6AB1C0DC8EC0053C5FA /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F393D6AA1C0DC8EC0053C5FA /* OpenAL.framework */; };
 		F39A501E1BB3EE9B0080B846 /* LightSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F39A501C1BB3EE9B0080B846 /* LightSource.cpp */; };
 		F39A50211BB3F0090080B846 /* Illuminator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F39A501F1BB3F0090080B846 /* Illuminator.cpp */; };
 		F39A50261BB40E5B0080B846 /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F39A50241BB40E5B0080B846 /* GameObject.cpp */; };
+		F39FA5011C0DD9B500CC0BB4 /* test.raw in Resources */ = {isa = PBXBuildFile; fileRef = F39FA5001C0DD9B500CC0BB4 /* test.raw */; };
 		F3B0F6B71BF0AD9F0044A442 /* stb_truetype.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3B0F6B51BF0AD9F0044A442 /* stb_truetype.cpp */; };
 		F3B0F6BB1BF0ADDC0044A442 /* Font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3B0F6B91BF0ADDC0044A442 /* Font.cpp */; };
 		F3B0F6BF1BF0B7410044A442 /* FFF_Tusj.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3B0F6BE1BF0B5830044A442 /* FFF_Tusj.ttf */; };
@@ -724,12 +726,14 @@
 		F38A22E21BAAA15400FADEC0 /* vertexPerVertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = vertexPerVertex.glsl; path = ../Android/assets/shaders/vertexPerVertex.glsl; sourceTree = SOURCE_ROOT; };
 		F38A22E61BAAA40500FADEC0 /* fragmentPerVertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = fragmentPerVertex.glsl; path = ../Android/assets/shaders/fragmentPerVertex.glsl; sourceTree = SOURCE_ROOT; };
 		F38A22E81BAAAD8800FADEC0 /* tree.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tree.png; path = ../Android/assets/tree.png; sourceTree = SOURCE_ROOT; };
+		F393D6AA1C0DC8EC0053C5FA /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		F39A501C1BB3EE9B0080B846 /* LightSource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LightSource.cpp; sourceTree = "<group>"; };
 		F39A501D1BB3EE9B0080B846 /* LightSource.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = LightSource.hpp; path = ../../CPPSources/Light/LightSource.hpp; sourceTree = SOURCE_ROOT; };
 		F39A501F1BB3F0090080B846 /* Illuminator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Illuminator.cpp; sourceTree = "<group>"; };
 		F39A50201BB3F0090080B846 /* Illuminator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Illuminator.hpp; sourceTree = "<group>"; };
 		F39A50241BB40E5B0080B846 /* GameObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameObject.cpp; sourceTree = "<group>"; };
 		F39A50251BB40E5B0080B846 /* GameObject.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GameObject.hpp; sourceTree = "<group>"; };
+		F39FA5001C0DD9B500CC0BB4 /* test.raw */ = {isa = PBXFileReference; lastKnownFileType = file; name = test.raw; path = OMEngine/Platforms/Android/assets/test.raw; sourceTree = "<group>"; };
 		F3B0F6B51BF0AD9F0044A442 /* stb_truetype.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = stb_truetype.cpp; path = ttf/stb_truetype.cpp; sourceTree = "<group>"; };
 		F3B0F6B61BF0AD9F0044A442 /* stb_truetype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = stb_truetype.h; path = ttf/stb_truetype.h; sourceTree = "<group>"; };
 		F3B0F6B91BF0ADDC0044A442 /* Font.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Font.cpp; path = ../../CPPSources/Txt/Font.cpp; sourceTree = SOURCE_ROOT; };
@@ -758,6 +762,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F393D6AB1C0DC8EC0053C5FA /* OpenAL.framework in Frameworks */,
 				7626523E17F10E6C007CCD43 /* OpenGLES.framework in Frameworks */,
 				7626523817F10E6C007CCD43 /* CoreGraphics.framework in Frameworks */,
 				7626523A17F10E6C007CCD43 /* UIKit.framework in Frameworks */,
@@ -821,6 +826,7 @@
 		7626523417F10E6C007CCD43 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F393D6AA1C0DC8EC0053C5FA /* OpenAL.framework */,
 				7626523517F10E6C007CCD43 /* Foundation.framework */,
 				7626523717F10E6C007CCD43 /* CoreGraphics.framework */,
 				7626523917F10E6C007CCD43 /* UIKit.framework */,
@@ -862,6 +868,7 @@
 		7626524017F10E6C007CCD43 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F39FA5001C0DD9B500CC0BB4 /* test.raw */,
 				F3B0F6C01BF0BA250044A442 /* foo.ttf */,
 				F3B0F6BE1BF0B5830044A442 /* FFF_Tusj.ttf */,
 				94DCA2F31BE13C6100435661 /* Scene.bullet */,
@@ -1813,6 +1820,7 @@
 				947FA31E1BA4854A00695A4E /* ram.mtl in Resources */,
 				94EF0C5E1BA70E5400EBF5EE /* pos_norm_vertex.glsl in Resources */,
 				947222771B9AD466008D601B /* background.png in Resources */,
+				F39FA5011C0DD9B500CC0BB4 /* test.raw in Resources */,
 				F38A22E11BAA979700FADEC0 /* vertexPerPixel.glsl in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

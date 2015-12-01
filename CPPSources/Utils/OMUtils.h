@@ -15,21 +15,32 @@
 #include "Shortcuts.h"
 
 #ifdef __APPLE__
+
 #include <OpenGLES/ES3/gl.h>
+#include <OpenAL/al.h>
+#include <OpenAL/alc.h>
+
+using srFile = FILE;
+
 #else
+
+#ifdef ANDROID
 #include <GLES3/gl3.h>
 #include <EGL/egl.h>
 #include <EGL/eglext.h>
-#endif
-
-#ifdef ANDROID
 #include <android/log.h>
 #include <android_native_app_glue.h>
 #include <android/asset_manager.h>
+
+#include "openal/al.h"
+#include "openal/alc.h"
+
 using srFile = AAsset;
-#else
-using srFile = FILE;
 #endif
+
+#endif
+
+
 
 #define ES_WINDOW_RGB           0   /// SRCreateWindow flag - RGB color buffer
 #define ES_WINDOW_ALPHA         1   /// SRCreateWindow flag - ALPHA color buffer
