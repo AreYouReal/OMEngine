@@ -67,7 +67,8 @@ Shader ShaderHelper::loadShader(GLenum shaderType, std::string vertexShaderFilen
     std::unique_ptr<FileContent> shaderSource = readTextFile(Game::getAppContext(), vertexShaderFilename);
     shader.ID = glCreateShader(shaderType);
     if(!shader.ID) return shader;
-    glShaderSource(shader.ID, 1, &shaderSource->content, NULL);
+    char *temp = (char *)shaderSource->content;
+    glShaderSource(shader.ID, 1, &temp, NULL);
     glCompileShader(shader.ID);
     if(!checkCompileStatus(shader.ID)){
         logMessage("ERROR COMPILE SHADER! %d", shaderType);

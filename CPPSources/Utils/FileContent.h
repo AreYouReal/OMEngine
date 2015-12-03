@@ -2,9 +2,12 @@
 #include "OMUtils.h"
 
 struct FileContent{
-    FileContent(char* contentChars, long cSize) : content(contentChars), size(cSize){}
+    FileContent(unsigned char* contentChars,const long cSize, const std::string name) : content(contentChars), size(cSize){}
     ~FileContent(){ if(content) delete[] content; }
 
-    const char   *content;
-    long         size;
+    std::string   name;
+    unsigned char *content;
+    unsigned int size;
+    unsigned int position;
+    
 };

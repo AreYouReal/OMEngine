@@ -263,13 +263,13 @@ std::unique_ptr<FileContent> readTextFile( void *ioContext, std::string fileName
     }
     long fSize = getFileSize(fp);
     
-    char* tempBuffer = new char[fSize + 1];
+    unsigned char* tempBuffer = new unsigned char[fSize + 1];
     if(fileRead ( fp, fSize, tempBuffer ) == 0) return std::unique_ptr<FileContent>();
     
     fileClose(fp);
     tempBuffer[fSize] = 0;
 
-    std::unique_ptr<FileContent> rValue = std::unique_ptr<FileContent>(new FileContent(tempBuffer, fSize + 1));
+    std::unique_ptr<FileContent> rValue = std::unique_ptr<FileContent>(new FileContent(tempBuffer, fSize + 1, fileName));
     return rValue;
 }
 
@@ -283,12 +283,12 @@ std::unique_ptr<FileContent> readBytesFromFile(void *ioContext, const char *file
     }
 
     long fSize = getFileSize(fp);
-    char* tempBuffer = new char[fSize];
+    unsigned char* tempBuffer = new unsigned char[fSize];
 
     if(fileRead ( fp, fSize, tempBuffer ) == 0) return std::unique_ptr<FileContent>();
     
     fileClose(fp);
-    std::unique_ptr<FileContent> rValue = std::unique_ptr<FileContent>(new FileContent(tempBuffer, fSize));
+    std::unique_ptr<FileContent> rValue = std::unique_ptr<FileContent>(new FileContent(tempBuffer, fSize, fileName));
     return rValue;
 }
 

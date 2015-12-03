@@ -63,7 +63,7 @@ sp<Obj> Obj::load(const char *filename){
             useSmoothNormals = true;
             if(strstr( str, "off") || strstr(str, "0") ) useSmoothNormals = false;
         }else if(sscanf(line, "mtllib %s", str) == 1){
-            unsigned char position = ( char *) line - objSource->content + strlen(line) + 1;
+            unsigned int position = (unsigned char*)line - objSource->content + strlen(line) + 1;
             Materials::instance()->loadMaterial(str);
             line = strtok((char *) &objSource->content[position], "\n");
             continue;

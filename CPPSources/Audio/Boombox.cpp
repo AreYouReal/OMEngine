@@ -15,15 +15,15 @@ Boombox::Boombox(){
     context = alcCreateContext(device, NULL);
     alcMakeContextCurrent(context);
     
-    logMessage( "\nAL_VENDOR:     %s\n", ( char * )alGetString ( AL_VENDOR     ) );
+    logMessage( "\nAL_VENDOR:     %s\n",   ( char * )alGetString ( AL_VENDOR     ) );
     logMessage( "AL_RENDERER:     %s\n"  , ( char * )alGetString ( AL_RENDERER   ) );
     logMessage( "AL_VERSION:      %s\n"  , ( char * )alGetString ( AL_VERSION    ) );
     logMessage( "AL_EXTENSIONS:   %s\n"  , ( char * )alGetString ( AL_EXTENSIONS ) );
-//    
-//    audio.callbacks.read_func  = AUDIO_ogg_read;
-//    audio.callbacks.seek_func  = AUDIO_ogg_seek;
-//    audio.callbacks.tell_func  = AUDIO_ogg_tell;
-//    audio.callbacks.close_func = AUDIO_ogg_close;
+    
+    callbacks.read_func     = Boombox::oggRead;
+    callbacks.seek_func     = Boombox::oggSeek;
+    callbacks.tell_func     = Boombox::oggTell;
+    callbacks.close_func    = Boombox::oggClose;
     
     createAndLoadSoundBuffer();
 }
@@ -38,6 +38,7 @@ Boombox::~Boombox(){
     alcMakeContextCurrent(NULL);
     alcDestroyContext(context);
     alcCloseDevice(device);
+
     logMessage("Boombox destructor!\n");
 }
 
@@ -62,7 +63,7 @@ void Boombox::createAndLoadSoundBuffer(){
 
 void Boombox::checkObbFunctionality(){
     Soundbuffer sb;
-    if(sb.load("lounge.ogg")){
+    if(sb.load("00.ogg")){
     
     }else{
     
@@ -70,5 +71,32 @@ void Boombox::checkObbFunctionality(){
 
 }
 
+size_t Boombox::oggRead(void *ptr, size_t size, size_t read, void *memoryPtr){
+    unsigned int seof, pos;
+    FileContent *contentPointer = (FileContent*)memoryPtr;
+    
+    seof = contentPointer->size;
+    
+    pos = (read * size) < seof ? read * size : seof;
+    
+    
+    if(pos){
+        memcpy(ptr, contentPointer->content, pos);
+    }
+    
+    return pos;
+}
+
+int Boombox::oggSeek(void *memoryPtr, ogg_int64_t offset, int stride){
+    return -1;
+}
 
 
+long    Boombox::oggTell(void *memoryPtr){
+    return -1;
+}
+
+
+int     Boombox::oggClose(void *memoryPtr){
+    return -1;
+}

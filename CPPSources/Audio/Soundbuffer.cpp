@@ -5,6 +5,8 @@
 #include "Game.h"
 #include "Boombox.hpp"
 
+#include "FileWrapper.h"
+
 bool Soundbuffer::load(const std::string fileName){
     name = fileName;
     file = new OggVorbis_File();
@@ -13,8 +15,17 @@ bool Soundbuffer::load(const std::string fileName){
     
     if(!fileSource){ return false; }
     
-    ov_open_callbacks(fileSource.get(), file, nullptr, 0, Boombox::instance()->callbacks);
+//    ov_open_callbacks(fileSource.get(), file, nullptr, 0, Boombox::instance()->callbacks);
+//    
+
     
+    string fName = GetBundleFileName ( fileName.c_str() );
+
+    FILE *f = fopen ( fName.c_str(), "rb" );
+    
+    
+    ov_open(f, file, NULL, 0);
+
     info = ov_info(file, -1);
     
     if(info){

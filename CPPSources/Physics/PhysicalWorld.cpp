@@ -48,7 +48,7 @@ bool PhysicalWorld::loadPhysicsWorldFromFile(string filename, std::vector<GameOb
     if(!fileContent) return false;
     
     btBulletWorldImporter *bulletImporter = new btBulletWorldImporter(physicsWorld.get());
-    bulletImporter->loadFileFromMemory(const_cast<char*>(fileContent->content), fileContent->size);
+    bulletImporter->loadFileFromMemory((char*)fileContent->content, fileContent->size);
     
     for(unsigned short i = 0; i < bulletImporter->getNumRigidBodies(); ++i){
         btCollisionObject *co = bulletImporter->getRigidBodyByIndex(i);

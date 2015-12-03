@@ -30,8 +30,8 @@ private:
     ALuint  sSource;
     
     
-    size_t oggRead(void *ptr, size_t size, size_t read, void *memoryPtr);
-    int     oggSeek(void *memoryPtr, ogg_int64_t offset, int stride);
-    long    oggTell(void *memoryPtr);
-    int     oggClose(void *memoryPtr);
+    static size_t  oggRead(void *ptr, size_t size, size_t read, void *memoryPtr);
+    static int     oggSeek(void *memoryPtr, ogg_int64_t offset, int stride);
+    static long    oggTell(void *memoryPtr);
+    static int     oggClose(void *memoryPtr);
 };
