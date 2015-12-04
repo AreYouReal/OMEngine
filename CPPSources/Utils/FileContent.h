@@ -9,5 +9,4 @@ struct FileContent{
     unsigned char *content;
     unsigned int size;
     unsigned int position;
-    
 };

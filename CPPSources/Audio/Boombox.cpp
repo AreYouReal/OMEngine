@@ -75,13 +75,14 @@ size_t Boombox::oggRead(void *ptr, size_t size, size_t read, void *memoryPtr){
     unsigned int seof, pos;
     FileContent *contentPointer = (FileContent*)memoryPtr;
     
-    seof = contentPointer->size;
+    seof = contentPointer->size - contentPointer->position;
     
     pos = (read * size) < seof ? read * size : seof;
     
     
     if(pos){
         memcpy(ptr, contentPointer->content, pos);
+        contentPointer->position += pos;
     }
     
     return pos;
