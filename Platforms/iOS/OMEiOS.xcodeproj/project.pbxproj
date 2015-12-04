@@ -203,6 +203,7 @@
 		F328C4FB1BF491930037AC6D /* foo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3B0F6C01BF0BA250044A442 /* foo.ttf */; };
 		F328C4FE1BF4997F0037AC6D /* font_fragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F328C4FC1BF4997F0037AC6D /* font_fragment.glsl */; };
 		F328C4FF1BF4997F0037AC6D /* font_vertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F328C4FD1BF4997F0037AC6D /* font_vertex.glsl */; };
+		F3392F611C117B4E005E850E /* Sound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3392F5F1C117B4E005E850E /* Sound.cpp */; };
 		F340D11B1BA95E4500187B1E /* char_ram_nor.png in Resources */ = {isa = PBXBuildFile; fileRef = F340D11A1BA95E4500187B1E /* char_ram_nor.png */; };
 		F34129D01BB52BB7006F4D4D /* Materials.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F34129CE1BB52BB7006F4D4D /* Materials.cpp */; };
 		F34129D51BB53D6E006F4D4D /* ObjMaterial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F34129D31BB53D6E006F4D4D /* ObjMaterial.cpp */; };
@@ -725,6 +726,8 @@
 		94FFA85E1BD8D95500E44EBE /* MeshGLInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MeshGLInfo.h; sourceTree = "<group>"; };
 		F328C4FC1BF4997F0037AC6D /* font_fragment.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = font_fragment.glsl; path = ../Android/assets/shaders/font_fragment.glsl; sourceTree = SOURCE_ROOT; };
 		F328C4FD1BF4997F0037AC6D /* font_vertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = font_vertex.glsl; path = ../Android/assets/shaders/font_vertex.glsl; sourceTree = SOURCE_ROOT; };
+		F3392F5F1C117B4E005E850E /* Sound.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sound.cpp; sourceTree = "<group>"; };
+		F3392F601C117B4E005E850E /* Sound.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Sound.hpp; sourceTree = "<group>"; };
 		F340D11A1BA95E4500187B1E /* char_ram_nor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = char_ram_nor.png; path = ../Android/assets/char_ram_nor.png; sourceTree = SOURCE_ROOT; };
 		F34129CE1BB52BB7006F4D4D /* Materials.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Materials.cpp; sourceTree = "<group>"; };
 		F34129CF1BB52BB7006F4D4D /* Materials.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Materials.hpp; sourceTree = "<group>"; };
@@ -1037,6 +1040,8 @@
 				94538A201C0B6CBC004B5297 /* Boombox.hpp */,
 				F39FA5C61C0DE34200CC0BB4 /* Soundbuffer.cpp */,
 				F39FA5C71C0DE34200CC0BB4 /* Soundbuffer.hpp */,
+				F3392F5F1C117B4E005E850E /* Sound.cpp */,
+				F3392F601C117B4E005E850E /* Sound.hpp */,
 			);
 			name = Audio;
 			path = OMEngine/CPPSources/Audio;
@@ -2138,6 +2143,7 @@
 				94788FAB1BD4CFD200B55A25 /* btDbvt.cpp in Sources */,
 				9478901A1BD4CFD200B55A25 /* btSimpleDynamicsWorld.cpp in Sources */,
 				94788FBE1BD4CFD200B55A25 /* btConvexConvexAlgorithm.cpp in Sources */,
+				F3392F611C117B4E005E850E /* Sound.cpp in Sources */,
 				94788FEE1BD4CFD200B55A25 /* btTriangleMeshShape.cpp in Sources */,
 				94788FFF1BD4CFD200B55A25 /* btGjkEpaPenetrationDepthSolver.cpp in Sources */,
 				94788FDF1BD4CFD200B55A25 /* btMultimaterialTriangleMeshShape.cpp in Sources */,

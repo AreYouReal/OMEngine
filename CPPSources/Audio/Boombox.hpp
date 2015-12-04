@@ -3,6 +3,10 @@
 #include "Singleton.hpp"
 #include "vorbisfile.h"
 
+
+#include "Soundbuffer.hpp"
+#include "Sound.hpp"
+
 class Boombox : public Singleton<Boombox>{
 public:
     Boombox();
@@ -34,4 +38,9 @@ private:
     static int     oggSeek(void *memoryPtr, ogg_int64_t offset, int stride);
     static long    oggTell(void *memoryPtr);
     static int     oggClose(void *memoryPtr);
+    
+    
+    Soundbuffer *oggSoundBuffer;
+    Sound   *oggTestSound;
+    
 };

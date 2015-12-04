@@ -8,5 +8,5 @@ struct FileContent{
     std::string   name;
     unsigned char *content;
     unsigned int size;
-    unsigned int position;
+    unsigned int position = 0;
 };

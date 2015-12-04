@@ -6,7 +6,7 @@
 #include "Game.h"
 
 
-#include "Soundbuffer.hpp"
+
 
 Boombox::Boombox(){
     logMessage("Boombox constructor!\n");
@@ -44,7 +44,9 @@ Boombox::~Boombox(){
 
 
 void Boombox::play(){
-    alSourcePlay(sSource);
+    
+            oggTestSound->play(1);
+//    alSourcePlay(sSource);
 }
 
 void Boombox::createAndLoadSoundBuffer(){
@@ -62,9 +64,9 @@ void Boombox::createAndLoadSoundBuffer(){
 }
 
 void Boombox::checkObbFunctionality(){
-    Soundbuffer sb;
-    if(sb.load("00.ogg")){
-    
+    oggSoundBuffer = new Soundbuffer();
+    if(oggSoundBuffer->load("lounge.ogg")){
+        oggTestSound = new Sound("lounge.ogg", oggSoundBuffer);
     }else{
     
     }
@@ -77,27 +79,50 @@ size_t Boombox::oggRead(void *ptr, size_t size, size_t read, void *memoryPtr){
     
     seof = contentPointer->size - contentPointer->position;
     
-    pos = (read * size) < seof ? read * size : seof;
+    pos = ((read * size) < seof) ? read * size : seof;
     
     
     if(pos){
-        memcpy(ptr, contentPointer->content, pos);
+        memcpy(ptr, contentPointer->content + contentPointer->position, pos);
         contentPointer->position += pos;
     }
-    
+    logMessage("%d, %lu, %lu\t", contentPointer->position, size, read);
     return pos;
 }
 
 int Boombox::oggSeek(void *memoryPtr, ogg_int64_t offset, int stride){
-    return -1;
+    unsigned int pos;
+    
+    FileContent *cPtr = (FileContent*)memoryPtr;
+
+    switch (stride) {
+        case SEEK_SET:{
+            pos = (cPtr->size >= offset) ? (unsigned int)offset : cPtr->size;
+            cPtr->position = pos;
+            break;
+        }
+        case SEEK_CUR:{
+            unsigned int seof = cPtr->size - cPtr->position;
+            pos = (offset < seof) ? (unsigned int)offset : seof;
+            break;
+        }
+        case SEEK_END:{
+            cPtr->position = cPtr->size + 1;
+            break;
+        }
+    }
+    
+    
+    return 0;
 }
 
 
 long    Boombox::oggTell(void *memoryPtr){
-    return -1;
+    FileContent *fc =(FileContent*)memoryPtr;
+    return fc->position;
 }
 
 
 int     Boombox::oggClose(void *memoryPtr){
-    return -1;
+    return memoryPtr ? 1 : 0;
 }
