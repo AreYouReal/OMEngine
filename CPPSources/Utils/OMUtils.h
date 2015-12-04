@@ -32,8 +32,8 @@ using srFile = FILE;
 #include <android_native_app_glue.h>
 #include <android/asset_manager.h>
 
-#include "openal/al.h"
-#include "openal/alc.h"
+#include "al.h"
+#include "alc.h"
 
 using srFile = AAsset;
 #endif

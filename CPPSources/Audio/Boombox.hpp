@@ -2,9 +2,6 @@
 
 #include "Singleton.hpp"
 #include "vorbisfile.h"
-
-
-#include "Soundbuffer.hpp"
 #include "Sound.hpp"
 
 class Boombox : public Singleton<Boombox>{
@@ -21,8 +18,6 @@ public:
     void checkObbFunctionality();
     
 private:
-    
-
     
     void createAndLoadSoundBuffer();
     
@@ -43,4 +38,6 @@ private:
     Soundbuffer *oggSoundBuffer;
     Sound   *oggTestSound;
     
+    
+    void error();
 };

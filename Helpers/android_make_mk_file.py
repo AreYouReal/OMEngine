@@ -22,7 +22,7 @@ def fill_data(dir):
 		path = os.path.join(dir, name)
 		if os.path.isfile(path):
 			filename, ext = os.path.splitext(path);
-			if ext == ".cpp":
+			if ext == ".cpp" or ext == ".c":
 				source_files.append(android_src_local_path + path[2:]);
 			else:
 				if ext == ".h" or ext == ".hpp":

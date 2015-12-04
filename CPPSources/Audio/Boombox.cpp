@@ -11,10 +11,13 @@
 Boombox::Boombox(){
     logMessage("Boombox constructor!\n");
     
-    device = alcOpenDevice(nullptr);
+    const char * devicename = alcGetString(NULL, ALC_DEFAULT_DEVICE_SPECIFIER);
+    device = alcOpenDevice(devicename);
+    error();
     context = alcCreateContext(device, NULL);
+    error();
     alcMakeContextCurrent(context);
-    
+    error();
     logMessage( "\nAL_VENDOR:     %s\n",   ( char * )alGetString ( AL_VENDOR     ) );
     logMessage( "AL_RENDERER:     %s\n"  , ( char * )alGetString ( AL_RENDERER   ) );
     logMessage( "AL_VERSION:      %s\n"  , ( char * )alGetString ( AL_VERSION    ) );
@@ -44,8 +47,7 @@ Boombox::~Boombox(){
 
 
 void Boombox::play(){
-    
-            oggTestSound->play(1);
+      oggTestSound->play(1);
 //    alSourcePlay(sSource);
 }
 
@@ -125,4 +127,37 @@ long    Boombox::oggTell(void *memoryPtr){
 
 int     Boombox::oggClose(void *memoryPtr){
     return memoryPtr ? 1 : 0;
+}
+
+void Boombox::error(){
+    unsigned int error;
+    
+    while( ( error = glGetError() ) != GL_NO_ERROR ){
+        char str[ 2048 ] = {""};
+        
+        switch( error ){
+            case AL_INVALID_NAME:{
+                strcpy( str, "AL_INVALID_NAME" );
+                break;
+            }
+            case AL_INVALID_ENUM:{
+                strcpy( str, "AL_INVALID_ENUM" );
+                break;
+            }
+            case AL_INVALID_VALUE:{
+                strcpy( str, "AL_INVALID_VALUE" );
+                break;
+            }
+            case AL_INVALID_OPERATION:{
+                strcpy( str, "AL_INVALID_OPERATION" );
+                break;
+            }
+            case AL_OUT_OF_MEMORY:{
+                strcpy( str, "AL_OUT_OF_MEMORY" );
+                break;
+            }
+        }
+        
+        logMessage( "[ AL_ERROR ]\nERROR: %s\n", str );
+    }
 }

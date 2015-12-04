@@ -74,7 +74,9 @@
  /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/platforms/android-18/arch-arm/usr/include/KHR/khrplatform.h \
  /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/platforms/android-18/arch-arm/usr/include/EGL/egl.h \
  /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/platforms/android-18/arch-arm/usr/include/EGL/eglplatform.h \
- /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/platforms/android-18/arch-arm/usr/include/EGL/eglext.h
+ /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/platforms/android-18/arch-arm/usr/include/EGL/eglext.h \
+ /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openal/al.h \
+ /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openal/alc.h
 
 /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/platforms/android-18/arch-arm/usr/include/android/log.h:
 
@@ -225,3 +227,7 @@
 /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/platforms/android-18/arch-arm/usr/include/EGL/eglplatform.h:
 
 /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/platforms/android-18/arch-arm/usr/include/EGL/eglext.h:
+
+/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openal/al.h:
+
+/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openal/alc.h:

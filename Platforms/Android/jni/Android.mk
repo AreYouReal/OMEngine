@@ -7,6 +7,8 @@ LOCAL_MODULE    := OME
 LOCAL_CFLAGS    += -std=c++11
 
 LOCAL_SRC_FILES := $(LOCAL_PATH)/esUtil_Android.cpp \
+$(SRC_PATH)/CPPSources/Audio/Boombox.cpp\
+$(SRC_PATH)/CPPSources/Audio/Sound.cpp\
 $(SRC_PATH)/CPPSources/Camera/Camera.cpp\
 $(SRC_PATH)/CPPSources/Component/MeshRendererComponent.cpp\
 $(SRC_PATH)/CPPSources/DEBUG/WiredCube.cpp\
@@ -182,12 +184,58 @@ $(SRC_PATH)/CPPSources/Utils/3dPart/loadpng/lodepng.cpp\
 $(SRC_PATH)/CPPSources/Utils/3dPart/nvtristrip/NvTriStrip.cpp\
 $(SRC_PATH)/CPPSources/Utils/3dPart/nvtristrip/NvTriStripObjects.cpp\
 $(SRC_PATH)/CPPSources/Utils/3dPart/nvtristrip/VertexCache.cpp\
+$(SRC_PATH)/CPPSources/Utils/3dPart/openal/alAuxEffectSlot.c\
+$(SRC_PATH)/CPPSources/Utils/3dPart/openal/alBuffer.c\
+$(SRC_PATH)/CPPSources/Utils/3dPart/openal/ALc.c\
+$(SRC_PATH)/CPPSources/Utils/3dPart/openal/alcConfig.c\
+$(SRC_PATH)/CPPSources/Utils/3dPart/openal/alcEcho.c\
+$(SRC_PATH)/CPPSources/Utils/3dPart/openal/alcModulator.c\
+$(SRC_PATH)/CPPSources/Utils/3dPart/openal/alcReverb.c\
+$(SRC_PATH)/CPPSources/Utils/3dPart/openal/alcRing.c\
+$(SRC_PATH)/CPPSources/Utils/3dPart/openal/alcThread.c\
+$(SRC_PATH)/CPPSources/Utils/3dPart/openal/alDatabuffer.c\
+$(SRC_PATH)/CPPSources/Utils/3dPart/openal/alEffect.c\
+$(SRC_PATH)/CPPSources/Utils/3dPart/openal/alError.c\
+$(SRC_PATH)/CPPSources/Utils/3dPart/openal/alExtension.c\
+$(SRC_PATH)/CPPSources/Utils/3dPart/openal/alFilter.c\
+$(SRC_PATH)/CPPSources/Utils/3dPart/openal/alListener.c\
+$(SRC_PATH)/CPPSources/Utils/3dPart/openal/alSource.c\
+$(SRC_PATH)/CPPSources/Utils/3dPart/openal/alState.c\
+$(SRC_PATH)/CPPSources/Utils/3dPart/openal/alThunk.c\
+$(SRC_PATH)/CPPSources/Utils/3dPart/openal/ALu.c\
+$(SRC_PATH)/CPPSources/Utils/3dPart/openal/android.c\
+$(SRC_PATH)/CPPSources/Utils/3dPart/openal/bs2b.c\
+$(SRC_PATH)/CPPSources/Utils/3dPart/openal/null.c\
 $(SRC_PATH)/CPPSources/Utils/3dPart/ttf/stb_truetype.cpp\
+$(SRC_PATH)/CPPSources/Utils/3dPart/vorbis/analysis.c\
+$(SRC_PATH)/CPPSources/Utils/3dPart/vorbis/bitrate.c\
+$(SRC_PATH)/CPPSources/Utils/3dPart/vorbis/bitwise.c\
+$(SRC_PATH)/CPPSources/Utils/3dPart/vorbis/block.c\
+$(SRC_PATH)/CPPSources/Utils/3dPart/vorbis/codebook.c\
+$(SRC_PATH)/CPPSources/Utils/3dPart/vorbis/envelope.c\
+$(SRC_PATH)/CPPSources/Utils/3dPart/vorbis/floor0.c\
+$(SRC_PATH)/CPPSources/Utils/3dPart/vorbis/floor1.c\
+$(SRC_PATH)/CPPSources/Utils/3dPart/vorbis/framing.c\
+$(SRC_PATH)/CPPSources/Utils/3dPart/vorbis/info.c\
+$(SRC_PATH)/CPPSources/Utils/3dPart/vorbis/lookup.c\
+$(SRC_PATH)/CPPSources/Utils/3dPart/vorbis/lpc.c\
+$(SRC_PATH)/CPPSources/Utils/3dPart/vorbis/lsp.c\
+$(SRC_PATH)/CPPSources/Utils/3dPart/vorbis/mapping0.c\
+$(SRC_PATH)/CPPSources/Utils/3dPart/vorbis/mdct.c\
+$(SRC_PATH)/CPPSources/Utils/3dPart/vorbis/psy.c\
+$(SRC_PATH)/CPPSources/Utils/3dPart/vorbis/registry.c\
+$(SRC_PATH)/CPPSources/Utils/3dPart/vorbis/res0.c\
+$(SRC_PATH)/CPPSources/Utils/3dPart/vorbis/sharedbook.c\
+$(SRC_PATH)/CPPSources/Utils/3dPart/vorbis/smallft.c\
+$(SRC_PATH)/CPPSources/Utils/3dPart/vorbis/synthesis.c\
+$(SRC_PATH)/CPPSources/Utils/3dPart/vorbis/vorbisfile.c\
+$(SRC_PATH)/CPPSources/Utils/3dPart/vorbis/window.c\
 $(SRC_PATH)/CPPSources/Utils/OMUtils.cpp\
 
 
 LOCAL_C_INCLUDES	:= $(SRC_PATH) \
  $(COMMON_INC_PATH) \
+$(SRC_PATH)/CPPSources/Audio\
 $(SRC_PATH)/CPPSources/Camera\
 $(SRC_PATH)/CPPSources/Component\
 $(SRC_PATH)/CPPSources/DEBUG\
@@ -222,7 +270,9 @@ $(SRC_PATH)/CPPSources/Utils/3dPart/BulletPhysics/Extras/Serialize/BulletWorldIm
 $(SRC_PATH)/CPPSources/Utils/3dPart/BulletPhysics/LinearMath\
 $(SRC_PATH)/CPPSources/Utils/3dPart/loadpng\
 $(SRC_PATH)/CPPSources/Utils/3dPart/nvtristrip\
+$(SRC_PATH)/CPPSources/Utils/3dPart/openal\
 $(SRC_PATH)/CPPSources/Utils/3dPart/ttf\
+$(SRC_PATH)/CPPSources/Utils/3dPart/vorbis\
 $(SRC_PATH)/CPPSources/Utils\
 
 

@@ -1,4 +1,4 @@
-/Users/AreYouReal/Documents/Other/SREngine/Platforms/Android/obj/local/armeabi/objs/android_native_app_glue/android_native_app_glue.o: \
+/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/obj/local/armeabi/objs/android_native_app_glue/android_native_app_glue.o: \
  /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/sources/android/native_app_glue/android_native_app_glue.c \
  /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/platforms/android-18/arch-arm/usr/include/jni.h \
  /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/platforms/android-18/arch-arm/usr/include/sys/cdefs.h \
