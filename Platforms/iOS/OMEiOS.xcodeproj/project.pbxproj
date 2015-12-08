@@ -917,6 +917,7 @@
 		7626523F17F10E6C007CCD43 /* OMEiOS */ = {
 			isa = PBXGroup;
 			children = (
+				F37CC2C71C17294B00502E16 /* Concurrency */,
 				94538A1E1C0B6CBC004B5297 /* Audio */,
 				F3B0F6B81BF0ADB40044A442 /* Txt */,
 				94FAF39B1BEE93800087CC0C /* DEBUG */,
@@ -1723,6 +1724,14 @@
 			name = Camera;
 			path = ../../..;
 			sourceTree = SOURCE_ROOT;
+		};
+		F37CC2C71C17294B00502E16 /* Concurrency */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Concurrency;
+			path = OMEngine/CPPSources/Concurrency;
+			sourceTree = "<group>";
 		};
 		F380B78B1BBBDC550049E755 /* Obj */ = {
 			isa = PBXGroup;

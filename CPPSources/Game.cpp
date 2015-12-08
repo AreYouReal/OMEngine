@@ -13,6 +13,9 @@
 
 #include "Font.hpp"
 
+
+#include <thread>
+
 using UserData = struct{};
 
 static OMContext       *appContext;
@@ -29,6 +32,27 @@ void drawText(){
 OMContext* Game::getAppContext(){
     if(!appContext) logMessage("\nAppContext is NULL!\n");
     return appContext;
+}
+
+
+void call_from_thread(int id){
+    logMessage("call_from_thread! %d \n", id);
+}
+
+void threadTesting(){
+    
+    static const unsigned short numThreads = 10;
+    
+    std::thread t[numThreads];
+    
+    for(int i = 0; i < 10; ++i){
+        t[i] = std::thread(call_from_thread, i);
+    }
+ 
+    for(int i = 0; i < 10; ++i){
+        t[i].join();
+    }
+    
 }
 
 ///
@@ -49,6 +73,8 @@ int Game::Init ( OMContext *context ){
     Boombox::instance()->checkObbFunctionality();
     
     Boombox::instance()->play();
+    
+    threadTesting();
     
     return true;
 }

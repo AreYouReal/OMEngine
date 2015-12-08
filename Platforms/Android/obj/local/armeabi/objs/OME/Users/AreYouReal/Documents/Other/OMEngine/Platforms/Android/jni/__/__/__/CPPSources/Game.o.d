@@ -163,7 +163,8 @@
  /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Component/MeshRendererComponent.hpp \
  /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/DEBUG/WiredCube.hpp \
  /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Txt/Font.hpp \
- /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/ttf/stb_truetype.h
+ /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/ttf/stb_truetype.h \
+ /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/thread
 
 /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Game.h:
 
@@ -492,3 +493,5 @@
 /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Txt/Font.hpp:
 
 /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/ttf/stb_truetype.h:
+
+/Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/thread:
