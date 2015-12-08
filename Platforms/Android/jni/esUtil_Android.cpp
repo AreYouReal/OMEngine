@@ -147,6 +147,9 @@ int32_t handle_input(struct android_app* pApp, AInputEvent* event) {
 //    Main entrypoint for Android application
 //
 void android_main ( struct android_app *pApp ){
+
+   JNI_OnLoad( pApp->activity->vm, 0);
+
    OMContext context;
    float lastTime;
 

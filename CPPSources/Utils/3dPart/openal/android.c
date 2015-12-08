@@ -50,6 +50,8 @@ static JNIEnv* GetEnv()
 {
     JNIEnv* env = NULL;
     if (javaVM) (*javaVM)->GetEnv(javaVM, (void**)&env, JNI_VERSION_1_2);
+    (*javaVM)->AttachCurrentThread(javaVM, &env, NULL);
+
     return env;
 }
 
