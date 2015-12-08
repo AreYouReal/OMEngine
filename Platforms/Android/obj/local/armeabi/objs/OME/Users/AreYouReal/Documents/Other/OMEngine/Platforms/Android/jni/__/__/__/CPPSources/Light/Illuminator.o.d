@@ -38,8 +38,8 @@
  /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/platforms/android-18/arch-arm/usr/include/jni.h \
  /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/platforms/android-18/arch-arm/usr/include/android/input.h \
  /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/platforms/android-18/arch-arm/usr/include/android/keycodes.h \
- /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openal/al.h \
- /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openal/alc.h \
+ /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openAL/al.h \
+ /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openAL/alc.h \
  /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Light/LightSource.hpp \
  /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Camera/Camera.h \
  /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/stack \
@@ -122,9 +122,9 @@
 
 /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/platforms/android-18/arch-arm/usr/include/android/keycodes.h:
 
-/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openal/al.h:
+/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openAL/al.h:
 
-/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openal/alc.h:
+/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openAL/alc.h:
 
 /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Light/LightSource.hpp:
 

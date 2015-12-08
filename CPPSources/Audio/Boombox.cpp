@@ -6,11 +6,10 @@
 #include "Game.h"
 
 
-
-
 Boombox::Boombox(){
     logMessage("Boombox constructor!\n");
     
+#ifdef IOS
     const char * devicename = alcGetString(NULL, ALC_DEFAULT_DEVICE_SPECIFIER);
     device = alcOpenDevice(devicename);
     error();
@@ -22,6 +21,8 @@ Boombox::Boombox(){
     logMessage( "AL_RENDERER:     %s\n"  , ( char * )alGetString ( AL_RENDERER   ) );
     logMessage( "AL_VERSION:      %s\n"  , ( char * )alGetString ( AL_VERSION    ) );
     logMessage( "AL_EXTENSIONS:   %s\n"  , ( char * )alGetString ( AL_EXTENSIONS ) );
+#endif
+    
     
     callbacks.read_func     = Boombox::oggRead;
     callbacks.seek_func     = Boombox::oggSeek;
@@ -33,7 +34,7 @@ Boombox::Boombox(){
 
 
 Boombox::~Boombox(){
-    
+    #ifdef IOS
     alDeleteBuffers(1, &sbuffer);
     alDeleteSources(1, &sSource);
     
@@ -41,17 +42,18 @@ Boombox::~Boombox(){
     alcMakeContextCurrent(NULL);
     alcDestroyContext(context);
     alcCloseDevice(device);
-
+#endif
     logMessage("Boombox destructor!\n");
 }
 
 
 void Boombox::play(){
-      oggTestSound->play(1);
+//      oggTestSound->play(1);
 //    alSourcePlay(sSource);
 }
 
 void Boombox::createAndLoadSoundBuffer(){
+    #ifdef IOS
     alGenBuffers(1, &sbuffer);
     up<FileContent> soundSource = readBytesFromFile(Game::getAppContext(), "test.raw");
     
@@ -63,6 +65,7 @@ void Boombox::createAndLoadSoundBuffer(){
     
     alGenSources(1, &sSource);
     alSourcei(sSource, AL_BUFFER, sbuffer);
+#endif
 }
 
 void Boombox::checkObbFunctionality(){
@@ -72,7 +75,6 @@ void Boombox::checkObbFunctionality(){
     }else{
     
     }
-
 }
 
 size_t Boombox::oggRead(void *ptr, size_t size, size_t read, void *memoryPtr){
@@ -82,7 +84,6 @@ size_t Boombox::oggRead(void *ptr, size_t size, size_t read, void *memoryPtr){
     seof = contentPointer->size - contentPointer->position;
     
     pos = ((read * size) < seof) ? read * size : seof;
-    
     
     if(pos){
         memcpy(ptr, contentPointer->content + contentPointer->position, pos);
@@ -130,6 +131,7 @@ int     Boombox::oggClose(void *memoryPtr){
 }
 
 void Boombox::error(){
+    #ifdef IOS
     unsigned int error;
     
     while( ( error = glGetError() ) != GL_NO_ERROR ){
@@ -160,4 +162,5 @@ void Boombox::error(){
         
         logMessage( "[ AL_ERROR ]\nERROR: %s\n", str );
     }
+#endif
 }

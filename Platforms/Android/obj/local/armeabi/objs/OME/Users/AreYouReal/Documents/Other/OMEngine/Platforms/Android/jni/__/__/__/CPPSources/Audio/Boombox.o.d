@@ -38,8 +38,8 @@
  /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/platforms/android-18/arch-arm/usr/include/jni.h \
  /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/platforms/android-18/arch-arm/usr/include/android/input.h \
  /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/platforms/android-18/arch-arm/usr/include/android/keycodes.h \
- /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openal/al.h \
- /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openal/alc.h \
+ /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openAL/al.h \
+ /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openAL/alc.h \
  /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/vorbis/vorbisfile.h \
  /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/vorbis/codec.h \
  /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/vorbis/ogg.h \
@@ -123,9 +123,9 @@
 
 /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/platforms/android-18/arch-arm/usr/include/android/keycodes.h:
 
-/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openal/al.h:
+/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openAL/al.h:
 
-/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openal/alc.h:
+/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openAL/alc.h:
 
 /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/vorbis/vorbisfile.h:
 

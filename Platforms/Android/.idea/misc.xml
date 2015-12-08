@@ -4,28 +4,6 @@
     <entry_points version="2.0" />
   </component>
   <component name="IdProvider" IDEtalkID="CA034DD8FD67FCEF9576E71D7B9C49AA" />
-  <component name="ProjectInspectionProfilesVisibleTreeState">
-    <entry key="Project Default">
-      <profile-state>
-        <expanded-state>
-          <State>
-            <id />
-          </State>
-          <State>
-            <id>Android</id>
-          </State>
-          <State>
-            <id>Android Lint</id>
-          </State>
-        </expanded-state>
-        <selected-state>
-          <State>
-            <id>AndroidUnknownAttribute</id>
-          </State>
-        </selected-state>
-      </profile-state>
-    </entry>
-  </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
     <OptionsSetting value="true" id="Remove" />

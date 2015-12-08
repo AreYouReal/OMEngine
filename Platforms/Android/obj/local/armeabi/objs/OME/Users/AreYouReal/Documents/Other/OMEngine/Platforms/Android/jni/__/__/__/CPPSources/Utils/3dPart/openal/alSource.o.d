@@ -1,6 +1,6 @@
-/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/obj/local/armeabi/objs/OME//Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/__/__/__/CPPSources/Utils/3dPart/openal/alSource.o: \
- /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openal/alSource.c \
- /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openal/config.h \
+/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/obj/local/armeabi/objs/OME//Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/__/__/__/CPPSources/Utils/3dPart/openAL/alSource.o: \
+ /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openAL/alSource.c \
+ /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openAL/config.h \
  /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/platforms/android-18/arch-arm/usr/include/stdlib.h \
  /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/platforms/android-18/arch-arm/usr/include/sys/cdefs.h \
  /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/platforms/android-18/arch-arm/usr/include/sys/cdefs_elf.h \
@@ -31,13 +31,13 @@
  /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/platforms/android-18/arch-arm/usr/include/machine/limits.h \
  /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/platforms/android-18/arch-arm/usr/include/sys/syslimits.h \
  /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/platforms/android-18/arch-arm/usr/include/asm/page.h \
- /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openal/alMain.h \
+ /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openAL/alMain.h \
  /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/platforms/android-18/arch-arm/usr/include/stdio.h \
  /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/fenv.h \
- /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openal/al.h \
- /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openal/alc.h \
- /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openal/alext.h \
- /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openal/efx.h \
+ /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openAL/al.h \
+ /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openAL/alc.h \
+ /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openAL/alext.h \
+ /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openAL/efx.h \
  /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/platforms/android-18/arch-arm/usr/include/unistd.h \
  /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/platforms/android-18/arch-arm/usr/include/sys/select.h \
  /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/platforms/android-18/arch-arm/usr/include/sys/time.h \
@@ -63,17 +63,17 @@
  /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/platforms/android-18/arch-arm/usr/include/asm-generic/errno.h \
  /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/platforms/android-18/arch-arm/usr/include/asm-generic/errno-base.h \
  /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/platforms/android-18/arch-arm/usr/include/android/log.h \
- /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openal/alListener.h \
- /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openal/alu.h \
- /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openal/alError.h \
- /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openal/alSource.h \
- /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openal/alFilter.h \
- /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openal/alBuffer.h \
- /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openal/alThunk.h \
- /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openal/alAuxEffectSlot.h \
- /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openal/alEffect.h
+ /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openAL/alListener.h \
+ /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openAL/alu.h \
+ /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openAL/alError.h \
+ /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openAL/alSource.h \
+ /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openAL/alFilter.h \
+ /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openAL/alBuffer.h \
+ /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openAL/alThunk.h \
+ /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openAL/alAuxEffectSlot.h \
+ /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openAL/alEffect.h
 
-/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openal/config.h:
+/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openAL/config.h:
 
 /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/platforms/android-18/arch-arm/usr/include/stdlib.h:
 
@@ -135,19 +135,19 @@
 
 /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/platforms/android-18/arch-arm/usr/include/asm/page.h:
 
-/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openal/alMain.h:
+/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openAL/alMain.h:
 
 /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/platforms/android-18/arch-arm/usr/include/stdio.h:
 
 /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/fenv.h:
 
-/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openal/al.h:
+/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openAL/al.h:
 
-/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openal/alc.h:
+/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openAL/alc.h:
 
-/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openal/alext.h:
+/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openAL/alext.h:
 
-/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openal/efx.h:
+/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openAL/efx.h:
 
 /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/platforms/android-18/arch-arm/usr/include/unistd.h:
 
@@ -199,20 +199,20 @@
 
 /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/platforms/android-18/arch-arm/usr/include/android/log.h:
 
-/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openal/alListener.h:
+/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openAL/alListener.h:
 
-/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openal/alu.h:
+/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openAL/alu.h:
 
-/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openal/alError.h:
+/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openAL/alError.h:
 
-/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openal/alSource.h:
+/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openAL/alSource.h:
 
-/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openal/alFilter.h:
+/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openAL/alFilter.h:
 
-/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openal/alBuffer.h:
+/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openAL/alBuffer.h:
 
-/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openal/alThunk.h:
+/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openAL/alThunk.h:
 
-/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openal/alAuxEffectSlot.h:
+/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openAL/alAuxEffectSlot.h:
 
-/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openal/alEffect.h:
+/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openAL/alEffect.h:

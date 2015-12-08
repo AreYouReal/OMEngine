@@ -46,30 +46,12 @@ void Sound::play(int loop){
 
 
 
-
-//void play();
-//void pause();
-//void stop();
-//void rewind();
-//void updateQueue();
-//
-//float getTime();
-//int   getState();
-//float getVolume();
-//
-//void setSpeed(float speed);
-//void setVolume(float volume);
-//void setLocation(const v3d loc, float refDistance);
-
-
 #pragma mark Helpers
 void Sound::free(){
     if(sid){
         
     }
 }
-
-
 
 bool Soundbuffer::load(const std::string fileName){
     name = fileName;

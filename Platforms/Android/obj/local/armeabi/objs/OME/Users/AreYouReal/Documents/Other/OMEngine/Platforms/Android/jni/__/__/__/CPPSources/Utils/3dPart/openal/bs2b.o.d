@@ -1,6 +1,6 @@
-/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/obj/local/armeabi/objs/OME//Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/__/__/__/CPPSources/Utils/3dPart/openal/bs2b.o: \
- /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openal/bs2b.c \
- /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openal/config.h \
+/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/obj/local/armeabi/objs/OME//Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/__/__/__/CPPSources/Utils/3dPart/openAL/bs2b.o: \
+ /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openAL/bs2b.c \
+ /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openAL/config.h \
  /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/platforms/android-18/arch-arm/usr/include/math.h \
  /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/platforms/android-18/arch-arm/usr/include/sys/cdefs.h \
  /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/platforms/android-18/arch-arm/usr/include/sys/cdefs_elf.h \
@@ -25,9 +25,9 @@
  /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/platforms/android-18/arch-arm/usr/include/machine/limits.h \
  /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/platforms/android-18/arch-arm/usr/include/sys/syslimits.h \
  /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/platforms/android-18/arch-arm/usr/include/asm/page.h \
- /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openal/bs2b.h
+ /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openAL/bs2b.h
 
-/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openal/config.h:
+/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openAL/config.h:
 
 /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/platforms/android-18/arch-arm/usr/include/math.h:
 
@@ -77,4 +77,4 @@
 
 /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/platforms/android-18/arch-arm/usr/include/asm/page.h:
 
-/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openal/bs2b.h:
+/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openAL/bs2b.h:
