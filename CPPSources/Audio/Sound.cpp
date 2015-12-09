@@ -49,7 +49,21 @@ void Sound::pause(){
 }
 
 void Sound::stop(){
-    
+    alSourceStop(sid);
+}
+
+void Sound::setSpeed(float speed){
+    alSourcef(sid, AL_PITCH, speed);
+}
+
+void Sound::setVolume(float volume){
+    alSourcef(sid, AL_GAIN, volume);
+}
+
+void Sound::setLocation(const v3d loc, float refDistance){
+    alSourcei(sid, AL_SOURCE_RELATIVE, AL_FALSE);
+    alSourcef(sid, AL_REFERENCE_DISTANCE, refDistance);
+    alSource3f(sid, AL_POSITION, loc.x, loc.y, loc.z);
 }
 
 int Sound::getState(){
@@ -58,26 +72,77 @@ int Sound::getState(){
     return state;
 }
 
+void Sound::rewind(){
+    alSourceRewind(sid);
+}
 
-//void play();
-//void pause();
-//void stop();
-//void rewind();
-//void updateQueue();
-//
-//float getTime();
-//int   getState();
-//float getVolume();
-//
-//void setSpeed(float speed);
-//void setVolume(float volume);
-//void setLocation(const v3d loc, float refDistance);
+float Sound::getTime(){
+    float playbackTime = 0.0f;
+    alGetSourcef(sid, AL_SEC_OFFSET, &playbackTime);
+    return playbackTime;
+}
 
+float Sound::getVolume(){
+    float volume = 0.0f;
+    alGetSourcef(sid, AL_GAIN, &volume);
+    return volume;
+}
+
+void Sound::updateQueue(){
+//    unsigned int i = 0;
+//    
+//    int p,
+//    q;
+//    
+//    alGetSourcei( sound->sid, AL_BUFFERS_PROCESSED, &p );
+//    
+//    alGetSourcei( sound->sid, AL_BUFFERS_QUEUED, &q );
+//    
+//    while( p-- )
+//    {
+//        unsigned int bid;
+//        
+//        alSourceUnqueueBuffers( sound->sid,
+//                               1,
+//                               &bid );
+//        
+//        while( i != MAX_BUFFER )
+//        {
+//            if( bid == sound->soundbuffer->bid[ i ] ) break;
+//            
+//            ++i;
+//        }
+//        
+//        if( SOUNDBUFFER_decompress_chunk( sound->soundbuffer, i ) )
+//        {
+//            alSourceQueueBuffers( sound->sid,
+//                                 1,
+//                                 &bid );
+//        }
+//    }
+//    
+//    
+//    if( !q && sound->loop )
+//    {
+//        AUDIO_ogg_seek( sound->soundbuffer->file->datasource,
+//                       0,
+//                       SEEK_SET );
+//        
+//        while( i != MAX_BUFFER )
+//        {
+//            SOUNDBUFFER_decompress_chunk( sound->soundbuffer, i );
+//            ++i;
+//        }
+//        
+//        SOUND_play( sound, sound->loop );
+//    }
+}
 
 #pragma mark Helpers
 void Sound::free(){
     if(sid){
-        
+        stop();
+        alDeleteSources(1, &sid);
     }
 }
 
