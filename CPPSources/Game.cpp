@@ -14,7 +14,10 @@
 #include "Font.hpp"
 
 
+#include <future>
 #include <thread>
+#include <chrono>
+#include <iostream>
 
 using UserData = struct{};
 
@@ -34,26 +37,7 @@ OMContext* Game::getAppContext(){
     return appContext;
 }
 
-
-void call_from_thread(int id){
-    logMessage("call_from_thread! %d \n", id);
-}
-
-void threadTesting(){
-    
-    static const unsigned short numThreads = 10;
-    
-    std::thread t[numThreads];
-    
-    for(int i = 0; i < 10; ++i){
-        t[i] = std::thread(call_from_thread, i);
-    }
- 
-    for(int i = 0; i < 10; ++i){
-        t[i].join();
-    }
-    
-}
+std::future<bool> asyncFuture;
 
 ///
 // Initialize the shader and program object
@@ -69,13 +53,10 @@ int Game::Init ( OMContext *context ){
     
     f = new Font("foo.ttf", 64, 512, 512, 32, 96);
     
+    asyncFuture = std::async(std::launch::async, &Boombox::checkObbFunctionality, Boombox::instance());
     
-    Boombox::instance()->checkObbFunctionality();
-    
-    Boombox::instance()->play();
-    
-    threadTesting();
-    
+    logMessage("oggLoadThread!!!\n");
+
     return true;
 }
 
@@ -104,7 +85,8 @@ void Game::Draw ( OMContext *context ){
     
     drawText();
     
-
+    Boombox::instance()->play();
+    
 //    logMessage("%f\n", stopwatch.fps());
 }
 

@@ -44,7 +44,19 @@ void Sound::play(int loop){
     alSourcePlay(sid);
 }
 
+void Sound::pause(){
+    alSourcePause(sid);
+}
 
+void Sound::stop(){
+    
+}
+
+int Sound::getState(){
+    int state = 0;
+    alGetSourcei(sid, AL_SOURCE_STATE, &state);
+    return state;
+}
 
 
 //void play();

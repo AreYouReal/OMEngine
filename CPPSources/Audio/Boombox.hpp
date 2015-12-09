@@ -15,7 +15,7 @@ public:
     ov_callbacks callbacks;
     
     
-    void checkObbFunctionality();
+    bool checkObbFunctionality();
     
 private:
     
@@ -35,8 +35,8 @@ private:
     static int     oggClose(void *memoryPtr);
     
     
-    Soundbuffer *oggSoundBuffer;
-    Sound   *oggTestSound;
+    Soundbuffer *oggSoundBuffer = nullptr;
+    Sound   *oggTestSound = nullptr;
     
     
     void error();

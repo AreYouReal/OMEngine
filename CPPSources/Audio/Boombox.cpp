@@ -47,7 +47,11 @@ Boombox::~Boombox(){
 
 
 void Boombox::play(){
-      oggTestSound->play(1);
+    if(oggTestSound != nullptr){
+        if(oggTestSound->getState() != AL_PLAYING)
+        oggTestSound->play(1);
+    }
+    
 //    alSourcePlay(sSource);
 }
 
@@ -65,14 +69,17 @@ void Boombox::createAndLoadSoundBuffer(){
     alSourcei(sSource, AL_BUFFER, sbuffer);
 }
 
-void Boombox::checkObbFunctionality(){
+#include <thread>
+bool Boombox::checkObbFunctionality(){
+    sleep(5);
     oggSoundBuffer = new Soundbuffer();
     if(oggSoundBuffer->load("lounge.ogg")){
         oggTestSound = new Sound("lounge.ogg", oggSoundBuffer);
+        logMessage("Loading done!");
+        return true;
     }else{
-    
+        return false;
     }
-
 }
 
 size_t Boombox::oggRead(void *ptr, size_t size, size_t read, void *memoryPtr){
