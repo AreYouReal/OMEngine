@@ -42,11 +42,11 @@ using srFile = AAsset;
 
 
 
-#define ES_WINDOW_RGB           0   /// SRCreateWindow flag - RGB color buffer
-#define ES_WINDOW_ALPHA         1   /// SRCreateWindow flag - ALPHA color buffer
-#define ES_WINDOW_DEPTH         2   /// SRCreateWindow flag - depth buffer
-#define ES_WINDOW_STENCIL       4   /// SRCreateWindow flag - stencil buffer
-#define ES_WINDOW_MULTISAMPLE   8   /// SRCreateWindow flat - multi-sample buffer
+#define ES_WINDOW_RGB           0   /// OMCreateWindow flag - RGB color buffer
+#define ES_WINDOW_ALPHA         1   /// OMCreateWindow flag - ALPHA color buffer
+#define ES_WINDOW_DEPTH         2   /// OMCreateWindow flag - depth buffer
+#define ES_WINDOW_STENCIL       4   /// OMCreateWindow flag - stencil buffer
+#define ES_WINDOW_MULTISAMPLE   8   /// OMCreateWindow flat - multi-sample buffer
 
 enum class TouchState{ BEGIN, MOVED, CANCELLED, ENDED };
 
@@ -86,15 +86,6 @@ struct OMContext{
 
 #pragma Public Functions
 GLboolean SRCreateWindow ( OMContext *context, const char *title, GLint width, GLint height, GLuint flags );
-
-void SRRegisterDrawFunc ( OMContext *context, DrawFunc );
-
-void SRRegisterShutdownFunc ( OMContext *context, ShutDownFunc );
-
-void SRRegisterUpdateFunc ( OMContext *context, UpdateFunc );
-
-void SRRegisterTouchFunc ( OMContext *context, TouchFunc );
-
 
 
 #pragma LOGGING

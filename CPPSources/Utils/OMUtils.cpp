@@ -127,22 +127,6 @@ GLboolean SRCreateWindow ( OMContext *context, const char *title, GLint width, G
     return GL_TRUE;
 }
 
-void SRRegisterDrawFunc ( OMContext *context, DrawFunc drawFunc ){
-    context->drawFunc = drawFunc;
-}
-
-void SRRegisterShutdownFunc ( OMContext *context, ShutDownFunc shutdownFunc ){
-    context->shutdownFunc = shutdownFunc;
-}
-
-void SRRegisterUpdateFunc ( OMContext *context, UpdateFunc updateFunc ){
-    context->updateFunc = updateFunc;
-}
-
-void SRRegisterTouchFunc ( OMContext *context, TouchFunc touchFunc ){
-    context->touchFunc = touchFunc;
-}
-
 
 #pragma mark LOGGING
 void logMessage(const char *formatString, ...){

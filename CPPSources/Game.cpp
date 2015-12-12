@@ -125,10 +125,10 @@ int Game::Main ( OMContext *context ){
 
     if ( !Game::Init ( context ) ){ return GL_FALSE; }
 
-    SRRegisterShutdownFunc ( context, Shutdown );
-    SRRegisterUpdateFunc(context, Update);
-    SRRegisterDrawFunc ( context, Draw );
-    SRRegisterTouchFunc( context, Touch );
+    context->shutdownFunc = Shutdown;
+    context->updateFunc = Update;
+    context->drawFunc = Draw;
+    context->touchFunc = Touch;
 
     return GL_TRUE;
 }
