@@ -20,7 +20,7 @@
 #include <OpenAL/al.h>
 #include <OpenAL/alc.h>
 
-using srFile = FILE;
+using omFile = FILE;
 
 #else
 
@@ -35,7 +35,7 @@ using srFile = FILE;
 #include "al.h"
 #include "alc.h"
 
-using srFile = AAsset;
+using omFile = AAsset;
 #endif
 
 #endif
@@ -85,7 +85,7 @@ struct OMContext{
 
 
 #pragma Public Functions
-GLboolean SRCreateWindow ( OMContext *context, const char *title, GLint width, GLint height, GLuint flags );
+GLboolean OMCreateWindow ( OMContext *context, const char *title, GLint width, GLint height, GLuint flags );
 
 
 #pragma LOGGING
@@ -94,10 +94,10 @@ void printGLString(string name, GLenum s);
 
 
 #pragma mark FILE IO
-srFile *fileOpen ( void *ioContext, const char *fileName );
-long getFileSize( srFile *pFile );
-void fileClose ( srFile *pFile );
-long fileRead ( srFile *pFile, long bytesToRead, void *buffer );
+omFile *fileOpen ( void *ioContext, const char *fileName );
+long getFileSize( omFile *pFile );
+void fileClose ( omFile *pFile );
+long fileRead ( omFile *pFile, long bytesToRead, void *buffer );
 
 std::unique_ptr<FileContent> readTextFile( void *ioContext, std::string fileName);
 std::unique_ptr<FileContent> readBytesFromFile(void *ioContext, const char *fileName);

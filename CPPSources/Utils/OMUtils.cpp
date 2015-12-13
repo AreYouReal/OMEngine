@@ -34,7 +34,7 @@ EGLint GetContextRenderableType ( EGLDisplay eglDisplay ){
 
 #pragma GENERAL
 
-GLboolean SRCreateWindow ( OMContext *context, const char *title, GLint width, GLint height, GLuint flags ){
+GLboolean OMCreateWindow ( OMContext *context, const char *title, GLint width, GLint height, GLuint flags ){
 #ifndef __APPLE__
     EGLConfig config;
     EGLint majorVersion;
@@ -147,8 +147,8 @@ void printGLString(string name, GLenum s){
 }
 
 #pragma mark FILE RELATED
-srFile  *fileOpen       ( void *ioContext, const char *fileName ){
-    srFile *pFile = NULL;
+omFile  *fileOpen       ( void *ioContext, const char *fileName ){
+    omFile *pFile = NULL;
 //    logMessage("File open start");
     
 #ifdef ANDROID
@@ -168,7 +168,7 @@ srFile  *fileOpen       ( void *ioContext, const char *fileName ){
     return pFile;
 }
 
-long getFileSize(srFile *pFile){
+long getFileSize(omFile *pFile){
 #ifdef ANDROID
     long fSize = AAsset_getLength(pFile);
 #else
@@ -179,7 +179,7 @@ long getFileSize(srFile *pFile){
     return fSize;
 }
 
-void    fileClose       ( srFile *pFile ){
+void    fileClose       ( omFile *pFile ){
     if ( pFile != NULL )
     {
 #ifdef ANDROID
@@ -190,7 +190,7 @@ void    fileClose       ( srFile *pFile ){
 #endif
     }
 }
-long     fileRead        ( srFile *pFile, long bytesToRead, void *buffer ){
+long     fileRead        ( omFile *pFile, long bytesToRead, void *buffer ){
     long bytesRead = 0;
     
     if ( pFile == NULL ) return bytesRead;
@@ -236,7 +236,7 @@ std::vector<unsigned char> loadPNG ( void *ioContext, const char *fileName, unsi
 
 #pragma mark READ SHADER
 std::unique_ptr<FileContent> readTextFile( void *ioContext, std::string fileName){
-    srFile      *fp;
+    omFile      *fp;
     // Open the file for reading
     fp = fileOpen ( ioContext, fileName.c_str() );
     
@@ -259,7 +259,7 @@ std::unique_ptr<FileContent> readTextFile( void *ioContext, std::string fileName
 
 #pragma mark READ OBJ FILE
 std::unique_ptr<FileContent> readBytesFromFile(void *ioContext, const char *fileName){
-    srFile *fp;
+    omFile *fp;
     fp = fileOpen(ioContext, fileName);
     if( fp == NULL){
         logMessage("readOBJFromFile FAILED to load : { %s }\n", fileName);
@@ -278,7 +278,7 @@ std::unique_ptr<FileContent> readBytesFromFile(void *ioContext, const char *file
 
 std::vector<unsigned char> loadRawPNGData(void *ioContext, const char *filename, unsigned int &width, unsigned int &height){
 
-    srFile *fp;
+    omFile *fp;
     fp = fileOpen(ioContext, filename);
     if( fp == NULL){
         logMessage("loadRawPNGData FAILED to load file: { %s }\n", filename);

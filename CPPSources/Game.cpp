@@ -8,6 +8,7 @@
 #include "GameObject.hpp"
 #include "Obj.h"
 
+#include "OMUtils.h"
 
 #include "WiredCube.hpp"
 
@@ -21,15 +22,16 @@
 
 using UserData = struct{};
 
+
 static OMContext       *appContext;
 
 bool Game::debugFlag  = true;
 
 Font *f;
 
-void drawText(){
+void drawText(string text){
     v4d fontColor(1.0f, .5f, 1.0f, 1.0f);
-    f->print(-100, -100, "Test text", &fontColor);
+    f->print(-100, -100, text, &fontColor);
 }
 
 OMContext* Game::getAppContext(){
@@ -39,9 +41,7 @@ OMContext* Game::getAppContext(){
 
 std::future<bool> asyncFuture;
 
-///
-// Initialize the shader and program object
-//
+
 int Game::Init ( OMContext *context ){
     appContext = context;
     
@@ -51,11 +51,13 @@ int Game::Init ( OMContext *context ){
     
     Scene::instance()->init();
     
+    
+    // Need to be refactored
+    
     f = new Font("foo.ttf", 64, 512, 512, 32, 96);
     
-    asyncFuture = std::async(std::launch::async, &Boombox::checkObbFunctionality, Boombox::instance());
-    
-    logMessage("oggLoadThread!!!\n");
+    asyncFuture = std::async(std::launch::async, &Boombox::checkObbFunctionality, Boombox::instance());    
+   //------------------------
 
     return true;
 }
@@ -66,11 +68,9 @@ void Game::Update(OMContext *context, const float deltaTime){
     Scene::instance()->update(deltaTime);
 }
 
-///
-// Draw a triangle using the shader pair created in Init()
-//
+
 void Game::Draw ( OMContext *context ){
-//    Stopwatch stopwatch;
+    Stopwatch stopwatch;
     //    logMessage("DRAW \n");
 #ifdef ANDROID
     if(!context->eglDisplay) return;
@@ -83,10 +83,10 @@ void Game::Draw ( OMContext *context ){
 
     Scene::instance()->draw();
     
-    drawText();
+
     
     Boombox::instance()->play();
-    
+    drawText(std::to_string(ceilf(stopwatch.fps())));
 //    logMessage("%f\n", stopwatch.fps());
 }
 
@@ -121,7 +121,7 @@ void Game::Touch(OMContext *context, const int event, const int x, const int y){
 int Game::Main ( OMContext *context ){
     context->userData = malloc ( sizeof ( UserData ) );
     logMessage("Context value: %d\n", context);
-    SRCreateWindow( context, "Hello Triangle", context->width, context->height, ES_WINDOW_RGB );
+    OMCreateWindow( context, "Hello Triangle", context->width, context->height, ES_WINDOW_RGB );
 
     if ( !Game::Init ( context ) ){ return GL_FALSE; }
 
@@ -150,7 +150,7 @@ void Game::printGLInfo(){
 void Game::initOGL(const float width, const float height){
     glViewport ( 0, 0, width, height );
     glEnable( GL_DEPTH_TEST );
-    //    glEnable( GL_CULL_FACE  );
+    glEnable( GL_CULL_FACE  );
     glEnable(GL_TEXTURE_2D);
 }
 
