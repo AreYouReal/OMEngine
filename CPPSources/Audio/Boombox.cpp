@@ -71,7 +71,7 @@ void Boombox::createAndLoadSoundBuffer(){
 
 #include <thread>
 bool Boombox::checkObbFunctionality(){
-    sleep(5);
+//    sleep(5);
     oggSoundBuffer = new Soundbuffer();
     if(oggSoundBuffer->load("lounge.ogg")){
         oggTestSound = new Sound("lounge.ogg", oggSoundBuffer);

@@ -86,7 +86,11 @@ void Game::Draw ( OMContext *context ){
 
     
     Boombox::instance()->play();
-    drawText(std::to_string(ceilf(stopwatch.fps())));
+    
+    char tempBuff[122];
+    sprintf(tempBuff, "%f", ceilf(stopwatch.fps()));
+    
+    drawText(tempBuff);
 //    logMessage("%f\n", stopwatch.fps());
 }
 
