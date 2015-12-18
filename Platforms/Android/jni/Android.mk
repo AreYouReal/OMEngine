@@ -12,7 +12,6 @@ $(SRC_PATH)/CPPSources/Audio/Sound.cpp\
 $(SRC_PATH)/CPPSources/Camera/Camera.cpp\
 $(SRC_PATH)/CPPSources/Component/MeshRendererComponent.cpp\
 $(SRC_PATH)/CPPSources/DEBUG/WiredCube.cpp\
-$(SRC_PATH)/CPPSources/Game.cpp\
 $(SRC_PATH)/CPPSources/GameObject/GameObject.cpp\
 $(SRC_PATH)/CPPSources/Light/Illuminator.cpp\
 $(SRC_PATH)/CPPSources/Light/LightSource.cpp\
@@ -23,6 +22,7 @@ $(SRC_PATH)/CPPSources/Math/q4d.cpp\
 $(SRC_PATH)/CPPSources/Math/v3d.cpp\
 $(SRC_PATH)/CPPSources/Obj/Obj.cpp\
 $(SRC_PATH)/CPPSources/Obj/ObjMesh.cpp\
+$(SRC_PATH)/CPPSources/OMGame.cpp\
 $(SRC_PATH)/CPPSources/Physics/PhysicalWorld.cpp\
 $(SRC_PATH)/CPPSources/Scene/Scene.cpp\
 $(SRC_PATH)/CPPSources/Shaders/Shader.cpp\
@@ -239,12 +239,12 @@ $(SRC_PATH)/CPPSources/Audio\
 $(SRC_PATH)/CPPSources/Camera\
 $(SRC_PATH)/CPPSources/Component\
 $(SRC_PATH)/CPPSources/DEBUG\
-$(SRC_PATH)/CPPSources\
 $(SRC_PATH)/CPPSources/GameObject\
 $(SRC_PATH)/CPPSources/Light\
 $(SRC_PATH)/CPPSources/Material\
 $(SRC_PATH)/CPPSources/Math\
 $(SRC_PATH)/CPPSources/Obj\
+$(SRC_PATH)/CPPSources\
 $(SRC_PATH)/CPPSources/Physics\
 $(SRC_PATH)/CPPSources/Scene\
 $(SRC_PATH)/CPPSources/Shaders\
