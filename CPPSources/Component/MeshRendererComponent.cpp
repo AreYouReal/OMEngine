@@ -2,7 +2,6 @@
 
 #include "WiredCube.hpp"
 #include "btBoxShape.h"
-#include "Game.h"
 
 MeshRendererComponent::MeshRendererComponent(GameObject * const gameObject): IComponent(gameObject){
     logMessage("MeshRendererComponent constructor!\n");
@@ -52,7 +51,7 @@ void MeshRendererComponent::update(){
 //            Camera::instance()->pushMVMatrix(modelM);
             
             if(mesh->renderObjectType() == RenderObjectType::SOLID){
-                if(Game::debugFlag){ drawDebugPhysicsGeometry(); }
+//                if(Game::debugFlag){ drawDebugPhysicsGeometry(); }
                 mesh->draw();
             }else{
                 glEnable(GL_BLEND);

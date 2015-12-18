@@ -182,7 +182,7 @@
 		94CE87CD1B62B4D000752D5C /* q4d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94CE87C81B62B4D000752D5C /* q4d.cpp */; };
 		94CE87CE1B62B4D000752D5C /* v3d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94CE87CA1B62B4D000752D5C /* v3d.cpp */; };
 		94CE87D61B62B51900752D5C /* ShaderHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94CE87D31B62B51900752D5C /* ShaderHelper.cpp */; };
-		94CE87D91B62B53500752D5C /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94CE87D71B62B53500752D5C /* Game.cpp */; };
+		94CE87D91B62B53500752D5C /* OMGame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94CE87D71B62B53500752D5C /* OMGame.cpp */; };
 		94CE87E11B62B59800752D5C /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 94CE87DE1B62B59800752D5C /* AppDelegate.mm */; };
 		94CE87E21B62B59800752D5C /* FileWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 94CE87E01B62B59800752D5C /* FileWrapper.mm */; };
 		94CE87E61B62B5A400752D5C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 94CE87E31B62B5A400752D5C /* main.m */; };
@@ -687,8 +687,8 @@
 		94CE87CB1B62B4D000752D5C /* v3d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = v3d.h; path = ../../CPPSources/Math/v3d.h; sourceTree = SOURCE_ROOT; };
 		94CE87D31B62B51900752D5C /* ShaderHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShaderHelper.cpp; path = ../../CPPSources/Shaders/ShaderHelper.cpp; sourceTree = SOURCE_ROOT; };
 		94CE87D41B62B51900752D5C /* ShaderHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShaderHelper.h; path = ../../CPPSources/Shaders/ShaderHelper.h; sourceTree = SOURCE_ROOT; };
-		94CE87D71B62B53500752D5C /* Game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Game.cpp; path = ../../CPPSources/Game.cpp; sourceTree = SOURCE_ROOT; };
-		94CE87D81B62B53500752D5C /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Game.h; path = ../../CPPSources/Game.h; sourceTree = SOURCE_ROOT; };
+		94CE87D71B62B53500752D5C /* OMGame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OMGame.cpp; path = ../../CPPSources/OMGame.cpp; sourceTree = SOURCE_ROOT; };
+		94CE87D81B62B53500752D5C /* OMGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OMGame.h; path = ../../CPPSources/OMGame.h; sourceTree = SOURCE_ROOT; };
 		94CE87DD1B62B59800752D5C /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = OMEiOS/AppDelegate.h; sourceTree = SOURCE_ROOT; };
 		94CE87DE1B62B59800752D5C /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = OMEiOS/AppDelegate.mm; sourceTree = SOURCE_ROOT; };
 		94CE87DF1B62B59800752D5C /* FileWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileWrapper.h; path = OMEiOS/FileWrapper.h; sourceTree = SOURCE_ROOT; };
@@ -934,8 +934,8 @@
 				9453DEDE1B2A080F00C79DB3 /* Utils */,
 				944E39671B01191F003806EB /* Math */,
 				9420DCE41B007E0D006D2A7E /* Shaders */,
-				94CE87D71B62B53500752D5C /* Game.cpp */,
-				94CE87D81B62B53500752D5C /* Game.h */,
+				94CE87D71B62B53500752D5C /* OMGame.cpp */,
+				94CE87D81B62B53500752D5C /* OMGame.h */,
 				7625BC3617F32A780019C421 /* iOS */,
 				7626524017F10E6C007CCD43 /* Supporting Files */,
 			);
@@ -2134,7 +2134,7 @@
 				F39FA5B21C0DE15400CC0BB4 /* block.c in Sources */,
 				947890001BD4CFD200B55A25 /* btGjkPairDetector.cpp in Sources */,
 				947890121BD4CFD200B55A25 /* btPoint2PointConstraint.cpp in Sources */,
-				94CE87D91B62B53500752D5C /* Game.cpp in Sources */,
+				94CE87D91B62B53500752D5C /* OMGame.cpp in Sources */,
 				9478900F1BD4CFD200B55A25 /* btHinge2Constraint.cpp in Sources */,
 				F39FA5AF1C0DE15400CC0BB4 /* analysis.c in Sources */,
 				947890361BD4CFD200B55A25 /* btVector3.cpp in Sources */,

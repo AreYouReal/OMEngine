@@ -3,10 +3,6 @@
 
 #include "OMUtils.h"
 #include "Shortcuts.h"
-#include "Game.h"
-
-
-
 
 Boombox::Boombox(){
     logMessage("Boombox constructor!\n");
@@ -57,7 +53,7 @@ void Boombox::play(){
 
 void Boombox::createAndLoadSoundBuffer(){
     alGenBuffers(1, &sbuffer);
-    up<FileContent> soundSource = readBytesFromFile(Game::getAppContext(), "test.raw");
+    up<FileContent> soundSource = readBytesFromFile("test.raw");
     
     if(!soundSource) return;
     

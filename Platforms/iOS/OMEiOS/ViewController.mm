@@ -1,10 +1,10 @@
 #import "ViewController.h"
 #include "OMUtils.h"
-#include "Game.h"
+#include "OMGame.h"
 
 
 @interface ViewController (){
-    OMContext _SRContext;
+    OMContext _OMContext;
 }
 @property (strong, nonatomic) EAGLContext *context;
 @property (strong, nonatomic) GLKBaseEffect *effect;
@@ -60,32 +60,32 @@
     
     memset( &_context, 0, sizeof( _context ) );
   
-    Game::Main(&_SRContext);
+    OMGame::Main(&_OMContext);
 }
 
 - (void)tearDownGL{
     [EAGLContext setCurrentContext:self.context];
 
-    if ( _SRContext.shutdownFunc ){
-        _SRContext.shutdownFunc( &_SRContext );
+    if ( _OMContext.shutdownFunc ){
+        _OMContext.shutdownFunc( &_OMContext );
     }
 }
 
 
 - (void)update{
-    if ( _SRContext.updateFunc ){
-        _SRContext.updateFunc( &_SRContext, self.timeSinceLastUpdate );
+    if ( _OMContext.updateFunc ){
+        _OMContext.updateFunc( &_OMContext, self.timeSinceLastUpdate );
     }
 }
 
 
 // Question here: Why use rect? Why rect.size = view.size / 3 ???
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect{
-    _SRContext.width = rect.size.width;
-    _SRContext.height = rect.size.height;
+    _OMContext.width = rect.size.width;
+    _OMContext.height = rect.size.height;
     
-    if ( _SRContext.drawFunc ){
-        _SRContext.drawFunc( &_SRContext );
+    if ( _OMContext.drawFunc ){
+        _OMContext.drawFunc( &_OMContext );
     }
 }
 
@@ -94,14 +94,14 @@
     UITouch *touch = [[event allTouches] anyObject];
     CGPoint location = [touch locationInView:touch.view];
     //    NSLog(@"touchBEGAN, %f, %f", location.x, location.y);
-    if(_SRContext.touchFunc) _SRContext.touchFunc(&_SRContext, (int)TouchState::BEGIN, location.x, location.y);
+    if(_OMContext.touchFunc) _OMContext.touchFunc(&_OMContext, (int)TouchState::BEGIN, location.x, location.y);
 }
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
     UITouch *touch = [[event allTouches] anyObject];
     CGPoint location = [touch locationInView:touch.view];
     
-    if(_SRContext.touchFunc) _SRContext.touchFunc(&_SRContext, (int)TouchState::MOVED, location.x, location.y);
+    if(_OMContext.touchFunc) _OMContext.touchFunc(&_OMContext, (int)TouchState::MOVED, location.x, location.y);
 //        NSLog(@"touchMOVED, %f, %f", location.x, location.y);
 }
 
@@ -109,14 +109,14 @@
     UITouch *touch = [[event allTouches] anyObject];
     CGPoint location = [touch locationInView:touch.view];
     //    NSLog(@"touchCANCELLED, %f, %f", location.x, location.y);
-    if(_SRContext.touchFunc) _SRContext.touchFunc(&_SRContext, (int)TouchState::CANCELLED, location.x, location.y);
+    if(_OMContext.touchFunc) _OMContext.touchFunc(&_OMContext, (int)TouchState::CANCELLED, location.x, location.y);
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
     UITouch *touch = [[event allTouches] anyObject];
     CGPoint location = [touch locationInView:touch.view];
     //    NSLog(@"touchENDED, %f, %f", location.x, location.y);
-    if(_SRContext.touchFunc)  _SRContext.touchFunc(&_SRContext, (int)TouchState::ENDED, location.x, location.y);
+    if(_OMContext.touchFunc)  _OMContext.touchFunc(&_OMContext, (int)TouchState::ENDED, location.x, location.y);
 }
 
 @end

@@ -1,4 +1,4 @@
-#include "Game.h"
+#include "OMGame.h"
 #include "Texture.h"
 #include "Camera.h"
 #include "Illuminator.hpp"
@@ -25,7 +25,7 @@ using UserData = struct{};
 
 static OMContext       *appContext;
 
-bool Game::debugFlag  = true;
+bool OMGame::debugFlag  = true;
 
 Font *f;
 
@@ -34,7 +34,7 @@ void drawText(string text){
     f->print(-100, -100, text, &fontColor);
 }
 
-OMContext* Game::getAppContext(){
+OMContext* OMGame::getAppContext(){
     if(!appContext) logMessage("\nAppContext is NULL!\n");
     return appContext;
 }
@@ -42,7 +42,7 @@ OMContext* Game::getAppContext(){
 std::future<bool> asyncFuture;
 
 
-int Game::Init ( OMContext *context ){
+int OMGame::Init ( OMContext *context ){
     appContext = context;
     
     printGLInfo();
@@ -63,13 +63,13 @@ int Game::Init ( OMContext *context ){
 }
 
 
-void Game::Update(OMContext *context, const float deltaTime){
+void OMGame::Update(OMContext *context, const float deltaTime){
 //    logMessage("UPDATE \n");
     Scene::instance()->update(deltaTime);
 }
 
 
-void Game::Draw ( OMContext *context ){
+void OMGame::Draw ( OMContext *context ){
     Stopwatch stopwatch;
     //    logMessage("DRAW \n");
 #ifdef ANDROID
@@ -95,7 +95,7 @@ void Game::Draw ( OMContext *context ){
 }
 
 
-void Game::Shutdown ( OMContext *context ){
+void OMGame::Shutdown ( OMContext *context ){
     Scene::destroy();
     if(f){
         delete f;
@@ -104,7 +104,7 @@ void Game::Shutdown ( OMContext *context ){
     logMessage("ShutDown function\n");
 }
 
-void Game::Touch(OMContext *context, const int event, const int x, const int y){
+void OMGame::Touch(OMContext *context, const int event, const int x, const int y){
 //    logMessage("TOUCH\n");
     switch (event) {
         case static_cast<int>(TouchState::BEGIN):
@@ -122,12 +122,12 @@ void Game::Touch(OMContext *context, const int event, const int x, const int y){
     }
 }
 
-int Game::Main ( OMContext *context ){
+int OMGame::Main ( OMContext *context ){
     context->userData = malloc ( sizeof ( UserData ) );
     logMessage("Context value: %d\n", context);
     OMCreateWindow( context, "Hello Triangle", context->width, context->height, ES_WINDOW_RGB );
 
-    if ( !Game::Init ( context ) ){ return GL_FALSE; }
+    if ( !OMGame::Init ( context ) ){ return GL_FALSE; }
 
     context->shutdownFunc = Shutdown;
     context->updateFunc = Update;
@@ -137,12 +137,12 @@ int Game::Main ( OMContext *context ){
     return GL_TRUE;
 }
 
-void Game::Exit(){
+void OMGame::Exit(){
     logMessage("Exit function\n");
 }
 
 #pragma Helpers
-void Game::printGLInfo(){
+void OMGame::printGLInfo(){
     printGLString("Version",        GL_VERSION);
     printGLString("Vendor",         GL_VENDOR);
     printGLString("Renderer",       GL_RENDERER);
@@ -151,7 +151,7 @@ void Game::printGLInfo(){
 }
 
 
-void Game::initOGL(const float width, const float height){
+void OMGame::initOGL(const float width, const float height){
     glViewport ( 0, 0, width, height );
     glEnable( GL_DEPTH_TEST );
     glEnable( GL_CULL_FACE  );

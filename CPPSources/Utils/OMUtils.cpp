@@ -4,6 +4,7 @@
 #endif
 
 #include "OMUtils.h"
+#include "OMGame.h"
 
 
 #ifndef __APPLE__
@@ -235,10 +236,10 @@ std::vector<unsigned char> loadPNG ( void *ioContext, const char *fileName, unsi
 }
 
 #pragma mark READ SHADER
-std::unique_ptr<FileContent> readTextFile( void *ioContext, std::string fileName){
+std::unique_ptr<FileContent> readTextFile(std::string fileName){
     omFile      *fp;
     // Open the file for reading
-    fp = fileOpen ( ioContext, fileName.c_str() );
+    fp = fileOpen ( OMGame::getAppContext(), fileName.c_str() );
     
     if ( fp == NULL ){
         // Log error as 'error in opening the input file from apk'
@@ -258,9 +259,9 @@ std::unique_ptr<FileContent> readTextFile( void *ioContext, std::string fileName
 }
 
 #pragma mark READ OBJ FILE
-std::unique_ptr<FileContent> readBytesFromFile(void *ioContext, const char *fileName){
+std::unique_ptr<FileContent> readBytesFromFile(const char *fileName){
     omFile *fp;
-    fp = fileOpen(ioContext, fileName);
+    fp = fileOpen(OMGame::getAppContext(), fileName);
     if( fp == NULL){
         logMessage("readOBJFromFile FAILED to load : { %s }\n", fileName);
         return std::unique_ptr<FileContent>();
@@ -276,10 +277,10 @@ std::unique_ptr<FileContent> readBytesFromFile(void *ioContext, const char *file
     return rValue;
 }
 
-std::vector<unsigned char> loadRawPNGData(void *ioContext, const char *filename, unsigned int &width, unsigned int &height){
+std::vector<unsigned char> loadRawPNGData(const char *filename, unsigned int &width, unsigned int &height){
 
     omFile *fp;
-    fp = fileOpen(ioContext, filename);
+    fp = fileOpen(OMGame::getAppContext(), filename);
     if( fp == NULL){
         logMessage("loadRawPNGData FAILED to load file: { %s }\n", filename);
         return std::vector<unsigned char>();

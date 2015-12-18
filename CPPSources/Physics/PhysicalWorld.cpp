@@ -4,7 +4,6 @@
 #include "btManifoldPoint.h"
 
 #include "OMUtils.h"
-#include "Game.h"
 
 #include "btBulletWorldImporter.h"
 
@@ -44,7 +43,7 @@ bool PhysicalWorld::addPBodyToGameObject(GameObject *go, PhysicalBodyShape shape
 }
 
 bool PhysicalWorld::loadPhysicsWorldFromFile(string filename, std::vector<GameObject*> objects){
-    up<FileContent> fileContent = readBytesFromFile(Game::getAppContext(), filename.c_str());
+    up<FileContent> fileContent = readBytesFromFile(filename.c_str());
     if(!fileContent) return false;
     
     btBulletWorldImporter *bulletImporter = new btBulletWorldImporter(physicsWorld.get());

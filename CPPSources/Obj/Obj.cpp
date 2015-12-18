@@ -1,5 +1,4 @@
 #include "Obj.h"
-#include "Game.h"
 
 
 Obj::~Obj(){
@@ -7,7 +6,7 @@ Obj::~Obj(){
 }
 
 sp<Obj> Obj::load(const char *filename){
-    std::unique_ptr<FileContent> objSource = readBytesFromFile(Game::getAppContext(), filename);
+    std::unique_ptr<FileContent> objSource = readBytesFromFile(filename);
 #pragma warning throw exception here
     if(!objSource.get()) return nullptr;
     

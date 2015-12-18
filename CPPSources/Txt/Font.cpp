@@ -1,7 +1,5 @@
 
 #include "Font.hpp"
-
-#include "Game.h"
 #include "Materials.hpp"
 #include "Camera.h"
 
@@ -11,7 +9,7 @@ Font::Font(string name, float fSize, unsigned int tWidth, unsigned int tHeight, 
 #ifdef ANDROID
     name = "fonts/" + name;
 #endif
-    up<FileContent> content = readBytesFromFile(Game::getAppContext(), name.c_str());
+    up<FileContent> content = readBytesFromFile( name.c_str());
     if(!content){
         logMessage("Unable to load font file: %s\n", name.c_str());
     }else{

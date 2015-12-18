@@ -1,5 +1,5 @@
 #include "ShaderHelper.h"
-#include "Game.h"
+#include "OMGame.h"
 
 #pragma mark Public
 
@@ -64,7 +64,7 @@ Shader ShaderHelper::loadShader(GLenum shaderType, std::string vertexShaderFilen
     Shader shader;
     shader.name = vertexShaderFilename;
     shader.type = GL_VERTEX_SHADER;
-    std::unique_ptr<FileContent> shaderSource = readTextFile(Game::getAppContext(), vertexShaderFilename);
+    std::unique_ptr<FileContent> shaderSource = readTextFile(vertexShaderFilename);
     shader.ID = glCreateShader(shaderType);
     if(!shader.ID) return shader;
     char *temp = (char *)shaderSource->content;

@@ -1,7 +1,6 @@
 #include "Sound.hpp"
 
 #include "FileContent.h"
-#include "Game.h"
 #include "Boombox.hpp"
 
 
@@ -152,7 +151,7 @@ bool Soundbuffer::load(const std::string fileName){
     name = fileName;
     file = new OggVorbis_File();
     
-    up<FileContent> fileSource = readBytesFromFile(Game::getAppContext(), fileName.c_str());
+    up<FileContent> fileSource = readBytesFromFile(fileName.c_str());
     
     if(!fileSource){ return false; }
     

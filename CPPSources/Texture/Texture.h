@@ -16,7 +16,7 @@ struct Texture{
     
     ~Texture();
     
-    static std::shared_ptr<Texture> load(void *context, const char *filename);
+    static std::shared_ptr<Texture> load(const char *filename);
         
     void generateID(unsigned int flags, unsigned char filter);
 
@@ -32,5 +32,5 @@ struct Texture{
     unsigned int texelType;             // The type of the texel to use for this texture(GL_UNSIGNED_BYTE)
     unsigned int compression;               // The comperssion type
 private:
-    Texture(void* context, const char* filename, unsigned int texelType = GL_UNSIGNED_BYTE, unsigned char byte = 4, unsigned int format = GL_RGBA, unsigned int target = GL_TEXTURE_2D, unsigned int ID = 0);
+    Texture(const char* filename, unsigned int texelType = GL_UNSIGNED_BYTE, unsigned char byte = 4, unsigned int format = GL_RGBA, unsigned int target = GL_TEXTURE_2D, unsigned int ID = 0);
 };

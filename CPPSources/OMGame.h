@@ -2,7 +2,7 @@
 
 #include "OMUtils.h"
 
-class Game{
+class OMGame{
     
 public:
     static int  Main       ( OMContext * );

@@ -1,6 +1,5 @@
 
 #include "Materials.hpp"
-#include "Game.h"
 #include "OMUtils.h"
 #include "ShaderHelper.h"
 
@@ -25,7 +24,7 @@ bool Materials::loadMaterial(const std::string &name){
         return false;
     }
     
-    std::unique_ptr<FileContent> objSource = readBytesFromFile(Game::getAppContext(), name.c_str());
+    std::unique_ptr<FileContent> objSource = readBytesFromFile(name.c_str());
     
     if(!objSource.get()){
         logMessage("Unable to load material: %s\n", name.c_str());
@@ -98,7 +97,7 @@ bool Materials::loadTexture(const std::string &name){
     if(textures.find(name) != textures.end()){
         logMessage("Texture is already loaded: %s\n", name.c_str());
     }
-    sp<Texture> texture(Texture::load(Game::getAppContext(), name.c_str()));
+    sp<Texture> texture(Texture::load(name.c_str()));
     if(texture == nullptr){
         logMessage("Unable to load texture: %s\n", name.c_str());
         return false;
