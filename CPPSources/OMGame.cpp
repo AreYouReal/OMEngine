@@ -42,7 +42,7 @@ OMContext* OMGame::getAppContext(){
 std::future<bool> asyncFuture;
 
 
-int OMGame::Init ( OMContext *context ){
+int OMGame::InitGameWorld ( OMContext *context ){
     appContext = context;
     
     printGLInfo();
@@ -122,12 +122,12 @@ void OMGame::Touch(OMContext *context, const int event, const int x, const int y
     }
 }
 
-int OMGame::Main ( OMContext *context ){
+int OMGame::StartUp ( OMContext *context ){
     context->userData = malloc ( sizeof ( UserData ) );
     logMessage("Context value: %d\n", context);
     OMCreateWindow( context, "Hello Triangle", context->width, context->height, ES_WINDOW_RGB );
 
-    if ( !OMGame::Init ( context ) ){ return GL_FALSE; }
+    if ( !OMGame::InitGameWorld( context ) ){ return GL_FALSE; }
 
     context->shutdownFunc = Shutdown;
     context->updateFunc = Update;

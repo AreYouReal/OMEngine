@@ -60,7 +60,7 @@
     
     memset( &_context, 0, sizeof( _context ) );
   
-    OMGame::Main(&_OMContext);
+    OMGame::StartUp(&_OMContext);
 }
 
 - (void)tearDownGL{
