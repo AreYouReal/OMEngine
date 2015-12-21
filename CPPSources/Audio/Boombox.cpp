@@ -41,7 +41,6 @@ Boombox::~Boombox(){
     logMessage("Boombox destructor!\n");
 }
 
-
 void Boombox::play(){
     if(oggTestSound != nullptr){
         if(oggTestSound->getState() != AL_PLAYING)

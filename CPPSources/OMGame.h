@@ -6,12 +6,12 @@ class OMGame{
     
 public:
     static int  StartUp         ( OMContext * );
-    static int  InitGameWorld   ( OMContext * );
-    static void Update          ( OMContext *, const float);
-    static void Draw            ( OMContext * );
-    static void Shutdown        ( OMContext * );
-    static void Touch           ( OMContext *, const int, const int, const int );
-    static void Exit            ();
+    static int  InitGameWorld   ();
+    static void Update          ( const float );
+    static void Draw            ();
+    static void Shutdown        ();
+    static void Touch           ( const int, const int, const int );
+    static void Exit            ( );
 
     static    OMContext*      getAppContext();
     

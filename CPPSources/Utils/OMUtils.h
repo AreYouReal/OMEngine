@@ -54,10 +54,10 @@ template<typename T>
 using sp = std::shared_ptr<T>;
 
 struct OMContext;
-using UpdateFunc    = void(*)(OMContext*, const float);
-using DrawFunc      = void(*)(OMContext*);
-using TouchFunc     = void(*)(OMContext*, const int, const int, const int);
-using ShutDownFunc  = void(*)(OMContext*);
+using UpdateFunc    = void(*)(const float);
+using DrawFunc      = void(*)();
+using TouchFunc     = void(*)(const int, const int, const int);
+using ShutDownFunc  = void(*)();
 
 
 #pragma GENERAL

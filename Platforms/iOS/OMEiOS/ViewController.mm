@@ -67,14 +67,14 @@
     [EAGLContext setCurrentContext:self.context];
 
     if ( _OMContext.shutdownFunc ){
-        _OMContext.shutdownFunc( &_OMContext );
+        _OMContext.shutdownFunc();
     }
 }
 
 
 - (void)update{
     if ( _OMContext.updateFunc ){
-        _OMContext.updateFunc( &_OMContext, self.timeSinceLastUpdate );
+        _OMContext.updateFunc( self.timeSinceLastUpdate );
     }
 }
 
@@ -85,7 +85,7 @@
     _OMContext.height = rect.size.height;
     
     if ( _OMContext.drawFunc ){
-        _OMContext.drawFunc( &_OMContext );
+        _OMContext.drawFunc( );
     }
 }
 
@@ -94,14 +94,14 @@
     UITouch *touch = [[event allTouches] anyObject];
     CGPoint location = [touch locationInView:touch.view];
     //    NSLog(@"touchBEGAN, %f, %f", location.x, location.y);
-    if(_OMContext.touchFunc) _OMContext.touchFunc(&_OMContext, (int)TouchState::BEGIN, location.x, location.y);
+    if(_OMContext.touchFunc) _OMContext.touchFunc((int)TouchState::BEGIN, location.x, location.y);
 }
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
     UITouch *touch = [[event allTouches] anyObject];
     CGPoint location = [touch locationInView:touch.view];
     
-    if(_OMContext.touchFunc) _OMContext.touchFunc(&_OMContext, (int)TouchState::MOVED, location.x, location.y);
+    if(_OMContext.touchFunc) _OMContext.touchFunc((int)TouchState::MOVED, location.x, location.y);
 //        NSLog(@"touchMOVED, %f, %f", location.x, location.y);
 }
 
@@ -109,14 +109,14 @@
     UITouch *touch = [[event allTouches] anyObject];
     CGPoint location = [touch locationInView:touch.view];
     //    NSLog(@"touchCANCELLED, %f, %f", location.x, location.y);
-    if(_OMContext.touchFunc) _OMContext.touchFunc(&_OMContext, (int)TouchState::CANCELLED, location.x, location.y);
+    if(_OMContext.touchFunc) _OMContext.touchFunc((int)TouchState::CANCELLED, location.x, location.y);
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
     UITouch *touch = [[event allTouches] anyObject];
     CGPoint location = [touch locationInView:touch.view];
     //    NSLog(@"touchENDED, %f, %f", location.x, location.y);
-    if(_OMContext.touchFunc)  _OMContext.touchFunc(&_OMContext, (int)TouchState::ENDED, location.x, location.y);
+    if(_OMContext.touchFunc)  _OMContext.touchFunc((int)TouchState::ENDED, location.x, location.y);
 }
 
 @end

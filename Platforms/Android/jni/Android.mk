@@ -6,7 +6,7 @@ include $(CLEAR_VARS)
 LOCAL_MODULE    := OME
 LOCAL_CFLAGS    += -std=c++11
 
-LOCAL_SRC_FILES := $(LOCAL_PATH)/esUtil_Android.cpp \
+LOCAL_SRC_FILES := $(LOCAL_PATH)/omUtil_Android.cpp \
 $(SRC_PATH)/CPPSources/Audio/Boombox.cpp\
 $(SRC_PATH)/CPPSources/Audio/Sound.cpp\
 $(SRC_PATH)/CPPSources/Camera/Camera.cpp\
