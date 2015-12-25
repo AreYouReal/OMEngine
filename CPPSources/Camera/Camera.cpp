@@ -4,7 +4,7 @@
 
 #define CLAMP(x, min, max) ((x < min) ? min : ((x > max) ? max : x));
 
-#define SIGN(x) (x >= 0 ? 1 : -1);
+#define SIGN(x) (x >= 0 ? -1 : 1);
 
 Camera::Camera(float fovy, float width, float height, float near, float far)
 :mFovy(fovy), mWidth(width), mHeight(height), mNear(near), mFar(far){
@@ -51,13 +51,13 @@ void Camera::onTouchMove(const int x, const int y){
     if(viewDelta.x || viewDelta.y){
         if(viewDelta.y){
 //            logMessage("viewDelta.y: %f\n", viewDelta.y);
-            v3d axis(1.0f, 0.0f, 0.0f);
-            rotate(viewDelta.y, axis);
+            v3d axis(1.0f, .0f, 0.0f);
+            rotate(viewDelta.y, Camera::instance()->transform.mRight);
         }
         
         if(viewDelta.x){
 //            logMessage("viewDelta.x: %f\n", viewDelta.x);
-            rotate(viewDelta.x, .0f, .0f, 1.0f);
+            rotate(-viewDelta.x, Camera::instance()->transform.mUp);
         }
         
         viewDelta.x = 0; viewDelta.y = 0;
@@ -68,10 +68,10 @@ void Camera::onTouchMove(const int x, const int y){
             int sign = SIGN(moveDelta.y);
             transform.moveForward(sign * moveDelta.z );
         }
-        if(moveDelta.x){
-            int sign = SIGN(moveDelta.x);
-            transform.moveRight(sign * moveDelta.z);
-        }
+//        if(moveDelta.x){
+//            int sign = SIGN(moveDelta.x);
+//            transform.moveRight(sign * moveDelta.z);
+//        }
 //        logMessage("Move delta Z: %f\n", moveDelta.z);
         refreshViewAndNormalMatrix();
     }
@@ -138,7 +138,7 @@ void Camera::rotate(float angle, float x, float y, float z){
 }
 
 void Camera::rotate(float deg, v3d &axis){
-    transform.rotate(deg, axis);
+    transform.rotate(deg * axis.x , deg * axis.y, deg * axis.z);
     refreshViewAndNormalMatrix();
 }
 

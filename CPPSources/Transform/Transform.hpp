@@ -30,6 +30,7 @@ public:
     q4d mRotation;
     v3d mFront;
     v3d mUp;
+    v3d mRight;
     
 private:
     m4d mTransformMatrix;

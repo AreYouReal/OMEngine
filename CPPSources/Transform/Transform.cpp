@@ -35,16 +35,16 @@ void Transform::rotate(float xRad, float yRad, float zRad){
     
     mFront = mFront * mRotation.matrix();
     mUp = mUp * mRotation.matrix();
-    
+    mRight = v3d::cross(mUp, mFront);
     refreshTransformMatrix();
 }
 
 void Transform::rotate(float deg, v3d axis){
     mRotation = q4d(deg, axis);
     m4d roMatrix = mRotation.matrix();
-    mFront = mFront * roMatrix;
-    mUp = mUp * roMatrix;
-    
+    mFront = (mFront * roMatrix).normalize();
+    mUp = (mUp * roMatrix).normalize();
+    mRight = v3d::cross(mUp, mFront).normalize();
     refreshTransformMatrix();
 }
 
@@ -61,8 +61,7 @@ void Transform::moveForward(float velocity){
 }
 
 void Transform::moveRight(float velocity){
-    v3d rightDirection = v3d::cross(mFront, mUp).normalize();
-    mPosition += rightDirection * velocity;
+    mPosition += mRight * velocity;
 }
 
 #pragma mark helpers
