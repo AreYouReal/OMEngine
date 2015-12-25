@@ -57,21 +57,24 @@ sp<ShaderProgram> ShaderHelper::createProgram(const string programName, const Sh
 }
 
 #pragma mark Helpers
-Shader ShaderHelper::loadShader(GLenum shaderType, std::string vertexShaderFilename){
+Shader ShaderHelper::loadShader(GLenum shaderType, std::string shaderFilename, std::string shaderName){
 #ifdef ANDROID
-    vertexShaderFilename = "shaders/" + vertexShaderFilename;
+    vertexShaderFilename = "shaders/" + shaderFilename;
 #endif
+    std::unique_ptr<FileContent> shaderSource = readTextFile(shaderFilename);
+    return createShader(shaderType, (char *)shaderSource->content, shaderName);
+}
+
+Shader ShaderHelper::createShader(GLenum type, char* sourceCode, std::string shaderName ){
     Shader shader;
-    shader.name = vertexShaderFilename;
-    shader.type = GL_VERTEX_SHADER;
-    std::unique_ptr<FileContent> shaderSource = readTextFile(vertexShaderFilename);
-    shader.ID = glCreateShader(shaderType);
+    shader.name = shaderName;
+    shader.type = type;
+    shader.ID = glCreateShader(shader.type);
     if(!shader.ID) return shader;
-    char *temp = (char *)shaderSource->content;
-    glShaderSource(shader.ID, 1, &temp, NULL);
+    glShaderSource(shader.ID, 1, &sourceCode, NULL);
     glCompileShader(shader.ID);
     if(!checkCompileStatus(shader.ID)){
-        logMessage("ERROR COMPILE SHADER! %d", shaderType);
+        logMessage("ERROR COMPILE SHADER! %d", shader.type);
     }
     return shader;
 }

@@ -3,6 +3,7 @@
 #include "OMUtils.h"
 #include "ShaderHelper.h"
 
+
 Materials::Materials(){
     loadPrograms();
     sp<ObjMaterial> wireMaterial = std::make_shared<ObjMaterial>("wired");
@@ -64,27 +65,21 @@ bool Materials::loadMaterial(const std::string &name){
         }else if(sscanf(line, "Ni %f", &v.x) == 1){
             mat->opticalDensity = v.x;
         }else if(sscanf(line, "map_Ka %s", str) == 1){
-            mat->mapAmbient = str;
-            loadTexture(str);
+            mat->mapAmbient = processMaterialMap(str);
         }else if(sscanf(line, "map_Kd %s", str) == 1){
-            mat->mapDiffuse = str;
-            loadTexture(str);
+            mat->mapDiffuse = processMaterialMap(str);
         }else if(sscanf(line, "map_Ks %s", str) == 1){
-            mat->mapSpecular = str;
-            loadTexture(str);
+            mat->mapSpecular = processMaterialMap(str);
         }else if(sscanf(line, "map_Tr %s", str) == 1){
-            mat->mapTranslucency = str;
-            loadTexture(str);
+            mat->mapTranslucency = processMaterialMap(str);
         }else if( sscanf( line, "map_disp %s", str ) == 1 ||
                  sscanf( line, "map_Disp %s", str ) == 1 ||
                  sscanf( line, "disp %s"    , str ) == 1 ){
-            mat->mapDisp = str;
-            loadTexture(str);
+            mat->mapDisp = processMaterialMap(str);
         }else if( sscanf( line, "map_bump %s", str ) == 1 ||
                  sscanf( line, "map_Bump %s", str ) == 1 ||
                  sscanf( line, "bump %s"	, str ) == 1 ){
-            mat->mapBump = str;
-            loadTexture(str);
+            mat->mapBump = processMaterialMap(str);
         }
         line = strtok( NULL, "\n" );
     }
@@ -148,5 +143,47 @@ void Materials::addProgram(sp<ShaderProgram> program){
     programs.insert(std::pair<string, sp<ShaderProgram>>(program->name, program));
 }
 
+bool Materials::isOMGFile(string fileName){
+    return fileName.substr( fileName.find_last_of(".") + 1) == "omg" ;
+}
 
+string Materials::processMaterialMap(string name){
+    if(isOMGFile(name)){
+        loadOMGFile(name);
+        return std::string();
+    }else{
+        loadTexture(name);
+        return name;
+    }
+}
+
+void Materials::loadOMGFile(string fileName){
+    up<FileContent> content = readTextFile(fileName);
+    if(!content){
+        logMessage("Unable to load OMG file %s", fileName.c_str());
+        return;
+    }
+    
+    char vertexToken [48] = {"GL_VERTEX_SHADER"};
+    char fragmentToken[48] = {"GL_FRAGMENT_SHADER"};
+    char *vertexShader = strstr((char*)content->content, vertexToken);
+    char *fragmentShader = strstr((char*)content->content, fragmentToken);
+    
+    if((vertexShader && fragmentShader) && (fragmentShader > vertexShader)){
+        vertexShader += strlen(vertexToken);
+        *fragmentShader = 0;
+        Shader vShader = ShaderHelper::createShader(GL_VERTEX_SHADER, vertexShader, "tempVertex");
+        
+        fragmentShader += strlen(fragmentToken);
+        
+        Shader fShader = ShaderHelper::createShader(GL_FRAGMENT_SHADER, fragmentShader, "tempFragment");
+        
+        sp<ShaderProgram> program =  ShaderHelper::createProgram(fileName, vShader, fShader);
+        
+        addProgram(program);
+    }else{
+        logMessage("Omg file bad format:( ");
+        return;
+    }
+}
 

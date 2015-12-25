@@ -34,4 +34,9 @@ private:
 // Helpers
     void loadPrograms();
     void addProgram(sp<ShaderProgram> program);
+    
+    
+    string processMaterialMap(string name);
+    bool isOMGFile(string fileName);
+    void loadOMGFile(string fileName);
 };

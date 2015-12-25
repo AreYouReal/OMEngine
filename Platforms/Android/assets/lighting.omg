@@ -1,0 +1,73 @@
+GL_VERTEX_SHADER
+
+#version 300 es
+uniform mat4 uModelViewM;
+uniform mat4 uProjectionM;
+uniform mat4 uNormalM;
+uniform vec3 uLightPos;
+
+layout(location = 0) in vec4 aPosition;
+layout(location = 1) in vec4 aNormal;
+layout(location = 2) in vec3 aTexCoord;
+layout(location = 3) in vec3 aTangent;
+
+out vec3 texCoord;
+out vec3 position;
+out vec3 normal;
+out vec3 lightDirectionTS;
+
+void main(){
+    vec3 tmp;
+    lowp vec3 normal    = vec3(uNormalM * aNormal);
+    lowp vec3 tangent   = vec3(uNormalM * vec4(aTangent, 1.0));
+    lowp vec3 binormal  = cross(normal, tangent);
+    
+    position = vec3(uModelViewM * aPosition);
+    gl_Position = uProjectionM * vec4(position, 1.0);
+    
+    lowp vec3 lightDirectionES = normalize(uLightPos - position);
+    
+    lightDirectionTS.x = dot(lightDirectionES, tangent);
+    lightDirectionTS.y = dot(lightDirectionES, binormal);
+    lightDirectionTS.z = dot(lightDirectionES, normal);
+    
+    tmp.x = dot(position, tangent);
+    tmp.y = dot(position, binormal);
+    tmp.z = dot(position, normal);
+    position = -normalize(tmp);
+    
+    texCoord = aTexCoord;
+}
+
+
+GL_FRAGMENT_SHADER
+
+#version 300 es
+precision mediump float;
+
+uniform lowp vec3       uAmbient;
+uniform lowp vec3       uDiffuse;
+uniform lowp vec3       uSpecular;
+uniform mediump float   uShininess;
+uniform lowp    float   uDissolve;
+
+uniform mediump sampler2D uSamplerDiffuse;
+uniform mediump sampler2D uSamplerBump;
+
+in lowp vec3 texCoord;
+in lowp vec3 position;
+in lowp vec3 normal;
+in lowp vec3 lightDirectionTS;
+
+out vec4 fragColor;
+
+void main(){
+    lowp vec3 normal = texture(uSamplerBump, texCoord.xy).rgb * 2.0 - 1.0;
+    lowp float intensity = max(dot(normal, lightDirectionTS), 0.0);
+    fragColor = vec4(0.1);
+    if(intensity > 0.0){
+        lowp vec3 reflectionVec = normalize(-reflect(lightDirectionTS, normal));
+        vec4 reflectiveComponent = vec4(uSpecular, 1.0) * pow(max(dot(reflectionVec, position), 0.0), uShininess);
+        fragColor += (vec4(uDiffuse, 1.0) * intensity) * texture(uSamplerDiffuse, texCoord.xy) + reflectiveComponent;
+    }
+}
