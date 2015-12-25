@@ -26,7 +26,4 @@ void main(){
         vec4 reflectiveComponent = vec4(uSpecular, 1.0) * pow(max(dot(reflectionVec, position), 0.0), uShininess);
         fragColor += (vec4(uDiffuse, 1.0) * intensity) * texture(uSamplerDiffuse, texCoord.xy) + reflectiveComponent;
     }
-    
-    
-
 }

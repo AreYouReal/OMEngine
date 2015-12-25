@@ -28,7 +28,9 @@ Scene::~Scene(){
 bool Scene::init(){
 //    createBallsScene();
     
-        createTestScene();
+//        createTestScene();
+    
+    createLightTestScene();
 
     return true;
 }
@@ -178,4 +180,27 @@ void Scene::createBallsScene(){
     addObjOnScene(std::move(camera));
     
     
+}
+
+void Scene::addMeshRendererOnScene(string objName, string meshName){
+    up<GameObject> sphere = std::unique_ptr<GameObject>(new GameObject(meshName));
+    up<MeshRendererComponent> mrc = up<MeshRendererComponent>(new MeshRendererComponent(sphere.get(), mObjRess[objName]->getMesh(sphere->name)));
+    sphere->addComponent(ComponentEnum::MESH_RENDERER, std::move(mrc));
+    
+    addObjOnScene(std::move(sphere));
+}
+
+void Scene::createLightTestScene(){
+    sp<Obj> object = Obj::load("Scene.obj");
+    object->build();
+    object->clear();
+    
+    mObjRess.insert(std::pair<string, sp<Obj>>("lightScene", object));
+    
+    std::vector<sp<ObjMesh>> meshes = object->getAllMeshes();
+    
+    for(const sp<ObjMesh> mesh : object->getAllMeshes()){
+            addMeshRendererOnScene("lightScene", mesh->getName());
+    }
+
 }

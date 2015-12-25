@@ -41,6 +41,12 @@ public:
     void createBallsScene();
     
     
+    // Light test
+    
+    void createLightTestScene();
+    
+    void addMeshRendererOnScene(string objName, string meshName);
+    
 private:
 
 // Fields
