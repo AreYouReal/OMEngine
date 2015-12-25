@@ -3,7 +3,7 @@ import os, sys
 android_mk_prefix = "LOCAL_PATH			:= $(call my-dir)\nSRC_PATH			:= $(LOCAL_PATH)/../../..\n\ninclude $(CLEAR_VARS)\n\nLOCAL_MODULE    := OME\nLOCAL_CFLAGS    += -std=c++11"
 android_mk_postfix = "LOCAL_LDLIBS    := -llog -landroid -lEGL -lGLESv3\n\nLOCAL_STATIC_LIBRARIES := android_native_app_glue\n\ninclude $(BUILD_SHARED_LIBRARY)\n\n$(call import-module,android/native_app_glue)"
 
-android_mk_source_prefix = "LOCAL_SRC_FILES := $(LOCAL_PATH)/esUtil_Android.cpp \\\n"
+android_mk_source_prefix = "LOCAL_SRC_FILES := $(LOCAL_PATH)/omUtil_Android.cpp \\\n"
 android_mk_include_prefix = "LOCAL_C_INCLUDES	:= $(SRC_PATH) \\\n $(COMMON_INC_PATH) \\\n"
 
 android_src_local_path = "$(SRC_PATH)"

@@ -59,7 +59,7 @@ sp<ShaderProgram> ShaderHelper::createProgram(const string programName, const Sh
 #pragma mark Helpers
 Shader ShaderHelper::loadShader(GLenum shaderType, std::string shaderFilename, std::string shaderName){
 #ifdef ANDROID
-    vertexShaderFilename = "shaders/" + shaderFilename;
+    shaderFilename = "shaders/" + shaderFilename;
 #endif
     std::unique_ptr<FileContent> shaderSource = readTextFile(shaderFilename);
     return createShader(shaderType, (char *)shaderSource->content, shaderName);
