@@ -732,7 +732,7 @@
 		F30E41D71C2D548E00A88527 /* floor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = floor.png; path = OMEngine/Platforms/Android/assets/floor.png; sourceTree = "<group>"; };
 		F30E41D81C2D548E00A88527 /* sphere_n.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sphere_n.png; path = OMEngine/Platforms/Android/assets/sphere_n.png; sourceTree = "<group>"; };
 		F30E41D91C2D548E00A88527 /* sphere.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sphere.png; path = OMEngine/Platforms/Android/assets/sphere.png; sourceTree = "<group>"; };
-		F30E41DE1C2D5BCE00A88527 /* lighting.omg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = lighting.omg; path = OMEngine/Platforms/Android/assets/lighting.omg; sourceTree = "<group>"; };
+		F30E41DE1C2D5BCE00A88527 /* lighting.omg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = lighting.omg; path = OMEngine/Platforms/Android/assets/lighting.omg; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
 		F328C4FC1BF4997F0037AC6D /* font_fragment.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = font_fragment.glsl; path = ../Android/assets/shaders/font_fragment.glsl; sourceTree = SOURCE_ROOT; };
 		F328C4FD1BF4997F0037AC6D /* font_vertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = font_vertex.glsl; path = ../Android/assets/shaders/font_vertex.glsl; sourceTree = SOURCE_ROOT; };
 		F3392F5F1C117B4E005E850E /* Sound.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sound.cpp; sourceTree = "<group>"; };
