@@ -8,11 +8,11 @@ struct Light{
 
 uniform mat4 uModelViewM;
 uniform mat4 uProjectionM;
-uniform mat4 uNormalM;
+uniform lowp mat3 uNormalM;
 uniform Light uLight;
 
 layout(location = 0) in vec4 aPosition;
-layout(location = 1) in vec4 aNormal;
+layout(location = 1) in vec3 aNormal;
 layout(location = 2) in vec3 aTexCoord;
 layout(location = 3) in vec3 aTangent;
 
@@ -21,10 +21,10 @@ out vec3 position;
 out vec3 lightDirectionTS;
 out vec4 lightColor;
 
-void main(){
+void firstOption(){
     vec3 tmp;
     lowp vec3 normal    = vec3(uNormalM * aNormal);
-    lowp vec3 tangent   = vec3(uNormalM * vec4(aTangent, 1.0));
+    lowp vec3 tangent   = vec3(uNormalM * aTangent);
     lowp vec3 binormal  = cross(normal, tangent);
     
     position = vec3(uModelViewM * aPosition);
@@ -45,17 +45,44 @@ void main(){
     lightColor = uLight.color;
 }
 
+void secondOption(){
+    texCoord = aTexCoord;
+
+    lowp mat3 tbn;
+
+    tbn[2] = normalize(uNormalM * aNormal);
+    tbn[0] = normalize(uNormalM * aTangent);
+    tbn[1] = cross(tbn[2], tbn[0]);
+    
+    position = vec3(uModelViewM * aPosition);
+    
+    gl_Position = uProjectionM * vec4(position, 1.0);
+    
+    position = -normalize(position * tbn);
+    
+    lightDirectionTS = tbn[0];
+    lightColor = uLight.color;
+}
+
+
+void main(){
+    firstOption();
+}
+
 
 GL_FRAGMENT_SHADER
 
 #version 300 es
 precision mediump float;
 
-uniform lowp vec4       uAmbient;
-uniform lowp vec4       uDiffuse;
-uniform lowp vec4       uSpecular;
-uniform mediump float   uShininess;
-uniform lowp    float   uDissolve;
+struct Material{
+    lowp vec4       ambient;
+    lowp vec4       diffuse;
+    lowp vec4       specular;
+    mediump float   shininess;
+};
+
+uniform Material uMaterial;
 
 uniform mediump sampler2D uSamplerDiffuse;
 uniform mediump sampler2D uSamplerBump;
@@ -67,21 +94,20 @@ in lowp vec4 lightColor;
 
 out vec4 fragColor;
 
-
 vec4 directionalLight(in vec4 color, in vec3 direction){
     vec4 finalColor;
     lowp vec3 normal = texture(uSamplerBump, texCoord.xy).rgb * 2.0 - 1.0;
     lowp float ndotl = max( dot( normal, direction), 0.0 );
     if(ndotl > 0.0){
         lowp float ndoth = max(dot(normal, normalize(direction + position)), 0.0);
-        finalColor += uDiffuse * color * ndotl;
-        finalColor += uSpecular * color * pow(ndoth, uShininess);
+        finalColor += uMaterial.diffuse * color * ndotl;
+        finalColor += uMaterial.specular * color * pow(ndoth, uMaterial.shininess);
     }
     return finalColor;
 }
 
 void main(){
-    lowp vec4 finalColor = uAmbient;
+    lowp vec4 finalColor = uMaterial.ambient;
     finalColor += directionalLight(lightColor, lightDirectionTS);
     fragColor = texture(uSamplerDiffuse, texCoord.xy) * finalColor;
 }

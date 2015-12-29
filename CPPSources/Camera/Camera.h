@@ -25,7 +25,7 @@ public:
     const m4d modelViewMatrix() const;
     const m4d& viewMatrix() const;
     const m4d& projectionMatrix() const;
-    const m4d& normalMatrix() const;
+    const m3d& normalMatrix() const;
     const m4d& orthoMatrix() const;
     
     void setWidthAndHeight(float width, float height);
@@ -55,7 +55,7 @@ private:
     m4d mViewMatrix;
     m4d mProjectionMatrix;
     m4d mOrthoMatrix;
-    m4d mNormalMatrix;
+    m3d mNormalMatrix;
     v4d frustum[6];
     int viewportMatrix[4];
     

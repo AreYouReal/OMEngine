@@ -31,7 +31,7 @@ void MeshRendererComponent::update(){
     // O_o
     m4d ATTRIBUTE_ALIGNED16(modelM);
     if(go->pBody){
-        go->pBody->getWorldTransform().getOpenGLMatrix(modelM.pointer());
+        go->pBody->getWorldTransform().getOpenGLMatrix((float *)modelM.pointer());
         modelM = m4d::transpose(modelM);
         //        logMessage("%s %f, %f, %f\n", mObjMeshes[0]->getName().c_str(), pBody->getWorldTransform().m_origin[0], pBody->getWorldTransform().m_origin[1], pBody->getWorldTransform().m_origin[2]);
     }else {

@@ -2,9 +2,25 @@
 
 #include "v3d.h"
 
+struct m4d;
+
+struct m3d{
+public:
+    m3d();
+    m3d(const m4d& m4);
+    m3d* operator=(const m4d& m4);
+    v3d m[3];
+    
+    const float *pointer() const;
+};
+
+
+
+
 struct m4d{
 public:
     m4d();
+    m4d(const m3d& m3);
     m4d(const m4d& m4);
     m4d(const float arr[16]);
     m4d(const float m00, const float m01, const float m02, const float m03,
@@ -13,7 +29,7 @@ public:
         const float m30, const float m31, const float m32, const float m33);
     
     void operator=(const m4d& m4);
-    float* pointer();
+    const float* pointer() const;
     
     
     v4d m[4];

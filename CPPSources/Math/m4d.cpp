@@ -2,7 +2,13 @@
 #include "v3d.h"
 
 #pragma mark Constructors
+m3d::m3d(){ m[0] = v3d(1.0f, 0.0f, 0.0f); m[1] = v3d(0.0f, 1.0f, 0.0f); m[2] = v3d(0.0f, 0.0f, 1.0f); }
+m3d::m3d(const m4d& m4){ for(char i = 0; i < 3; ++i){ m[i] = v3d(m4.m[i].x, m4.m[i].y, m4.m[i].z); } }
+m3d* m3d::operator=(const m4d &m4){ for(char i = 0; i < 3; ++i){ m[i] = v3d(m4.m[i].x, m4.m[i].y, m4.m[i].z); } return this; }
+const float* m3d::pointer() const { return &(m[0].x);}
+
 m4d::m4d():m4d(1.0f, .0f, .0f, .0f, .0f, 1.0f, .0f, .0f, .0f, .0f, 1.0f, .0f, .0f, .0f, .0f, 1.0f){}
+m4d::m4d(const m3d& m3){ m[0] = v4d(m3.m[0], 1.0f); m[1] = v4d(m3.m[1], 1.0f); m[2] = v4d(m3.m[2], 1.0f); m[3] = v4d(.0f, .0f, .0f, 1.0f); }
 m4d::m4d(const m4d& m4){ for(unsigned char i = 0; i < 4; i++){ m[i] = m4.m[i]; } }
 m4d::m4d(const float arr[16]) : m4d(arr[0], arr[1], arr[2], arr[3], arr[4], arr[5], arr[6], arr[7], arr[8],arr[9], arr[10], arr[11], arr[12], arr[13], arr[14], arr[15]){}
 m4d::m4d(const float m00, const float m01, const float m02, const float m03,
@@ -83,7 +89,7 @@ v4d operator*(const v4d &v, const m4d &m){
     return operator*(m, v);
 }
 
-float* m4d::pointer(){
+const float* m4d::pointer() const{
     return &(m[0].x);
 }
 

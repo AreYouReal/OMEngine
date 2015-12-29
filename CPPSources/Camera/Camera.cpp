@@ -118,7 +118,7 @@ const m4d& Camera::projectionMatrix() const{
     return mProjectionMatrix;
 }
 
-const m4d& Camera::normalMatrix() const{
+const m3d& Camera::normalMatrix() const{
     return mNormalMatrix;
 }
 

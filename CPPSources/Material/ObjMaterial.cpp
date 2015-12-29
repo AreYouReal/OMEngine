@@ -92,17 +92,17 @@ void ObjMaterial::setUniforms(){
             glUniformMatrix4fv(program->uniformArray[i].location, 1, GL_TRUE, matrix.pointer());
         }else if(!strcmp(program->uniformArray[i].name.c_str(), "uNormalM")){
             matrix = Camera::instance()->normalMatrix();
-            glUniformMatrix4fv(program->uniformArray[i].location, 1, GL_TRUE, matrix.pointer());
+            glUniformMatrix3fv(program->uniformArray[i].location, 1, GL_TRUE, matrix.pointer());
         }else if(!strcmp(program->uniformArray[i].name.c_str(), "uDissolve")){
             glUniform1f(program->uniformArray[i].location, dissolve);
-        }else if(!strcmp(program->uniformArray[i].name.c_str(), "uAmbient")){
-            glUniform3fv(program->uniformArray[i].location, 1, &ambient.x);
-        }else if(!strcmp(program->uniformArray[i].name.c_str(), "uDiffuse")){
-            glUniform3fv(program->uniformArray[i].location, 1, &diffuse.x);
-        }else if(!strcmp(program->uniformArray[i].name.c_str(), "uSpecular")){
-            glUniform3fv(program->uniformArray[i].location, 1, &specular.x);
-        }else if(!strcmp(program->uniformArray[i].name.c_str(), "uShininess")){
-            glUniform1f(program->uniformArray[i].location, specularExponent);
+        }else if(!strcmp(program->uniformArray[i].name.c_str(), "uMaterial.ambient")){
+            glUniform4fv(program->uniformArray[i].location, 1, &ambient.x);
+        }else if(!strcmp(program->uniformArray[i].name.c_str(), "uMaterial.diffuse")){
+            glUniform4fv(program->uniformArray[i].location, 1, &diffuse.x);
+        }else if(!strcmp(program->uniformArray[i].name.c_str(), "uMaterial.specular")){
+            glUniform4fv(program->uniformArray[i].location, 1, &specular.x);
+        }else if(!strcmp(program->uniformArray[i].name.c_str(), "uMateril.shininess")){
+            glUniform1f(program->uniformArray[i].location, specularExponent * 0.128f);
         }else if(!strcmp(program->uniformArray[i].name.c_str(), "uLight.position")){
             v4d lightInEyeSpace = Illuminator::instance()->getLightSource()->getPositionInEyeSpace();
             glUniform3fv(program->uniformArray[i].location, 1, &lightInEyeSpace.x);
