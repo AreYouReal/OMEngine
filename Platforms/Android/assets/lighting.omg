@@ -60,13 +60,13 @@ void secondOption(){
     
     position = -normalize(position * tbn);
     
-    lightDirectionTS = tbn[0];
+    lightDirectionTS = uLight.position;
     lightColor = uLight.color;
 }
 
 
 void main(){
-    firstOption();
+    secondOption();
 }
 
 
@@ -109,5 +109,5 @@ vec4 directionalLight(in vec4 color, in vec3 direction){
 void main(){
     lowp vec4 finalColor = uMaterial.ambient;
     finalColor += directionalLight(lightColor, lightDirectionTS);
-    fragColor = texture(uSamplerDiffuse, texCoord.xy) * finalColor;
+    fragColor = texture(uSamplerDiffuse, texCoord.xy) * vec4(lightDirectionTS, 1.0);
 }

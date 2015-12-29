@@ -45,9 +45,9 @@ void main(){
     float intensity = max(dot(normal, L), 0.0);
     if(intensity > 0.0){
         diffuseColor = uMaterial.diffuse * intensity;
-        specularColor = uMaterial.specular * pow(max(dot(R,E), 0.0), uMaterial.shininess );
+//        specularColor = uMaterial.specular * pow(max(dot(R,E), 0.0), uMaterial.shininess );
     }else{
-        diffuseColor = vec4(0.0f, 0.0f, 0.0f, 1.0f);
+        diffuseColor = vec4(0.0f, 0.0f, .0f, 1.0f);
         specularColor = vec4(0.0f, 0.0f, .0f, 1.0f);
     }
 }

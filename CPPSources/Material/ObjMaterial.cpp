@@ -77,7 +77,7 @@ void ObjMaterial::loadTextures(){
     }
 }
 
-v4d lightColor(1.0, 1.0, 1.0, 1.0);
+
 
 void ObjMaterial::setUniforms(){
     m4d matrix;
@@ -101,12 +101,14 @@ void ObjMaterial::setUniforms(){
             glUniform4fv(program->uniformArray[i].location, 1, &diffuse.x);
         }else if(!strcmp(program->uniformArray[i].name.c_str(), "uMaterial.specular")){
             glUniform4fv(program->uniformArray[i].location, 1, &specular.x);
-        }else if(!strcmp(program->uniformArray[i].name.c_str(), "uMateril.shininess")){
+        }else if(!strcmp(program->uniformArray[i].name.c_str(), "uMaterial.shininess")){
             glUniform1f(program->uniformArray[i].location, specularExponent * 0.128f);
         }else if(!strcmp(program->uniformArray[i].name.c_str(), "uLight.position")){
-            v4d lightInEyeSpace = Illuminator::instance()->getLightSource()->getPositionInEyeSpace();
+            sp<LightSource> light =Illuminator::instance()->getLightSource();
+            v4d lightInEyeSpace = light->getPositionInEyeSpace();
+            v4d color = light->getColor();
             glUniform3fv(program->uniformArray[i].location, 1, &lightInEyeSpace.x);
-            glUniform4fv(program->getUniformLocation("uLight.color"), 1, &lightColor.x);
+            glUniform4fv(program->getUniformLocation("uLight.color"), 1, &lightInEyeSpace.x);
         }else if(!strcmp(program->uniformArray[i].name.c_str(), "uSamplerBump")){
             glUniform1i(program->uniformArray[i].location, 4);
         }else if(!strcmp(program->uniformArray[i].name.c_str(), "uColor")){
