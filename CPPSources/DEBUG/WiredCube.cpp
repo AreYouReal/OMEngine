@@ -32,7 +32,7 @@ void WiredCube::buildVBO(){
     glInfo.size = vertices.size() * sizeof(v3d);
     glGenBuffers(1, &glInfo.vbo);
     glBindBuffer(GL_ARRAY_BUFFER, glInfo.vbo);
-    glBufferData(GL_ARRAY_BUFFER, GL_FLOAT, &vertices[0], GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, glInfo.size, &vertices[0], GL_STATIC_DRAW);
 }
 
 void WiredCube::initMaterial(){

@@ -44,15 +44,18 @@ void Scene::update(float deltaTime){
 }
 
 void Scene::draw(){
-    for(const auto& go : mObjects){
-        IComponent *mrc = go->getComponent(ComponentEnum::MESH_RENDERER);
-        if(mrc){
-            if(!mrc->go->name.compare("player")){
-                Camera::instance()->setFront(mrc->go->getPosition());
-            }
-            mrc->update();
-        }
-    }
+//    for(const auto& go : mObjects){
+//        IComponent *mrc = go->getComponent(ComponentEnum::MESH_RENDERER);
+//        if(mrc){
+//            if(!mrc->go->name.compare("player")){
+//                Camera::instance()->setFront(mrc->go->getPosition());
+//            }
+//            mrc->update();
+//        }
+//    }
+    
+    Illuminator::instance()->getLightSource()->draw();
+
 }
 
 void Scene::setRenderObjectState(RenderObjectType newState){

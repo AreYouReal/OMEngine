@@ -255,6 +255,8 @@
 		F39FA5C41C0DE15400CC0BB4 /* vorbisfile.c in Sources */ = {isa = PBXBuildFile; fileRef = F39FA5AB1C0DE15400CC0BB4 /* vorbisfile.c */; };
 		F39FA5C51C0DE15400CC0BB4 /* window.c in Sources */ = {isa = PBXBuildFile; fileRef = F39FA5AD1C0DE15400CC0BB4 /* window.c */; };
 		F39FA5CA1C0DE6C200CC0BB4 /* lounge.ogg in Resources */ = {isa = PBXBuildFile; fileRef = F39FA5C91C0DE6C200CC0BB4 /* lounge.ogg */; };
+		F3A263961C33BD360021B3B6 /* light_point_fragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F3A263941C33BD360021B3B6 /* light_point_fragment.glsl */; };
+		F3A263971C33BD360021B3B6 /* light_point_vertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F3A263951C33BD360021B3B6 /* light_point_vertex.glsl */; };
 		F3B0F6B71BF0AD9F0044A442 /* stb_truetype.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3B0F6B51BF0AD9F0044A442 /* stb_truetype.cpp */; };
 		F3B0F6BB1BF0ADDC0044A442 /* Font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3B0F6B91BF0ADDC0044A442 /* Font.cpp */; };
 		F3B0F6BF1BF0B7410044A442 /* FFF_Tusj.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3B0F6BE1BF0B5830044A442 /* FFF_Tusj.ttf */; };
@@ -821,6 +823,8 @@
 		F39FA5AD1C0DE15400CC0BB4 /* window.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = window.c; sourceTree = "<group>"; };
 		F39FA5AE1C0DE15400CC0BB4 /* window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = window.h; sourceTree = "<group>"; };
 		F39FA5C91C0DE6C200CC0BB4 /* lounge.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; name = lounge.ogg; path = OMEngine/Platforms/Android/assets/lounge.ogg; sourceTree = "<group>"; };
+		F3A263941C33BD360021B3B6 /* light_point_fragment.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = light_point_fragment.glsl; sourceTree = "<group>"; };
+		F3A263951C33BD360021B3B6 /* light_point_vertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = light_point_vertex.glsl; sourceTree = "<group>"; };
 		F3B0F6B51BF0AD9F0044A442 /* stb_truetype.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = stb_truetype.cpp; path = ttf/stb_truetype.cpp; sourceTree = "<group>"; };
 		F3B0F6B61BF0AD9F0044A442 /* stb_truetype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = stb_truetype.h; path = ttf/stb_truetype.h; sourceTree = "<group>"; };
 		F3B0F6B91BF0ADDC0044A442 /* Font.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Font.cpp; path = ../../CPPSources/Txt/Font.cpp; sourceTree = SOURCE_ROOT; };
@@ -1711,10 +1715,12 @@
 		F368E8C41BA6AE5A00F322AF /* shaders */ = {
 			isa = PBXGroup;
 			children = (
+				F3A263941C33BD360021B3B6 /* light_point_fragment.glsl */,
+				F3A263951C33BD360021B3B6 /* light_point_vertex.glsl */,
+				9435525D1BEF091F00FC4ADA /* wired_vertex.glsl */,
 				F328C4FC1BF4997F0037AC6D /* font_fragment.glsl */,
 				F328C4FD1BF4997F0037AC6D /* font_vertex.glsl */,
 				9435525C1BEF091F00FC4ADA /* wired_fragment.glsl */,
-				9435525D1BEF091F00FC4ADA /* wired_vertex.glsl */,
 				F38A22E61BAAA40500FADEC0 /* fragmentPerVertex.glsl */,
 				94EF0C5D1BA70E5400EBF5EE /* pos_norm_vertex.glsl */,
 				94EF0C5F1BA70F6700EBF5EE /* norm_as_color_fragment.glsl */,
@@ -1961,6 +1967,7 @@
 				9472227A1B9AD466008D601B /* leaf.png in Resources */,
 				F3BCACBB1BFF26FE002003B7 /* Main_iPhone.storyboard in Resources */,
 				947FA31F1BA4854A00695A4E /* ram.obj in Resources */,
+				F3A263971C33BD360021B3B6 /* light_point_vertex.glsl in Resources */,
 				F30E41DA1C2D548E00A88527 /* floor_n.png in Resources */,
 				947FA31D1BA4854A00695A4E /* char_ram_col.png in Resources */,
 				9435525E1BEF091F00FC4ADA /* wired_fragment.glsl in Resources */,
@@ -1985,6 +1992,7 @@
 				F38A22E31BAAA15400FADEC0 /* vertexPerVertex.glsl in Resources */,
 				F30E41DB1C2D548E00A88527 /* floor.png in Resources */,
 				947FA31E1BA4854A00695A4E /* ram.mtl in Resources */,
+				F3A263961C33BD360021B3B6 /* light_point_fragment.glsl in Resources */,
 				94EF0C5E1BA70E5400EBF5EE /* pos_norm_vertex.glsl in Resources */,
 				947222771B9AD466008D601B /* background.png in Resources */,
 				F39FA5011C0DD9B500CC0BB4 /* test.raw in Resources */,

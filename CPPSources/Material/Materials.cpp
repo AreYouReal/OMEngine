@@ -130,13 +130,14 @@ sp<ShaderProgram> Materials::getProgram(const string &name){
 void Materials::loadPrograms(){
     logMessage("ShaderLibrary constructor!\n");
     
-    addProgram(ShaderHelper::createProgram("norm_as_color",     "pos_norm_vertex.glsl",     "norm_as_color_fragment.glsl"   ));
-    addProgram(ShaderHelper::createProgram("default_gray",      "default_gray_vertex.glsl", "default_gray_fragment.glsl"    ));
-    addProgram(ShaderHelper::createProgram("defaultPerVertex",  "vertexPerVertex.glsl",     "fragmentPerVertex.glsl"        ));
-    addProgram(ShaderHelper::createProgram("defaultPerPixel",   "vertexPerPixel.glsl",      "fragmentPerPixel.glsl"         ));
-    addProgram(ShaderHelper::createProgram("bump",              "vertexBump.glsl",          "fragmentBump.glsl"             ));
-    addProgram(ShaderHelper::createProgram("wired",             "wired_vertex.glsl",        "wired_fragment.glsl"           ));
-    addProgram(ShaderHelper::createProgram("font",              "font_vertex.glsl",         "font_fragment.glsl"            ));
+    addProgram(ShaderHelper::createProgram("norm_as_color",   "pos_norm_vertex.glsl",     "norm_as_color_fragment.glsl"   ));
+    addProgram(ShaderHelper::createProgram("default_gray",    "default_gray_vertex.glsl", "default_gray_fragment.glsl"    ));
+    addProgram(ShaderHelper::createProgram("defaultPerVertex","vertexPerVertex.glsl",     "fragmentPerVertex.glsl"        ));
+    addProgram(ShaderHelper::createProgram("defaultPerPixel", "vertexPerPixel.glsl",      "fragmentPerPixel.glsl"         ));
+    addProgram(ShaderHelper::createProgram("bump",            "vertexBump.glsl",          "fragmentBump.glsl"             ));
+    addProgram(ShaderHelper::createProgram("wired",           "wired_vertex.glsl",        "wired_fragment.glsl"           ));
+    addProgram(ShaderHelper::createProgram("lightPoint",      "light_point_vertex.glsl",  "light_point_fragment.glsl"     ));
+    addProgram(ShaderHelper::createProgram("font",            "font_vertex.glsl",         "font_fragment.glsl"            ));
 }
 
 void Materials::addProgram(sp<ShaderProgram> program){

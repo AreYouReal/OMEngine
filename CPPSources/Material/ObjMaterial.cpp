@@ -92,7 +92,7 @@ void ObjMaterial::setUniforms(){
             glUniformMatrix4fv(program->uniformArray[i].location, 1, GL_TRUE, matrix.pointer());
         }else if(!strcmp(program->uniformArray[i].name.c_str(), "uNormalM")){
             matrix = Camera::instance()->normalMatrix();
-            glUniformMatrix3fv(program->uniformArray[i].location, 1, GL_TRUE, matrix.pointer());
+            glUniformMatrix4fv(program->uniformArray[i].location, 1, GL_TRUE, matrix.pointer());
         }else if(!strcmp(program->uniformArray[i].name.c_str(), "uDissolve")){
             glUniform1f(program->uniformArray[i].location, dissolve);
         }else if(!strcmp(program->uniformArray[i].name.c_str(), "uMaterial.ambient")){

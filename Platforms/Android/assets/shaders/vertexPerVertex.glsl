@@ -15,7 +15,7 @@ struct Material{
 
 uniform mediump mat4    uModelViewM;
 uniform mediump mat4    uProjectionM;
-uniform mediump mat3    uNormalM;
+uniform mediump mat4    uNormalM;
 uniform         Light   uLight;
 
 uniform Material uMaterial;
@@ -31,7 +31,7 @@ out lowp    vec4 diffuseColor;
 out lowp    vec4 specularColor;
 
 void main(){
-    lowp vec3 normal = normalize(uNormalM * aNormal);
+    lowp vec3 normal = normalize(uNormalM * vec4(aNormal, 1.0)).xyz;
     mediump vec3 position = (uModelViewM * aPosition).xyz;
     lowp vec3 L = normalize(uLight.position - position);
     
@@ -45,7 +45,7 @@ void main(){
     float intensity = max(dot(normal, L), 0.0);
     if(intensity > 0.0){
         diffuseColor = uMaterial.diffuse * intensity;
-//        specularColor = uMaterial.specular * pow(max(dot(R,E), 0.0), uMaterial.shininess );
+        specularColor = uMaterial.specular * pow(max(dot(R,E), 0.0), uMaterial.shininess );
     }else{
         diffuseColor = vec4(0.0f, 0.0f, .0f, 1.0f);
         specularColor = vec4(0.0f, 0.0f, .0f, 1.0f);
