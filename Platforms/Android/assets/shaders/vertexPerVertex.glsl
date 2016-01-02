@@ -31,7 +31,7 @@ out lowp    vec4 diffuseColor;
 out lowp    vec4 specularColor;
 
 void main(){
-    lowp vec3 normal = normalize(uNormalM * vec4(aNormal, 1.0)).xyz;
+    lowp vec3 normal = normalize( vec3(uNormalM * vec4(aNormal, 1.0)) );
     mediump vec3 position = (uModelViewM * aPosition).xyz;
     lowp vec3 L = normalize(uLight.position - position);
 

@@ -102,7 +102,7 @@ void ObjMaterial::setUniforms(){
         }else if(!strcmp(program->uniformArray[i].name.c_str(), "uMaterial.specular")){
             glUniform4fv(program->uniformArray[i].location, 1, &specular.x);
         }else if(!strcmp(program->uniformArray[i].name.c_str(), "uMaterial.shininess")){
-            glUniform1f(program->uniformArray[i].location, specularExponent * 0.128f);
+            glUniform1f(program->uniformArray[i].location, specularExponent );
         }else if(!strcmp(program->uniformArray[i].name.c_str(), "uLight.position")){
             sp<LightSource> light =Illuminator::instance()->getLightSource();
             v4d lightPosition = light->getPosition();
