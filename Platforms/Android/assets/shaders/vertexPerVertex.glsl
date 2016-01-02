@@ -41,14 +41,13 @@ void main(){
     if(intensity > 0.0){
         mediump vec3 E = normalize(-position);
         mediump vec3 R = normalize(-reflect(L, normal));
-        
         diffuseColor = uMaterial.diffuse * uLight.color * intensity;
         specularColor = uMaterial.specular * uLight.color * pow(max(dot(R,E), 0.0), uMaterial.shininess );
     }else{
         diffuseColor = vec4(0.0f, 0.0f, .0f, 1.0);
         specularColor = vec4(0.0f, 0.0f, .0f, 1.0);
     }
-    diffuseColor.a = 1.0;
+    
     texCoord = aTexCoord.xy;
     ambientColor = uMaterial.ambient;
 }

@@ -14,7 +14,7 @@ static v3d cubeVertices[] = {
 };
 
 
-LightSource::LightSource() : mTransform(v3d(0.0f, 0.0f, 9.0f)), mColor(1.0f, 1.0f, 1.0f, 1.0f){
+LightSource::LightSource() : mTransform(v3d(0.0f, 0.0f, 9.0f)), mColor(0.0f, 1.0f, 1.0f, 1.0f){
     logMessage("LightSource constructor!\n");
 }
 
@@ -30,6 +30,5 @@ LightSource::~LightSource(){
 void LightSource::draw() const{
     Camera::instance()->pushMMatrix(mTransform.transformMatrix());
     wc.draw();
-    Camera::instance()->popMMatrix();   
-    
+    Camera::instance()->popMMatrix();
 }
