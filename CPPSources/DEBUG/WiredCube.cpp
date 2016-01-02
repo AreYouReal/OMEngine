@@ -39,14 +39,14 @@ void WiredCube::initMaterial(){
     material = Materials::instance()->getMaterial("wired");
 }
 
-void WiredCube::setAttributes(){
+void WiredCube::setAttributes() const{
     glBindBuffer(GL_ARRAY_BUFFER, glInfo.vbo);
     unsigned char size = sizeof(v3d) / sizeof(float);
     glEnableVertexAttribArray(0);
     glVertexAttribPointer(0, size, GL_FLOAT, GL_FALSE, glInfo.stride, 0);
 }
 
-void WiredCube::draw(){
+void WiredCube::draw() const{
     if(glInfo.vao) glBindVertexArray(glInfo.vao); else setAttributes();
     material->use();
     glDrawArrays(GL_LINE_STRIP, 0, vertices.size());

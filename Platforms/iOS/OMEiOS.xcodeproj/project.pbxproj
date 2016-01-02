@@ -720,7 +720,6 @@
 		94D5DA621BE2018100DFB8BC /* btWorldImporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = btWorldImporter.h; sourceTree = "<group>"; };
 		94D85AC41BB65477008ED8CF /* Transform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Transform.cpp; sourceTree = "<group>"; };
 		94D85AC51BB65477008ED8CF /* Transform.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Transform.hpp; sourceTree = "<group>"; };
-		94D9DA1A1BD0D76D0072AED1 /* IRenderable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IRenderable.h; sourceTree = "<group>"; };
 		94DCA2F31BE13C6100435661 /* Scene.bullet */ = {isa = PBXFileReference; lastKnownFileType = file; name = Scene.bullet; path = ../Android/assets/Scene.bullet; sourceTree = SOURCE_ROOT; };
 		94DCA2F41BE13C6100435661 /* Scene.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Scene.mtl; path = ../Android/assets/Scene.mtl; sourceTree = SOURCE_ROOT; };
 		94DCA2F51BE13C6100435661 /* Scene.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Scene.obj; path = ../Android/assets/Scene.obj; sourceTree = SOURCE_ROOT; };
@@ -1868,7 +1867,6 @@
 			children = (
 				F3C52B2A1BBD079F009F3604 /* Scene.cpp */,
 				F3C52B2B1BBD079F009F3604 /* Scene.hpp */,
-				94D9DA1A1BD0D76D0072AED1 /* IRenderable.h */,
 			);
 			name = Scene;
 			path = ../../CPPSources/Scene;

@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Shortcuts.h"
-#include "IRenderable.h"
 #include "Singleton.hpp"
 #include "GameObject.hpp"
 

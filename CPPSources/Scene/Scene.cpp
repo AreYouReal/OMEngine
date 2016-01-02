@@ -54,7 +54,7 @@ void Scene::draw(){
         }
     }
     
-//    Illuminator::instance()->getLightSource()->draw();
+    Illuminator::instance()->getLightSource()->draw();
 
 }
 

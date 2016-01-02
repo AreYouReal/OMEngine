@@ -6,13 +6,13 @@
 class WiredCube{
 public:
     WiredCube();
-    void draw();
+    void draw() const;
     
 private:
   
     void buildVBO();
     void initMaterial();
-    void setAttributes();
+    void setAttributes() const;
     
     static std::vector<v3d> vertices;
     

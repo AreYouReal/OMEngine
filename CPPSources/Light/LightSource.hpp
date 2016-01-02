@@ -9,6 +9,8 @@
 
 #include "ObjMaterial.h"
 
+#include "WiredCube.hpp"
+
 enum LightType{ POINT, DIRECTION };
 
 class LightSource{
@@ -20,23 +22,24 @@ public:
     ~LightSource();
     
     const v4d& getColor() const { return mColor; }
-    const v4d& getPosition() const{ return mPosition; }
-    const v4d getPositionInEyeSpace() const{ return (mPosition * Camera::instance()->viewMatrix()); }
+    const v4d& getPosition() const{ return mTransform.mPosition; }
+    const v4d getPositionInEyeSpace() const{ return (mTransform.mPosition * Camera::instance()->viewMatrix()); }
     const LightType type() const { return lightType; }
     
     
     void draw() const;
     
 private:
-    v4d mPosition;
     LightType lightType;
     v4d     mColor;
     
+    Transform mTransform;
     
     unsigned int vbo;
     unsigned int vao;
     sp<ObjMaterial> mMaterial;
     
+    WiredCube wc;
     
     void setAttributes() const;
 };

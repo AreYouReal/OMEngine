@@ -34,20 +34,21 @@ void main(){
     lowp vec3 normal = normalize(uNormalM * vec4(aNormal, 1.0)).xyz;
     mediump vec3 position = (uModelViewM * aPosition).xyz;
     lowp vec3 L = normalize(uLight.position - position);
-    
-    mediump vec3 E = normalize(-position);
-    mediump vec3 R = normalize(-reflect(L, normal));
 
     gl_Position = uProjectionM * uModelViewM * aPosition;
     
-    texCoord = aTexCoord.xy;
-    ambientColor = uMaterial.ambient;
     float intensity = max(dot(normal, L), 0.0);
     if(intensity > 0.0){
-        diffuseColor = uMaterial.diffuse * intensity;
-        specularColor = uMaterial.specular * pow(max(dot(R,E), 0.0), uMaterial.shininess );
+        mediump vec3 E = normalize(-position);
+        mediump vec3 R = normalize(-reflect(L, normal));
+        
+        diffuseColor = uMaterial.diffuse * uLight.color * intensity;
+        specularColor = uMaterial.specular * uLight.color * pow(max(dot(R,E), 0.0), uMaterial.shininess );
     }else{
-        diffuseColor = vec4(0.0f, 0.0f, .0f, 1.0f);
-        specularColor = vec4(0.0f, 0.0f, .0f, 1.0f);
+        diffuseColor = vec4(0.0f, 0.0f, .0f, 1.0);
+        specularColor = vec4(0.0f, 0.0f, .0f, 1.0);
     }
+    diffuseColor.a = 1.0;
+    texCoord = aTexCoord.xy;
+    ambientColor = uMaterial.ambient;
 }
