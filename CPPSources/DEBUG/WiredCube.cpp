@@ -36,6 +36,12 @@ void WiredCube::buildVBO(){
 }
 
 void WiredCube::initMaterial(){
+    if(!Materials::instance()->isMaterialExist("wired")){
+        sp<ObjMaterial> wireMaterial = std::make_shared<ObjMaterial>("wired");
+        wireMaterial->program = Materials::instance()->getProgram("wired");
+        wireMaterial->ambient = v4d(1, 0, 0, 1);
+        Materials::instance()->addMaterial(wireMaterial);
+    }
     material = Materials::instance()->getMaterial("wired");
 }
 

@@ -5,10 +5,7 @@
 
 
 Materials::Materials(){
-    loadPrograms();
-    sp<ObjMaterial> wireMaterial = std::make_shared<ObjMaterial>("wired");
-    wireMaterial->setProgram(getProgram("wired"));
-    materials.insert(std::pair<string, sp<ObjMaterial>>(wireMaterial->name, wireMaterial));
+    loadPrograms();   
     logMessage("Materials constructor!\n");
 }
 
@@ -125,6 +122,18 @@ sp<ShaderProgram> Materials::getProgram(const string &name){
         return programs[name];
     
     return nullptr;
+}
+
+bool Materials::addMaterial(const sp<ObjMaterial> mat){
+    if(materials.find(mat->name) == materials.end()){
+        materials.insert(std::pair<string, sp<ObjMaterial>>(mat->name, mat));
+        return true;
+    }else
+        return false;
+}
+
+bool Materials::isMaterialExist(const string &name){
+    return (materials.find(name) != materials.end());
 }
 
 void Materials::loadPrograms(){

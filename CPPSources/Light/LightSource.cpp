@@ -13,7 +13,6 @@ static v3d cubeVertices[] = {
     v3d(-.5f, -.5f, -.5f)   // 7
 };
 
-
 LightSource::LightSource() : mTransform(v3d(0.0f, 0.0f, 9.0f)), mColor(0.0f, 1.0f, 1.0f, 1.0f){
     logMessage("LightSource constructor!\n");
 }

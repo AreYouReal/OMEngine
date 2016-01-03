@@ -23,6 +23,10 @@ public:
     sp<Texture>         getTexture  (const string &name);
     sp<ShaderProgram>   getProgram  (const string &name);
     
+    
+    bool                isMaterialExist(const string &name);
+    bool                addMaterial(const sp<ObjMaterial> mat);
+    
 private:
 // Fields
     

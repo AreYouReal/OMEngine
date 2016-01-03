@@ -42,10 +42,6 @@ void ObjMaterial::use(){
     setUniforms();
 }
 
-void ObjMaterial::setProgram(sp<ShaderProgram> prog){
-    if(program == nullptr) program = prog;
-}
-
 void ObjMaterial::loadTextures(){
     if(mapAmbient[0]){
         sp<Texture> txt(Materials::instance()->getTexture(mapAmbient));
