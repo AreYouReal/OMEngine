@@ -1,9 +1,15 @@
 #version 300 es
 
+struct Light{
+    lowp vec3 position;
+    lowp vec4 color;
+};
+
+
 uniform mediump mat4 uModelViewM;
 uniform mediump mat4 uProjectionM;
 uniform mediump mat4 uNormalM;
-uniform mediump vec3 uLightPos;
+uniform Light uLight;
 
 layout(location = 0) in vec4 aPosition;
 layout(location = 1) in vec4 aNormal;
@@ -13,7 +19,7 @@ out lowp vec4 color;
 void main(){
     
     vec3 position = (uModelViewM * aPosition).xyz;
-    vec3 L = normalize(uLightPos.xyz - position);
+    vec3 L = normalize(uLight.position - position);
     
     vec3 normal = (uNormalM * aNormal).xyz;
     

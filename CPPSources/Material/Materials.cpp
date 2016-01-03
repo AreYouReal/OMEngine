@@ -139,8 +139,8 @@ bool Materials::isMaterialExist(const string &name){
 void Materials::loadPrograms(){
     logMessage("ShaderLibrary constructor!\n");
     
-    addProgram(ShaderHelper::createProgram("norm_as_color",   "pos_norm_vertex.glsl",     "norm_as_color_fragment.glsl"   ));
-    addProgram(ShaderHelper::createProgram("default_gray",    "default_gray_vertex.glsl", "default_gray_fragment.glsl"    ));
+    addProgram(ShaderHelper::createProgram("normAsColor",   "pos_norm_vertex.glsl",     "norm_as_color_fragment.glsl"   ));
+    addProgram(ShaderHelper::createProgram("defaultGray",    "default_gray_vertex.glsl", "default_gray_fragment.glsl"    ));
     addProgram(ShaderHelper::createProgram("defaultPerVertex","vertexPerVertex.glsl",     "fragmentPerVertex.glsl"        ));
     addProgram(ShaderHelper::createProgram("defaultPerPixel", "vertexPerPixel.glsl",      "fragmentPerPixel.glsl"         ));
     addProgram(ShaderHelper::createProgram("bump",            "vertexBump.glsl",          "fragmentBump.glsl"             ));
