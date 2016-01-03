@@ -16,7 +16,7 @@ public:
     Illuminator& operator=(const Illuminator& rhs) = delete;
     ~Illuminator();
 
-    bool AddLightSource(sp<LightSource> lSource);
+    bool addLightSource(sp<LightSource> lSource);
     
     sp<LightSource> getLightSource();
     

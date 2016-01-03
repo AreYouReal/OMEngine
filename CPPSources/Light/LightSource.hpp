@@ -11,10 +11,9 @@
 
 #include "WiredCube.hpp"
 
-enum LightType{ POINT, DIRECTION };
 
 class LightSource{
-
+    enum Type{ POINT, DIRECTION };
 public:
     
     LightSource();
@@ -24,13 +23,13 @@ public:
     const v4d& getColor() const { return mColor; }
     const v4d& getPosition() const{ return mTransform.mPosition; }
     const v4d getPositionInEyeSpace() const{ return (mTransform.mPosition * Camera::instance()->viewMatrix()); }
-    const LightType type() const { return lightType; }
+    const Type type() const { return lightType; }
     
     
     void draw() const;
     
 private:
-    LightType lightType;
+    Type lightType;
     v4d     mColor;
     
     Transform mTransform;

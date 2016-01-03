@@ -16,3 +16,8 @@ sp<LightSource> Illuminator::getLightSource(){
     if(lightSources.size() > 0) return lightSources[0];
     return nullptr;
 }
+
+bool Illuminator::addLightSource(sp<LightSource> lSource){
+    lightSources.push_back(lSource);
+    return true;
+}
