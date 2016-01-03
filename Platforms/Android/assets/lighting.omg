@@ -8,7 +8,7 @@ struct Light{
 
 uniform mat4 uModelViewM;
 uniform mat4 uProjectionM;
-uniform lowp mat3 uNormalM;
+uniform lowp mat4 uNormalM;
 uniform Light uLight;
 
 layout(location = 0) in vec4 aPosition;
@@ -21,54 +21,22 @@ out vec3 position;
 out vec3 lightDirectionTS;
 out vec4 lightColor;
 
-void firstOption(){
-    vec3 tmp;
-    lowp vec3 normal    = vec3(uNormalM * aNormal);
-    lowp vec3 tangent   = vec3(uNormalM * aTangent);
-    lowp vec3 binormal  = cross(normal, tangent);
-    
-    position = vec3(uModelViewM * aPosition);
-    gl_Position = uProjectionM * vec4(position, 1.0);
-    
-    lowp vec3 lightDirectionES = normalize(uLight.position - position);
-    
-    lightDirectionTS.x = dot(lightDirectionES, tangent);
-    lightDirectionTS.y = dot(lightDirectionES, binormal);
-    lightDirectionTS.z = dot(lightDirectionES, normal);
-    
-    tmp.x = dot(position, tangent);
-    tmp.y = dot(position, binormal);
-    tmp.z = dot(position, normal);
-    position = -normalize(tmp);
-    
-    texCoord = aTexCoord;
-    lightColor = uLight.color;
-}
-
-void secondOption(){
-    texCoord = aTexCoord;
-
+void main(){
     lowp mat3 tbn;
-
-    tbn[2] = normalize(uNormalM * aNormal);
-    tbn[0] = normalize(uNormalM * aTangent);
+    
+    tbn[2] = normalize(vec3(uNormalM * vec4(aNormal, 1.0)));
+    tbn[0] = normalize(vec3(uNormalM * vec4(aTangent, 1.0)));
     tbn[1] = cross(tbn[2], tbn[0]);
     
     position = vec3(uModelViewM * aPosition);
-    
     gl_Position = uProjectionM * vec4(position, 1.0);
     
+    lightDirectionTS = normalize(uLight.position - position) * tbn;
     position = -normalize(position * tbn);
     
-    lightDirectionTS = uLight.position;
+    texCoord = aTexCoord;
     lightColor = uLight.color;
 }
-
-
-void main(){
-    secondOption();
-}
-
 
 GL_FRAGMENT_SHADER
 
@@ -109,5 +77,5 @@ vec4 directionalLight(in vec4 color, in vec3 direction){
 void main(){
     lowp vec4 finalColor = uMaterial.ambient;
     finalColor += directionalLight(lightColor, lightDirectionTS);
-    fragColor = texture(uSamplerDiffuse, texCoord.xy) * vec4(lightDirectionTS, 1.0);
+    fragColor = texture(uSamplerDiffuse, texCoord.xy) * finalColor;
 }
