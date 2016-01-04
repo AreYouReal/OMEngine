@@ -6,6 +6,7 @@ struct Material{
     lowp    vec4    ambient;
     lowp    vec4    diffuse;
     lowp    vec4    specular;
+    lowp    float   dissolve;
     mediump float   shininess;
 };
 
@@ -16,7 +17,6 @@ struct Light{
 
 uniform Light uLight;
 uniform Material uMaterial;
-uniform lowp    float   uDissolve;
 uniform sampler2D       uSamplerDiffuse;
 
 in mediump  vec3    position;
@@ -42,12 +42,12 @@ void main(){
     
     vec4 resultColor = uMaterial.ambient + diffuse + specular;
     
-    if(uDissolve == 0.0){
+    if(uMaterial.dissolve == 0.0){
         if(alpha < 0.1) discard;
-    }else if(uDissolve == 1.0){
+    }else if(uMaterial.dissolve == 1.0){
         resultColor.a = alpha;
     }else{
-        resultColor.a = uDissolve;
+        resultColor.a = uMaterial.dissolve;
     }
     
     fragColor = resultColor;

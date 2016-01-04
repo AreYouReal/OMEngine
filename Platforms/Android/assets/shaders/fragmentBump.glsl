@@ -9,8 +9,6 @@ struct Material{
 };
 
 uniform Material uMaterial;
-uniform lowp    float   uDissolve;
-
 uniform mediump sampler2D uSamplerDiffuse;
 uniform mediump sampler2D uSamplerBump;
 
