@@ -13,23 +13,24 @@
 
 
 class LightSource{
-    enum Type{ POINT, DIRECTION };
+
 public:
+    enum Type{ DIRECTION = 0, POINT = 1 };
     
     LightSource();
-    LightSource(v4d position);
+    LightSource(Type type, v3d position, v4d color);
     ~LightSource();
     
-    const v4d& getColor() const { return mColor; }
-    const v4d& getPosition() const{ return mTransform.mPosition; }
-    const v4d getPositionInEyeSpace() const{ return (mTransform.mPosition * Camera::instance()->viewMatrix()); }
-    const Type type() const { return lightType; }
+    const v4d&  getColor() const { return mColor; }
+    const v3d&  getPosition() const{ return mTransform.mPosition; }
+    const v4d   getPositionInEyeSpace() const;
+    const Type  type() const { return mType; }
     
     
     void draw() const;
     
 private:
-    Type lightType;
+    Type    mType;
     v4d     mColor;
     
     Transform mTransform;

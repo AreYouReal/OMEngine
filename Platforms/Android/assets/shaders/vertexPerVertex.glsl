@@ -2,7 +2,7 @@
 
 
 struct Light{
-    lowp vec3 position;
+    lowp vec4 position;
     lowp vec4 color;
 };
 
@@ -33,7 +33,8 @@ out lowp    vec4 specularColor;
 void main(){
     lowp vec3 normal = normalize( vec3(uNormalM * vec4(aNormal, 1.0)) );
     mediump vec3 position = (uModelViewM * aPosition).xyz;
-    lowp vec3 L = normalize(uLight.position - position);
+    
+    mediump vec3 L = normalize(uLight.position.xyz - position);
 
     gl_Position = uProjectionM * uModelViewM * aPosition;
     

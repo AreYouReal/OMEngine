@@ -11,7 +11,7 @@ struct Material{
 };
 
 struct Light{
-    lowp    vec3    position;
+    lowp    vec4    position;
     lowp    vec4    color;
 };
 
@@ -27,7 +27,8 @@ void main(){
     lowp vec4 diffuseColor = texture( uSamplerDiffuse, texCoord.xy );
     
     lowp float alpha = diffuseColor.a;
-    mediump vec3 L = normalize(uLight.position - position);
+    
+    mediump vec3 L = normalize(uLight.position.xyz - position);
     
     float intensity = max(dot(normal, L), 0.0);
     mediump vec4 specular;
