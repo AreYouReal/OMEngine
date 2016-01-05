@@ -34,7 +34,13 @@ void main(){
     lowp vec3 normal = normalize( vec3(uNormalM * vec4(aNormal, 1.0)) );
     mediump vec3 position = (uModelViewM * aPosition).xyz;
     
-    mediump vec3 L = normalize(uLight.position.xyz - position);
+    mediump vec3 L;
+    if(uLight.position.w == 0.0){
+        L = normalize(uLight.position.xyz);
+    }else{
+        L = normalize(uLight.position.xyz - position);
+    }
+
 
     gl_Position = uProjectionM * uModelViewM * aPosition;
     

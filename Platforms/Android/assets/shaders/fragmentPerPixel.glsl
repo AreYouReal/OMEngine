@@ -28,8 +28,13 @@ void main(){
     
     lowp float alpha = diffuseColor.a;
     
-    mediump vec3 L = normalize(uLight.position.xyz - position);
+    mediump vec3 L;
     
+    if(uLight.position.w > 0.0){
+        L = normalize(uLight.position.xyz - position);
+    }else{
+        L = normalize(uLight.position.xyz);
+    }
     float intensity = max(dot(normal, L), 0.0);
     mediump vec4 specular;
     mediump vec4 diffuse;
