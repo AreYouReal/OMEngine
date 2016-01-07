@@ -2,7 +2,7 @@
 
 #include "OMUtils.h"
 
-LightSource::LightSource() : LightSource(Type::POINT, v3d(), v4d()){
+LightSource::LightSource() : LightSource(Type::DIRECTION, v3d(), v4d()){
     logMessage("LightSource constructor!\n");
 }
 
@@ -20,7 +20,6 @@ void LightSource::draw() const{
 
 
 const v4d LightSource::getPositionInEyeSpace() const{
-    v4d position = (mTransform.mPosition * Camera::instance()->viewMatrix());
-    position.w = mType;
-    return position;
+    v3d position = (Camera::instance()->viewMatrix() * mTransform.mPosition);
+    return v4d(position, mType);
 }

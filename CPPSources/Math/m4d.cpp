@@ -85,6 +85,10 @@ v3d operator*(const v3d &v, const m4d &m){
                m.m[2].x * v.x + m.m[2].y * v.y + m.m[2].z * v.z);
 }
 
+v3d operator*(const m4d &m, const v3d &v){
+    return operator*(v, m);
+}
+
 v4d operator*(const v4d &v, const m4d &m){
     return operator*(m, v);
 }
