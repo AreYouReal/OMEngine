@@ -213,7 +213,7 @@ m4d m4d::scale(float x, float y, float z){
     v3d scale(x, y, z);
     return m4d::scale(scale);
 }
-m4d m4d::scale(v3d& scale){
+m4d m4d::scale(const v3d& scale){
     m4d rMat4(scale.x, 0, 0, 0,
               0, scale.y, 0, 0,
               0, 0, scale.z, 0,

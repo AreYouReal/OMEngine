@@ -28,9 +28,9 @@ Scene::~Scene(){
 bool Scene::init(){
 //    createBallsScene();
     
-//        createTestScene();
+        createTestScene();
     
-    createLightTestScene();
+//    createLightTestScene();
 
     return true;
 }
@@ -52,6 +52,10 @@ void Scene::draw(){
             }
             mrc->update();
         }
+        
+        IComponent *ddc = go->getComponent(ComponentEnum::DEBUG_DRAW);
+        if(ddc){ ddc->update(); }
+        
     }
     
     Illuminator::instance()->getLightSource()->draw();
@@ -182,15 +186,17 @@ void Scene::createBallsScene(){
     addObjOnScene(std::move(interior));
     addObjOnScene(std::move(camera));
     
-    
 }
 
 void Scene::addMeshRendererOnScene(string objName, string meshName){
-    up<GameObject> sphere = std::unique_ptr<GameObject>(new GameObject(meshName));
-    up<MeshRendererComponent> mrc = up<MeshRendererComponent>(new MeshRendererComponent(sphere.get(), mObjRess[objName]->getMesh(sphere->name)));
-    sphere->addComponent(ComponentEnum::MESH_RENDERER, std::move(mrc));
+    up<GameObject> go = std::unique_ptr<GameObject>(new GameObject(meshName));
+    up<MeshRendererComponent> mrc = up<MeshRendererComponent>(new MeshRendererComponent(go.get(), mObjRess[objName]->getMesh(go->name)));
+    go->addComponent(ComponentEnum::MESH_RENDERER, std::move(mrc));
     
-    addObjOnScene(std::move(sphere));
+    up<DebugDrawComponent> ddc = up<DebugDrawComponent>(new DebugDrawComponent(go.get(), v3d(rand() % 10, 2, 2)));
+    go->addComponent(ComponentEnum::DEBUG_DRAW, std::move(ddc));
+    
+    addObjOnScene(std::move(go));
 }
 
 void Scene::createLightTestScene(){
@@ -205,5 +211,4 @@ void Scene::createLightTestScene(){
     for(const sp<ObjMesh> mesh : object->getAllMeshes()){
             addMeshRendererOnScene("lightScene", mesh->getName());
     }
-
 }

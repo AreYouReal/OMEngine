@@ -46,7 +46,7 @@ public:
     static m4d rotate(float angle, v3d& axis);
     static m4d rotate(v3d& angles);
     static m4d scale(float x, float y, float z);
-    static m4d scale(v3d& scale);
+    static m4d scale(const v3d& scale);
     static m4d translate(float x, float y, float z);
     static m4d translate(v3d& translate);
     

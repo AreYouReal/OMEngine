@@ -11,6 +11,7 @@
 
 
 #include "MeshRendererComponent.hpp"
+#include "DebugDrawComponent.hpp"
 
 class Scene : public Singleton<Scene>{
 
