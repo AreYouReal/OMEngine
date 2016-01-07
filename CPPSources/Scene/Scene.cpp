@@ -28,9 +28,9 @@ Scene::~Scene(){
 bool Scene::init(){
 //    createBallsScene();
     
-        createTestScene();
+//        createTestScene();
     
-//    createLightTestScene();
+    createLightTestScene();
 
     return true;
 }
@@ -47,14 +47,14 @@ void Scene::draw(){
     for(const auto& go : mObjects){
         IComponent *mrc = go->getComponent(ComponentEnum::MESH_RENDERER);
         if(mrc){
-            if(!mrc->go->name.compare("player")){
-                Camera::instance()->setFront(mrc->go->getPosition());
-            }
+//            if(!mrc->go->name.compare("player")){
+//                Camera::instance()->setFront(mrc->go->getPosition());
+//            }
             mrc->update();
         }
         
-        IComponent *ddc = go->getComponent(ComponentEnum::DEBUG_DRAW);
-        if(ddc){ ddc->update(); }
+//        IComponent *ddc = go->getComponent(ComponentEnum::DEBUG_DRAW);
+//        if(ddc){ ddc->update(); }
         
     }
     
