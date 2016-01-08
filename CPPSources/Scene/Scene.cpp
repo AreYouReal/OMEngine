@@ -8,6 +8,7 @@ Scene::Scene(){
     PhysicalWorld::instance();
     Boombox::instance();
     
+    v3d dirVec = v3d::createDirectionalVector(-25, 0, -45);
     
     logMessage("Scene constructor!\n");
 }
@@ -21,6 +22,8 @@ Scene::~Scene(){
     PhysicalWorld::destroy();
     Boombox::destroy();
     
+    
+
     
     logMessage("Scene destructor!\n");
 }

@@ -54,7 +54,11 @@ struct v3d{
     static float length(const v3d& vec3);
     static v3d normalize(const v3d& vec);
     
+    static v3d createDirectionalVector(const float xAngle, const float yAngle, const float zAngle);
+    
     static void print(const v3d& vec3);
+    
+
 };
 
 struct v2d{

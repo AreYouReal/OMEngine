@@ -26,7 +26,6 @@ public:
     const v4d   getPositionInEyeSpace() const;
     const Type  type() const { return mType; }
     
-    
     void draw() const;
     
 private:

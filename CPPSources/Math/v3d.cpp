@@ -102,6 +102,10 @@ v3d v3d::normalize(){
     return v3d::normalize(*this);
 }
 
+v3d v3d::createDirectionalVector(const float xAngle, const float yAngle, const float zAngle){
+    return v3d(cosf(xAngle), cosf(yAngle), cos(zAngle)).normalize();
+}
+
 float* v3d::pointer(){
     return &x;
 }
