@@ -30,8 +30,8 @@ Font *f;
 std::future<bool> asyncFuture;
 
 void drawText(string text){
-    v4d fontColor(1.0f, .5f, 1.0f, 1.0f);
-    f->print(-100, -100, text, &fontColor);
+    v4d fontColor(.0f, 1.0f, 1.0f, 1.0f);
+    f->print(-appContext->width/2, appContext->height/2 - f->size()*0.75, text, &fontColor);
 }
 //-----------------
 
@@ -46,7 +46,7 @@ int OMGame::InitGameWorld (){
     Scene::instance()->init();
     
 // TODO: Temp
-    f = new Font("foo.ttf", 64, 512, 512, 32, 96);
+    f = new Font("foo.ttf", 32, 512, 512, 32, 96);
    
 //    asyncFuture = std::async(std::launch::async, &Boombox::checkObbFunctionality, Boombox::instance());    
 //---------
@@ -67,7 +67,7 @@ void OMGame::Draw (){
 
     
     
-    glClearColor(0.0f, 0.3f, 0.0f, 1.0f);
+    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear( GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT );
     
     Scene::instance()->draw();

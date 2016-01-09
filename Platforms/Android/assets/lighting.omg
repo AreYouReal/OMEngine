@@ -63,7 +63,8 @@ in lowp vec4 lightColor;
 out vec4 fragColor;
 
 vec4 directionalLight(in vec4 color, in vec3 direction){
-    vec4 finalColor;
+    vec4 finalColor = vec4(0.0, 0.0, 0.0, 1.0
+                           );
     lowp vec3 normal = texture(uSamplerBump, texCoord.xy).rgb * 2.0 - 1.0;
     lowp float ndotl = max( dot( normal, direction), 0.0 );
     if(ndotl > 0.0){
