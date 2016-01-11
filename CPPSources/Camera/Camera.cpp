@@ -8,8 +8,8 @@
 
 Camera::Camera(float fovy, float width, float height, float near, float far)
 :mFovy(fovy), mWidth(width), mHeight(height), mNear(near), mFar(far){
-    transform.mPosition = v3d(0.0f, -3.8f, 2.5f);
-    transform.mFront = v3d(0.0f, 1.0f, 0.0f);
+    transform.mPosition = v3d(8.0f, -6.0f, 5.0f);
+    transform.mFront = v3d(-1.0f, 1.0f, 0.0f);
     transform.mUp = v3d(0.0f, 0.0f, 1.0f);
     refreshViewAndNormalMatrix();
     refreshProjMatrix();

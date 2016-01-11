@@ -31,9 +31,13 @@ void main(){
     position = vec3(uModelViewM * aPosition);
     gl_Position = uProjectionM * vec4(position, 1.0);
     
-    lightDirectionTS = normalize(uLight.position.xyz) * tbn;
     
-//    lightDirectionTS = normalize(uLight.position.xyz - position) * tbn;
+    if(uLight.position.w == 0.0){
+        lightDirectionTS = normalize(uLight.position.xyz) * tbn;
+    }else{
+        lightDirectionTS = normalize(uLight.position.xyz - position) * tbn;
+    }
+    
     position = -normalize(position * tbn);
     
     texCoord = aTexCoord;
@@ -64,7 +68,7 @@ in lowp vec4 lightColor;
 
 out vec4 fragColor;
 
-vec4 directionalLight(in vec4 color, in vec3 direction){
+vec4 lightCalculations(in vec4 color, in vec3 direction){
     vec4 finalColor = vec4(0.0, 0.0, 0.0, 1.0);
     lowp vec3 normal = texture(uSamplerBump, texCoord.xy).rgb * 2.0 - 1.0;
     lowp float ndotl = max( dot( normal, direction), 0.0 );
@@ -78,6 +82,6 @@ vec4 directionalLight(in vec4 color, in vec3 direction){
 
 void main(){
     lowp vec4 finalColor = uMaterial.ambient;
-    finalColor += directionalLight(lightColor, lightDirectionTS);
+    finalColor += lightCalculations(lightColor, lightDirectionTS);
     fragColor = texture(uSamplerDiffuse, texCoord.xy) * finalColor;
 }
