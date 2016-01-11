@@ -4,7 +4,7 @@ uniform mat4 uProjectionM;
 uniform mat4 uNormalM;
 
 struct Light{
-    lowp vec3 position;
+    lowp vec4 position;
     lowp vec4 color;
 };
 
@@ -29,7 +29,8 @@ void main(){
     position = vec3(uModelViewM * aPosition);
     gl_Position = uProjectionM * vec4(position, 1.0);
     
-    lowp vec3 lightDirectionES = normalize(uLight.position - position);
+    // Directional light
+    lowp vec3 lightDirectionES = normalize(uLight.position.xyz);
     
     lightDirectionTS.x = dot(lightDirectionES, tangent);
     lightDirectionTS.y = dot(lightDirectionES, binormal);
