@@ -53,7 +53,6 @@
  /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Obj/MeshOutlines.h \
  /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Obj/MeshGLInfo.h \
  /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/GameObject/GameObject.hpp \
- /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Scene/IRenderable.h \
  /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Camera/Camera.h \
  /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/stack \
  /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Transform/Transform.hpp \
@@ -192,8 +191,6 @@
 /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Obj/MeshGLInfo.h:
 
 /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/GameObject/GameObject.hpp:
-
-/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Scene/IRenderable.h:
 
 /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Camera/Camera.h:
 

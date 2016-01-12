@@ -68,7 +68,9 @@
  /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Transform/Transform.hpp \
  /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Math/q4d.h \
  /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Light/Illuminator.hpp \
- /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Light/LightSource.hpp
+ /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Light/LightSource.hpp \
+ /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/DEBUG/WiredCube.hpp \
+ /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Obj/MeshGLInfo.h
 
 /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Material/ObjMaterial.h:
 
@@ -207,3 +209,7 @@
 /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Light/Illuminator.hpp:
 
 /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Light/LightSource.hpp:
+
+/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/DEBUG/WiredCube.hpp:
+
+/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Obj/MeshGLInfo.h:

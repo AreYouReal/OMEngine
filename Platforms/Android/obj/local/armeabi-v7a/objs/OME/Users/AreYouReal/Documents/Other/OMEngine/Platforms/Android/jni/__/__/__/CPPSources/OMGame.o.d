@@ -65,19 +65,19 @@
  /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Math/q4d.h \
  /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Light/Illuminator.hpp \
  /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Light/LightSource.hpp \
- /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Scene/Scene.hpp \
- /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Scene/IRenderable.h \
- /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/GameObject/GameObject.hpp \
- /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Obj/ObjMesh.h \
  /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Material/ObjMaterial.h \
  /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Shaders/ShaderProgram.h \
  /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Shaders/Shader.h \
  /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Material/Materials.hpp \
  /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/map \
+ /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/DEBUG/WiredCube.hpp \
+ /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Obj/MeshGLInfo.h \
+ /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Scene/Scene.hpp \
+ /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/GameObject/GameObject.hpp \
+ /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Obj/ObjMesh.h \
  /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Obj/Obj.h \
  /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/nvtristrip/NvTriStrip.h \
  /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Obj/MeshOutlines.h \
- /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Obj/MeshGLInfo.h \
  /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/BulletDynamics/Dynamics/btRigidBody.h \
  /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/LinearMath/btAlignedObjectArray.h \
  /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/LinearMath/btScalar.h \
@@ -161,7 +161,7 @@
  /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/vorbis/os_types.h \
  /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Audio/Sound.hpp \
  /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Component/MeshRendererComponent.hpp \
- /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/DEBUG/WiredCube.hpp \
+ /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Component/DebugDrawComponent.hpp \
  /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Txt/Font.hpp \
  /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/ttf/stb_truetype.h \
  /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/future
@@ -296,14 +296,6 @@
 
 /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Light/LightSource.hpp:
 
-/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Scene/Scene.hpp:
-
-/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Scene/IRenderable.h:
-
-/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/GameObject/GameObject.hpp:
-
-/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Obj/ObjMesh.h:
-
 /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Material/ObjMaterial.h:
 
 /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Shaders/ShaderProgram.h:
@@ -314,13 +306,21 @@
 
 /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/map:
 
+/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/DEBUG/WiredCube.hpp:
+
+/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Obj/MeshGLInfo.h:
+
+/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Scene/Scene.hpp:
+
+/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/GameObject/GameObject.hpp:
+
+/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Obj/ObjMesh.h:
+
 /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Obj/Obj.h:
 
 /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/nvtristrip/NvTriStrip.h:
 
 /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Obj/MeshOutlines.h:
-
-/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Obj/MeshGLInfo.h:
 
 /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/BulletDynamics/Dynamics/btRigidBody.h:
 
@@ -488,7 +488,7 @@
 
 /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Component/MeshRendererComponent.hpp:
 
-/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/DEBUG/WiredCube.hpp:
+/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Component/DebugDrawComponent.hpp:
 
 /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Txt/Font.hpp:
 

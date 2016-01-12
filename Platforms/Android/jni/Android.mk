@@ -10,6 +10,7 @@ LOCAL_SRC_FILES := $(LOCAL_PATH)/omUtil_Android.cpp \
 $(SRC_PATH)/CPPSources/Audio/Boombox.cpp\
 $(SRC_PATH)/CPPSources/Audio/Sound.cpp\
 $(SRC_PATH)/CPPSources/Camera/Camera.cpp\
+$(SRC_PATH)/CPPSources/Component/DebugDrawComponent.cpp\
 $(SRC_PATH)/CPPSources/Component/MeshRendererComponent.cpp\
 $(SRC_PATH)/CPPSources/DEBUG/WiredCube.cpp\
 $(SRC_PATH)/CPPSources/GameObject/GameObject.cpp\
