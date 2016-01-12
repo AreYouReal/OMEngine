@@ -76,7 +76,6 @@ void ObjMaterial::loadTextures(){
 
 
 void ObjMaterial::setUniforms(){
-    logMessage("%d", program.get());
     m4d matrix;
     for(unsigned short i = 0; i < program->uniformArray.size(); ++i){
         if(!strcmp(program->uniformArray[i].name.c_str(), "uSamplerDiffuse")){

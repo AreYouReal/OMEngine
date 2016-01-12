@@ -87,7 +87,7 @@ float attenuation(in vec3 direction){
 
 vec4 lightCalculations(in vec4 color, in vec3 direction){
     vec4 finalColor = vec4(0.0, 0.0, 0.0, 1.0);
-    lowp vec3 normal = normalize(normal + (texture(uSamplerBump, texCoord.xy).rgb * 2.0 - 1.0));
+    lowp vec3 normal = texture(uSamplerBump, texCoord.xy).rgb * 2.0 - 1.0;
     lowp float ndotl = max( dot( normal, normalize(direction)), 0.0 );
     if(ndotl > 0.0){
         float attenuation = attenuation(direction);
