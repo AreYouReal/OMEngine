@@ -20,12 +20,11 @@ out vec3 texCoord;
 out vec3 position;
 out vec3 lightDirectionTS;
 out vec4 lightColor;
-out vec3 normal;
 
 void main(){
     lowp mat3 tbn;
     
-    normal = tbn[2] = normalize(vec3(uNormalM * vec4(aNormal, 1.0)));
+    tbn[2] = normalize(vec3(uNormalM * vec4(aNormal, 1.0)));
     tbn[0] = normalize(vec3(uNormalM * vec4(aTangent, 1.0)));
     tbn[1] = cross(tbn[2], tbn[0]);
     
@@ -73,7 +72,6 @@ in lowp vec3 texCoord;
 in lowp vec3 position;
 in lowp vec3 lightDirectionTS;
 in lowp vec4 lightColor;
-in lowp vec3 normal;
 
 out vec4 fragColor;
 
@@ -82,7 +80,7 @@ float attenuation(in vec3 direction){
     highp float lamdistsqr = uLightFS.dst * uLightFS.dst;
     lowp float att = uLightFS.dst / (uLightFS.dst + uLightFS.linAtten * dist);
     att *= lamdistsqr / (lamdistsqr + uLightFS.quadAtent * dist * dist);
-    return att;
+    return 1.0;
 }
 
 vec4 lightCalculations(in vec4 color, in vec3 direction){
@@ -91,9 +89,9 @@ vec4 lightCalculations(in vec4 color, in vec3 direction){
     lowp float ndotl = max( dot( normal, normalize(direction)), 0.0 );
     if(ndotl > 0.0){
         float attenuation = attenuation(direction);
-        lowp float ndoth = max(dot(normal, normalize(direction + position)), 0.0);
+        lowp float ndoth = max(dot(normal, normalize(direction - position)), 0.0);
         finalColor += uMaterial.diffuse * color * ndotl * attenuation;
-        finalColor += uMaterial.specular * color * pow(ndoth, uMaterial.shininess) * attenuation;
+//        finalColor += uMaterial.specular * color * pow(ndoth, uMaterial.shininess) * attenuation;
     }
     return finalColor;
 }

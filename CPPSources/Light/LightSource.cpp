@@ -20,6 +20,6 @@ void LightSource::draw() const{
 
 
 const v4d LightSource::getPositionInEyeSpace() const{
-    v3d position = (Camera::instance()->modelViewMatrix() * mTransform.mPosition);
+    v3d position = (Camera::instance()->viewMatrix() * mTransform.mPosition);
     return v4d(position, mType);
 }
