@@ -24,10 +24,12 @@ const m4d& Transform::transformMatrix() const { return mTransformMatrix; }
 
 void Transform::translate(v3d tVector){
     translate(tVector.x, tVector.y, tVector.z);
+    refreshTransformMatrix();
 }
 
 inline void Transform::translate(float deltaX, float deltaY, float deltaZ){
     mPosition += v3d(deltaX, deltaY, deltaZ);
+    refreshTransformMatrix();
 }
 
 void Transform::rotate(float xRad, float yRad, float zRad){
@@ -50,18 +52,22 @@ void Transform::rotate(float deg, v3d axis){
 
 void Transform::scale(float xFactor, float yFactor, float zFactor){
     mScale.x += xFactor; mScale.y += yFactor; mScale.z = zFactor;
+    refreshTransformMatrix();
 }
 
 void Transform::scale(v3d &scaleVec){
     scale(scaleVec.x, scaleVec.y, scaleVec.z);
+    refreshTransformMatrix();
 }
 
 void Transform::moveForward(float velocity){
     mPosition += v3d::normalize(mFront) * velocity;
+    refreshTransformMatrix();
 }
 
 void Transform::moveRight(float velocity){
     mPosition += mRight * velocity;
+        refreshTransformMatrix();
 }
 
 #pragma mark helpers

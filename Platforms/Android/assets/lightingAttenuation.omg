@@ -21,6 +21,7 @@ out vec3 position;
 out vec3 lightDirectionTS;
 out vec4 lightColor;
 
+
 void main(){
     lowp mat3 tbn;
     
@@ -80,7 +81,7 @@ float attenuation(in vec3 direction){
     highp float lamdistsqr = uLightFS.dst * uLightFS.dst;
     lowp float att = uLightFS.dst / (uLightFS.dst + uLightFS.linAtten * dist);
     att *= lamdistsqr / (lamdistsqr + uLightFS.quadAtent * dist * dist);
-    return 1.0;
+    return att;
 }
 
 vec4 lightCalculations(in vec4 color, in vec3 direction){
@@ -91,7 +92,7 @@ vec4 lightCalculations(in vec4 color, in vec3 direction){
         float attenuation = attenuation(direction);
         lowp float ndoth = max(dot(normal, normalize(direction - position)), 0.0);
         finalColor += uMaterial.diffuse * color * ndotl * attenuation;
-//        finalColor += uMaterial.specular * color * pow(ndoth, uMaterial.shininess) * attenuation;
+        finalColor += uMaterial.specular * color * pow(ndoth, uMaterial.shininess) * attenuation;
     }
     return finalColor;
 }
