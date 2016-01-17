@@ -15,7 +15,7 @@
 class LightSource{
 
 public:
-    enum Type{ DIRECTION = 0, POINT = 1 };
+    enum Type{ DIRECTION = 0, POINT = 1, SPOT = 2 };
     
     LightSource();
     LightSource(Type type, v3d position, v4d color, float distance = 10, float linAttenuation = 0.5f, float quadAttenuation = 1.0f);
@@ -30,6 +30,9 @@ public:
     const v4d   getPositionInEyeSpace() const;
     
     void draw() const;
+    
+    float spotCosCutoff = 75.0f;
+    float spotBlend = 0.05f;
     
 private:
     Type    mType;
