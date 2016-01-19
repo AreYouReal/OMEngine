@@ -4,7 +4,7 @@
 #include "OMUtils.h"
 
 Illuminator::Illuminator(){
-    lightSources.push_back(std::make_shared<LightSource>(LightSource::Type::POINT, v3d(1, 1, 3), v4d(1, 1, 1, 1)));
+    lightSources.push_back(std::make_shared<LightSource>(LightSource::Type::DIRECTION, v3d(3, 3, 3), v4d(1, 1, 1, 1)));
     logMessage("Illuminator constructor!\n");
 }
 

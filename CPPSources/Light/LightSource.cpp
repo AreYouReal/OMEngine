@@ -3,7 +3,7 @@
 #include "OMUtils.h"
 #include <cmath>
 
-LightSource::LightSource() : LightSource(Type::DIRECTION, v3d(), v4d()){
+LightSource::LightSource() : LightSource(Type::SPOT, v3d(), v4d()){
     logMessage("LightSource constructor!\n");
 
 }
@@ -25,24 +25,16 @@ void LightSource::draw() const{
 
 
 const v4d LightSource::getPositionInEyeSpace() const{
-    switch (mType) {
-        case LightSource::Type::DIRECTION :
-            
-            break;
-        case LightSource::Type::POINT :
-            
-            break;
-        case LightSource::Type::SPOT :
-            
-            break;
-        default:
-            break;
-    }
     v3d position = (Camera::instance()->viewMatrix() * v4d(mTransform.mPosition, 1.0));
     return v4d(position, mType);
 }
 
 const v3d LightSource::getDirectionInEyeSpace() const{
-    v3d direction =  (Camera::instance()->viewMatrix() * mTransform.mFront).normalize();
+    v3d::print(mTransform.mFront);
+    
+    v3d direction =  (Camera::instance()->viewMatrix() * mTransform.mFront);
+    
+    v3d::print(direction);
+    
     return direction;
 }
