@@ -107,9 +107,14 @@ void ObjMaterial::setUniforms(){
             glUniform4fv(program->uniformArray[i].location, 1, &lightInEyeSpace.x);
             glUniform4fv(program->getUniformLocation("uLight.color"), 1, &color.x);
             if(light->type() == LightSource::Type::POINT){
-                glUniform1f(program->getUniformLocation("uLightFS.dst"),               light->distance());
-                glUniform1f(program->getUniformLocation("uLightFS.linAtten"),      light->linearAtten());
+                glUniform1f(program->getUniformLocation("uLightFS.dst"),         light->distance());
+                glUniform1f(program->getUniformLocation("uLightFS.linAtten"),    light->linearAtten());
                 glUniform1f(program->getUniformLocation("uLightFS.quadAtent"),   light->quadAtten());
+            }else if(light->type() == LightSource::Type::SPOT){
+                v4d directionInEyeSpace = light->getDirectionInEyeSpace();
+                glUniform1f(program->getUniformLocation("uLightFS.spotCosCutoff"),  light->spotCosCutoff);
+                glUniform1f(program->getUniformLocation("uLightFS.spotBlend"),      light->spotBlend);
+                glUniform3fv(program->getUniformLocation("uLight.direction"), 1,    &directionInEyeSpace.x);
             }
         }else if(!strcmp(program->uniformArray[i].name.c_str(), "uSamplerBump")){
             glUniform1i(program->uniformArray[i].location, 4);

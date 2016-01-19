@@ -27,11 +27,12 @@ public:
     const float distance()      const { return mDistance; }
     const float linearAtten()   const { return mLinearAttenuation; }
     const float quadAtten()     const {return mQuadraticAttenuation; }
-    const v4d   getPositionInEyeSpace() const;
+    const v4d   getPositionInEyeSpace()  const;
+    const v3d   getDirectionInEyeSpace() const;
     
     void draw() const;
     
-    float spotCosCutoff = 75.0f;
+    float spotCosCutoff = 0.0f;
     float spotBlend = 0.05f;
     
 private:
