@@ -104,7 +104,7 @@ float attenuation(in vec3 direction){
     lowp float att = uLightFS.dst / (uLightFS.dst + uLightFS.linAtten * dist);
     att *= lamdistsqr / (lamdistsqr + uLightFS.quadAtent * dist * dist);
     att *= sphere;
-    return 1.0;
+    return att;
 }
 
 vec4 spotLight(in Light light, in highp vec3 direction, in lowp vec3 spotdir){
