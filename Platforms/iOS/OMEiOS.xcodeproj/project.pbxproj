@@ -178,7 +178,7 @@
 		947FA31D1BA4854A00695A4E /* char_ram_col.png in Resources */ = {isa = PBXBuildFile; fileRef = 947FA31A1BA4854A00695A4E /* char_ram_col.png */; };
 		947FA31E1BA4854A00695A4E /* ram.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 947FA31B1BA4854A00695A4E /* ram.mtl */; };
 		947FA31F1BA4854A00695A4E /* ram.obj in Resources */ = {isa = PBXBuildFile; fileRef = 947FA31C1BA4854A00695A4E /* ram.obj */; };
-		9483965A1C4B542D000D69BA /* spotLighting.omg in Resources */ = {isa = PBXBuildFile; fileRef = 948396591C4B542D000D69BA /* spotLighting.omg */; };
+		9483965A1C4B542D000D69BA /* generalLighting.omg in Resources */ = {isa = PBXBuildFile; fileRef = 948396591C4B542D000D69BA /* generalLighting.omg */; };
 		94CE87CC1B62B4D000752D5C /* m4d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94CE87C61B62B4D000752D5C /* m4d.cpp */; };
 		94CE87CD1B62B4D000752D5C /* q4d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94CE87C81B62B4D000752D5C /* q4d.cpp */; };
 		94CE87CE1B62B4D000752D5C /* v3d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94CE87CA1B62B4D000752D5C /* v3d.cpp */; };
@@ -688,7 +688,7 @@
 		947FA31A1BA4854A00695A4E /* char_ram_col.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = char_ram_col.png; path = ../Android/assets/char_ram_col.png; sourceTree = SOURCE_ROOT; };
 		947FA31B1BA4854A00695A4E /* ram.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ram.mtl; path = ../Android/assets/ram.mtl; sourceTree = SOURCE_ROOT; };
 		947FA31C1BA4854A00695A4E /* ram.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ram.obj; path = ../Android/assets/ram.obj; sourceTree = SOURCE_ROOT; };
-		948396591C4B542D000D69BA /* spotLighting.omg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = spotLighting.omg; path = OMEngine/Platforms/Android/assets/spotLighting.omg; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
+		948396591C4B542D000D69BA /* generalLighting.omg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = generalLighting.omg; path = OMEngine/Platforms/Android/assets/generalLighting.omg; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
 		948BACC21B6DFB5C004A052C /* Shortcuts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Shortcuts.h; sourceTree = "<group>"; };
 		94CE87C61B62B4D000752D5C /* m4d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = m4d.cpp; path = ../../CPPSources/Math/m4d.cpp; sourceTree = SOURCE_ROOT; };
 		94CE87C71B62B4D000752D5C /* m4d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = m4d.h; path = ../../CPPSources/Math/m4d.h; sourceTree = SOURCE_ROOT; };
@@ -966,7 +966,7 @@
 		7626524017F10E6C007CCD43 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				948396591C4B542D000D69BA /* spotLighting.omg */,
+				948396591C4B542D000D69BA /* generalLighting.omg */,
 				F3BEAB191C43A6C00012DDCD /* lightingAttenuation.omg */,
 				F30E41DE1C2D5BCE00A88527 /* lighting.omg */,
 				F30E41D61C2D548E00A88527 /* floor_n.png */,
@@ -1974,7 +1974,7 @@
 				F30E41DC1C2D548E00A88527 /* sphere_n.png in Resources */,
 				F39FA5CA1C0DE6C200CC0BB4 /* lounge.ogg in Resources */,
 				9472227A1B9AD466008D601B /* leaf.png in Resources */,
-				9483965A1C4B542D000D69BA /* spotLighting.omg in Resources */,
+				9483965A1C4B542D000D69BA /* generalLighting.omg in Resources */,
 				F3BCACBB1BFF26FE002003B7 /* Main_iPhone.storyboard in Resources */,
 				947FA31F1BA4854A00695A4E /* ram.obj in Resources */,
 				F3A263971C33BD360021B3B6 /* light_point_vertex.glsl in Resources */,
