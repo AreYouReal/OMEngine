@@ -77,6 +77,11 @@ void ObjMaterial::loadTextures(){
 
 void ObjMaterial::setUniforms(){
     m4d matrix;
+    sp<LightSource> light =Illuminator::instance()->getLightSource();
+    v4d lightInEyeSpace = light->getPositionInEyeSpace();
+    v4d color = light->getColor();
+    v4d directionInEyeSpace = light->getDirectionInEyeSpace();
+    
     for(unsigned short i = 0; i < program->uniformArray.size(); ++i){
         if(!strcmp(program->uniformArray[i].name.c_str(), "uSamplerDiffuse")){
             glUniform1i(program->uniformArray[i].location, 1);
@@ -100,27 +105,21 @@ void ObjMaterial::setUniforms(){
         }else if(!strcmp(program->uniformArray[i].name.c_str(), "uMaterial.shininess")){
             glUniform1f(program->uniformArray[i].location, specularExponent );
         }else if(!strcmp(program->uniformArray[i].name.c_str(), "uLight.position")){
-            sp<LightSource> light =Illuminator::instance()->getLightSource();
-            v4d lightPosition = light->getPosition();
-            v4d lightInEyeSpace = light->getPositionInEyeSpace();
-            v4d color = light->getColor();
-            v4d directionInEyeSpace = light->getDirectionInEyeSpace();
+            glUniform3fv(program->uniformArray[i].location, 1, &lightInEyeSpace.x);
+            
+            glUniform1i(program->getUniformLocation("uLight.type"), light->type());
+            glUniform1i(program->getUniformLocation("uLightFS.type"), light->type());
+            
             glUniform4fv(program->getUniformLocation("uLightFS.color"), 1, &color.x);
 
-                    glUniform1f(program->getUniformLocation("uLightFS.spotCosCutoff"),  light->spotCosCutoff);
-                    glUniform1f(program->getUniformLocation("uLightFS.spotBlend"),      light->spotBlend);
-                    glUniform3fv(program->getUniformLocation("uLight.direction"), 1,    &directionInEyeSpace.x);\
-//                    glUniform4fv(program->uniformArray[i].location, 1, &lightInEyeSpace.x);
+            glUniform1f(program->getUniformLocation("uLightFS.spotCosCutoff"),  light->spotCosCutoff);
+            glUniform1f(program->getUniformLocation("uLightFS.spotBlend"),      light->spotBlend);
             
+            glUniform1f(program->getUniformLocation("uLightFS.dst"),         light->distance());
+            glUniform1f(program->getUniformLocation("uLightFS.linAtten"),    light->linearAtten());
+            glUniform1f(program->getUniformLocation("uLightFS.quadAtent"),   light->quadAtten());
 
-                    glUniform1f(program->getUniformLocation("uLightFS.dst"),         light->distance());
-                    glUniform1f(program->getUniformLocation("uLightFS.linAtten"),    light->linearAtten());
-                    glUniform1f(program->getUniformLocation("uLightFS.quadAtent"),   light->quadAtten());
-                    glUniform4fv(program->uniformArray[i].location, 1, &lightInEyeSpace.x);
-
-                    glUniform3fv(program->getUniformLocation("uLight.direction"), 1, &directionInEyeSpace.x);
-
-            
+            glUniform3fv(program->getUniformLocation("uLight.direction"), 1, &directionInEyeSpace.x);
         }else if(!strcmp(program->uniformArray[i].name.c_str(), "uSamplerBump")){
             glUniform1i(program->uniformArray[i].location, 4);
         }

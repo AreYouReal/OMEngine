@@ -2,8 +2,9 @@ GL_VERTEX_SHADER
 
 #version 300 es
 struct Light{
+    lowp int  type;
     lowp vec3 direction;
-    lowp vec4 position;
+    lowp vec3 position;
 };
 
 uniform mat4 uModelViewM;
@@ -18,7 +19,7 @@ layout(location = 3) in vec3 aTangent;
 
 out vec3 texCoord;
 out vec3 position;
-out vec4 lightDirectionTS;
+out vec3 lightDirectionTS;
 out vec3 spotDirection;
 
 mat3 calculateTBNMatrix(){
@@ -29,16 +30,20 @@ mat3 calculateTBNMatrix(){
     return tbn;
 }
 
-void calculateOutVars(lowp mat3 tbn){
-    if(uLight.position.w == 0.0){       // Direction light
-        lightDirectionTS = vec4(uLight.direction * tbn, 0.0);
-    }else{                              // Point/spot light
-        vec3 dir =(uLight.position.xyz - position) * tbn;
-        lightDirectionTS = vec4(dir, 1.0);
-        if(uLight.position.w == 2.0){   // Spot light
+void calculateOutVars(lowp mat3 tbn, lowp vec3 position){
+    switch (uLight.type) {
+        case 0:
+            lightDirectionTS = uLight.direction * tbn;
+            break;
+        case 1:
+            lightDirectionTS = (uLight.position - position) * tbn;
+            break;
+        case 2:
+            lightDirectionTS = (uLight.position - position) * tbn;
             spotDirection = uLight.direction * tbn;
-            lightDirectionTS.w = 2.0;
-        }
+            break;
+        default:
+            break;
     }
 }
 
@@ -47,7 +52,7 @@ void main(){
     gl_Position = uProjectionM * vec4(position, 1.0);
     
     lowp mat3 tbn = calculateTBNMatrix();
-    calculateOutVars(tbn);
+    calculateOutVars(tbn, position);
     
     position = -normalize(position * tbn);
     
@@ -67,6 +72,7 @@ struct Material{
 };
 
 struct Light{
+    lowp int type;
     lowp vec4 color;
     
     mediump float dst;
@@ -85,7 +91,7 @@ uniform mediump sampler2D uSamplerBump;
 
 in lowp vec3 texCoord;
 in lowp vec3 position;
-in lowp vec4 lightDirectionTS;
+in lowp vec3 lightDirectionTS;
 in lowp vec3 spotDirection;
 
 out vec4 fragColor;
@@ -104,7 +110,7 @@ float attenuation(in vec3 direction){
 vec4 spotLight(in Light light, in highp vec3 direction, in lowp vec3 spotdir){
     vec4 finalColor = vec4(0.0, 0.0, 0.0, 1.0);
     lowp vec3 normal = texture(uSamplerBump, texCoord.xy).rgb * 2.0 - 1.0;
-    lowp vec3 nlightdir = normalize(-direction);
+    lowp vec3 nlightdir = normalize(direction);
     lowp float ndotl = max(dot(normal, nlightdir), 0.0);
     if(ndotl > 0.0){
         lowp float ldots = max(dot(nlightdir, spotdir), 0.0);
@@ -145,14 +151,18 @@ vec4 directionalLight(in vec4 color, in vec3 direction){
 
 void main(){
     lowp vec4 finalColor = uMaterial.ambient;
-    if(lightDirectionTS.w == 0.0){  // Directional
-        finalColor += directionalLight(uLightFS.color, lightDirectionTS.xyz);
-    }else if(lightDirectionTS.w == 1.0){ // Point
-        finalColor += omniLight(uLightFS.color, lightDirectionTS.xyz);
-    }else{ // Spot
-        finalColor += spotLight(uLightFS, lightDirectionTS.xyz, spotDirection);
+    switch (uLightFS.type) {
+        case 0:
+            finalColor += directionalLight(uLightFS.color, lightDirectionTS);
+            break;
+        case 1:
+            finalColor += omniLight(uLightFS.color, lightDirectionTS);
+            break;
+        case 2:
+            finalColor += spotLight(uLightFS, lightDirectionTS, spotDirection);
+            break;
+        default:
+            break;
     }
-//    finalColor += lightCalculations(lightColor, lightDirectionTS);
-//    finalColor += spotLight(uLightFS, lightDirectionTS, spotDirection);
     fragColor = texture(uSamplerDiffuse, texCoord.xy) * finalColor;
 }
