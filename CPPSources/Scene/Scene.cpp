@@ -60,8 +60,10 @@ void Scene::draw(){
 //        if(ddc){ ddc->update(); }
         
     }
-    
-    Illuminator::instance()->getLightSource()->draw();
+//    for (int i = 0; i < 2; ++i) {
+//        Illuminator::instance()->getLightSource(i)->draw();
+//    }
+
 
 }
 

@@ -20,6 +20,8 @@ public:
     
     sp<LightSource> getLightSource();
     
+    sp<LightSource> getLightSource(int index);
+    
 private:
   
     std::vector<sp<LightSource>> lightSources;

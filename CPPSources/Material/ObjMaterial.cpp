@@ -77,10 +77,6 @@ void ObjMaterial::loadTextures(){
 
 void ObjMaterial::setUniforms(){
     m4d matrix;
-    sp<LightSource> light =Illuminator::instance()->getLightSource();
-    v4d lightInEyeSpace = light->getPositionInEyeSpace();
-    v4d color = light->getColor();
-    v4d directionInEyeSpace = light->getDirectionInEyeSpace();
     
     for(unsigned short i = 0; i < program->uniformArray.size(); ++i){
         if(!strcmp(program->uniformArray[i].name.c_str(), "uSamplerDiffuse")){
@@ -105,23 +101,49 @@ void ObjMaterial::setUniforms(){
         }else if(!strcmp(program->uniformArray[i].name.c_str(), "uMaterial.shininess")){
             glUniform1f(program->uniformArray[i].location, specularExponent );
         }else if(!strcmp(program->uniformArray[i].name.c_str(), "uLight.position")){
-            glUniform3fv(program->uniformArray[i].location, 1, &lightInEyeSpace.x);
-            
-            glUniform1i(program->getUniformLocation("uLight.type"), light->type());
-            glUniform1i(program->getUniformLocation("uLightFS.type"), light->type());
-            
-            glUniform4fv(program->getUniformLocation("uLightFS.color"), 1, &color.x);
-
-            glUniform1f(program->getUniformLocation("uLightFS.spotCosCutoff"),  light->spotCosCutoff);
-            glUniform1f(program->getUniformLocation("uLightFS.spotBlend"),      light->spotBlend);
-            
-            glUniform1f(program->getUniformLocation("uLightFS.dst"),         light->distance());
-            glUniform1f(program->getUniformLocation("uLightFS.linAtten"),    light->linearAtten());
-            glUniform1f(program->getUniformLocation("uLightFS.quadAtent"),   light->quadAtten());
-
-            glUniform3fv(program->getUniformLocation("uLight.direction"), 1, &directionInEyeSpace.x);
+            // LIGHT
         }else if(!strcmp(program->uniformArray[i].name.c_str(), "uSamplerBump")){
             glUniform1i(program->uniformArray[i].location, 4);
         }
+    }
+    
+    char tmp[128] = {""};
+    for(int i = 0; i < 2; ++i){
+        sp<LightSource> light =Illuminator::instance()->getLightSource(i);
+        v4d lightInEyeSpace = light->getPositionInEyeSpace();
+        v4d color = light->getColor();
+        v4d directionInEyeSpace = light->getDirectionInEyeSpace();
+        
+        sprintf(tmp, "uLightFS[%d].color", i);
+        glUniform4fv(program->getUniformLocation(tmp), 1, &color.x);
+        
+        sprintf(tmp, "uLight[%d].type", i);
+        glUniform1i(program->getUniformLocation(tmp), light->type());
+        
+        sprintf(tmp, "uLightFS[%d].type", i);
+        glUniform1i(program->getUniformLocation(tmp), light->type());
+
+        sprintf(tmp, "uLightFS[%d].spotCosCutoff", i);
+        glUniform1f(program->getUniformLocation(tmp),  light->spotCosCutoff);
+        
+        sprintf(tmp, "uLightFS[%d].spotBlend", i);
+        glUniform1f(program->getUniformLocation("uLightFS.spotBlend"),      light->spotBlend);
+        
+        
+        sprintf(tmp, "uLightFS[%d].dst", i);
+        glUniform1f(program->getUniformLocation(tmp),         light->distance());
+        
+        sprintf(tmp, "uLightFS[%d].linAtten", i);
+        glUniform1f(program->getUniformLocation(tmp),    light->linearAtten());
+        
+        
+        sprintf(tmp, "uLightFS[%d].quadAten", i);
+        glUniform1f(program->getUniformLocation("uLightFS.quadAtent"),   light->quadAtten());
+        
+        sprintf(tmp, "uLight[%d].direction", i);
+        glUniform3fv(program->getUniformLocation(tmp), 1, &directionInEyeSpace.x);
+    
+        sprintf(tmp, "uLight[%d].position", i);
+        glUniform3fv(program->getUniformLocation(tmp), 1, &lightInEyeSpace.x);
     }
 }
