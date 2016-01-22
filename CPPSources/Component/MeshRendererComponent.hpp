@@ -21,8 +21,4 @@ public:
     
 private:
     std::vector<sp<ObjMesh>> mMeshes;
-    
-    
-    
-    void drawDebugPhysicsGeometry();
 };

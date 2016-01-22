@@ -8,8 +8,6 @@ Scene::Scene(){
     PhysicalWorld::instance();
     Boombox::instance();
     
-    v3d dirVec = v3d::createDirectionalVector(-25, 0, -45);
-    
     logMessage("Scene constructor!\n");
 }
 
@@ -48,6 +46,7 @@ void Scene::update(float deltaTime){
 
 void Scene::draw(){
     for(const auto& go : mObjects){
+        
         IComponent *mrc = go->getComponent(ComponentEnum::MESH_RENDERER);
         if(mrc){
 //            if(!mrc->go->name.compare("player")){

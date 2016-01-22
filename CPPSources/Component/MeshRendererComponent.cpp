@@ -86,16 +86,4 @@ void MeshRendererComponent::addMesh(sp<ObjMesh> mesh){
     mMeshes.push_back(mesh);
 }
 
-void MeshRendererComponent::drawDebugPhysicsGeometry(){
-    WiredCube wc;
-    btBoxShape *bShape = (btBoxShape*)go->pBody->getCollisionShape();
-    btVector3 dimensions = bShape->getHalfExtentsWithMargin();
-    
-    m4d modelM = m4d::scale(dimensions.x() * 2, dimensions.y() * 2, dimensions.z() * 2);
-    Camera::instance()->pushMMatrix(modelM);
-    wc.draw();
-    
-    Camera::instance()->popMMatrix();
-}
-
 
