@@ -24,6 +24,7 @@
 		94499BF11BDD2FC6006E379D /* diffuse.png in Resources */ = {isa = PBXBuildFile; fileRef = 94499BEF1BDD2FC6006E379D /* diffuse.png */; };
 		94538A211C0B6CBC004B5297 /* Boombox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94538A1F1C0B6CBC004B5297 /* Boombox.cpp */; };
 		9453DEE11B2A0A2700C79DB3 /* OMUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9453DEDF1B2A0A2700C79DB3 /* OMUtils.cpp */; };
+		945F0DD21C54B3AA009C61FE /* RigidBodyComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 945F0DD01C54B3AA009C61FE /* RigidBodyComponent.cpp */; };
 		947222771B9AD466008D601B /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 9472226F1B9AD466008D601B /* background.png */; };
 		947222781B9AD466008D601B /* balloon.png in Resources */ = {isa = PBXBuildFile; fileRef = 947222701B9AD466008D601B /* balloon.png */; };
 		947222791B9AD466008D601B /* grass.png in Resources */ = {isa = PBXBuildFile; fileRef = 947222711B9AD466008D601B /* grass.png */; };
@@ -309,6 +310,8 @@
 		94538A201C0B6CBC004B5297 /* Boombox.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Boombox.hpp; sourceTree = "<group>"; };
 		9453DEDF1B2A0A2700C79DB3 /* OMUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OMUtils.cpp; path = ../../CPPSources/Utils/OMUtils.cpp; sourceTree = SOURCE_ROOT; };
 		9453DEE01B2A0A2700C79DB3 /* OMUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OMUtils.h; path = ../../CPPSources/Utils/OMUtils.h; sourceTree = SOURCE_ROOT; };
+		945F0DD01C54B3AA009C61FE /* RigidBodyComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RigidBodyComponent.cpp; sourceTree = "<group>"; };
+		945F0DD11C54B3AA009C61FE /* RigidBodyComponent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = RigidBodyComponent.hpp; sourceTree = "<group>"; };
 		9472226F1B9AD466008D601B /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background.png; path = ../Android/assets/background.png; sourceTree = SOURCE_ROOT; };
 		947222701B9AD466008D601B /* balloon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = balloon.png; path = ../Android/assets/balloon.png; sourceTree = SOURCE_ROOT; };
 		947222711B9AD466008D601B /* grass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = grass.png; path = ../Android/assets/grass.png; sourceTree = SOURCE_ROOT; };
@@ -1027,6 +1030,8 @@
 				940E28ED1BDCB19C00B47533 /* MeshRendererComponent.hpp */,
 				F3EA6C291C3E8FA2002AF813 /* DebugDrawComponent.cpp */,
 				F3EA6C2A1C3E8FA2002AF813 /* DebugDrawComponent.hpp */,
+				945F0DD01C54B3AA009C61FE /* RigidBodyComponent.cpp */,
+				945F0DD11C54B3AA009C61FE /* RigidBodyComponent.hpp */,
 			);
 			name = Component;
 			path = ../../CPPSources/Component;
@@ -2096,6 +2101,7 @@
 				F39FA5B01C0DE15400CC0BB4 /* bitrate.c in Sources */,
 				94788FEB1BD4CFD200B55A25 /* btTriangleIndexVertexArray.cpp in Sources */,
 				F39FA5C41C0DE15400CC0BB4 /* vorbisfile.c in Sources */,
+				945F0DD21C54B3AA009C61FE /* RigidBodyComponent.cpp in Sources */,
 				94788FA91BD4CFD200B55A25 /* btBroadphaseProxy.cpp in Sources */,
 				94788FCA1BD4CFD200B55A25 /* btUnionFind.cpp in Sources */,
 				94D5DA661BE2018100DFB8BC /* btBulletFile.cpp in Sources */,
