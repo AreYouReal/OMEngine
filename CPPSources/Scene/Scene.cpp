@@ -29,9 +29,9 @@ Scene::~Scene(){
 bool Scene::init(){
 //    createBallsScene();
     
-//        createTestScene();
+        createTestScene();
     
-    createLightTestScene();
+//    createLightTestScene();
 
     return true;
 }
@@ -55,8 +55,8 @@ void Scene::draw(){
             mrc->update();
         }
         
-//        IComponent *ddc = go->getComponent(ComponentEnum::DEBUG_DRAW);
-//        if(ddc){ ddc->update(); }
+        IComponent *ddc = go->getComponent(ComponentEnum::DEBUG_DRAW);
+        if(ddc){ ddc->update(); }
         
     }
 //    for (int i = 0; i < 2; ++i) {
@@ -99,6 +99,11 @@ void Scene::createTestScene(){
     treeAndLeafs->addComponent(ComponentEnum::MESH_RENDERER, std::move(mrc_1));
     
     PhysicalWorld::instance()->addPBodyToGameObject(treeAndLeafs.get(), PhysicalBodyShape::BOX, 1.0f, treeAndLeafs->getDimensions());
+    
+    up<DebugDrawComponent> debugDraw = up<DebugDrawComponent>(new DebugDrawComponent(treeAndLeafs.get()));
+    
+    treeAndLeafs->addComponent(ComponentEnum::DEBUG_DRAW, std::move(debugDraw));
+    
     
     //------------------------------
     addObjOnScene(std::move(treeAndLeafs));
@@ -197,7 +202,7 @@ void Scene::addMeshRendererOnScene(string objName, string meshName){
     up<MeshRendererComponent> mrc = up<MeshRendererComponent>(new MeshRendererComponent(go.get(), mObjRess[objName]->getMesh(go->name)));
     go->addComponent(ComponentEnum::MESH_RENDERER, std::move(mrc));
     
-    up<DebugDrawComponent> ddc = up<DebugDrawComponent>(new DebugDrawComponent(go.get(), v3d(rand() % 10, 2, 2)));
+    up<DebugDrawComponent> ddc = up<DebugDrawComponent>(new DebugDrawComponent(go.get()));
     go->addComponent(ComponentEnum::DEBUG_DRAW, std::move(ddc));
     
     addObjOnScene(std::move(go));

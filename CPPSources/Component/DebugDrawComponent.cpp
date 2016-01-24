@@ -2,7 +2,7 @@
 #include "DebugDrawComponent.hpp"
 #include "Camera.h"
 
-DebugDrawComponent::DebugDrawComponent(GameObject * const gameObject, const v3d size) : IComponent(gameObject), mModelMatrix(m4d::scale(size)){}
+DebugDrawComponent::DebugDrawComponent(GameObject * const gameObject) : IComponent(gameObject){}
 
 DebugDrawComponent::~DebugDrawComponent(){
     onDestroy();
@@ -13,7 +13,7 @@ bool DebugDrawComponent::init(){
 }
 
 void DebugDrawComponent::update(){
-    Camera::instance()->pushMMatrix(mModelMatrix);
+    Camera::instance()->pushMMatrix( m4d::translate(go->mTransform.mPosition) );
     wc.draw();
     Camera::instance()->popMMatrix();
 }

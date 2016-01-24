@@ -53,9 +53,8 @@ v3d GameObject::getDimensions(){
 v3d GameObject::getPosition(){
     if(pBody){
         btVector3 origin = pBody->getWorldTransform().getOrigin();
-        return v3d(origin.x(), origin.y(), origin.z());
-    }else{
-        return mTransform.mPosition;
+        mTransform.mPosition = v3d(origin.x(), origin.y(), origin.z());
     }
-    return v3d();
+    
+    return mTransform.mPosition;
 }
