@@ -42,32 +42,21 @@ void Scene::addObjOnScene(up<GameObject> go){
 
 void Scene::update(float deltaTime){
     PhysicalWorld::instance()->update(deltaTime);
+    for(const auto& go : mObjects){
+        for(int i = (int)ComponentEnum::MESH_RENDERER; i <= (int)ComponentEnum::DEBUG_DRAW; ++i){
+            IComponent *comp = go->getComponent((ComponentEnum)i);
+            if(comp) comp->update();
+        }
+    }
 }
 
 void Scene::draw(){
     for(const auto& go : mObjects){
-        
-        IComponent *mrc = go->getComponent(ComponentEnum::MESH_RENDERER);
-        if(mrc){
-//            if(!mrc->go->name.compare("player")){
-//                Camera::instance()->setFront(mrc->go->getPosition());
-//            }
-            mrc->update();
+        for(int i = (int)ComponentEnum::MESH_RENDERER; i <= (int)ComponentEnum::DEBUG_DRAW; ++i){
+            IComponent *comp = go->getComponent((ComponentEnum)i);
+            if(comp) comp->draw();
         }
-        
-        IComponent *ddc = go->getComponent(ComponentEnum::DEBUG_DRAW);
-        if(ddc){ ddc->update(); }
-        
-        
-        IComponent *rbc = go->getComponent(ComponentEnum::RIGID_BODY);
-        if(rbc){ rbc->update(); }
-        
     }
-//    for (int i = 0; i < 2; ++i) {
-//        Illuminator::instance()->getLightSource(i)->draw();
-//    }
-
-
 }
 
 void Scene::setRenderObjectState(RenderObjectType newState){
@@ -86,11 +75,9 @@ void Scene::createTestScene(){
     mObjRess.insert(std::pair<string, sp<Obj>>("scene", object));
     
     /// TEST CODE
-    v3d firstPos(0, 0, 0);
     
     up<GameObject> ground;
-    
-    
+
     // Tree
     
     up<GameObject> treeAndLeafs = std::unique_ptr<GameObject>(new GameObject());
@@ -104,9 +91,7 @@ void Scene::createTestScene(){
     
     up<RigidBodyComponent> rbc_1 = up<RigidBodyComponent>(new RigidBodyComponent(treeAndLeafs.get()));
     treeAndLeafs->addComponent(ComponentEnum::RIGID_BODY, std::move(rbc_1));
-    
-//    PhysicalWorld::instance()->addPBodyToGameObject(treeAndLeafs.get(), PhysicalBodyShape::BOX, 1.0f, treeAndLeafs->getDimensions());
-    
+
     up<DebugDrawComponent> debugDraw = up<DebugDrawComponent>(new DebugDrawComponent(treeAndLeafs.get()));
     
     treeAndLeafs->addComponent(ComponentEnum::DEBUG_DRAW, std::move(debugDraw));
@@ -127,8 +112,7 @@ void Scene::createTestScene(){
     
     up<RigidBodyComponent> rbc_2 = up<RigidBodyComponent>(new RigidBodyComponent(momo.get()));
     momo->addComponent(ComponentEnum::RIGID_BODY, std::move(rbc_2));
-//    PhysicalWorld::instance()->addPBodyToGameObject(momo.get(), PhysicalBodyShape::BOX, 1.0f, momo->getDimensions());
-    
+
     //----------------------------
     addObjOnScene(std::move(momo));
     
@@ -145,22 +129,8 @@ void Scene::createTestScene(){
     
     up<RigidBodyComponent> rbc_3 = up<RigidBodyComponent>(new RigidBodyComponent(ground.get(), 0.0f));
     ground->addComponent(ComponentEnum::RIGID_BODY, std::move(rbc_3));
-//    PhysicalWorld::instance()->addPBodyToGameObject(ground.get(), PhysicalBodyShape::BOX, 0.0f, v3d(10, 10, 1));
-    
-    //------------------------------------------------
     
     addObjOnScene(std::move(ground));
-    
-    
-    
-    //
-    //    , nullptr, [](btBroadphasePair &pair, btCollisionDispatcher &dispatcher, const btDispatcherInfo &info){
-    //        logMessage("nearCallback");
-    //        GameObject *go = (GameObject*)((btRigidBody*)(pair.m_pProxy0->m_clientObject))->getUserPointer();
-    //        if(go->name.compare("momo")) return;
-    //
-    //        dispatcher.defaultNearCallback(pair, dispatcher, info);
-    //    }
 }
 
 

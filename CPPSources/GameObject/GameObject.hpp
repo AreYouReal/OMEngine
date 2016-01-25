@@ -38,7 +38,7 @@ public:
     m4d transformMatrix();
     
     std::vector<sp<GameObject>> mChildren;
-    
+
 private:
 
     std::map<ComponentEnum, up<IComponent>> mComponents;

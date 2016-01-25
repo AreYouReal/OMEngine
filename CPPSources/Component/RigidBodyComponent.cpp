@@ -56,3 +56,5 @@ void RigidBodyComponent::update(){
         //        logMessage("%s %f, %f, %f\n", mObjMeshes[0]->getName().c_str(), pBody->getWorldTransform().m_origin[0], pBody->getWorldTransform().m_origin[1], pBody->getWorldTransform().m_origin[2]);
     }
 }
+
+void RigidBodyComponent::draw(){}

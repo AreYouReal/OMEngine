@@ -13,6 +13,7 @@ public:
     
     virtual bool init()     override;
     virtual void update()   override;
+    virtual void draw()     override;
     virtual void onDestroy()  override;
     
 private:

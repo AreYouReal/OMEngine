@@ -15,6 +15,7 @@ public:
     
     virtual bool init()     override;
     virtual void update()   override;
+    virtual void draw()     override;
     virtual void onDestroy()  override;
 
     void addMesh(sp<ObjMesh> mesh);

@@ -12,9 +12,10 @@ public:
     virtual ~RigidBodyComponent();
 
     
-    virtual bool init();
-    virtual void update();
-    virtual void onDestroy();
+    virtual bool init() override;
+    virtual void update() override;
+    virtual void draw() override;
+    virtual void onDestroy() override;
     
     const m4d& transformMatrix() const { return mTransformMatrix; }
     
