@@ -51,10 +51,18 @@ v3d GameObject::getDimensions(){
 
 
 v3d GameObject::getPosition(){
-    if(pBody){
-        btVector3 origin = pBody->getWorldTransform().getOrigin();
+    RigidBodyComponent *rBody = static_cast<RigidBodyComponent*>( getComponent(ComponentEnum::RIGID_BODY) );
+    if(rBody){
+        btVector3 origin = rBody->mBody->getWorldTransform().getOrigin();
         mTransform.mPosition = v3d(origin.x(), origin.y(), origin.z());
     }
     
     return mTransform.mPosition;
+}
+
+m4d GameObject::transformMatrix(){
+    RigidBodyComponent *rBody = static_cast<RigidBodyComponent*>( getComponent(ComponentEnum::RIGID_BODY) );
+    if(rBody){ return rBody->transformMatrix(); }
+    
+    return mTransform.transformMatrix();
 }

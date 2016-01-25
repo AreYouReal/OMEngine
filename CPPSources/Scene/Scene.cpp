@@ -58,6 +58,10 @@ void Scene::draw(){
         IComponent *ddc = go->getComponent(ComponentEnum::DEBUG_DRAW);
         if(ddc){ ddc->update(); }
         
+        
+        IComponent *rbc = go->getComponent(ComponentEnum::RIGID_BODY);
+        if(rbc){ rbc->update(); }
+        
     }
 //    for (int i = 0; i < 2; ++i) {
 //        Illuminator::instance()->getLightSource(i)->draw();
@@ -98,7 +102,10 @@ void Scene::createTestScene(){
     treeAndLeafs->mTransform = (v3d(0, 0, 5));
     treeAndLeafs->addComponent(ComponentEnum::MESH_RENDERER, std::move(mrc_1));
     
-    PhysicalWorld::instance()->addPBodyToGameObject(treeAndLeafs.get(), PhysicalBodyShape::BOX, 1.0f, treeAndLeafs->getDimensions());
+    up<RigidBodyComponent> rbc_1 = up<RigidBodyComponent>(new RigidBodyComponent(treeAndLeafs.get()));
+    treeAndLeafs->addComponent(ComponentEnum::RIGID_BODY, std::move(rbc_1));
+    
+//    PhysicalWorld::instance()->addPBodyToGameObject(treeAndLeafs.get(), PhysicalBodyShape::BOX, 1.0f, treeAndLeafs->getDimensions());
     
     up<DebugDrawComponent> debugDraw = up<DebugDrawComponent>(new DebugDrawComponent(treeAndLeafs.get()));
     
@@ -118,8 +125,9 @@ void Scene::createTestScene(){
     momo->mTransform = (v3d(2.3, 0, 7));
     momo->addComponent(ComponentEnum::MESH_RENDERER, std::move(mrc_1));
     
-    
-    PhysicalWorld::instance()->addPBodyToGameObject(momo.get(), PhysicalBodyShape::BOX, 1.0f, momo->getDimensions());
+    up<RigidBodyComponent> rbc_2 = up<RigidBodyComponent>(new RigidBodyComponent(momo.get()));
+    momo->addComponent(ComponentEnum::RIGID_BODY, std::move(rbc_2));
+//    PhysicalWorld::instance()->addPBodyToGameObject(momo.get(), PhysicalBodyShape::BOX, 1.0f, momo->getDimensions());
     
     //----------------------------
     addObjOnScene(std::move(momo));
@@ -135,7 +143,9 @@ void Scene::createTestScene(){
     
     ground->addComponent(ComponentEnum::MESH_RENDERER, std::move(mrc_1));
     
-    PhysicalWorld::instance()->addPBodyToGameObject(ground.get(), PhysicalBodyShape::BOX, 0.0f, v3d(10, 10, 1));
+    up<RigidBodyComponent> rbc_3 = up<RigidBodyComponent>(new RigidBodyComponent(ground.get(), 0.0f));
+    ground->addComponent(ComponentEnum::RIGID_BODY, std::move(rbc_3));
+//    PhysicalWorld::instance()->addPBodyToGameObject(ground.get(), PhysicalBodyShape::BOX, 0.0f, v3d(10, 10, 1));
     
     //------------------------------------------------
     
@@ -165,7 +175,7 @@ void Scene::createMOMO(){
     
     m->addComponent(ComponentEnum::MESH_RENDERER, std::move(mrc_1));
     
-    PhysicalWorld::instance()->addPBodyToGameObject(m.get(), PhysicalBodyShape::BOX, 1.0f, m->getDimensions());
+//    PhysicalWorld::instance()->addPBodyToGameObject(m.get(), PhysicalBodyShape::BOX, 1.0f, m->getDimensions());
     
     addObjOnScene(std::move(m));
 }

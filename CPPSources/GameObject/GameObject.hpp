@@ -10,6 +10,7 @@
 
 // Components
 #include "IComponent.hpp"
+#include "RigidBodyComponent.hpp"
 
 
 class GameObject{
@@ -31,12 +32,10 @@ public:
     void destroyChildren();
     
     Transform   mTransform{};
-    
-    btRigidBody *pBody = nullptr;          // Physics "body" of the mesh
-    
     v3d getDimensions();
-    
     v3d getPosition();
+    
+    m4d transformMatrix();
     
     std::vector<sp<GameObject>> mChildren;
     
