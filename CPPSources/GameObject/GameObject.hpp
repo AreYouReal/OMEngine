@@ -11,6 +11,7 @@
 // Components
 #include "IComponent.hpp"
 #include "RigidBodyComponent.hpp"
+#include "MeshRendererComponent.hpp"
 
 
 class GameObject{

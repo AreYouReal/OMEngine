@@ -84,3 +84,10 @@ void PhysicalWorld::destroyTheWorld(){
     }
 }
 
+void PhysicalWorld::removeBodyFromWorld(btRigidBody *body){
+    if(body){
+        physicsWorld->removeRigidBody(body);
+        physicsWorld->removeCollisionObject(body);
+    }
+}
+

@@ -17,7 +17,7 @@ bool DebugDrawComponent::init(){
 void DebugDrawComponent::update(){}
 
 void DebugDrawComponent::draw(){
-    Camera::instance()->pushMMatrix( m4d::translate(go->mTransform.mPosition) );
+    Camera::instance()->pushMMatrix( m4d::translate(go->mTransform.mPosition) * m4d::scale(go->getDimensions()) );
     wc.draw();
     Camera::instance()->popMMatrix();
 }

@@ -20,6 +20,8 @@ public:
 
     void addMesh(sp<ObjMesh> mesh);
     
+    v3d     getDimensions();
+    
 private:
     std::vector<sp<ObjMesh>> mMeshes;
 };

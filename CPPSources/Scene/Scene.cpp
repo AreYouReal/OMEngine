@@ -113,6 +113,10 @@ void Scene::createTestScene(){
     up<RigidBodyComponent> rbc_2 = up<RigidBodyComponent>(new RigidBodyComponent(momo.get()));
     momo->addComponent(ComponentEnum::RIGID_BODY, std::move(rbc_2));
 
+    debugDraw = up<DebugDrawComponent>(new DebugDrawComponent(momo.get()));
+    
+    momo->addComponent(ComponentEnum::DEBUG_DRAW, std::move(debugDraw));
+    
     //----------------------------
     addObjOnScene(std::move(momo));
     
@@ -129,6 +133,10 @@ void Scene::createTestScene(){
     
     up<RigidBodyComponent> rbc_3 = up<RigidBodyComponent>(new RigidBodyComponent(ground.get(), 0.0f));
     ground->addComponent(ComponentEnum::RIGID_BODY, std::move(rbc_3));
+    
+    debugDraw = up<DebugDrawComponent>(new DebugDrawComponent(ground.get()));
+    
+    ground->addComponent(ComponentEnum::DEBUG_DRAW, std::move(debugDraw));
     
     addObjOnScene(std::move(ground));
 }

@@ -30,6 +30,7 @@ public:
     ~PhysicalWorld();
     
     bool addBodyToPhysicalWork(btRigidBody *body);
+    void removeBodyFromWorld(btRigidBody *body);
     
     bool loadPhysicsWorldFromFile(string filename, std::vector<GameObject*> objects);
     

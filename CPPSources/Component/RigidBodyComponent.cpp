@@ -10,7 +10,12 @@ RigidBodyComponent::~RigidBodyComponent(){
 }
 
 void RigidBodyComponent::onDestroy(){
-
+    if(mBody){
+        PhysicalWorld::instance()->removeBodyFromWorld(mBody);
+        delete mBody->getCollisionShape();
+        delete mBody->getMotionState();
+        delete mBody;
+    }
 }
 
 bool RigidBodyComponent::init(){

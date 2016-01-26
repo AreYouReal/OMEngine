@@ -34,18 +34,10 @@ IComponent *GameObject::getComponent(const ComponentEnum &name){
 
 
 v3d GameObject::getDimensions(){
-//    v3d min, max;
-//    for(auto const &mesh : mObjMeshes){
-//        if(min.x > mesh->outlines.min.x) min.x = mesh->outlines.min.x;
-//        if(min.y > mesh->outlines.min.y) min.y = mesh->outlines.min.y;
-//        if(min.z > mesh->outlines.min.z) min.z = mesh->outlines.min.z;
-//        if(max.x < mesh->outlines.max.x) max.x = mesh->outlines.max.x;
-//        if(max.y < mesh->outlines.max.y) max.y = mesh->outlines.max.y;
-//        if(max.z < mesh->outlines.max.z) max.z = mesh->outlines.max.z;
-//    }
-//    v3d::print(mObjMeshes[0]->outlines.max - mObjMeshes[0]->outlines.min);
-//    
-//    return (mObjMeshes[0]->outlines.max - mObjMeshes[0]->outlines.min);
+    MeshRendererComponent *mrc = static_cast<MeshRendererComponent *>(getComponent(ComponentEnum::MESH_RENDERER));
+    if(mrc){
+        return mrc->getDimensions();
+    }
     return v3d(1, 1, 1);
 }
 

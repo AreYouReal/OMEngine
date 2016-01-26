@@ -36,16 +36,13 @@ void MeshRendererComponent::draw(){
     for (auto const& mesh : mMeshes) {
 
         if(mesh){
-//            logMessage("Name: %s\n", mesh->getName().c_str() );
             if(!Camera::instance()->sphereDistanceInFrustum(go->getPosition(), mesh->outlines.radius)){
-                //            logMessage("skip %s mesh\n", mesh->getName().c_str());
                 continue;
             }
 //            modelM =  m4d::translate(mesh->outlines.location);
 //            Camera::instance()->pushMVMatrix(modelM);
             
             if(mesh->renderObjectType() == RenderObjectType::SOLID){
-//                if(Game::debugFlag){ drawDebugPhysicsGeometry(); }
                 mesh->draw();
             }else{
                 glEnable(GL_BLEND);
@@ -80,4 +77,19 @@ void MeshRendererComponent::addMesh(sp<ObjMesh> mesh){
     mMeshes.push_back(mesh);
 }
 
-
+v3d MeshRendererComponent::getDimensions(){
+    v3d dimensions, currMin, currMax;
+    for(const auto& mesh : mMeshes){
+        v3d min = mesh->outlines.min;
+        if(currMin.x > min.x) currMin.x = min.x;
+        if(currMin.y > min.y) currMin.y = min.y;
+        if(currMin.z > min.z) currMin.z = min.z;
+        
+        v3d max = mesh->outlines.max;
+        if(currMax.x < max.x) currMax.x = max.x;
+        if(currMax.y < max.y) currMax.y = max.y;
+        if(currMax.z < max.z) currMax.z = max.z;
+    }
+    dimensions = currMax - currMin;
+    return dimensions;
+}
