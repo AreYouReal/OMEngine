@@ -29,9 +29,9 @@ Scene::~Scene(){
 bool Scene::init(){
 //    createBallsScene();
     
-        createTestScene();
+//        createTestScene();
     
-//    createLightTestScene();
+    createLightTestScene();
 
     return true;
 }
@@ -190,9 +190,6 @@ void Scene::addMeshRendererOnScene(string objName, string meshName){
     up<MeshRendererComponent> mrc = up<MeshRendererComponent>(new MeshRendererComponent(go.get(), mObjRess[objName]->getMesh(go->name)));
     go->addComponent(ComponentEnum::MESH_RENDERER, std::move(mrc));
     
-    up<DebugDrawComponent> ddc = up<DebugDrawComponent>(new DebugDrawComponent(go.get()));
-    go->addComponent(ComponentEnum::DEBUG_DRAW, std::move(ddc));
-    
     addObjOnScene(std::move(go));
 }
 
@@ -206,6 +203,6 @@ void Scene::createLightTestScene(){
     std::vector<sp<ObjMesh>> meshes = object->getAllMeshes();
     
     for(const sp<ObjMesh> mesh : object->getAllMeshes()){
-            addMeshRendererOnScene("lightScene", mesh->getName());
+        addMeshRendererOnScene("lightScene", mesh->getName());
     }
 }

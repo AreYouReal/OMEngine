@@ -143,8 +143,8 @@ void ObjMesh::buildVBO(){
         index = vertexData[i].vIndex;
         memcpy(vertexArray, &data->vertices[index], v3dSize);
         // Center the pivot
-        v3d centerThePivot = data->vertices[index] - outlines.location;      // ??????????
-        memcpy(vertexArray, &centerThePivot, v3dSize);                       // ??????????
+//        v3d centerThePivot = data->vertices[index] - outlines.location;      // ??????????
+//        memcpy(vertexArray, &centerThePivot, v3dSize);                       // ??????????
         vertexArray += v3dSize;
         memcpy(vertexArray, &data->normals[index], v3dSize);
         vertexArray += v3dSize;
@@ -190,7 +190,7 @@ void ObjMesh::initMaterial(){
     for(unsigned int i = 0; i < tLists.size(); ++i){
         if(tLists[i]->material != nullptr){
             tLists[i]->material->loadTextures();
-            tLists[i]->material->program = Materials::instance()->getProgram("normAsColor");
+            tLists[i]->material->program = Materials::instance()->getProgram("generalLighting.omg");
         }
     }
 }
