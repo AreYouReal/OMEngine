@@ -12,7 +12,10 @@ ObjMaterial::~ObjMaterial(){
 }
 
 void ObjMaterial::use(){
-    if(program) program->use();
+    if(program){
+        program->use();
+        program->setUniforms(this);
+    }
     
     if(tAmbient){
         glActiveTexture(GL_TEXTURE0);
@@ -38,8 +41,7 @@ void ObjMaterial::use(){
         glActiveTexture(GL_TEXTURE5);
         glBindTexture(tTranslucency->target, tTranslucency->ID);
     }
-    
-    setUniforms();
+
 }
 
 void ObjMaterial::loadTextures(){
@@ -76,74 +78,5 @@ void ObjMaterial::loadTextures(){
 
 
 void ObjMaterial::setUniforms(){
-    m4d matrix;
-    
-    for(unsigned short i = 0; i < program->uniformArray.size(); ++i){
-        if(!strcmp(program->uniformArray[i].name.c_str(), "uSamplerDiffuse")){
-            glUniform1i(program->uniformArray[i].location, 1);
-        }else if(!strcmp(program->uniformArray[i].name.c_str(), "uModelViewM")){
-            matrix = Camera::instance()->modelViewMatrix();
-            glUniformMatrix4fv(program->uniformArray[i].location, 1, GL_TRUE, matrix.pointer());
-        }else if(!strcmp(program->uniformArray[i].name.c_str(), "uProjectionM")){
-            matrix = Camera::instance()->projectionMatrix();
-            glUniformMatrix4fv(program->uniformArray[i].location, 1, GL_TRUE, matrix.pointer());
-        }else if(!strcmp(program->uniformArray[i].name.c_str(), "uNormalM")){
-            matrix = Camera::instance()->normalMatrix();
-            glUniformMatrix4fv(program->uniformArray[i].location, 1, GL_TRUE, matrix.pointer());
-        }else if(!strcmp(program->uniformArray[i].name.c_str(), "uDissolve")){
-            glUniform1f(program->uniformArray[i].location, dissolve);
-        }else if(!strcmp(program->uniformArray[i].name.c_str(), "uMaterial.ambient")){
-            glUniform4fv(program->uniformArray[i].location, 1, &ambient.x);
-        }else if(!strcmp(program->uniformArray[i].name.c_str(), "uMaterial.diffuse")){
-            glUniform4fv(program->uniformArray[i].location, 1, &diffuse.x);
-        }else if(!strcmp(program->uniformArray[i].name.c_str(), "uMaterial.specular")){
-            glUniform4fv(program->uniformArray[i].location, 1, &specular.x);
-        }else if(!strcmp(program->uniformArray[i].name.c_str(), "uMaterial.shininess")){
-            glUniform1f(program->uniformArray[i].location, specularExponent );
-        }else if(!strcmp(program->uniformArray[i].name.c_str(), "uLight.position")){
-            // LIGHT
-        }else if(!strcmp(program->uniformArray[i].name.c_str(), "uSamplerBump")){
-            glUniform1i(program->uniformArray[i].location, 4);
-        }
-    }
-    
-    char tmp[128] = {""};
-    for(int i = 0; i < 2; ++i){
-        sp<LightSource> light =Illuminator::instance()->getLightSource(i);
-        v4d lightInEyeSpace = light->getPositionInEyeSpace();
-        v4d color = light->getColor();
-        v4d directionInEyeSpace = light->getDirectionInEyeSpace();
-        
-        sprintf(tmp, "uLightFS[%d].color", i);
-        glUniform4fv(program->getUniformLocation(tmp), 1, &color.x);
-        
-        sprintf(tmp, "uLight[%d].type", i);
-        glUniform1i(program->getUniformLocation(tmp), light->type());
-        
-        sprintf(tmp, "uLightFS[%d].type", i);
-        glUniform1i(program->getUniformLocation(tmp), light->type());
 
-        sprintf(tmp, "uLightFS[%d].spotCosCutoff", i);
-        glUniform1f(program->getUniformLocation(tmp),  light->spotCosCutoff);
-        
-        sprintf(tmp, "uLightFS[%d].spotBlend", i);
-        glUniform1f(program->getUniformLocation("uLightFS.spotBlend"),      light->spotBlend);
-        
-        
-        sprintf(tmp, "uLightFS[%d].dst", i);
-        glUniform1f(program->getUniformLocation(tmp),         light->distance());
-        
-        sprintf(tmp, "uLightFS[%d].linAtten", i);
-        glUniform1f(program->getUniformLocation(tmp),    light->linearAtten());
-        
-        
-        sprintf(tmp, "uLightFS[%d].quadAten", i);
-        glUniform1f(program->getUniformLocation("uLightFS.quadAtent"),   light->quadAtten());
-        
-        sprintf(tmp, "uLight[%d].direction", i);
-        glUniform3fv(program->getUniformLocation(tmp), 1, &directionInEyeSpace.x);
-    
-        sprintf(tmp, "uLight[%d].position", i);
-        glUniform3fv(program->getUniformLocation(tmp), 1, &lightInEyeSpace.x);
-    }
 }

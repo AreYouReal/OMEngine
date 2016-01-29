@@ -3,6 +3,9 @@
 
 #include "OMUtils.h"
 #include "Shader.h"
+#include "ObjMaterial.h"
+
+class ObjMaterial;
 
 struct Uniform{
     std::string     name;
@@ -33,4 +36,5 @@ struct ShaderProgram{
     int                 getUniformLocation(const char* name);
     
     virtual void bindAttributes();
+    virtual void setUniforms(ObjMaterial *mat);
 };

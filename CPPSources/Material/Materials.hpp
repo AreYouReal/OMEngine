@@ -5,9 +5,9 @@
 
 #include "Singleton.hpp"
 #include "Texture.h"
-#include "ObjMaterial.h"
 
 class ObjMaterial;
+class ShaderProgram;
 
 class Materials : public Singleton<Materials>{
 public:
