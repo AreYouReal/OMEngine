@@ -268,6 +268,7 @@
 		F3BCACBB1BFF26FE002003B7 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3BCACB81BFF26FE002003B7 /* Main_iPhone.storyboard */; };
 		F3BEAB1A1C43A6C00012DDCD /* lightingAttenuation.omg in Resources */ = {isa = PBXBuildFile; fileRef = F3BEAB191C43A6C00012DDCD /* lightingAttenuation.omg */; };
 		F3C52B2C1BBD079F009F3604 /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3C52B2A1BBD079F009F3604 /* Scene.cpp */; };
+		F3C8A2FB1C5FB00000867A65 /* DefaultDiffuseSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3C8A2F91C5FB00000867A65 /* DefaultDiffuseSP.cpp */; };
 		F3CAEEE51BB01A7600DCF182 /* default_gray_vertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F3CAEEE41BB01A7600DCF182 /* default_gray_vertex.glsl */; };
 		F3CAEEE71BB01B8800DCF182 /* default_gray_fragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F3CAEEE61BB01B8800DCF182 /* default_gray_fragment.glsl */; };
 		F3D5E10B1AF8F24400DD216B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F3D5E1091AF8F24400DD216B /* InfoPlist.strings */; };
@@ -848,6 +849,8 @@
 		F3BEAB191C43A6C00012DDCD /* lightingAttenuation.omg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = lightingAttenuation.omg; path = OMEngine/Platforms/Android/assets/lightingAttenuation.omg; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
 		F3C52B2A1BBD079F009F3604 /* Scene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Scene.cpp; sourceTree = "<group>"; };
 		F3C52B2B1BBD079F009F3604 /* Scene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Scene.hpp; sourceTree = "<group>"; };
+		F3C8A2F91C5FB00000867A65 /* DefaultDiffuseSP.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DefaultDiffuseSP.cpp; path = OMEngine/CPPSources/Shaders/DefaultDiffuseSP.cpp; sourceTree = "<group>"; };
+		F3C8A2FA1C5FB00000867A65 /* DefaultDiffuseSP.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = DefaultDiffuseSP.hpp; path = OMEngine/CPPSources/Shaders/DefaultDiffuseSP.hpp; sourceTree = "<group>"; };
 		F3CAEEE41BB01A7600DCF182 /* default_gray_vertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = default_gray_vertex.glsl; path = ../Android/assets/shaders/default_gray_vertex.glsl; sourceTree = SOURCE_ROOT; };
 		F3CAEEE61BB01B8800DCF182 /* default_gray_fragment.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = default_gray_fragment.glsl; path = ../Android/assets/shaders/default_gray_fragment.glsl; sourceTree = SOURCE_ROOT; };
 		F3D5E1051AF8F23400DD216B /* iOSSRETests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iOSSRETests.m; path = OMEiOSTests/iOSSRETests.m; sourceTree = SOURCE_ROOT; };
@@ -1046,16 +1049,13 @@
 		9420DCE41B007E0D006D2A7E /* Shaders */ = {
 			isa = PBXGroup;
 			children = (
+				F3C8A2F81C5FAFBF00867A65 /* Programs */,
 				94CE87D31B62B51900752D5C /* ShaderHelper.cpp */,
 				94CE87D41B62B51900752D5C /* ShaderHelper.h */,
 				F3FAE8B61B6B77D6007AF169 /* ShaderProgram.cpp */,
 				F3FAE8B71B6B77D6007AF169 /* ShaderProgram.h */,
 				F3FAE8B91B6B7885007AF169 /* Shader.cpp */,
 				F3FAE8BA1B6B7885007AF169 /* Shader.h */,
-				F37D26421C5F705500433B4F /* NormalSP.cpp */,
-				F37D26431C5F705500433B4F /* NormalSP.hpp */,
-				F32EB63A1C5FA5E00057F474 /* GreySP.cpp */,
-				F32EB63B1C5FA5E00057F474 /* GreySP.hpp */,
 			);
 			name = Shaders;
 			path = ../../..;
@@ -1898,6 +1898,19 @@
 			path = ../../CPPSources/Scene;
 			sourceTree = SOURCE_ROOT;
 		};
+		F3C8A2F81C5FAFBF00867A65 /* Programs */ = {
+			isa = PBXGroup;
+			children = (
+				F37D26421C5F705500433B4F /* NormalSP.cpp */,
+				F37D26431C5F705500433B4F /* NormalSP.hpp */,
+				F32EB63A1C5FA5E00057F474 /* GreySP.cpp */,
+				F32EB63B1C5FA5E00057F474 /* GreySP.hpp */,
+				F3C8A2F91C5FB00000867A65 /* DefaultDiffuseSP.cpp */,
+				F3C8A2FA1C5FB00000867A65 /* DefaultDiffuseSP.hpp */,
+			);
+			name = Programs;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2108,6 +2121,7 @@
 				94788FFC1BD4CFD200B55A25 /* btConvexCast.cpp in Sources */,
 				F368E8C11BA6AC9F00F322AF /* NvTriStrip.cpp in Sources */,
 				94788FD71BD4CFD200B55A25 /* btConvexPointCloudShape.cpp in Sources */,
+				F3C8A2FB1C5FB00000867A65 /* DefaultDiffuseSP.cpp in Sources */,
 				F39FA5B01C0DE15400CC0BB4 /* bitrate.c in Sources */,
 				94788FEB1BD4CFD200B55A25 /* btTriangleIndexVertexArray.cpp in Sources */,
 				F39FA5C41C0DE15400CC0BB4 /* vorbisfile.c in Sources */,

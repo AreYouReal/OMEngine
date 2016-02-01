@@ -2,7 +2,7 @@
 
 
 void GreySP::initAttribLocations(){
-    NormalSP::initUniformLocations();
+    NormalSP::initAttribLocations();
 }
 
 void GreySP::initUniformLocations(){

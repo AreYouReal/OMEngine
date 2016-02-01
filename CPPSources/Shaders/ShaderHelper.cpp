@@ -3,6 +3,7 @@
 
 #include "NormalSP.hpp"
 #include "GreySP.hpp"
+#include "DefaultDiffuseSP.hpp"
 
 #pragma mark Public
 
@@ -20,6 +21,9 @@ sp<ShaderProgram> ShaderHelper::createProgram(const string programName, const Sh
             break;
         case Grey:
             program = std::make_shared<GreySP>();
+            break;
+        case DefaultPerVertex:
+            program = std::make_shared<DefaultDiffuseSP>();
             break;
         default:
             program = std::make_shared<ShaderProgram>();

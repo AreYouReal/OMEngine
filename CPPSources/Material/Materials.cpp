@@ -7,8 +7,8 @@ static std::map<string, string>  meshShaderTable{
     // treemomo.obj meshes
     std::pair<string, string>("background", "defaultGrey"),
     std::pair<string, string>("baloon", "defaultGrey"),
-    std::pair<string, string>("grass_ground", "normAsColor"),
-    std::pair<string, string>("momo", "defaultGrey"),
+    std::pair<string, string>("grass_ground", "defaultPerVertex"),
+    std::pair<string, string>("momo", "normAsColor"),
     std::pair<string, string>("tree", "defaultPerVertex"),
     std::pair<string, string>("leaf", "defaultGrey"),
     // Scene.obj meshes
@@ -160,7 +160,7 @@ bool Materials::isMaterialExist(const string &name){
 void Materials::loadPrograms(){
     addProgram(ShaderHelper::createProgram("normAsColor",   "pos_norm_vertex.glsl",     "norm_as_color_fragment.glsl"   , ShaderHelper::ShaderType::Normal));
     addProgram(ShaderHelper::createProgram("defaultGrey",    "default_gray_vertex.glsl", "default_gray_fragment.glsl"   , ShaderHelper::ShaderType::Grey ));
-    addProgram(ShaderHelper::createProgram("defaultPerVertex","vertexPerVertex.glsl",     "fragmentPerVertex.glsl"        ));
+    addProgram(ShaderHelper::createProgram("defaultPerVertex","vertexPerVertex.glsl",     "fragmentPerVertex.glsl"      , ShaderHelper::ShaderType::DefaultPerVertex  ));
     addProgram(ShaderHelper::createProgram("defaultPerPixel", "vertexPerPixel.glsl",      "fragmentPerPixel.glsl"         ));
     addProgram(ShaderHelper::createProgram("bump",            "vertexBump.glsl",          "fragmentBump.glsl"             ));
     addProgram(ShaderHelper::createProgram("wired",           "wired_vertex.glsl",        "wired_fragment.glsl"           ));
