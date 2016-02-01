@@ -4,7 +4,19 @@
 #include "ShaderHelper.h"
 
 static std::map<string, string>  meshShaderTable{
-    std::pair<string, string>("momo", "defaultGrey")
+    // treemomo.obj meshes
+    std::pair<string, string>("background", "defaultGrey"),
+    std::pair<string, string>("baloon", "defaultGrey"),
+    std::pair<string, string>("grass_ground", "normAsColor"),
+    std::pair<string, string>("momo", "defaultGrey"),
+    std::pair<string, string>("tree", "normAsColor"),
+    std::pair<string, string>("leaf", "defaultGrey"),
+    // Scene.obj meshes
+    std::pair<string, string>("floor", "defaultGrey"),
+    std::pair<string, string>("sphere2_sphere.002", "generalLighting.omg"),
+    std::pair<string, string>("sphere1_sphere.001", "generalLighting.omg"),
+    std::pair<string, string>("sphere3_sphere", "generalLighting.omg")
+
 };
 
 Materials::Materials(){
@@ -17,7 +29,7 @@ Materials::~Materials(){
 
 
 bool Materials::loadMaterial(const std::string &name){
-    logMessage("Starting loading materials! %d\n", materials.size());
+//    logMessage("Starting loading materials! %d\n", materials.size());
     if(materials.find(name) != materials.end()){
         logMessage("Material is already loaded: %s\n", name.c_str());
         return false;
@@ -36,7 +48,7 @@ bool Materials::loadMaterial(const std::string &name){
     
     v3d v;
     
-    logMessage("Line processing! %d\n", materials.size());
+//    logMessage("Line processing! %d\n", materials.size());
     
     while(line){
         if(!line[0] || line[0] == '#' ){ line = strtok( NULL, "\n" ); continue;

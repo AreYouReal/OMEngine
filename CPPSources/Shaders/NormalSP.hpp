@@ -3,14 +3,11 @@
 #include "ShaderProgram.h"
 
 struct NormalSP : ShaderProgram {
-
     
+    virtual void initAttribLocations() override;
+    virtual void initUniformLocations() override;
     
+    virtual void bindAttributes() override;
+    virtual void setUniforms(ObjMaterial *mat) override;
     
-    virtual void initAttribLocations();
-    virtual void initUniformLocations();
-    
-    virtual void bindAttributes();
-    virtual void setUniforms(ObjMaterial *mat);
-    
-}
+};

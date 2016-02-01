@@ -7,8 +7,11 @@
 
 class ShaderHelper {
 public:
-    static sp<ShaderProgram>    createProgram(const string name, const string vFileName, const string fFileName);
-    static sp<ShaderProgram>    createProgram(const string name, const Shader &vertex, const Shader &fragment);
+    
+    enum ShaderType{Normal, Grey };
+    
+    static sp<ShaderProgram>    createProgram(const string name, const string vFileName, const string fFileName, const ShaderType sType = Normal);
+    static sp<ShaderProgram>    createProgram(const string name, const Shader &vertex, const Shader &fragment, const ShaderType sType = Normal);
     static Shader   loadShader(GLenum shaderType, std::string shaderFilename, std::string shaderName  = "default");
     static Shader   createShader(GLenum type, char* sourceCode, std::string shaderName);
     static void     printShaderInfoLog(GLuint shader);
@@ -17,5 +20,4 @@ public:
     static GLint    checkLinkStatus(GLuint program);
     static void     printShaderInfo(GLuint shader, GLenum pname);
     static void     printShaderProgramInfo(GLuint program, GLenum pname);
-
 };

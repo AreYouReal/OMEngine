@@ -22,9 +22,9 @@ Scene::~Scene(){
 bool Scene::init(){
 //    createBallsScene();
     
-        createTestScene();
+//        createTestScene();
     
-//    createLightTestScene();
+    createLightTestScene();
 
     return true;
 }
