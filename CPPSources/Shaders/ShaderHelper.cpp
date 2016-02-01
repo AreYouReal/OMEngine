@@ -35,7 +35,7 @@ sp<ShaderProgram> ShaderHelper::createProgram(const string programName, const Sh
             attrib.name = name;
             attrib.type = type;
         }
-        
+        program->initAttribLocations();
         glGetProgramiv(program->ID, GL_ACTIVE_UNIFORMS, &total);
         program->uniformArray = std::vector<Uniform>(total);
         for(unsigned int i = 0; i < total; i++){
@@ -45,7 +45,7 @@ sp<ShaderProgram> ShaderHelper::createProgram(const string programName, const Sh
             uniform.name = name;
             uniform.type = type;
         }
-        
+        program->initUniformLocations();
     }
     glDeleteShader(vertexShader.ID);
     glDeleteShader(fragmentShader.ID);

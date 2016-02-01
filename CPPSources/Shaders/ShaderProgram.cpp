@@ -2,6 +2,13 @@
 #include "Camera.h"
 #include "Illuminator.hpp"
 
+static const string posAttribName       {"aPosition"};
+static const string normAttribName      {"aNormal"  };
+static const string texCoordAttribName  {"aTexCoord"};
+static const string tanAttribName       {"aTangent" };
+
+
+
 ShaderProgram::ShaderProgram(){
     logMessage("Shader program constructor!\n");
 }
@@ -23,6 +30,26 @@ int ShaderProgram::getVertexAttribLocation(const char *name){
     return -1;
 }
 
+void ShaderProgram::initAttribLocations(){
+    for(const auto &attrib : attribArray){
+        if(!attrib.name.compare(posAttribName)){
+            attribLocations[Attributes::POSITION] = attrib.location;
+        }else if(!attrib.name.compare(normAttribName)){
+            attribLocations[Attributes::NORMAL] = attrib.location;
+        }else if(!attrib.name.compare(texCoordAttribName)){
+            attribLocations[Attributes::TEXTURE] = attrib.location;
+        }else if(!attrib.name.compare(tanAttribName)){
+            attribLocations[Attributes::TANGENT] = attrib.location;
+        }else{ logMessage("Unknown attribute!!! %s", attrib.name.c_str()); }
+    
+        logMessage("%s %d\n", attrib.name.c_str(), attrib.location);
+    }
+}
+
+void ShaderProgram::initUniformLocations(){
+    // Shader specific
+}
+
 void ShaderProgram::use(){
     glUseProgram(ID);
     
@@ -30,10 +57,10 @@ void ShaderProgram::use(){
 }
 
 void ShaderProgram::bindAttributes(){
-    glBindAttribLocation(ID, 0, "aPosition");
-    glBindAttribLocation(ID, 1, "aNormal");
-    glBindAttribLocation(ID, 2, "aTexCoord");
-    glBindAttribLocation(ID, 3, "aTangent");
+    glBindAttribLocation(ID, attribLocations[Attributes::POSITION], "aPosition");
+    glBindAttribLocation(ID, attribLocations[Attributes::NORMAL],   "aNormal");
+    glBindAttribLocation(ID, attribLocations[Attributes::TEXTURE],  "aTexCoord");
+    glBindAttribLocation(ID, attribLocations[Attributes::TANGENT],  "aTangent");
 }
 
 void ShaderProgram::setUniforms(ObjMaterial *mat){
