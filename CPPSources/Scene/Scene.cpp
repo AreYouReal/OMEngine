@@ -7,8 +7,6 @@ Scene::Scene(){
     Materials::instance();
     PhysicalWorld::instance();
     Boombox::instance();
-    
-    logMessage("Scene constructor!\n");
 }
 
 Scene::~Scene(){
@@ -19,19 +17,14 @@ Scene::~Scene(){
     Materials::destroy();
     PhysicalWorld::destroy();
     Boombox::destroy();
-    
-    
-
-    
-    logMessage("Scene destructor!\n");
 }
 
 bool Scene::init(){
 //    createBallsScene();
     
-//        createTestScene();
+        createTestScene();
     
-    createLightTestScene();
+//    createLightTestScene();
 
     return true;
 }

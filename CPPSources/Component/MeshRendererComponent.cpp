@@ -4,7 +4,6 @@
 #include "btBoxShape.h"
 
 MeshRendererComponent::MeshRendererComponent(GameObject * const gameObject): IComponent(gameObject){
-    logMessage("MeshRendererComponent constructor!\n");
 }
 
 MeshRendererComponent::MeshRendererComponent( GameObject * const gameObject, const sp<ObjMesh> mesh) : IComponent(gameObject){
@@ -18,7 +17,6 @@ MeshRendererComponent::MeshRendererComponent(GameObject * const gameObject, cons
 
 MeshRendererComponent::~MeshRendererComponent(){
     onDestroy();
-    logMessage("MeshRendererComponent destructor!\n");
 }
 
 

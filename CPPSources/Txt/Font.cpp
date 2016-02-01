@@ -5,7 +5,6 @@
 
 
 Font::Font(string name, float fSize, unsigned int tWidth, unsigned int tHeight, int firstChar, int charCount){
-    logMessage("Font constructor! %s\n", name.c_str());
 #ifdef ANDROID
     name = "fonts/" + name;
 #endif
@@ -36,7 +35,6 @@ Font::Font(string name, float fSize, unsigned int tWidth, unsigned int tHeight, 
 
 
 Font::~Font(){
-    logMessage("Font destructor!\n");
 }
 
 float Font::length(const string& text){

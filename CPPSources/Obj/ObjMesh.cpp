@@ -2,11 +2,9 @@
 #include "Scene.hpp"
 
 ObjMesh::ObjMesh(){
-    logMessage("ObjMesh constructor! %s \n" , name.c_str());
 }
 
 ObjMesh::~ObjMesh(){
-    logMessage("ObjMesh destructor! %s \n" , name.c_str());
 }
 
 unsigned int ObjMesh::draw(){
@@ -190,7 +188,7 @@ void ObjMesh::initMaterial(){
     for(unsigned int i = 0; i < tLists.size(); ++i){
         if(tLists[i]->material != nullptr){
             tLists[i]->material->loadTextures();
-            tLists[i]->material->program = Materials::instance()->getProgram("generalLighting.omg");
+            tLists[i]->material->program = Materials::instance()->getProgramFoMesh(name);
         }
     }
 }

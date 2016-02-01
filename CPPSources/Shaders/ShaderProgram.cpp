@@ -2,19 +2,24 @@
 #include "Camera.h"
 #include "Illuminator.hpp"
 
+// Attributes
 static const string posAttribName       {"aPosition"};
 static const string normAttribName      {"aNormal"  };
 static const string texCoordAttribName  {"aTexCoord"};
 static const string tanAttribName       {"aTangent" };
 
 
+// Uniform
+// Matrices
+static const string uniModelViewMatName {"uModelViewM"};
+static const string uniProjectionMatName{"uProjectionM"};
+static const string uniNormalMName      {"uNormalM"};
+
 
 ShaderProgram::ShaderProgram(){
-    logMessage("Shader program constructor!\n");
 }
 
 ShaderProgram::~ShaderProgram(){
-    logMessage("Shader program destructor: %d\n", ID );
 }
 
 
@@ -41,8 +46,6 @@ void ShaderProgram::initAttribLocations(){
         }else if(!attrib.name.compare(tanAttribName)){
             attribLocations[Attributes::TANGENT] = attrib.location;
         }else{ logMessage("Unknown attribute!!! %s", attrib.name.c_str()); }
-    
-        logMessage("%s %d\n", attrib.name.c_str(), attrib.location);
     }
 }
 

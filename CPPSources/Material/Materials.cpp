@@ -3,15 +3,16 @@
 #include "OMUtils.h"
 #include "ShaderHelper.h"
 
+static std::map<string, string>  meshShaderTable{
+    std::pair<string, string>("momo", "defaultGrey")
+};
 
 Materials::Materials(){
-    loadPrograms();   
-    logMessage("Materials constructor!\n");
+    loadPrograms();
 }
 
 Materials::~Materials(){
     materials.clear();
-    logMessage("Materials destructor!\n");
 }
 
 
@@ -124,6 +125,13 @@ sp<ShaderProgram> Materials::getProgram(const string &name){
     return nullptr;
 }
 
+sp<ShaderProgram> Materials::getProgramFoMesh(const string &name){
+    if(meshShaderTable.find(name) != meshShaderTable.end()){
+        return getProgram(meshShaderTable[name]);
+    }
+    return getProgram("normAsColor");
+}
+
 bool Materials::addMaterial(const sp<ObjMaterial> mat){
     if(materials.find(mat->name) == materials.end()){
         materials.insert(std::pair<string, sp<ObjMaterial>>(mat->name, mat));
@@ -137,10 +145,9 @@ bool Materials::isMaterialExist(const string &name){
 }
 
 void Materials::loadPrograms(){
-    logMessage("ShaderLibrary constructor!\n");
     
     addProgram(ShaderHelper::createProgram("normAsColor",   "pos_norm_vertex.glsl",     "norm_as_color_fragment.glsl"   ));
-    addProgram(ShaderHelper::createProgram("defaultGray",    "default_gray_vertex.glsl", "default_gray_fragment.glsl"    ));
+    addProgram(ShaderHelper::createProgram("defaultGrey",    "default_gray_vertex.glsl", "default_gray_fragment.glsl"    ));
     addProgram(ShaderHelper::createProgram("defaultPerVertex","vertexPerVertex.glsl",     "fragmentPerVertex.glsl"        ));
     addProgram(ShaderHelper::createProgram("defaultPerPixel", "vertexPerPixel.glsl",      "fragmentPerPixel.glsl"         ));
     addProgram(ShaderHelper::createProgram("bump",            "vertexBump.glsl",          "fragmentBump.glsl"             ));

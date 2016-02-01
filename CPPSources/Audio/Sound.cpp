@@ -20,14 +20,11 @@ Sound::Sound(const std::string name, Soundbuffer *sBuffer){
     alSourcei(sid, AL_SOURCE_RELATIVE, AL_TRUE);
     alSourcef(sid, AL_GAIN, 1.0f);
     alSourcef(sid, AL_PITCH, 1.0f);
-    
-    logMessage("Sound constructor!\n");
 }
 
 
 Sound::~Sound(){
     free();
-    logMessage("Sound destructor!\n");
 }
 
 #pragma mark Public

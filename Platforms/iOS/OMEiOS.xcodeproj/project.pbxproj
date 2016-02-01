@@ -222,6 +222,7 @@
 		F368E8C31BA6AC9F00F322AF /* VertexCache.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F368E8BE1BA6AC9F00F322AF /* VertexCache.cpp */; };
 		F368E8CA1BA6AE5A00F322AF /* fragmentPerPixel.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F368E8C61BA6AE5A00F322AF /* fragmentPerPixel.glsl */; };
 		F3710A151BA6CA6000235C68 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3710A131BA6CA6000235C68 /* Camera.cpp */; };
+		F37D26441C5F705500433B4F /* NormalSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F37D26421C5F705500433B4F /* NormalSP.cpp */; };
 		F380B7901BBBDC550049E755 /* ObjMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F380B78C1BBBDC550049E755 /* ObjMesh.cpp */; };
 		F380B7911BBBDC550049E755 /* Obj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F380B78E1BBBDC550049E755 /* Obj.cpp */; };
 		F38A22E11BAA979700FADEC0 /* vertexPerPixel.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F38A22E01BAA979700FADEC0 /* vertexPerPixel.glsl */; };
@@ -765,6 +766,8 @@
 		F368E8C61BA6AE5A00F322AF /* fragmentPerPixel.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = fragmentPerPixel.glsl; path = ../Android/assets/shaders/fragmentPerPixel.glsl; sourceTree = SOURCE_ROOT; };
 		F3710A131BA6CA6000235C68 /* Camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Camera.cpp; path = ../../CPPSources/Camera/Camera.cpp; sourceTree = SOURCE_ROOT; };
 		F3710A141BA6CA6000235C68 /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Camera.h; path = ../../CPPSources/Camera/Camera.h; sourceTree = SOURCE_ROOT; };
+		F37D26421C5F705500433B4F /* NormalSP.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NormalSP.cpp; path = OMEngine/CPPSources/Shaders/NormalSP.cpp; sourceTree = "<group>"; };
+		F37D26431C5F705500433B4F /* NormalSP.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = NormalSP.hpp; path = OMEngine/CPPSources/Shaders/NormalSP.hpp; sourceTree = "<group>"; };
 		F380B78C1BBBDC550049E755 /* ObjMesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ObjMesh.cpp; sourceTree = "<group>"; };
 		F380B78D1BBBDC550049E755 /* ObjMesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjMesh.h; sourceTree = "<group>"; };
 		F380B78E1BBBDC550049E755 /* Obj.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Obj.cpp; sourceTree = "<group>"; };
@@ -1046,6 +1049,8 @@
 				F3FAE8B71B6B77D6007AF169 /* ShaderProgram.h */,
 				F3FAE8B91B6B7885007AF169 /* Shader.cpp */,
 				F3FAE8BA1B6B7885007AF169 /* Shader.h */,
+				F37D26421C5F705500433B4F /* NormalSP.cpp */,
+				F37D26431C5F705500433B4F /* NormalSP.hpp */,
 			);
 			name = Shaders;
 			path = ../../..;
@@ -2102,6 +2107,7 @@
 				94788FEB1BD4CFD200B55A25 /* btTriangleIndexVertexArray.cpp in Sources */,
 				F39FA5C41C0DE15400CC0BB4 /* vorbisfile.c in Sources */,
 				945F0DD21C54B3AA009C61FE /* RigidBodyComponent.cpp in Sources */,
+				F37D26441C5F705500433B4F /* NormalSP.cpp in Sources */,
 				94788FA91BD4CFD200B55A25 /* btBroadphaseProxy.cpp in Sources */,
 				94788FCA1BD4CFD200B55A25 /* btUnionFind.cpp in Sources */,
 				94D5DA661BE2018100DFB8BC /* btBulletFile.cpp in Sources */,

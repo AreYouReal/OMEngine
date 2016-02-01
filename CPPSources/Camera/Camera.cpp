@@ -13,12 +13,9 @@ Camera::Camera(float fovy, float width, float height, float near, float far)
     transform.mUp = v3d(0.0f, 0.0f, 1.0f);
     refreshViewAndNormalMatrix();
     refreshProjMatrix();
-
-    logMessage("Camera constructor!");
 }
 
 Camera::~Camera(){
-    logMessage("Camera destructor!");
 }
 
 

@@ -3,7 +3,6 @@
 #include "OMUtils.h"
 
 Transform::Transform() : mPosition(0.0f, 0.0f, 0.0f), mRotation(0.0f, 0.0f, 0.0f, 0.0f), mScale(1.0f, 1.0f, 1.0f) {
-    logMessage("Transform constructor!\n");
 }
 
 Transform::Transform(v3d& position): Transform() {
@@ -17,7 +16,6 @@ Transform::Transform(v3d&& position): Transform() {
 }
 
 Transform::~Transform(){
-    logMessage("Transform destructor!\n");
 }
 
 const m4d& Transform::transformMatrix() const { return mTransformMatrix; }

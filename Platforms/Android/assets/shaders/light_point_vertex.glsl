@@ -9,6 +9,5 @@ out vec3 color;
 
 void main(){
     gl_Position = uProjectionM * uModelViewM * aPosition;
-    gl_PointSize = 1;
     color = vec3(1, 0, 0);
 }

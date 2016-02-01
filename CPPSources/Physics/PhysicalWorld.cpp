@@ -9,12 +9,10 @@
 
 PhysicalWorld::PhysicalWorld(){
     init();
-    logMessage("PhysicalWorld constructor!\n");
 }
 
 PhysicalWorld::~PhysicalWorld(){
     destroyTheWorld();
-    logMessage("PhysicalWorld destructor!\n");
 }
 
 void PhysicalWorld::update(float deltaTime){

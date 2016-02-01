@@ -5,8 +5,6 @@
 #include "Shortcuts.h"
 
 Boombox::Boombox(){
-    logMessage("Boombox constructor!\n");
-    
     const char * devicename = alcGetString(NULL, ALC_DEFAULT_DEVICE_SPECIFIER);
     device = alcOpenDevice(devicename);
     error();
@@ -37,8 +35,6 @@ Boombox::~Boombox(){
     alcMakeContextCurrent(NULL);
     alcDestroyContext(context);
     alcCloseDevice(device);
-
-    logMessage("Boombox destructor!\n");
 }
 
 void Boombox::play(){

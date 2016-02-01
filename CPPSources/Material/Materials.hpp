@@ -22,6 +22,7 @@ public:
     sp<ObjMaterial>     getMaterial (const string &name);
     sp<Texture>         getTexture  (const string &name);
     sp<ShaderProgram>   getProgram  (const string &name);
+    sp<ShaderProgram>   getProgramFoMesh(const string &name);
     
     
     bool                isMaterialExist(const string &name);

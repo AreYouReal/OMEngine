@@ -14,8 +14,8 @@ struct ObjTriangleIndex{ int vertexIndex[3], uvIndex[3]; };
 
 // Represent the one triangle list onside ObjMesh
 struct ObjTriangleList{
-    ObjTriangleList(){logMessage("ObjTriangleList Constructor!\n");}
-    ~ObjTriangleList(){logMessage("ObjTriangleList Destructor!\n"); }
+    ObjTriangleList(){}
+    ~ObjTriangleList(){}
     std::vector<ObjTriangleIndex>   tIndices;
     std::vector<unsigned short>     indices;
     sp<ObjMaterial>                 material;  // Pointer to the material to use when draw this list.
