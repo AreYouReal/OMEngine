@@ -1,19 +1,16 @@
 #include "ShaderProgram.h"
-#include "Camera.h"
-#include "Illuminator.hpp"
 
 // Attributes
-static const string posAttribName       {"aPosition"};
-static const string normAttribName      {"aNormal"  };
-static const string texCoordAttribName  {"aTexCoord"};
-static const string tanAttribName       {"aTangent" };
-
+const string ShaderProgram::posAttribName       {"aPosition"};
+const string ShaderProgram::normAttribName      {"aNormal"  };
+const string ShaderProgram::texCoordAttribName  {"aTexCoord"};
+const string ShaderProgram::tanAttribName       {"aTangent" };
 
 // Uniform
 // Matrices
-static const string uniModelViewMatName {"uModelViewM"};
-static const string uniProjectionMatName{"uProjectionM"};
-static const string uniNormalMName      {"uNormalM"};
+const string ShaderProgram::uniModelViewMatName {"uModelViewM"};
+const string ShaderProgram::uniProjectionMatName{"uProjectionM"};
+const string ShaderProgram::uniNormalMName      {"uNormalM"};
 
 
 ShaderProgram::ShaderProgram(){
@@ -56,15 +53,15 @@ void ShaderProgram::initUniformLocations(){
 void ShaderProgram::use(){
     glUseProgram(ID);
     
-    bindAttributes();
+//    bindAttributes();
 }
 
-void ShaderProgram::bindAttributes(){
-    glBindAttribLocation(ID, attribLocations[Attributes::POSITION], "aPosition");
-    glBindAttribLocation(ID, attribLocations[Attributes::NORMAL],   "aNormal");
-    glBindAttribLocation(ID, attribLocations[Attributes::TEXTURE],  "aTexCoord");
-    glBindAttribLocation(ID, attribLocations[Attributes::TANGENT],  "aTangent");
-}
+//void ShaderProgram::bindAttributes(){
+////    glBindAttribLocation(ID, attribLocations[Attributes::POSITION], "aPosition");
+////    glBindAttribLocation(ID, attribLocations[Attributes::NORMAL],   "aNormal");
+////    glBindAttribLocation(ID, attribLocations[Attributes::TEXTURE],  "aTexCoord");
+////    glBindAttribLocation(ID, attribLocations[Attributes::TANGENT],  "aTangent");
+//}
 
 void ShaderProgram::setUniforms(ObjMaterial *mat){
     m4d matrix;

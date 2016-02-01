@@ -12,9 +12,9 @@ static std::map<string, string>  meshShaderTable{
     std::pair<string, string>("tree", "normAsColor"),
     std::pair<string, string>("leaf", "defaultGrey"),
     // Scene.obj meshes
-    std::pair<string, string>("floor", "defaultGrey"),
-    std::pair<string, string>("sphere2_sphere.002", "generalLighting.omg"),
-    std::pair<string, string>("sphere1_sphere.001", "generalLighting.omg"),
+    std::pair<string, string>("floor", "normAsColor"),
+    std::pair<string, string>("sphere2_sphere.002", "defaultGrey"),
+    std::pair<string, string>("sphere1_sphere.001", "normAsColor"),
     std::pair<string, string>("sphere3_sphere", "generalLighting.omg")
 
 };
@@ -139,6 +139,7 @@ sp<ShaderProgram> Materials::getProgram(const string &name){
 
 sp<ShaderProgram> Materials::getProgramFoMesh(const string &name){
     if(meshShaderTable.find(name) != meshShaderTable.end()){
+        logMessage("Get program for mesh name: %s %s \n", name.c_str(), meshShaderTable[name].c_str());
         return getProgram(meshShaderTable[name]);
     }
     return getProgram("normAsColor");
@@ -157,8 +158,7 @@ bool Materials::isMaterialExist(const string &name){
 }
 
 void Materials::loadPrograms(){
-    
-    addProgram(ShaderHelper::createProgram("normAsColor",   "pos_norm_vertex.glsl",     "norm_as_color_fragment.glsl"   ));
+    addProgram(ShaderHelper::createProgram("normAsColor",   "pos_norm_vertex.glsl",     "norm_as_color_fragment.glsl"   , ShaderHelper::ShaderType::Normal));
     addProgram(ShaderHelper::createProgram("defaultGrey",    "default_gray_vertex.glsl", "default_gray_fragment.glsl"    ));
     addProgram(ShaderHelper::createProgram("defaultPerVertex","vertexPerVertex.glsl",     "fragmentPerVertex.glsl"        ));
     addProgram(ShaderHelper::createProgram("defaultPerPixel", "vertexPerPixel.glsl",      "fragmentPerPixel.glsl"         ));

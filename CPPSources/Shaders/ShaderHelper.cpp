@@ -1,17 +1,27 @@
 #include "ShaderHelper.h"
 #include "OMGame.h"
 
+#include "NormalSP.hpp"
+
+
 #pragma mark Public
 
 sp<ShaderProgram> ShaderHelper::createProgram(string programName, const string vertexShaderFilename, string fragmentShaderFilename, const ShaderType sType){
     Shader vertexShader = loadShader(GL_VERTEX_SHADER, vertexShaderFilename);
     Shader fragmentShader = loadShader(GL_FRAGMENT_SHADER, fragmentShaderFilename);
-    return createProgram(programName, vertexShader, fragmentShader);
+    return createProgram(programName, vertexShader, fragmentShader, sType);
 }
 
 sp<ShaderProgram> ShaderHelper::createProgram(const string programName, const Shader &vertexShader,const Shader &fragmentShader, const ShaderType sType){
-    sp<ShaderProgram> program = std::make_shared<ShaderProgram>();
+    sp<ShaderProgram> program;
+    if(sType == Normal){
+        program = std::make_shared<NormalSP>();
+    }else{
+        program = std::make_shared<ShaderProgram>();
+    }
+
     program->ID = glCreateProgram();
+    
     glAttachShader(program->ID, vertexShader.ID);
     
     glAttachShader(program->ID, fragmentShader.ID);

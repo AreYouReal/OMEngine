@@ -1,6 +1,5 @@
 #include "ObjMaterial.h"
-#include "Camera.h"
-#include "Illuminator.hpp"
+#include "ShaderProgram.h"
 
 ObjMaterial::ObjMaterial(std::string name){
     this->name = name;
@@ -71,10 +70,4 @@ void ObjMaterial::loadTextures(){
         sp<Texture> txt(Materials::instance()->getTexture(mapBump));
         if(txt != nullptr) tBump = txt;
     }
-}
-
-
-
-void ObjMaterial::setUniforms(){
-
 }

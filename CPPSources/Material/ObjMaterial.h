@@ -1,7 +1,6 @@
 #pragma once
 
 #include "OMUtils.h"
-#include "ShaderProgram.h"
 #include "Texture.h"
 #include "Materials.hpp"
 
@@ -37,6 +36,4 @@ public:
     
     sp<Texture> tAmbient, tDiffuse, tSpecular, tTranslucency, tDisp, tBump;
     sp<ShaderProgram>  program;
-    
-    virtual void setUniforms();
 };

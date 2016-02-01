@@ -1,7 +1,6 @@
 #include "OMGame.h"
 #include "Texture.h"
 #include "Camera.h"
-#include "Illuminator.hpp"
 #include "Scene.hpp"
 #include "PhysicalWorld.hpp"
 

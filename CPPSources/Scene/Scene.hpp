@@ -3,9 +3,9 @@
 #include "Shortcuts.h"
 #include "Singleton.hpp"
 #include "GameObject.hpp"
+#include "Illuminator.hpp"
 
 #include "PhysicalWorld.hpp"
-#include "Illuminator.hpp"
 
 #include "Boombox.hpp"
 

@@ -10,8 +10,8 @@ public:
     
     enum ShaderType{Normal, Grey };
     
-    static sp<ShaderProgram>    createProgram(const string name, const string vFileName, const string fFileName, const ShaderType sType = Normal);
-    static sp<ShaderProgram>    createProgram(const string name, const Shader &vertex, const Shader &fragment, const ShaderType sType = Normal);
+    static sp<ShaderProgram>    createProgram(const string name, const string vFileName, const string fFileName, const ShaderType sType = Grey);
+    static sp<ShaderProgram>    createProgram(const string name, const Shader &vertex, const Shader &fragment, const ShaderType sType = Grey);
     static Shader   loadShader(GLenum shaderType, std::string shaderFilename, std::string shaderName  = "default");
     static Shader   createShader(GLenum type, char* sourceCode, std::string shaderName);
     static void     printShaderInfoLog(GLuint shader);
