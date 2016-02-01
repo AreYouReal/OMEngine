@@ -210,6 +210,7 @@
 		F328C4FB1BF491930037AC6D /* foo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3B0F6C01BF0BA250044A442 /* foo.ttf */; };
 		F328C4FE1BF4997F0037AC6D /* font_fragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F328C4FC1BF4997F0037AC6D /* font_fragment.glsl */; };
 		F328C4FF1BF4997F0037AC6D /* font_vertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F328C4FD1BF4997F0037AC6D /* font_vertex.glsl */; };
+		F32EB63C1C5FA5E00057F474 /* GreySP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F32EB63A1C5FA5E00057F474 /* GreySP.cpp */; };
 		F3392F611C117B4E005E850E /* Sound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3392F5F1C117B4E005E850E /* Sound.cpp */; };
 		F340D11B1BA95E4500187B1E /* char_ram_nor.png in Resources */ = {isa = PBXBuildFile; fileRef = F340D11A1BA95E4500187B1E /* char_ram_nor.png */; };
 		F34129D01BB52BB7006F4D4D /* Materials.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F34129CE1BB52BB7006F4D4D /* Materials.cpp */; };
@@ -744,6 +745,8 @@
 		F30E41DE1C2D5BCE00A88527 /* lighting.omg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = lighting.omg; path = OMEngine/Platforms/Android/assets/lighting.omg; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
 		F328C4FC1BF4997F0037AC6D /* font_fragment.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = font_fragment.glsl; path = ../Android/assets/shaders/font_fragment.glsl; sourceTree = SOURCE_ROOT; };
 		F328C4FD1BF4997F0037AC6D /* font_vertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = font_vertex.glsl; path = ../Android/assets/shaders/font_vertex.glsl; sourceTree = SOURCE_ROOT; };
+		F32EB63A1C5FA5E00057F474 /* GreySP.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GreySP.cpp; path = OMEngine/CPPSources/Shaders/GreySP.cpp; sourceTree = "<group>"; };
+		F32EB63B1C5FA5E00057F474 /* GreySP.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = GreySP.hpp; path = OMEngine/CPPSources/Shaders/GreySP.hpp; sourceTree = "<group>"; };
 		F3392F5F1C117B4E005E850E /* Sound.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sound.cpp; sourceTree = "<group>"; };
 		F3392F601C117B4E005E850E /* Sound.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Sound.hpp; sourceTree = "<group>"; };
 		F340D11A1BA95E4500187B1E /* char_ram_nor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = char_ram_nor.png; path = ../Android/assets/char_ram_nor.png; sourceTree = SOURCE_ROOT; };
@@ -1051,6 +1054,8 @@
 				F3FAE8BA1B6B7885007AF169 /* Shader.h */,
 				F37D26421C5F705500433B4F /* NormalSP.cpp */,
 				F37D26431C5F705500433B4F /* NormalSP.hpp */,
+				F32EB63A1C5FA5E00057F474 /* GreySP.cpp */,
+				F32EB63B1C5FA5E00057F474 /* GreySP.hpp */,
 			);
 			name = Shaders;
 			path = ../../..;
@@ -2158,6 +2163,7 @@
 				94FAF39E1BEE939F0087CC0C /* WiredCube.cpp in Sources */,
 				94788FEA1BD4CFD200B55A25 /* btTriangleCallback.cpp in Sources */,
 				94788FE41BD4CFD200B55A25 /* btShapeHull.cpp in Sources */,
+				F32EB63C1C5FA5E00057F474 /* GreySP.cpp in Sources */,
 				947890041BD4CFD200B55A25 /* btRaycastCallback.cpp in Sources */,
 				F39FA5C11C0DE15400CC0BB4 /* sharedbook.c in Sources */,
 				F34129D81BB53DBC006F4D4D /* Texture.cpp in Sources */,

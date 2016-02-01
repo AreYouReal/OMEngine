@@ -2,7 +2,7 @@
 #include "OMGame.h"
 
 #include "NormalSP.hpp"
-
+#include "GreySP.hpp"
 
 #pragma mark Public
 
@@ -14,10 +14,16 @@ sp<ShaderProgram> ShaderHelper::createProgram(string programName, const string v
 
 sp<ShaderProgram> ShaderHelper::createProgram(const string programName, const Shader &vertexShader,const Shader &fragmentShader, const ShaderType sType){
     sp<ShaderProgram> program;
-    if(sType == Normal){
-        program = std::make_shared<NormalSP>();
-    }else{
-        program = std::make_shared<ShaderProgram>();
+    switch (sType) {
+        case Normal:
+            program = std::make_shared<NormalSP>();
+            break;
+        case Grey:
+            program = std::make_shared<GreySP>();
+            break;
+        default:
+            program = std::make_shared<ShaderProgram>();
+            break;
     }
 
     program->ID = glCreateProgram();

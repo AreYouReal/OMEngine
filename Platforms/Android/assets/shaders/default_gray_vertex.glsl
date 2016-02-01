@@ -5,7 +5,6 @@ struct Light{
     lowp vec4 color;
 };
 
-
 uniform mediump mat4 uModelViewM;
 uniform mediump mat4 uProjectionM;
 uniform mediump mat4 uNormalM;

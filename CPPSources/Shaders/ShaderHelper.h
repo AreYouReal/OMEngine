@@ -8,10 +8,10 @@
 class ShaderHelper {
 public:
     
-    enum ShaderType{Normal, Grey };
+    enum ShaderType{Normal, Grey, Other };
     
-    static sp<ShaderProgram>    createProgram(const string name, const string vFileName, const string fFileName, const ShaderType sType = Grey);
-    static sp<ShaderProgram>    createProgram(const string name, const Shader &vertex, const Shader &fragment, const ShaderType sType = Grey);
+    static sp<ShaderProgram>    createProgram(const string name, const string vFileName, const string fFileName, const ShaderType sType = Other);
+    static sp<ShaderProgram>    createProgram(const string name, const Shader &vertex, const Shader &fragment, const ShaderType sType = Other);
     static Shader   loadShader(GLenum shaderType, std::string shaderFilename, std::string shaderName  = "default");
     static Shader   createShader(GLenum type, char* sourceCode, std::string shaderName);
     static void     printShaderInfoLog(GLuint shader);

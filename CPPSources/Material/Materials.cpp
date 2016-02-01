@@ -9,13 +9,13 @@ static std::map<string, string>  meshShaderTable{
     std::pair<string, string>("baloon", "defaultGrey"),
     std::pair<string, string>("grass_ground", "normAsColor"),
     std::pair<string, string>("momo", "defaultGrey"),
-    std::pair<string, string>("tree", "normAsColor"),
+    std::pair<string, string>("tree", "defaultPerVertex"),
     std::pair<string, string>("leaf", "defaultGrey"),
     // Scene.obj meshes
-    std::pair<string, string>("floor", "normAsColor"),
+    std::pair<string, string>("floor", "generalLighting.omg"),
     std::pair<string, string>("sphere2_sphere.002", "defaultGrey"),
     std::pair<string, string>("sphere1_sphere.001", "normAsColor"),
-    std::pair<string, string>("sphere3_sphere", "generalLighting.omg")
+    std::pair<string, string>("sphere3_sphere", "defaultGrey")
 
 };
 
@@ -159,7 +159,7 @@ bool Materials::isMaterialExist(const string &name){
 
 void Materials::loadPrograms(){
     addProgram(ShaderHelper::createProgram("normAsColor",   "pos_norm_vertex.glsl",     "norm_as_color_fragment.glsl"   , ShaderHelper::ShaderType::Normal));
-    addProgram(ShaderHelper::createProgram("defaultGrey",    "default_gray_vertex.glsl", "default_gray_fragment.glsl"    ));
+    addProgram(ShaderHelper::createProgram("defaultGrey",    "default_gray_vertex.glsl", "default_gray_fragment.glsl"   , ShaderHelper::ShaderType::Grey ));
     addProgram(ShaderHelper::createProgram("defaultPerVertex","vertexPerVertex.glsl",     "fragmentPerVertex.glsl"        ));
     addProgram(ShaderHelper::createProgram("defaultPerPixel", "vertexPerPixel.glsl",      "fragmentPerPixel.glsl"         ));
     addProgram(ShaderHelper::createProgram("bump",            "vertexBump.glsl",          "fragmentBump.glsl"             ));
