@@ -15,11 +15,11 @@ struct DefaultDiffuseSP : public ShaderProgram{
     int materialDiffuseUniLoc;
     int materialSpecularUniLoc;
     int materialShininessUniLoc;
+    int materialDissolveUniLoc;
     
     int diffuseSamplerUniLoc;
     
-    virtual void initAttribLocations();
-    virtual void initUniformLocations();
-    
-    virtual void setUniforms(ObjMaterial *mat);
+    virtual void initAttribLocations()          override;
+    virtual void initUniformLocations()         override;
+    virtual void setUniforms(ObjMaterial *mat)  override;
 };

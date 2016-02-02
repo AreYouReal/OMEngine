@@ -18,8 +18,6 @@
 		940E28EE1BDCB19C00B47533 /* MeshRendererComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 940E28EC1BDCB19C00B47533 /* MeshRendererComponent.cpp */; };
 		9435525E1BEF091F00FC4ADA /* wired_fragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 9435525C1BEF091F00FC4ADA /* wired_fragment.glsl */; };
 		9435525F1BEF091F00FC4ADA /* wired_vertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 9435525D1BEF091F00FC4ADA /* wired_vertex.glsl */; };
-		943869871BA8949D005A0594 /* fragmentBump.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 943869851BA8949D005A0594 /* fragmentBump.glsl */; };
-		943869881BA8949D005A0594 /* vertexBump.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 943869861BA8949D005A0594 /* vertexBump.glsl */; };
 		94499BF01BDD2FC6006E379D /* ball.png in Resources */ = {isa = PBXBuildFile; fileRef = 94499BEE1BDD2FC6006E379D /* ball.png */; };
 		94499BF11BDD2FC6006E379D /* diffuse.png in Resources */ = {isa = PBXBuildFile; fileRef = 94499BEF1BDD2FC6006E379D /* diffuse.png */; };
 		94538A211C0B6CBC004B5297 /* Boombox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94538A1F1C0B6CBC004B5297 /* Boombox.cpp */; };
@@ -259,6 +257,7 @@
 		F39FA5C41C0DE15400CC0BB4 /* vorbisfile.c in Sources */ = {isa = PBXBuildFile; fileRef = F39FA5AB1C0DE15400CC0BB4 /* vorbisfile.c */; };
 		F39FA5C51C0DE15400CC0BB4 /* window.c in Sources */ = {isa = PBXBuildFile; fileRef = F39FA5AD1C0DE15400CC0BB4 /* window.c */; };
 		F39FA5CA1C0DE6C200CC0BB4 /* lounge.ogg in Resources */ = {isa = PBXBuildFile; fileRef = F39FA5C91C0DE6C200CC0BB4 /* lounge.ogg */; };
+		F3A1A4EA1C60CBA000DBBB4B /* WireSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3A1A4E81C60CBA000DBBB4B /* WireSP.cpp */; };
 		F3A263961C33BD360021B3B6 /* light_point_fragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F3A263941C33BD360021B3B6 /* light_point_fragment.glsl */; };
 		F3A263971C33BD360021B3B6 /* light_point_vertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F3A263951C33BD360021B3B6 /* light_point_vertex.glsl */; };
 		F3B0F6B71BF0AD9F0044A442 /* stb_truetype.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3B0F6B51BF0AD9F0044A442 /* stb_truetype.cpp */; };
@@ -305,8 +304,6 @@
 		942762991BD8AA6600E345EA /* MeshOutlines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MeshOutlines.h; sourceTree = "<group>"; };
 		9435525C1BEF091F00FC4ADA /* wired_fragment.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = wired_fragment.glsl; path = ../Android/assets/shaders/wired_fragment.glsl; sourceTree = SOURCE_ROOT; };
 		9435525D1BEF091F00FC4ADA /* wired_vertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = wired_vertex.glsl; path = ../Android/assets/shaders/wired_vertex.glsl; sourceTree = SOURCE_ROOT; };
-		943869851BA8949D005A0594 /* fragmentBump.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = fragmentBump.glsl; path = ../Android/assets/shaders/fragmentBump.glsl; sourceTree = SOURCE_ROOT; };
-		943869861BA8949D005A0594 /* vertexBump.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = vertexBump.glsl; path = ../Android/assets/shaders/vertexBump.glsl; sourceTree = SOURCE_ROOT; };
 		94499BEE1BDD2FC6006E379D /* ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ball.png; path = ../Android/assets/ball.png; sourceTree = SOURCE_ROOT; };
 		94499BEF1BDD2FC6006E379D /* diffuse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = diffuse.png; path = ../Android/assets/diffuse.png; sourceTree = SOURCE_ROOT; };
 		94538A1F1C0B6CBC004B5297 /* Boombox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Boombox.cpp; sourceTree = "<group>"; };
@@ -836,6 +833,8 @@
 		F39FA5AD1C0DE15400CC0BB4 /* window.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = window.c; sourceTree = "<group>"; };
 		F39FA5AE1C0DE15400CC0BB4 /* window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = window.h; sourceTree = "<group>"; };
 		F39FA5C91C0DE6C200CC0BB4 /* lounge.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; name = lounge.ogg; path = OMEngine/Platforms/Android/assets/lounge.ogg; sourceTree = "<group>"; };
+		F3A1A4E81C60CBA000DBBB4B /* WireSP.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = WireSP.cpp; path = OMEngine/CPPSources/Shaders/WireSP.cpp; sourceTree = "<group>"; };
+		F3A1A4E91C60CBA000DBBB4B /* WireSP.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = WireSP.hpp; path = OMEngine/CPPSources/Shaders/WireSP.hpp; sourceTree = "<group>"; };
 		F3A263941C33BD360021B3B6 /* light_point_fragment.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = light_point_fragment.glsl; sourceTree = "<group>"; };
 		F3A263951C33BD360021B3B6 /* light_point_vertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = light_point_vertex.glsl; sourceTree = "<group>"; };
 		F3B0F6B51BF0AD9F0044A442 /* stb_truetype.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = stb_truetype.cpp; path = ttf/stb_truetype.cpp; sourceTree = "<group>"; };
@@ -954,12 +953,12 @@
 				F3B0F6B81BF0ADB40044A442 /* Txt */,
 				94FAF39B1BEE93800087CC0C /* DEBUG */,
 				940E28E81BDCB0F300B47533 /* Component */,
-				947890371BD4D17F00B55A25 /* Physics */,
 				F3C52B261BBD01CC009F3604 /* Scene */,
 				F380B78B1BBBDC550049E755 /* Obj */,
 				94D85AC31BB65447008ED8CF /* Transform */,
 				F34129CC1BB52B63006F4D4D /* Material */,
 				F34129CD1BB52B63006F4D4D /* Texture */,
+				947890371BD4D17F00B55A25 /* Physics */,
 				F39A50231BB40D8A0080B846 /* GameObject */,
 				F39A501B1BB3EE8E0080B846 /* Light */,
 				F3710A0F1BA6C95D00235C68 /* Camera */,
@@ -1753,8 +1752,6 @@
 				F3CAEEE41BB01A7600DCF182 /* default_gray_vertex.glsl */,
 				F38A22E21BAAA15400FADEC0 /* vertexPerVertex.glsl */,
 				F38A22E01BAA979700FADEC0 /* vertexPerPixel.glsl */,
-				943869851BA8949D005A0594 /* fragmentBump.glsl */,
-				943869861BA8949D005A0594 /* vertexBump.glsl */,
 				F368E8C61BA6AE5A00F322AF /* fragmentPerPixel.glsl */,
 			);
 			name = shaders;
@@ -1907,6 +1904,8 @@
 				F32EB63B1C5FA5E00057F474 /* GreySP.hpp */,
 				F3C8A2F91C5FB00000867A65 /* DefaultDiffuseSP.cpp */,
 				F3C8A2FA1C5FB00000867A65 /* DefaultDiffuseSP.hpp */,
+				F3A1A4E81C60CBA000DBBB4B /* WireSP.cpp */,
+				F3A1A4E91C60CBA000DBBB4B /* WireSP.hpp */,
 			);
 			name = Programs;
 			sourceTree = "<group>";
@@ -1989,7 +1988,6 @@
 			files = (
 				F328C4FE1BF4997F0037AC6D /* font_fragment.glsl in Resources */,
 				F3CAEEE51BB01A7600DCF182 /* default_gray_vertex.glsl in Resources */,
-				943869881BA8949D005A0594 /* vertexBump.glsl in Resources */,
 				F328C4FB1BF491930037AC6D /* foo.ttf in Resources */,
 				9435525F1BEF091F00FC4ADA /* wired_vertex.glsl in Resources */,
 				94DCA2F81BE13C6100435661 /* Scene.obj in Resources */,
@@ -2022,7 +2020,6 @@
 				94EF0C601BA70F6700EBF5EE /* norm_as_color_fragment.glsl in Resources */,
 				947222791B9AD466008D601B /* grass.png in Resources */,
 				F368E8CA1BA6AE5A00F322AF /* fragmentPerPixel.glsl in Resources */,
-				943869871BA8949D005A0594 /* fragmentBump.glsl in Resources */,
 				9472227B1B9AD466008D601B /* momo.png in Resources */,
 				94499BF01BDD2FC6006E379D /* ball.png in Resources */,
 				947222781B9AD466008D601B /* balloon.png in Resources */,
@@ -2098,6 +2095,7 @@
 				94788FC41BD4CFD200B55A25 /* btInternalEdgeUtility.cpp in Sources */,
 				9478902B1BD4CFD200B55A25 /* btSoftBodyRigidBodyCollisionConfiguration.cpp in Sources */,
 				F368E8C01BA6AC9F00F322AF /* lodepng.cpp in Sources */,
+				F3A1A4EA1C60CBA000DBBB4B /* WireSP.cpp in Sources */,
 				94788FE81BD4CFD200B55A25 /* btTetrahedronShape.cpp in Sources */,
 				9478901E1BD4CFD200B55A25 /* btMultiBodyDynamicsWorld.cpp in Sources */,
 				94788FFB1BD4CFD200B55A25 /* btContinuousConvexCollision.cpp in Sources */,

@@ -8,7 +8,7 @@
 class ShaderHelper {
 public:
     
-    enum ShaderType{Normal, Grey, DefaultPerVertex, Other };
+    enum ShaderType{Normal, Grey, DefaultPerVertex, DefaultPerPixel, Wired, Other };
     
     static sp<ShaderProgram>    createProgram(const string name, const string vFileName, const string fFileName, const ShaderType sType = Other);
     static sp<ShaderProgram>    createProgram(const string name, const Shader &vertex, const Shader &fragment, const ShaderType sType = Other);

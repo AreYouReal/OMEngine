@@ -27,6 +27,8 @@ void DefaultDiffuseSP::initUniformLocations(){
             materialSpecularUniLoc = uniform.location;
         }else if(!uniform.name.compare("uMaterial.shininess")){
             materialShininessUniLoc = uniform.location;
+        }else if(!uniform.name.compare("uMaterial.dissolve")){
+            materialDissolveUniLoc = uniform.location;
         }else if(!uniform.name.compare(ShaderProgram::uniModelViewMatName)){
             modelViewMatUniLoc = uniform.location;
         }else if(!uniform.name.compare(ShaderProgram::uniProjectionMatName)){
@@ -55,5 +57,6 @@ void DefaultDiffuseSP::setUniforms(ObjMaterial *mat){
     glUniform4fv(materialDiffuseUniLoc, 1, &mat->diffuse.x);
     glUniform4fv(materialSpecularUniLoc, 1, &mat->specular.x);
     glUniform1f(materialShininessUniLoc, mat->specularExponent);
+    glUniform1f(materialDissolveUniLoc, mat->dissolve);
     glUniform1i(diffuseSamplerUniLoc, 1);
 }

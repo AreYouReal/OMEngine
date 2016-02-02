@@ -7,8 +7,8 @@ static std::map<string, string>  meshShaderTable{
     // treemomo.obj meshes
     std::pair<string, string>("background", "defaultGrey"),
     std::pair<string, string>("baloon", "defaultGrey"),
-    std::pair<string, string>("grass_ground", "defaultPerVertex"),
-    std::pair<string, string>("momo", "normAsColor"),
+    std::pair<string, string>("grass_ground", "defaultPerPixel"),
+    std::pair<string, string>("momo", "wired"),
     std::pair<string, string>("tree", "defaultPerVertex"),
     std::pair<string, string>("leaf", "defaultGrey"),
     // Scene.obj meshes
@@ -16,7 +16,6 @@ static std::map<string, string>  meshShaderTable{
     std::pair<string, string>("sphere2_sphere.002", "defaultGrey"),
     std::pair<string, string>("sphere1_sphere.001", "normAsColor"),
     std::pair<string, string>("sphere3_sphere", "defaultGrey")
-
 };
 
 Materials::Materials(){
@@ -26,7 +25,6 @@ Materials::Materials(){
 Materials::~Materials(){
     materials.clear();
 }
-
 
 bool Materials::loadMaterial(const std::string &name){
 //    logMessage("Starting loading materials! %d\n", materials.size());
@@ -161,9 +159,8 @@ void Materials::loadPrograms(){
     addProgram(ShaderHelper::createProgram("normAsColor",   "pos_norm_vertex.glsl",     "norm_as_color_fragment.glsl"   , ShaderHelper::ShaderType::Normal));
     addProgram(ShaderHelper::createProgram("defaultGrey",    "default_gray_vertex.glsl", "default_gray_fragment.glsl"   , ShaderHelper::ShaderType::Grey ));
     addProgram(ShaderHelper::createProgram("defaultPerVertex","vertexPerVertex.glsl",     "fragmentPerVertex.glsl"      , ShaderHelper::ShaderType::DefaultPerVertex  ));
-    addProgram(ShaderHelper::createProgram("defaultPerPixel", "vertexPerPixel.glsl",      "fragmentPerPixel.glsl"         ));
-    addProgram(ShaderHelper::createProgram("bump",            "vertexBump.glsl",          "fragmentBump.glsl"             ));
-    addProgram(ShaderHelper::createProgram("wired",           "wired_vertex.glsl",        "wired_fragment.glsl"           ));
+    addProgram(ShaderHelper::createProgram("defaultPerPixel", "vertexPerPixel.glsl",      "fragmentPerPixel.glsl"      ,ShaderHelper::ShaderType::DefaultPerVertex   ));
+    addProgram(ShaderHelper::createProgram("wired",           "wired_vertex.glsl",        "wired_fragment.glsl"  , ShaderHelper::ShaderType::Wired         ));
     addProgram(ShaderHelper::createProgram("lightPoint",      "light_point_vertex.glsl",  "light_point_fragment.glsl"     ));
     addProgram(ShaderHelper::createProgram("font",            "font_vertex.glsl",         "font_fragment.glsl"            ));
 }

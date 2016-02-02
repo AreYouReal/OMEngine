@@ -4,6 +4,7 @@
 #include "NormalSP.hpp"
 #include "GreySP.hpp"
 #include "DefaultDiffuseSP.hpp"
+#include "WireSP.hpp"
 
 #pragma mark Public
 
@@ -23,7 +24,11 @@ sp<ShaderProgram> ShaderHelper::createProgram(const string programName, const Sh
             program = std::make_shared<GreySP>();
             break;
         case DefaultPerVertex:
+        case DefaultPerPixel:
             program = std::make_shared<DefaultDiffuseSP>();
+            break;
+        case Wired:
+            program = std::make_shared<WireSP>();
             break;
         default:
             program = std::make_shared<ShaderProgram>();
