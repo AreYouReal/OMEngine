@@ -50,6 +50,9 @@ void Scene::draw(){
             if(comp) comp->draw();
         }
     }
+    
+    
+    Illuminator::instance()->getLightSource()->draw();
 }
 
 void Scene::setRenderObjectState(RenderObjectType newState){

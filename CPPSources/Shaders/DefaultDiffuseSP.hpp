@@ -8,7 +8,9 @@ struct DefaultDiffuseSP : public ShaderProgram{
     int projectionMatUniLoc;
     int normalMatUniLoc;
     
+    int lightTypeUniLoc;
     int lightPositionUniLoc;
+    int lightDirUniLoc;
     int lightColorUniLoc;
     
     int materialAmbientUniLoc;

@@ -17,6 +17,10 @@ void DefaultDiffuseSP::initUniformLocations(){
     for(const auto &uniform : uniformArray){
         if(!uniform.name.compare("uLight.position")){
             lightPositionUniLoc = uniform.location;
+        }else if(!uniform.name.compare("uLight.type")){
+            lightTypeUniLoc = uniform.location;
+        }else if(!uniform.name.compare("uLight.direction")){
+            lightDirUniLoc = uniform.location;
         }else if(!uniform.name.compare("uLight.color")){
             lightColorUniLoc = uniform.location;
         }else if(!uniform.name.compare("uMaterial.ambient")){
@@ -50,7 +54,9 @@ void DefaultDiffuseSP::setUniforms(ObjMaterial *mat){
     glUniformMatrix4fv(normalMatUniLoc, 1, GL_TRUE, matrix.pointer());
     sp<LightSource> light = Illuminator::instance()->getLightSource();
     v4d lightPosInEyeSpace = light->getPositionInEyeSpace();
-    glUniform4fv(lightPositionUniLoc, 1, &lightPosInEyeSpace.x);
+    glUniform3fv(lightPositionUniLoc, 1, &lightPosInEyeSpace.x);
+    v4d lightDirInEyeSpace = light->getDirectionInEyeSpace();
+    glUniform3fv(lightDirUniLoc, 1, &lightDirInEyeSpace.x);
     v4d lightColor = light->getColor();
     glUniform4fv(lightColorUniLoc, 1, &lightColor.x);
     glUniform4fv(materialAmbientUniLoc, 1, &mat->ambient.x);

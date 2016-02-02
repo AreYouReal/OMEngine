@@ -11,7 +11,9 @@ struct Material{
 };
 
 struct Light{
-    lowp    vec4    position;
+    lowp    int     type;
+    lowp    vec3    direction;
+    lowp    vec3    position;
     lowp    vec4    color;
 };
 
@@ -30,10 +32,10 @@ void main(){
     
     mediump vec3 L;
     
-    if(uLight.position.w > 0.0){
-        L = normalize(uLight.position.xyz - position);
+    if(uLight.type > 0){
+        L = normalize(uLight.position - position);
     }else{
-        L = normalize(uLight.position.xyz);
+        L = uLight.direction;
     }
     float intensity = max(dot(normal, L), 0.0);
     mediump vec4 specular;

@@ -2,7 +2,9 @@
 
 
 struct Light{
-    lowp vec4 position;
+    lowp int type;
+    lowp vec3 direction;
+    lowp vec3 position;
     lowp vec4 color;
 };
 
@@ -35,12 +37,12 @@ void main(){
     mediump vec3 position = (uModelViewM * aPosition).xyz;
     
     mediump vec3 L;
-    if(uLight.position.w == 0.0){
-        L = normalize(uLight.position.xyz);
+    
+    if(uLight.type == 0){
+        L = uLight.direction;
     }else{
-        L = normalize(uLight.position.xyz - position);
+        L = normalize(uLight.position - position);
     }
-
 
     gl_Position = uProjectionM * uModelViewM * aPosition;
     
