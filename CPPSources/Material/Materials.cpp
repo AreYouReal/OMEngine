@@ -5,12 +5,12 @@
 
 static std::map<string, string>  meshShaderTable{
     // treemomo.obj meshes
-    std::pair<string, string>("background", "defaultPerPixel"),
-    std::pair<string, string>("baloon", "defaultPerPixel"),
-    std::pair<string, string>("grass_ground", "defaultPerPixel"),
-    std::pair<string, string>("momo", "defaultPerPixel"),
-    std::pair<string, string>("tree", "defaultPerPixel"),
-    std::pair<string, string>("leaf", "defaultPerPixel"),
+    std::pair<string, string>("background", "defaultPerVertex"),
+    std::pair<string, string>("baloon", "defaultPerVertex"),
+    std::pair<string, string>("grass_ground", "defaultPerVertex"),
+    std::pair<string, string>("momo", "defaultPerVertex"),
+    std::pair<string, string>("tree", "defaultPerVertex"),
+    std::pair<string, string>("leaf", "defaultPerVertex"),
     // Scene.obj meshes
     std::pair<string, string>("floor", "generalLighting.omg"),
     std::pair<string, string>("sphere2_sphere.002", "defaultGrey"),

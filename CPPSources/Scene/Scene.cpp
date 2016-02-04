@@ -103,7 +103,7 @@ void Scene::createTestScene(){
     mrc_1->addMesh(object->getMesh("momo"));
     
     momo->name = "momo";
-    momo->mTransform = (v3d(2.3, 0, 7));
+    momo->mTransform = (v3d(1.3, 0, 7));
     momo->addComponent(ComponentEnum::MESH_RENDERER, std::move(mrc_1));
     
     up<RigidBodyComponent> rbc_2 = up<RigidBodyComponent>(new RigidBodyComponent(momo.get()));
