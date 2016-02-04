@@ -24,6 +24,8 @@ public:
     void moveForward(float velocity);
     void moveRight(float velocity);
     
+    void refreshTransformMatrix();
+    
     
     v3d mPosition;
     v3d mScale;
@@ -38,5 +40,5 @@ private:
     std::weak_ptr<Transform> parentTransform;
     std::vector<std::weak_ptr<Transform>> childTransforms;
     
-    void refreshTransformMatrix();
+
 };

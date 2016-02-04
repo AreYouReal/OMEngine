@@ -18,7 +18,8 @@ Transform::Transform(v3d&& position): Transform() {
 Transform::~Transform(){
 }
 
-const m4d& Transform::transformMatrix() const { return mTransformMatrix; }
+const m4d& Transform::transformMatrix() const {
+    return mTransformMatrix; }
 
 void Transform::translate(v3d tVector){
     translate(tVector.x, tVector.y, tVector.z);

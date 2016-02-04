@@ -26,6 +26,11 @@ const v4d LightSource::getPositionInEyeSpace() const{
 }
 
 const v3d LightSource::getDirectionInEyeSpace() const{
-    v3d direction =  (Camera::instance()->viewMatrix() * mTransform.mFront);
+    v3d direction =  (Camera::instance()->viewMatrix() * v3d::normalize(mTransform.mPosition));
     return direction;
+}
+
+void LightSource::setPosition(const v3d pos){
+    mTransform.mPosition = pos;
+    mTransform.refreshTransformMatrix();
 }

@@ -22,9 +22,9 @@ Scene::~Scene(){
 bool Scene::init(){
 //    createBallsScene();
     
-        createTestScene();
+//        createTestScene();
     
-//    createLightTestScene();
+    createLightTestScene();
 
     return true;
 }
@@ -41,6 +41,8 @@ void Scene::update(float deltaTime){
             if(comp) comp->update();
         }
     }
+    
+    Illuminator::instance()->update(deltaTime);
 }
 
 void Scene::draw(){
