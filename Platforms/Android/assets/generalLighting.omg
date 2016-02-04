@@ -1,7 +1,7 @@
 GL_VERTEX_SHADER
 
 #version 300 es
-#define MAX_LIGHTS 2
+#define MAX_LIGHTS 1
 
 struct Light{
     lowp int  type;
@@ -66,7 +66,7 @@ void main(){
 GL_FRAGMENT_SHADER
 
 #version 300 es
-#define MAX_LIGHTS 2
+#define MAX_LIGHTS 1
 
 precision mediump float;
 

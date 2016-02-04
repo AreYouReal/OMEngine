@@ -102,3 +102,7 @@ long fileRead ( omFile *pFile, long bytesToRead, void *buffer );
 std::unique_ptr<FileContent> readTextFile( std::string fileName);
 std::unique_ptr<FileContent> readBytesFromFile( const char *fileName);
 std::vector<unsigned char> loadRawPNGData( const char *filename, unsigned int &width, unsigned int &height);
+
+#pragma Time
+unsigned int getMicroTime( void );
+unsigned int getMilliTime( void );

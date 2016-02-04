@@ -5,6 +5,7 @@
 
 #include "OMUtils.h"
 #include "OMGame.h"
+#include <sys/time.h>
 
 
 #ifndef __APPLE__
@@ -314,4 +315,18 @@ std::vector<unsigned char> loadRawPNGData(const char *filename, unsigned int &wi
 //
 //    return rawData;
     return out;
+}
+
+
+unsigned int getMicroTime( void ){
+    struct timeval tv;
+    gettimeofday( &tv, NULL );
+    return ( tv.tv_sec * 1000000 ) + tv.tv_usec;
+}
+
+
+unsigned int getMilliTime( void ){
+    struct timeval tv;
+    gettimeofday( &tv, NULL );
+    return tv.tv_usec / 1000 + tv.tv_sec * 1000;
 }
