@@ -60,6 +60,13 @@ void OMGame::Update(const float deltaTime){
 
 
 void OMGame::Draw (){
+    static unsigned int start = getMilliTime(), fps = 0;
+    if( getMilliTime() - start >= 1000 ) {
+        logMessage( "FPS: %d\n", fps ); start = getMilliTime();
+        fps = 0;
+    } ++fps;
+    
+    
     Stopwatch stopwatch;
     
     Camera::instance()->setWidthAndHeight(appContext->width, appContext->height);
