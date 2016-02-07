@@ -59,7 +59,9 @@
     [EAGLContext setCurrentContext:self.context];
     
     memset( &_context, 0, sizeof( _context ) );
-  
+    _OMContext.width = [[self view] bounds].size.width;
+    _OMContext.height = [[self view] bounds].size.height;
+    
     OMGame::StartUp(&_OMContext);
 }
 
