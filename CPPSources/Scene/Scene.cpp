@@ -1,5 +1,9 @@
 #include "Scene.hpp"
 
+#include "Projector.hpp"
+
+Projector p;
+
 Scene::Scene(){
     
     Camera::instance();
@@ -7,6 +11,7 @@ Scene::Scene(){
     Materials::instance();
     PhysicalWorld::instance();
     Boombox::instance();
+    
 }
 
 Scene::~Scene(){
@@ -201,6 +206,7 @@ void Scene::createLightTestScene(){
     std::vector<sp<ObjMesh>> meshes = object->getAllMeshes();
     
     for(const sp<ObjMesh> mesh : object->getAllMeshes()){
+//        if(!mesh->getName().compare("projector")) continue;
         addMeshRendererOnScene("lightScene", mesh->getName());
     }
 }
