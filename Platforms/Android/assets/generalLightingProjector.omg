@@ -12,6 +12,8 @@ struct Light{
 uniform mat4 uModelViewM;
 uniform mat4 uProjectionM;
 uniform lowp mat4 uNormalM;
+uniform mat4 uProjM;
+
 uniform Light uLight[MAX_LIGHTS];
 
 layout(location = 0) in vec4 aPosition;
@@ -23,6 +25,8 @@ out vec3 texCoord;
 out vec3 position;
 out vec3 lightDirectionTS[MAX_LIGHTS];
 out vec3 spotDirection;
+
+out vec4 projCoord;
 
 mat3 calculateTBNMatrix(){
     lowp mat3 tbn;
@@ -61,6 +65,9 @@ void main(){
     position = -normalize(position * tbn);
     
     texCoord = aTexCoord;
+    
+    
+    projCoord = uProjM * aPosition;
 }
 
 GL_FRAGMENT_SHADER
@@ -101,6 +108,8 @@ in lowp vec3 position;
 in lowp vec3 lightDirectionTS[MAX_LIGHTS];
 in lowp vec3 spotDirection;
 
+in vec4 projCoord;
+
 out vec4 fragColor;
 
 float attenuation(in vec3 direction, int index){
@@ -125,6 +134,9 @@ vec4 spotLight(in Light light, in highp vec3 direction, in lowp vec3 spotdir){
             lowp float ndoth = max(dot(normal, normalize(nlightdir + position)), 0.0);
             lowp float spot = ldots * clamp((ldots - light.spotCosCutoff)/light.spotBlend, 0.0, 1.0);
             finalColor += uMaterial.diffuse * light.color * ndoth * spot;
+            
+            if(projCoord.w > 0.0) finalColor += textureProj(uSamplerProjector, projCoord) * ndotl * spot;
+            
             finalColor += uMaterial.specular * light.color * pow(ndoth, uMaterial.shininess) * spot;
         }
     }
@@ -173,5 +185,6 @@ void main(){
                 break;
         }
     }
+    
     fragColor = texture(uSamplerDiffuse, texCoord.xy) * finalColor;
 }
