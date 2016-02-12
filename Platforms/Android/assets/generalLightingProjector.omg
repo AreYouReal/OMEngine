@@ -94,6 +94,7 @@ uniform Light    uLightFS[MAX_LIGHTS];
 
 uniform mediump sampler2D uSamplerDiffuse;
 uniform mediump sampler2D uSamplerBump;
+uniform mediump sampler2D uSamplerProjector;
 
 in lowp vec3 texCoord;
 in lowp vec3 position;

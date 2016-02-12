@@ -2,6 +2,9 @@
 
 #include "OMUtils.h"
 
+
+#include "Illuminator.hpp"
+
 #define CLAMP(x, min, max) ((x < min) ? min : ((x > max) ? max : x));
 
 #define SIGN(x) (x >= 0 ? -1 : 1);
@@ -123,10 +126,15 @@ const m4d& Camera::orthoMatrix() const{
     return mOrthoMatrix;
 }
 
+const m4d& Camera::projectorMatrix() const{
+    return mProjectorMatrix;
+}
+
 const m4d Camera::modelViewMatrix() const{
     if(mMstack.empty()) return mViewMatrix;
     return mViewMatrix * mMstack.top();
 }
+
 
 void Camera::rotate(float angle, float x, float y, float z){
     v3d axis(x, y, z);
@@ -161,6 +169,36 @@ void Camera::refreshProjMatrix(){
     mProjectionMatrix = m4d::perspective(mFovy, mWidth, mHeight, mNear, mFar);
     mOrthoMatrix = m4d::ortho(-mWidth * 0.5f, mWidth * 0.5f, -mHeight * 0.5, mHeight * 0.5, -1, 1);
     buildFrustum();
+}
+
+void Camera::refreshProjectorMatrix(){
+    sp<LightSource> light = Illuminator::instance()->getLightSource();
+    m4d perspective = m4d::perspective(30, viewportMatrix[2], viewportMatrix[3], 1.0f, 20.0f );
+    v3d center(0.0f, 0.0f, 0.0f);
+    v3d lightPos = light->getPosition();
+    m4d lookAt = m4d::lookAt(lightPos, center, transform.mUp);
+    
+    mProjectorMatrix.m[0].x = 0.5f;
+    mProjectorMatrix.m[0].y = 0.0f;
+    mProjectorMatrix.m[0].z = 0.0f;
+    mProjectorMatrix.m[0].w = 0.0f;
+    
+    mProjectorMatrix.m[1].x = 0.0f;
+    mProjectorMatrix.m[1].y = 0.5f;
+    mProjectorMatrix.m[1].z = 0.0f;
+    mProjectorMatrix.m[1].w = 0.0f;
+    
+    mProjectorMatrix.m[2].x = 0.0f;
+    mProjectorMatrix.m[2].y = 0.0f;
+    mProjectorMatrix.m[2].z = 0.5f;
+    mProjectorMatrix.m[2].w = 0.0f;
+    
+    mProjectorMatrix.m[3].x = 0.5f;
+    mProjectorMatrix.m[3].y = 0.5f;
+    mProjectorMatrix.m[3].z = 0.5f;
+    mProjectorMatrix.m[3].w = 1.0f;
+    
+    mProjectorMatrix = mProjectorMatrix * perspective * lookAt;
 }
 
 void Camera::buildFrustum(){

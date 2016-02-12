@@ -41,6 +41,9 @@ public:
     void pushMMatrix(m4d matrix);
     void popMMatrix();
     
+    const m4d& projectorMatrix() const;
+    void refreshProjectorMatrix();
+    
 private:
     
 // Touch related variables
@@ -60,6 +63,9 @@ private:
     int viewportMatrix[4];
     
     std::stack<m4d> mMstack;
+    
+// Projector 
+    m4d mProjectorMatrix;
     
     void refreshViewAndNormalMatrix();
     void refreshProjMatrix();

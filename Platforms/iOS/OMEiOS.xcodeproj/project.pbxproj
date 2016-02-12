@@ -272,7 +272,6 @@
 		F3CAEEE71BB01B8800DCF182 /* default_gray_fragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F3CAEEE61BB01B8800DCF182 /* default_gray_fragment.glsl */; };
 		F3D171761C6DCBF200A9507D /* projector.png in Resources */ = {isa = PBXBuildFile; fileRef = F3D171751C6DCBF200A9507D /* projector.png */; };
 		F3D171781C6DCCD900A9507D /* generalLightingProjector.omg in Resources */ = {isa = PBXBuildFile; fileRef = F3D171771C6DCCD900A9507D /* generalLightingProjector.omg */; };
-		F3D1717B1C6DCE0400A9507D /* Projector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3D171791C6DCE0400A9507D /* Projector.cpp */; };
 		F3D5E10B1AF8F24400DD216B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F3D5E1091AF8F24400DD216B /* InfoPlist.strings */; };
 		F3D5E1191AF8F32E00DD216B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3D5E1181AF8F32E00DD216B /* Images.xcassets */; };
 		F3D5E1321AF8F4DD00DD216B /* iOSSRETests.m in Sources */ = {isa = PBXBuildFile; fileRef = F3D5E1051AF8F23400DD216B /* iOSSRETests.m */; };
@@ -857,8 +856,6 @@
 		F3CAEEE61BB01B8800DCF182 /* default_gray_fragment.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = default_gray_fragment.glsl; path = ../Android/assets/shaders/default_gray_fragment.glsl; sourceTree = SOURCE_ROOT; };
 		F3D171751C6DCBF200A9507D /* projector.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = projector.png; path = OMEngine/Platforms/Android/assets/projector.png; sourceTree = "<group>"; };
 		F3D171771C6DCCD900A9507D /* generalLightingProjector.omg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = generalLightingProjector.omg; path = OMEngine/Platforms/Android/assets/generalLightingProjector.omg; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
-		F3D171791C6DCE0400A9507D /* Projector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Projector.cpp; sourceTree = "<group>"; };
-		F3D1717A1C6DCE0400A9507D /* Projector.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Projector.hpp; sourceTree = "<group>"; };
 		F3D5E1051AF8F23400DD216B /* iOSSRETests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iOSSRETests.m; path = OMEiOSTests/iOSSRETests.m; sourceTree = SOURCE_ROOT; };
 		F3D5E10A1AF8F24400DD216B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = OMEiOS/en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
 		F3D5E10C1AF8F2C600DD216B /* OMEiOS.temp_caseinsensitive_rename-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "OMEiOS.temp_caseinsensitive_rename-Info.plist"; path = "../../../OMEngine/Platforms/iOS/OMEiOS/OMEiOS.temp_caseinsensitive_rename-Info.plist"; sourceTree = "<group>"; };
@@ -976,8 +973,6 @@
 				94CE87D81B62B53500752D5C /* OMGame.h */,
 				7625BC3617F32A780019C421 /* iOS */,
 				7626524017F10E6C007CCD43 /* Supporting Files */,
-				F3D171791C6DCE0400A9507D /* Projector.cpp */,
-				F3D1717A1C6DCE0400A9507D /* Projector.hpp */,
 			);
 			name = OMEiOS;
 			path = ../../..;
@@ -2179,7 +2174,6 @@
 				94788FAA1BD4CFD200B55A25 /* btCollisionAlgorithm.cpp in Sources */,
 				947890131BD4CFD200B55A25 /* btSequentialImpulseConstraintSolver.cpp in Sources */,
 				94788FD91BD4CFD200B55A25 /* btConvexShape.cpp in Sources */,
-				F3D1717B1C6DCE0400A9507D /* Projector.cpp in Sources */,
 				F380B7911BBBDC550049E755 /* Obj.cpp in Sources */,
 				94788FF61BD4CFD200B55A25 /* btTriangleShapeEx.cpp in Sources */,
 				94788FDD1BD4CFD200B55A25 /* btHeightfieldTerrainShape.cpp in Sources */,

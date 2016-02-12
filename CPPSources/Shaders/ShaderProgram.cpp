@@ -92,6 +92,11 @@ void ShaderProgram::setUniforms(ObjMaterial *mat){
             // LIGHT
         }else if(!strcmp(uniformArray[i].name.c_str(), "uSamplerBump")){
             glUniform1i(uniformArray[i].location, 4);
+        }else if(!strcmp(uniformArray[i].name.c_str(), "uSamplerProjector")){
+            glUniform1i(uniformArray[i].location, 0);
+        }else if(!strcmp(uniformArray[i].name.c_str(), "uProjM")){
+            matrix = Camera::instance()->projectorMatrix();
+            glUniformMatrix4fv(uniformArray[i].location, 1, GL_TRUE, matrix.pointer());
         }
     }
     

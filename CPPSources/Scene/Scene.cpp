@@ -1,9 +1,5 @@
 #include "Scene.hpp"
 
-#include "Projector.hpp"
-
-Projector p;
-
 Scene::Scene(){
     
     Camera::instance();
@@ -31,6 +27,11 @@ bool Scene::init(){
     
     createLightTestScene();
 
+    sp<Texture> projTexture = Materials::instance()->getTexture("projector.png");
+    glBindTexture(GL_TEXTURE_2D, projTexture->ID);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    
     return true;
 }
 
@@ -48,16 +49,21 @@ void Scene::update(float deltaTime){
     }
     
     Illuminator::instance()->update(deltaTime);
+    Camera::instance()->refreshProjectorMatrix();
 }
 
 void Scene::draw(){
     for(const auto& go : mObjects){
         for(int i = (int)ComponentEnum::MESH_RENDERER; i <= (int)ComponentEnum::DEBUG_DRAW; ++i){
             IComponent *comp = go->getComponent((ComponentEnum)i);
-            if(comp) comp->draw();
+            if(comp){
+                sp<Texture> projTexture = Materials::instance()->getTexture("projector.png");
+                glActiveTexture(GL_TEXTURE0);
+                glBindTexture(GL_TEXTURE_2D, projTexture->ID);
+                comp->draw();
+            }
         }
     }
-    
     
     Illuminator::instance()->getLightSource()->draw();
 }
