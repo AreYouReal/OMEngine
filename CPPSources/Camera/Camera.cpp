@@ -173,24 +173,24 @@ void Camera::refreshProjMatrix(){
 
 void Camera::refreshProjectorMatrix(){
     sp<LightSource> light = Illuminator::instance()->getLightSource();
-    m4d perspective = m4d::perspective(35, viewportMatrix[2], viewportMatrix[3], 1.0f, 20.0f );
+    m4d perspective = m4d::perspective(70, viewportMatrix[2], viewportMatrix[3], 1.0f, 20.0f );
     v3d center(0.0f, 0.0f, 0.0f);
     v3d lightPos = light->getPosition();
     m4d lookAt = m4d::lookAt(lightPos, center, transform.mUp);
     
-    mProjectorMatrix.m[0].x = 1.5f;
+    mProjectorMatrix.m[0].x = 0.5f;
     mProjectorMatrix.m[0].y = 0.0f;
     mProjectorMatrix.m[0].z = 0.0f;
     mProjectorMatrix.m[0].w = 0.0f;
     
     mProjectorMatrix.m[1].x = 0.0f;
-    mProjectorMatrix.m[1].y = 1.5f;
+    mProjectorMatrix.m[1].y = 0.5f;
     mProjectorMatrix.m[1].z = 0.0f;
     mProjectorMatrix.m[1].w = 0.0f;
     
     mProjectorMatrix.m[2].x = 0.0f;
     mProjectorMatrix.m[2].y = 0.0f;
-    mProjectorMatrix.m[2].z = 1.5f;
+    mProjectorMatrix.m[2].z = 0.5f;
     mProjectorMatrix.m[2].w = 0.0f;
     
     mProjectorMatrix.m[3].x = 0.5f;
@@ -198,7 +198,7 @@ void Camera::refreshProjectorMatrix(){
     mProjectorMatrix.m[3].z = 0.5f;
     mProjectorMatrix.m[3].w = 1.0f;
     
-    mProjectorMatrix = mProjectorMatrix * perspective * lookAt;
+    mProjectorMatrix = m4d::transpose(mProjectorMatrix) * perspective * lookAt;
 
 }
 

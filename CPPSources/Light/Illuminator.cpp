@@ -34,8 +34,8 @@ void Illuminator::update(const float deltaTime){
     if(alpha > 360) alpha = 0;
     
     float rad = PI * alpha/ 180;
-    float x = cosf(rad) * height;
-    float y = sinf(rad) * height;
+    float x = cosf(rad) * height/2;
+    float y = sinf(rad) * height/2;
     v3d pos(x, y, height);
     lightSources[0]->setPosition(pos);
 //    v3d::print(pos);
