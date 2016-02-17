@@ -199,7 +199,7 @@ void Camera::refreshProjectorMatrix(){
     mProjectorMatrix.m[3].w = 1.0f;
     
     mProjectorMatrix = m4d::transpose(mProjectorMatrix) * perspective * lookAt;
-
+    // Do not forget translate this matrix to object position before drawing.
 }
 
 void Camera::buildFrustum(){
