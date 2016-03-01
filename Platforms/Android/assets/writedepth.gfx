@@ -1,0 +1,18 @@
+GL_VERTEX_SHADER
+
+#version 300 es
+
+uniform highp mat4 uModelViewM;
+uniform highp mat4 uProjectionM;
+
+layout(location = 0) in vec4 aPosition;
+
+void main(){
+    gl_Position = uProjectionM * uModelViewM * aPosition;
+}
+
+GL_FRAGMENT_SHADER
+
+#version 300 es
+
+void main(){ }
