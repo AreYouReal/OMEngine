@@ -47,6 +47,10 @@ public:
     const m4d& projectorMatrix() const;
     void refreshProjectorMatrix();
     
+    unsigned int shadowBuffer()     { return mShadowmapBuffer;  }
+    unsigned int shadowmapWidth()   { return mShadowmapWidth;   }
+    unsigned int shadowmapHeight()  { return mShadowmapHeight;  }
+    
 private:
     
 // Touch related variables
@@ -70,11 +74,11 @@ private:
 // Projector 
     m4d mProjectorMatrix;
     
-    int mainBuffer;
-    unsigned int depthTexture;
-    unsigned int shadowmapBuffer;
-    unsigned int shadowmapWidth = 128;
-    unsigned int shadowmapHeight = 256;
+    int mMainBuffer;
+    unsigned int mDepthTexture;
+    unsigned int mShadowmapBuffer;
+    unsigned int mShadowmapWidth = 128;
+    unsigned int mShadowmapHeight = 256;
     
     
     void refreshViewAndNormalMatrix();

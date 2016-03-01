@@ -27,6 +27,7 @@ public:
     
     void addObjOnScene(up<GameObject> go);
     void update(float deltaTime);
+    void drawDepth();
     void draw();
     void setRenderObjectState(RenderObjectType newState);
     

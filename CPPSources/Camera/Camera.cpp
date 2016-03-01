@@ -20,21 +20,21 @@ Camera::Camera(float fovy, float width, float height, float near, float far)
 }
 
 void Camera::initShadowBuffer(){
-    glGetIntegerv(GL_FRAMEBUFFER_BINDING, &mainBuffer);
-    if(mainBuffer < 0) mainBuffer = 0;
-    glGenFramebuffers(1, &shadowmapBuffer);
-    glBindFramebuffer(GL_FRAMEBUFFER, shadowmapBuffer );
-    glGenTextures(1, &depthTexture);
-    glBindTexture(GL_TEXTURE_2D, depthTexture);
+    glGetIntegerv(GL_FRAMEBUFFER_BINDING, &mMainBuffer);
+    if(mMainBuffer < 0) mMainBuffer = 0;
+    glGenFramebuffers(1, &mShadowmapBuffer);
+    glBindFramebuffer(GL_FRAMEBUFFER, mShadowmapBuffer );
+    glGenTextures(1, &mDepthTexture);
+    glBindTexture(GL_TEXTURE_2D, mDepthTexture);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE );
     glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE );
     
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, shadowmapWidth, shadowmapHeight, 0, GL_DEPTH_COMPONENT, GL_UNSIGNED_SHORT, NULL );
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, mShadowmapWidth, mShadowmapHeight, 0, GL_DEPTH_COMPONENT, GL_UNSIGNED_SHORT, NULL );
     
     glBindTexture(GL_TEXTURE_2D, 0);
-    glFramebufferTexture2D(GL_TEXTURE_2D, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, depthTexture, 0);
+    glFramebufferTexture2D(GL_TEXTURE_2D, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, mDepthTexture, 0);
 }
 
 Camera::~Camera(){

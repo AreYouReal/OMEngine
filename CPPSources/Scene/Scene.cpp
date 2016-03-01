@@ -1,5 +1,9 @@
 #include "Scene.hpp"
 
+#include "Camera.h"
+
+#include "Shortcuts.h"
+
 Scene::Scene(){
     
     Camera::instance();
@@ -50,6 +54,24 @@ void Scene::update(float deltaTime){
     
     Illuminator::instance()->update(deltaTime);
     Camera::instance()->refreshProjectorMatrix();
+}
+
+void Scene::drawDepth(){
+    glBindFramebuffer( GL_FRAMEBUFFER, Camera::instance()->shadowBuffer());
+    glViewport(0, 0, Camera::instance()->shadowmapWidth(), Camera::instance()->shadowmapHeight());
+    glClear(GL_DEPTH_BUFFER_BIT);
+    glCullFace(GL_FRONT);
+    
+    sp<ShaderProgram> shader = Materials::instance()->getProgram("writedepth.omg");
+    
+    for(const auto& go: mObjects){
+        MeshRendererComponent *mrc = static_cast<MeshRendererComponent*>(go->getComponent(ComponentEnum::MESH_RENDERER));
+        if(mrc){
+            
+        }
+    }
+    
+    
 }
 
 void Scene::draw(){

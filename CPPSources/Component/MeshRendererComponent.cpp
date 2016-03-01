@@ -60,7 +60,7 @@ void MeshRendererComponent::draw(){
     for(auto const &child : go->mChildren){
         IComponent *meshRendererComp = child->getComponent(ComponentEnum::MESH_RENDERER);
         if(meshRendererComp){
-            meshRendererComp->update();
+            meshRendererComp->draw();
         }
     }
     Camera::instance()->popMMatrix();
@@ -91,3 +91,4 @@ v3d MeshRendererComponent::getDimensions(){
     dimensions = currMax - currMin;
     return dimensions;
 }
+

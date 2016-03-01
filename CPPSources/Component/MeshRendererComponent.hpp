@@ -22,6 +22,8 @@ public:
     
     v3d     getDimensions();
     
+    void setShader(sp<ShaderProgram> program);
+    
 private:
     std::vector<sp<ObjMesh>> mMeshes;
 };
