@@ -267,7 +267,7 @@
 		F3BCACBB1BFF26FE002003B7 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3BCACB81BFF26FE002003B7 /* Main_iPhone.storyboard */; };
 		F3BEAB1A1C43A6C00012DDCD /* lightingAttenuation.omg in Resources */ = {isa = PBXBuildFile; fileRef = F3BEAB191C43A6C00012DDCD /* lightingAttenuation.omg */; };
 		F3C52B2C1BBD079F009F3604 /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3C52B2A1BBD079F009F3604 /* Scene.cpp */; };
-		F3C5D0781C85B1E800686AF1 /* writedepth.gfx in Resources */ = {isa = PBXBuildFile; fileRef = F3C5D0771C85B1E800686AF1 /* writedepth.gfx */; };
+		F3C5D0781C85B1E800686AF1 /* writedepth.omg in Resources */ = {isa = PBXBuildFile; fileRef = F3C5D0771C85B1E800686AF1 /* writedepth.omg */; };
 		F3C8A2FB1C5FB00000867A65 /* DefaultDiffuseSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3C8A2F91C5FB00000867A65 /* DefaultDiffuseSP.cpp */; };
 		F3CAEEE51BB01A7600DCF182 /* default_gray_vertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F3CAEEE41BB01A7600DCF182 /* default_gray_vertex.glsl */; };
 		F3CAEEE71BB01B8800DCF182 /* default_gray_fragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F3CAEEE61BB01B8800DCF182 /* default_gray_fragment.glsl */; };
@@ -851,7 +851,7 @@
 		F3BEAB191C43A6C00012DDCD /* lightingAttenuation.omg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = lightingAttenuation.omg; path = OMEngine/Platforms/Android/assets/lightingAttenuation.omg; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
 		F3C52B2A1BBD079F009F3604 /* Scene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Scene.cpp; sourceTree = "<group>"; };
 		F3C52B2B1BBD079F009F3604 /* Scene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Scene.hpp; sourceTree = "<group>"; };
-		F3C5D0771C85B1E800686AF1 /* writedepth.gfx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = writedepth.gfx; path = OMEngine/Platforms/Android/assets/writedepth.gfx; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
+		F3C5D0771C85B1E800686AF1 /* writedepth.omg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = writedepth.omg; path = OMEngine/Platforms/Android/assets/writedepth.omg; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
 		F3C8A2F91C5FB00000867A65 /* DefaultDiffuseSP.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DefaultDiffuseSP.cpp; path = OMEngine/CPPSources/Shaders/DefaultDiffuseSP.cpp; sourceTree = "<group>"; };
 		F3C8A2FA1C5FB00000867A65 /* DefaultDiffuseSP.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = DefaultDiffuseSP.hpp; path = OMEngine/CPPSources/Shaders/DefaultDiffuseSP.hpp; sourceTree = "<group>"; };
 		F3CAEEE41BB01A7600DCF182 /* default_gray_vertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = default_gray_vertex.glsl; path = ../Android/assets/shaders/default_gray_vertex.glsl; sourceTree = SOURCE_ROOT; };
@@ -983,7 +983,7 @@
 		7626524017F10E6C007CCD43 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				F3C5D0771C85B1E800686AF1 /* writedepth.gfx */,
+				F3C5D0771C85B1E800686AF1 /* writedepth.omg */,
 				F3D171771C6DCCD900A9507D /* generalLightingProjector.omg */,
 				F3D171751C6DCBF200A9507D /* projector.png */,
 				948396591C4B542D000D69BA /* generalLighting.omg */,
@@ -2006,7 +2006,7 @@
 				F38A22E91BAAAD8800FADEC0 /* tree.png in Resources */,
 				9472227C1B9AD466008D601B /* treemomo.mtl in Resources */,
 				94DCA2F61BE13C6100435661 /* Scene.bullet in Resources */,
-				F3C5D0781C85B1E800686AF1 /* writedepth.gfx in Resources */,
+				F3C5D0781C85B1E800686AF1 /* writedepth.omg in Resources */,
 				F30E41DC1C2D548E00A88527 /* sphere_n.png in Resources */,
 				F39FA5CA1C0DE6C200CC0BB4 /* lounge.ogg in Resources */,
 				9472227A1B9AD466008D601B /* leaf.png in Resources */,

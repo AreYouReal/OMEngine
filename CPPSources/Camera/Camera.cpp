@@ -15,7 +15,26 @@ Camera::Camera(float fovy, float width, float height, float near, float far)
     transform.mFront = v3d(-1.0f, 1.0f, 0.0f);
     transform.mUp = v3d(0.0f, 0.0f, 1.0f);
     refreshViewAndNormalMatrix();
+    initShadowBuffer();
     refreshProjMatrix();
+}
+
+void Camera::initShadowBuffer(){
+    glGetIntegerv(GL_FRAMEBUFFER_BINDING, &mainBuffer);
+    if(mainBuffer < 0) mainBuffer = 0;
+    glGenFramebuffers(1, &shadowmapBuffer);
+    glBindFramebuffer(GL_FRAMEBUFFER, shadowmapBuffer );
+    glGenTextures(1, &depthTexture);
+    glBindTexture(GL_TEXTURE_2D, depthTexture);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE );
+    glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE );
+    
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, shadowmapWidth, shadowmapHeight, 0, GL_DEPTH_COMPONENT, GL_UNSIGNED_SHORT, NULL );
+    
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glFramebufferTexture2D(GL_TEXTURE_2D, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, depthTexture, 0);
 }
 
 Camera::~Camera(){
