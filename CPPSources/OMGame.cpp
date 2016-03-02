@@ -73,9 +73,8 @@ void OMGame::Draw (){
 
     
     
-    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-    glClear( GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT );
-    
+
+    Scene::instance()->drawDepth();
     Scene::instance()->draw();
 
 //    Boombox::instance()->play();

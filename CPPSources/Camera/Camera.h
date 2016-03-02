@@ -16,6 +16,9 @@ public:
     Camera& operator=(const Camera& rhs) = delete;
     ~Camera();
     
+    const float width(){ return mWidth; }
+    const float height(){ return mHeight; }
+    
 // Touch related
     void onTouchBegin   (const int x, const int y);
     void onTouchMove    (const int x, const int y);
@@ -50,6 +53,7 @@ public:
     unsigned int shadowBuffer()     { return mShadowmapBuffer;  }
     unsigned int shadowmapWidth()   { return mShadowmapWidth;   }
     unsigned int shadowmapHeight()  { return mShadowmapHeight;  }
+    int mainBuffer()                { return mMainBuffer;       }
     
 private:
     

@@ -27,13 +27,13 @@ bool MeshRendererComponent::init(){
 void MeshRendererComponent::update(){
 }
 
-
 void MeshRendererComponent::draw(){
     m4d modelM = go->transformMatrix();
     Camera::instance()->pushMMatrix(modelM);
     for (auto const& mesh : mMeshes) {
-
+        
         if(mesh){
+            mesh->shadowDraw = shadowDraw;
             if(!Camera::instance()->sphereDistanceInFrustum(go->getPosition(), mesh->outlines.radius)){
                 continue;
             }

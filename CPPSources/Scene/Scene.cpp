@@ -57,24 +57,36 @@ void Scene::update(float deltaTime){
 }
 
 void Scene::drawDepth(){
-    glBindFramebuffer( GL_FRAMEBUFFER, Camera::instance()->shadowBuffer());
-    glViewport(0, 0, Camera::instance()->shadowmapWidth(), Camera::instance()->shadowmapHeight());
-    glClear(GL_DEPTH_BUFFER_BIT);
-    glCullFace(GL_FRONT);
+//    glBindFramebuffer( GL_FRAMEBUFFER, 1);
+//    glViewport(0, 0, Camera::instance()->shadowmapWidth(), Camera::instance()->shadowmapHeight());
+//    glClear(GL_DEPTH_BUFFER_BIT);
+//    glCullFace(GL_FRONT);
     
-    sp<ShaderProgram> shader = Materials::instance()->getProgram("writedepth.omg");
-    
-    for(const auto& go: mObjects){
-        MeshRendererComponent *mrc = static_cast<MeshRendererComponent*>(go->getComponent(ComponentEnum::MESH_RENDERER));
-        if(mrc){
-            
-        }
-    }
-    
+//    for(const auto& go: mObjects){
+//        MeshRendererComponent *mrc = static_cast<MeshRendererComponent*>(go->getComponent(ComponentEnum::MESH_RENDERER));
+//        if(mrc){
+//            mrc->shadowDraw = false;
+//            mrc->draw();
+//            mrc->shadowDraw = false;
+//        }
+//    }
+//    glCullFace( GL_BACK );
     
 }
 
 void Scene::draw(){
+//    glBindFramebuffer(GL_FRAMEBUFFER, 1);
+    
+    unsigned int err = glGetError();
+    logMessage("GLERROR::::: %x\n", err);
+    
+    unsigned int fbStatus = glCheckFramebufferStatus(0);
+    
+        logMessage("STATUS::::: %x\n", fbStatus);
+//    glViewport(0, 0, Camera::instance()->width(), Camera::instance()->height());
+    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+    glClear( GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT );
+    
     for(const auto& go : mObjects){
         for(int i = (int)ComponentEnum::MESH_RENDERER; i <= (int)ComponentEnum::DEBUG_DRAW; ++i){
             IComponent *comp = go->getComponent((ComponentEnum)i);

@@ -24,7 +24,6 @@ public:
     sp<ShaderProgram>   getProgram  (const string &name);
     sp<ShaderProgram>   getProgramFoMesh(const string &name);
     
-    
     bool                isMaterialExist(const string &name);
     bool                addMaterial(const sp<ObjMaterial> mat);
     

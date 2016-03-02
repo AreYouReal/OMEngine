@@ -207,6 +207,13 @@ void Materials::loadOMGFile(string fileName){
         sp<ShaderProgram> program =  ShaderHelper::createProgram(fileName, vShader, fShader);
         
         addProgram(program);
+        
+        if(!program->name.compare("writedepth.omg")){
+            sp<ObjMaterial> shadowMaterial = std::make_shared<ObjMaterial>("shadowMaterial");
+            shadowMaterial->program = program;
+            addMaterial(shadowMaterial);
+        }
+        
     }else{
         logMessage("Omg file bad format:( ");
         return;

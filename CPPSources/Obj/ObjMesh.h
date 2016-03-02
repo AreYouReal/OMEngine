@@ -45,6 +45,8 @@ public:
 // Fields
     MeshOutlines                    outlines;
     
+    bool        shadowDraw = false;
+    
 private:
 // Helpers
     void    addVertexData(sp<ObjTriangleList> otl, int vIndex, int uvIndex);
@@ -62,6 +64,7 @@ private:
     std::vector<ObjVertexData>      vertexData;     // All vertex data (vertex index & uv index)
     std::vector<sp<ObjTriangleList>>tLists;         // Triangle lists...
     sp<ObjMaterial>                 currentMaterial = nullptr;
+    sp<ObjMaterial>                 shadowMaterial   = nullptr;
     wp<Obj>                         weakData;
     MeshGLInfo                      glInfo;
 };

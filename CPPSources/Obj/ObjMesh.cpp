@@ -18,8 +18,13 @@ unsigned int ObjMesh::draw(){
     else setAttributes();
     
     for(unsigned int i = 0; i < tLists.size(); ++i){
-        currentMaterial = tLists[i]->material;
-        if(currentMaterial) currentMaterial->use();
+        if(shadowDraw){
+            shadowMaterial->use();
+        }else{
+            currentMaterial = tLists[i]->material;
+            if(currentMaterial) currentMaterial->use();
+        }
+
         if(glInfo.vao){
             if(tLists.size() != 1) glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, tLists[i]->vbo);
         }else{
@@ -191,6 +196,7 @@ void ObjMesh::initMaterial(){
             tLists[i]->material->program = Materials::instance()->getProgramFoMesh(name);
         }
     }
+    shadowMaterial = Materials::instance()->getMaterial("shadowMaterial");
 }
 
 void ObjMesh::clear(){

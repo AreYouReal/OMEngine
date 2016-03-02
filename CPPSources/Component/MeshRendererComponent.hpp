@@ -24,6 +24,8 @@ public:
     
     void setShader(sp<ShaderProgram> program);
     
+    bool shadowDraw = false;
+    
 private:
     std::vector<sp<ObjMesh>> mMeshes;
 };
