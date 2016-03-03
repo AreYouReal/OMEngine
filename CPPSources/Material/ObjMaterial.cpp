@@ -43,6 +43,7 @@ void ObjMaterial::use(){
 }
 
 void ObjMaterial::loadTextures(){
+    logGLError();
     if(mapAmbient[0]){
         sp<Texture> txt(Materials::instance()->getTexture(mapAmbient));
         if(txt != nullptr) tAmbient = txt;

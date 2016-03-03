@@ -159,6 +159,7 @@ void ShaderHelper::printProgramInfoLog(GLuint program){
         logMessage("Error linking program: \n%s\n", infoLog);
         free(infoLog);
     }
+    logGLError();
 }
 
 void ShaderHelper::printShaderInfo(GLuint shader, GLenum pname){

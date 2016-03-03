@@ -149,8 +149,8 @@ void printGLString(string name, GLenum s){
 }
 
 void logGLError(){
-    unsigned int err = glGetError();
-    if(err > 0){
+    GLenum err = glGetError();
+    if(err != GL_NO_ERROR){
         logMessage("\n-------------GLERROR [ %x ]-------------\n", err);
     }
     

@@ -67,6 +67,7 @@ void Texture::generateID(unsigned int flags, unsigned char filter){
     }
     
     glTexImage2D(target, 0, format, width, height, 0, format, texelType, &texelArray[0]);
+    logGLError();
     
     // generateMipMap if needed...
 }
