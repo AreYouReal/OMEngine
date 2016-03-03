@@ -19,6 +19,9 @@
 #include <chrono>
 #include <iostream>
 
+
+
+
 using UserData = struct{};
 static OMContext       *appContext;
 bool OMGame::debugFlag  = true;
@@ -41,6 +44,9 @@ OMContext* OMGame::getAppContext(){
 
 
 int OMGame::InitGameWorld (){
+  
+    
+    logGLError();
 
     Scene::instance()->init();
     
@@ -50,6 +56,8 @@ int OMGame::InitGameWorld (){
 //    asyncFuture = std::async(std::launch::async, &Boombox::checkObbFunctionality, Boombox::instance());    
 //---------
 
+    logGLError();
+    
     return 1;
 }
 
@@ -100,6 +108,7 @@ void OMGame::Shutdown ( ){
 }
 
 void OMGame::Touch(const int event, const int x, const int y){
+        logGLError();
     switch (event) {
         case static_cast<int>(TouchState::BEGIN):
             Camera::instance()->onTouchBegin(x, y);
@@ -117,6 +126,7 @@ void OMGame::Touch(const int event, const int x, const int y){
 }
 
 int OMGame::StartUp ( OMContext *context ){
+    logGLError();
     context->userData = malloc ( sizeof ( UserData ) );
     OMCreateWindow( context, "Hello Triangle", context->width, context->height, ES_WINDOW_RGB );
     appContext = context;
@@ -129,6 +139,7 @@ int OMGame::StartUp ( OMContext *context ){
     
     atexit(Exit);
     
+        logGLError();
     return OMGame::InitGameWorld();
 }
 
@@ -147,11 +158,13 @@ void OMGame::printGLInfo(){
 
 
 void OMGame::initOGL(const float width, const float height){
+    logGLError();
     printGLInfo();
     glViewport ( 0, 0, width, height );
-    glEnable( GL_DEPTH_TEST );
-    glEnable( GL_CULL_FACE  );
-    glEnable(GL_TEXTURE_2D);
+//    glEnable( GL_DEPTH_TEST );
+//    glEnable( GL_CULL_FACE  );
+//    glEnable(GL_TEXTURE_2D);
+    logGLError();
 }
 
 

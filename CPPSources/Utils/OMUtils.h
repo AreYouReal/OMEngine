@@ -91,7 +91,7 @@ GLboolean OMCreateWindow ( OMContext *context, const char *title, GLint width, G
 #pragma LOGGING
 void logMessage(const char *formatString, ...);
 void printGLString(string name, GLenum s);
-
+void logGLError();
 
 #pragma mark FILE IO
 omFile *fileOpen ( void *ioContext, const char *fileName );

@@ -6,6 +6,9 @@ Obj::~Obj(){
 }
 
 sp<Obj> Obj::load(const char *filename){
+    
+    logGLError();
+    
     std::unique_ptr<FileContent> objSource = readBytesFromFile(filename);
 #pragma warning throw exception here
     if(!objSource.get()) return nullptr;
@@ -226,7 +229,9 @@ std::vector<sp<ObjMesh>> Obj::getAllMeshes(){
 unsigned int Obj::meshesSize()   { return (unsigned int)meshes.size();     }
 
 void Obj::build(){
+    logGLError();
     for(auto const &meshEntry : meshes){
+        logGLError();
         meshEntry.second->build();
     }
 }

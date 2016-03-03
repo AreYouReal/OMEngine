@@ -5,13 +5,15 @@
 #include "Shortcuts.h"
 
 Scene::Scene(){
-    
+    logGLError();
     Camera::instance();
+    logGLError();
     Illuminator::instance();
+    logGLError();
     Materials::instance();
     PhysicalWorld::instance();
     Boombox::instance();
-    
+    logGLError();
 }
 
 Scene::~Scene(){
@@ -25,17 +27,18 @@ Scene::~Scene(){
 }
 
 bool Scene::init(){
-//    createBallsScene();
+    logGLError();
+    //    createBallsScene();
     
 //        createTestScene();
     
     createLightTestScene();
-
+    logGLError();
     sp<Texture> projTexture = Materials::instance()->getTexture("projector.png");
     glBindTexture(GL_TEXTURE_2D, projTexture->ID);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-    
+    logGLError();
     return true;
 }
 
@@ -75,14 +78,13 @@ void Scene::drawDepth(){
 }
 
 void Scene::draw(){
-//    glBindFramebuffer(GL_FRAMEBUFFER, 1);
+    glBindFramebuffer(GL_FRAMEBUFFER, Camera::instance()->mainBuffer());
     
-    unsigned int err = glGetError();
-    logMessage("GLERROR::::: %x\n", err);
+
     
-    unsigned int fbStatus = glCheckFramebufferStatus(0);
-    
-        logMessage("STATUS::::: %x\n", fbStatus);
+//    unsigned int fbStatus = glCheckFramebufferStatus(0);
+//    
+//        logMessage("STATUS::::: %x\n", fbStatus);
 //    glViewport(0, 0, Camera::instance()->width(), Camera::instance()->height());
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear( GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT );
@@ -237,11 +239,14 @@ void Scene::addMeshRendererOnScene(string objName, string meshName){
 }
 
 void Scene::createLightTestScene(){
+logGLError();
     sp<Obj> object = Obj::load("Scene.obj");
     object->build();
     object->clear();
     
     mObjRess.insert(std::pair<string, sp<Obj>>("lightScene", object));
+    
+    logGLError();
     
     std::vector<sp<ObjMesh>> meshes = object->getAllMeshes();
     

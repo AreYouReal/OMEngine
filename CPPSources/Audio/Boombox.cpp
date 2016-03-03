@@ -130,7 +130,7 @@ int     Boombox::oggClose(void *memoryPtr){
 void Boombox::error(){
     unsigned int error;
     
-    while( ( error = glGetError() ) != GL_NO_ERROR ){
+    while( ( error = alGetError() ) != GL_NO_ERROR ){
         char str[ 2048 ] = {""};
         
         switch( error ){

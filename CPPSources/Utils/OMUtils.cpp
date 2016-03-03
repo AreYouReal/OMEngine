@@ -148,6 +148,14 @@ void printGLString(string name, GLenum s){
     logMessage("GL %s = %s\n", name.c_str(), (const char *)glGetString(s));
 }
 
+void logGLError(){
+    unsigned int err = glGetError();
+    if(err > 0){
+        logMessage("\n-------------GLERROR [ %x ]-------------\n", err);
+    }
+    
+}
+
 #pragma mark FILE RELATED
 omFile  *fileOpen       ( void *ioContext, const char *fileName ){
     omFile *pFile = NULL;

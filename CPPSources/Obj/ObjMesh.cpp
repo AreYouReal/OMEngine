@@ -67,17 +67,18 @@ RenderObjectType ObjMesh::renderObjectType(){
 }
 
 void ObjMesh::build(){
+    logGLError();
     updateBounds();
     buildVBO();
     initMaterial();
-
+logGLError();
     glGenVertexArrays(1, &glInfo.vao);
     glBindVertexArray(glInfo.vao);
     
     setAttributes();
-    
+    logGLError();
     if(tLists.size() == 1){ glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, tLists[0]->vbo); }
-    
+    logGLError();
     glBindVertexArray(0);
 }
 

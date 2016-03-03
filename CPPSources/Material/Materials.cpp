@@ -27,6 +27,7 @@ Materials::~Materials(){
 }
 
 bool Materials::loadMaterial(const std::string &name){
+    logGLError();
 //    logMessage("Starting loading materials! %d\n", materials.size());
     if(materials.find(name) != materials.end()){
         logMessage("Material is already loaded: %s\n", name.c_str());
