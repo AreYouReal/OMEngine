@@ -14,6 +14,7 @@ const string ShaderProgram::uniNormalMName      {"uNormalM"};
 
 
 ShaderProgram::ShaderProgram(){
+    logGLError();
 }
 
 ShaderProgram::~ShaderProgram(){

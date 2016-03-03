@@ -2,6 +2,7 @@
 #include "ShaderProgram.h"
 
 ObjMaterial::ObjMaterial(std::string name){
+    logGLError();
     this->name = name;
 }
 

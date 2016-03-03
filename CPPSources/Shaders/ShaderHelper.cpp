@@ -9,12 +9,17 @@
 #pragma mark Public
 
 sp<ShaderProgram> ShaderHelper::createProgram(string programName, const string vertexShaderFilename, string fragmentShaderFilename, const ShaderType sType){
+    logGLError();
     Shader vertexShader = loadShader(GL_VERTEX_SHADER, vertexShaderFilename);
+    logGLError();
     Shader fragmentShader = loadShader(GL_FRAGMENT_SHADER, fragmentShaderFilename);
+    logGLError();
     return createProgram(programName, vertexShader, fragmentShader, sType);
 }
 
 sp<ShaderProgram> ShaderHelper::createProgram(const string programName, const Shader &vertexShader,const Shader &fragmentShader, const ShaderType sType){
+    logGLError();
+    
     sp<ShaderProgram> program;
     switch (sType) {
         case Normal:
@@ -35,6 +40,8 @@ sp<ShaderProgram> ShaderHelper::createProgram(const string programName, const Sh
             break;
     }
 
+    logGLError();
+    
     program->ID = glCreateProgram();
     
     glAttachShader(program->ID, vertexShader.ID);
@@ -60,6 +67,7 @@ sp<ShaderProgram> ShaderHelper::createProgram(const string programName, const Sh
             attrib.name = name;
             attrib.type = type;
         }
+        logGLError();
         program->initAttribLocations();
         glGetProgramiv(program->ID, GL_ACTIVE_UNIFORMS, &total);
         program->uniformArray = std::vector<Uniform>(total);
@@ -71,12 +79,15 @@ sp<ShaderProgram> ShaderHelper::createProgram(const string programName, const Sh
             uniform.type = type;
         }
         program->initUniformLocations();
+        logGLError();
     }
     glDeleteShader(vertexShader.ID);
     glDeleteShader(fragmentShader.ID);
     
     ShaderHelper::printProgramInfoLog(program->ID);
     program->name = programName;
+    
+    logGLError();
     
     return program;
 }

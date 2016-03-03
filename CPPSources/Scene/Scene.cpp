@@ -7,10 +7,11 @@
 Scene::Scene(){
     logGLError();
     Camera::instance();
+    Materials::instance();
     logGLError();
     Illuminator::instance();
     logGLError();
-    Materials::instance();
+
     PhysicalWorld::instance();
     Boombox::instance();
     logGLError();
@@ -78,7 +79,7 @@ void Scene::drawDepth(){
 }
 
 void Scene::draw(){
-    glBindFramebuffer(GL_FRAMEBUFFER, Camera::instance()->mainBuffer());
+//    glBindFramebuffer(GL_FRAMEBUFFER, Camera::instance()->mainBuffer());
     
 
     

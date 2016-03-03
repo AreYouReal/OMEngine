@@ -157,7 +157,9 @@ bool Materials::isMaterialExist(const string &name){
 }
 
 void Materials::loadPrograms(){
+    logGLError();
     addProgram(ShaderHelper::createProgram("normAsColor",   "pos_norm_vertex.glsl",     "norm_as_color_fragment.glsl"   , ShaderHelper::ShaderType::Normal));
+    logGLError();
     addProgram(ShaderHelper::createProgram("defaultGrey",    "default_gray_vertex.glsl", "default_gray_fragment.glsl"   , ShaderHelper::ShaderType::Grey ));
     addProgram(ShaderHelper::createProgram("defaultPerVertex","vertexPerVertex.glsl",     "fragmentPerVertex.glsl"      , ShaderHelper::ShaderType::DefaultPerVertex  ));
     addProgram(ShaderHelper::createProgram("defaultPerPixel", "vertexPerPixel.glsl",      "fragmentPerPixel.glsl"      ,ShaderHelper::ShaderType::DefaultPerPixel   ));
@@ -167,6 +169,7 @@ void Materials::loadPrograms(){
 }
 
 void Materials::addProgram(sp<ShaderProgram> program){
+    logGLError();
     programs.insert(std::pair<string, sp<ShaderProgram>>(program->name, program));
 }
 

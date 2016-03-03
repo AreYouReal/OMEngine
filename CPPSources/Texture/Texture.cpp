@@ -3,19 +3,23 @@
 
 
 Texture::Texture(const char* filename, unsigned int texelType, unsigned char byte, unsigned int format, unsigned int target, unsigned int ID) : texelType(texelType), byte(4), format(format), target(target), ID(ID){
+    logGLError();
     this->filename = filename;
     texelArray = loadRawPNGData(filename, width, height);
+    logGLError();
 }
 
 Texture::~Texture(){
 }
 
 std::shared_ptr<Texture> Texture::load(const char *filename){
+    logGLError();
     return std::shared_ptr<Texture>(std::shared_ptr<Texture>(new Texture(filename)));
 }
 
 
 void Texture::generateID(unsigned int flags, unsigned char filter){
+    logGLError();
     if(ID) return;
  
     glGenTextures(1, &ID);
