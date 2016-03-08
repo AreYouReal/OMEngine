@@ -81,8 +81,6 @@ sp<ShaderProgram> ShaderHelper::createProgram(const string programName, const Sh
         program->initUniformLocations();
         logGLError();
     }
-    glDeleteShader(vertexShader.ID);
-    glDeleteShader(fragmentShader.ID);
     
     ShaderHelper::printProgramInfoLog(program->ID);
     program->name = programName;
