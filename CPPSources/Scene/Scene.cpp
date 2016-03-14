@@ -61,6 +61,43 @@ void Scene::update(float deltaTime){
 }
 
 void Scene::drawDepth(){
+    
+//    unsigned int framebuffer;
+//    unsigned int depthRenderbuffer;
+//    unsigned int texture;
+//    int         texWidth = 256, texHeight = 256;
+//    int maxRenderbufferSize;
+//    
+//    glGetIntegerv(GL_MAX_RENDERBUFFER_SIZE, &maxRenderbufferSize);
+//    if(maxRenderbufferSize <= texWidth || maxRenderbufferSize <= texHeight){
+//        logMessage("Max renderbuffer size: %d", maxRenderbufferSize );
+//        logMessage("Too big texture widht ot height!");
+//    }
+//    glGenFramebuffers   (1, &framebuffer);
+//    glGenRenderbuffers  (1, &depthRenderbuffer);
+//    glGenTextures       (1, &texture);
+//    
+//    glBindTexture(GL_TEXTURE_2D, texture);
+//    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, texWidth, texHeight, 0, GL_RGB, GL_UNSIGNED_SHORT_5_6_5, NULL );
+//    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE );
+//    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+//    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+//    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+//    
+//    glBindRenderbuffer(GL_RENDERBUFFER, depthRenderbuffer);
+//    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, texWidth, texHeight);
+//    
+//    glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
+//    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, texture, 0);
+//    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, depthRenderbuffer);
+//    
+//    GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
+//    if(status == GL_FRAMEBUFFER_COMPLETE  ){
+//        logMessage("FRAMEBUFFER COMPLETE!!!");
+//    }else{
+//    
+//    }
+    
 //    glBindFramebuffer( GL_FRAMEBUFFER, 1);
 //    glViewport(0, 0, Camera::instance()->shadowmapWidth(), Camera::instance()->shadowmapHeight());
 //    glClear(GL_DEPTH_BUFFER_BIT);
@@ -75,13 +112,11 @@ void Scene::drawDepth(){
 //        }
 //    }
 //    glCullFace( GL_BACK );
-    
 }
 
 void Scene::draw(){
-//    glBindFramebuffer(GL_FRAMEBUFFER, Camera::instance()->mainBuffer());
-    
-
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    logGLError();
     
 //    unsigned int fbStatus = glCheckFramebufferStatus(0);
 //    

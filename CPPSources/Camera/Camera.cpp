@@ -2,7 +2,6 @@
 
 #include "OMUtils.h"
 
-
 #include "Illuminator.hpp"
 
 #define CLAMP(x, min, max) ((x < min) ? min : ((x > max) ? max : x));
