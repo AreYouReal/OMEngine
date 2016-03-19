@@ -10,49 +10,121 @@
 
 Camera::Camera(float fovy, float width, float height, float near, float far)
 :mFovy(fovy), mWidth(width), mHeight(height), mNear(near), mFar(far){
-    transform.mPosition = v3d(8.0f, -6.0f, 5.0f);
-    transform.mFront = v3d(-1.0f, 1.0f, 0.0f);
-    transform.mUp = v3d(0.0f, 0.0f, 1.0f);
-    refreshViewAndNormalMatrix();
-    initShadowBuffer();
-    refreshProjMatrix();
+transform.mPosition = v3d(8.0f, -6.0f, 5.0f);
+transform.mFront = v3d(-1.0f, 1.0f, 0.0f);
+transform.mUp = v3d(0.0f, 0.0f, 1.0f);
+refreshViewAndNormalMatrix();
+initShadowBuffer();
+refreshProjMatrix();
 }
 
 void Camera::initShadowBuffer(){
     logGLError();
+
+        unsigned int depthRenderbuffer;
+        unsigned int texture;
+        int         texWidth = 256, texHeight = 256;
+        int maxRenderbufferSize;
     
-    glGetIntegerv(GL_FRAMEBUFFER_BINDING, &mMainBuffer);
-    if(mMainBuffer < 0) mMainBuffer = 0;
-    glGenFramebuffers(1, &mShadowmapBuffer);
-    glBindFramebuffer(GL_FRAMEBUFFER, mShadowmapBuffer );
-    glGenTextures(1, &mDepthTexture);
-    glBindTexture(GL_TEXTURE_2D, mDepthTexture);
+        glGetIntegerv(GL_MAX_RENDERBUFFER_SIZE, &maxRenderbufferSize);
+        if(maxRenderbufferSize <= texWidth || maxRenderbufferSize <= texHeight){
+            logMessage("Max renderbuffer size: %d", maxRenderbufferSize );
+            logMessage("Too big texture widht ot height!");
+        }
     
-    logGLError();
+        glGenFramebuffers(1, &mShadowmapBuffer);
+        glGenRenderbuffers  (1, &depthRenderbuffer);
+        glGenTextures       (1, &texture);
     
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE );
-    glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE );
+        glBindTexture(GL_TEXTURE_2D, texture);
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, texWidth, texHeight, 0, GL_RGB, GL_UNSIGNED_SHORT_5_6_5, NULL );
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE );
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     
-    logGLError();
+        glBindRenderbuffer(GL_RENDERBUFFER, depthRenderbuffer);
+        glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, texWidth, texHeight);
     
-    glTexImage2D( GL_TEXTURE_2D,
-                 0,
-                 GL_RGB,
-                 mShadowmapWidth,
-                 mShadowmapHeight,
-                 0,
-                 GL_RGB,
-                 GL_UNSIGNED_BYTE,
-                 NULL );
+        glBindFramebuffer(GL_FRAMEBUFFER, mShadowmapBuffer);
+        glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, texture, 0);
+        glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, depthRenderbuffer);
     
-    logGLError();
+        GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
+        if(status == GL_FRAMEBUFFER_COMPLETE  ){
+            logMessage("FRAMEBUFFER COMPLETE!!!");
+        }else{
+        
+        }
     
-    glBindTexture(GL_TEXTURE_2D, 0);
-    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, mDepthTexture, 0);
+    //    unsigned int depthRenderbuffer;
+    //    unsigned int texture;
+    //    int         texWidth = 256, texHeight = 256;
+    //    int maxRenderbufferSize;
+    //
+    //    glGetIntegerv(GL_MAX_RENDERBUFFER_SIZE, &maxRenderbufferSize);
+    //    if(maxRenderbufferSize <= texWidth || maxRenderbufferSize <= texHeight){
+    //        logMessage("Max renderbuffer size: %d", maxRenderbufferSize );
+    //        logMessage("Too big texture widht ot height!");
+    //    }
+    //
+    //    glGenRenderbuffers  (1, &depthRenderbuffer);
+    //    glGenTextures       (1, &texture);
+    //
+    //    glBindTexture(GL_TEXTURE_2D, texture);
+    //    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, texWidth, texHeight, 0, GL_RGB, GL_UNSIGNED_SHORT_5_6_5, NULL );
+    //    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE );
+    //    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    //    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    //    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    //
+    //    glBindRenderbuffer(GL_RENDERBUFFER, depthRenderbuffer);
+    //    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, texWidth, texHeight);
+    //
+    //    glBindFramebuffer(GL_FRAMEBUFFER, Camera::instance()->shadowBuffer());
+    //    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, texture, 0);
+    //    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, depthRenderbuffer);
+    ////
+    ////    GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
+    ////    if(status == GL_FRAMEBUFFER_COMPLETE  ){
+    ////        logMessage("FRAMEBUFFER COMPLETE!!!");
+    ////    }else{
+    ////    
+    ////    }
     
-    logGLError();
+    
+//    glGetIntegerv(GL_FRAMEBUFFER_BINDING, &mMainBuffer);
+//    if(mMainBuffer < 0) mMainBuffer = 0;
+//    glGenFramebuffers(1, &mShadowmapBuffer);
+//    glBindFramebuffer(GL_FRAMEBUFFER, mShadowmapBuffer );
+//    glGenTextures(1, &mDepthTexture);
+//    glBindTexture(GL_TEXTURE_2D, mDepthTexture);
+//    
+//    logGLError();
+//    
+//    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+//    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+//    glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE );
+//    glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE );
+//    
+//    logGLError();
+//    
+//    glTexImage2D( GL_TEXTURE_2D,
+//                 0,
+//                 GL_RGB,
+//                 mShadowmapWidth,
+//                 mShadowmapHeight,
+//                 0,
+//                 GL_RGB,
+//                 GL_UNSIGNED_BYTE,
+//                 NULL );
+//    
+//    logGLError();
+//    
+//    glBindTexture(GL_TEXTURE_2D, 0);
+//    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, mDepthTexture, 0);
+//    
+//    logGLError();
 }
 
 Camera::~Camera(){
