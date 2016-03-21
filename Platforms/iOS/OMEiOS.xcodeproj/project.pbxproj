@@ -260,6 +260,7 @@
 		F3A1A4EA1C60CBA000DBBB4B /* WireSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3A1A4E81C60CBA000DBBB4B /* WireSP.cpp */; };
 		F3A263961C33BD360021B3B6 /* light_point_fragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F3A263941C33BD360021B3B6 /* light_point_fragment.glsl */; };
 		F3A263971C33BD360021B3B6 /* light_point_vertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F3A263951C33BD360021B3B6 /* light_point_vertex.glsl */; };
+		F3A7ADA21CA0161500FF8910 /* shadowProjector.omg in Resources */ = {isa = PBXBuildFile; fileRef = F3A7ADA11CA0161500FF8910 /* shadowProjector.omg */; };
 		F3B0F6B71BF0AD9F0044A442 /* stb_truetype.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3B0F6B51BF0AD9F0044A442 /* stb_truetype.cpp */; };
 		F3B0F6BB1BF0ADDC0044A442 /* Font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3B0F6B91BF0ADDC0044A442 /* Font.cpp */; };
 		F3B0F6BF1BF0B7410044A442 /* FFF_Tusj.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3B0F6BE1BF0B5830044A442 /* FFF_Tusj.ttf */; };
@@ -840,6 +841,7 @@
 		F3A1A4E91C60CBA000DBBB4B /* WireSP.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = WireSP.hpp; path = OMEngine/CPPSources/Shaders/WireSP.hpp; sourceTree = "<group>"; };
 		F3A263941C33BD360021B3B6 /* light_point_fragment.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = light_point_fragment.glsl; sourceTree = "<group>"; };
 		F3A263951C33BD360021B3B6 /* light_point_vertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = light_point_vertex.glsl; sourceTree = "<group>"; };
+		F3A7ADA11CA0161500FF8910 /* shadowProjector.omg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = shadowProjector.omg; path = OMEngine/Platforms/Android/assets/shadowProjector.omg; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
 		F3B0F6B51BF0AD9F0044A442 /* stb_truetype.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = stb_truetype.cpp; path = ttf/stb_truetype.cpp; sourceTree = "<group>"; };
 		F3B0F6B61BF0AD9F0044A442 /* stb_truetype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = stb_truetype.h; path = ttf/stb_truetype.h; sourceTree = "<group>"; };
 		F3B0F6B91BF0ADDC0044A442 /* Font.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Font.cpp; path = ../../CPPSources/Txt/Font.cpp; sourceTree = SOURCE_ROOT; };
@@ -983,6 +985,7 @@
 		7626524017F10E6C007CCD43 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F3A7ADA11CA0161500FF8910 /* shadowProjector.omg */,
 				F3C5D0771C85B1E800686AF1 /* writedepth.omg */,
 				F3D171771C6DCCD900A9507D /* generalLightingProjector.omg */,
 				F3D171751C6DCBF200A9507D /* projector.png */,
@@ -2025,6 +2028,7 @@
 				F3CAEEE71BB01B8800DCF182 /* default_gray_fragment.glsl in Resources */,
 				9472227D1B9AD466008D601B /* treemomo.obj in Resources */,
 				F3BCACBA1BFF26FE002003B7 /* Main_iPad.storyboard in Resources */,
+				F3A7ADA21CA0161500FF8910 /* shadowProjector.omg in Resources */,
 				F340D11B1BA95E4500187B1E /* char_ram_nor.png in Resources */,
 				F3417B191C0F4907006902C9 /* 00.ogg in Resources */,
 				94DCA2F71BE13C6100435661 /* Scene.mtl in Resources */,

@@ -9,7 +9,7 @@ Ni 1.000000
 d 1.000000
 illum 2
 map_Kd sphere.png
-map_Tr generalLightingProjector.omg
+map_Tr shadowProjector.omg
 map_Bump sphere_n.png
 
 
@@ -34,7 +34,7 @@ Ni 1.000000
 d 1.000000
 illum 2
 map_Kd floor.png
-map_Tr generalLightingProjector.omg
+map_Tr shadowProjector.omg
 map_Bump floor_n.png
 
 
