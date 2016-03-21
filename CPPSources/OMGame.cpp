@@ -79,10 +79,8 @@ void OMGame::Draw (){
     
     Camera::instance()->setWidthAndHeight(appContext->width, appContext->height);
 
-    
-    
-
     Scene::instance()->drawDepth();
+
     Scene::instance()->draw();
 
 //    Boombox::instance()->play();

@@ -133,7 +133,7 @@ vec4 spotLight(in Light light, in highp vec3 direction, in lowp vec3 spotdir){
         if(ldots > light.spotCosCutoff){
             lowp float ndoth = max(dot(normal, normalize(nlightdir + position)), 0.0);
             lowp float spot = ldots * clamp((ldots - light.spotCosCutoff)/light.spotBlend, 0.0, 1.0);
-            finalColor += uMaterial.diffuse * light.color * ndoth * spot;
+            finalColor += texture(uSamplerDiffuse, texCoord.xy) * uMaterial.diffuse * light.color * ndoth * spot;
             
             if(projCoord.w > 0.0) finalColor += textureProj(uSamplerProjector, projCoord) * ndotl * spot;
             
@@ -150,7 +150,7 @@ vec4 omniLight(in vec4 color, in vec3 direction, int index){
     if(ndotl > 0.0){
         float attenuation = attenuation(direction, index);
         lowp float ndoth = max(dot(normal, normalize(direction - position)), 0.0);
-        finalColor += uMaterial.diffuse * color * ndotl * attenuation;
+        finalColor += texture(uSamplerDiffuse, texCoord.xy) * uMaterial.diffuse * texture(uSamplerDiffuse, texCoord.xy) * color * ndotl * attenuation;
         finalColor += uMaterial.specular * color * pow(ndoth, uMaterial.shininess * 0.128) * attenuation;
     }
     return finalColor;
@@ -162,7 +162,7 @@ vec4 directionalLight(in vec4 color, in vec3 direction){
     lowp float ndotl = max( dot( normal, normalize(direction)), 0.0 );
     if(ndotl > 0.0){
         lowp float ndoth = max(dot(normal, normalize(direction - position)), 0.0);
-        finalColor += uMaterial.diffuse * color * ndotl;
+        finalColor += texture(uSamplerDiffuse, texCoord.xy) * uMaterial.diffuse * color * ndotl;
         finalColor += uMaterial.specular * color * pow(ndoth, uMaterial.shininess);
     }
     return finalColor;
@@ -186,5 +186,5 @@ void main(){
         }
     }
     
-    fragColor = texture(uSamplerDiffuse, texCoord.xy) * finalColor;
+    fragColor = finalColor;
 }

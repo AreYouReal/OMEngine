@@ -45,7 +45,7 @@ public:
     void popMMatrix();
 
 // Projector or shadows
-    void initShadowBuffer();
+    bool initShadowBuffer();
     
     const m4d& projectorMatrix() const;
     void refreshProjectorMatrix();
@@ -54,6 +54,7 @@ public:
     unsigned int shadowmapWidth()   { return mShadowmapWidth;   }
     unsigned int shadowmapHeight()  { return mShadowmapHeight;  }
     int mainBuffer()                { return mMainBuffer;       }
+    unsigned int shadowTexture()    { return mShadowTexture;    }
     
 private:
     
@@ -79,7 +80,7 @@ private:
     m4d mProjectorMatrix;
     
     int mMainBuffer;
-    unsigned int mDepthTexture;
+    unsigned int mShadowTexture;
     unsigned int mShadowmapBuffer;
     unsigned int mShadowmapWidth = 128;
     unsigned int mShadowmapHeight = 256;

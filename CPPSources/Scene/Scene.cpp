@@ -29,9 +29,9 @@ Scene::~Scene(){
 
 bool Scene::init(){
     logGLError();
-    //    createBallsScene();
     
-//        createTestScene();
+//    createBallsScene();
+//    createTestScene();
     
     createLightTestScene();
     logGLError();
@@ -40,6 +40,9 @@ bool Scene::init(){
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
     logGLError();
+    
+    Camera::instance()->initShadowBuffer();
+    
     return true;
 }
 
@@ -61,9 +64,13 @@ void Scene::update(float deltaTime){
 }
 
 void Scene::drawDepth(){
-    glBindFramebuffer( GL_FRAMEBUFFER, Camera::instance()->shadowBuffer());
+//    glBindFramebuffer( GL_FRAMEBUFFER, Camera::instance()->shadowBuffer());
 //    glViewport(0, 0, Camera::instance()->shadowmapWidth(), Camera::instance()->shadowmapHeight());
     glClear(GL_DEPTH_BUFFER_BIT);
+    glColorMask ( GL_FALSE, GL_FALSE, GL_FALSE, GL_FALSE );
+    glEnable ( GL_POLYGON_OFFSET_FILL );
+    glPolygonOffset( 5.0f, 100.0f );
+    
     glCullFace(GL_FRONT);
 
     for(const auto& go: mObjects){
@@ -74,7 +81,9 @@ void Scene::drawDepth(){
             mrc->shadowDraw = false;
         }
     }
+    
     glCullFace( GL_BACK );
+    glDisable( GL_POLYGON_OFFSET_FILL );
 }
 
 void Scene::draw(){
@@ -83,11 +92,10 @@ void Scene::draw(){
     glGetIntegerv(GL_FRAMEBUFFER_BINDING, &mainBuffer);
     
     glBindFramebuffer(GL_FRAMEBUFFER, mainBuffer);
+    
+    glColorMask ( GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE );
     logGLError();
     
-//    unsigned int fbStatus = glCheckFramebufferStatus(0);
-//    
-//        logMessage("STATUS::::: %x\n", fbStatus);
 //    glViewport(0, 0, Camera::instance()->width(), Camera::instance()->height());
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear( GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT );
@@ -96,9 +104,9 @@ void Scene::draw(){
         for(int i = (int)ComponentEnum::MESH_RENDERER; i <= (int)ComponentEnum::DEBUG_DRAW; ++i){
             IComponent *comp = go->getComponent((ComponentEnum)i);
             if(comp){
-//                sp<Texture> projTexture = Materials::instance()->getTexture("projector.png");
-//                glActiveTexture(GL_TEXTURE0);
-//                glBindTexture(GL_TEXTURE_2D, projTexture->ID);
+                sp<Texture> projTexture = Materials::instance()->getTexture("projector.png");
+                glActiveTexture(GL_TEXTURE0);
+                glBindTexture(GL_TEXTURE_2D, projTexture->ID);
                 comp->draw();
             }
         }
@@ -112,8 +120,6 @@ void Scene::setRenderObjectState(RenderObjectType newState){
 }
 
 // DEBUG AND TEST STUFF GOES HERE
-
-
 void Scene::createTestScene(){
     
     sp<Obj> object = Obj::load("treemomo.obj");
