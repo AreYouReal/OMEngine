@@ -21,6 +21,7 @@ public:
     void addMesh(sp<ObjMesh> mesh);
     
     v3d     getDimensions();
+    v3d     getPosition();
     
     void setShader(sp<ShaderProgram> program);
     

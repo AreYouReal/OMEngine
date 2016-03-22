@@ -92,3 +92,12 @@ v3d MeshRendererComponent::getDimensions(){
     return dimensions;
 }
 
+v3d MeshRendererComponent::getPosition(){
+    v3d pos;
+    for(const auto& mesh : mMeshes){
+        pos += mesh->outlines.location;
+    }
+    pos = 1.0f/mMeshes.size() * pos;
+    return pos;
+}
+
