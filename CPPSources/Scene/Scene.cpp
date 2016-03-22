@@ -66,16 +66,16 @@ void Scene::update(float deltaTime){
 void Scene::drawDepth(){
     glGetIntegerv(GL_FRAMEBUFFER_BINDING, &Camera::instance()->mMainBuffer);
     
-//    glBindFramebuffer( GL_FRAMEBUFFER, Camera::instance()->shadowBuffer());
+    glBindFramebuffer( GL_FRAMEBUFFER, Camera::instance()->shadowBuffer());
     
-        glBindFramebuffer(GL_FRAMEBUFFER, Camera::instance()->mMainBuffer);
+//        glBindFramebuffer(GL_FRAMEBUFFER, Camera::instance()->mMainBuffer);
     
-//    glViewport(0, 0, Camera::instance()->shadowmapWidth(), Camera::instance()->shadowmapHeight());
-    glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
+    glViewport(0, 0, Camera::instance()->shadowmapWidth(), Camera::instance()->shadowmapHeight());
+    glClear(GL_COLOR_BUFFER_BIT);
     
-    //    glColorMask ( GL_FALSE, GL_FALSE, GL_FALSE, GL_FALSE );
-    //    glEnable ( GL_POLYGON_OFFSET_FILL );
-    //    glPolygonOffset( 5.0f, 100.0f );
+//    glColorMask ( GL_FALSE, GL_FALSE, GL_FALSE, GL_FALSE );
+    glEnable ( GL_POLYGON_OFFSET_FILL );
+    glPolygonOffset( 5.0f, 100.0f );
     
     glCullFace(GL_FRONT);
     Camera::instance()->shadowDraw = true;
@@ -95,29 +95,29 @@ void Scene::drawDepth(){
 
 void Scene::draw(){
    
-//    glBindFramebuffer(GL_FRAMEBUFFER, Camera::instance()->mMainBuffer);
-//    
-////    glColorMask ( GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE );
-//    logGLError();
-//    
-//    glViewport(0, 0, Camera::instance()->width(), Camera::instance()->height());
-//    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-//    glClear( GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT );
-//    
-//    for(const auto& go : mObjects){
-//        for(int i = (int)ComponentEnum::MESH_RENDERER; i <= (int)ComponentEnum::DEBUG_DRAW; ++i){
-//            IComponent *comp = go->getComponent((ComponentEnum)i);
-//            if(comp){
-////                sp<Texture> projTexture = Materials::instance()->getTexture("projector.png");
-//                glActiveTexture(GL_TEXTURE0);
-//                glBindTexture(GL_TEXTURE_2D, Camera::instance()->shadowTexture());
-//                comp->draw();
-//
-//            }
-//        }
-//    }
-//    
-//    Illuminator::instance()->getLightSource()->draw();
+    glBindFramebuffer(GL_FRAMEBUFFER, Camera::instance()->mMainBuffer);
+    
+//    glColorMask ( GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE );
+    logGLError();
+    
+    glViewport(0, 0, Camera::instance()->width() *2, Camera::instance()->height()*2);
+    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+    glClear( GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT );
+    
+    for(const auto& go : mObjects){
+        for(int i = (int)ComponentEnum::MESH_RENDERER; i <= (int)ComponentEnum::DEBUG_DRAW; ++i){
+            IComponent *comp = go->getComponent((ComponentEnum)i);
+            if(comp){
+//                sp<Texture> projTexture = Materials::instance()->getTexture("projector.png");
+                glActiveTexture(GL_TEXTURE0);
+                glBindTexture(GL_TEXTURE_2D, Camera::instance()->shadowTexture());
+                comp->draw();
+
+            }
+        }
+    }
+    
+    Illuminator::instance()->getLightSource()->draw();
 }
 
 void Scene::setRenderObjectState(RenderObjectType newState){

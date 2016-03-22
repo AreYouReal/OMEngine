@@ -19,7 +19,7 @@ refreshProjMatrix();
 
 bool Camera::initShadowBuffer(){
 
-    GLenum none = GL_NONE;
+    GLenum none = GL_COLOR_ATTACHMENT0;
     GLint defaultFramebuffer = 0;
     
     glGenTextures ( 1, &mShadowTexture );
@@ -33,9 +33,9 @@ bool Camera::initShadowBuffer(){
     glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_REF_TO_TEXTURE );
     glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_COMPARE_FUNC, GL_LEQUAL );
     
-    glTexImage2D ( GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT24,
+    glTexImage2D ( GL_TEXTURE_2D, 0, GL_RGBA,
                   mShadowmapWidth, mShadowmapHeight,
-                  0, GL_DEPTH_COMPONENT, GL_UNSIGNED_INT, NULL );
+                  0, GL_RGBA, GL_UNSIGNED_BYTE, NULL );
     
     glBindTexture ( GL_TEXTURE_2D, 0 );
     
@@ -47,7 +47,7 @@ bool Camera::initShadowBuffer(){
     
     glDrawBuffers ( 1, &none );
     
-    glFramebufferTexture2D ( GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, mShadowTexture, 0 );
+    glFramebufferTexture2D ( GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, mShadowTexture, 0 );
     
     glActiveTexture ( GL_TEXTURE0 );
     glBindTexture ( GL_TEXTURE_2D, mShadowTexture );
