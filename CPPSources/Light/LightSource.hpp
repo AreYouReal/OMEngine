@@ -34,6 +34,8 @@ public:
     
     void setPosition(const v3d pos);
     
+    m4d     getLookAtFromPointView();
+    
     float spotCosCutoff = 0.0f;
     float spotBlend = 0.05f;
     

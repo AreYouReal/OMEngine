@@ -59,7 +59,7 @@ public:
     // Main render bufffer handle
     int mMainBuffer;
     
-
+    bool shadowDraw = false;
     
 private:
     

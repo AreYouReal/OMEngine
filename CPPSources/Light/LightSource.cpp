@@ -37,3 +37,10 @@ void LightSource::setPosition(const v3d pos){
     mTransform.mPosition = pos;
     mTransform.refreshTransformMatrix();
 }
+
+m4d LightSource::getLookAtFromPointView(){
+    v3d pos = getPosition();
+    v3d up(0, 0, 1);
+    v3d center(0, 0, 0);
+    return m4d::lookAt(pos, center, up);
+}

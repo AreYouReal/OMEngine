@@ -176,8 +176,20 @@ const m4d& Camera::projectorMatrix() const{
 }
 
 const m4d Camera::modelViewMatrix() const{
-    if(mMstack.empty()) return mViewMatrix;
-    return mViewMatrix * mMstack.top();
+    if(mMstack.empty()){
+        if(shadowDraw){
+            return Illuminator::instance()->getLightSource()->getLookAtFromPointView() * mMstack.top();
+        }else{
+            return mViewMatrix;
+        }
+    }else{
+        if(shadowDraw){
+            return Illuminator::instance()->getLightSource()->getLookAtFromPointView() * mMstack.top();
+        }else{
+            return mViewMatrix * mMstack.top();
+        }
+    }
+
 }
 
 
