@@ -50,11 +50,16 @@ public:
     const m4d& projectorMatrix() const;
     void refreshProjectorMatrix();
     
+    // Shadow related
     unsigned int shadowBuffer()     { return mShadowmapBuffer;  }
     unsigned int shadowmapWidth()   { return mShadowmapWidth;   }
     unsigned int shadowmapHeight()  { return mShadowmapHeight;  }
-    int mainBuffer()                { return mMainBuffer;       }
     unsigned int shadowTexture()    { return mShadowTexture;    }
+    
+    // Main render bufffer handle
+    int mMainBuffer;
+    
+
     
 private:
     
@@ -79,7 +84,6 @@ private:
 // Projector 
     m4d mProjectorMatrix;
     
-    int mMainBuffer;
     unsigned int mShadowTexture;
     unsigned int mShadowmapBuffer;
     unsigned int mShadowmapWidth = 128;

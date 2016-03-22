@@ -83,8 +83,8 @@
 
 // Question here: Why use rect? Why rect.size = view.size / 3 ???
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect{
-    _OMContext.width = view.drawableWidth;
-    _OMContext.height = view.drawableHeight;
+    _OMContext.width = rect.size.width;
+    _OMContext.height = rect.size.height;
     
     if ( _OMContext.drawFunc ){
         _OMContext.drawFunc( );
