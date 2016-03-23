@@ -135,7 +135,7 @@ vec4 spotLight(in Light light, in highp vec3 direction, in lowp vec3 spotdir){
             lowp float spot = ldots * clamp((ldots - light.spotCosCutoff)/light.spotBlend, 0.0, 1.0);
             finalColor += texture(uSamplerDiffuse, texCoord.xy) * uMaterial.diffuse * light.color * ndoth * spot;
             
-//            if(projCoord.w > 0.0) finalColor += textureProj(uSamplerProjector, projCoord) * ndotl * spot;
+            if(projCoord.w > 0.0) finalColor += textureProj(uSamplerProjector, projCoord) * ndotl * spot;
             
             finalColor += uMaterial.specular * light.color * pow(ndoth, uMaterial.shininess) * spot;
         }

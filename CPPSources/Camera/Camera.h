@@ -54,6 +54,7 @@ public:
     unsigned int shadowBuffer()     { return mShadowmapBuffer;  }
     unsigned int shadowmapWidth()   { return mShadowmapWidth;   }
     unsigned int shadowmapHeight()  { return mShadowmapHeight;  }
+    unsigned int depthTexture()    { return mDepthTexture;    }
     unsigned int shadowTexture()    { return mShadowTexture;    }
     
     // Main render bufffer handle
@@ -84,6 +85,7 @@ private:
 // Projector 
     m4d mProjectorMatrix;
     
+    unsigned int mDepthTexture;
     unsigned int mShadowTexture;
     unsigned int mShadowmapBuffer;
     unsigned int mShadowmapWidth = 128;

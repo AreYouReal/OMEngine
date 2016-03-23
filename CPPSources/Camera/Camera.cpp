@@ -33,6 +33,19 @@ bool Camera::initShadowBuffer(){
     glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_REF_TO_TEXTURE );
     glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_COMPARE_FUNC, GL_LEQUAL );
     
+    glTexImage2D ( GL_TEXTURE_2D, 0, GL_RGB,
+                  mShadowmapWidth, mShadowmapHeight,
+                  0, GL_RGB, GL_UNSIGNED_SHORT_5_6_5, NULL );
+    
+    
+    glGenTextures ( 1, &mDepthTexture );
+    glBindTexture ( GL_TEXTURE_2D, mDepthTexture );
+    glTexParameteri ( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST );
+    glTexParameteri ( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
+    glTexParameteri ( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S,     GL_CLAMP_TO_EDGE );
+    glTexParameteri ( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T,     GL_CLAMP_TO_EDGE );
+    
+    
     glTexImage2D ( GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT24,
                   mShadowmapWidth, mShadowmapHeight,
                   0, GL_DEPTH_COMPONENT, GL_UNSIGNED_INT, NULL );
@@ -45,9 +58,11 @@ bool Camera::initShadowBuffer(){
     glGenFramebuffers ( 1, &mShadowmapBuffer );
     glBindFramebuffer ( GL_FRAMEBUFFER, mShadowmapBuffer );
     
-    glDrawBuffers ( 1, &none );
+//    glDrawBuffers ( 1, &none );
     
-    glFramebufferTexture2D ( GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, mShadowTexture, 0 );
+    glFramebufferTexture2D ( GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, mDepthTexture, 0 );
+    
+    glFramebufferTexture2D ( GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, mShadowTexture, 0 );
     
 //    glActiveTexture ( GL_TEXTURE0 );
 //    glBindTexture ( GL_TEXTURE_2D, mShadowTexture );
@@ -60,6 +75,8 @@ bool Camera::initShadowBuffer(){
     
     glBindFramebuffer ( GL_FRAMEBUFFER, defaultFramebuffer );
 
+    logGLError();
+    
     return true;
 }
 
