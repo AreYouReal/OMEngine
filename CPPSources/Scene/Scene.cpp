@@ -71,9 +71,9 @@ void Scene::drawDepth(){
 //        glBindFramebuffer(GL_FRAMEBUFFER, Camera::instance()->mMainBuffer);
     
     glViewport(0, 0, Camera::instance()->shadowmapWidth(), Camera::instance()->shadowmapHeight());
-    glClear(GL_COLOR_BUFFER_BIT);
+    glClear(GL_DEPTH_BUFFER_BIT);
     
-//    glColorMask ( GL_FALSE, GL_FALSE, GL_FALSE, GL_FALSE );
+    glColorMask ( GL_FALSE, GL_FALSE, GL_FALSE, GL_FALSE );
     glEnable ( GL_POLYGON_OFFSET_FILL );
     glPolygonOffset( 5.0f, 100.0f );
     
@@ -83,7 +83,7 @@ void Scene::drawDepth(){
         MeshRendererComponent *mrc = static_cast<MeshRendererComponent*>(go->getComponent(ComponentEnum::MESH_RENDERER));
         if(mrc){
             mrc->shadowDraw = true;
-            mrc->draw();
+                mrc->draw();
             mrc->shadowDraw = false;
         }
     }
@@ -97,7 +97,7 @@ void Scene::draw(){
    
     glBindFramebuffer(GL_FRAMEBUFFER, Camera::instance()->mMainBuffer);
     
-//    glColorMask ( GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE );
+    glColorMask ( GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE );
     logGLError();
     
     glViewport(0, 0, Camera::instance()->width() *2, Camera::instance()->height()*2);
@@ -265,7 +265,7 @@ logGLError();
     std::vector<sp<ObjMesh>> meshes = object->getAllMeshes();
     
     for(const sp<ObjMesh> mesh : object->getAllMeshes()){
-//        if(!mesh->getName().compare("projector")) continue;
+        if(!mesh->getName().compare("projector")) continue;
         addMeshRendererOnScene("lightScene", mesh->getName());
     }
 }

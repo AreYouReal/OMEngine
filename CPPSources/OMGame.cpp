@@ -126,7 +126,7 @@ void OMGame::Touch(const int event, const int x, const int y){
 int OMGame::StartUp ( OMContext *context ){
     logGLError();
     context->userData = malloc ( sizeof ( UserData ) );
-    OMCreateWindow( context, "Hello Triangle", context->width, context->height, ES_WINDOW_RGB );
+    OMCreateWindow( context, "Hello Triangle", context->width, context->height, OM_WINDOW_RGB | OM_WINDOW_DEPTH );
     appContext = context;
     appContext->shutdownFunc   = Shutdown;
     appContext->updateFunc     = Update;
@@ -159,9 +159,8 @@ void OMGame::initOGL(const float width, const float height){
     logGLError();
     printGLInfo();
     glViewport ( 0, 0, width, height );
-//    glEnable( GL_DEPTH_TEST );
-//    glEnable( GL_CULL_FACE  );
-//    glEnable(GL_TEXTURE_2D);
+    glEnable( GL_DEPTH_TEST );
+    glEnable( GL_CULL_FACE  );
     logGLError();
 }
 

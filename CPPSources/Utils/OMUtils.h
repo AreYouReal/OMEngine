@@ -42,11 +42,11 @@ using omFile = AAsset;
 
 
 
-#define ES_WINDOW_RGB           0   /// OMCreateWindow flag - RGB color buffer
-#define ES_WINDOW_ALPHA         1   /// OMCreateWindow flag - ALPHA color buffer
-#define ES_WINDOW_DEPTH         2   /// OMCreateWindow flag - depth buffer
-#define ES_WINDOW_STENCIL       4   /// OMCreateWindow flag - stencil buffer
-#define ES_WINDOW_MULTISAMPLE   8   /// OMCreateWindow flat - multi-sample buffer
+#define OM_WINDOW_RGB           0   /// OMCreateWindow flag - RGB color buffer
+#define OM_WINDOW_ALPHA         1   /// OMCreateWindow flag - ALPHA color buffer
+#define OM_WINDOW_DEPTH         2   /// OMCreateWindow flag - depth buffer
+#define OM_WINDOW_STENCIL       4   /// OMCreateWindow flag - stencil buffer
+#define OM_WINDOW_MULTISAMPLE   8   /// OMCreateWindow flat - multi-sample buffer
 
 enum class TouchState{ BEGIN, MOVED, CANCELLED, ENDED };
 
