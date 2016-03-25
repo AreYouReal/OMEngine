@@ -73,7 +73,7 @@ void Scene::drawDepth(){
     glViewport(0, 0, Camera::instance()->shadowmapWidth(), Camera::instance()->shadowmapHeight());
     glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
     
-//    glColorMask ( GL_FALSE, GL_FALSE, GL_FALSE, GL_FALSE );
+    glColorMask ( GL_FALSE, GL_FALSE, GL_FALSE, GL_FALSE );
     glEnable ( GL_POLYGON_OFFSET_FILL );
     glPolygonOffset( 5.0f, 100.0f );
     
@@ -97,13 +97,14 @@ void Scene::draw(){
    
     glBindFramebuffer(GL_FRAMEBUFFER, Camera::instance()->mMainBuffer);
     
-//    glColorMask ( GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE );
+    glColorMask ( GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE );
     logGLError();
     
     glViewport(0, 0, Camera::instance()->width() *2, Camera::instance()->height()*2);
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear( GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT );
     
+
     for(const auto& go : mObjects){
         for(int i = (int)ComponentEnum::MESH_RENDERER; i <= (int)ComponentEnum::DEBUG_DRAW; ++i){
             IComponent *comp = go->getComponent((ComponentEnum)i);
@@ -112,7 +113,6 @@ void Scene::draw(){
                 glActiveTexture(GL_TEXTURE0);
                 glBindTexture(GL_TEXTURE_2D, Camera::instance()->shadowTexture());
                 comp->draw();
-
             }
         }
     }

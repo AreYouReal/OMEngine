@@ -247,10 +247,11 @@ void Camera::refreshProjMatrix(){
 
 void Camera::refreshProjectorMatrix(){
     sp<LightSource> light = Illuminator::instance()->getLightSource();
-    m4d perspective = m4d::perspective(70, viewportMatrix[2], viewportMatrix[3], 1.0f, 20.0f );
+    m4d perspective = m4d::perspective(70, mWidth, mHeight, mNear, mFar);
     v3d center(0.0f, 0.0f, 0.0f);
     v3d lightPos = light->getPosition();
-    m4d lookAt = m4d::lookAt(lightPos, center, transform.mUp);
+    v3d up(0, 0, 1);
+    m4d lookAt = m4d::lookAt(lightPos, center, up);
     
     mProjectorMatrix.m[0].x = 0.5f;
     mProjectorMatrix.m[0].y = 0.0f;
