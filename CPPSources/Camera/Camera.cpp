@@ -22,20 +22,18 @@ bool Camera::initShadowBuffer(){
     GLenum none = GL_NONE;
     GLint defaultFramebuffer = 0;
     
-    glGenTextures ( 1, &mShadowTexture );
-    glBindTexture ( GL_TEXTURE_2D, mShadowTexture );
-    glTexParameteri ( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST );
-    glTexParameteri ( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
-    glTexParameteri ( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S,     GL_CLAMP_TO_EDGE );
-    glTexParameteri ( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T,     GL_CLAMP_TO_EDGE );
+//    glGenTextures ( 1, &mShadowTexture );
+//    glBindTexture ( GL_TEXTURE_2D, mShadowTexture );
+//    glTexParameteri ( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST );
+//    glTexParameteri ( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
+//    glTexParameteri ( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S,     GL_CLAMP_TO_EDGE );
+//    glTexParameteri ( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T,     GL_CLAMP_TO_EDGE );
     
-    // Setup hardware comparison
-    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_REF_TO_TEXTURE );
-    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_COMPARE_FUNC, GL_LEQUAL );
+
     
-    glTexImage2D ( GL_TEXTURE_2D, 0, GL_RGB,
-                  mShadowmapWidth, mShadowmapHeight,
-                  0, GL_RGB, GL_UNSIGNED_SHORT_5_6_5, NULL );
+//    glTexImage2D ( GL_TEXTURE_2D, 0, GL_RGB,
+//                  mShadowmapWidth, mShadowmapHeight,
+//                  0, GL_RGB, GL_UNSIGNED_SHORT_5_6_5, NULL );
     
     
     glGenTextures ( 1, &mDepthTexture );
@@ -45,6 +43,9 @@ bool Camera::initShadowBuffer(){
     glTexParameteri ( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S,     GL_CLAMP_TO_EDGE );
     glTexParameteri ( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T,     GL_CLAMP_TO_EDGE );
     
+    // Setup hardware comparison
+    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_REF_TO_TEXTURE );
+    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_COMPARE_FUNC, GL_LEQUAL );
     
     glTexImage2D ( GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT24,
                   mShadowmapWidth, mShadowmapHeight,
@@ -58,14 +59,14 @@ bool Camera::initShadowBuffer(){
     glGenFramebuffers ( 1, &mShadowmapBuffer );
     glBindFramebuffer ( GL_FRAMEBUFFER, mShadowmapBuffer );
     
-//    glDrawBuffers ( 1, &none );
+    glDrawBuffers ( 1, &none );
     
     glFramebufferTexture2D ( GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, mDepthTexture, 0 );
     
-    glFramebufferTexture2D ( GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, mShadowTexture, 0 );
+//    glFramebufferTexture2D ( GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, mShadowTexture, 0 );
     
-//    glActiveTexture ( GL_TEXTURE0 );
-//    glBindTexture ( GL_TEXTURE_2D, mShadowTexture );
+    glActiveTexture ( GL_TEXTURE0 );
+    glBindTexture ( GL_TEXTURE_2D, mDepthTexture );
     
     if ( GL_FRAMEBUFFER_COMPLETE != glCheckFramebufferStatus ( GL_FRAMEBUFFER ) ){
         return false;
@@ -248,10 +249,8 @@ void Camera::refreshProjMatrix(){
 void Camera::refreshProjectorMatrix(){
     sp<LightSource> light = Illuminator::instance()->getLightSource();
     m4d perspective = m4d::perspective(70, mWidth, mHeight, mNear, mFar);
-    v3d center(0.0f, 0.0f, 0.0f);
-    v3d lightPos = light->getPosition();
-    v3d up(0, 0, 1);
-    m4d lookAt = m4d::lookAt(lightPos, center, up);
+
+    m4d lookAt = light->getLookAtFromPointView();
     
     mProjectorMatrix.m[0].x = 0.5f;
     mProjectorMatrix.m[0].y = 0.0f;

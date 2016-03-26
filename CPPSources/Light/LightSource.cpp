@@ -9,7 +9,7 @@ LightSource::LightSource() : LightSource(Type::SPOT, v3d(), v4d()){
 
 LightSource::LightSource(Type type, v3d position, v4d color, float distance, float linAttenuation, float quadAttenuation): mType(type), mTransform(position), mColor(color), mLinearAttenuation(linAttenuation), mQuadraticAttenuation(quadAttenuation), mDistance(distance){
     logGLError();
-    spotCosCutoff = cosf(M_PI/180 * 35.0f);
+    spotCosCutoff = cosf(M_PI/180 * 55.0f);
     mTransform.mFront = mTransform.mPosition.normalize();
     logGLError();
 }

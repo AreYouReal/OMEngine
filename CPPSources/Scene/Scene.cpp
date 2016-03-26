@@ -71,9 +71,9 @@ void Scene::drawDepth(){
 //        glBindFramebuffer(GL_FRAMEBUFFER, Camera::instance()->mMainBuffer);
     
     glViewport(0, 0, Camera::instance()->shadowmapWidth(), Camera::instance()->shadowmapHeight());
-    glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
+    glClear(GL_DEPTH_BUFFER_BIT);
     
-    glColorMask ( GL_FALSE, GL_FALSE, GL_FALSE, GL_FALSE );
+//    glColorMask ( GL_FALSE, GL_FALSE, GL_FALSE, GL_FALSE );
     glEnable ( GL_POLYGON_OFFSET_FILL );
     glPolygonOffset( 5.0f, 100.0f );
     
@@ -97,7 +97,7 @@ void Scene::draw(){
    
     glBindFramebuffer(GL_FRAMEBUFFER, Camera::instance()->mMainBuffer);
     
-    glColorMask ( GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE );
+//    glColorMask ( GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE );
     logGLError();
     
     glViewport(0, 0, Camera::instance()->width() *2, Camera::instance()->height()*2);
@@ -111,7 +111,7 @@ void Scene::draw(){
             if(comp){
 //                sp<Texture> projTexture = Materials::instance()->getTexture("projector.png");
                 glActiveTexture(GL_TEXTURE0);
-                glBindTexture(GL_TEXTURE_2D, Camera::instance()->shadowTexture());
+                glBindTexture(GL_TEXTURE_2D, Camera::instance()->depthTexture());
                 comp->draw();
             }
         }
