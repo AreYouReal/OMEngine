@@ -100,7 +100,7 @@ void Scene::draw(){
 //    glColorMask ( GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE );
     logGLError();
     
-    glViewport(0, 0, Camera::instance()->width() *2, Camera::instance()->height()*2);
+    glViewport(0, 0, Camera::instance()->width(), Camera::instance()->height());
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear( GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT );
     
