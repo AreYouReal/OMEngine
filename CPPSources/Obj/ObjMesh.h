@@ -47,7 +47,7 @@ public:
     
     bool        shadowDraw = false;
     
-private:
+//private:
 // Helpers
     void    addVertexData(sp<ObjTriangleList> otl, int vIndex, int uvIndex);
     void    buildVBO();

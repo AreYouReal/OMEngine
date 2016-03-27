@@ -13,7 +13,7 @@ static std::map<string, string>  meshShaderTable{
     std::pair<string, string>("leaf", "defaultPerVertex"),
     // Scene.obj meshes
     std::pair<string, string>("floor", "shadowProjector.omg"),
-    std::pair<string, string>("sphere2_sphere.002", "shadowProjector.omg"),
+    std::pair<string, string>("sphere2_sphere.002", "particles.omg"),
     std::pair<string, string>("sphere1_sphere.001", "shadowProjector.omg"),
     std::pair<string, string>("sphere3_sphere", "shadowProjector.omg")
 };

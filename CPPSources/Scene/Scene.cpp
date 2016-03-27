@@ -35,10 +35,10 @@ bool Scene::init(){
     
     createLightTestScene();
     logGLError();
-    sp<Texture> projTexture = Materials::instance()->getTexture("projector.png");
-    glBindTexture(GL_TEXTURE_2D, projTexture->ID);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+//    sp<Texture> projTexture = Materials::instance()->getTexture("projector.png");
+//    glBindTexture(GL_TEXTURE_2D, projTexture->ID);
+//    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+//    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
     logGLError();
     
     Camera::instance()->initShadowBuffer();
@@ -246,7 +246,13 @@ void Scene::createBallsScene(){
 
 void Scene::addMeshRendererOnScene(string objName, string meshName){
     up<GameObject> go = std::unique_ptr<GameObject>(new GameObject(meshName));
-    up<MeshRendererComponent> mrc = up<MeshRendererComponent>(new MeshRendererComponent(go.get(), mObjRess[objName]->getMesh(go->name)));
+    sp<ObjMesh> mesh =mObjRess[objName]->getMesh(go->name);
+    if(strstr(meshName.c_str(), "sphere2")){
+        mesh->tLists[0]->mode = GL_POINTS;
+        go->mTransform.translate(0, 0, 3);
+    }
+    
+    up<MeshRendererComponent> mrc = up<MeshRendererComponent>(new MeshRendererComponent(go.get(), mesh));
     go->addComponent(ComponentEnum::MESH_RENDERER, std::move(mrc));
     
     addObjOnScene(std::move(go));
