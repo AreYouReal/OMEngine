@@ -76,7 +76,7 @@ GLboolean OMCreateWindow ( OMContext *context, const char *title, GLint width, G
             EGL_ALPHA_SIZE,     8,
             EGL_DEPTH_SIZE,     8,
             EGL_STENCIL_SIZE,   8,
-            EGL_SAMPLE_BUFFERS, ( flags & ES_WINDOW_MULTISAMPLE ) ? 1 : 0,
+            EGL_SAMPLE_BUFFERS, ( flags & OM_WINDOW_MULTISAMPLE ) ? 1 : 0,
             // if EGL_KHR_create_context extension is supported, then we will use
             // EGL_OPENGL_ES3_BIT_KHR instead of EGL_OPENGL_ES2_BIT in the attribute list
             EGL_RENDERABLE_TYPE, GetContextRenderableType ( context->eglDisplay ),

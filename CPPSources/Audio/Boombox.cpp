@@ -6,9 +6,12 @@
 
 Boombox::Boombox(){
     const char * devicename = alcGetString(NULL, ALC_DEFAULT_DEVICE_SPECIFIER);
+    logMessage("DEVICE NAME: %s\n", devicename);
     device = alcOpenDevice(devicename);
+    logMessage("DEVICE: %d\n", device);
     error();
     context = alcCreateContext(device, NULL);
+    logMessage("CONTEXT: %d\n", context);
     error();
     alcMakeContextCurrent(context);
     error();
@@ -128,34 +131,31 @@ int     Boombox::oggClose(void *memoryPtr){
 }
 
 void Boombox::error(){
-    unsigned int error;
+    unsigned int error  = alGetError() ;
     
-    while( ( error = alGetError() ) != GL_NO_ERROR ){
-        char str[ 2048 ] = {""};
+    char str[ 2048 ] = {""};
         
-        switch( error ){
-            case AL_INVALID_NAME:{
-                strcpy( str, "AL_INVALID_NAME" );
-                break;
-            }
-            case AL_INVALID_ENUM:{
-                strcpy( str, "AL_INVALID_ENUM" );
-                break;
-            }
-            case AL_INVALID_VALUE:{
-                strcpy( str, "AL_INVALID_VALUE" );
-                break;
-            }
-            case AL_INVALID_OPERATION:{
-                strcpy( str, "AL_INVALID_OPERATION" );
-                break;
-            }
-            case AL_OUT_OF_MEMORY:{
-                strcpy( str, "AL_OUT_OF_MEMORY" );
-                break;
-            }
+    switch( error ){
+        case AL_INVALID_NAME:{
+            strcpy( str, "AL_INVALID_NAME" );
+            break;
         }
-        
-        logMessage( "[ AL_ERROR ]\nERROR: %s\n", str );
+        case AL_INVALID_ENUM:{
+            strcpy( str, "AL_INVALID_ENUM" );
+            break;
+        }
+        case AL_INVALID_VALUE:{
+            strcpy( str, "AL_INVALID_VALUE" );
+            break;
+        }
+        case AL_INVALID_OPERATION:{
+            strcpy( str, "AL_INVALID_OPERATION" );
+            break;
+        }
+        case AL_OUT_OF_MEMORY:{
+            strcpy( str, "AL_OUT_OF_MEMORY" );
+            break;
+        }
     }
+    logMessage( "[ AL_ERROR ]\nERROR: %s\n", str );
 }

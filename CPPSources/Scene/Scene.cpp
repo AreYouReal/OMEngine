@@ -4,6 +4,7 @@
 
 #include "Shortcuts.h"
 
+
 Scene::Scene(){
     logGLError();
     Camera::instance();
@@ -249,7 +250,7 @@ void Scene::addMeshRendererOnScene(string objName, string meshName){
     sp<ObjMesh> mesh =mObjRess[objName]->getMesh(go->name);
     if(strstr(meshName.c_str(), "sphere2")){
         mesh->tLists[0]->mode = GL_POINTS;
-        go->mTransform.translate(0, 0, 3);
+        go->mTransform = v3d(0, 0, 3);
     }
     
     up<MeshRendererComponent> mrc = up<MeshRendererComponent>(new MeshRendererComponent(go.get(), mesh));
