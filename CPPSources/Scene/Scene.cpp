@@ -4,6 +4,16 @@
 
 #include "Shortcuts.h"
 
+//////////////////
+#include "md5.hpp"
+
+void testMethod(){
+
+    md5 qwe;
+    
+    qwe.loadMesh("bob.md5mesh");
+}
+
 
 Scene::Scene(){
     logGLError();
@@ -43,6 +53,9 @@ bool Scene::init(){
     logGLError();
     
     Camera::instance()->initShadowBuffer();
+    
+    
+    testMethod();
     
     return true;
 }

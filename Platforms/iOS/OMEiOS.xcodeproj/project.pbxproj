@@ -222,6 +222,7 @@
 		F368E8CA1BA6AE5A00F322AF /* fragmentPerPixel.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F368E8C61BA6AE5A00F322AF /* fragmentPerPixel.glsl */; };
 		F3710A151BA6CA6000235C68 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3710A131BA6CA6000235C68 /* Camera.cpp */; };
 		F374BB841CB3E1ED00DBFB47 /* md5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F374BB821CB3E1ED00DBFB47 /* md5.cpp */; };
+		F374BB861CB4106C00DBFB47 /* bob.md5mesh in Resources */ = {isa = PBXBuildFile; fileRef = F374BB851CB4106C00DBFB47 /* bob.md5mesh */; };
 		F37D26441C5F705500433B4F /* NormalSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F37D26421C5F705500433B4F /* NormalSP.cpp */; };
 		F380B7901BBBDC550049E755 /* ObjMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F380B78C1BBBDC550049E755 /* ObjMesh.cpp */; };
 		F380B7911BBBDC550049E755 /* Obj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F380B78E1BBBDC550049E755 /* Obj.cpp */; };
@@ -776,6 +777,7 @@
 		F3710A141BA6CA6000235C68 /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Camera.h; path = ../../CPPSources/Camera/Camera.h; sourceTree = SOURCE_ROOT; };
 		F374BB821CB3E1ED00DBFB47 /* md5.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = md5.cpp; sourceTree = "<group>"; };
 		F374BB831CB3E1ED00DBFB47 /* md5.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = md5.hpp; sourceTree = "<group>"; };
+		F374BB851CB4106C00DBFB47 /* bob.md5mesh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = bob.md5mesh; path = OMEngine/Platforms/Android/assets/bob.md5mesh; sourceTree = "<group>"; };
 		F37D26421C5F705500433B4F /* NormalSP.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NormalSP.cpp; path = OMEngine/CPPSources/Shaders/NormalSP.cpp; sourceTree = "<group>"; };
 		F37D26431C5F705500433B4F /* NormalSP.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = NormalSP.hpp; path = OMEngine/CPPSources/Shaders/NormalSP.hpp; sourceTree = "<group>"; };
 		F380B78C1BBBDC550049E755 /* ObjMesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ObjMesh.cpp; sourceTree = "<group>"; };
@@ -993,6 +995,7 @@
 		7626524017F10E6C007CCD43 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F374BB851CB4106C00DBFB47 /* bob.md5mesh */,
 				F3AB02791CA7FFFE00CB8FC9 /* particle.png */,
 				F3AB027A1CA7FFFE00CB8FC9 /* particles.omg */,
 				F3A7ADA11CA0161500FF8910 /* shadowProjector.omg */,
@@ -2047,6 +2050,7 @@
 				F3B0F6BF1BF0B7410044A442 /* FFF_Tusj.ttf in Resources */,
 				F3D5E10B1AF8F24400DD216B /* InfoPlist.strings in Resources */,
 				F3CAEEE71BB01B8800DCF182 /* default_gray_fragment.glsl in Resources */,
+				F374BB861CB4106C00DBFB47 /* bob.md5mesh in Resources */,
 				9472227D1B9AD466008D601B /* treemomo.obj in Resources */,
 				F3BCACBA1BFF26FE002003B7 /* Main_iPad.storyboard in Resources */,
 				F3A7ADA21CA0161500FF8910 /* shadowProjector.omg in Resources */,

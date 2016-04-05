@@ -30,7 +30,6 @@ struct md5weight{
     v3d     tangent;
 };
 
-
 struct md5mesh{
     string name;
     unsigned int nVertex;
@@ -67,12 +66,16 @@ struct md5action{
     float fps;
 };
 
-struct md5{
+class md5{
+public:
+//    md5();
+//    ~md5();
+    
     string name;
     bool    visible;
-    unsigned int nJoint;
+    unsigned int numJoints;
     md5joint    *bindPose;
-    unsigned int nMesh;
+    unsigned int numMeshes;
     std::vector<md5mesh> meshes;
     unsigned int nAction;
     std::vector<md5action>  actions;
@@ -85,4 +88,9 @@ struct md5{
     float radius;
     float distance;
     btRigidBody *btrigidbody;
+    
+    sp<md5> loadMesh(string filename);
+    
 };
+
+
