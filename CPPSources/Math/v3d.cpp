@@ -132,6 +132,7 @@ v4d& v4d::operator=(const v4d& vec){
     return *this;
 }
 
+
 void v4d::print(const v4d& vec4){
     std::cout << "[ " << vec4.x << ", " << vec4.y << ", " << vec4.z << ", " << vec4.w << " ]" << std::endl;
 }

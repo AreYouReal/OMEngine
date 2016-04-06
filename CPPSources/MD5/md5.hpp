@@ -7,7 +7,7 @@ struct md5joint{
     string  name;
     int     parent;
     v3d     location;
-    v4d     rotation;
+    q4d     rotation;
 };
 
 struct md5vertex{
@@ -31,7 +31,7 @@ struct md5weight{
 };
 
 struct md5mesh{
-    string name;
+    string shader;
     unsigned int nVertex;
     std::vector<md5vertex>  vertices;
     unsigned int vbo;
@@ -74,9 +74,9 @@ public:
     string name;
     bool    visible;
     unsigned int numJoints;
-    md5joint    *bindPose;
+    std::vector<sp<md5joint>> bindPoses;
     unsigned int numMeshes;
-    std::vector<md5mesh> meshes;
+    std::vector<sp<md5mesh>> meshes;
     unsigned int nAction;
     std::vector<md5action>  actions;
     v3d     location;

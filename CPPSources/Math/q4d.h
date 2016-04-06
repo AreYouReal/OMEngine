@@ -18,6 +18,10 @@ public:
     q4d operator*(const float scale);
     void operator*=(const q4d& quat);
     
+    
+    // Quaternion behaviour
+    void calculateWFromXYZ();
+    
     float magnitude();
     q4d conjugate();
     m4d matrix();
@@ -25,7 +29,7 @@ public:
     q4d unit();
     
     float x, y, z, w = 1.0f;
-    
+
     
     static void print(const q4d& quat);
     static q4d lerp(const q4d& q1, const q4d& q2, float t);

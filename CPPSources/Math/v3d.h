@@ -26,7 +26,7 @@ public:
     float* pointer();
     
     float x{0}, y{0}, z{0}, w{1};
-    
+       
     static float dot(const v4d& v1, const v4d& v2);
     
     static void print(const v4d& vec4);

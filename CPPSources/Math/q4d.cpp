@@ -125,6 +125,11 @@ void q4d::operator*=(const q4d& quat){
     *this = (*this * quat);
 }
 
+void q4d::calculateWFromXYZ(){
+    float l = 1.0f - (x * x) - (y * y) - (z * z);
+    w = (l < 0.0f) ? 0.0f : -sqrt(l);
+}
+
 float q4d::magnitude(){
     return sqrtf( x * x + y * y + z * z + w * w );
 }

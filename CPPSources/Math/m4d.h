@@ -1,6 +1,7 @@
 #pragma once
 
 #include "v3d.h"
+#include "q4d.h"
 
 struct m4d;
 
