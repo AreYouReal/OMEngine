@@ -91,6 +91,9 @@ public:
     
     sp<md5> loadMesh(string filename);
     
+private:
+    sp<md5mesh> loadMeshData(char* line);
+    
 };
 
 

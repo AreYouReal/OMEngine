@@ -16,8 +16,6 @@ sp<md5> md5::loadMesh(string filename){
     
     int intVal = 0;
     
-    unsigned int meshIndex = 0;
-    
     while(line){
         logMessage("%s\n", line);
         
@@ -29,10 +27,7 @@ sp<md5> md5::loadMesh(string filename){
             md5struct->bindPose.reserve(md5struct->numJoints);
         }else if(sscanf(line, "numMeshes %d", &md5struct->numMeshes)){
             logMessage("numMeshes %d\n", md5struct->numMeshes);
-            sp<md5mesh> mesh = std::make_shared<md5mesh>();
-            mesh->mode = GL_TRIANGLES;
-            mesh->visible = true;
-            md5struct->meshes.push_back(mesh);
+            md5struct->meshes.reserve(md5struct->numMeshes);
         }else if(!strncmp(line, "joints {", 8)){
             line = strtok(NULL, "\n");  // same as line = strtok(line, "\n"); ???
             
@@ -59,47 +54,61 @@ sp<md5> md5::loadMesh(string filename){
                 line = strtok(NULL, "\n");
             }
         }else if(!strncmp(line, "mesh {", 6)){
-            md5vertex vertex;
-            md5triangle triangle;
-            md5weight   weight;
-            
             line = strtok(NULL, "\n");
-            
-            while( line[0] != '}' ){
-                logMessage("%s\n", line);
-                char temp[256];
-                if(sscanf(line, " shader \"%[^\"]", temp) == 1){
-                    md5struct->meshes[meshIndex]->shader = temp;
-                    line = strtok( NULL, "\n" );
-                    continue;
-                }else if(sscanf(line, " numverts %d", &md5struct->meshes[meshIndex]->nVertex) == 1){
-                    md5struct->meshes[meshIndex]->vertices.reserve(md5struct->meshes[meshIndex]->nVertex);
-                }else if(sscanf(line, " vert %d ( %f %f ) %d %d",
-                                &intVal,
-                                &vertex.uv.x, &vertex.uv.y, &vertex.start, &vertex.count) == 5){
-                    md5struct->meshes[meshIndex]->vertices.push_back(vertex);
-                }else if(sscanf(line, " numtris %d", &md5struct->meshes[meshIndex]->nTriangle) == 1){
-                    md5struct->meshes[meshIndex]->nIndice   = md5struct->meshes[meshIndex]->nTriangle * 3;
-                    md5struct->meshes[meshIndex]->triangles.reserve(md5struct->meshes[meshIndex]->nTriangle );
-                }else if(sscanf(line, "tri %d %hu %hu %hu", &intVal, &triangle.indices[2], &triangle.indices[1], &triangle.indices[0] ) == 4){
-                    md5struct->meshes[meshIndex]->triangles.push_back(triangle);
-                }else if(sscanf(line, "numweights %d", &md5struct->meshes[meshIndex]->nWeight) == 1){
-                    md5struct->meshes[meshIndex]->weights.reserve(md5struct->meshes[meshIndex]->nWeight);
-                }else if(sscanf(line, " weight %d %d %f ( %f %f %f )", &intVal, &weight.joint, &weight.bias, &weight.location.x, &weight.location.y, &weight.location.z) == 6){
-                    md5struct->meshes[meshIndex]->weights.push_back(weight);
-                }
-            
-                line = strtok(NULL, "\n");
-            }
-//            
-//            unsigned int s = md5struct->meshes[meshIndex]->nIndice * sizeof(unsigned short);
-//            md5struct->meshes[meshIndex]->indices[0] = md5struct->meshes[meshIndex]->triangles[0];
-
-            
+            md5struct->meshes.push_back(loadMeshData(line));
         }
         
         line = strtok( NULL, "\n" );
     }
     
     return nullptr;
+}
+
+
+sp<md5mesh> md5::loadMeshData(char *line){
+    md5vertex vertex;
+    md5triangle triangle;
+    md5weight   weight;
+    
+    sp<md5mesh> mesh = std::make_shared<md5mesh>();
+    mesh->mode = GL_TRIANGLES;
+    mesh->visible = true;
+    
+    int intVal = 0;
+    
+    while( line[0] != '}' ){
+
+        
+        logMessage("%s\n", line);
+        char temp[256];
+        if(sscanf(line, " shader \"%[^\"]", temp) == 1){
+            mesh->shader = temp;
+            line = strtok( NULL, "\n" );
+            continue;
+        }else if(sscanf(line, " numverts %d", &mesh->nVertex) == 1){
+            mesh->vertices.reserve(mesh->nVertex);
+        }else if(sscanf(line, " vert %d ( %f %f ) %d %d",
+                        &intVal,
+                        &vertex.uv.x, &vertex.uv.y, &vertex.start, &vertex.count) == 5){
+            mesh->vertices.push_back(vertex);
+        }else if(sscanf(line, " numtris %d", &mesh->nTriangle) == 1){
+            mesh->nIndice   = mesh->nTriangle * 3;
+            mesh->triangles.reserve(mesh->nTriangle );
+        }else if(sscanf(line, " tri %d %hu %hu %hu", &intVal, &triangle.indices[2], &triangle.indices[1], &triangle.indices[0] ) == 4){
+            mesh->triangles.push_back(triangle);
+        }else if(sscanf(line, "numweights %d", &mesh->nWeight) == 1){
+            mesh->weights.reserve(mesh->nWeight);
+        }else if(sscanf(line, " weight %d %d %f ( %f %f %f )", &intVal, &weight.joint, &weight.bias, &weight.location.x, &weight.location.y, &weight.location.z) == 6){
+            mesh->weights.push_back(weight);
+        }
+        
+        line = strtok(NULL, "\n");
+    }
+    
+    for(auto const &triangle : mesh->triangles){
+        for(unsigned short i = 0; i < 3; ++i){
+            mesh->indices.push_back(triangle.indices[i]);
+        }
+    }
+    return mesh;
 }
