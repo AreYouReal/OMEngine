@@ -43,7 +43,7 @@ struct md5mesh{
     std::vector<md5triangle>    triangles;
     unsigned int mode;
     unsigned short nIndice;
-    unsigned short *indices;
+    std::vector<unsigned short> indices;
     unsigned int vboIndice;
     unsigned int nWeight;
     std::vector<md5weight> weights;
@@ -74,7 +74,7 @@ public:
     string name;
     bool    visible;
     unsigned int numJoints;
-    std::vector<sp<md5joint>> bindPoses;
+    std::vector<sp<md5joint>> bindPose;
     unsigned int numMeshes;
     std::vector<sp<md5mesh>> meshes;
     unsigned int nAction;
