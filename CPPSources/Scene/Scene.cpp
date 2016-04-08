@@ -9,11 +9,12 @@
 
 void testMethod(){
 
-    md5 qwe;
     
-    qwe.loadMesh("bob.md5mesh");
+    sp<md5::MD5> md5struct = md5::MD5::loadMesh("bob.md5mesh");
+    
+    
+    int breakHere = 0;
 }
-
 
 Scene::Scene(){
     logGLError();

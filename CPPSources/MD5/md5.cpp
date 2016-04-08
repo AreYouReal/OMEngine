@@ -1,16 +1,17 @@
 #include "md5.hpp"
 #include <memory.h>
 
+using namespace md5;
 
-sp<md5> md5::loadMesh(string filename){
+sp<MD5> MD5::loadMesh(string filename){
     
     up<FileContent> objSource = readBytesFromFile(filename.c_str());
     if(!objSource.get()) return nullptr;
     
-    auto md5struct = std::make_shared<md5>();
+    auto md5 = std::make_shared<MD5>();
     
-    md5struct->distance = md5struct->scale.x = md5struct->scale.y = md5struct->scale.z = 1.0f;
-    md5struct->visible = true;
+    md5->distance = md5->scale.x = md5->scale.y = md5->scale.z = 1.0f;
+    md5->visible = true;
     
     char* line = strtok((char*)objSource->content, "\n");
     
@@ -22,12 +23,12 @@ sp<md5> md5::loadMesh(string filename){
         if(sscanf(line, "MD5Version %d", &intVal) == 1){
             logMessage("MD5Version %d\n", intVal);
             if(intVal != 10 ) return nullptr;
-        }else if(sscanf(line, "numJoints %d", &md5struct->numJoints) == 1){
-            logMessage("numJoints %d \n", md5struct->numJoints);
-            md5struct->bindPose.reserve(md5struct->numJoints);
-        }else if(sscanf(line, "numMeshes %d", &md5struct->numMeshes)){
-            logMessage("numMeshes %d\n", md5struct->numMeshes);
-            md5struct->meshes.reserve(md5struct->numMeshes);
+        }else if(sscanf(line, "numJoints %d", &md5->numJoints) == 1){
+            logMessage("numJoints %d \n", md5->numJoints);
+            md5->bindPose.reserve(md5->numJoints);
+        }else if(sscanf(line, "numMeshes %d", &md5->numMeshes)){
+            logMessage("numMeshes %d\n", md5->numMeshes);
+            md5->meshes.reserve(md5->numMeshes);
         }else if(!strncmp(line, "joints {", 8)){
             line = strtok(NULL, "\n");  // same as line = strtok(line, "\n"); ???
             
@@ -35,7 +36,7 @@ sp<md5> md5::loadMesh(string filename){
                 logMessage("%s\n", line);
                 char temp[256];
                 
-                sp<md5joint>    joint = std::make_shared<md5joint>();
+                sp<Joint>   joint = std::make_shared<Joint>();
                 
                 if(sscanf(line, "%s %d ( %f %f %f ) ( %f %f %f )",
                          temp,
@@ -49,28 +50,28 @@ sp<md5> md5::loadMesh(string filename){
                           ) == 8){
                     joint->rotation.calculateWFromXYZ();
                     joint->name = temp;
-                    md5struct->bindPose.push_back(joint);
+                    md5->bindPose.push_back(joint);
                 }
                 line = strtok(NULL, "\n");
             }
         }else if(!strncmp(line, "mesh {", 6)){
             line = strtok(NULL, "\n");
-            md5struct->meshes.push_back(loadMeshData(line));
+            md5->meshes.push_back(loadMeshData(line));
         }
         
         line = strtok( NULL, "\n" );
     }
     
-    return nullptr;
+    return md5;
 }
 
 
-sp<md5mesh> md5::loadMeshData(char *line){
-    md5vertex vertex;
-    md5triangle triangle;
-    md5weight   weight;
+sp<Mesh> MD5::loadMeshData(char *line){
+    Vertex vertex;
+    Triangle triangle;
+    Weight   weight;
     
-    sp<md5mesh> mesh = std::make_shared<md5mesh>();
+    sp<Mesh> mesh = std::make_shared<Mesh>();
     mesh->mode = GL_TRIANGLES;
     mesh->visible = true;
     
@@ -111,4 +112,11 @@ sp<md5mesh> md5::loadMeshData(char *line){
         }
     }
     return mesh;
+}
+
+
+
+void MD5::optimize(unsigned int vertexCacheSize){
+    unsigned int i = 0, s;
+
 }
