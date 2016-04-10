@@ -12,6 +12,8 @@ void testMethod(){
     
     sp<md5::MD5> md5struct = md5::MD5::loadMesh("bob.md5mesh");
     
+    md5struct->optimize(128);
+    
     
     int breakHere = 0;
 }

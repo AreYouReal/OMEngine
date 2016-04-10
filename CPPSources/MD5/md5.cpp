@@ -1,5 +1,6 @@
 #include "md5.hpp"
 #include <memory.h>
+#include "NvTriStrip.h"
 
 using namespace md5;
 
@@ -93,7 +94,7 @@ sp<Mesh> MD5::loadMeshData(char *line){
                         &vertex.uv.x, &vertex.uv.y, &vertex.start, &vertex.count) == 5){
             mesh->vertices.push_back(vertex);
         }else if(sscanf(line, " numtris %d", &mesh->nTriangle) == 1){
-            mesh->nIndice   = mesh->nTriangle * 3;
+            mesh->nIndices   = mesh->nTriangle * 3;
             mesh->triangles.reserve(mesh->nTriangle );
         }else if(sscanf(line, " tri %d %hu %hu %hu", &intVal, &triangle.indices[2], &triangle.indices[1], &triangle.indices[0] ) == 4){
             mesh->triangles.push_back(triangle);
@@ -105,18 +106,32 @@ sp<Mesh> MD5::loadMeshData(char *line){
         
         line = strtok(NULL, "\n");
     }
+
+    mesh->indices.resize(mesh->nIndices);
+    memcpy(&mesh->indices[0], &mesh->triangles[0].indices[0], mesh->nIndices * sizeof(unsigned short));
     
-    for(auto const &triangle : mesh->triangles){
-        for(unsigned short i = 0; i < 3; ++i){
-            mesh->indices.push_back(triangle.indices[i]);
-        }
-    }
     return mesh;
 }
 
 
 
 void MD5::optimize(unsigned int vertexCacheSize){
-    unsigned int i = 0, s;
 
+    unsigned short nGroup = 0;
+
+    if(vertexCacheSize) SetCacheSize(vertexCacheSize);
+    
+    for(auto &mesh : meshes){
+        PrimitiveGroup *pg;
+        if(GenerateStrips(&mesh->indices[0], mesh->nIndices, &pg, &nGroup, true)){
+            if(pg[0].numIndices < mesh->nIndices){
+                mesh->mode = GL_TRIANGLE_STRIP;
+                mesh->nIndices = pg[0].numIndices;
+                unsigned int size = pg[0].numIndices * sizeof(unsigned short);
+                mesh->indices.resize(mesh->nIndices);
+                memcpy(&mesh->indices[0], &pg[0].indices[0], size);
+            }
+            delete [] pg;
+        }
+    }
 }

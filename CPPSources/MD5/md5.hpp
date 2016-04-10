@@ -43,7 +43,7 @@ struct Mesh{
     unsigned int    nTriangle;
     std::vector<Triangle>    triangles;
     unsigned int mode;
-    unsigned short nIndice;
+    unsigned short nIndices;
     std::vector<unsigned short> indices;
     unsigned int vboIndice;
     unsigned int nWeight;
