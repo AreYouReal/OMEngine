@@ -39,18 +39,22 @@ struct Mesh{
     unsigned int size;
     unsigned int stride;
     unsigned int offset[4];
-    unsigned char   *vertexData;
+    std::vector<unsigned char>   vertexData;
     unsigned int    nTriangle;
     std::vector<Triangle>    triangles;
     unsigned int mode;
     unsigned short nIndices;
     std::vector<unsigned short> indices;
-    unsigned int vboIndice;
+    unsigned int vboIndices;
     unsigned int nWeight;
     std::vector<Weight> weights;
     unsigned int vao;
     bool visible;
     sp<ObjMaterial> material;
+    
+    void buildVBO();
+    void buildVAO();
+    void setAttributes();
 };
 
 struct Action{
@@ -89,13 +93,12 @@ struct Action{
         btRigidBody *btrigidbody;
         
         void optimize(unsigned int vertexCacheSize);
-        
+        void build();
         
         static sp<MD5> loadMesh(string filename);
         
     private:
         static sp<Mesh> loadMeshData(char* line);
-        
     };
     
 }

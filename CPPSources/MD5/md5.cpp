@@ -135,3 +135,51 @@ void MD5::optimize(unsigned int vertexCacheSize){
         }
     }
 }
+
+void MD5::build(){
+    for(auto &mesh : meshes){
+        mesh->buildVAO();
+    }
+}
+
+void Mesh::buildVAO(){
+    buildVBO();
+    glGenVertexArrays(1, &vao);
+    glBindVertexArray(vao);
+    setAttributes();
+    glBindVertexArray(0);
+}
+
+void Mesh::buildVBO(){
+    unsigned short sizeOfV3D = sizeof(v3d); // Position, Normal, Tangent0
+    unsigned short sizeOfV2D = sizeof(v2d); // TexCoord0
+    size = vertices.size() * (3 * sizeOfV3D + sizeOfV2D) ;
+    vertexData.reserve(size);
+    offset[0] = 0;
+    offset[1] = nVertex * sizeOfV3D;
+    offset[2] = offset[1] + nVertex * sizeOfV3D;
+    offset[3] = offset[2] + nVertex * sizeOfV2D;
+    glGenBuffers(1, &vbo);
+    glBindBuffer(GL_ARRAY_BUFFER, vbo);
+    glBufferData(GL_ARRAY_BUFFER, size, &vertexData[0], GL_DYNAMIC_DRAW);
+    glGenBuffers(1, &vboIndices);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vboIndices);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, nIndices * sizeof(unsigned char), &indices[0], GL_STATIC_DRAW);
+}
+
+void Mesh::setAttributes(){
+    glBindBuffer(GL_ARRAY_BUFFER, vbo);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (char*)NULL + offset[0]);
+    
+    glEnableVertexAttribArray(1);
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, (char*)NULL + offset[1]);
+    
+    glEnableVertexAttribArray(2);
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 0, (char*)NULL + offset[2]);
+    
+    glEnableVertexAttribArray(3);
+    glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, 0, (char*)NULL + offset[3]);
+    
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vboIndices);
+}
