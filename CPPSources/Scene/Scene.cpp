@@ -15,6 +15,9 @@ void testMethod(){
     md5struct->optimize(128);
     
     
+    md5struct->build();
+    
+    
     int breakHere = 0;
 }
 

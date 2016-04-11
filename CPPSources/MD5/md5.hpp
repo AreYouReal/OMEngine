@@ -77,7 +77,7 @@ struct Action{
         string name;
         bool    visible;
         unsigned int numJoints;
-        std::vector<sp<Joint>> bindPose;
+        std::vector<Joint> bindPose;
         unsigned int numMeshes;
         std::vector<sp<Mesh>> meshes;
         unsigned int nAction;
@@ -94,6 +94,8 @@ struct Action{
         
         void optimize(unsigned int vertexCacheSize);
         void build();
+        
+        void setPose();
         
         static sp<MD5> loadMesh(string filename);
         

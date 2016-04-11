@@ -37,20 +37,20 @@ sp<MD5> MD5::loadMesh(string filename){
                 logMessage("%s\n", line);
                 char temp[256];
                 
-                sp<Joint>   joint = std::make_shared<Joint>();
+                Joint   joint;
                 
                 if(sscanf(line, "%s %d ( %f %f %f ) ( %f %f %f )",
                          temp,
-                          &joint->parent,
-                          &joint->location.x,
-                          &joint->location.y,
-                          &joint->location.z,
-                          &joint->rotation.x,
-                          &joint->rotation.y,
-                          &joint->rotation.z
+                          &joint.parent,
+                          &joint.location.x,
+                          &joint.location.y,
+                          &joint.location.z,
+                          &joint.rotation.x,
+                          &joint.rotation.y,
+                          &joint.rotation.z
                           ) == 8){
-                    joint->rotation.calculateWFromXYZ();
-                    joint->name = temp;
+                    joint.rotation.calculateWFromXYZ();
+                    joint.name = temp;
                     md5->bindPose.push_back(joint);
                 }
                 line = strtok(NULL, "\n");
@@ -139,6 +139,60 @@ void MD5::optimize(unsigned int vertexCacheSize){
 void MD5::build(){
     for(auto &mesh : meshes){
         mesh->buildVAO();
+    }
+    
+    setPose();
+}
+
+void MD5::setPose(){
+    unsigned int i = 0, j, k;
+    
+    for(auto &mesh : meshes){
+        v3d *vertexArray = (v3d*)&mesh->vertexData[0];
+        v3d *normalArray = (v3d*)&mesh->vertexData[mesh->offset[1]];
+        v3d *tangentArray = (v3d*)&mesh->vertexData[mesh->offset[3]];
+        
+        v2d *uvArray = (v2d*)&mesh->vertexData[mesh->offset[2]];
+        
+        memset(vertexArray, 0, mesh->offset[1]);
+        memset(normalArray, 0, mesh->offset[1]);
+        memset(tangentArray, 0, mesh->offset[1]);
+        
+        for(uint j = 0; j < mesh->nVertex; ++j){
+            Vertex vertex = mesh->vertices[j];
+            for(ushort i = 0; i < vertex.count; ++i){
+                v3d location    (0, 0, 0);
+                v3d normal      (0, 0, 0);
+                v3d tangent     (0, 0, 0);
+                
+                Weight md5weight = mesh->weights[vertex.start + i];
+                Joint md5joint = bindPose[md5weight.joint];
+                
+                logMessage("[%f %f %f] [%f %f %f %f]\n", md5joint.location.x, md5joint.location.y, md5joint.location.z, md5joint.rotation.x, md5joint.rotation.y, md5joint.rotation.z, md5joint.rotation.w );
+                
+                m4d rotMat = md5joint.rotation.matrix();
+                
+                location = md5weight.location * rotMat;
+                normal = md5weight.normal * rotMat;
+                tangent = md5weight.tangent * rotMat;
+                
+                vertexArray[j].x += (md5joint.location.x + location.x) * md5weight.bias;
+                vertexArray[j].y += (md5joint.location.y + location.y) * md5weight.bias;
+                vertexArray[j].z += (md5joint.location.z + location.z) * md5weight.bias;
+                
+                normalArray[j].x += normal.x * md5weight.bias;
+                normalArray[j].y += normal.y * md5weight.bias;
+                normalArray[j].z += normal.z * md5weight.bias;
+                
+                tangentArray[j].x += tangent.x * md5weight.bias;
+                tangentArray[j].y += tangent.y * md5weight.bias;
+                tangentArray[j].z += tangent.z * md5weight.bias;
+            }
+            uvArray[j].x = vertex.uv.x;
+            uvArray[j].y = vertex.uv.y;
+        }
+        
+        
     }
 }
 
