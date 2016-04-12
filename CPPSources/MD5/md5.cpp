@@ -142,11 +142,10 @@ void MD5::build(){
     }
     
     setPose();
+    buildPoseWeightedNormalsTangents();
 }
 
-void MD5::setPose(){
-    unsigned int i = 0, j, k;
-    
+void MD5::setPose(){    
     for(auto &mesh : meshes){
         v3d *vertexArray = (v3d*)&mesh->vertexData[0];
         v3d *normalArray = (v3d*)&mesh->vertexData[mesh->offset[1]];
@@ -192,6 +191,85 @@ void MD5::setPose(){
             uvArray[j].y = vertex.uv.y;
         }
         
+        glBindBuffer(GL_ARRAY_BUFFER, mesh->vbo);
+        glBufferSubData(GL_ARRAY_BUFFER, 0, mesh->size, &mesh->vertexData[0]);
+    }
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+}
+
+void MD5::buildPoseWeightedNormalsTangents(){
+    for(auto &mesh : meshes){
+        v3d *vertexArray = (v3d*)&mesh->vertexData[0];
+        for(unsigned int i = 0; i < mesh->nVertex; ++i){
+            memset(&mesh->vertices[i].normal, 0, sizeof(v3d));
+            memset(&mesh->vertices[i].tangent, 0, sizeof(v3d));
+        }
+        
+        for(auto &triangle : mesh->triangles){
+            v3d v1, v2, normal;
+            
+            v1 = vertexArray[triangle.indices[0]] - vertexArray[triangle.indices[1]];
+            v2 = vertexArray[triangle.indices[0]] - vertexArray[triangle.indices[2]];
+            normal = v3d::cross(v1, v2).normalize();
+            
+            // Flat normals
+//            memcpy(&mesh->vertices[triangle.indices[0]].normal, &normal, sizeof(v3d));
+//            memcpy(&mesh->vertices[triangle.indices[1]].normal, &normal, sizeof(v3d));
+//            memcpy(&mesh->vertices[triangle.indices[2]].normal, &normal, sizeof(v3d));
+            
+            // Smooth normals
+            mesh->vertices[triangle.indices[0]].normal += normal;
+            mesh->vertices[triangle.indices[1]].normal += normal;
+            mesh->vertices[triangle.indices[2]].normal += normal;
+            
+            v3d tangent;
+            v2d uv1, uv2;
+            
+            float c;
+            
+            uv1 = mesh->vertices[triangle.indices[1]].uv - mesh->vertices[triangle.indices[0]].uv;
+            uv2 = mesh->vertices[triangle.indices[2]].uv - mesh->vertices[triangle.indices[0]].uv;
+            
+            c = 1.0f / (uv1.x * uv2.y - uv2.x * uv1.y);
+            tangent.x = (v1.x * uv2.y + v2.x * uv1.y) * c;
+            tangent.y = (v1.y * uv2.y + v2.y * uv1.y) * c;
+            tangent.z = (v1.z * uv2.y + v2.z * uv1.y) * c;
+            
+            mesh->vertices[triangle.indices[0]].tangent += tangent;
+            mesh->vertices[triangle.indices[1]].tangent += tangent;
+            mesh->vertices[triangle.indices[2]].tangent += tangent;
+            
+            
+        }
+    
+        for(auto &vertex : mesh->vertices){
+            vertex.normal = vertex.normal.normalize();
+            vertex.tangent = vertex.tangent.normalize();
+        }
+        
+        for(unsigned int i = 0; i < mesh->nVertex; ++i){
+            memset(&mesh->weights[i].normal, 0, sizeof(v3d));
+            memset(&mesh->weights[i].tangent, 0, sizeof(v3d));
+        }
+        
+        for(auto &vertex : mesh->vertices){
+            for(int i = 0; i < vertex.count; ++i){
+                Weight md5weight = mesh->weights[vertex.start + i];
+                Joint md5joint = bindPose[md5weight.joint];
+                v3d normal(vertex.normal.x, vertex.normal.y, vertex.normal.z);
+                v3d tangent(vertex.tangent.x, vertex.tangent.y, vertex.tangent.z);
+                q4d rotation(md5joint.rotation.x, md5joint.rotation.y, md5joint.rotation.z, md5joint.rotation.w);
+                normal = normal * rotation.matrix();
+                tangent = tangent * rotation.matrix();
+                md5weight.normal += normal;
+                md5weight.tangent += tangent;
+            }
+        }
+        
+        for(unsigned int i = 0; i < mesh->nWeight; ++i){
+            mesh->weights[i].normal = mesh->weights[i].normal.normalize();
+            mesh->weights[i].tangent = mesh->weights[i].tangent.normalize();
+        }
         
     }
 }

@@ -96,6 +96,7 @@ struct Action{
         void build();
         
         void setPose();
+        void buildPoseWeightedNormalsTangents();
         
         static sp<MD5> loadMesh(string filename);
         
