@@ -254,15 +254,15 @@ void MD5::buildPoseWeightedNormalsTangents(){
         
         for(auto &vertex : mesh->vertices){
             for(int i = 0; i < vertex.count; ++i){
-                Weight md5weight = mesh->weights[vertex.start + i];
-                Joint md5joint = bindPose[md5weight.joint];
+                Weight *md5weight = &mesh->weights[vertex.start + i];
+                Joint md5joint = bindPose[md5weight->joint];
                 v3d normal(vertex.normal.x, vertex.normal.y, vertex.normal.z);
                 v3d tangent(vertex.tangent.x, vertex.tangent.y, vertex.tangent.z);
-                q4d rotation(md5joint.rotation.x, md5joint.rotation.y, md5joint.rotation.z, md5joint.rotation.w);
+                q4d rotation(md5joint.rotation.conjugate());
                 normal = normal * rotation.matrix();
                 tangent = tangent * rotation.matrix();
-                md5weight.normal += normal;
-                md5weight.tangent += tangent;
+                md5weight->normal += normal;
+                md5weight->tangent += tangent;
             }
         }
         
@@ -270,7 +270,6 @@ void MD5::buildPoseWeightedNormalsTangents(){
             mesh->weights[i].normal = mesh->weights[i].normal.normalize();
             mesh->weights[i].tangent = mesh->weights[i].tangent.normalize();
         }
-        
     }
 }
 

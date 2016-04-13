@@ -10,7 +10,7 @@ public:
     q4d(const v4d& vec);
     q4d(const v3d& vec);
     q4d(const m4d& mat);
-    q4d(const float angle, float x, float y, float z);
+    q4d(float x, float y, float z, float w);
     q4d(const float angle, const v3d& axis);
     
     float operator[](int i);

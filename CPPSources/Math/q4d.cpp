@@ -88,8 +88,7 @@ q4d::q4d(const m4d& mat){
 ////        q[k] = (mat.m[k][i] - mat.m[i][k]) * t;
 //    }
 }
-q4d::q4d(const float angle, float x, float y, float z) : q4d(angle, v3d(x, y, z)){}
-
+q4d::q4d(float x, float y, float z, float w): x(x), y(y), z(z), w(w){}
 
 q4d::q4d(const float angle, const v3d& vec){
     float rads      = PI / 180 * angle;
