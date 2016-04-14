@@ -59,6 +59,8 @@ bool Scene::init(){
     
     initMD5();
     
+    logGLError();
+    
     return true;
 }
 

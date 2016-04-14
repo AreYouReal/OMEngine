@@ -319,7 +319,7 @@ void Mesh::buildVBO(){
     unsigned short sizeOfV3D = sizeof(v3d); // Position, Normal, Tangent0
     unsigned short sizeOfV2D = sizeof(v2d); // TexCoord0
     size = nVertex * (3 * sizeOfV3D + sizeOfV2D) ;
-    vertexData.reserve(size);
+    vertexData.resize(size);
     offset[0] = 0;
     offset[1] = nVertex * sizeOfV3D;
     offset[2] = offset[1] + nVertex * sizeOfV3D;
@@ -351,6 +351,7 @@ void Mesh::setAttributes(){
 
 void Mesh::initMaterial(){
     material = Materials::instance()->getMaterial(shader);
+    material->loadTextures();
     material->program = Materials::instance()->getProgramFoMesh(shader);
 }
 

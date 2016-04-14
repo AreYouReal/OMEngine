@@ -79,6 +79,8 @@ void OMGame::Draw (){
     
     Camera::instance()->setWidthAndHeight(appContext->width, appContext->height);
 
+    logGLError();
+    
     Scene::instance()->drawDepth();
 
     Scene::instance()->draw();

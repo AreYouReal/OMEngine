@@ -83,6 +83,6 @@ vec4 lightCalculations(in vec4 color, in vec3 direction){
 void main(){
     lowp vec4 finalColor = uMaterial.ambient;
     finalColor += lightCalculations(lightColor, lightDirectionTS);
-    fragColor = texture(uSamplerDiffuse, texCoord.xy) * finalColor;
-    fragColor = vec4(0.0, 1.0, 0.0, 1.0);
+//    fragColor = texture(uSamplerDiffuse, texCoord.xy) * finalColor;
+    fragColor = texture(uSamplerDiffuse, texCoord.xy);
 }

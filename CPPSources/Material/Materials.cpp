@@ -16,11 +16,11 @@ static std::map<string, string>  meshShaderTable{
     std::pair<string, string>("sphere2_sphere.002", "particles.omg"),
     std::pair<string, string>("sphere1_sphere.001", "shadowProjector.omg"),
     std::pair<string, string>("sphere3_sphere", "shadowProjector.omg"),
-//    // MD5 BOB
-//    std::pair<string, string>("body", "lighting.omg"),
-//    std::pair<string, string>("head", "lighting.omg"),
-//    std::pair<string, string>("helmet", "lighting.omg"),
-//    std::pair<string, string>("lamp", "normAsColor"),
+    // MD5 BOB
+    std::pair<string, string>("body", "lighting.omg"),
+    std::pair<string, string>("head", "lighting.omg"),
+    std::pair<string, string>("helmet", "lighting.omg"),
+    std::pair<string, string>("lamp", "lighting.omg"),
 };
 
 Materials::Materials(){
@@ -130,9 +130,11 @@ bool Materials::loadTexture(const std::string &name){
         logMessage("Unable to load texture: %s\n", name.c_str());
         return false;
     }
-            logGLError();
+    logGLError();
     textures.insert(std::pair<std::string, sp<Texture>>(texture->filename, texture));
-            logGLError();
+    logGLError();
+    
+    logMessage("Loaded texture: %s \n", texture->filename.c_str());
     return true;
 }
 
