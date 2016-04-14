@@ -19,22 +19,22 @@ sp<MD5> MD5::loadMesh(string filename){
     int intVal = 0;
     
     while(line){
-        logMessage("%s\n", line);
+//        logMessage("%s\n", line);
         
         if(sscanf(line, "MD5Version %d", &intVal) == 1){
-            logMessage("MD5Version %d\n", intVal);
+//            logMessage("MD5Version %d\n", intVal);
             if(intVal != 10 ) return nullptr;
         }else if(sscanf(line, "numJoints %d", &md5->numJoints) == 1){
-            logMessage("numJoints %d \n", md5->numJoints);
+//            logMessage("numJoints %d \n", md5->numJoints);
             md5->bindPose.reserve(md5->numJoints);
         }else if(sscanf(line, "numMeshes %d", &md5->numMeshes)){
-            logMessage("numMeshes %d\n", md5->numMeshes);
+//            logMessage("numMeshes %d\n", md5->numMeshes);
             md5->meshes.reserve(md5->numMeshes);
         }else if(!strncmp(line, "joints {", 8)){
             line = strtok(NULL, "\n");  // same as line = strtok(line, "\n"); ???
             
             while(line[0] != '}'){
-                logMessage("%s\n", line);
+//                logMessage("%s\n", line);
                 char temp[256];
                 
                 Joint   joint;
@@ -79,9 +79,7 @@ sp<Mesh> MD5::loadMeshData(char *line){
     int intVal = 0;
     
     while( line[0] != '}' ){
-
-        
-        logMessage("%s\n", line);
+//        logMessage("%s\n", line);
         char temp[256];
         if(sscanf(line, " shader \"%[^\"]", temp) == 1){
             mesh->shader = temp;
@@ -139,10 +137,27 @@ void MD5::optimize(unsigned int vertexCacheSize){
 void MD5::build(){
     for(auto &mesh : meshes){
         mesh->buildVAO();
+        mesh->initMaterial();
     }
     
     setPose();
     buildPoseWeightedNormalsTangents();
+    setPose();
+    updateBoundMesh();
+}
+
+void MD5::draw(){
+    if(visible && distance){
+        for(auto &mesh : meshes){
+            if(mesh->visible){
+                if(mesh->material) mesh->material->use();
+                if(mesh->vao) glBindVertexArray(mesh->vao);
+                else mesh->setAttributes();
+                
+                glDrawElements(mesh->mode, mesh->nIndices, GL_UNSIGNED_SHORT, nullptr);
+            }
+        }
+    }
 }
 
 void MD5::setPose(){    
@@ -167,7 +182,7 @@ void MD5::setPose(){
                 Weight md5weight = mesh->weights[vertex.start + i];
                 Joint md5joint = bindPose[md5weight.joint];
                 
-                logMessage("[%f %f %f] [%f %f %f %f]\n", md5joint.location.x, md5joint.location.y, md5joint.location.z, md5joint.rotation.x, md5joint.rotation.y, md5joint.rotation.z, md5joint.rotation.w );
+//                logMessage("[%f %f %f] [%f %f %f %f]\n", md5joint.location.x, md5joint.location.y, md5joint.location.z, md5joint.rotation.x, md5joint.rotation.y, md5joint.rotation.z, md5joint.rotation.w );
                 
                 m4d rotMat = md5joint.rotation.matrix();
                 
@@ -273,6 +288,31 @@ void MD5::buildPoseWeightedNormalsTangents(){
     }
 }
 
+void MD5::updateBoundMesh(){
+    min.x = min.y = min.z = 99999.999f;
+    max.x = max.y = max.z = 99999.999f;
+    
+    for(auto &mesh : meshes){
+        v3d *vertexArray = (v3d*)&mesh->vertexData[0];
+        for(unsigned int i = 0; i < mesh->nVertex; ++i){
+            if(vertexArray[i].x < min.x) min.x = vertexArray[i].x;
+            if(vertexArray[i].y < min.y) min.y = vertexArray[i].y;
+            if(vertexArray[i].z < min.z) min.y = vertexArray[i].z;
+            
+            if(vertexArray[i].x > max.x) max.x = vertexArray[i].x;
+            if(vertexArray[i].y > max.y) max.y = vertexArray[i].y;
+            if(vertexArray[i].z > max.z) max.y = vertexArray[i].z;
+        }
+    }
+}
+
+void MD5::freeMeshData(){
+    for(auto &mesh : meshes){
+        mesh->indices.clear();
+        mesh->triangles.clear();
+    }
+}
+
 void Mesh::buildVAO(){
     buildVBO();
     glGenVertexArrays(1, &vao);
@@ -313,4 +353,9 @@ void Mesh::setAttributes(){
     glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, 0, (char*)NULL + offset[3]);
     
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vboIndices);
+}
+
+void Mesh::initMaterial(){
+    material = Materials::instance()->getMaterial(shader);
+    material->program = Materials::instance()->getProgramFoMesh(shader);
 }

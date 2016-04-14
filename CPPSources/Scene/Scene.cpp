@@ -7,18 +7,14 @@
 //////////////////
 #include "md5.hpp"
 
-void testMethod(){
+sp<md5::MD5> md5struct;
 
-    
-    sp<md5::MD5> md5struct = md5::MD5::loadMesh("bob.md5mesh");
-    
+void initMD5(){
+    md5struct = md5::MD5::loadMesh("bob.md5mesh");
     md5struct->optimize(128);
-    
-    
     md5struct->build();
-    
-    
-    int breakHere = 0;
+    md5struct->freeMeshData();
+    glDisable(GL_CULL_FACE);
 }
 
 Scene::Scene(){
@@ -61,7 +57,7 @@ bool Scene::init(){
     Camera::instance()->initShadowBuffer();
     
     
-    testMethod();
+    initMD5();
     
     return true;
 }
@@ -86,31 +82,31 @@ void Scene::update(float deltaTime){
 void Scene::drawDepth(){
     glGetIntegerv(GL_FRAMEBUFFER_BINDING, &Camera::instance()->mMainBuffer);
     
-    glBindFramebuffer( GL_FRAMEBUFFER, Camera::instance()->shadowBuffer());
-    
-//        glBindFramebuffer(GL_FRAMEBUFFER, Camera::instance()->mMainBuffer);
-    
-    glViewport(0, 0, Camera::instance()->shadowmapWidth(), Camera::instance()->shadowmapHeight());
-    glClear(GL_DEPTH_BUFFER_BIT);
-    
-//    glColorMask ( GL_FALSE, GL_FALSE, GL_FALSE, GL_FALSE );
-    glEnable ( GL_POLYGON_OFFSET_FILL );
-    glPolygonOffset( 5.0f, 100.0f );
-    
-    glCullFace(GL_FRONT);
-    Camera::instance()->shadowDraw = true;
-    for(const auto& go: mObjects){
-        MeshRendererComponent *mrc = static_cast<MeshRendererComponent*>(go->getComponent(ComponentEnum::MESH_RENDERER));
-        if(mrc){
-            mrc->shadowDraw = true;
-            mrc->draw();
-            mrc->shadowDraw = false;
-        }
-    }
-    Camera::instance()->shadowDraw = false;
-    
-    glCullFace( GL_BACK );
-    glDisable( GL_POLYGON_OFFSET_FILL );
+//    glBindFramebuffer( GL_FRAMEBUFFER, Camera::instance()->shadowBuffer());
+//    
+////        glBindFramebuffer(GL_FRAMEBUFFER, Camera::instance()->mMainBuffer);
+//    
+//    glViewport(0, 0, Camera::instance()->shadowmapWidth(), Camera::instance()->shadowmapHeight());
+//    glClear(GL_DEPTH_BUFFER_BIT);
+//    
+////    glColorMask ( GL_FALSE, GL_FALSE, GL_FALSE, GL_FALSE );
+//    glEnable ( GL_POLYGON_OFFSET_FILL );
+//    glPolygonOffset( 5.0f, 100.0f );
+//    
+//    glCullFace(GL_FRONT);
+//    Camera::instance()->shadowDraw = true;
+//    for(const auto& go: mObjects){
+//        MeshRendererComponent *mrc = static_cast<MeshRendererComponent*>(go->getComponent(ComponentEnum::MESH_RENDERER));
+//        if(mrc){
+//            mrc->shadowDraw = true;
+//            mrc->draw();
+//            mrc->shadowDraw = false;
+//        }
+//    }
+//    Camera::instance()->shadowDraw = false;
+//    
+//    glCullFace( GL_BACK );
+//    glDisable( GL_POLYGON_OFFSET_FILL );
 }
 
 void Scene::draw(){
@@ -125,19 +121,21 @@ void Scene::draw(){
     glClear( GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT );
     
 
-    for(const auto& go : mObjects){
-        for(int i = (int)ComponentEnum::MESH_RENDERER; i <= (int)ComponentEnum::DEBUG_DRAW; ++i){
-            IComponent *comp = go->getComponent((ComponentEnum)i);
-            if(comp){
-//                sp<Texture> projTexture = Materials::instance()->getTexture("projector.png");
-                glActiveTexture(GL_TEXTURE0);
-                glBindTexture(GL_TEXTURE_2D, Camera::instance()->depthTexture());
-                comp->draw();
-            }
-        }
-    }
+//    for(const auto& go : mObjects){
+//        for(int i = (int)ComponentEnum::MESH_RENDERER; i <= (int)ComponentEnum::DEBUG_DRAW; ++i){
+//            IComponent *comp = go->getComponent((ComponentEnum)i);
+//            if(comp){
+////                sp<Texture> projTexture = Materials::instance()->getTexture("projector.png");
+//                glActiveTexture(GL_TEXTURE0);
+//                glBindTexture(GL_TEXTURE_2D, Camera::instance()->depthTexture());
+//                comp->draw();
+//            }
+//        }
+//    }
+//    
+//    Illuminator::instance()->getLightSource()->draw();
     
-    Illuminator::instance()->getLightSource()->draw();
+    md5struct->draw();
 }
 
 void Scene::setRenderObjectState(RenderObjectType newState){

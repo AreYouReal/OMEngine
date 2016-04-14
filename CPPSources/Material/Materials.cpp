@@ -15,11 +15,17 @@ static std::map<string, string>  meshShaderTable{
     std::pair<string, string>("floor", "shadowProjector.omg"),
     std::pair<string, string>("sphere2_sphere.002", "particles.omg"),
     std::pair<string, string>("sphere1_sphere.001", "shadowProjector.omg"),
-    std::pair<string, string>("sphere3_sphere", "shadowProjector.omg")
+    std::pair<string, string>("sphere3_sphere", "shadowProjector.omg"),
+//    // MD5 BOB
+//    std::pair<string, string>("body", "lighting.omg"),
+//    std::pair<string, string>("head", "lighting.omg"),
+//    std::pair<string, string>("helmet", "lighting.omg"),
+//    std::pair<string, string>("lamp", "normAsColor"),
 };
 
 Materials::Materials(){
     loadPrograms();
+    loadMaterial("bob.mtl");
 }
 
 Materials::~Materials(){
@@ -48,14 +54,13 @@ bool Materials::loadMaterial(const std::string &name){
     v3d v;
     
 //    logMessage("Line processing! %d\n", materials.size());
-    
 
-    
     while(line){
         if(!line[0] || line[0] == '#' ){ line = strtok( NULL, "\n" ); continue;
         }else if( sscanf(line, "newmtl %s", str) == 1){
             mat = std::make_shared<ObjMaterial>(); mat->name = str;
             materials.insert(std::pair<std::string, sp<ObjMaterial>>(mat->name, mat));
+            logMessage("New material added: %s\n", mat->name.c_str());
             logGLError();
         }else if(sscanf(line, "Ka %f %f %f", &v.x, &v.y, &v.z) == 3){
             memcpy(&mat->ambient, &v, sizeof(v3d));
@@ -111,7 +116,7 @@ bool Materials::loadMaterial(const std::string &name){
         line = strtok( NULL, "\n" );
     }
     
-    logMessage("%s", objSource->content);
+    logMessage("Loaded material: %s\n", mat->name.c_str());
     return true;
 }
 

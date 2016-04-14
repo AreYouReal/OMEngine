@@ -55,6 +55,8 @@ struct Mesh{
     void buildVBO();
     void buildVAO();
     void setAttributes();
+    
+    void initMaterial();
 };
 
 struct Action{
@@ -95,13 +97,18 @@ struct Action{
         void optimize(unsigned int vertexCacheSize);
         void build();
         
-        void setPose();
-        void buildPoseWeightedNormalsTangents();
+        void draw();
+        
+        void freeMeshData();
         
         static sp<MD5> loadMesh(string filename);
         
     private:
         static sp<Mesh> loadMeshData(char* line);
+        
+        void setPose();
+        void buildPoseWeightedNormalsTangents();
+        void updateBoundMesh();
     };
     
 }
