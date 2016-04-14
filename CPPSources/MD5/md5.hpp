@@ -57,6 +57,8 @@ struct Mesh{
     void setAttributes();
     
     void initMaterial();
+    
+    void draw();
 };
 
 struct Action{

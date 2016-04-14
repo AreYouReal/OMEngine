@@ -149,13 +149,7 @@ void MD5::build(){
 void MD5::draw(){
     if(visible && distance){
         for(auto &mesh : meshes){
-            if(mesh->visible){
-                if(mesh->material) mesh->material->use();
-                if(mesh->vao) glBindVertexArray(mesh->vao);
-                else mesh->setAttributes();
-                
-                glDrawElements(mesh->mode, mesh->nIndices, GL_UNSIGNED_SHORT, nullptr);
-            }
+            mesh->draw();
         }
     }
 }
@@ -324,7 +318,7 @@ void Mesh::buildVAO(){
 void Mesh::buildVBO(){
     unsigned short sizeOfV3D = sizeof(v3d); // Position, Normal, Tangent0
     unsigned short sizeOfV2D = sizeof(v2d); // TexCoord0
-    size = vertices.size() * (3 * sizeOfV3D + sizeOfV2D) ;
+    size = nVertex * (3 * sizeOfV3D + sizeOfV2D) ;
     vertexData.reserve(size);
     offset[0] = 0;
     offset[1] = nVertex * sizeOfV3D;
@@ -335,7 +329,7 @@ void Mesh::buildVBO(){
     glBufferData(GL_ARRAY_BUFFER, size, &vertexData[0], GL_DYNAMIC_DRAW);
     glGenBuffers(1, &vboIndices);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vboIndices);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, nIndices * sizeof(unsigned char), &indices[0], GL_STATIC_DRAW);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, nIndices * sizeof(unsigned short), &indices[0], GL_STATIC_DRAW);
 }
 
 void Mesh::setAttributes(){
@@ -358,4 +352,14 @@ void Mesh::setAttributes(){
 void Mesh::initMaterial(){
     material = Materials::instance()->getMaterial(shader);
     material->program = Materials::instance()->getProgramFoMesh(shader);
+}
+
+void Mesh::draw(){
+    if(visible){
+        if(material) material->use();
+        if(vao) glBindVertexArray(vao);
+        else setAttributes();
+        
+        glDrawElements(mode, nIndices, GL_UNSIGNED_SHORT, nullptr);
+    }
 }
