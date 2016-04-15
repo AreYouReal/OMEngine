@@ -219,6 +219,8 @@
 		F328C4FE1BF4997F0037AC6D /* font_fragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F328C4FC1BF4997F0037AC6D /* font_fragment.glsl */; };
 		F328C4FF1BF4997F0037AC6D /* font_vertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F328C4FD1BF4997F0037AC6D /* font_vertex.glsl */; };
 		F32EB63C1C5FA5E00057F474 /* GreySP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F32EB63A1C5FA5E00057F474 /* GreySP.cpp */; };
+		F3347CB41CC0FF05000DD3A0 /* bob_idle.md5anim in Resources */ = {isa = PBXBuildFile; fileRef = F3347CB21CC0FF05000DD3A0 /* bob_idle.md5anim */; };
+		F3347CB51CC0FF05000DD3A0 /* bob_walk.md5anim in Resources */ = {isa = PBXBuildFile; fileRef = F3347CB31CC0FF05000DD3A0 /* bob_walk.md5anim */; };
 		F3392F611C117B4E005E850E /* Sound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3392F5F1C117B4E005E850E /* Sound.cpp */; };
 		F340D11B1BA95E4500187B1E /* char_ram_nor.png in Resources */ = {isa = PBXBuildFile; fileRef = F340D11A1BA95E4500187B1E /* char_ram_nor.png */; };
 		F34129D01BB52BB7006F4D4D /* Materials.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F34129CE1BB52BB7006F4D4D /* Materials.cpp */; };
@@ -772,6 +774,8 @@
 		F328C4FD1BF4997F0037AC6D /* font_vertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = font_vertex.glsl; path = ../Android/assets/shaders/font_vertex.glsl; sourceTree = SOURCE_ROOT; };
 		F32EB63A1C5FA5E00057F474 /* GreySP.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GreySP.cpp; path = OMEngine/CPPSources/Shaders/GreySP.cpp; sourceTree = "<group>"; };
 		F32EB63B1C5FA5E00057F474 /* GreySP.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = GreySP.hpp; path = OMEngine/CPPSources/Shaders/GreySP.hpp; sourceTree = "<group>"; };
+		F3347CB21CC0FF05000DD3A0 /* bob_idle.md5anim */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bob_idle.md5anim; sourceTree = "<group>"; };
+		F3347CB31CC0FF05000DD3A0 /* bob_walk.md5anim */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bob_walk.md5anim; sourceTree = "<group>"; };
 		F3392F5F1C117B4E005E850E /* Sound.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sound.cpp; sourceTree = "<group>"; };
 		F3392F601C117B4E005E850E /* Sound.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Sound.hpp; sourceTree = "<group>"; };
 		F340D11A1BA95E4500187B1E /* char_ram_nor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = char_ram_nor.png; path = ../Android/assets/char_ram_nor.png; sourceTree = SOURCE_ROOT; };
@@ -1725,6 +1729,8 @@
 		F307C9171CBF791200CF9623 /* bob */ = {
 			isa = PBXGroup;
 			children = (
+				F3347CB21CC0FF05000DD3A0 /* bob_idle.md5anim */,
+				F3347CB31CC0FF05000DD3A0 /* bob_walk.md5anim */,
 				F30E41DE1C2D5BCE00A88527 /* lighting.omg */,
 				F307C9181CBF791200CF9623 /* bob.md5mesh */,
 				F307C9191CBF791200CF9623 /* bob.mtl */,
@@ -2082,6 +2088,7 @@
 				9483965A1C4B542D000D69BA /* generalLighting.omg in Resources */,
 				F307C9291CBF791200CF9623 /* bob_helmet_normal.png in Resources */,
 				F3BCACBB1BFF26FE002003B7 /* Main_iPhone.storyboard in Resources */,
+				F3347CB41CC0FF05000DD3A0 /* bob_idle.md5anim in Resources */,
 				947FA31F1BA4854A00695A4E /* ram.obj in Resources */,
 				F3A263971C33BD360021B3B6 /* light_point_vertex.glsl in Resources */,
 				F30E41DA1C2D548E00A88527 /* floor_n.png in Resources */,
@@ -2110,6 +2117,7 @@
 				947222781B9AD466008D601B /* balloon.png in Resources */,
 				F30E41DF1C2D5BCE00A88527 /* lighting.omg in Resources */,
 				F38A22E31BAAA15400FADEC0 /* vertexPerVertex.glsl in Resources */,
+				F3347CB51CC0FF05000DD3A0 /* bob_walk.md5anim in Resources */,
 				F30E41DB1C2D548E00A88527 /* floor.png in Resources */,
 				F3D171761C6DCBF200A9507D /* projector.png in Resources */,
 				947FA31E1BA4854A00695A4E /* ram.mtl in Resources */,

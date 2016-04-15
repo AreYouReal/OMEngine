@@ -4,6 +4,9 @@
 
 using namespace md5;
 
+
+#pragma MD5 related
+
 sp<MD5> MD5::loadMesh(string filename){
     
     up<FileContent> objSource = readBytesFromFile(filename.c_str());
@@ -66,15 +69,12 @@ sp<MD5> MD5::loadMesh(string filename){
     return md5;
 }
 
-
 sp<Mesh> MD5::loadMeshData(char *line){
     Vertex vertex;
     Triangle triangle;
     Weight   weight;
     
     sp<Mesh> mesh = std::make_shared<Mesh>();
-    mesh->mode = GL_TRIANGLES;
-    mesh->visible = true;
     
     int intVal = 0;
     
@@ -111,7 +111,56 @@ sp<Mesh> MD5::loadMeshData(char *line){
     return mesh;
 }
 
+int MD5::loadAction(string name, string filename){
 
+    up<FileContent> content = readBytesFromFile(filename.c_str());
+    if(!content.get()) return -1;
+    
+    sp<Action> action = std::make_shared<Action>();
+    action->name = name;
+    
+    char* line = strtok((char *)content->content, "\n");
+    
+    int intVal = 0;
+    
+    while(line){
+        if(sscanf(line, "MD5Version %d", &intVal) == 1){
+            if(intVal != 10){
+                logMessage("ERROR! MD5Version %d is not supported!\n", intVal );
+                return -1;
+            }
+        }else if(sscanf(line, "numFrames %d", &action->nFrames) == 1){
+            action->frame.resize(action->nFrames);
+            for(auto &vecEntry : action->frame){
+                vecEntry.resize(numJoints);
+            }
+        }else if(sscanf(line, "numJoints %d", &numMeshes) == 1){
+            if(numJoints != intVal){
+                logMessage("ERROR! num of MD5 joints and action joints is different!\n");
+            }
+            action->pose.reserve(numJoints);
+        }else if(sscanf(line, "frameRate %d", &intVal) == 1){
+            action->fps = 1.0f / intVal;
+        }else if(sscanf(line, "frame %d", &intVal)){
+            Joint *joint = &action->frame[intVal][0];
+            line = strtok(NULL, "\n");
+            for(unsigned int i = 0; i < numJoints; ++i){
+                if(sscanf(line, " %f %f %f %f %f %f", &joint[i].location.x,
+                          &joint[i].location.y,
+                          &joint[i].location.z,
+                          &joint[i].rotation.x,
+                          &joint[i].rotation.y,
+                          &joint[i].rotation.z) == 6){
+                    joint[i].name = bindPose[i].name;
+                    joint[i].rotation.calculateWFromXYZ();
+                }
+                line = strtok(NULL, "\n");
+            }
+        }
+    }
+    
+    return 0;
+}
 
 void MD5::optimize(unsigned int vertexCacheSize){
 
@@ -306,6 +355,9 @@ void MD5::freeMeshData(){
         mesh->triangles.clear();
     }
 }
+
+
+#pragma MD5Mesh related
 
 void Mesh::buildVAO(){
     buildVBO();

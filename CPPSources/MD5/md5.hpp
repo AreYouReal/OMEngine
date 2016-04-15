@@ -42,14 +42,14 @@ struct Mesh{
     std::vector<unsigned char>   vertexData;
     unsigned int    nTriangle;
     std::vector<Triangle>    triangles;
-    unsigned int mode;
+    unsigned int mode = GL_TRIANGLES;
     unsigned short nIndices;
     std::vector<unsigned short> indices;
     unsigned int vboIndices;
     unsigned int nWeight;
     std::vector<Weight> weights;
     unsigned int vao;
-    bool visible;
+    bool visible = true;
     sp<ObjMaterial> material;
     
     void buildVBO();
@@ -63,9 +63,9 @@ struct Mesh{
 
 struct Action{
     string name;
-    unsigned int nFrame;
-    Joint    **frame;    // ????
-    Joint    *pose;
+    unsigned int nFrames;
+    std::vector<std::vector<Joint>>    frame;    // ????
+    std::vector<Joint>    pose;
     int         currFrame;
     int         nextFrame;
     unsigned char state;
@@ -84,8 +84,8 @@ struct Action{
         std::vector<Joint> bindPose;
         unsigned int numMeshes;
         std::vector<sp<Mesh>> meshes;
-        unsigned int nAction;
-        std::vector<Action>  actions;
+        unsigned int nActions;
+        std::vector<sp<Action>>  actions;
         v3d     location;
         v3d     rotation;
         v3d     scale;
@@ -103,7 +103,9 @@ struct Action{
         
         void freeMeshData();
         
-        static sp<MD5> loadMesh(string filename);
+        static sp<MD5> loadMesh(const string filename);
+        
+        int loadAction(const string name, const string filename);
         
     private:
         static sp<Mesh> loadMeshData(char* line);
