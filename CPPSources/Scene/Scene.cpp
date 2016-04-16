@@ -14,7 +14,9 @@ void initMD5(){
     md5struct->optimize(128);
     md5struct->build();
     md5struct->freeMeshData();
-    glDisable(GL_CULL_FACE);
+    
+    md5struct->loadAction("idle", "bob_idle.md5anim");
+//    glDisable(GL_CULL_FACE);
 }
 
 Scene::Scene(){

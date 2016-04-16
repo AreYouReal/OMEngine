@@ -124,6 +124,7 @@ int MD5::loadAction(string name, string filename){
     int intVal = 0;
     
     while(line){
+        logMessage("%s\n", line);
         if(sscanf(line, "MD5Version %d", &intVal) == 1){
             if(intVal != 10){
                 logMessage("ERROR! MD5Version %d is not supported!\n", intVal );
@@ -156,10 +157,34 @@ int MD5::loadAction(string name, string filename){
                 }
                 line = strtok(NULL, "\n");
             }
+            
+            v3d location;
+            q4d rotation;
+            
+            for(unsigned int i = 0; i < numJoints; ++i){
+                if(bindPose[i].parent > -1){
+                    Joint *joint = &action->frame[intVal][bindPose[i].parent];
+                    m4d rotMat = joint->rotation.matrix();
+                    location = action->frame[intVal][i].location * rotMat;
+                    action->frame[intVal][i].location.x = location.x + joint->location.x;
+                    action->frame[intVal][i].location.y = location.y + joint->location.y;
+                    action->frame[intVal][i].location.z = location.z + joint->location.z;
+                    rotMat = action->frame[intVal][i].rotation.matrix();
+                    rotation = joint->rotation * rotMat;
+                    action->frame[intVal][i].rotation = rotation;
+                    action->frame[intVal][i].rotation.normalize();
+                }
+            }
         }
+        
+        line = strtok(NULL, "\n");
+        
     }
     
-    return 0;
+    return (nActions - 1);
+    
+    
+    return -1;
 }
 
 void MD5::optimize(unsigned int vertexCacheSize){
