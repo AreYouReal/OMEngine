@@ -111,10 +111,10 @@ sp<Mesh> MD5::loadMeshData(char *line){
     return mesh;
 }
 
-int MD5::loadAction(string name, string filename){
+sp<Action> MD5::loadAction(string name, string filename){
 
     up<FileContent> content = readBytesFromFile(filename.c_str());
-    if(!content.get()) return -1;
+    if(!content.get()) return nullptr;
     
     sp<Action> action = std::make_shared<Action>();
     action->name = name;
@@ -124,20 +124,21 @@ int MD5::loadAction(string name, string filename){
     int intVal = 0;
     
     while(line){
-        logMessage("%s\n", line);
+//        logMessage("%s\n", line);
         if(sscanf(line, "MD5Version %d", &intVal) == 1){
             if(intVal != 10){
                 logMessage("ERROR! MD5Version %d is not supported!\n", intVal );
-                return -1;
+                return nullptr;
             }
         }else if(sscanf(line, "numFrames %d", &action->nFrames) == 1){
             action->frame.resize(action->nFrames);
             for(auto &vecEntry : action->frame){
                 vecEntry.resize(numJoints);
             }
-        }else if(sscanf(line, "numJoints %d", &numMeshes) == 1){
+        }else if(sscanf(line, "numJoints %d", &intVal) == 1){
             if(numJoints != intVal){
                 logMessage("ERROR! num of MD5 joints and action joints is different!\n");
+                return nullptr;
             }
             action->pose.reserve(numJoints);
         }else if(sscanf(line, "frameRate %d", &intVal) == 1){
@@ -169,10 +170,9 @@ int MD5::loadAction(string name, string filename){
                     action->frame[intVal][i].location.x = location.x + joint->location.x;
                     action->frame[intVal][i].location.y = location.y + joint->location.y;
                     action->frame[intVal][i].location.z = location.z + joint->location.z;
-                    rotMat = action->frame[intVal][i].rotation.matrix();
-                    rotation = joint->rotation * rotMat;
+                    rotation = joint->rotation * action->frame[intVal][i].rotation;
+                    rotation.normalize();
                     action->frame[intVal][i].rotation = rotation;
-                    action->frame[intVal][i].rotation.normalize();
                 }
             }
         }
@@ -180,11 +180,15 @@ int MD5::loadAction(string name, string filename){
         line = strtok(NULL, "\n");
         
     }
-    
-    return (nActions - 1);
-    
-    
-    return -1;
+    actions.insert(std::pair<string, sp<Action>>(action->name, action));
+    return actions[action->name];
+}
+
+sp<Action> MD5::getAction(const string name){
+    if(actions.find(name) == actions.end()){
+        return nullptr;
+    }
+    return actions[name];
 }
 
 void MD5::optimize(unsigned int vertexCacheSize){
@@ -214,9 +218,9 @@ void MD5::build(){
         mesh->initMaterial();
     }
     
-    setPose();
+    setPose(bindPose);
     buildPoseWeightedNormalsTangents();
-    setPose();
+    setPose(bindPose);
     updateBoundMesh();
 }
 
@@ -228,7 +232,7 @@ void MD5::draw(){
     }
 }
 
-void MD5::setPose(){    
+void MD5::setPose(std::vector<Joint> bindPose){
     for(auto &mesh : meshes){
         v3d *vertexArray = (v3d*)&mesh->vertexData[0];
         v3d *normalArray = (v3d*)&mesh->vertexData[mesh->offset[1]];
@@ -440,4 +444,35 @@ void Mesh::draw(){
         
         glDrawElements(mode, nIndices, GL_UNSIGNED_SHORT, nullptr);
     }
+}
+
+int MD5::drawAction(sp<Action> action, const float timeStep){
+    if(action->state == Action::State::PLAY){
+        action->frameTime += timeStep;
+        switch (action->method) {
+            case Action::InterpolationMethod::FRAME:
+                if(action->frameTime >= action->fps){
+                    action->pose = action->frame[action->currFrame];
+                    ++action->currFrame;
+                    if(action->currFrame == action->nFrames){
+                        if(action->loop){
+                            action->currFrame = 0;
+                        }else{
+                            action->state = Action::State::STOP;
+                            break;
+                        }
+                    }
+                    action->nextFrame = action->currFrame + 1;
+                    if(action->nextFrame == action->nFrames) action->nextFrame = 0;
+                    action->frameTime -= action->fps;
+                    return 1;
+                }
+                break;
+                
+            default:
+                return 0;
+                break;
+        }
+    }
+    return 0;
 }

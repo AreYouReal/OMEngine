@@ -8,6 +8,9 @@
 #include "md5.hpp"
 
 sp<md5::MD5> md5struct;
+sp<md5::Action> idle;
+sp<md5::Action> walk;
+
 
 void initMD5(){
     md5struct = md5::MD5::loadMesh("bob.md5mesh");
@@ -15,7 +18,15 @@ void initMD5(){
     md5struct->build();
     md5struct->freeMeshData();
     
-    md5struct->loadAction("idle", "bob_idle.md5anim");
+    idle = md5struct->loadAction("idle", "bob_idle.md5anim");
+    walk = md5struct->loadAction("walk", "bob_walk.md5anim");
+    
+    idle->fps = 1.0f / 24.0f;
+    idle->method = md5::Action::InterpolationMethod::FRAME;
+    idle->loop = true;
+    idle->state = md5::Action::State::PLAY;
+    idle->frameTime = idle->fps;
+    
 //    glDisable(GL_CULL_FACE);
 }
 
@@ -81,6 +92,8 @@ void Scene::update(float deltaTime){
         
     Illuminator::instance()->update(deltaTime);
     Camera::instance()->refreshProjectorMatrix();
+    
+    md5struct->drawAction(idle, deltaTime);
 }
 
 void Scene::drawDepth(){
@@ -139,6 +152,7 @@ void Scene::draw(){
 //    
 //    Illuminator::instance()->getLightSource()->draw();
     
+    if(idle->pose.size() > 0)  md5struct->setPose(idle->pose);
     md5struct->draw();
 }
 

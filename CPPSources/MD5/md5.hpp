@@ -4,6 +4,9 @@
 #include "ObjMaterial.h"
 
 namespace md5{
+    
+
+    
 struct Joint{
     string  name;
     int     parent;
@@ -70,9 +73,23 @@ struct Action{
     int         nextFrame;
     unsigned char state;
     unsigned char method;
-    unsigned char loop;
+    bool    loop;
     float frameTime;
     float fps;
+    
+    
+    enum InterpolationMethod {
+        FRAME = 0,
+        LERP  = 1,
+        SLERP = 2
+    };
+    
+    enum State
+    {
+        STOP  = 0,
+        PLAY  = 1,
+        PAUSE = 2
+    };
 };
     
     class MD5{
@@ -85,7 +102,7 @@ struct Action{
         unsigned int numMeshes;
         std::vector<sp<Mesh>> meshes;
         unsigned int nActions;
-        std::vector<sp<Action>>  actions;
+        std::map<string, sp<Action>>  actions;
         v3d     location;
         v3d     rotation;
         v3d     scale;
@@ -105,12 +122,16 @@ struct Action{
         
         static sp<MD5> loadMesh(const string filename);
         
-        int loadAction(const string name, const string filename);
+        sp<Action> loadAction(const string name, const string filename);
+        sp<Action> getAction(const string name);
+        
+        int drawAction(sp<Action> action, const float timeStep);
+          void setPose(std::vector<Joint> bindPose);
         
     private:
         static sp<Mesh> loadMeshData(char* line);
         
-        void setPose();
+
         void buildPoseWeightedNormalsTangents();
         void updateBoundMesh();
     };
