@@ -37,6 +37,8 @@ v3d& v3d::operator=(const v3d& vec3){
     return *this;
 }
 
+
+
 void v3d::operator+=(const v3d &vec){
     x += vec.x; y += vec.y; z += vec.z;
 }

@@ -94,7 +94,7 @@ struct Action{
     
 class MD5{
 public:
-        enum AnimType{ SINGLE_ACTION, BLEND_ACTIONS };
+        enum AnimType{ SINGLE_ACTION, BLEND_ACTIONS, ADD_ACTIONS };
     
         string name;
         bool    visible;
@@ -134,6 +134,8 @@ public:
         void playAction(const string name, const Action::InterpolationMethod method);
         
         void blendActions(const std::vector<Joint> &pose_1, const std::vector<Joint> &pose_2, Action::InterpolationMethod interpolationMethod, float blend);
+    
+    void addActions(const std::vector<Joint> &pose_1, const std::vector<Joint> &pose_12, const std::vector<Joint> &pose_2, const std::vector<Joint> &pose_22, Action::InterpolationMethod interpolationMethod, float blend);
         
     private:
         static sp<Mesh> loadMeshData(char* line);

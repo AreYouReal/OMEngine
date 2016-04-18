@@ -19,12 +19,16 @@ void initMD5(){
     md5struct->freeMeshData();
     
     idle = md5struct->loadAction("idle", "bob_idle.md5anim");
-//    walk = md5struct->loadAction("walk", "bob_walk.md5anim");
+    walk = md5struct->loadAction("walk", "bob_walk.md5anim");
     
     logMessage("BEFORE PLAY ACTION\n");
     
+    
+    
     md5struct->playAction("idle", md5::Action::InterpolationMethod::FRAME);
-//    md5struct->playAction("walk", md5::Action::InterpolationMethod::FRAME);
+    md5struct->playAction("walk", md5::Action::InterpolationMethod::FRAME);
+    
+    md5struct->mAnimType = md5::MD5::AnimType::ADD_ACTIONS;
     
 //    glDisable(GL_CULL_FACE);
 }

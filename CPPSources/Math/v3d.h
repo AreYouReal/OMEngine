@@ -73,6 +73,13 @@ struct v2d{
 v2d operator+(const v2d &lhs, const v2d &rhs);
 v2d operator-(const v2d &lhs, const v2d &rhs);
 
+inline bool operator!=(const v3d &lhs, const v3d &rhs){
+    return (lhs.x != rhs.x || lhs.y != rhs.y || lhs.z != rhs.z);
+}
+
+inline bool operator==(const v3d &lhs, const v3d &rhs){
+    return (lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z);
+}
 
 v3d operator*(const float scalar, const v3d& vec3);
 v3d operator*(const v3d& vec3, const float scalar);
