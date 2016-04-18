@@ -32,7 +32,7 @@ inline void Transform::translate(float deltaX, float deltaY, float deltaZ){
 }
 
 void Transform::rotate(float xRad, float yRad, float zRad){
-    mRotation = q4d(xRad, 1.0f, 0.0f, 0.0f) * q4d(yRad, 0.0f, 1.0f, 0.0f) * q4d(zRad, 0.0f, 0.0f, 1.0f);
+    mRotation = q4d(xRad, v3d(1.0f, 0.0f, 0.0f)) * q4d(yRad, v3d(0.0f, 1.0f, 0.0f)) * q4d(zRad, v3d(0.0f, 0.0f, 1.0f));
     
     mFront = mFront * mRotation.matrix();
     mUp = mUp * mRotation.matrix();

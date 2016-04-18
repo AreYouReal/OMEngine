@@ -113,6 +113,8 @@ sp<Mesh> MD5::loadMeshData(char *line){
 
 sp<Action> MD5::loadAction(string name, string filename){
 
+    logMessage("LOAD ACTION: %s, %s\n", name.c_str(), filename.c_str());
+    
     up<FileContent> content = readBytesFromFile(filename.c_str());
     if(!content.get()) return nullptr;
     
@@ -234,6 +236,21 @@ void MD5::draw(){
 }
 
 void MD5::setPose(){
+    switch (mAnimType) {
+        case SINGLE_ACTION:
+            if(currentActions.size() != 0)
+                mBindPose = currentActions[0]->pose;
+            break;
+        case BLEND_ACTIONS:
+            if(currentActions.size() >= 2){
+                blendActions(currentActions[0]->pose, currentActions[1]->pose, Action::InterpolationMethod::FRAME, 0.5f);
+            }
+            
+            // blend actions goes here
+            break;
+        default:
+            break;
+    }
     for(auto &mesh : meshes){
         v3d *vertexArray = (v3d*)&mesh->vertexData[0];
         v3d *normalArray = (v3d*)&mesh->vertexData[mesh->offset[1]];
@@ -245,9 +262,9 @@ void MD5::setPose(){
         memset(normalArray, 0, mesh->offset[1]);
         memset(tangentArray, 0, mesh->offset[1]);
         
-        for(uint j = 0; j < mesh->nVertex; ++j){
+        for(unsigned int j = 0; j < mesh->nVertex; ++j){
             Vertex vertex = mesh->vertices[j];
-            for(ushort i = 0; i < vertex.count; ++i){
+            for(unsigned short i = 0; i < vertex.count; ++i){
                 v3d location    (0, 0, 0);
                 v3d normal      (0, 0, 0);
                 v3d tangent     (0, 0, 0);
@@ -462,7 +479,7 @@ bool MD5::updateAction(const sp<Action> action, const float timeStep){
         switch (action->method) {
             case Action::InterpolationMethod::FRAME:{
                 if(action->frameTime >= action->fps){
-                    action->pose = action->frame[currentAction->currFrame];
+                    action->pose = action->frame[action->currFrame];
                     ++action->currFrame;
                     if(action->currFrame == action->nFrames){
                         if(action->loop){
@@ -495,16 +512,19 @@ bool MD5::updateAction(const sp<Action> action, const float timeStep){
 }
 
 void MD5::playAction(const string name, const Action::InterpolationMethod method){
-    currentAction = getAction(name);
-    currentAction->fps = 1.0f / 24.0f;
-    currentAction->method = method;
-    currentAction->loop = true;
-    currentAction->state = md5::Action::State::PLAY;
-    if(!currentAction->frameTime && method == Action::InterpolationMethod::FRAME)
-        currentAction->frameTime = currentAction->fps;
+    sp<Action> action = getAction(name);
+    if(!action) return;
+    action->fps = 1.0f / 24.0f;
+    action->method = method;
+    action->loop = true;
+    action->state = md5::Action::State::PLAY;
+    if(!action->frameTime && method == Action::InterpolationMethod::FRAME)
+        action->frameTime = action->fps;
+    
+    currentActions.push_back(action);
 }
 
-void MD5::blendPose(const std::vector<Joint> &pose_1, const std::vector<Joint> &pose_2, Action::InterpolationMethod interpolationMethod, float blend){
+void MD5::blendActions(const std::vector<Joint> &pose_1, const std::vector<Joint> &pose_2, Action::InterpolationMethod interpolationMethod, float blend){
     for(unsigned int i = 0; i < numJoints; ++i){
         mBindPose[i].location = v3d::lerp(pose_1[i].location, pose_2[i].location, blend);
         switch (interpolationMethod) {

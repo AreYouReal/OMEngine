@@ -92,11 +92,14 @@ struct Action{
     };
 };
     
-    class MD5{
-    public:
-        
+class MD5{
+public:
+        enum AnimType{ SINGLE_ACTION, BLEND_ACTIONS };
+    
         string name;
         bool    visible;
+        AnimType mAnimType = SINGLE_ACTION;
+    
         unsigned int numJoints;
         std::vector<Joint> mBindPose;
         unsigned int numMeshes;
@@ -130,19 +133,19 @@ struct Action{
         
         void playAction(const string name, const Action::InterpolationMethod method);
         
-                void blendPose(const std::vector<Joint> &pose_1, const std::vector<Joint> &pose_2, Action::InterpolationMethod interpolationMethod, float blend);
+        void blendActions(const std::vector<Joint> &pose_1, const std::vector<Joint> &pose_2, Action::InterpolationMethod interpolationMethod, float blend);
         
     private:
         static sp<Mesh> loadMeshData(char* line);
         
-        sp<Action> currentAction;
+    std::vector<sp<Action>> currentActions;
 
-
+    
         
         void buildPoseWeightedNormalsTangents();
         void updateBoundMesh();
-            void setPose();
-    };
+        void setPose();
+};
     
 }
 

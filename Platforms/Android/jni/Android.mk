@@ -22,6 +22,7 @@ $(SRC_PATH)/CPPSources/Material/ObjMaterial.cpp\
 $(SRC_PATH)/CPPSources/Math/m4d.cpp\
 $(SRC_PATH)/CPPSources/Math/q4d.cpp\
 $(SRC_PATH)/CPPSources/Math/v3d.cpp\
+$(SRC_PATH)/CPPSources/MD5/md5.cpp\
 $(SRC_PATH)/CPPSources/Obj/Obj.cpp\
 $(SRC_PATH)/CPPSources/Obj/ObjMesh.cpp\
 $(SRC_PATH)/CPPSources/OMGame.cpp\
@@ -249,6 +250,7 @@ $(SRC_PATH)/CPPSources/GameObject\
 $(SRC_PATH)/CPPSources/Light\
 $(SRC_PATH)/CPPSources/Material\
 $(SRC_PATH)/CPPSources/Math\
+$(SRC_PATH)/CPPSources/MD5\
 $(SRC_PATH)/CPPSources/Obj\
 $(SRC_PATH)/CPPSources\
 $(SRC_PATH)/CPPSources/Physics\

@@ -19,10 +19,12 @@ void initMD5(){
     md5struct->freeMeshData();
     
     idle = md5struct->loadAction("idle", "bob_idle.md5anim");
-    walk = md5struct->loadAction("walk", "bob_walk.md5anim");
+//    walk = md5struct->loadAction("walk", "bob_walk.md5anim");
+    
+    logMessage("BEFORE PLAY ACTION\n");
     
     md5struct->playAction("idle", md5::Action::InterpolationMethod::FRAME);
-    md5struct->playAction("walk", md5::Action::InterpolationMethod::FRAME);
+//    md5struct->playAction("walk", md5::Action::InterpolationMethod::FRAME);
     
 //    glDisable(GL_CULL_FACE);
 }
@@ -92,12 +94,11 @@ void Scene::update(float deltaTime){
     
     
     md5struct->updateActions(deltaTime);
-//    md5struct->blendPose(md5struct->getAction("idle")->pose, md5struct->getAction("walk")->pose, md5::Action::InterpolationMethod::FRAME, 0.9f );
 }
 
 void Scene::drawDepth(){
-    glGetIntegerv(GL_FRAMEBUFFER_BINDING, &Camera::instance()->mMainBuffer);
-    
+//    glGetIntegerv(GL_FRAMEBUFFER_BINDING, &Camera::instance()->mMainBuffer);
+//    
 //    glBindFramebuffer( GL_FRAMEBUFFER, Camera::instance()->shadowBuffer());
 //    
 ////        glBindFramebuffer(GL_FRAMEBUFFER, Camera::instance()->mMainBuffer);
@@ -127,16 +128,16 @@ void Scene::drawDepth(){
 
 void Scene::draw(){
    
-    glBindFramebuffer(GL_FRAMEBUFFER, Camera::instance()->mMainBuffer);
-    
-//    glColorMask ( GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE );
-    logGLError();
-    
+//    glBindFramebuffer(GL_FRAMEBUFFER, Camera::instance()->mMainBuffer);
+//    
+////    glColorMask ( GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE );
+//    logGLError();
+//    
     glViewport(0, 0, Camera::instance()->width(), Camera::instance()->height());
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear( GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT );
-    
-
+//
+//
 //    for(const auto& go : mObjects){
 //        for(int i = (int)ComponentEnum::MESH_RENDERER; i <= (int)ComponentEnum::DEBUG_DRAW; ++i){
 //            IComponent *comp = go->getComponent((ComponentEnum)i);

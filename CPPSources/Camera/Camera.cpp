@@ -93,7 +93,7 @@ void Camera::onTouchBegin(const int x, const int y){
         viewLocation.x = x;
         viewLocation.y = y;
     }
-//    logMessage("Camera::onTouchBegin [ %d, %d ]\n", x, y);
+    logMessage("Camera::onTouchBegin [ %d, %d ]\n", x, y);
 }
 
 void Camera::onTouchMove(const int x, const int y){
@@ -113,13 +113,13 @@ void Camera::onTouchMove(const int x, const int y){
     
     if(viewDelta.x || viewDelta.y){
         if(viewDelta.y){
-//            logMessage("viewDelta.y: %f\n", viewDelta.y);
+            logMessage("viewDelta.y: %f\n", viewDelta.y);
             v3d axis(1.0f, .0f, 0.0f);
             rotate(viewDelta.y, Camera::instance()->transform.mRight);
         }
         
         if(viewDelta.x){
-//            logMessage("viewDelta.x: %f\n", viewDelta.x);
+            logMessage("viewDelta.x: %f\n", viewDelta.x);
             rotate(-viewDelta.x, Camera::instance()->transform.mUp);
         }
         
