@@ -98,7 +98,7 @@ struct Action{
         string name;
         bool    visible;
         unsigned int numJoints;
-        std::vector<Joint> bindPose;
+        std::vector<Joint> mBindPose;
         unsigned int numMeshes;
         std::vector<sp<Mesh>> meshes;
         unsigned int nActions;
@@ -125,15 +125,23 @@ struct Action{
         sp<Action> loadAction(const string name, const string filename);
         sp<Action> getAction(const string name);
         
-        int drawAction(sp<Action> action, const float timeStep);
-          void setPose(std::vector<Joint> bindPose);
+        bool updateAction(const sp<Action> action, const float timeStep);
+        void updateActions(const float timeStep);
+        
+        void playAction(const string name, const Action::InterpolationMethod method);
+        
+                void blendPose(const std::vector<Joint> &pose_1, const std::vector<Joint> &pose_2, Action::InterpolationMethod interpolationMethod, float blend);
         
     private:
         static sp<Mesh> loadMeshData(char* line);
         
+        sp<Action> currentAction;
 
+
+        
         void buildPoseWeightedNormalsTangents();
         void updateBoundMesh();
+            void setPose();
     };
     
 }

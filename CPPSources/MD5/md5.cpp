@@ -29,7 +29,7 @@ sp<MD5> MD5::loadMesh(string filename){
             if(intVal != 10 ) return nullptr;
         }else if(sscanf(line, "numJoints %d", &md5->numJoints) == 1){
 //            logMessage("numJoints %d \n", md5->numJoints);
-            md5->bindPose.reserve(md5->numJoints);
+            md5->mBindPose.reserve(md5->numJoints);
         }else if(sscanf(line, "numMeshes %d", &md5->numMeshes)){
 //            logMessage("numMeshes %d\n", md5->numMeshes);
             md5->meshes.reserve(md5->numMeshes);
@@ -54,7 +54,7 @@ sp<MD5> MD5::loadMesh(string filename){
                           ) == 8){
                     joint.rotation.calculateWFromXYZ();
                     joint.name = temp;
-                    md5->bindPose.push_back(joint);
+                    md5->mBindPose.push_back(joint);
                 }
                 line = strtok(NULL, "\n");
             }
@@ -153,7 +153,7 @@ sp<Action> MD5::loadAction(string name, string filename){
                           &joint[i].rotation.x,
                           &joint[i].rotation.y,
                           &joint[i].rotation.z) == 6){
-                    joint[i].name = bindPose[i].name;
+                    joint[i].name = mBindPose[i].name;
                     joint[i].rotation.calculateWFromXYZ();
                 }
                 line = strtok(NULL, "\n");
@@ -163,8 +163,8 @@ sp<Action> MD5::loadAction(string name, string filename){
             q4d rotation;
             
             for(unsigned int i = 0; i < numJoints; ++i){
-                if(bindPose[i].parent > -1){
-                    Joint *joint = &action->frame[intVal][bindPose[i].parent];
+                if(mBindPose[i].parent > -1){
+                    Joint *joint = &action->frame[intVal][mBindPose[i].parent];
                     m4d rotMat = joint->rotation.matrix();
                     location = action->frame[intVal][i].location * rotMat;
                     action->frame[intVal][i].location.x = location.x + joint->location.x;
@@ -218,13 +218,14 @@ void MD5::build(){
         mesh->initMaterial();
     }
     
-    setPose(bindPose);
+    setPose();
     buildPoseWeightedNormalsTangents();
-    setPose(bindPose);
+    setPose();
     updateBoundMesh();
 }
 
 void MD5::draw(){
+    setPose();
     if(visible && distance){
         for(auto &mesh : meshes){
             mesh->draw();
@@ -232,7 +233,7 @@ void MD5::draw(){
     }
 }
 
-void MD5::setPose(std::vector<Joint> bindPose){
+void MD5::setPose(){
     for(auto &mesh : meshes){
         v3d *vertexArray = (v3d*)&mesh->vertexData[0];
         v3d *normalArray = (v3d*)&mesh->vertexData[mesh->offset[1]];
@@ -252,7 +253,7 @@ void MD5::setPose(std::vector<Joint> bindPose){
                 v3d tangent     (0, 0, 0);
                 
                 Weight md5weight = mesh->weights[vertex.start + i];
-                Joint md5joint = bindPose[md5weight.joint];
+                Joint md5joint = mBindPose[md5weight.joint];
                 
 //                logMessage("[%f %f %f] [%f %f %f %f]\n", md5joint.location.x, md5joint.location.y, md5joint.location.z, md5joint.rotation.x, md5joint.rotation.y, md5joint.rotation.z, md5joint.rotation.w );
                 
@@ -342,7 +343,7 @@ void MD5::buildPoseWeightedNormalsTangents(){
         for(auto &vertex : mesh->vertices){
             for(int i = 0; i < vertex.count; ++i){
                 Weight *md5weight = &mesh->weights[vertex.start + i];
-                Joint md5joint = bindPose[md5weight->joint];
+                Joint md5joint = mBindPose[md5weight->joint];
                 v3d normal(vertex.normal.x, vertex.normal.y, vertex.normal.z);
                 v3d tangent(vertex.tangent.x, vertex.tangent.y, vertex.tangent.z);
                 q4d rotation(md5joint.rotation.conjugate());
@@ -446,13 +447,22 @@ void Mesh::draw(){
     }
 }
 
-int MD5::drawAction(sp<Action> action, const float timeStep){
+void MD5::updateActions(const float timeStep){
+    for(auto const& action : actions){
+        if(action.second->state == Action::State::PLAY)
+            updateAction(action.second, timeStep);
+    }
+}
+
+bool MD5::updateAction(const sp<Action> action, const float timeStep){
+    if(!action) return false;
+    
     if(action->state == Action::State::PLAY){
         action->frameTime += timeStep;
         switch (action->method) {
-            case Action::InterpolationMethod::FRAME:
+            case Action::InterpolationMethod::FRAME:{
                 if(action->frameTime >= action->fps){
-                    action->pose = action->frame[action->currFrame];
+                    action->pose = action->frame[currentAction->currFrame];
                     ++action->currFrame;
                     if(action->currFrame == action->nFrames){
                         if(action->loop){
@@ -465,14 +475,46 @@ int MD5::drawAction(sp<Action> action, const float timeStep){
                     action->nextFrame = action->currFrame + 1;
                     if(action->nextFrame == action->nFrames) action->nextFrame = 0;
                     action->frameTime -= action->fps;
-                    return 1;
+                    return true;
                 }
                 break;
-                
+            }
+            case Action::InterpolationMethod::LERP:
+            case Action::InterpolationMethod::SLERP:{
+                float t = std::max(0.0f, std::min((action->frameTime / action->fps) , 1.0f) );
+                // blend pose goes here
+                return true;
+                break;
+            }
             default:
-                return 0;
+                return false;
                 break;
         }
     }
-    return 0;
+    return false;
+}
+
+void MD5::playAction(const string name, const Action::InterpolationMethod method){
+    currentAction = getAction(name);
+    currentAction->fps = 1.0f / 24.0f;
+    currentAction->method = method;
+    currentAction->loop = true;
+    currentAction->state = md5::Action::State::PLAY;
+    if(!currentAction->frameTime && method == Action::InterpolationMethod::FRAME)
+        currentAction->frameTime = currentAction->fps;
+}
+
+void MD5::blendPose(const std::vector<Joint> &pose_1, const std::vector<Joint> &pose_2, Action::InterpolationMethod interpolationMethod, float blend){
+    for(unsigned int i = 0; i < numJoints; ++i){
+        mBindPose[i].location = v3d::lerp(pose_1[i].location, pose_2[i].location, blend);
+        switch (interpolationMethod) {
+            case Action::InterpolationMethod::FRAME:
+            case Action::InterpolationMethod::LERP:
+            case Action::InterpolationMethod::SLERP:
+                mBindPose[i].rotation = q4d::lerp(pose_1[i].rotation, pose_2[i].rotation, blend);
+                break;
+            default:
+                break;
+        }
+    }
 }

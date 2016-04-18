@@ -21,11 +21,8 @@ void initMD5(){
     idle = md5struct->loadAction("idle", "bob_idle.md5anim");
     walk = md5struct->loadAction("walk", "bob_walk.md5anim");
     
-    idle->fps = 1.0f / 24.0f;
-    idle->method = md5::Action::InterpolationMethod::FRAME;
-    idle->loop = true;
-    idle->state = md5::Action::State::PLAY;
-    idle->frameTime = idle->fps;
+    md5struct->playAction("idle", md5::Action::InterpolationMethod::FRAME);
+    md5struct->playAction("walk", md5::Action::InterpolationMethod::FRAME);
     
 //    glDisable(GL_CULL_FACE);
 }
@@ -93,7 +90,9 @@ void Scene::update(float deltaTime){
     Illuminator::instance()->update(deltaTime);
     Camera::instance()->refreshProjectorMatrix();
     
-    md5struct->drawAction(idle, deltaTime);
+    
+    md5struct->updateActions(deltaTime);
+//    md5struct->blendPose(md5struct->getAction("idle")->pose, md5struct->getAction("walk")->pose, md5::Action::InterpolationMethod::FRAME, 0.9f );
 }
 
 void Scene::drawDepth(){
@@ -152,7 +151,6 @@ void Scene::draw(){
 //    
 //    Illuminator::instance()->getLightSource()->draw();
     
-    if(idle->pose.size() > 0)  md5struct->setPose(idle->pose);
     md5struct->draw();
 }
 

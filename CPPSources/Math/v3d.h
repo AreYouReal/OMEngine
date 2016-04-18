@@ -11,6 +11,7 @@ const float PI = atan(1.0f)*4.0f;
 // Forward declaration
 struct v3d;
 struct m4d;
+struct q4d;
 
 struct v4d{
 public:
@@ -28,6 +29,7 @@ public:
     float x{0}, y{0}, z{0}, w{1};
        
     static float dot(const v4d& v1, const v4d& v2);
+    static float dot(const q4d& q1, const q4d& q2);
     
     static void print(const v4d& vec4);
 };
@@ -58,6 +60,7 @@ struct v3d{
     
     static void print(const v3d& vec3);
     
+    static v3d lerp(const v3d& v1, const v3d& v2, const float blend);
 
 };
 

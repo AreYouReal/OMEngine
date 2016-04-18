@@ -160,8 +160,42 @@ void q4d::print(const q4d& q4){
 }
 
 q4d q4d::lerp(const q4d &q1, const q4d &q2, float t){
-    return q4d(q1 + (q2 - q1) * t);
+    if(t == 1.0f) return q4d(q2);
+    else if(t == 0.0f) return q4d(q1);
+    else{
+        float dot = v4d::dot(q1, q2);
+        q4d temp(q2);
+        if(dot < 0.0f){
+            temp.x = -temp.x;
+            temp.y = -temp.y;
+            temp.z = -temp.z;
+            temp.w = -temp.w;
+            dot = -dot;
+        }
+        
+        float k0, k1;
+        if(dot > 0.999999f){
+            k0 = 1.0f - t;
+            k1 = t;
+        }else{
+            float s = sqrtf(1.0f - (dot * dot));
+            float o = atan2f(s, dot);
+            float o1 = 1.0f / s;
+            
+            k0 = sinf((1.0f - t) * o) * o1;
+            k1 = sinf( t * o ) * o1;
+        }
+        
+        return q4d(  ((k0 * q1.x) + (k1 * temp.x))
+                   , ((k0 * q1.y) + (k1 * temp.y))
+                   , ((k0 * q1.z) + (k1 * temp.z))
+                   , ((k0 * q1.w) + (k1 * temp.w)) );
+    }
 }
+q4d q4d::slerp(const q4d& q1, const q4d& q2, float t){
+    return lerp(q1, q1, t);
+}
+
 
 q4d operator*(const q4d& q1, const q4d& q2){
     q4d quaternion;
