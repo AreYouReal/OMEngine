@@ -3,6 +3,7 @@
 #include "Camera.h"
 
 #include "Shortcuts.h"
+
 Scene::Scene(){
     logGLError();
     Camera::instance();
@@ -32,7 +33,8 @@ bool Scene::init(){
 //    createBallsScene();
 //    createTestScene();
     
-    createLightTestScene();
+    createBob();
+//    createLightTestScene();
     logGLError();
 //    sp<Texture> projTexture = Materials::instance()->getTexture("projector.png");
 //    glBindTexture(GL_TEXTURE_2D, projTexture->ID);
@@ -275,7 +277,9 @@ logGLError();
         if(!mesh->getName().compare("projector")) continue;
         addMeshRendererOnScene("lightScene", mesh->getName());
     }
-    
+}
+
+void Scene::createBob(){
     up<GameObject> go = std::unique_ptr<GameObject>(new GameObject("BOB"));
     std::vector<string> actions;
     actions.push_back("bob_idle.md5anim");

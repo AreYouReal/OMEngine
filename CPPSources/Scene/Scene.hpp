@@ -47,6 +47,8 @@ public:
     
     void createLightTestScene();
     
+    void createBob();
+    
     void addMeshRendererOnScene(string objName, string meshName);
     
 private:
