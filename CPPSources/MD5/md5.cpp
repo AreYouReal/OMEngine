@@ -245,14 +245,17 @@ void MD5::setPose(){
             if(currentActions.size() >= 2){
                 blendActions(currentActions[0]->pose, currentActions[1]->pose, Action::InterpolationMethod::FRAME, 0.5f);
             }
+            break;
         case ADD_ACTIONS:
             if(currentActions.size() >= 2){
-                addActions(currentActions[0]->frame[currentActions[0]->currFrame], currentActions[0]->frame[currentActions[0]->nextFrame], currentActions[1]->frame[currentActions[1]->currFrame], currentActions[1]->frame[currentActions[1]->nextFrame], Action::InterpolationMethod::FRAME, 0.5f);
+                addActions(currentActions[0], currentActions[1], Action::InterpolationMethod::FRAME, 0.5f);
             }
             break;
         default:
             break;
     }
+    
+    
     for(auto &mesh : meshes){
         v3d *vertexArray = (v3d*)&mesh->vertexData[0];
         v3d *normalArray = (v3d*)&mesh->vertexData[mesh->offset[1]];
@@ -541,22 +544,22 @@ void MD5::blendActions(const std::vector<Joint> &pose_1, const std::vector<Joint
     }
 }
 
-void MD5::addActions(const std::vector<Joint> &pose_1, const std::vector<Joint> &pose_12, const std::vector<Joint> &pose_2, const std::vector<Joint> &pose_22, Action::InterpolationMethod interpolationMethod, float blend){
+void MD5::addActions(sp<Action> action1, sp<Action> action2, Action::InterpolationMethod interpolationMethod, float blend){
     for(unsigned int i = 0; i < numJoints; ++i){
-        if((pose_2[i].location == pose_22[i].location) || (pose_2[i].rotation == pose_22[i].rotation)){
-            mBindPose[i].location = v3d::lerp( pose_1[i].location, pose_2[i].location, blend);
+        if((action1->frame[action1->currFrame][i].location == action1->frame[action1->nextFrame][i].location) || (action1->frame[action1->currFrame][i].rotation == action1->frame[action1->nextFrame][i].rotation)){
+            mBindPose[i].location = v3d::lerp( action1->pose[i].location, action2->pose[i].location, blend);
             switch (interpolationMethod) {
                 case Action::FRAME:
                 case Action::LERP:
                 case Action::SLERP:
-                    mBindPose[i].rotation = q4d::lerp(pose_1[i].rotation, pose_2[i].rotation, blend);
+                    mBindPose[i].rotation = q4d::lerp(action1->pose[i].rotation, action2->pose[i].rotation, blend);
                     break;
                 default:
                     break;
             }
         }else{
-             mBindPose[i].location = pose_1[i].location;
-            mBindPose[i].rotation = pose_1[i].rotation;
+            mBindPose[i].location = action2->pose[i].location;
+            mBindPose[i].rotation = action2->pose[i].rotation;
         }
 
     }

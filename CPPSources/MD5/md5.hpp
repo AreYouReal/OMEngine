@@ -135,7 +135,7 @@ public:
         
         void blendActions(const std::vector<Joint> &pose_1, const std::vector<Joint> &pose_2, Action::InterpolationMethod interpolationMethod, float blend);
     
-    void addActions(const std::vector<Joint> &pose_1, const std::vector<Joint> &pose_12, const std::vector<Joint> &pose_2, const std::vector<Joint> &pose_22, Action::InterpolationMethod interpolationMethod, float blend);
+    void addActions(sp<Action> action1, sp<Action> action2, Action::InterpolationMethod interpolationMethod, float blend);
         
     private:
         static sp<Mesh> loadMeshData(char* line);
