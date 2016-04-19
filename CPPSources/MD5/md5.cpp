@@ -182,6 +182,7 @@ sp<Action> MD5::loadAction(string name, string filename){
         
     }
     logMessage("LOAD ACTION -> INSERT: %s, %s\n", name.c_str(), filename.c_str());
+
     actions.insert(std::pair<string, sp<Action>>(action->name, action));
     return actions[action->name];
 }

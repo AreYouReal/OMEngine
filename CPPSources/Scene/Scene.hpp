@@ -12,6 +12,7 @@
 
 #include "MeshRendererComponent.hpp"
 #include "DebugDrawComponent.hpp"
+#include "AnimMeshComponent.hpp"
 
 class Scene : public Singleton<Scene>{
 

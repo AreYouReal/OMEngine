@@ -3,34 +3,6 @@
 #include "Camera.h"
 
 #include "Shortcuts.h"
-
-//////////////////
-#include "md5.hpp"
-
-sp<md5::MD5> md5struct;
-
-void initMD5(){
-    md5struct = md5::MD5::loadMesh("bob.md5mesh");
-    md5struct->optimize(128);
-    md5struct->build();
-    md5struct->freeMeshData();
-    
-    
-        md5struct->loadAction("walk", "bob_walk.md5anim");
-    md5struct->loadAction("idle", "bob_idle.md5anim");
-
-    
-    logMessage("BEFORE PLAY ACTION\n");
-    
-    
-    md5struct->playAction("idle", md5::Action::InterpolationMethod::FRAME);
-    md5struct->playAction("walk", md5::Action::InterpolationMethod::FRAME);
-    
-    md5struct->mAnimType = md5::MD5::AnimType::SINGLE_ACTION;
-    
-//    glDisable(GL_CULL_FACE);
-}
-
 Scene::Scene(){
     logGLError();
     Camera::instance();
@@ -70,9 +42,6 @@ bool Scene::init(){
     
     Camera::instance()->initShadowBuffer();
     
-    
-    initMD5();
-    
     logGLError();
     
     return true;
@@ -93,68 +62,63 @@ void Scene::update(float deltaTime){
         
     Illuminator::instance()->update(deltaTime);
     Camera::instance()->refreshProjectorMatrix();
-    
-    
-    md5struct->updateActions(deltaTime);
 }
 
 void Scene::drawDepth(){
-//    glGetIntegerv(GL_FRAMEBUFFER_BINDING, &Camera::instance()->mMainBuffer);
-//    
-//    glBindFramebuffer( GL_FRAMEBUFFER, Camera::instance()->shadowBuffer());
-//    
-////        glBindFramebuffer(GL_FRAMEBUFFER, Camera::instance()->mMainBuffer);
-//    
-//    glViewport(0, 0, Camera::instance()->shadowmapWidth(), Camera::instance()->shadowmapHeight());
-//    glClear(GL_DEPTH_BUFFER_BIT);
-//    
-////    glColorMask ( GL_FALSE, GL_FALSE, GL_FALSE, GL_FALSE );
-//    glEnable ( GL_POLYGON_OFFSET_FILL );
-//    glPolygonOffset( 5.0f, 100.0f );
-//    
-//    glCullFace(GL_FRONT);
-//    Camera::instance()->shadowDraw = true;
-//    for(const auto& go: mObjects){
-//        MeshRendererComponent *mrc = static_cast<MeshRendererComponent*>(go->getComponent(ComponentEnum::MESH_RENDERER));
-//        if(mrc){
-//            mrc->shadowDraw = true;
-//            mrc->draw();
-//            mrc->shadowDraw = false;
-//        }
-//    }
-//    Camera::instance()->shadowDraw = false;
-//    
-//    glCullFace( GL_BACK );
-//    glDisable( GL_POLYGON_OFFSET_FILL );
+    glGetIntegerv(GL_FRAMEBUFFER_BINDING, &Camera::instance()->mMainBuffer);
+    
+    glBindFramebuffer( GL_FRAMEBUFFER, Camera::instance()->shadowBuffer());
+    
+//        glBindFramebuffer(GL_FRAMEBUFFER, Camera::instance()->mMainBuffer);
+    
+    glViewport(0, 0, Camera::instance()->shadowmapWidth(), Camera::instance()->shadowmapHeight());
+    glClear(GL_DEPTH_BUFFER_BIT);
+    
+//    glColorMask ( GL_FALSE, GL_FALSE, GL_FALSE, GL_FALSE );
+    glEnable ( GL_POLYGON_OFFSET_FILL );
+    glPolygonOffset( 5.0f, 100.0f );
+    
+    glCullFace(GL_FRONT);
+    Camera::instance()->shadowDraw = true;
+    for(const auto& go: mObjects){
+        MeshRendererComponent *mrc = static_cast<MeshRendererComponent*>(go->getComponent(ComponentEnum::MESH_RENDERER));
+        if(mrc){
+            mrc->shadowDraw = true;
+            mrc->draw();
+            mrc->shadowDraw = false;
+        }
+    }
+    Camera::instance()->shadowDraw = false;
+    
+    glCullFace( GL_BACK );
+    glDisable( GL_POLYGON_OFFSET_FILL );
 }
 
 void Scene::draw(){
    
-//    glBindFramebuffer(GL_FRAMEBUFFER, Camera::instance()->mMainBuffer);
-//    
-////    glColorMask ( GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE );
-//    logGLError();
-//    
+    glBindFramebuffer(GL_FRAMEBUFFER, Camera::instance()->mMainBuffer);
+    
+//    glColorMask ( GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE );
+    logGLError();
+    
     glViewport(0, 0, Camera::instance()->width(), Camera::instance()->height());
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear( GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT );
-//
-//
-//    for(const auto& go : mObjects){
-//        for(int i = (int)ComponentEnum::MESH_RENDERER; i <= (int)ComponentEnum::DEBUG_DRAW; ++i){
-//            IComponent *comp = go->getComponent((ComponentEnum)i);
-//            if(comp){
-////                sp<Texture> projTexture = Materials::instance()->getTexture("projector.png");
-//                glActiveTexture(GL_TEXTURE0);
-//                glBindTexture(GL_TEXTURE_2D, Camera::instance()->depthTexture());
-//                comp->draw();
-//            }
-//        }
-//    }
-//    
-//    Illuminator::instance()->getLightSource()->draw();
+
+
+    for(const auto& go : mObjects){
+        for(int i = (int)ComponentEnum::MESH_RENDERER; i <= (int)ComponentEnum::DEBUG_DRAW; ++i){
+            IComponent *comp = go->getComponent((ComponentEnum)i);
+            if(comp){
+//                sp<Texture> projTexture = Materials::instance()->getTexture("projector.png");
+                glActiveTexture(GL_TEXTURE0);
+                glBindTexture(GL_TEXTURE_2D, Camera::instance()->depthTexture());
+                comp->draw();
+            }
+        }
+    }
     
-    md5struct->draw();
+    Illuminator::instance()->getLightSource()->draw();
 }
 
 void Scene::setRenderObjectState(RenderObjectType newState){
@@ -311,4 +275,15 @@ logGLError();
         if(!mesh->getName().compare("projector")) continue;
         addMeshRendererOnScene("lightScene", mesh->getName());
     }
+    
+    up<GameObject> go = std::unique_ptr<GameObject>(new GameObject("BOB"));
+    std::vector<string> actions;
+    actions.push_back("bob_idle.md5anim");
+    actions.push_back("bob_walk.md5anim");
+    
+    up<AnimMeshComponent> amc = up<AnimMeshComponent>(new AnimMeshComponent(go.get(), "bob.md5mesh", "bob.mtl", actions));
+    go->addComponent(ComponentEnum::ANIM_MESH, std::move(amc));
+    go->mTransform.translate(10, 10, 10);
+    
+    addObjOnScene(std::move(go));
 }

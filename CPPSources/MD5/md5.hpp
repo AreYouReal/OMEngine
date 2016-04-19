@@ -114,7 +114,6 @@ public:
         v3d     dimension;
         float radius;
         float distance;
-        btRigidBody *btrigidbody;
         
         void optimize(unsigned int vertexCacheSize);
         void build();

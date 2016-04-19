@@ -15,6 +15,8 @@ public:
 
     static    OMContext*      getAppContext();
     
+    static      float           getDeltaTime();
+    
     static  bool debugFlag;
 
 private:

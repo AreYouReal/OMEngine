@@ -215,6 +215,7 @@
 		F34129D51BB53D6E006F4D4D /* ObjMaterial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F34129D31BB53D6E006F4D4D /* ObjMaterial.cpp */; };
 		F34129D81BB53DBC006F4D4D /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F34129D61BB53DBC006F4D4D /* Texture.cpp */; };
 		F3417B191C0F4907006902C9 /* 00.ogg in Resources */ = {isa = PBXBuildFile; fileRef = F3417B181C0F4907006902C9 /* 00.ogg */; };
+		F35AA90F1CC659D300957429 /* AnimMeshComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F35AA90D1CC659D300957429 /* AnimMeshComponent.cpp */; };
 		F368E8C01BA6AC9F00F322AF /* lodepng.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F368E8B71BA6AC9F00F322AF /* lodepng.cpp */; };
 		F368E8C11BA6AC9F00F322AF /* NvTriStrip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F368E8BA1BA6AC9F00F322AF /* NvTriStrip.cpp */; };
 		F368E8C21BA6AC9F00F322AF /* NvTriStripObjects.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F368E8BC1BA6AC9F00F322AF /* NvTriStripObjects.cpp */; };
@@ -775,6 +776,8 @@
 		F34129D71BB53DBC006F4D4D /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Texture.h; sourceTree = "<group>"; };
 		F3417B181C0F4907006902C9 /* 00.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; name = 00.ogg; path = OMEngine/Platforms/Android/assets/00.ogg; sourceTree = "<group>"; };
 		F3473FA41BC3E607001DE43A /* Singleton.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Singleton.hpp; sourceTree = "<group>"; };
+		F35AA90D1CC659D300957429 /* AnimMeshComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimMeshComponent.cpp; sourceTree = "<group>"; };
+		F35AA90E1CC659D300957429 /* AnimMeshComponent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AnimMeshComponent.hpp; sourceTree = "<group>"; };
 		F368E8B71BA6AC9F00F322AF /* lodepng.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lodepng.cpp; sourceTree = "<group>"; };
 		F368E8B81BA6AC9F00F322AF /* lodepng.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lodepng.h; sourceTree = "<group>"; };
 		F368E8BA1BA6AC9F00F322AF /* NvTriStrip.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NvTriStrip.cpp; sourceTree = "<group>"; };
@@ -1099,6 +1102,8 @@
 				F3EA6C2A1C3E8FA2002AF813 /* DebugDrawComponent.hpp */,
 				945F0DD01C54B3AA009C61FE /* RigidBodyComponent.cpp */,
 				945F0DD11C54B3AA009C61FE /* RigidBodyComponent.hpp */,
+				F35AA90D1CC659D300957429 /* AnimMeshComponent.cpp */,
+				F35AA90E1CC659D300957429 /* AnimMeshComponent.hpp */,
 			);
 			name = Component;
 			path = ../../CPPSources/Component;
@@ -2304,6 +2309,7 @@
 				9478900F1BD4CFD200B55A25 /* btHinge2Constraint.cpp in Sources */,
 				F39FA5AF1C0DE15400CC0BB4 /* analysis.c in Sources */,
 				947890361BD4CFD200B55A25 /* btVector3.cpp in Sources */,
+				F35AA90F1CC659D300957429 /* AnimMeshComponent.cpp in Sources */,
 				F3B0F6B71BF0AD9F0044A442 /* stb_truetype.cpp in Sources */,
 				F39FA5C51C0DE15400CC0BB4 /* window.c in Sources */,
 				94788FB51BD4CFD200B55A25 /* btBoxBoxDetector.cpp in Sources */,
