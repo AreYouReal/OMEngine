@@ -122,11 +122,10 @@ sp<Action> MD5::loadAction(string name, string filename){
     action->name = name;
     
     char* line = strtok((char *)content->content, "\n");
-    
     int intVal = 0;
     
     while(line){
-//        logMessage("%s\n", line);
+
         if(sscanf(line, "MD5Version %d", &intVal) == 1){
             if(intVal != 10){
                 logMessage("ERROR! MD5Version %d is not supported!\n", intVal );
@@ -182,6 +181,7 @@ sp<Action> MD5::loadAction(string name, string filename){
         line = strtok(NULL, "\n");
         
     }
+    logMessage("LOAD ACTION -> INSERT: %s, %s\n", name.c_str(), filename.c_str());
     actions.insert(std::pair<string, sp<Action>>(action->name, action));
     return actions[action->name];
 }

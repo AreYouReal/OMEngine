@@ -8,9 +8,6 @@
 #include "md5.hpp"
 
 sp<md5::MD5> md5struct;
-sp<md5::Action> idle;
-sp<md5::Action> walk;
-
 
 void initMD5(){
     md5struct = md5::MD5::loadMesh("bob.md5mesh");
@@ -18,17 +15,18 @@ void initMD5(){
     md5struct->build();
     md5struct->freeMeshData();
     
-    idle = md5struct->loadAction("idle", "bob_idle.md5anim");
-    walk = md5struct->loadAction("walk", "bob_walk.md5anim");
+    
+        md5struct->loadAction("walk", "bob_walk.md5anim");
+    md5struct->loadAction("idle", "bob_idle.md5anim");
+
     
     logMessage("BEFORE PLAY ACTION\n");
-    
     
     
     md5struct->playAction("idle", md5::Action::InterpolationMethod::FRAME);
     md5struct->playAction("walk", md5::Action::InterpolationMethod::FRAME);
     
-    md5struct->mAnimType = md5::MD5::AnimType::BLEND_ACTIONS;
+    md5struct->mAnimType = md5::MD5::AnimType::SINGLE_ACTION;
     
 //    glDisable(GL_CULL_FACE);
 }
