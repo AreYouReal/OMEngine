@@ -31,7 +31,7 @@ bool AnimMeshComponent::init(){
 }
 
 void AnimMeshComponent::update(){
-    md5->updateActions(OMGame::getDeltaTime());
+    md5->updateActions(Time::deltaTime);
 }
 
 void AnimMeshComponent::draw(){

@@ -14,6 +14,8 @@
 #include "m4d.h"        // ALL MATH
 #include "Shortcuts.h"
 
+#include "Time.hpp"
+
 #ifdef __APPLE__
 
 #include <OpenGLES/ES3/gl.h>

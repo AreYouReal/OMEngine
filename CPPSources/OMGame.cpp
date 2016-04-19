@@ -20,17 +20,9 @@
 #include <iostream>
 
 
-
-
 using UserData = struct{};
 static OMContext       *appContext;
 bool OMGame::debugFlag  = true;
-
-static float mDeltaTime;
-
-float OMGame::getDeltaTime(){
-    return mDeltaTime;
-}
 
 // TODO: remove
 Font *f;
@@ -68,7 +60,7 @@ int OMGame::InitGameWorld (){
 
 
 void OMGame::Update(const float deltaTime){
-    mDeltaTime = deltaTime;
+    Time::deltaTime = deltaTime;
     Scene::instance()->update(deltaTime);
 }
 

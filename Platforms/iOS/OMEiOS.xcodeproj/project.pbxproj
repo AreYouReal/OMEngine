@@ -223,6 +223,7 @@
 		F368E8CA1BA6AE5A00F322AF /* fragmentPerPixel.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F368E8C61BA6AE5A00F322AF /* fragmentPerPixel.glsl */; };
 		F3710A151BA6CA6000235C68 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3710A131BA6CA6000235C68 /* Camera.cpp */; };
 		F374BB841CB3E1ED00DBFB47 /* md5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F374BB821CB3E1ED00DBFB47 /* md5.cpp */; };
+		F37D238E1CC681BF000118F6 /* Time.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F37D238C1CC681BF000118F6 /* Time.cpp */; };
 		F37D26441C5F705500433B4F /* NormalSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F37D26421C5F705500433B4F /* NormalSP.cpp */; };
 		F380B7901BBBDC550049E755 /* ObjMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F380B78C1BBBDC550049E755 /* ObjMesh.cpp */; };
 		F380B7911BBBDC550049E755 /* Obj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F380B78E1BBBDC550049E755 /* Obj.cpp */; };
@@ -791,6 +792,8 @@
 		F3710A141BA6CA6000235C68 /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Camera.h; path = ../../CPPSources/Camera/Camera.h; sourceTree = SOURCE_ROOT; };
 		F374BB821CB3E1ED00DBFB47 /* md5.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = md5.cpp; sourceTree = "<group>"; };
 		F374BB831CB3E1ED00DBFB47 /* md5.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = md5.hpp; sourceTree = "<group>"; };
+		F37D238C1CC681BF000118F6 /* Time.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Time.cpp; sourceTree = "<group>"; };
+		F37D238D1CC681BF000118F6 /* Time.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Time.hpp; sourceTree = "<group>"; };
 		F37D26421C5F705500433B4F /* NormalSP.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NormalSP.cpp; path = OMEngine/CPPSources/Shaders/NormalSP.cpp; sourceTree = "<group>"; };
 		F37D26431C5F705500433B4F /* NormalSP.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = NormalSP.hpp; path = OMEngine/CPPSources/Shaders/NormalSP.hpp; sourceTree = "<group>"; };
 		F380B78C1BBBDC550049E755 /* ObjMesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ObjMesh.cpp; sourceTree = "<group>"; };
@@ -1160,6 +1163,8 @@
 				940CF4291B98C220005B6F19 /* Stopwatch.h */,
 				94E5A0DD1BA3FF0700066CC5 /* FileContent.h */,
 				F3473FA41BC3E607001DE43A /* Singleton.hpp */,
+				F37D238C1CC681BF000118F6 /* Time.cpp */,
+				F37D238D1CC681BF000118F6 /* Time.hpp */,
 			);
 			name = Utils;
 			path = ../../CPPSources/Utils;
@@ -2214,6 +2219,7 @@
 				94D5DA681BE2018100DFB8BC /* btWorldImporter.cpp in Sources */,
 				94788FBC1BD4CFD200B55A25 /* btConvex2dConvex2dAlgorithm.cpp in Sources */,
 				94788FF31BD4CFD200B55A25 /* btGImpactCollisionAlgorithm.cpp in Sources */,
+				F37D238E1CC681BF000118F6 /* Time.cpp in Sources */,
 				947890151BD4CFD200B55A25 /* btSolve2LinearConstraint.cpp in Sources */,
 				947890021BD4CFD200B55A25 /* btPersistentManifold.cpp in Sources */,
 				9478901B1BD4CFD200B55A25 /* btMultiBody.cpp in Sources */,
