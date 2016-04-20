@@ -8,6 +8,17 @@
 
 #pragma mark Public
 
+std::map<string, ShaderHelper::ShaderType> enumTypeTable{
+    std::pair<string, ShaderHelper::ShaderType>("Normal", ShaderHelper::Normal),
+    std::pair<string, ShaderHelper::ShaderType>("Grey", ShaderHelper::Grey),
+    std::pair<string, ShaderHelper::ShaderType>("Gouraud", ShaderHelper::Gouraud),
+    std::pair<string, ShaderHelper::ShaderType>("Phong", ShaderHelper::Phong),
+    std::pair<string, ShaderHelper::ShaderType>("Wired", ShaderHelper::Wired),
+    std::pair<string, ShaderHelper::ShaderType>("GourandMultiLight", ShaderHelper::GourandMultiLight),
+    std::pair<string, ShaderHelper::ShaderType>("PhongMultiLight", ShaderHelper::PhongMultiLight),
+    std::pair<string, ShaderHelper::ShaderType>("General", ShaderHelper::General)
+};
+
 sp<ShaderProgram> ShaderHelper::createProgram(string programName, const string vertexShaderFilename, string fragmentShaderFilename, const ShaderType sType){
     logGLError();
     Shader vertexShader = loadShader(GL_VERTEX_SHADER, vertexShaderFilename);
@@ -28,9 +39,9 @@ sp<ShaderProgram> ShaderHelper::createProgram(const string programName, const Sh
         case Grey:
             program = std::make_shared<GreySP>();
             break;
-        case DefaultPerVertex:
-        case DefaultPerPixel:
-            program = std::make_shared<DefaultDiffuseSP>();
+        case Gouraud:
+        case Phong:
+            program = std::make_shared<GouraudPhongSingleLight>();
             break;
         case Wired:
             program = std::make_shared<WireSP>();
@@ -88,6 +99,13 @@ sp<ShaderProgram> ShaderHelper::createProgram(const string programName, const Sh
     logGLError();
     
     return program;
+}
+
+ShaderHelper::ShaderType ShaderHelper::getTypeFromString(const string strType){
+    if(enumTypeTable.find(strType) != enumTypeTable.end()){
+        return enumTypeTable[strType];
+    }
+    return ShaderHelper::ShaderType::Normal;
 }
 
 #pragma mark Helpers

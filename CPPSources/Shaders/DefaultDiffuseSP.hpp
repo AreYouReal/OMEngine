@@ -2,7 +2,7 @@
 
 #include "GreySP.hpp"
 
-struct DefaultDiffuseSP : public ShaderProgram{
+struct GouraudPhongSingleLight : public ShaderProgram{
 
     int modelViewMatUniLoc;
     int projectionMatUniLoc;

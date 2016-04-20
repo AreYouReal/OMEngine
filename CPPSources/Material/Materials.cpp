@@ -189,8 +189,8 @@ void Materials::loadPrograms(){
     addProgram(ShaderHelper::createProgram("normAsColor",   "pos_norm_vertex.glsl",     "norm_as_color_fragment.glsl"   , ShaderHelper::ShaderType::Normal));
     logGLError();
     addProgram(ShaderHelper::createProgram("defaultGrey",    "default_gray_vertex.glsl", "default_gray_fragment.glsl"   , ShaderHelper::ShaderType::Grey ));
-    addProgram(ShaderHelper::createProgram("defaultPerVertex","vertexPerVertex.glsl",     "fragmentPerVertex.glsl"      , ShaderHelper::ShaderType::DefaultPerVertex  ));
-    addProgram(ShaderHelper::createProgram("defaultPerPixel", "vertexPerPixel.glsl",      "fragmentPerPixel.glsl"      ,ShaderHelper::ShaderType::DefaultPerPixel   ));
+    addProgram(ShaderHelper::createProgram("defaultPerVertex","vertexPerVertex.glsl",     "fragmentPerVertex.glsl"      , ShaderHelper::ShaderType::Gouraud  ));
+    addProgram(ShaderHelper::createProgram("defaultPerPixel", "vertexPerPixel.glsl",      "fragmentPerPixel.glsl"      ,ShaderHelper::ShaderType::Phong   ));
     addProgram(ShaderHelper::createProgram("wired",           "wired_vertex.glsl",        "wired_fragment.glsl"  , ShaderHelper::ShaderType::Wired ));
     addProgram(ShaderHelper::createProgram("lightPoint",      "light_point_vertex.glsl",  "light_point_fragment.glsl"     ));
     addProgram(ShaderHelper::createProgram("font",            "font_vertex.glsl",         "font_fragment.glsl"            ));
@@ -226,6 +226,14 @@ void Materials::loadOMGFile(string fileName){
         return;
     }
     
+    char temp[52];
+    char* line = strtok((char*)content->content, "\n");
+    ShaderHelper::ShaderType type = ShaderHelper::ShaderHelper::General;
+    if(sscanf(line, "type %s", temp) == 1){
+        logMessage("Shader type : %s\n", temp);
+        type = ShaderHelper::getTypeFromString(temp);
+    }
+    
     char vertexToken [48] = {"GL_VERTEX_SHADER"};
     char fragmentToken[48] = {"GL_FRAGMENT_SHADER"};
     char *vertexShader = strstr((char*)content->content, vertexToken);
@@ -240,7 +248,7 @@ void Materials::loadOMGFile(string fileName){
         
         Shader fShader = ShaderHelper::createShader(GL_FRAGMENT_SHADER, fragmentShader, "tempFragment");
         
-        sp<ShaderProgram> program =  ShaderHelper::createProgram(fileName, vShader, fShader);
+        sp<ShaderProgram> program =  ShaderHelper::createProgram(fileName, vShader, fShader, type);
         
         addProgram(program);
         

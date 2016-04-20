@@ -29,7 +29,6 @@ public:
     
 private:
 // Fields
-    
     // Member
     std::map<string, sp<ObjMaterial>>  materials;
     std::map<string, sp<Texture>>      textures;

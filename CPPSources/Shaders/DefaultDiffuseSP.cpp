@@ -1,7 +1,7 @@
 #include "DefaultDiffuseSP.hpp"
 
 
-void DefaultDiffuseSP::initAttribLocations(){
+void GouraudPhongSingleLight::initAttribLocations(){
     for(const auto &attrib : attribArray){
         if(!attrib.name.compare(posAttribName)){
             attribLocations[Attributes::POSITION] = attrib.location;
@@ -13,7 +13,7 @@ void DefaultDiffuseSP::initAttribLocations(){
     }
 }
 
-void DefaultDiffuseSP::initUniformLocations(){
+void GouraudPhongSingleLight::initUniformLocations(){
     for(const auto &uniform : uniformArray){
         if(!uniform.name.compare("uLight.position")){
             lightPositionUniLoc = uniform.location;
@@ -45,7 +45,7 @@ void DefaultDiffuseSP::initUniformLocations(){
     }
 }
 
-void DefaultDiffuseSP::setUniforms(ObjMaterial *mat){
+void GouraudPhongSingleLight::setUniforms(ObjMaterial *mat){
     m4d matrix = Camera::instance()->modelViewMatrix();
     glUniformMatrix4fv(modelViewMatUniLoc, 1, GL_TRUE, matrix.pointer());
     matrix = Camera::instance()->projectionMatrix();
