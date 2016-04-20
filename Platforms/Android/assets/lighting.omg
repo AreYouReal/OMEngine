@@ -3,7 +3,10 @@ type Phong
 GL_VERTEX_SHADER
 
 #version 300 es
+
 struct Light{
+    lowp int  type;
+    lowp vec3 direction;
     lowp vec4 position;
     lowp vec4 color;
 };
@@ -20,8 +23,8 @@ layout(location = 3) in vec3 aTangent;
 
 out vec3 texCoord;
 out vec3 position;
-out vec3 lightDirectionTS;
 out vec4 lightColor;
+out vec3 lightDirectionTS;
 
 void main(){
     lowp mat3 tbn;
@@ -56,6 +59,7 @@ struct Material{
     lowp vec4       diffuse;
     lowp vec4       specular;
     mediump float   shininess;
+    lowp    float   dissolve;
 };
 
 uniform Material uMaterial;
@@ -85,6 +89,5 @@ vec4 lightCalculations(in vec4 color, in vec3 direction){
 void main(){
     lowp vec4 finalColor = uMaterial.ambient;
     finalColor += lightCalculations(lightColor, lightDirectionTS);
-//    fragColor = texture(uSamplerDiffuse, texCoord.xy) * finalColor;
-    fragColor = texture(uSamplerDiffuse, texCoord.xy);
+    fragColor = texture(uSamplerDiffuse, texCoord.xy) * finalColor;
 }

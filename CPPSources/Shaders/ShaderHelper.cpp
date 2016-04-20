@@ -3,7 +3,7 @@
 
 #include "NormalSP.hpp"
 #include "GreySP.hpp"
-#include "DefaultDiffuseSP.hpp"
+#include "GouraudPhongSingleLightSP.hpp"
 #include "WireSP.hpp"
 
 #pragma mark Public
@@ -41,7 +41,7 @@ sp<ShaderProgram> ShaderHelper::createProgram(const string programName, const Sh
             break;
         case Gouraud:
         case Phong:
-            program = std::make_shared<GouraudPhongSingleLight>();
+            program = std::make_shared<GouraudPhongSingleLightSP>();
             break;
         case Wired:
             program = std::make_shared<WireSP>();

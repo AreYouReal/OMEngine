@@ -274,7 +274,7 @@
 		F3BEAB1A1C43A6C00012DDCD /* lightingAttenuation.omg in Resources */ = {isa = PBXBuildFile; fileRef = F3BEAB191C43A6C00012DDCD /* lightingAttenuation.omg */; };
 		F3C52B2C1BBD079F009F3604 /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3C52B2A1BBD079F009F3604 /* Scene.cpp */; };
 		F3C5D0781C85B1E800686AF1 /* writedepth.omg in Resources */ = {isa = PBXBuildFile; fileRef = F3C5D0771C85B1E800686AF1 /* writedepth.omg */; };
-		F3C8A2FB1C5FB00000867A65 /* DefaultDiffuseSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3C8A2F91C5FB00000867A65 /* DefaultDiffuseSP.cpp */; };
+		F3C8A2FB1C5FB00000867A65 /* GouraudPhongSingleLightSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3C8A2F91C5FB00000867A65 /* GouraudPhongSingleLightSP.cpp */; };
 		F3CAEEE51BB01A7600DCF182 /* default_gray_vertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F3CAEEE41BB01A7600DCF182 /* default_gray_vertex.glsl */; };
 		F3CAEEE71BB01B8800DCF182 /* default_gray_fragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F3CAEEE61BB01B8800DCF182 /* default_gray_fragment.glsl */; };
 		F3D0207E1CC50D7E0019EF64 /* bob_body_diffuse.png in Resources */ = {isa = PBXBuildFile; fileRef = F3D020721CC50D7E0019EF64 /* bob_body_diffuse.png */; };
@@ -879,8 +879,8 @@
 		F3C52B2A1BBD079F009F3604 /* Scene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Scene.cpp; sourceTree = "<group>"; };
 		F3C52B2B1BBD079F009F3604 /* Scene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Scene.hpp; sourceTree = "<group>"; };
 		F3C5D0771C85B1E800686AF1 /* writedepth.omg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = writedepth.omg; path = OMEngine/Platforms/Android/assets/writedepth.omg; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
-		F3C8A2F91C5FB00000867A65 /* DefaultDiffuseSP.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DefaultDiffuseSP.cpp; path = OMEngine/CPPSources/Shaders/DefaultDiffuseSP.cpp; sourceTree = "<group>"; };
-		F3C8A2FA1C5FB00000867A65 /* DefaultDiffuseSP.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = DefaultDiffuseSP.hpp; path = OMEngine/CPPSources/Shaders/DefaultDiffuseSP.hpp; sourceTree = "<group>"; };
+		F3C8A2F91C5FB00000867A65 /* GouraudPhongSingleLightSP.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GouraudPhongSingleLightSP.cpp; path = OMEngine/CPPSources/Shaders/GouraudPhongSingleLightSP.cpp; sourceTree = "<group>"; };
+		F3C8A2FA1C5FB00000867A65 /* GouraudPhongSingleLightSP.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = GouraudPhongSingleLightSP.hpp; path = OMEngine/CPPSources/Shaders/GouraudPhongSingleLightSP.hpp; sourceTree = "<group>"; };
 		F3CAEEE41BB01A7600DCF182 /* default_gray_vertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = default_gray_vertex.glsl; path = ../Android/assets/shaders/default_gray_vertex.glsl; sourceTree = SOURCE_ROOT; };
 		F3CAEEE61BB01B8800DCF182 /* default_gray_fragment.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = default_gray_fragment.glsl; path = ../Android/assets/shaders/default_gray_fragment.glsl; sourceTree = SOURCE_ROOT; };
 		F3D020721CC50D7E0019EF64 /* bob_body_diffuse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bob_body_diffuse.png; path = OMEngine/Platforms/Android/assets/bob_body_diffuse.png; sourceTree = "<group>"; };
@@ -1989,8 +1989,8 @@
 				F37D26431C5F705500433B4F /* NormalSP.hpp */,
 				F32EB63A1C5FA5E00057F474 /* GreySP.cpp */,
 				F32EB63B1C5FA5E00057F474 /* GreySP.hpp */,
-				F3C8A2F91C5FB00000867A65 /* DefaultDiffuseSP.cpp */,
-				F3C8A2FA1C5FB00000867A65 /* DefaultDiffuseSP.hpp */,
+				F3C8A2F91C5FB00000867A65 /* GouraudPhongSingleLightSP.cpp */,
+				F3C8A2FA1C5FB00000867A65 /* GouraudPhongSingleLightSP.hpp */,
 				F3A1A4E81C60CBA000DBBB4B /* WireSP.cpp */,
 				F3A1A4E91C60CBA000DBBB4B /* WireSP.hpp */,
 			);
@@ -2226,7 +2226,7 @@
 				94788FFC1BD4CFD200B55A25 /* btConvexCast.cpp in Sources */,
 				F368E8C11BA6AC9F00F322AF /* NvTriStrip.cpp in Sources */,
 				94788FD71BD4CFD200B55A25 /* btConvexPointCloudShape.cpp in Sources */,
-				F3C8A2FB1C5FB00000867A65 /* DefaultDiffuseSP.cpp in Sources */,
+				F3C8A2FB1C5FB00000867A65 /* GouraudPhongSingleLightSP.cpp in Sources */,
 				F39FA5B01C0DE15400CC0BB4 /* bitrate.c in Sources */,
 				94788FEB1BD4CFD200B55A25 /* btTriangleIndexVertexArray.cpp in Sources */,
 				F39FA5C41C0DE15400CC0BB4 /* vorbisfile.c in Sources */,

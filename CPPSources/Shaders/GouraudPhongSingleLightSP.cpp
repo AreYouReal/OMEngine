@@ -1,7 +1,7 @@
-#include "DefaultDiffuseSP.hpp"
+#include "GouraudPhongSingleLightSP.hpp"
 
 
-void GouraudPhongSingleLight::initAttribLocations(){
+void GouraudPhongSingleLightSP::initAttribLocations(){
     for(const auto &attrib : attribArray){
         if(!attrib.name.compare(posAttribName)){
             attribLocations[Attributes::POSITION] = attrib.location;
@@ -13,7 +13,7 @@ void GouraudPhongSingleLight::initAttribLocations(){
     }
 }
 
-void GouraudPhongSingleLight::initUniformLocations(){
+void GouraudPhongSingleLightSP::initUniformLocations(){
     for(const auto &uniform : uniformArray){
         if(!uniform.name.compare("uLight.position")){
             lightPositionUniLoc = uniform.location;
@@ -45,7 +45,7 @@ void GouraudPhongSingleLight::initUniformLocations(){
     }
 }
 
-void GouraudPhongSingleLight::setUniforms(ObjMaterial *mat){
+void GouraudPhongSingleLightSP::setUniforms(ObjMaterial *mat){
     m4d matrix = Camera::instance()->modelViewMatrix();
     glUniformMatrix4fv(modelViewMatUniLoc, 1, GL_TRUE, matrix.pointer());
     matrix = Camera::instance()->projectionMatrix();
@@ -54,7 +54,7 @@ void GouraudPhongSingleLight::setUniforms(ObjMaterial *mat){
     glUniformMatrix4fv(normalMatUniLoc, 1, GL_TRUE, matrix.pointer());
     sp<LightSource> light = Illuminator::instance()->getLightSource();
     v4d lightPosInEyeSpace = light->getPositionInEyeSpace();
-    glUniform3fv(lightPositionUniLoc, 1, &lightPosInEyeSpace.x);
+    glUniform4fv(lightPositionUniLoc, 1, &lightPosInEyeSpace.x);
     v4d lightDirInEyeSpace = light->getDirectionInEyeSpace();
     glUniform3fv(lightDirUniLoc, 1, &lightDirInEyeSpace.x);
     v4d lightColor = light->getColor();

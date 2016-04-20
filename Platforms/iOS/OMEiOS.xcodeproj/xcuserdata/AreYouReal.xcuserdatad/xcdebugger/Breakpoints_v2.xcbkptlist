@@ -21,8 +21,24 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
+            filePath = "../../CPPSources/MD5/md5.cpp"
+            timestampString = "482765868.076605"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "550"
+            endingLineNumber = "550"
+            landmarkName = "MD5::addActions(sp&lt;Action&gt; action1, sp&lt;Action&gt; action2, Action::InterpolationMethod interpolationMethod, float blend)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
             filePath = "../../CPPSources/Utils/OMUtils.cpp"
-            timestampString = "482341399.630759"
+            timestampString = "482856059.304385"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "154"
@@ -37,13 +53,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../../CPPSources/MD5/md5.cpp"
-            timestampString = "482765868.076605"
+            filePath = "../../CPPSources/Shaders/GouraudPhongSingleLightSP.cpp"
+            timestampString = "482858978.719736"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "550"
-            endingLineNumber = "550"
-            landmarkName = "MD5::addActions(sp&lt;Action&gt; action1, sp&lt;Action&gt; action2, Action::InterpolationMethod interpolationMethod, float blend)"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
+            landmarkName = "GouraudPhongSingleLightSP::setUniforms(ObjMaterial *mat)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
