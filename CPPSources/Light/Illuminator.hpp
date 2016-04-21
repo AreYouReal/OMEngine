@@ -25,6 +25,7 @@ public:
     
     void update(const float deltaTime);
     
+    
 private:
   
     std::vector<sp<LightSource>> lightSources;

@@ -10,6 +10,7 @@ LOCAL_SRC_FILES := $(LOCAL_PATH)/omUtil_Android.cpp \
 $(SRC_PATH)/CPPSources/Audio/Boombox.cpp\
 $(SRC_PATH)/CPPSources/Audio/Sound.cpp\
 $(SRC_PATH)/CPPSources/Camera/Camera.cpp\
+$(SRC_PATH)/CPPSources/Component/AnimMeshComponent.cpp\
 $(SRC_PATH)/CPPSources/Component/DebugDrawComponent.cpp\
 $(SRC_PATH)/CPPSources/Component/MeshRendererComponent.cpp\
 $(SRC_PATH)/CPPSources/Component/RigidBodyComponent.cpp\
@@ -28,7 +29,7 @@ $(SRC_PATH)/CPPSources/Obj/ObjMesh.cpp\
 $(SRC_PATH)/CPPSources/OMGame.cpp\
 $(SRC_PATH)/CPPSources/Physics/PhysicalWorld.cpp\
 $(SRC_PATH)/CPPSources/Scene/Scene.cpp\
-$(SRC_PATH)/CPPSources/Shaders/DefaultDiffuseSP.cpp\
+$(SRC_PATH)/CPPSources/Shaders/GouraudPhongSingleLightSP.cpp\
 $(SRC_PATH)/CPPSources/Shaders/GreySP.cpp\
 $(SRC_PATH)/CPPSources/Shaders/NormalSP.cpp\
 $(SRC_PATH)/CPPSources/Shaders/Shader.cpp\
@@ -238,6 +239,7 @@ $(SRC_PATH)/CPPSources/Utils/3dPart/vorbis/synthesis.c\
 $(SRC_PATH)/CPPSources/Utils/3dPart/vorbis/vorbisfile.c\
 $(SRC_PATH)/CPPSources/Utils/3dPart/vorbis/window.c\
 $(SRC_PATH)/CPPSources/Utils/OMUtils.cpp\
+$(SRC_PATH)/CPPSources/Utils/Time.cpp\
 
 
 LOCAL_C_INCLUDES	:= $(SRC_PATH) \

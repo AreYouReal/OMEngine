@@ -41,6 +41,8 @@ void GouraudPhongSingleLightSP::initUniformLocations(){
             normalMatUniLoc = uniform.location;
         }else if(!uniform.name.compare("uSamplerDiffuse")){
             diffuseSamplerUniLoc = uniform.location;
+        }else if(!uniform.name.compare("uSamplerBump")){
+            bumpSamplerUniLoc = uniform.location;
         }
     }
 }
@@ -54,7 +56,7 @@ void GouraudPhongSingleLightSP::setUniforms(ObjMaterial *mat){
     glUniformMatrix4fv(normalMatUniLoc, 1, GL_TRUE, matrix.pointer());
     sp<LightSource> light = Illuminator::instance()->getLightSource();
     v4d lightPosInEyeSpace = light->getPositionInEyeSpace();
-    glUniform4fv(lightPositionUniLoc, 1, &lightPosInEyeSpace.x);
+    glUniform3fv(lightPositionUniLoc, 1, &lightPosInEyeSpace.x);
     v4d lightDirInEyeSpace = light->getDirectionInEyeSpace();
     glUniform3fv(lightDirUniLoc, 1, &lightDirInEyeSpace.x);
     v4d lightColor = light->getColor();
@@ -65,4 +67,5 @@ void GouraudPhongSingleLightSP::setUniforms(ObjMaterial *mat){
     glUniform1f(materialShininessUniLoc, mat->specularExponent);
     glUniform1f(materialDissolveUniLoc, mat->dissolve);
     glUniform1i(diffuseSamplerUniLoc, 1);
+    glUniform1i(bumpSamplerUniLoc, 4);
 }

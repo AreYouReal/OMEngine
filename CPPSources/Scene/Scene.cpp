@@ -34,7 +34,7 @@ bool Scene::init(){
 //    createTestScene();
     
     createBob();
-//    createLightTestScene();
+    createLightTestScene();
     logGLError();
 //    sp<Texture> projTexture = Materials::instance()->getTexture("projector.png");
 //    glBindTexture(GL_TEXTURE_2D, projTexture->ID);
@@ -76,7 +76,7 @@ void Scene::drawDepth(){
     glViewport(0, 0, Camera::instance()->shadowmapWidth(), Camera::instance()->shadowmapHeight());
     glClear(GL_DEPTH_BUFFER_BIT);
     
-//    glColorMask ( GL_FALSE, GL_FALSE, GL_FALSE, GL_FALSE );
+    glColorMask ( GL_FALSE, GL_FALSE, GL_FALSE, GL_FALSE );
     glEnable ( GL_POLYGON_OFFSET_FILL );
     glPolygonOffset( 5.0f, 100.0f );
     
@@ -100,7 +100,7 @@ void Scene::draw(){
    
     glBindFramebuffer(GL_FRAMEBUFFER, Camera::instance()->mMainBuffer);
     
-//    glColorMask ( GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE );
+    glColorMask ( GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE );
     logGLError();
     
     glViewport(0, 0, Camera::instance()->width(), Camera::instance()->height());
@@ -287,7 +287,7 @@ void Scene::createBob(){
     
     up<AnimMeshComponent> amc = up<AnimMeshComponent>(new AnimMeshComponent(go.get(), "bob.md5mesh", "bob.mtl", actions));
     go->addComponent(ComponentEnum::ANIM_MESH, std::move(amc));
-    go->mTransform.translate(10, 10, 10);
+//    go->mTransform.translate(10, 10, 10);
     
     addObjOnScene(std::move(go));
 }

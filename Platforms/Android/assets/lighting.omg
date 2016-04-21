@@ -7,7 +7,7 @@ GL_VERTEX_SHADER
 struct Light{
     lowp int  type;
     lowp vec3 direction;
-    lowp vec4 position;
+    lowp vec3 position;
     lowp vec4 color;
 };
 
@@ -36,11 +36,14 @@ void main(){
     position = vec3(uModelViewM * aPosition);
     gl_Position = uProjectionM * vec4(position, 1.0);
     
-    
-    if(uLight.position.w == 0.0){
-        lightDirectionTS = normalize(uLight.position.xyz) * tbn;
-    }else{
-        lightDirectionTS = normalize(uLight.position.xyz - position) * tbn;
+    switch (uLight.type) {
+        case 0:
+            lightDirectionTS = normalize(uLight.position) * tbn;
+            break;
+        case 1:
+        default:
+            lightDirectionTS = normalize(uLight.position - position) * tbn;
+            break;
     }
     
     position = -normalize(position * tbn);

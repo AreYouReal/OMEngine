@@ -18,7 +18,7 @@ public:
     enum Type{ DIRECTION = 0, POINT = 1, SPOT = 2 };
     
     LightSource();
-    LightSource(Type type, v3d position, v4d color, float distance = 10, float linAttenuation = 0.5f, float quadAttenuation = 1.0f);
+    LightSource(Type type, v3d position, v4d color, float distance = 30, float linAttenuation = .5f, float quadAttenuation = 1.0f);
     ~LightSource();
     
     const v4d&  getColor()      const { return mColor; }

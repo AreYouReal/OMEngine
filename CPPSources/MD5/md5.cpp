@@ -2,6 +2,8 @@
 #include <memory.h>
 #include "NvTriStrip.h"
 
+#include "Illuminator.hpp"
+
 using namespace md5;
 
 

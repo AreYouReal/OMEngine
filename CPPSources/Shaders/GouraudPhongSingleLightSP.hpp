@@ -20,6 +20,7 @@ struct GouraudPhongSingleLightSP : public ShaderProgram{
     int materialDissolveUniLoc = -1;
     
     int diffuseSamplerUniLoc = -1;
+    int bumpSamplerUniLoc = -1;
     
     virtual void initAttribLocations()          override;
     virtual void initUniformLocations()         override;
