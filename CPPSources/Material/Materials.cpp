@@ -17,10 +17,10 @@ static std::map<string, string>  meshShaderTable{
     std::pair<string, string>("sphere1_sphere.001", "shadowProjector.omg"),
     std::pair<string, string>("sphere3_sphere", "shadowProjector.omg"),
     // MD5 BOB
-    std::pair<string, string>("body", "lighting.omg"),
-    std::pair<string, string>("head", "lighting.omg"),
-    std::pair<string, string>("helmet", "lighting.omg"),
-    std::pair<string, string>("lamp", "lighting.omg"),
+    std::pair<string, string>("body", "bob.omg"),
+    std::pair<string, string>("head", "bob.omg"),
+    std::pair<string, string>("helmet", "bob.omg"),
+    std::pair<string, string>("lamp", "bob.omg"),
 };
 
 Materials::Materials(){
