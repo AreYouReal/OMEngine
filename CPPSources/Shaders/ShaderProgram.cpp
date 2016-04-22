@@ -34,20 +34,6 @@ int ShaderProgram::getVertexAttribLocation(const char *name){
     return -1;
 }
 
-void ShaderProgram::initAttribLocations(){
-    for(const auto &attrib : attribArray){
-        if(!attrib.name.compare(posAttribName)){
-            attribLocations[Attributes::POSITION] = attrib.location;
-        }else if(!attrib.name.compare(normAttribName)){
-            attribLocations[Attributes::NORMAL] = attrib.location;
-        }else if(!attrib.name.compare(texCoordAttribName)){
-            attribLocations[Attributes::TEXTURE] = attrib.location;
-        }else if(!attrib.name.compare(tanAttribName)){
-            attribLocations[Attributes::TANGENT] = attrib.location;
-        }else{ logMessage("Unknown attribute!!! %s", attrib.name.c_str()); }
-    }
-}
-
 void ShaderProgram::initUniformLocations(){
     // Shader specific
 }
@@ -58,6 +44,7 @@ void ShaderProgram::use(){
 //    bindAttributes();
 }
 
+// FOR REFERENCE -> No need to bind manually -> layout(location = 0) modifier in shader
 //void ShaderProgram::bindAttributes(){
 ////    glBindAttribLocation(ID, attribLocations[Attributes::POSITION], "aPosition");
 ////    glBindAttribLocation(ID, attribLocations[Attributes::NORMAL],   "aNormal");

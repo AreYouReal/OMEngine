@@ -7,8 +7,7 @@ struct GreySP : public NormalSP{
     int normMatUniLoc;
     int lightPosUniLoc;
     int lightColorUniLoc;
-    
-    virtual void initAttribLocations();
+
     virtual void initUniformLocations();
     
     virtual void setUniforms(ObjMaterial *mat);

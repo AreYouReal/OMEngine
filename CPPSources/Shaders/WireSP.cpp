@@ -1,10 +1,5 @@
 #include "WireSP.hpp"
 
-
-void WireSP::initAttribLocations(){
-    // deprecated:)
-}
-
 void WireSP::initUniformLocations(){
     for(const auto &uniform : uniformArray){
         if(!uniform.name.compare(ShaderProgram::uniModelViewMatName)){

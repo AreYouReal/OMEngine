@@ -8,7 +8,6 @@ struct WireSP : public ShaderProgram{
     int projectionMatUniLoc;
     int materialAmbient;
     
-    virtual void initAttribLocations()          override;
     virtual void initUniformLocations()         override;
     virtual void setUniforms(ObjMaterial *mat)  override;
 };

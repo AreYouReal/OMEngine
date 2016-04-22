@@ -23,8 +23,7 @@ struct GouraudPhongSingleLightSP : public ShaderProgram{
     int diffuseSamplerUniLoc = -1;
     int bumpSamplerUniLoc = -1;
     int ambientSamplerDiffuse = -1;
-    
-    virtual void initAttribLocations()          override;
+
     virtual void initUniformLocations()         override;
     virtual void setUniforms(ObjMaterial *mat)  override;
 };

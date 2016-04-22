@@ -1,10 +1,6 @@
 #include "GreySP.hpp"
 
 
-void GreySP::initAttribLocations(){
-    NormalSP::initAttribLocations();
-}
-
 void GreySP::initUniformLocations(){
     for(const auto &uniform : uniformArray){
         if(!uniform.name.compare(ShaderProgram::uniModelViewMatName)){

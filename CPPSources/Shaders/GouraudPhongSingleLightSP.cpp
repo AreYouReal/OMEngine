@@ -1,18 +1,5 @@
 #include "GouraudPhongSingleLightSP.hpp"
 
-
-void GouraudPhongSingleLightSP::initAttribLocations(){
-    for(const auto &attrib : attribArray){
-        if(!attrib.name.compare(posAttribName)){
-            attribLocations[Attributes::POSITION] = attrib.location;
-        }else if(!attrib.name.compare(normAttribName)){
-            attribLocations[Attributes::NORMAL] = attrib.location;
-        }else if(!attrib.name.compare(texCoordAttribName)){
-            attribLocations[Attributes::TEXTURE] = attrib.location;
-        }
-    }
-}
-
 void GouraudPhongSingleLightSP::initUniformLocations(){
     for(const auto &uniform : uniformArray){
         if(!uniform.name.compare("uLight.position")){

@@ -79,7 +79,6 @@ sp<ShaderProgram> ShaderHelper::createProgram(const string programName, const Sh
             attrib.type = type;
         }
         logGLError();
-        program->initAttribLocations();
         glGetProgramiv(program->ID, GL_ACTIVE_UNIFORMS, &total);
         program->uniformArray = std::vector<Uniform>(total);
         for(unsigned int i = 0; i < total; i++){
