@@ -27,6 +27,8 @@ public:
     
     bool shadowDraw = false;
     
+    bool castShadows = false;
+    
 private:
     std::vector<sp<ObjMesh>> mMeshes;
 };

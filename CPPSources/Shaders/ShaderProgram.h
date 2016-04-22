@@ -56,5 +56,5 @@ struct ShaderProgram{
     static const string uniModelViewMatName;
     static const string uniProjectionMatName;
     static const string uniNormalMName;
-    
+    static const string uniShadowMName;
 };

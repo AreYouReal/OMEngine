@@ -7,6 +7,7 @@ struct GouraudPhongSingleLightSP : public ShaderProgram{
     int modelViewMatUniLoc = -1;
     int projectionMatUniLoc = -1;
     int normalMatUniLoc = -1;
+    int shadowMatUniLoc = -1;
     
     int lightTypeUniLoc = -1;
     int lightPositionUniLoc = -1;
@@ -21,6 +22,7 @@ struct GouraudPhongSingleLightSP : public ShaderProgram{
     
     int diffuseSamplerUniLoc = -1;
     int bumpSamplerUniLoc = -1;
+    int ambientSamplerDiffuse = -1;
     
     virtual void initAttribLocations()          override;
     virtual void initUniformLocations()         override;

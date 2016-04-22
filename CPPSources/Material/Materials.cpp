@@ -34,7 +34,6 @@ Materials::~Materials(){
 
 bool Materials::loadMaterial(const std::string &name){
     logGLError();
-//    logMessage("Starting loading materials! %d\n", materials.size());
     if(materials.find(name) != materials.end()){
         logMessage("Material is already loaded: %s\n", name.c_str());
         return false;
@@ -220,9 +219,13 @@ string Materials::processMaterialMap(string name){
 }
 
 void Materials::loadOMGFile(string fileName){
+    if(programs.find(fileName) != programs.end()){
+        logMessage("OMG program is already loaded!\n");
+        return;
+    }
     up<FileContent> content = readTextFile(fileName);
     if(!content){
-        logMessage("Unable to load OMG file %s", fileName.c_str());
+        logMessage("Unable to load OMG file %s\n", fileName.c_str());
         return;
     }
     
@@ -262,7 +265,7 @@ void Materials::loadOMGFile(string fileName){
         }
         logGLError();
     }else{
-        logMessage("Omg file bad format:( ");
+        logMessage("Omg file bad format:( \n");
         return;
     }
 }

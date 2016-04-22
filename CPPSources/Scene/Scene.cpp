@@ -33,8 +33,9 @@ bool Scene::init(){
 //    createBallsScene();
 //    createTestScene();
     
-    createBob();
+
     createLightTestScene();
+    createBob();
     logGLError();
 //    sp<Texture> projTexture = Materials::instance()->getTexture("projector.png");
 //    glBindTexture(GL_TEXTURE_2D, projTexture->ID);
@@ -84,7 +85,7 @@ void Scene::drawDepth(){
     Camera::instance()->shadowDraw = true;
     for(const auto& go: mObjects){
         MeshRendererComponent *mrc = static_cast<MeshRendererComponent*>(go->getComponent(ComponentEnum::MESH_RENDERER));
-        if(mrc){
+        if(mrc && mrc->castShadows){
             mrc->shadowDraw = true;
             mrc->draw();
             mrc->shadowDraw = false;
@@ -255,8 +256,15 @@ void Scene::addMeshRendererOnScene(string objName, string meshName){
         go->mTransform = v3d(0, 0, 3);
     }
     
+
+    
     up<MeshRendererComponent> mrc = up<MeshRendererComponent>(new MeshRendererComponent(go.get(), mesh));
+    if(strstr(meshName.c_str(), "sphere3")){
+        mrc->castShadows = true;
+    }
     go->addComponent(ComponentEnum::MESH_RENDERER, std::move(mrc));
+    
+
     
     addObjOnScene(std::move(go));
 }
@@ -274,7 +282,7 @@ logGLError();
     std::vector<sp<ObjMesh>> meshes = object->getAllMeshes();
     
     for(const sp<ObjMesh> mesh : object->getAllMeshes()){
-        if(!mesh->getName().compare("projector")) continue;
+        if(!mesh->getName().compare("projector") ) continue;
         addMeshRendererOnScene("lightScene", mesh->getName());
     }
 }

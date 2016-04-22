@@ -14,6 +14,7 @@ struct Light{
 uniform mat4 uModelViewM;
 uniform mat4 uProjectionM;
 uniform lowp mat4 uNormalM;
+uniform mat4 uShadowM;
 uniform Light uLight;
 
 layout(location = 0) in vec4 aPosition;
@@ -26,25 +27,34 @@ out vec3 position;
 out vec4 lightColor;
 out vec3 lightDirectionTS;
 
-void main(){
+mat3 calculateTBNMatrix(){
     lowp mat3 tbn;
-    
     tbn[2] = normalize(vec3(uNormalM * vec4(aNormal, 1.0)));
     tbn[0] = normalize(vec3(uNormalM * vec4(aTangent, 1.0)));
     tbn[1] = cross(tbn[2], tbn[0]);
+    return tbn;
+}
+
+void calculateOutVars(lowp mat3 tbn, lowp vec3 position){
+    switch (uLight.type) {
+        case 0:
+            lightDirectionTS = uLight.direction * tbn;
+            break;
+        case 1:
+            lightDirectionTS = (uLight.position - position) * tbn;
+            break;
+        default:
+            break;
+    }
+}
+
+void main(){
+    lowp mat3 tbn = calculateTBNMatrix();
     
     position = vec3(uModelViewM * aPosition);
     gl_Position = uProjectionM * vec4(position, 1.0);
     
-    switch (uLight.type) {
-        case 0:
-            lightDirectionTS = normalize(uLight.position) * tbn;
-            break;
-        case 1:
-        default:
-            lightDirectionTS = normalize(uLight.position - position) * tbn;
-            break;
-    }
+    calculateOutVars(tbn, position);
     
     position = -normalize(position * tbn);
     
@@ -69,11 +79,13 @@ uniform Material uMaterial;
 
 uniform mediump sampler2D uSamplerDiffuse;
 uniform mediump sampler2D uSamplerBump;
+uniform lowp sampler2DShadow uSamplerAmbient;
 
 in lowp vec3 texCoord;
 in lowp vec3 position;
 in lowp vec3 lightDirectionTS;
 in lowp vec4 lightColor;
+in lowp vec4 projCoord;
 
 out vec4 fragColor;
 

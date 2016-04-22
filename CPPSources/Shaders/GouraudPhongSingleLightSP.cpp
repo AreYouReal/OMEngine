@@ -39,10 +39,14 @@ void GouraudPhongSingleLightSP::initUniformLocations(){
             projectionMatUniLoc = uniform.location;
         }else if(!uniform.name.compare(ShaderProgram::uniNormalMName)){
             normalMatUniLoc = uniform.location;
+        }else if(!uniform.name.compare(ShaderProgram::uniShadowMName)){
+            shadowMatUniLoc = uniform.location;
         }else if(!uniform.name.compare("uSamplerDiffuse")){
             diffuseSamplerUniLoc = uniform.location;
         }else if(!uniform.name.compare("uSamplerBump")){
             bumpSamplerUniLoc = uniform.location;
+        }else if(!uniform.name.compare("uSamplerAmbient")){
+            ambientSamplerDiffuse = uniform.location;
         }
     }
 }
@@ -54,6 +58,8 @@ void GouraudPhongSingleLightSP::setUniforms(ObjMaterial *mat){
     glUniformMatrix4fv(projectionMatUniLoc, 1, GL_TRUE, matrix.pointer());
     matrix = Camera::instance()->normalMatrix();
     glUniformMatrix4fv(normalMatUniLoc, 1, GL_TRUE, matrix.pointer());
+    matrix = Camera::instance()->projectorMatrix();
+    glUniformMatrix4fv(shadowMatUniLoc, 1, GL_TRUE, matrix.pointer());
     sp<LightSource> light = Illuminator::instance()->getLightSource();
     v4d lightPosInEyeSpace = light->getPositionInEyeSpace();
     glUniform3fv(lightPositionUniLoc, 1, &lightPosInEyeSpace.x);

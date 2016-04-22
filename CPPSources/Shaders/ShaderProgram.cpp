@@ -11,6 +11,7 @@ const string ShaderProgram::tanAttribName       {"aTangent" };
 const string ShaderProgram::uniModelViewMatName {"uModelViewM"};
 const string ShaderProgram::uniProjectionMatName{"uProjectionM"};
 const string ShaderProgram::uniNormalMName      {"uNormalM"};
+const string ShaderProgram::uniShadowMName      {"uShadowM"};
 
 
 ShaderProgram::ShaderProgram(){

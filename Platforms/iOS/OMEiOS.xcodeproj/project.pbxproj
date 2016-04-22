@@ -761,7 +761,7 @@
 		F30E41D71C2D548E00A88527 /* floor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = floor.png; path = OMEngine/Platforms/Android/assets/floor.png; sourceTree = "<group>"; };
 		F30E41D81C2D548E00A88527 /* sphere_n.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sphere_n.png; path = OMEngine/Platforms/Android/assets/sphere_n.png; sourceTree = "<group>"; };
 		F30E41D91C2D548E00A88527 /* sphere.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sphere.png; path = OMEngine/Platforms/Android/assets/sphere.png; sourceTree = "<group>"; };
-		F30E41DE1C2D5BCE00A88527 /* bob.omg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = bob.omg; path = OMEngine/Platforms/Android/assets/bob.omg; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
+		F30E41DE1C2D5BCE00A88527 /* bob.omg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = bob.omg; path = /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/assets/bob.omg; sourceTree = "<absolute>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
 		F328C4FC1BF4997F0037AC6D /* font_fragment.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = font_fragment.glsl; path = ../Android/assets/shaders/font_fragment.glsl; sourceTree = SOURCE_ROOT; };
 		F328C4FD1BF4997F0037AC6D /* font_vertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = font_vertex.glsl; path = ../Android/assets/shaders/font_vertex.glsl; sourceTree = SOURCE_ROOT; };
 		F32EB63A1C5FA5E00057F474 /* GreySP.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GreySP.cpp; path = OMEngine/CPPSources/Shaders/GreySP.cpp; sourceTree = "<group>"; };
@@ -883,18 +883,18 @@
 		F3C8A2FA1C5FB00000867A65 /* GouraudPhongSingleLightSP.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = GouraudPhongSingleLightSP.hpp; path = OMEngine/CPPSources/Shaders/GouraudPhongSingleLightSP.hpp; sourceTree = "<group>"; };
 		F3CAEEE41BB01A7600DCF182 /* default_gray_vertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = default_gray_vertex.glsl; path = ../Android/assets/shaders/default_gray_vertex.glsl; sourceTree = SOURCE_ROOT; };
 		F3CAEEE61BB01B8800DCF182 /* default_gray_fragment.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = default_gray_fragment.glsl; path = ../Android/assets/shaders/default_gray_fragment.glsl; sourceTree = SOURCE_ROOT; };
-		F3D020721CC50D7E0019EF64 /* bob_body_diffuse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bob_body_diffuse.png; path = OMEngine/Platforms/Android/assets/bob_body_diffuse.png; sourceTree = "<group>"; };
-		F3D020731CC50D7E0019EF64 /* bob_body_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bob_body_normal.png; path = OMEngine/Platforms/Android/assets/bob_body_normal.png; sourceTree = "<group>"; };
-		F3D020741CC50D7E0019EF64 /* bob_face_diffuse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bob_face_diffuse.png; path = OMEngine/Platforms/Android/assets/bob_face_diffuse.png; sourceTree = "<group>"; };
-		F3D020751CC50D7E0019EF64 /* bob_face_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bob_face_normal.png; path = OMEngine/Platforms/Android/assets/bob_face_normal.png; sourceTree = "<group>"; };
-		F3D020761CC50D7E0019EF64 /* bob_helmet_diffuse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bob_helmet_diffuse.png; path = OMEngine/Platforms/Android/assets/bob_helmet_diffuse.png; sourceTree = "<group>"; };
-		F3D020771CC50D7E0019EF64 /* bob_helmet_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bob_helmet_normal.png; path = OMEngine/Platforms/Android/assets/bob_helmet_normal.png; sourceTree = "<group>"; };
-		F3D020781CC50D7E0019EF64 /* bob_idle.md5anim */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = bob_idle.md5anim; path = OMEngine/Platforms/Android/assets/bob_idle.md5anim; sourceTree = "<group>"; };
-		F3D020791CC50D7E0019EF64 /* bob_lamp_diffuse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bob_lamp_diffuse.png; path = OMEngine/Platforms/Android/assets/bob_lamp_diffuse.png; sourceTree = "<group>"; };
-		F3D0207A1CC50D7E0019EF64 /* bob_lamp_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bob_lamp_normal.png; path = OMEngine/Platforms/Android/assets/bob_lamp_normal.png; sourceTree = "<group>"; };
-		F3D0207B1CC50D7E0019EF64 /* bob_walk.md5anim */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = bob_walk.md5anim; path = OMEngine/Platforms/Android/assets/bob_walk.md5anim; sourceTree = "<group>"; };
-		F3D0207C1CC50D7E0019EF64 /* bob.md5mesh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = bob.md5mesh; path = OMEngine/Platforms/Android/assets/bob.md5mesh; sourceTree = "<group>"; };
-		F3D0207D1CC50D7E0019EF64 /* bob.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = bob.mtl; path = OMEngine/Platforms/Android/assets/bob.mtl; sourceTree = "<group>"; };
+		F3D020721CC50D7E0019EF64 /* bob_body_diffuse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bob_body_diffuse.png; path = /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/assets/bob_body_diffuse.png; sourceTree = "<absolute>"; };
+		F3D020731CC50D7E0019EF64 /* bob_body_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bob_body_normal.png; path = /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/assets/bob_body_normal.png; sourceTree = "<absolute>"; };
+		F3D020741CC50D7E0019EF64 /* bob_face_diffuse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bob_face_diffuse.png; path = /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/assets/bob_face_diffuse.png; sourceTree = "<absolute>"; };
+		F3D020751CC50D7E0019EF64 /* bob_face_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bob_face_normal.png; path = /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/assets/bob_face_normal.png; sourceTree = "<absolute>"; };
+		F3D020761CC50D7E0019EF64 /* bob_helmet_diffuse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bob_helmet_diffuse.png; path = /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/assets/bob_helmet_diffuse.png; sourceTree = "<absolute>"; };
+		F3D020771CC50D7E0019EF64 /* bob_helmet_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bob_helmet_normal.png; path = /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/assets/bob_helmet_normal.png; sourceTree = "<absolute>"; };
+		F3D020781CC50D7E0019EF64 /* bob_idle.md5anim */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = bob_idle.md5anim; path = /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/assets/bob_idle.md5anim; sourceTree = "<absolute>"; };
+		F3D020791CC50D7E0019EF64 /* bob_lamp_diffuse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bob_lamp_diffuse.png; path = /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/assets/bob_lamp_diffuse.png; sourceTree = "<absolute>"; };
+		F3D0207A1CC50D7E0019EF64 /* bob_lamp_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bob_lamp_normal.png; path = /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/assets/bob_lamp_normal.png; sourceTree = "<absolute>"; };
+		F3D0207B1CC50D7E0019EF64 /* bob_walk.md5anim */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = bob_walk.md5anim; path = /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/assets/bob_walk.md5anim; sourceTree = "<absolute>"; };
+		F3D0207C1CC50D7E0019EF64 /* bob.md5mesh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = bob.md5mesh; path = /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/assets/bob.md5mesh; sourceTree = "<absolute>"; };
+		F3D0207D1CC50D7E0019EF64 /* bob.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = bob.mtl; path = /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/assets/bob.mtl; sourceTree = "<absolute>"; };
 		F3D171751C6DCBF200A9507D /* projector.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = projector.png; path = OMEngine/Platforms/Android/assets/projector.png; sourceTree = "<group>"; };
 		F3D171771C6DCCD900A9507D /* generalLightingProjector.omg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = generalLightingProjector.omg; path = OMEngine/Platforms/Android/assets/generalLightingProjector.omg; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
 		F3D5E1051AF8F23400DD216B /* iOSSRETests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iOSSRETests.m; path = OMEiOSTests/iOSSRETests.m; sourceTree = SOURCE_ROOT; };
@@ -1023,19 +1023,6 @@
 		7626524017F10E6C007CCD43 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				F3D020721CC50D7E0019EF64 /* bob_body_diffuse.png */,
-				F3D020731CC50D7E0019EF64 /* bob_body_normal.png */,
-				F3D020741CC50D7E0019EF64 /* bob_face_diffuse.png */,
-				F3D020751CC50D7E0019EF64 /* bob_face_normal.png */,
-				F3D020761CC50D7E0019EF64 /* bob_helmet_diffuse.png */,
-				F3D020771CC50D7E0019EF64 /* bob_helmet_normal.png */,
-				F3D020781CC50D7E0019EF64 /* bob_idle.md5anim */,
-				F3D020791CC50D7E0019EF64 /* bob_lamp_diffuse.png */,
-				F3D0207A1CC50D7E0019EF64 /* bob_lamp_normal.png */,
-				F3D0207B1CC50D7E0019EF64 /* bob_walk.md5anim */,
-				F3D0207C1CC50D7E0019EF64 /* bob.md5mesh */,
-				F3D0207D1CC50D7E0019EF64 /* bob.mtl */,
-				F30E41DE1C2D5BCE00A88527 /* bob.omg */,
 				F307C9171CBF791200CF9623 /* bob */,
 				F3AB02791CA7FFFE00CB8FC9 /* particle.png */,
 				F3AB027A1CA7FFFE00CB8FC9 /* particles.omg */,
@@ -1752,6 +1739,19 @@
 		F307C9171CBF791200CF9623 /* bob */ = {
 			isa = PBXGroup;
 			children = (
+				F3D020721CC50D7E0019EF64 /* bob_body_diffuse.png */,
+				F3D020731CC50D7E0019EF64 /* bob_body_normal.png */,
+				F3D020741CC50D7E0019EF64 /* bob_face_diffuse.png */,
+				F3D020751CC50D7E0019EF64 /* bob_face_normal.png */,
+				F3D020761CC50D7E0019EF64 /* bob_helmet_diffuse.png */,
+				F3D020771CC50D7E0019EF64 /* bob_helmet_normal.png */,
+				F3D020781CC50D7E0019EF64 /* bob_idle.md5anim */,
+				F3D020791CC50D7E0019EF64 /* bob_lamp_diffuse.png */,
+				F3D0207A1CC50D7E0019EF64 /* bob_lamp_normal.png */,
+				F3D0207B1CC50D7E0019EF64 /* bob_walk.md5anim */,
+				F3D0207C1CC50D7E0019EF64 /* bob.md5mesh */,
+				F3D0207D1CC50D7E0019EF64 /* bob.mtl */,
+				F30E41DE1C2D5BCE00A88527 /* bob.omg */,
 			);
 			name = bob;
 			path = OMEngine/Platforms/Android/assets/bob;
