@@ -24,23 +24,6 @@ struct VertexAttrib{
 };
 
 struct ShaderProgram{
-    ShaderProgram();
-     ~ShaderProgram();
-    
-    std::string                 name;
-    unsigned int                ID;
-    std::vector<Uniform>        uniformArray;
-    std::vector<VertexAttrib>   attribArray;
- 
-    void                use();
-    int                 getVertexAttribLocation(const char* name);
-    int                 getUniformLocation(const char* name);
-
-    virtual void initUniformLocations();
-    
-    virtual void setUniforms(ObjMaterial *mat);
-    
-    
     // Attributes
     static const string posAttribName;
     static const string normAttribName;
@@ -51,4 +34,22 @@ struct ShaderProgram{
     static const string uniProjectionMatName;
     static const string uniNormalMName;
     static const string uniShadowMName;
+    
+    
+    ShaderProgram();
+     ~ShaderProgram();
+    
+    std::string                 name;
+    unsigned int                ID;
+    std::map<string, Uniform>        uniforms;
+    std::map<string, VertexAttrib>   attributes;
+ 
+    void                use();
+    int                 getVertexAttribLocation(const char* name);
+    int                 getUniformLocation(const char* name);
+
+    virtual void initUniformLocations();
+    
+    virtual void setUniforms(ObjMaterial *mat);
+
 };

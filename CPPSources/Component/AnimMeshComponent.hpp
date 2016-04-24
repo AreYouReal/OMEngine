@@ -13,11 +13,8 @@ public:
     virtual void    update() override;
     virtual void    draw() override;
     virtual void    onDestroy() override;
-
     
 private:
     
     sp<md5::MD5>    md5;
-    
-    
 };

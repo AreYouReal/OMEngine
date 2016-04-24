@@ -1,13 +1,13 @@
 #include "WireSP.hpp"
 
 void WireSP::initUniformLocations(){
-    for(const auto &uniform : uniformArray){
-        if(!uniform.name.compare(ShaderProgram::uniModelViewMatName)){
-            modelViewMatUniLoc = uniform.location;
-        }else if(!uniform.name.compare(ShaderProgram::uniProjectionMatName)){
-            projectionMatUniLoc = uniform.location;
-        }else if(!uniform.name.compare("uMaterial.ambient")){
-            materialAmbient = uniform.location;
+    for(const auto &uniform : uniforms){
+        if(!uniform.second.name.compare(ShaderProgram::uniModelViewMatName)){
+            modelViewMatUniLoc = uniform.second.location;
+        }else if(!uniform.second.name.compare(ShaderProgram::uniProjectionMatName)){
+            projectionMatUniLoc = uniform.second.location;
+        }else if(!uniform.second.name.compare("uMaterial.ambient")){
+            materialAmbient = uniform.second.location;
         }
     }
 }

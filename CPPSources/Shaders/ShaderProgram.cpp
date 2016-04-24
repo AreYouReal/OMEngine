@@ -23,13 +23,17 @@ ShaderProgram::~ShaderProgram(){
 
 
 int ShaderProgram::getUniformLocation(const char *name){
-    for(int i = 0; i < uniformArray.size(); i++) if(!strcmp(uniformArray[i].name.c_str(), name)) return uniformArray[i].location;
+    if(uniforms.find(name) != uniforms.end()){
+        return uniforms[name].location;
+    }
     
     return -1;
 }
 
 int ShaderProgram::getVertexAttribLocation(const char *name){
-    for(int i = 0; i < attribArray.size(); i++) if(!strcmp(attribArray[i].name.c_str(), name)) return attribArray[i].location;
+    if(attributes.find(name) != attributes.end()){
+        return attributes[name].location;
+    }
     
     return -1;
 }
@@ -55,38 +59,39 @@ void ShaderProgram::use(){
 void ShaderProgram::setUniforms(ObjMaterial *mat){
     m4d matrix;
     
-    for(unsigned short i = 0; i < uniformArray.size(); ++i){
-        if(!strcmp(uniformArray[i].name.c_str(), "uSamplerDiffuse")){
-            glUniform1i(uniformArray[i].location, 1);
-        }else if(!strcmp(uniformArray[i].name.c_str(), "uModelViewM")){
+    for(auto const &entry : uniforms){
+        if(!strcmp(entry.second.name.c_str(), "uSamplerDiffuse")){
+            glUniform1i(entry.second.location, 1);
+        }else if(!strcmp(entry.second.name.c_str(), "uModelViewM")){
             matrix = Camera::instance()->modelViewMatrix();
-            glUniformMatrix4fv(uniformArray[i].location, 1, GL_TRUE, matrix.pointer());
-        }else if(!strcmp(uniformArray[i].name.c_str(), "uProjectionM")){
+            glUniformMatrix4fv(entry.second.location, 1, GL_TRUE, matrix.pointer());
+        }else if(!strcmp(entry.second.name.c_str(), "uProjectionM")){
             matrix = Camera::instance()->projectionMatrix();
-            glUniformMatrix4fv(uniformArray[i].location, 1, GL_TRUE, matrix.pointer());
-        }else if(!strcmp(uniformArray[i].name.c_str(), "uNormalM")){
+            glUniformMatrix4fv(entry.second.location, 1, GL_TRUE, matrix.pointer());
+        }else if(!strcmp(entry.second.name.c_str(), "uNormalM")){
             matrix = Camera::instance()->normalMatrix();
-            glUniformMatrix4fv(uniformArray[i].location, 1, GL_TRUE, matrix.pointer());
-        }else if(!strcmp(uniformArray[i].name.c_str(), "uDissolve")){
-            glUniform1f(uniformArray[i].location, mat->dissolve);
-        }else if(!strcmp(uniformArray[i].name.c_str(), "uMaterial.ambient")){
-            glUniform4fv(uniformArray[i].location, 1, &mat->ambient.x);
-        }else if(!strcmp(uniformArray[i].name.c_str(), "uMaterial.diffuse")){
-            glUniform4fv(uniformArray[i].location, 1, &mat->diffuse.x);
-        }else if(!strcmp(uniformArray[i].name.c_str(), "uMaterial.specular")){
-            glUniform4fv(uniformArray[i].location, 1, &mat->specular.x);
-        }else if(!strcmp(uniformArray[i].name.c_str(), "uMaterial.shininess")){
-            glUniform1f(uniformArray[i].location, mat->specularExponent );
-        }else if(!strcmp(uniformArray[i].name.c_str(), "uLight.position")){
+            glUniformMatrix4fv(entry.second.location, 1, GL_TRUE, matrix.pointer());
+        }else if(!strcmp(entry.second.name.c_str(), "uDissolve")){
+            glUniform1f(entry.second.location, mat->dissolve);
+        }else if(!strcmp(entry.second.name.c_str(), "uMaterial.ambient")){
+            glUniform4fv(entry.second.location, 1, &mat->ambient.x);
+        }else if(!strcmp(entry.second.name.c_str(), "uMaterial.diffuse")){
+            glUniform4fv(entry.second.location, 1, &mat->diffuse.x);
+        }else if(!strcmp(entry.second.name.c_str(), "uMaterial.specular")){
+            glUniform4fv(entry.second.location, 1, &mat->specular.x);
+        }else if(!strcmp(entry.second.name.c_str(), "uMaterial.shininess")){
+            glUniform1f(entry.second.location, mat->specularExponent );
+        }else if(!strcmp(entry.second.name.c_str(), "uLight.position")){
             // LIGHT
-        }else if(!strcmp(uniformArray[i].name.c_str(), "uSamplerBump")){
-            glUniform1i(uniformArray[i].location, 4);
-        }else if(!strcmp(uniformArray[i].name.c_str(), "uSamplerProjector")){
-            glUniform1i(uniformArray[i].location, 0);
-        }else if(!strcmp(uniformArray[i].name.c_str(), "uProjM")){
+        }else if(!strcmp(entry.second.name.c_str(), "uSamplerBump")){
+            glUniform1i(entry.second.location, 4);
+        }else if(!strcmp(entry.second.name.c_str(), "uSamplerProjector")){
+            glUniform1i(entry.second.location, 0);
+        }else if(!strcmp(entry.second.name.c_str(), "uProjM")){
             matrix = Camera::instance()->projectorMatrix();
-            glUniformMatrix4fv(uniformArray[i].location, 1, GL_TRUE, matrix.pointer());
+            glUniformMatrix4fv(entry.second.location, 1, GL_TRUE, matrix.pointer());
         }
+
     }
     
     char tmp[128] = {""};

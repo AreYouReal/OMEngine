@@ -2,17 +2,17 @@
 
 
 void GreySP::initUniformLocations(){
-    for(const auto &uniform : uniformArray){
-        if(!uniform.name.compare(ShaderProgram::uniModelViewMatName)){
-            modelViewMatrixUniLoc = uniform.location;
-        }else if(!uniform.name.compare(ShaderProgram::uniProjectionMatName)){
-            projectionMatrixUniLoc = uniform.location;
-        }else if(!uniform.name.compare(ShaderProgram::uniNormalMName)){
-            normMatUniLoc = uniform.location;
-        }else if(!uniform.name.compare("uLight.position")){
-            lightPosUniLoc = uniform.location;
-        }else if(!uniform.name.compare("uLight.color")){
-            lightColorUniLoc = uniform.location;
+    for(const auto &uniform : uniforms){
+        if(!uniform.second.name.compare(ShaderProgram::uniModelViewMatName)){
+            modelViewMatrixUniLoc = uniform.second.location;
+        }else if(!uniform.second.name.compare(ShaderProgram::uniProjectionMatName)){
+            projectionMatrixUniLoc = uniform.second.location;
+        }else if(!uniform.second.name.compare(ShaderProgram::uniNormalMName)){
+            normMatUniLoc = uniform.second.location;
+        }else if(!uniform.second.name.compare("uLight.position")){
+            lightPosUniLoc = uniform.second.location;
+        }else if(!uniform.second.name.compare("uLight.color")){
+            lightColorUniLoc = uniform.second.location;
         }
     }
 }

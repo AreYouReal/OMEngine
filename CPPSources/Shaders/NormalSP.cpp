@@ -1,11 +1,11 @@
 #include "NormalSP.hpp"
 
 void NormalSP::initUniformLocations(){
-    for(const auto &uniform : uniformArray){
-        if(!uniform.name.compare(ShaderProgram::uniModelViewMatName)){
-            modelViewMatrixUniLoc = uniform.location;
-        }else if(!uniform.name.compare(ShaderProgram::uniProjectionMatName)){
-            projectionMatrixUniLoc = uniform.location;
+    for(const auto &uniform : uniforms){
+        if(!uniform.second.name.compare(ShaderProgram::uniModelViewMatName)){
+            modelViewMatrixUniLoc = uniform.second.location;
+        }else if(!uniform.second.name.compare(ShaderProgram::uniProjectionMatName)){
+            projectionMatrixUniLoc = uniform.second.location;
         }
     }
 }

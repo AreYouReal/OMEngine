@@ -70,23 +70,23 @@ sp<ShaderProgram> ShaderHelper::createProgram(const string programName, const Sh
         return program;
     }else{
         glGetProgramiv(program->ID, GL_ACTIVE_ATTRIBUTES, &total);
-        program->attribArray = std::vector<VertexAttrib>(total);
         for(unsigned int i = 0; i < total; i++){
             glGetActiveAttrib(program->ID, i, buffSize, &len, &size, &type, name );
-            VertexAttrib &attrib = program->attribArray[i];
+            VertexAttrib attrib;
             attrib.location = glGetAttribLocation(program->ID, name);
             attrib.name = name;
             attrib.type = type;
+            program->attributes.insert(std::pair<string, VertexAttrib>(attrib.name, attrib));
         }
         logGLError();
         glGetProgramiv(program->ID, GL_ACTIVE_UNIFORMS, &total);
-        program->uniformArray = std::vector<Uniform>(total);
         for(unsigned int i = 0; i < total; i++){
             glGetActiveUniform(program->ID, i, buffSize, &len, &size, &type, name);
-            Uniform &uniform = program->uniformArray[i];
+            Uniform uniform;
             uniform.location = glGetUniformLocation(program->ID, name);
             uniform.name = name;
             uniform.type = type;
+            program->uniforms.insert(std::pair<string, Uniform>(uniform.name, uniform));
         }
         program->initUniformLocations();
         logGLError();

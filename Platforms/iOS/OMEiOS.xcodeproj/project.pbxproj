@@ -294,6 +294,7 @@
 		F3D5E10B1AF8F24400DD216B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F3D5E1091AF8F24400DD216B /* InfoPlist.strings */; };
 		F3D5E1191AF8F32E00DD216B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3D5E1181AF8F32E00DD216B /* Images.xcassets */; };
 		F3D5E1321AF8F4DD00DD216B /* iOSSRETests.m in Sources */ = {isa = PBXBuildFile; fileRef = F3D5E1051AF8F23400DD216B /* iOSSRETests.m */; };
+		F3E1784A1CCCE336005A1A10 /* GPMultiLightsSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3E178481CCCE336005A1A10 /* GPMultiLightsSP.cpp */; };
 		F3EA6C2B1C3E8FA2002AF813 /* DebugDrawComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3EA6C291C3E8FA2002AF813 /* DebugDrawComponent.cpp */; };
 		F3FAE8B81B6B77D6007AF169 /* ShaderProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3FAE8B61B6B77D6007AF169 /* ShaderProgram.cpp */; };
 		F3FAE8BB1B6B7885007AF169 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3FAE8B91B6B7885007AF169 /* Shader.cpp */; };
@@ -902,6 +903,8 @@
 		F3D5E10C1AF8F2C600DD216B /* OMEiOS.temp_caseinsensitive_rename-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "OMEiOS.temp_caseinsensitive_rename-Info.plist"; path = "../../../OMEngine/Platforms/iOS/OMEiOS/OMEiOS.temp_caseinsensitive_rename-Info.plist"; sourceTree = "<group>"; };
 		F3D5E10D1AF8F2C600DD216B /* OMEiOS.temp_caseinsensitive_rename-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "OMEiOS.temp_caseinsensitive_rename-Prefix.pch"; path = "../../../OMEngine/Platforms/iOS/OMEiOS/OMEiOS.temp_caseinsensitive_rename-Prefix.pch"; sourceTree = "<group>"; };
 		F3D5E1181AF8F32E00DD216B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = OMEiOS/Images.xcassets; sourceTree = SOURCE_ROOT; };
+		F3E178481CCCE336005A1A10 /* GPMultiLightsSP.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GPMultiLightsSP.cpp; path = OMEngine/CPPSources/Shaders/GPMultiLightsSP.cpp; sourceTree = "<group>"; };
+		F3E178491CCCE336005A1A10 /* GPMultiLightsSP.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = GPMultiLightsSP.hpp; path = OMEngine/CPPSources/Shaders/GPMultiLightsSP.hpp; sourceTree = "<group>"; };
 		F3EA6C291C3E8FA2002AF813 /* DebugDrawComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DebugDrawComponent.cpp; sourceTree = "<group>"; };
 		F3EA6C2A1C3E8FA2002AF813 /* DebugDrawComponent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DebugDrawComponent.hpp; sourceTree = "<group>"; };
 		F3FAE8B61B6B77D6007AF169 /* ShaderProgram.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShaderProgram.cpp; path = ../../CPPSources/Shaders/ShaderProgram.cpp; sourceTree = SOURCE_ROOT; };
@@ -1993,6 +1996,8 @@
 				F3C8A2FA1C5FB00000867A65 /* GouraudPhongSingleLightSP.hpp */,
 				F3A1A4E81C60CBA000DBBB4B /* WireSP.cpp */,
 				F3A1A4E91C60CBA000DBBB4B /* WireSP.hpp */,
+				F3E178481CCCE336005A1A10 /* GPMultiLightsSP.cpp */,
+				F3E178491CCCE336005A1A10 /* GPMultiLightsSP.hpp */,
 			);
 			name = Programs;
 			sourceTree = "<group>";
@@ -2191,6 +2196,7 @@
 				94788FC31BD4CFD200B55A25 /* btHashedSimplePairCache.cpp in Sources */,
 				94788FBA1BD4CFD200B55A25 /* btCompoundCollisionAlgorithm.cpp in Sources */,
 				94D85AC61BB65477008ED8CF /* Transform.cpp in Sources */,
+				F3E1784A1CCCE336005A1A10 /* GPMultiLightsSP.cpp in Sources */,
 				94788FC71BD4CFD200B55A25 /* btSphereBoxCollisionAlgorithm.cpp in Sources */,
 				F39A50261BB40E5B0080B846 /* GameObject.cpp in Sources */,
 				F39FA5BB1C0DE15400CC0BB4 /* lsp.c in Sources */,

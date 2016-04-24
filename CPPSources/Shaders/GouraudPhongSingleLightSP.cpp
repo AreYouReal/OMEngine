@@ -1,39 +1,39 @@
 #include "GouraudPhongSingleLightSP.hpp"
 
 void GouraudPhongSingleLightSP::initUniformLocations(){
-    for(const auto &uniform : uniformArray){
-        if(!uniform.name.compare("uLight.position")){
-            lightPositionUniLoc = uniform.location;
-        }else if(!uniform.name.compare("uLight.type")){
-            lightTypeUniLoc = uniform.location;
-        }else if(!uniform.name.compare("uLight.direction")){
-            lightDirUniLoc = uniform.location;
-        }else if(!uniform.name.compare("uLight.color")){
-            lightColorUniLoc = uniform.location;
-        }else if(!uniform.name.compare("uMaterial.ambient")){
-            materialAmbientUniLoc = uniform.location;
-        }else if(!uniform.name.compare("uMaterial.diffuse")){
-            materialDiffuseUniLoc = uniform.location;
-        }else if(!uniform.name.compare("uMaterial.specular")){
-            materialSpecularUniLoc = uniform.location;
-        }else if(!uniform.name.compare("uMaterial.shininess")){
-            materialShininessUniLoc = uniform.location;
-        }else if(!uniform.name.compare("uMaterial.dissolve")){
-            materialDissolveUniLoc = uniform.location;
-        }else if(!uniform.name.compare(ShaderProgram::uniModelViewMatName)){
-            modelViewMatUniLoc = uniform.location;
-        }else if(!uniform.name.compare(ShaderProgram::uniProjectionMatName)){
-            projectionMatUniLoc = uniform.location;
-        }else if(!uniform.name.compare(ShaderProgram::uniNormalMName)){
-            normalMatUniLoc = uniform.location;
-        }else if(!uniform.name.compare(ShaderProgram::uniShadowMName)){
-            shadowMatUniLoc = uniform.location;
-        }else if(!uniform.name.compare("uSamplerDiffuse")){
-            diffuseSamplerUniLoc = uniform.location;
-        }else if(!uniform.name.compare("uSamplerBump")){
-            bumpSamplerUniLoc = uniform.location;
-        }else if(!uniform.name.compare("uSamplerAmbient")){
-            ambientSamplerDiffuse = uniform.location;
+    for(const auto &uniform : uniforms){
+        if(!uniform.second.name.compare("uLight.position")){
+            lightPositionUniLoc = uniform.second.location;
+        }else if(!uniform.second.name.compare("uLight.type")){
+            lightTypeUniLoc = uniform.second.location;
+        }else if(!uniform.second.name.compare("uLight.direction")){
+            lightDirUniLoc = uniform.second.location;
+        }else if(!uniform.second.name.compare("uLight.color")){
+            lightColorUniLoc = uniform.second.location;
+        }else if(!uniform.second.name.compare("uMaterial.ambient")){
+            materialAmbientUniLoc = uniform.second.location;
+        }else if(!uniform.second.name.compare("uMaterial.diffuse")){
+            materialDiffuseUniLoc = uniform.second.location;
+        }else if(!uniform.second.name.compare("uMaterial.specular")){
+            materialSpecularUniLoc = uniform.second.location;
+        }else if(!uniform.second.name.compare("uMaterial.shininess")){
+            materialShininessUniLoc = uniform.second.location;
+        }else if(!uniform.second.name.compare("uMaterial.dissolve")){
+            materialDissolveUniLoc = uniform.second.location;
+        }else if(!uniform.second.name.compare(ShaderProgram::uniModelViewMatName)){
+            modelViewMatUniLoc = uniform.second.location;
+        }else if(!uniform.second.name.compare(ShaderProgram::uniProjectionMatName)){
+            projectionMatUniLoc = uniform.second.location;
+        }else if(!uniform.second.name.compare(ShaderProgram::uniNormalMName)){
+            normalMatUniLoc = uniform.second.location;
+        }else if(!uniform.second.name.compare(ShaderProgram::uniShadowMName)){
+            shadowMatUniLoc = uniform.second.location;
+        }else if(!uniform.second.name.compare("uSamplerDiffuse")){
+            diffuseSamplerUniLoc = uniform.second.location;
+        }else if(!uniform.second.name.compare("uSamplerBump")){
+            bumpSamplerUniLoc = uniform.second.location;
+        }else if(!uniform.second.name.compare("uSamplerAmbient")){
+            ambientSamplerDiffuse = uniform.second.location;
         }
     }
 }
