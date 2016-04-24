@@ -26,6 +26,7 @@ static std::map<string, string>  meshShaderTable{
 Materials::Materials(){
     loadPrograms();
     loadMaterial("bob.mtl");
+    loadOMGFile("generalLighting.omg");
 }
 
 Materials::~Materials(){

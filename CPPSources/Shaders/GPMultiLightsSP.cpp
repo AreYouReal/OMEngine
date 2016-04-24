@@ -1,9 +1,12 @@
-//
-//  GPMultiLightsSP.cpp
-//  OMEiOS
-//
-//  Created by Alexander Kolesnikov on 24/04/16.
-//  Copyright © 2016 Alexader Kolesnikov. All rights reserved.
-//
-
 #include "GPMultiLightsSP.hpp"
+
+
+void GPMultiLightsSP::initUniformLocations(){
+    for(auto const &uniform : uniforms){
+        logMessage("Uniform: %s\n",uniform.second.name.c_str());
+    }
+}
+
+void GPMultiLightsSP::setUniforms(ObjMaterial *mat){
+
+}
