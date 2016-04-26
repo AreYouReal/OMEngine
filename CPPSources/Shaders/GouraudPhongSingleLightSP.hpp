@@ -25,5 +25,5 @@ struct GouraudPhongSingleLightSP : public ShaderProgram{
     int ambientSamplerDiffuse = -1;
 
     virtual void initUniformLocations()         override;
-    virtual void setUniforms(ObjMaterial *mat)  override;
+    virtual void setUniforms(const ObjMaterial *mat)  override;
 };

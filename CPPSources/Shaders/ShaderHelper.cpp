@@ -6,18 +6,19 @@
 #include "GouraudPhongSingleLightSP.hpp"
 #include "WireSP.hpp"
 #include "GPMultiLightsSP.hpp"
+#include "SimpleGouraudSP.hpp"
 
 #pragma mark Public
 
 std::map<string, ShaderHelper::ShaderType> enumTypeTable{
-    std::pair<string, ShaderHelper::ShaderType>("Normal",           ShaderHelper::Normal            ),
-    std::pair<string, ShaderHelper::ShaderType>("Grey",             ShaderHelper::Grey              ),
-    std::pair<string, ShaderHelper::ShaderType>("Gouraud",          ShaderHelper::Gouraud           ),
-    std::pair<string, ShaderHelper::ShaderType>("Phong",            ShaderHelper::Phong             ),
-    std::pair<string, ShaderHelper::ShaderType>("Wired",            ShaderHelper::Wired             ),
-    std::pair<string, ShaderHelper::ShaderType>("GourandMultiLight",ShaderHelper::GourandMultiLight ),
-    std::pair<string, ShaderHelper::ShaderType>("PhongMultiLight",  ShaderHelper::PhongMultiLight   ),
-    std::pair<string, ShaderHelper::ShaderType>("General",          ShaderHelper::General           )
+    std::pair<string, ShaderHelper::ShaderType>("Normal",               ShaderHelper::Normal            ),
+    std::pair<string, ShaderHelper::ShaderType>("Grey",                 ShaderHelper::Grey              ),
+    std::pair<string, ShaderHelper::ShaderType>("SimpleGouraud",        ShaderHelper::SimpleGouraud),
+    std::pair<string, ShaderHelper::ShaderType>("SimplePhong",          ShaderHelper::SimplePhong  ),
+    std::pair<string, ShaderHelper::ShaderType>("Wired",                ShaderHelper::Wired             ),
+    std::pair<string, ShaderHelper::ShaderType>("GourandMultiLight",    ShaderHelper::GourandMultiLight ),
+    std::pair<string, ShaderHelper::ShaderType>("PhongMultiLight",      ShaderHelper::PhongMultiLight   ),
+    std::pair<string, ShaderHelper::ShaderType>("General",              ShaderHelper::General           )
 };
 
 sp<ShaderProgram> ShaderHelper::createProgram(string programName, const string vertexShaderFilename, string fragmentShaderFilename, const ShaderType sType){
@@ -40,8 +41,10 @@ sp<ShaderProgram> ShaderHelper::createProgram(const string programName, const Sh
         case Grey:
             program = std::make_shared<GreySP>();
             break;
-        case Gouraud:
-        case Phong:
+        case SimpleGouraud:
+            program = std::make_shared<SimpleGouraudSP>();
+            break;
+        case SimplePhong:
             program = std::make_shared<GouraudPhongSingleLightSP>();
             break;
         case Wired:

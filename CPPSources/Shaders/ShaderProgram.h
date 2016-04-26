@@ -45,11 +45,11 @@ struct ShaderProgram{
     std::map<string, VertexAttrib>   attributes;
  
     void                use();
-    int                 getVertexAttribLocation(const char* name);
-    int                 getUniformLocation(const char* name);
 
     virtual void initUniformLocations();
     
-    virtual void setUniforms(ObjMaterial *mat);
+    virtual void setUniforms(const ObjMaterial *mat);
 
+    int getUniformLocation(const string &name);
+    
 };

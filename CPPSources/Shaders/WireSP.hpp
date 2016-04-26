@@ -9,5 +9,5 @@ struct WireSP : public ShaderProgram{
     int materialAmbient;
     
     virtual void initUniformLocations()         override;
-    virtual void setUniforms(ObjMaterial *mat)  override;
+    virtual void setUniforms(const ObjMaterial *mat)  override;
 };

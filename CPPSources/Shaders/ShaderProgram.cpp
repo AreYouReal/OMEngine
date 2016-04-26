@@ -21,24 +21,10 @@ ShaderProgram::ShaderProgram(){
 ShaderProgram::~ShaderProgram(){
 }
 
-
-int ShaderProgram::getUniformLocation(const char *name){
-    if(uniforms.find(name) != uniforms.end()){
-        return uniforms[name].location;
-    }
-    
-    return -1;
-}
-
-int ShaderProgram::getVertexAttribLocation(const char *name){
-    if(attributes.find(name) != attributes.end()){
-        return attributes[name].location;
-    }
-    
-    return -1;
-}
-
 void ShaderProgram::initUniformLocations(){
+    for(auto const &uniform : uniforms){
+        logMessage("Uniform: %s\n",uniform.second.name.c_str());
+    }
     // Shader specific
 }
 
@@ -56,7 +42,7 @@ void ShaderProgram::use(){
 ////    glBindAttribLocation(ID, attribLocations[Attributes::TANGENT],  "aTangent");
 //}
 
-void ShaderProgram::setUniforms(ObjMaterial *mat){
+void ShaderProgram::setUniforms(const ObjMaterial *mat){
     m4d matrix;
     
     for(auto const &entry : uniforms){
@@ -95,14 +81,16 @@ void ShaderProgram::setUniforms(ObjMaterial *mat){
     }
     
     char tmp[128] = {""};
-    for(int i = 0; i < 2; ++i){
+    for(int i = 0; i < 1; ++i){
         sp<LightSource> light =Illuminator::instance()->getLightSource(i);
         v4d lightInEyeSpace = light->getPositionInEyeSpace();
         v4d color = light->getColor();
         v4d directionInEyeSpace = light->getDirectionInEyeSpace();
-        
+
         sprintf(tmp, "uLightFS[%d].color", i);
-        glUniform4fv(getUniformLocation(tmp), 1, &color.x);
+        string qwe = tmp;
+        
+        glUniform4fv(getUniformLocation(qwe), 1, &color.x);
         
         sprintf(tmp, "uLight[%d].type", i);
         glUniform1i(getUniformLocation(tmp), light->type());
@@ -132,5 +120,15 @@ void ShaderProgram::setUniforms(ObjMaterial *mat){
         
         sprintf(tmp, "uLight[%d].position", i);
         glUniform3fv(getUniformLocation(tmp), 1, &lightInEyeSpace.x);
+    }
+}
+
+
+int ShaderProgram::getUniformLocation(const string &name){
+    if(uniforms.find(name) != uniforms.end()){
+        return uniforms[name].location;
+    }else{
+        logMessage("Can't find uniform %s!!!\n", name.c_str());
+        return -1;
     }
 }

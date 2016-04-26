@@ -2,11 +2,11 @@
 
 
 void GPMultiLightsSP::initUniformLocations(){
-    for(auto const &uniform : uniforms){
-        logMessage("Uniform: %s\n",uniform.second.name.c_str());
-    }
+//    for(auto const &uniform : uniforms){
+//        logMessage("Uniform: %s\n",uniform.second.name.c_str());
+//    }
 }
 
-void GPMultiLightsSP::setUniforms(ObjMaterial *mat){
+void GPMultiLightsSP::setUniforms(const ObjMaterial *mat){
 
 }

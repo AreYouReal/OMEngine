@@ -38,7 +38,7 @@ void GouraudPhongSingleLightSP::initUniformLocations(){
     }
 }
 
-void GouraudPhongSingleLightSP::setUniforms(ObjMaterial *mat){
+void GouraudPhongSingleLightSP::setUniforms(const ObjMaterial *mat){
     m4d matrix = Camera::instance()->modelViewMatrix();
     glUniformMatrix4fv(modelViewMatUniLoc, 1, GL_TRUE, matrix.pointer());
     matrix = Camera::instance()->projectionMatrix();

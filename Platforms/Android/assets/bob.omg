@@ -1,4 +1,4 @@
-type Phong
+type General
 
 GL_VERTEX_SHADER
 

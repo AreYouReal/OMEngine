@@ -13,7 +13,7 @@ static std::map<string, string>  meshShaderTable{
     std::pair<string, string>("leaf", "defaultPerVertex"),
     // Scene.obj meshes
     std::pair<string, string>("floor", "shadowProjector.omg"),
-    std::pair<string, string>("sphere2_sphere.002", "particles.omg"),
+    std::pair<string, string>("sphere2_sphere.002", "shadowProjector.omg"),
     std::pair<string, string>("sphere1_sphere.001", "shadowProjector.omg"),
     std::pair<string, string>("sphere3_sphere", "shadowProjector.omg"),
     // MD5 BOB
@@ -189,8 +189,8 @@ void Materials::loadPrograms(){
     addProgram(ShaderHelper::createProgram("normAsColor",   "pos_norm_vertex.glsl",     "norm_as_color_fragment.glsl"   , ShaderHelper::ShaderType::Normal));
     logGLError();
     addProgram(ShaderHelper::createProgram("defaultGrey",    "default_gray_vertex.glsl", "default_gray_fragment.glsl"   , ShaderHelper::ShaderType::Grey ));
-    addProgram(ShaderHelper::createProgram("Gouraud","vertexPerVertex.glsl",     "fragmentPerVertex.glsl"      , ShaderHelper::ShaderType::Gouraud  ));
-    addProgram(ShaderHelper::createProgram("Phong", "vertexPerPixel.glsl",      "fragmentPerPixel.glsl"      ,ShaderHelper::ShaderType::Phong   ));
+    addProgram(ShaderHelper::createProgram("SimpleGouraud","SimpeGouraudVertex.glsl",     "SimpleGouraudFragment.glsl"      , ShaderHelper::ShaderType::SimplePhong  ));
+    addProgram(ShaderHelper::createProgram("SimplePhong", "vertexPerPixel.glsl",      "fragmentPerPixel.glsl"      ,ShaderHelper::ShaderType::SimplePhong   ));
     addProgram(ShaderHelper::createProgram("wired",           "wired_vertex.glsl",        "wired_fragment.glsl"  , ShaderHelper::ShaderType::Wired ));
     addProgram(ShaderHelper::createProgram("lightPoint",      "light_point_vertex.glsl",  "light_point_fragment.glsl"     ));
     addProgram(ShaderHelper::createProgram("font",            "font_vertex.glsl",         "font_fragment.glsl"            ));

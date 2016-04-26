@@ -17,6 +17,6 @@ class GPMultiLightsSP : public ShaderProgram{
     
     virtual void initUniformLocations() override;
     
-    virtual void setUniforms(ObjMaterial *mat) override;
+    virtual void setUniforms(const ObjMaterial *mat) override;
     
 };
