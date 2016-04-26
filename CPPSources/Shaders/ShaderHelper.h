@@ -8,7 +8,7 @@
 class ShaderHelper {
 public:
     
-    enum ShaderType{Normal, Grey, SimpleGouraud, SimplePhong, Wired, GourandMultiLight, PhongMultiLight, General };
+    enum ShaderType{Depth, Normal, Grey, SimpleGouraud, SimplePhong, Wired, GourandMultiLight, PhongMultiLight, General };
     
     static sp<ShaderProgram>    createProgram(const string name, const string vFileName, const string fFileName, const ShaderType sType = General);
     static sp<ShaderProgram>    createProgram(const string name, const Shader &vertex, const Shader &fragment, const ShaderType sType = General);

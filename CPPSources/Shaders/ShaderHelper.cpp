@@ -3,14 +3,15 @@
 
 #include "NormalSP.hpp"
 #include "GreySP.hpp"
-#include "GouraudPhongSingleLightSP.hpp"
 #include "WireSP.hpp"
 #include "GPMultiLightsSP.hpp"
-#include "SimpleGouraudSP.hpp"
+#include "SimpleGouraudPhongSP.hpp"
+#include "DepthSP.hpp"
 
 #pragma mark Public
 
 std::map<string, ShaderHelper::ShaderType> enumTypeTable{
+    std::pair<string, ShaderHelper::ShaderType>("Depth",               ShaderHelper::Depth            ),
     std::pair<string, ShaderHelper::ShaderType>("Normal",               ShaderHelper::Normal            ),
     std::pair<string, ShaderHelper::ShaderType>("Grey",                 ShaderHelper::Grey              ),
     std::pair<string, ShaderHelper::ShaderType>("SimpleGouraud",        ShaderHelper::SimpleGouraud),
@@ -42,10 +43,8 @@ sp<ShaderProgram> ShaderHelper::createProgram(const string programName, const Sh
             program = std::make_shared<GreySP>();
             break;
         case SimpleGouraud:
-            program = std::make_shared<SimpleGouraudSP>();
-            break;
         case SimplePhong:
-            program = std::make_shared<GouraudPhongSingleLightSP>();
+            program = std::make_shared<SimpleGouraudPhongSP>();
             break;
         case Wired:
             program = std::make_shared<WireSP>();
@@ -53,6 +52,9 @@ sp<ShaderProgram> ShaderHelper::createProgram(const string programName, const Sh
         case PhongMultiLight:
         case GourandMultiLight:
             program = std::make_shared<GPMultiLightsSP>();
+            break;
+        case Depth:
+            program = std::make_shared<DepthSP>();
             break;
         default:
             program = std::make_shared<ShaderProgram>();

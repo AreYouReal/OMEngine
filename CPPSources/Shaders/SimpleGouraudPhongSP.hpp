@@ -1,6 +1,6 @@
 #include "ShaderProgram.h"
 
-struct SimpleGouraudSP : public ShaderProgram{
+struct SimpleGouraudPhongSP : public ShaderProgram{
 #pragma mark Uniforms locations
     // Transform related
     int modelViewM  = -1;
@@ -18,6 +18,10 @@ struct SimpleGouraudSP : public ShaderProgram{
     int matDiffuseColor     = -1;
     int matSpecularColor    = -1;
     int matShininess        = -1;
+    
+    // Texture related
+    int uDiffuseSampler = -1;
+    int uBumpSampler = -1;
     
 #pragma mark Overrides
     virtual void initUniformLocations() override;

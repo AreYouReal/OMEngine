@@ -1,4 +1,4 @@
-type General
+type SimplePhong
 
 GL_VERTEX_SHADER
 
@@ -14,7 +14,6 @@ struct Light{
 uniform mat4 uModelViewM;
 uniform mat4 uProjectionM;
 uniform lowp mat4 uNormalM;
-uniform mat4 uShadowM;
 uniform Light uLight;
 
 layout(location = 0) in vec4 aPosition;
@@ -38,10 +37,10 @@ mat3 calculateTBNMatrix(){
 void calculateOutVars(lowp mat3 tbn, lowp vec3 position){
     switch (uLight.type) {
         case 0:
-            lightDirectionTS = uLight.direction * tbn;
+            lightDirectionTS = normalize(uLight.direction * tbn);
             break;
         case 1:
-            lightDirectionTS = (uLight.position - position) * tbn;
+            lightDirectionTS = normalize((uLight.position - position) * tbn);
             break;
         default:
             break;
@@ -79,7 +78,6 @@ uniform Material uMaterial;
 
 uniform mediump sampler2D uSamplerDiffuse;
 uniform mediump sampler2D uSamplerBump;
-uniform lowp sampler2DShadow uSamplerAmbient;
 
 in lowp vec3 texCoord;
 in lowp vec3 position;

@@ -34,7 +34,7 @@ bool Scene::init(){
 //    createTestScene();
     
 
-    createLightTestScene();
+//    createLightTestScene();
     createBob();
     logGLError();
 //    sp<Texture> projTexture = Materials::instance()->getTexture("projector.png");

@@ -6,7 +6,6 @@ struct Material{
     lowp    vec4    ambient;
     lowp    vec4    diffuse;
     lowp    vec4    specular;
-    lowp    float   dissolve;
     mediump float   shininess;
 };
 
@@ -27,9 +26,6 @@ in mediump  vec3    texCoord;
 
 void main(){
     lowp vec4 diffuseColor = texture( uSamplerDiffuse, texCoord.xy );
-    
-    lowp float alpha = diffuseColor.a;
-    
     mediump vec3 L;
     
     if(uLight.type > 0){
@@ -49,14 +45,6 @@ void main(){
     }
     
     vec4 resultColor = uMaterial.ambient + diffuse + specular;
-    
-    if(uMaterial.dissolve == 0.0){
-        if(alpha < 0.1) discard;
-    }else if(uMaterial.dissolve == 1.0){
-        resultColor.a = alpha;
-    }else{
-        resultColor.a = uMaterial.dissolve;
-    }
     
     fragColor = resultColor;
 }
