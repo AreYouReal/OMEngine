@@ -8,4 +8,7 @@ struct GouraudMultiLightSP : public ShaderProgram{
 
     virtual void initUniformLocations() override;
     virtual void setUniforms(const ObjMaterial *mat) override;
+    
+    
+    void initLightUniLocations();
 };

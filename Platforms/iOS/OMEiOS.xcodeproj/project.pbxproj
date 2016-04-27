@@ -296,7 +296,7 @@
 		F3D5E1191AF8F32E00DD216B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3D5E1181AF8F32E00DD216B /* Images.xcassets */; };
 		F3D5E1321AF8F4DD00DD216B /* iOSSRETests.m in Sources */ = {isa = PBXBuildFile; fileRef = F3D5E1051AF8F23400DD216B /* iOSSRETests.m */; };
 		F3E0F5581CD09B1D005D0EEE /* GouraudMultiLightSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3E0F5561CD09B1D005D0EEE /* GouraudMultiLightSP.cpp */; };
-		F3E1784A1CCCE336005A1A10 /* GPMultiLightsSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3E178481CCCE336005A1A10 /* GPMultiLightsSP.cpp */; };
+		F3E0F55A1CD0A4D8005D0EEE /* gouraudMultiLight.omg in Resources */ = {isa = PBXBuildFile; fileRef = F3E0F5591CD0A4D8005D0EEE /* gouraudMultiLight.omg */; };
 		F3EA6C2B1C3E8FA2002AF813 /* DebugDrawComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3EA6C291C3E8FA2002AF813 /* DebugDrawComponent.cpp */; };
 		F3FAE8B81B6B77D6007AF169 /* ShaderProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3FAE8B61B6B77D6007AF169 /* ShaderProgram.cpp */; };
 		F3FAE8BB1B6B7885007AF169 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3FAE8B91B6B7885007AF169 /* Shader.cpp */; };
@@ -909,8 +909,7 @@
 		F3D5E1181AF8F32E00DD216B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = OMEiOS/Images.xcassets; sourceTree = SOURCE_ROOT; };
 		F3E0F5561CD09B1D005D0EEE /* GouraudMultiLightSP.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GouraudMultiLightSP.cpp; path = OMEngine/CPPSources/Shaders/GouraudMultiLightSP.cpp; sourceTree = "<group>"; };
 		F3E0F5571CD09B1D005D0EEE /* GouraudMultiLightSP.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = GouraudMultiLightSP.hpp; path = OMEngine/CPPSources/Shaders/GouraudMultiLightSP.hpp; sourceTree = "<group>"; };
-		F3E178481CCCE336005A1A10 /* GPMultiLightsSP.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GPMultiLightsSP.cpp; path = OMEngine/CPPSources/Shaders/GPMultiLightsSP.cpp; sourceTree = "<group>"; };
-		F3E178491CCCE336005A1A10 /* GPMultiLightsSP.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = GPMultiLightsSP.hpp; path = OMEngine/CPPSources/Shaders/GPMultiLightsSP.hpp; sourceTree = "<group>"; };
+		F3E0F5591CD0A4D8005D0EEE /* gouraudMultiLight.omg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = gouraudMultiLight.omg; path = OMEngine/Platforms/Android/assets/gouraudMultiLight.omg; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
 		F3EA6C291C3E8FA2002AF813 /* DebugDrawComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DebugDrawComponent.cpp; sourceTree = "<group>"; };
 		F3EA6C2A1C3E8FA2002AF813 /* DebugDrawComponent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DebugDrawComponent.hpp; sourceTree = "<group>"; };
 		F3FAE8B61B6B77D6007AF169 /* ShaderProgram.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShaderProgram.cpp; path = ../../CPPSources/Shaders/ShaderProgram.cpp; sourceTree = SOURCE_ROOT; };
@@ -1032,6 +1031,7 @@
 		7626524017F10E6C007CCD43 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F3E0F5591CD0A4D8005D0EEE /* gouraudMultiLight.omg */,
 				F307C9171CBF791200CF9623 /* bob */,
 				F3AB02791CA7FFFE00CB8FC9 /* particle.png */,
 				F3AB027A1CA7FFFE00CB8FC9 /* particles.omg */,
@@ -2000,8 +2000,6 @@
 				F32EB63B1C5FA5E00057F474 /* GreySP.hpp */,
 				F3A1A4E81C60CBA000DBBB4B /* WireSP.cpp */,
 				F3A1A4E91C60CBA000DBBB4B /* WireSP.hpp */,
-				F3E178481CCCE336005A1A10 /* GPMultiLightsSP.cpp */,
-				F3E178491CCCE336005A1A10 /* GPMultiLightsSP.hpp */,
 				F3A8431F1CCF448C006D1B94 /* SimpleGouraudPhongSP.cpp */,
 				F3A843201CCF448C006D1B94 /* SimpleGouraudPhongSP.hpp */,
 				F3A843251CCF5DD2006D1B94 /* DepthSP.cpp */,
@@ -2124,6 +2122,7 @@
 				F30E41DD1C2D548E00A88527 /* sphere.png in Resources */,
 				F38A22E71BAAA40500FADEC0 /* SimpleGouraudFragment.glsl in Resources */,
 				F3D171781C6DCCD900A9507D /* generalLightingProjector.omg in Resources */,
+				F3E0F55A1CD0A4D8005D0EEE /* gouraudMultiLight.omg in Resources */,
 				F3B0F6BF1BF0B7410044A442 /* FFF_Tusj.ttf in Resources */,
 				F3D5E10B1AF8F24400DD216B /* InfoPlist.strings in Resources */,
 				F3CAEEE71BB01B8800DCF182 /* default_gray_fragment.glsl in Resources */,
@@ -2207,7 +2206,6 @@
 				94788FBA1BD4CFD200B55A25 /* btCompoundCollisionAlgorithm.cpp in Sources */,
 				F3E0F5581CD09B1D005D0EEE /* GouraudMultiLightSP.cpp in Sources */,
 				94D85AC61BB65477008ED8CF /* Transform.cpp in Sources */,
-				F3E1784A1CCCE336005A1A10 /* GPMultiLightsSP.cpp in Sources */,
 				F3A843271CCF5DD2006D1B94 /* DepthSP.cpp in Sources */,
 				94788FC71BD4CFD200B55A25 /* btSphereBoxCollisionAlgorithm.cpp in Sources */,
 				F39A50261BB40E5B0080B846 /* GameObject.cpp in Sources */,
