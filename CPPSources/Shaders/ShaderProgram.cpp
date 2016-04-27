@@ -132,3 +132,27 @@ int ShaderProgram::getUniformLocation(const string &name){
         return -1;
     }
 }
+
+void ShaderProgram::initTransformUniformLocations(){
+    transformLoc.modelViewMat  = getUniformLocation(ShaderProgram::uniModelViewMatName );
+    transformLoc.projectionMat = getUniformLocation(ShaderProgram::uniProjectionMatName);
+    transformLoc.normalMat     = getUniformLocation(ShaderProgram::uniNormalMName      );
+}
+
+
+void ShaderProgram::initMaterialUniformLocations(){
+    matLoc.ambient     = getUniformLocation("uMaterial.ambient"    );
+    matLoc.diffuse     = getUniformLocation("uMaterial.diffuse"    );
+    matLoc.specular    = getUniformLocation("uMaterial.specular"   );
+    matLoc.shininess   = getUniformLocation("uMaterial.shininess"  );
+    texLoc.diffuse     = getUniformLocation("uSamplerDiffuse"      );
+    texLoc.bump        = getUniformLocation("uSamplerBump"         );
+    texLoc.shadow      = getUniformLocation("uSampleShadow"        );
+}
+
+
+void ShaderProgram::setTransformUniforms(){
+    glUniformMatrix4fv(transformLoc.modelViewMat,  1, GL_TRUE, Camera::instance()->modelViewMatrix().pointer() );
+    glUniformMatrix4fv(transformLoc.projectionMat, 1, GL_TRUE, Camera::instance()->projectionMatrix().pointer());
+    glUniformMatrix4fv(transformLoc.normalMat,     1, GL_TRUE, Camera::instance()->normalMatrix().pointer()    );
+}

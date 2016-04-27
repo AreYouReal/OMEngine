@@ -48,7 +48,7 @@
       <file leaf-file-name="omUtil_Android.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/jni/omUtil_Android.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.17503217">
+            <state vertical-scroll-proportion="0.20205921">
               <caret line="135" column="27" selection-start-line="135" selection-start-column="27" selection-end-line="135" selection-end-column="27" />
               <folding />
             </state>
@@ -160,10 +160,7 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="AndroidView" />
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -238,6 +235,9 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -914,7 +914,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/jni/omUtil_Android.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17503217">
+        <state vertical-scroll-proportion="0.20205921">
           <caret line="135" column="27" selection-start-line="135" selection-start-column="27" selection-end-line="135" selection-end-column="27" />
           <folding />
         </state>

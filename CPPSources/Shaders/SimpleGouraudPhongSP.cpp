@@ -2,9 +2,9 @@
 
 
 void SimpleGouraudPhongSP::initUniformLocations(){
-    initTransformUniLocations();
+    initTransformUniformLocations();
     initLightUniLocations();
-    initMaterialUniLocations();
+    initMaterialUniformLocations();
 }
 
 void SimpleGouraudPhongSP::setUniforms(const ObjMaterial *mat){
@@ -14,57 +14,36 @@ void SimpleGouraudPhongSP::setUniforms(const ObjMaterial *mat){
 }
 
 #pragma mark Helpers
-void SimpleGouraudPhongSP::initTransformUniLocations(){
-    modelViewM  = getUniformLocation(ShaderProgram::uniModelViewMatName );
-    projectionM = getUniformLocation(ShaderProgram::uniProjectionMatName);
-    normalM     = getUniformLocation(ShaderProgram::uniNormalMName      );
-}
-
 void SimpleGouraudPhongSP::initLightUniLocations(){
-    lightType   = getUniformLocation("uLight.type"      );
-    lightPos    = getUniformLocation("uLight.position"  );
-    lightDir    = getUniformLocation("uLight.direction" );
-    lightColor  = getUniformLocation("uLight.color"     );
+    lightLoc.type       = getUniformLocation("uLight.type"      );
+    lightLoc.position   = getUniformLocation("uLight.position"  );
+    lightLoc.direction  = getUniformLocation("uLight.direction" );
+    lightLoc.color      = getUniformLocation("uLight.color"     );
 }
 
-void SimpleGouraudPhongSP::initMaterialUniLocations(){
-    matAmbientColor     = getUniformLocation("uMaterial.ambient"    );
-    matDiffuseColor     = getUniformLocation("uMaterial.diffuse"    );
-    matSpecularColor    = getUniformLocation("uMaterial.specular"   );
-    matShininess        = getUniformLocation("uMaterial.shininess"  );
-    uDiffuseSampler     = getUniformLocation("uSamplerDiffuse"      );
-    uBumpSampler        = getUniformLocation("uSamplerBump"         );
-}
-
-
-void SimpleGouraudPhongSP::setTransformUniforms(){
-    glUniformMatrix4fv(modelViewM,  1, GL_TRUE, Camera::instance()->modelViewMatrix().pointer() );
-    glUniformMatrix4fv(projectionM, 1, GL_TRUE, Camera::instance()->projectionMatrix().pointer());
-    glUniformMatrix4fv(normalM,     1, GL_TRUE, Camera::instance()->normalMatrix().pointer()    );
-}
 
 void SimpleGouraudPhongSP::setLightUniforms(){
     sp<LightSource> light = Illuminator::instance()->getLightSource();
     
-    glUniform1i(lightType, light->type());
+    glUniform1i(lightLoc.type, light->type());
     
     v3d temp = light->getPositionInEyeSpace();
-    glUniform3fv(lightPos, 1, &temp.x);
+    glUniform3fv(lightLoc.position, 1, &temp.x);
     temp = light->getDirectionInEyeSpace();
-    glUniform3fv(lightDir, 1, &temp.x);
+    glUniform3fv(lightLoc.direction, 1, &temp.x);
     
-    glUniform4fv(lightColor,1, &light->getColor().x);
+    glUniform4fv(lightLoc.color,1, &light->getColor().x);
 }
 
 void SimpleGouraudPhongSP::setMaterialUniforms(const ObjMaterial *mat){
-    glUniform4fv(matAmbientColor, 1, &mat->ambient.x);
-    glUniform4fv(matDiffuseColor, 1, &mat->diffuse.x);
-    glUniform4fv(matSpecularColor, 1, &mat->specular.x);
+    glUniform4fv(matLoc.ambient, 1, &mat->ambient.x);
+    glUniform4fv(matLoc.diffuse, 1, &mat->diffuse.x);
+    glUniform4fv(matLoc.specular, 1, &mat->specular.x);
     
-    glUniform1f(matShininess, mat->specularExponent);
+    glUniform1f(matLoc.shininess, mat->specularExponent);
     
-    glUniform1i(uDiffuseSampler, 1);
+    glUniform1i(texLoc.diffuse, 1);
     
-    if(uBumpSampler > 0)
-        glUniform1i(uBumpSampler, 4);
+    if(texLoc.bump > 0)
+        glUniform1i(texLoc.bump, 4);
 }
