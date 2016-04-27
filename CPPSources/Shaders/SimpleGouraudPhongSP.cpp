@@ -3,8 +3,8 @@
 
 void SimpleGouraudPhongSP::initUniformLocations(){
     initTransformUniformLocations();
-    initLightUniLocations();
     initMaterialUniformLocations();
+    initLightUniLocations();
 }
 
 void SimpleGouraudPhongSP::setUniforms(const ObjMaterial *mat){

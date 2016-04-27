@@ -137,6 +137,7 @@ void ShaderProgram::initTransformUniformLocations(){
     transformLoc.modelViewMat  = getUniformLocation(ShaderProgram::uniModelViewMatName );
     transformLoc.projectionMat = getUniformLocation(ShaderProgram::uniProjectionMatName);
     transformLoc.normalMat     = getUniformLocation(ShaderProgram::uniNormalMName      );
+    transformLoc.shadowMat     = getUniformLocation(ShaderProgram::uniShadowMName      );
 }
 
 

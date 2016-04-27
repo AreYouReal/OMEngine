@@ -81,19 +81,25 @@ struct ShaderProgram{
     ShaderProgram();
      ~ShaderProgram();
     
+    // Fields
     std::string                 name;
     unsigned int                ID;
     std::map<string, Uniform>        uniforms;
     std::map<string, VertexAttrib>   attributes;
  
+    // USE
     void                use();
 
+    // Virtuals
     virtual void initUniformLocations();
-    
     virtual void setUniforms(const ObjMaterial *mat);
 
+    // General
     int getUniformLocation(const string &name);
     
+protected:
+
+    // Helpers
     void initTransformUniformLocations();
     void initMaterialUniformLocations();
     
