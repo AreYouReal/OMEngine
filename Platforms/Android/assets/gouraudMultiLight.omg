@@ -96,12 +96,12 @@ void directionalLight(in vec4 color, in vec3 direction){
 float attenuation(in vec3 direction, int index){
     highp float dist = length(direction);
     lowp float sphere = max((uLight[index].dst - dist)/uLight[index].dst, 0.0);
-    if(sphere <= 0.0) return 0.0;
+    if(sphere <= 0.0) return 1.0;
     highp float lamdistsqr = uLight[index].dst * uLight[index].dst;
     lowp float att = uLight[index].dst / (uLight[index].dst + uLight[index].linAtten * dist);
     att *= lamdistsqr / (lamdistsqr + uLight[index].quadAtten * dist * dist);
     att *= sphere;
-    return att;
+    return 1.0;
 }
 
 void spotLight(in Light light, in highp vec3 direction, in lowp vec3 spotdir){

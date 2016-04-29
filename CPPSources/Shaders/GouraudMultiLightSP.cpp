@@ -71,6 +71,7 @@ void GouraudMultiLightSP::setUniformForLightSource(sp<LightSource> light, int in
             glUniform1f(lightLocs[index].linAtten,      light->linearAtten());
             glUniform1f(lightLocs[index].quadAtten,     light->quadAtten());
         }
+            break;
         case LightSource::Type::SPOT:
         {
             glUniform1f(lightLocs[index].spotCosCutoff, light->spotCosCutoff);
