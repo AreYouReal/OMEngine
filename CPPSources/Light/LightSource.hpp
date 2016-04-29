@@ -33,6 +33,7 @@ public:
     void draw() const;
     
     void setPosition(const v3d pos);
+    void setColor(v4d color);
     
     m4d     getLookAtFromPointView();
     

@@ -22,9 +22,6 @@ ShaderProgram::~ShaderProgram(){
 }
 
 void ShaderProgram::initUniformLocations(){
-    for(auto const &uniform : uniforms){
-        logMessage("Uniform: %s\n",uniform.second.name.c_str());
-    }
     // Shader specific
 }
 
@@ -156,4 +153,17 @@ void ShaderProgram::setTransformUniforms(){
     glUniformMatrix4fv(transformLoc.modelViewMat,  1, GL_TRUE, Camera::instance()->modelViewMatrix().pointer() );
     glUniformMatrix4fv(transformLoc.projectionMat, 1, GL_TRUE, Camera::instance()->projectionMatrix().pointer());
     glUniformMatrix4fv(transformLoc.normalMat,     1, GL_TRUE, Camera::instance()->normalMatrix().pointer()    );
+}
+
+void ShaderProgram::setMaterialUniforms(const ObjMaterial *mat){
+    glUniform4fv(matLoc.ambient, 1, &mat->ambient.x);
+    glUniform4fv(matLoc.diffuse, 1, &mat->diffuse.x);
+    glUniform4fv(matLoc.specular, 1, &mat->specular.x);
+    
+    glUniform1f(matLoc.shininess, mat->specularExponent);
+    
+    glUniform1i(texLoc.diffuse, 1);
+    
+    if(texLoc.bump > 0)
+        glUniform1i(texLoc.bump, 4);
 }

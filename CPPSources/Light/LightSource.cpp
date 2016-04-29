@@ -38,6 +38,10 @@ void LightSource::setPosition(const v3d pos){
     mTransform.refreshTransformMatrix();
 }
 
+void LightSource::setColor(v4d color){
+    mColor = color;
+}
+
 m4d LightSource::getLookAtFromPointView(){
     v3d pos = getPosition();
     v3d up(0, 0, 1);

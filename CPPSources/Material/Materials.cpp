@@ -17,10 +17,10 @@ static std::map<string, string>  meshShaderTable{
     std::pair<string, string>("sphere1_sphere.001", "shadowProjector.omg"),
     std::pair<string, string>("sphere3_sphere", "shadowProjector.omg"),
     // MD5 BOB
-    std::pair<string, string>("body", "bob.omg"),
-    std::pair<string, string>("head", "bob.omg"),
-    std::pair<string, string>("helmet", "bob.omg"),
-    std::pair<string, string>("lamp", "bob.omg"),
+    std::pair<string, string>("body", "gouraudMultiLight.omg"),
+    std::pair<string, string>("head", "gouraudMultiLight.omg"),
+    std::pair<string, string>("helmet", "gouraudMultiLight.omg"),
+    std::pair<string, string>("lamp", "gouraudMultiLight.omg"),
 };
 
 Materials::Materials(){
@@ -166,7 +166,7 @@ sp<ShaderProgram> Materials::getProgram(const string &name){
 
 sp<ShaderProgram> Materials::getProgramFoMesh(const string &name){
     if(meshShaderTable.find(name) != meshShaderTable.end()){
-        logMessage("Get program for mesh name: %s %s \n", name.c_str(), meshShaderTable[name].c_str());
+//        logMessage("Get program for mesh name: %s %s \n", name.c_str(), meshShaderTable[name].c_str());
         return getProgram(meshShaderTable[name]);
     }
     return getProgram("normAsColor");

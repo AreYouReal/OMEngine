@@ -192,6 +192,7 @@ void ObjMesh::buildVBO(){
 
 void ObjMesh::initMaterial(){
     for(unsigned int i = 0; i < tLists.size(); ++i){
+        
         if(tLists[i]->material != nullptr){
             tLists[i]->material->loadTextures();
             tLists[i]->material->program = Materials::instance()->getProgramFoMesh(name);

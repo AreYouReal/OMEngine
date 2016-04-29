@@ -1,5 +1,3 @@
-type PhongMultiLight
-
 GL_VERTEX_SHADER
 
 #version 300 es

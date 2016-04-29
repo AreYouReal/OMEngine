@@ -104,5 +104,7 @@ protected:
     void initMaterialUniformLocations();
     
     void setTransformUniforms();
+
+    void setMaterialUniforms(const ObjMaterial *mat);
     
 };

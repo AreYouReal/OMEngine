@@ -1,8 +1,12 @@
 #include "ShaderProgram.h"
 
+#define MAX_LIGHTS 5
 
 struct GouraudMultiLightSP : public ShaderProgram{
-    uint maxLight = 3;
+    uint numLights = 2;
+
+    LightUniformLocations lightLocs[MAX_LIGHTS];
+    int numLightUniLoc = -1;
     
     std::vector<LightUniformLocations>  lightLoc;
 
@@ -11,4 +15,6 @@ struct GouraudMultiLightSP : public ShaderProgram{
     
     
     void initLightUniLocations();
+    void setLightUniforms();
+    void setUniformForLightSource(sp<LightSource> light, int index);
 };

@@ -88,7 +88,7 @@ void directionalLight(in vec4 color, in vec3 direction){
     lowp float ndotl = max( dot( normal, normalize(direction)), 0.0 );
     if(ndotl > 0.0){
         lowp float ndoth = max(dot(normal, normalize(direction - posForLight)), 0.0);
-        diffuseColor += texture(uSamplerDiffuse, aTexCoord.xy) * uMaterial.diffuse * color * ndotl;
+        diffuseColor += texture(uSamplerDiffuse, aTexCoord.xy) * color * ndotl * uMaterial.diffuse;
         specularColor += uMaterial.specular * color * pow(ndoth, uMaterial.shininess);
     }
 }
@@ -131,6 +131,8 @@ void omniLight(in vec4 color, in vec3 direction, int index){
 }
 
 void main(){
+    diffuseColor = vec4(0, 0, 0, 1);
+    specularColor = vec4(0, 0, 0, 1);
     posForLight = vec3(uModelViewM * aPosition);
     gl_Position = uProjectionM * vec4(posForLight, 1.0);
     
@@ -157,6 +159,8 @@ void main(){
                 break;
         }
     }
+    
+    ambientColor = uMaterial.ambient;
 }
 
 GL_FRAGMENT_SHADER

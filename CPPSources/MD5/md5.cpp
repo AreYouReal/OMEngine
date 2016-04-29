@@ -115,7 +115,7 @@ sp<Mesh> MD5::loadMeshData(char *line){
 
 sp<Action> MD5::loadAction(string name, string filename){
 
-    logMessage("LOAD ACTION: %s, %s\n", name.c_str(), filename.c_str());
+//    logMessage("LOAD ACTION: %s, %s\n", name.c_str(), filename.c_str());
     
     up<FileContent> content = readBytesFromFile(filename.c_str());
     if(!content.get()) return nullptr;
@@ -183,7 +183,7 @@ sp<Action> MD5::loadAction(string name, string filename){
         line = strtok(NULL, "\n");
         
     }
-    logMessage("LOAD ACTION -> INSERT: %s, %s\n", name.c_str(), filename.c_str());
+//    logMessage("LOAD ACTION -> INSERT: %s, %s\n", name.c_str(), filename.c_str());
 
     actions.insert(std::pair<string, sp<Action>>(action->name, action));
     return actions[action->name];

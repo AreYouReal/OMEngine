@@ -71,7 +71,7 @@ bool Camera::initShadowBuffer(){
     if ( GL_FRAMEBUFFER_COMPLETE != glCheckFramebufferStatus ( GL_FRAMEBUFFER ) ){
         return false;
     }else{
-        logMessage("FRAMEBUFFER COMPLETE!!!\n");
+//        logMessage("FRAMEBUFFER COMPLETE!!!\n");
     }
     
     glBindFramebuffer ( GL_FRAMEBUFFER, defaultFramebuffer );

@@ -11,13 +11,13 @@
 #pragma mark Public
 
 std::map<string, ShaderHelper::ShaderType> enumTypeTable{
-    std::pair<string, ShaderHelper::ShaderType>("Depth",               ShaderHelper::Depth            ),
+    std::pair<string, ShaderHelper::ShaderType>("Depth",                ShaderHelper::Depth            ),
     std::pair<string, ShaderHelper::ShaderType>("Normal",               ShaderHelper::Normal            ),
     std::pair<string, ShaderHelper::ShaderType>("Grey",                 ShaderHelper::Grey              ),
     std::pair<string, ShaderHelper::ShaderType>("SimpleGouraud",        ShaderHelper::SimpleGouraud),
     std::pair<string, ShaderHelper::ShaderType>("SimplePhong",          ShaderHelper::SimplePhong  ),
     std::pair<string, ShaderHelper::ShaderType>("Wired",                ShaderHelper::Wired             ),
-    std::pair<string, ShaderHelper::ShaderType>("GourandMultiLight",    ShaderHelper::GourandMultiLight ),
+    std::pair<string, ShaderHelper::ShaderType>("GouraudMultiLight",    ShaderHelper::GouraudMultiLight ),
     std::pair<string, ShaderHelper::ShaderType>("PhongMultiLight",      ShaderHelper::PhongMultiLight   ),
     std::pair<string, ShaderHelper::ShaderType>("General",              ShaderHelper::General           )
 };
@@ -50,7 +50,7 @@ sp<ShaderProgram> ShaderHelper::createProgram(const string programName, const Sh
             program = std::make_shared<WireSP>();
             break;
         case PhongMultiLight:
-        case GourandMultiLight:
+        case GouraudMultiLight:
             program = std::make_shared<GouraudMultiLightSP>();
             break;
         case Depth:

@@ -12,5 +12,4 @@ struct SimpleGouraudPhongSP : public ShaderProgram{
     void initLightUniLocations();
     
     void setLightUniforms();
-    void setMaterialUniforms(const ObjMaterial *mat);
 };

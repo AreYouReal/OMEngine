@@ -297,5 +297,5 @@ void Scene::createBob(){
     go->addComponent(ComponentEnum::ANIM_MESH, std::move(amc));
 //    go->mTransform.translate(10, 10, 10);
     
-    addObjOnScene(std::move(go));
+    addObjOnScene(std::move(go));    
 }
