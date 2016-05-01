@@ -297,5 +297,14 @@ void Scene::createBob(){
     go->addComponent(ComponentEnum::ANIM_MESH, std::move(amc));
 //    go->mTransform.translate(10, 10, 10);
     
-    addObjOnScene(std::move(go));    
+    addObjOnScene(std::move(go));
+    
+    
+    sp<Obj> bblockObj = Obj::load("bblock.obj");
+    bblockObj->build();
+    bblockObj->clear();
+    
+    mObjRess.insert(std::pair<string, sp<Obj>>("bblock", bblockObj));
+    addMeshRendererOnScene("bblock", "bblock_Cube");
+        
 }

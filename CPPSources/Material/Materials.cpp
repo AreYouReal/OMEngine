@@ -21,6 +21,8 @@ static std::map<string, string>  meshShaderTable{
     std::pair<string, string>("head", "gouraudMultiLight.omg"),
     std::pair<string, string>("helmet", "gouraudMultiLight.omg"),
     std::pair<string, string>("lamp", "gouraudMultiLight.omg"),
+    
+    std::pair<string, string>("bblock_Cube", "SimpleGouraud"),
 };
 
 Materials::Materials(){

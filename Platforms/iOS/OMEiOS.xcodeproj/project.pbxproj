@@ -209,6 +209,9 @@
 		F328C4FE1BF4997F0037AC6D /* font_fragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F328C4FC1BF4997F0037AC6D /* font_fragment.glsl */; };
 		F328C4FF1BF4997F0037AC6D /* font_vertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F328C4FD1BF4997F0037AC6D /* font_vertex.glsl */; };
 		F32EB63C1C5FA5E00057F474 /* GreySP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F32EB63A1C5FA5E00057F474 /* GreySP.cpp */; };
+		F331380B1CD62484000705D5 /* bblock.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F33138081CD62484000705D5 /* bblock.mtl */; };
+		F331380C1CD62484000705D5 /* bblock.obj in Resources */ = {isa = PBXBuildFile; fileRef = F33138091CD62484000705D5 /* bblock.obj */; };
+		F33138101CD62640000705D5 /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3C52B2A1BBD079F009F3604 /* Scene.cpp */; };
 		F3392F611C117B4E005E850E /* Sound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3392F5F1C117B4E005E850E /* Sound.cpp */; };
 		F340D11B1BA95E4500187B1E /* char_ram_nor.png in Resources */ = {isa = PBXBuildFile; fileRef = F340D11A1BA95E4500187B1E /* char_ram_nor.png */; };
 		F34129D01BB52BB7006F4D4D /* Materials.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F34129CE1BB52BB7006F4D4D /* Materials.cpp */; };
@@ -769,6 +772,8 @@
 		F328C4FD1BF4997F0037AC6D /* font_vertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = font_vertex.glsl; path = ../Android/assets/shaders/font_vertex.glsl; sourceTree = SOURCE_ROOT; };
 		F32EB63A1C5FA5E00057F474 /* GreySP.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GreySP.cpp; path = OMEngine/CPPSources/Shaders/GreySP.cpp; sourceTree = "<group>"; };
 		F32EB63B1C5FA5E00057F474 /* GreySP.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = GreySP.hpp; path = OMEngine/CPPSources/Shaders/GreySP.hpp; sourceTree = "<group>"; };
+		F33138081CD62484000705D5 /* bblock.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = bblock.mtl; path = OMEngine/Platforms/Android/assets/bblock.mtl; sourceTree = "<group>"; };
+		F33138091CD62484000705D5 /* bblock.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = bblock.obj; path = OMEngine/Platforms/Android/assets/bblock.obj; sourceTree = "<group>"; };
 		F3392F5F1C117B4E005E850E /* Sound.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sound.cpp; sourceTree = "<group>"; };
 		F3392F601C117B4E005E850E /* Sound.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Sound.hpp; sourceTree = "<group>"; };
 		F340D11A1BA95E4500187B1E /* char_ram_nor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = char_ram_nor.png; path = ../Android/assets/char_ram_nor.png; sourceTree = SOURCE_ROOT; };
@@ -1031,6 +1036,8 @@
 		7626524017F10E6C007CCD43 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F33138081CD62484000705D5 /* bblock.mtl */,
+				F33138091CD62484000705D5 /* bblock.obj */,
 				F3E0F5591CD0A4D8005D0EEE /* gouraudMultiLight.omg */,
 				F307C9171CBF791200CF9623 /* bob */,
 				F3AB02791CA7FFFE00CB8FC9 /* particle.png */,
@@ -2146,10 +2153,12 @@
 				947FA31E1BA4854A00695A4E /* ram.mtl in Resources */,
 				F3BEAB1A1C43A6C00012DDCD /* lightingAttenuation.omg in Resources */,
 				F3D0207F1CC50D7E0019EF64 /* bob_body_normal.png in Resources */,
+				F331380C1CD62484000705D5 /* bblock.obj in Resources */,
 				F3AB027C1CA7FFFE00CB8FC9 /* particles.omg in Resources */,
 				F3A263961C33BD360021B3B6 /* light_point_fragment.glsl in Resources */,
 				94EF0C5E1BA70E5400EBF5EE /* pos_norm_vertex.glsl in Resources */,
 				947222771B9AD466008D601B /* background.png in Resources */,
+				F331380B1CD62484000705D5 /* bblock.mtl in Resources */,
 				F39FA5011C0DD9B500CC0BB4 /* test.raw in Resources */,
 				F38A22E11BAA979700FADEC0 /* vertexPerPixel.glsl in Resources */,
 			);
@@ -2393,6 +2402,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F33138101CD62640000705D5 /* Scene.cpp in Sources */,
 				F3D5E1321AF8F4DD00DD216B /* iOSSRETests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
