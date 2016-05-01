@@ -3,6 +3,10 @@
 
 #include "OMGame.h"
 
+#include "Camera.h"
+
+#include "GameObject.hpp"
+
 AnimMeshComponent::AnimMeshComponent(GameObject* const go, const string meshName, const string materialname, std::vector<string> &actionsToLoad) : IComponent(go){
     
     md5 = md5::MD5::loadMesh(meshName);
@@ -35,7 +39,10 @@ void AnimMeshComponent::update(){
 }
 
 void AnimMeshComponent::draw(){
+    m4d modelM = go->transformMatrix();
+    Camera::instance()->pushMMatrix(modelM);
     md5->draw();
+    Camera::instance()->popMMatrix();
 }
 
 void AnimMeshComponent::onDestroy(){

@@ -3,6 +3,7 @@
 #include "IComponent.hpp"
 #include "md5.hpp"
 
+
 class AnimMeshComponent : public IComponent{
 public:
     AnimMeshComponent(GameObject* const go, const string meshName, const string materialname, std::vector<string> &actionsToLoad);

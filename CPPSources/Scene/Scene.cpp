@@ -1,7 +1,5 @@
 #include "Scene.hpp"
-
 #include "Camera.h"
-
 #include "Shortcuts.h"
 
 Scene::Scene(){
@@ -295,30 +293,26 @@ void Scene::createBob(){
     
     up<AnimMeshComponent> amc = up<AnimMeshComponent>(new AnimMeshComponent(go.get(), "bob.md5mesh", "bob.mtl", actions));
     go->addComponent(ComponentEnum::ANIM_MESH, std::move(amc));
-//    go->mTransform.translate(10, 10, 10);
+    go->mTransform = (v3d(0, 0, 10));
+    
+    up<RigidBodyComponent> rbc_1 = up<RigidBodyComponent>(new RigidBodyComponent(go.get(), 1.0f));
+    go->addComponent(ComponentEnum::RIGID_BODY, std::move(rbc_1));
     
     addObjOnScene(std::move(go));
-    
-    
+
     sp<Obj> bblockObj = Obj::load("bblock.obj");
     bblockObj->build();
     bblockObj->clear();
     
     mObjRess.insert(std::pair<string, sp<Obj>>("bblock", bblockObj));
     
-    
     go = std::unique_ptr<GameObject>(new GameObject("bblock_Cube"));
     sp<ObjMesh> mesh =mObjRess["bblock"]->getMesh(go->name);
     up<MeshRendererComponent> mrc = up<MeshRendererComponent>(new MeshRendererComponent(go.get(), mesh));
     go->addComponent(ComponentEnum::MESH_RENDERER, std::move(mrc));
     
-    up<RigidBodyComponent> rbc_1 = up<RigidBodyComponent>(new RigidBodyComponent(go.get()));
+    rbc_1 = up<RigidBodyComponent>(new RigidBodyComponent(go.get(), 0.0f));
     go->addComponent(ComponentEnum::RIGID_BODY, std::move(rbc_1));
     
     addObjOnScene(std::move(go));
-    
-    
-
-    
-        
 }
