@@ -305,6 +305,20 @@ void Scene::createBob(){
     bblockObj->clear();
     
     mObjRess.insert(std::pair<string, sp<Obj>>("bblock", bblockObj));
-    addMeshRendererOnScene("bblock", "bblock_Cube");
+    
+    
+    go = std::unique_ptr<GameObject>(new GameObject("bblock_Cube"));
+    sp<ObjMesh> mesh =mObjRess["bblock"]->getMesh(go->name);
+    up<MeshRendererComponent> mrc = up<MeshRendererComponent>(new MeshRendererComponent(go.get(), mesh));
+    go->addComponent(ComponentEnum::MESH_RENDERER, std::move(mrc));
+    
+    up<RigidBodyComponent> rbc_1 = up<RigidBodyComponent>(new RigidBodyComponent(go.get()));
+    go->addComponent(ComponentEnum::RIGID_BODY, std::move(rbc_1));
+    
+    addObjOnScene(std::move(go));
+    
+    
+
+    
         
 }
