@@ -32,6 +32,9 @@ public:
     void draw();
     void setRenderObjectState(RenderObjectType newState);
     
+    
+    void touchBegin(const int x, const int y);
+    
 // DEBUG
     
     // Ground, bg, tree and momos...

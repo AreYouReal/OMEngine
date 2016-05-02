@@ -8,6 +8,7 @@
 #include "m4d.h"
 #include "Transform.hpp"
 
+class GameObject;
 class Camera : public Singleton<Camera>{
 public:
     
@@ -36,6 +37,11 @@ public:
     void setFront(v3d front);
     void setUp(v3d up);
 
+    void follow(GameObject *go, v3d distance);
+    
+    void update();
+    
+    
     void rotate(float angle, float x, float y, float z);
     void rotate(float angle, v3d& axis);
     
@@ -81,6 +87,10 @@ private:
     int viewportMatrix[4];
     
     std::stack<m4d> mMstack;
+    
+// Camera following
+    GameObject *mGoToFollow;
+    v3d         mFollowDistance;
     
 // Projector 
     m4d mProjectorMatrix;

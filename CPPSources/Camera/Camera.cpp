@@ -3,6 +3,8 @@
 #include "OMUtils.h"
 
 #include "Illuminator.hpp"
+#include "GameObject.hpp"
+
 
 #define CLAMP(x, min, max) ((x < min) ? min : ((x > max) ? max : x));
 
@@ -163,6 +165,22 @@ void Camera::setUp(v3d up){
     transform.mUp = up;
     refreshViewAndNormalMatrix();
 }
+
+void Camera::follow(GameObject *go, v3d distance){
+    mGoToFollow = go;
+    mFollowDistance = distance;
+
+}
+
+void Camera::update(){
+    if(mGoToFollow){
+        transform.mPosition = mGoToFollow->getPosition() + mFollowDistance;
+        transform.mFront = mGoToFollow->getPosition() - transform.mPosition;
+    }
+    refreshViewAndNormalMatrix();
+    refreshProjectorMatrix();
+}
+
 void Camera::setWidthAndHeight(float width, float height){
     if(mWidth == width && mHeight == height) return;
     mWidth = width;

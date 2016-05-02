@@ -2,6 +2,8 @@
 #include "Camera.h"
 #include "Shortcuts.h"
 
+GameObject *bob;
+
 Scene::Scene(){
     logGLError();
     Camera::instance();
@@ -45,6 +47,8 @@ bool Scene::init(){
     
     logGLError();
     
+    Camera::instance()->follow(bob, v3d(10, 10, 10));
+    
     return true;
 }
 
@@ -53,6 +57,7 @@ void Scene::addObjOnScene(up<GameObject> go){
 }
 
 void Scene::update(float deltaTime){
+    Camera::instance()->update();
     PhysicalWorld::instance()->update(deltaTime);
     for(const auto& go : mObjects){
         for(int i = (int)ComponentEnum::MESH_RENDERER; i <= (int)ComponentEnum::DEBUG_DRAW; ++i){
@@ -62,7 +67,7 @@ void Scene::update(float deltaTime){
     }
         
     Illuminator::instance()->update(deltaTime);
-    Camera::instance()->refreshProjectorMatrix();
+
 }
 
 void Scene::drawDepth(){
@@ -124,6 +129,12 @@ void Scene::draw(){
 
 void Scene::setRenderObjectState(RenderObjectType newState){
     if(mDrawingState != newState) mDrawingState = newState;
+}
+
+void Scene::touchBegin(const int x, const int y){
+    if(bob){
+        bob->mTransform.rotate(0, 0, 90);
+    }
 }
 
 // DEBUG AND TEST STUFF GOES HERE
@@ -290,6 +301,8 @@ void Scene::createBob(){
     std::vector<string> actions;
     actions.push_back("bob_idle.md5anim");
     actions.push_back("bob_walk.md5anim");
+    
+    bob = go.get();
     
     up<AnimMeshComponent> amc = up<AnimMeshComponent>(new AnimMeshComponent(go.get(), "bob.md5mesh", "bob.mtl", actions));
     go->addComponent(ComponentEnum::ANIM_MESH, std::move(amc));

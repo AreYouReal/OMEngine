@@ -109,14 +109,15 @@ void OMGame::Touch(const int event, const int x, const int y){
         logGLError();
     switch (event) {
         case static_cast<int>(TouchState::BEGIN):
-            Camera::instance()->onTouchBegin(x, y);
+//            Camera::instance()->onTouchBegin(x, y);
+            Scene::instance()->touchBegin(x, y);
             break;
         case static_cast<int>(TouchState::MOVED):
-            Camera::instance()->onTouchMove(x, y);
+//            Camera::instance()->onTouchMove(x, y);
             break;
         case static_cast<int>(TouchState::ENDED):
         case static_cast<int>(TouchState::CANCELLED):
-            Camera::instance()->onTouchEnd(x, y);
+//            Camera::instance()->onTouchEnd(x, y);
             break;
         default:
             break;
