@@ -4,6 +4,7 @@
 PlayerController::PlayerController(GameObject * const gameObject){
     mGo = gameObject;
     mRigidBodyComp = static_cast<RigidBodyComponent*>(mGo->getComponent(ComponentEnum::RIGID_BODY));
+    mRigidBodyComp->mBody->setAngularFactor(btVector3(0, 0, 0));
 }
 
 void PlayerController::onTouch(){
@@ -36,7 +37,12 @@ void PlayerController::update(){
     if(mGo->getPosition().z < -10){
         btTransform t = mRigidBodyComp->mBody->getWorldTransform();
         t.setOrigin(btVector3(0, 0, 10));
+        btQuaternion q;
+        q.setEuler(0, 0, 0);
+        t.setRotation(q);
         mRigidBodyComp->mBody->setWorldTransform(t);
+        mRigidBodyComp->mBody->setLinearVelocity(btVector3(0, 0, 0));
+        
 
     }
         

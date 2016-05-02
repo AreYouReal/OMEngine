@@ -2,7 +2,7 @@
 
 class Levelbuilder{
 public:
-    unsigned int blockCount = 10;
+    unsigned int blockCount = 50;
     sp<ObjMesh> mesh;
     
     void buildLevel();
