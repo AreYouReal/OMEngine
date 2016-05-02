@@ -8,6 +8,8 @@ public:
     
     void onTouch();
     
+    void update();
+    
 private:
     
     float playerSpeed = 10;

@@ -2,9 +2,11 @@
 #include "Camera.h"
 #include "Shortcuts.h"
 #include "PlayerController.hpp"
+#include "LevelBuilder.hpp"
 
 GameObject *bob;
 PlayerController *player;
+Levelbuilder *lBuilder;
 
 Scene::Scene(){
     logGLError();
@@ -70,7 +72,7 @@ void Scene::update(float deltaTime){
     }
         
     Illuminator::instance()->update(deltaTime);
-
+    player->update();
 }
 
 void Scene::drawDepth(){
@@ -321,14 +323,8 @@ void Scene::createBob(){
     bblockObj->clear();
     
     mObjRess.insert(std::pair<string, sp<Obj>>("bblock", bblockObj));
-    
-    go = std::unique_ptr<GameObject>(new GameObject("bblock_Cube"));
-    sp<ObjMesh> mesh =mObjRess["bblock"]->getMesh(go->name);
-    up<MeshRendererComponent> mrc = up<MeshRendererComponent>(new MeshRendererComponent(go.get(), mesh));
-    go->addComponent(ComponentEnum::MESH_RENDERER, std::move(mrc));
-    
-    rbc_1 = up<RigidBodyComponent>(new RigidBodyComponent(go.get(), 0.0f));
-    go->addComponent(ComponentEnum::RIGID_BODY, std::move(rbc_1));
-    
-    addObjOnScene(std::move(go));
+
+    lBuilder = new Levelbuilder();
+    lBuilder->mesh = mObjRess["bblock"]->getMesh("bblock_Cube");
+    lBuilder->buildLevel();
 }

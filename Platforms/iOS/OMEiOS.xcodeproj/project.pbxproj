@@ -302,6 +302,7 @@
 		F3E0F55A1CD0A4D8005D0EEE /* gouraudMultiLight.omg in Resources */ = {isa = PBXBuildFile; fileRef = F3E0F5591CD0A4D8005D0EEE /* gouraudMultiLight.omg */; };
 		F3EA6C2B1C3E8FA2002AF813 /* DebugDrawComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3EA6C291C3E8FA2002AF813 /* DebugDrawComponent.cpp */; };
 		F3F9D3A11CD749B8002EF3FC /* PlayerController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3F9D39F1CD749B8002EF3FC /* PlayerController.cpp */; };
+		F3F9D3A51CD75874002EF3FC /* LevelBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3F9D3A31CD75874002EF3FC /* LevelBuilder.cpp */; };
 		F3FAE8B81B6B77D6007AF169 /* ShaderProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3FAE8B61B6B77D6007AF169 /* ShaderProgram.cpp */; };
 		F3FAE8BB1B6B7885007AF169 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3FAE8B91B6B7885007AF169 /* Shader.cpp */; };
 /* End PBXBuildFile section */
@@ -920,6 +921,8 @@
 		F3EA6C2A1C3E8FA2002AF813 /* DebugDrawComponent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DebugDrawComponent.hpp; sourceTree = "<group>"; };
 		F3F9D39F1CD749B8002EF3FC /* PlayerController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerController.cpp; sourceTree = "<group>"; };
 		F3F9D3A01CD749B8002EF3FC /* PlayerController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PlayerController.hpp; sourceTree = "<group>"; };
+		F3F9D3A31CD75874002EF3FC /* LevelBuilder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LevelBuilder.cpp; sourceTree = "<group>"; };
+		F3F9D3A41CD75874002EF3FC /* LevelBuilder.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LevelBuilder.hpp; sourceTree = "<group>"; };
 		F3FAE8B61B6B77D6007AF169 /* ShaderProgram.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShaderProgram.cpp; path = ../../CPPSources/Shaders/ShaderProgram.cpp; sourceTree = SOURCE_ROOT; };
 		F3FAE8B71B6B77D6007AF169 /* ShaderProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShaderProgram.h; path = ../../CPPSources/Shaders/ShaderProgram.h; sourceTree = SOURCE_ROOT; };
 		F3FAE8B91B6B7885007AF169 /* Shader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Shader.cpp; path = ../../CPPSources/Shaders/Shader.cpp; sourceTree = SOURCE_ROOT; };
@@ -2024,6 +2027,7 @@
 		F3F9D39D1CD749AB002EF3FC /* GameMechanics */ = {
 			isa = PBXGroup;
 			children = (
+				F3F9D3A21CD75865002EF3FC /* Level */,
 				F3F9D39E1CD749AB002EF3FC /* Player */,
 			);
 			name = GameMechanics;
@@ -2037,6 +2041,15 @@
 				F3F9D3A01CD749B8002EF3FC /* PlayerController.hpp */,
 			);
 			path = Player;
+			sourceTree = "<group>";
+		};
+		F3F9D3A21CD75865002EF3FC /* Level */ = {
+			isa = PBXGroup;
+			children = (
+				F3F9D3A31CD75874002EF3FC /* LevelBuilder.cpp */,
+				F3F9D3A41CD75874002EF3FC /* LevelBuilder.hpp */,
+			);
+			path = Level;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2239,6 +2252,7 @@
 				F3E0F5581CD09B1D005D0EEE /* GouraudMultiLightSP.cpp in Sources */,
 				94D85AC61BB65477008ED8CF /* Transform.cpp in Sources */,
 				F3A843271CCF5DD2006D1B94 /* DepthSP.cpp in Sources */,
+				F3F9D3A51CD75874002EF3FC /* LevelBuilder.cpp in Sources */,
 				94788FC71BD4CFD200B55A25 /* btSphereBoxCollisionAlgorithm.cpp in Sources */,
 				F39A50261BB40E5B0080B846 /* GameObject.cpp in Sources */,
 				F39FA5BB1C0DE15400CC0BB4 /* lsp.c in Sources */,

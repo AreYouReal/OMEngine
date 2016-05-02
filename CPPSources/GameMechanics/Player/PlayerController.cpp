@@ -31,6 +31,17 @@ void PlayerController::refreshVelocity(){
     mRigidBodyComp->mBody->setLinearVelocity(btVector3(front.x * playerSpeed, front.y * playerSpeed, front.z * playerSpeed));
 }
 
+
+void PlayerController::update(){
+    if(mGo->getPosition().z < -10){
+        btTransform t = mRigidBodyComp->mBody->getWorldTransform();
+        t.setOrigin(btVector3(0, 0, 10));
+        mRigidBodyComp->mBody->setWorldTransform(t);
+
+    }
+        
+}
+
 PlayerController::~PlayerController(){
 
 }
