@@ -301,6 +301,7 @@
 		F3E0F5581CD09B1D005D0EEE /* GouraudMultiLightSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3E0F5561CD09B1D005D0EEE /* GouraudMultiLightSP.cpp */; };
 		F3E0F55A1CD0A4D8005D0EEE /* gouraudMultiLight.omg in Resources */ = {isa = PBXBuildFile; fileRef = F3E0F5591CD0A4D8005D0EEE /* gouraudMultiLight.omg */; };
 		F3EA6C2B1C3E8FA2002AF813 /* DebugDrawComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3EA6C291C3E8FA2002AF813 /* DebugDrawComponent.cpp */; };
+		F3F9D3A11CD749B8002EF3FC /* PlayerController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3F9D39F1CD749B8002EF3FC /* PlayerController.cpp */; };
 		F3FAE8B81B6B77D6007AF169 /* ShaderProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3FAE8B61B6B77D6007AF169 /* ShaderProgram.cpp */; };
 		F3FAE8BB1B6B7885007AF169 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3FAE8B91B6B7885007AF169 /* Shader.cpp */; };
 /* End PBXBuildFile section */
@@ -917,6 +918,8 @@
 		F3E0F5591CD0A4D8005D0EEE /* gouraudMultiLight.omg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = gouraudMultiLight.omg; path = OMEngine/Platforms/Android/assets/gouraudMultiLight.omg; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
 		F3EA6C291C3E8FA2002AF813 /* DebugDrawComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DebugDrawComponent.cpp; sourceTree = "<group>"; };
 		F3EA6C2A1C3E8FA2002AF813 /* DebugDrawComponent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DebugDrawComponent.hpp; sourceTree = "<group>"; };
+		F3F9D39F1CD749B8002EF3FC /* PlayerController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerController.cpp; sourceTree = "<group>"; };
+		F3F9D3A01CD749B8002EF3FC /* PlayerController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PlayerController.hpp; sourceTree = "<group>"; };
 		F3FAE8B61B6B77D6007AF169 /* ShaderProgram.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShaderProgram.cpp; path = ../../CPPSources/Shaders/ShaderProgram.cpp; sourceTree = SOURCE_ROOT; };
 		F3FAE8B71B6B77D6007AF169 /* ShaderProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShaderProgram.h; path = ../../CPPSources/Shaders/ShaderProgram.h; sourceTree = SOURCE_ROOT; };
 		F3FAE8B91B6B7885007AF169 /* Shader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Shader.cpp; path = ../../CPPSources/Shaders/Shader.cpp; sourceTree = SOURCE_ROOT; };
@@ -1006,6 +1009,7 @@
 		7626523F17F10E6C007CCD43 /* OMEiOS */ = {
 			isa = PBXGroup;
 			children = (
+				F3F9D39D1CD749AB002EF3FC /* GameMechanics */,
 				F374BB811CB3E1D100DBFB47 /* MD5 */,
 				F37CC2C71C17294B00502E16 /* Concurrency */,
 				94538A1E1C0B6CBC004B5297 /* Audio */,
@@ -2017,6 +2021,24 @@
 			name = Programs;
 			sourceTree = "<group>";
 		};
+		F3F9D39D1CD749AB002EF3FC /* GameMechanics */ = {
+			isa = PBXGroup;
+			children = (
+				F3F9D39E1CD749AB002EF3FC /* Player */,
+			);
+			name = GameMechanics;
+			path = OMEngine/CPPSources/GameMechanics;
+			sourceTree = "<group>";
+		};
+		F3F9D39E1CD749AB002EF3FC /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				F3F9D39F1CD749B8002EF3FC /* PlayerController.cpp */,
+				F3F9D3A01CD749B8002EF3FC /* PlayerController.hpp */,
+			);
+			path = Player;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2202,6 +2224,7 @@
 				94788FD61BD4CFD200B55A25 /* btConvexInternalShape.cpp in Sources */,
 				94788FAC1BD4CFD200B55A25 /* btDbvtBroadphase.cpp in Sources */,
 				9478902E1BD4CFD200B55A25 /* btSoftSoftCollisionAlgorithm.cpp in Sources */,
+				F3F9D3A11CD749B8002EF3FC /* PlayerController.cpp in Sources */,
 				94788FD31BD4CFD200B55A25 /* btConeShape.cpp in Sources */,
 				F39A50211BB3F0090080B846 /* Illuminator.cpp in Sources */,
 				947890161BD4CFD200B55A25 /* btTypedConstraint.cpp in Sources */,

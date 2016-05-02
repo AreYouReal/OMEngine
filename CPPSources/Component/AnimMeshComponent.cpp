@@ -18,7 +18,7 @@ AnimMeshComponent::AnimMeshComponent(GameObject* const go, const string meshName
     
     md5->mAnimType = md5::MD5::AnimType::SINGLE_ACTION;
 
-    md5->playAction("idle", md5::Action::InterpolationMethod::FRAME);
+//    md5->playAction("idle", md5::Action::InterpolationMethod::FRAME);
     md5->playAction("walk", md5::Action::InterpolationMethod::FRAME);
 
 }

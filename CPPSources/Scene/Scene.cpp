@@ -1,8 +1,10 @@
 #include "Scene.hpp"
 #include "Camera.h"
 #include "Shortcuts.h"
+#include "PlayerController.hpp"
 
 GameObject *bob;
+PlayerController *player;
 
 Scene::Scene(){
     logGLError();
@@ -47,7 +49,8 @@ bool Scene::init(){
     
     logGLError();
     
-    Camera::instance()->follow(bob, v3d(10, 10, 10));
+    player = new PlayerController(bob);
+    Camera::instance()->follow(bob, v3d(5, 5, 10));
     
     return true;
 }
@@ -132,8 +135,8 @@ void Scene::setRenderObjectState(RenderObjectType newState){
 }
 
 void Scene::touchBegin(const int x, const int y){
-    if(bob){
-        bob->mTransform.rotate(0, 0, 90);
+    if(player){
+        player->onTouch();
     }
 }
 
@@ -308,7 +311,7 @@ void Scene::createBob(){
     go->addComponent(ComponentEnum::ANIM_MESH, std::move(amc));
     go->mTransform = (v3d(0, 0, 10));
     
-    up<RigidBodyComponent> rbc_1 = up<RigidBodyComponent>(new RigidBodyComponent(go.get(), 1.0f));
+    up<RigidBodyComponent> rbc_1 = up<RigidBodyComponent>(new RigidBodyComponent(go.get(), 5.0f));
     go->addComponent(ComponentEnum::RIGID_BODY, std::move(rbc_1));
     
     addObjOnScene(std::move(go));
