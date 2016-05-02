@@ -53,6 +53,11 @@ bool Scene::init(){
     
     player = new PlayerController(bob);
     Camera::instance()->follow(bob, v3d(5, 5, 10));
+
+    
+    lBuilder = new Levelbuilder();
+    lBuilder->mesh = mObjRess["bblock"]->getMesh("bblock_Cube");
+    lBuilder->buildLevel(player->actions);
     
     return true;
 }
@@ -324,7 +329,4 @@ void Scene::createBob(){
     
     mObjRess.insert(std::pair<string, sp<Obj>>("bblock", bblockObj));
 
-    lBuilder = new Levelbuilder();
-    lBuilder->mesh = mObjRess["bblock"]->getMesh("bblock_Cube");
-    lBuilder->buildLevel();
 }

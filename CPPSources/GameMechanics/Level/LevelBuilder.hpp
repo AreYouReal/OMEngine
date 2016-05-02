@@ -1,11 +1,13 @@
 #include "Scene.hpp"
 
+#include <queue>
+
 class Levelbuilder{
 public:
     unsigned int blockCount = 50;
     sp<ObjMesh> mesh;
     
-    void buildLevel();
+    void buildLevel(std::queue<float> &actions);
     
     
 private:

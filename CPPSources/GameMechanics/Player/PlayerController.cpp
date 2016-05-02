@@ -16,11 +16,17 @@ void PlayerController::rotate(){
     if(mRigidBodyComp){
         btTransform t = mRigidBodyComp->mBody->getWorldTransform();
         btQuaternion currQ = t.getRotation();
-        logMessage("Quat(before): %f, %f, %f, %f\n", currQ.x(), currQ.y(), currQ.z(), currQ.w() );
+//        logMessage("Quat(before): %f, %f, %f, %f\n", currQ.x(), currQ.y(), currQ.z(), currQ.w() );
         btQuaternion q;
-        q.setRotation(btVector3(0, 0, 1), PI * 0.5f);
+        float angle = 0.0f;
+        if(actions.size() > 0){
+            angle = actions.front();
+            logMessage("ANGLE: %f\n", angle);
+            actions.pop();
+        }
+        q.setRotation(btVector3(0, 0, 1), angle);
         currQ *= q;
-        logMessage("Quat(after): %f, %f, %f, %f\n", currQ.x(), currQ.y(), currQ.z(), currQ.w() );
+//        logMessage("Quat(after): %f, %f, %f, %f\n", currQ.x(), currQ.y(), currQ.z(), currQ.w() );
         t.setRotation(currQ);
         mRigidBodyComp->mBody->setWorldTransform(t);
         mGo->mTransform.rotate(90, v3d(0, 0, 1));

@@ -1,5 +1,5 @@
 #include "GameObject.hpp"
-
+#include <queue>
 
 class PlayerController{
 public:
@@ -9,6 +9,8 @@ public:
     void onTouch();
     
     void update();
+    
+    std::queue<float> actions{};
     
 private:
     

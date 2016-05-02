@@ -2,11 +2,29 @@
 #include "Scene.hpp"
 
 
-void Levelbuilder::buildLevel(){
+
+
+void Levelbuilder::buildLevel(std::queue<float> &actions){
     addNewBlock(v3d(0, 0, 0));
     
     for(unsigned int i = 0; i < blockCount; ++i){
-        addNewBlock(calculateNewPoss(mLastBlockPoss));
+        v3d newPos = calculateNewPoss(mLastBlockPoss);
+        v3d dir = newPos - mLastBlockPoss;
+        v3d::print(dir);
+        if(dir.x > 0.1){
+            actions.push(PI/2);
+        }else{
+            if(dir.z < -0.1){
+                actions.push(PI/2 * 3);
+            }else{
+                if(dir.y > 0.1){
+                    actions.push(PI);
+                }else{
+                    actions.push(0);
+                }
+            }
+        }
+        addNewBlock(calculateNewPoss(newPos));
     }
 }
 
@@ -38,7 +56,7 @@ void Levelbuilder::addNewBlock(v3d blockPos){
 }
 
 v3d Levelbuilder::calculateNewPoss(v3d lastPos){
-    int step = 2;
+    int step = 1;
     int x = rand()%2 > 0 ? step : 0;
     int y = x > 0 ? 0 : step;
     return (lastPos + v3d(x, y, 0));
