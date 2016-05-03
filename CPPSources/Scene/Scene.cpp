@@ -318,13 +318,13 @@ void Scene::createBob(){
     
     up<AnimMeshComponent> amc = up<AnimMeshComponent>(new AnimMeshComponent(go.get(), "bob.md5mesh", "bob.mtl", actions));
     go->addComponent(ComponentEnum::ANIM_MESH, std::move(amc));
-    go->mTransform = (v3d(0, 0, 5));
+    go->mTransform = (v3d(0, 0, 1));
     
     up<RigidBodyComponent> rbc_1 = up<RigidBodyComponent>(new RigidBodyComponent(go.get(), 5.0f));
     go->addComponent(ComponentEnum::RIGID_BODY, std::move(rbc_1));
     
-//    up<DebugDrawComponent> ddc = up<DebugDrawComponent>(new DebugDrawComponent(go.get()));
-//    go->addComponent(ComponentEnum::DEBUG_DRAW, std::move(ddc));
+    up<DebugDrawComponent> ddc = up<DebugDrawComponent>(new DebugDrawComponent(go.get()));
+    go->addComponent(ComponentEnum::DEBUG_DRAW, std::move(ddc));
     
     addObjOnScene(std::move(go));
 

@@ -48,6 +48,10 @@ void Levelbuilder::addNewBlock(v3d blockPos){
         
         go->addComponent(ComponentEnum::RIGID_BODY, std::move(rbc_1));
         
+        up<DebugDrawComponent> ddc = up<DebugDrawComponent>(new DebugDrawComponent(go.get()));
+        go->addComponent(ComponentEnum::DEBUG_DRAW, std::move(ddc));
+
+        
         go->mTransform = v3d(blockPos);
         
         Scene::instance()->addObjOnScene(std::move(go));
