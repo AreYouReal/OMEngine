@@ -61,6 +61,7 @@ v3d Levelbuilder::calculateNewPoss(v3d lastPos){
         x = 0; y = step;
     }else{
         x = step; y = 0;
+        if((rand() % 2) > 0 ) x = -x;
     }
     return (lastPos + v3d(x, y, 0));
 }

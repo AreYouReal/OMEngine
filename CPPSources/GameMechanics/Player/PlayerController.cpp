@@ -6,6 +6,7 @@ PlayerController::PlayerController(GameObject * const gameObject){
     mRigidBodyComp = static_cast<RigidBodyComponent*>(mGo->getComponent(ComponentEnum::RIGID_BODY));
     mRigidBodyComp->mBody->setAngularFactor(btVector3(0, 0, 0));
     mRigidBodyComp->mBody->setFriction(0.0);
+    mRigidBodyComp->mBody->setRestitution(0.0);
     mGo->mTransform.mScale = v3d(0.5, 0.5, 0.5);
     
     mRigidBodyComp->mBody->setGravity(btVector3(0, 0, -98));
