@@ -12,6 +12,7 @@ public:
     
 private:
     v3d mLastBlockPoss;
+    v3d mLastDir;
     
     v3d  calculateNewPoss(v3d lastPos);
     void addNewBlock(v3d blockPos);

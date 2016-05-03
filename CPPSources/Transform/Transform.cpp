@@ -47,7 +47,16 @@ void Transform::rotate(float xRad, float yRad, float zRad){
 void Transform::rotate(float deg, v3d axis){
     mRotation = q4d(deg, axis);
     m4d roMatrix = mRotation.matrix();
-    mFront = (mFront * roMatrix).normalize();
+    mFront = (v3d(1, 0, 0) * roMatrix).normalize();
+    mUp = (mUp * roMatrix).normalize();
+    mRight = v3d::cross(mUp, mFront).normalize();
+    refreshTransformMatrix();
+}
+
+void Transform::rotate(q4d rotation){
+    mRotation = rotation;
+    m4d roMatrix = mRotation.matrix();
+    mFront = (v3d(1, 0, 0) * roMatrix).normalize();
     mUp = (mUp * roMatrix).normalize();
     mRight = v3d::cross(mUp, mFront).normalize();
     refreshTransformMatrix();

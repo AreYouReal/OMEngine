@@ -18,6 +18,7 @@ public:
     void translate(v3d tVector);
     void rotate(float xRad, float yRad, float zRad);
     void rotate(float deg, v3d axis);
+    void rotate(q4d rotation);
     void scale(float xFactor, float yFactor, float zFactor);
     void scale(v3d& scaleVec);
     
