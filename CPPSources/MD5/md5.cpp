@@ -388,20 +388,23 @@ void MD5::buildPoseWeightedNormalsTangents(){
 
 void MD5::updateBoundMesh(){
     min.x = min.y = min.z = 99999.999f;
-    max.x = max.y = max.z = 99999.999f;
+    max.x = max.y = max.z = -99999.999f;
     
     for(auto &mesh : meshes){
         v3d *vertexArray = (v3d*)&mesh->vertexData[0];
         for(unsigned int i = 0; i < mesh->nVertex; ++i){
             if(vertexArray[i].x < min.x) min.x = vertexArray[i].x;
             if(vertexArray[i].y < min.y) min.y = vertexArray[i].y;
-            if(vertexArray[i].z < min.z) min.y = vertexArray[i].z;
+            if(vertexArray[i].z < min.z) min.z = vertexArray[i].z;
             
             if(vertexArray[i].x > max.x) max.x = vertexArray[i].x;
             if(vertexArray[i].y > max.y) max.y = vertexArray[i].y;
-            if(vertexArray[i].z > max.z) max.y = vertexArray[i].z;
+            if(vertexArray[i].z > max.z) max.z = vertexArray[i].z;
         }
     }
+    
+    dimension = (max - min);
+    radius = v3d::length(max - min) * 0.5f;
 }
 
 void MD5::freeMeshData(){

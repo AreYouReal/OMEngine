@@ -37,6 +37,11 @@ v3d GameObject::getDimensions(){
     MeshRendererComponent *mrc = static_cast<MeshRendererComponent *>(getComponent(ComponentEnum::MESH_RENDERER));
     if(mrc){
         return mrc->getDimensions();
+    }else{
+        AnimMeshComponent *amc = static_cast<AnimMeshComponent *>(getComponent(ComponentEnum::ANIM_MESH));
+        if(amc){
+//            return amc->md5->dimension;
+        }
     }
     return v3d(1, 1, 1);
 }

@@ -12,6 +12,7 @@
 #include "IComponent.hpp"
 #include "RigidBodyComponent.hpp"
 #include "MeshRendererComponent.hpp"
+#include "AnimMeshComponent.hpp"
 
 
 class GameObject{

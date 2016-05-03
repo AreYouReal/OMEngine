@@ -321,6 +321,9 @@ void Scene::createBob(){
     up<RigidBodyComponent> rbc_1 = up<RigidBodyComponent>(new RigidBodyComponent(go.get(), 5.0f));
     go->addComponent(ComponentEnum::RIGID_BODY, std::move(rbc_1));
     
+    up<DebugDrawComponent> ddc = up<DebugDrawComponent>(new DebugDrawComponent(go.get()));
+    go->addComponent(ComponentEnum::DEBUG_DRAW, std::move(ddc));
+    
     addObjOnScene(std::move(go));
 
     sp<Obj> bblockObj = Obj::load("bblock.obj");
@@ -328,5 +331,7 @@ void Scene::createBob(){
     bblockObj->clear();
     
     mObjRess.insert(std::pair<string, sp<Obj>>("bblock", bblockObj));
+    
+    
 
 }
