@@ -57,8 +57,9 @@ bool Scene::init(){
     
     lBuilder = new Levelbuilder();
     lBuilder->mesh = mObjRess["bblock"]->getMesh("bblock_Cube");
-    lBuilder->buildLevel(player->actions);
+    lBuilder->arrow = mObjRess["arrow"]->getMesh("ArrowObj_Plane");
     
+    lBuilder->buildLevel(player->actions);
     
     player->debugInit();
     return true;
@@ -333,6 +334,12 @@ void Scene::createBob(){
     bblockObj->clear();
     
     mObjRess.insert(std::pair<string, sp<Obj>>("bblock", bblockObj));
+    
+    sp<Obj> arrowObj = Obj::load("arrow.obj");
+    arrowObj->build();
+    arrowObj->clear();
+    
+    mObjRess.insert(std::pair<string, sp<Obj>>("arrow", arrowObj));
     
     
 

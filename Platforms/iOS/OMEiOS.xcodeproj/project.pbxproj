@@ -208,6 +208,8 @@
 		F328C4FB1BF491930037AC6D /* foo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3B0F6C01BF0BA250044A442 /* foo.ttf */; };
 		F328C4FE1BF4997F0037AC6D /* font_fragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F328C4FC1BF4997F0037AC6D /* font_fragment.glsl */; };
 		F328C4FF1BF4997F0037AC6D /* font_vertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F328C4FD1BF4997F0037AC6D /* font_vertex.glsl */; };
+		F32AD2D81CD9C6A0009B1FE8 /* arrow.obj in Resources */ = {isa = PBXBuildFile; fileRef = F32AD2D71CD9C6A0009B1FE8 /* arrow.obj */; };
+		F32AD2DA1CD9C91D009B1FE8 /* arrow.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F32AD2D91CD9C91D009B1FE8 /* arrow.mtl */; };
 		F32EB63C1C5FA5E00057F474 /* GreySP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F32EB63A1C5FA5E00057F474 /* GreySP.cpp */; };
 		F331380B1CD62484000705D5 /* bblock.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F33138081CD62484000705D5 /* bblock.mtl */; };
 		F331380C1CD62484000705D5 /* bblock.obj in Resources */ = {isa = PBXBuildFile; fileRef = F33138091CD62484000705D5 /* bblock.obj */; };
@@ -772,6 +774,8 @@
 		F30E41DE1C2D5BCE00A88527 /* bob.omg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = bob.omg; path = /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/assets/bob.omg; sourceTree = "<absolute>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
 		F328C4FC1BF4997F0037AC6D /* font_fragment.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = font_fragment.glsl; path = ../Android/assets/shaders/font_fragment.glsl; sourceTree = SOURCE_ROOT; };
 		F328C4FD1BF4997F0037AC6D /* font_vertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = font_vertex.glsl; path = ../Android/assets/shaders/font_vertex.glsl; sourceTree = SOURCE_ROOT; };
+		F32AD2D71CD9C6A0009B1FE8 /* arrow.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = arrow.obj; path = OMEngine/Platforms/Android/assets/arrow.obj; sourceTree = "<group>"; };
+		F32AD2D91CD9C91D009B1FE8 /* arrow.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = arrow.mtl; path = OMEngine/Platforms/Android/assets/arrow.mtl; sourceTree = "<group>"; };
 		F32EB63A1C5FA5E00057F474 /* GreySP.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GreySP.cpp; path = OMEngine/CPPSources/Shaders/GreySP.cpp; sourceTree = "<group>"; };
 		F32EB63B1C5FA5E00057F474 /* GreySP.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = GreySP.hpp; path = OMEngine/CPPSources/Shaders/GreySP.hpp; sourceTree = "<group>"; };
 		F33138081CD62484000705D5 /* bblock.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = bblock.mtl; path = OMEngine/Platforms/Android/assets/bblock.mtl; sourceTree = "<group>"; };
@@ -1043,6 +1047,8 @@
 		7626524017F10E6C007CCD43 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F32AD2D91CD9C91D009B1FE8 /* arrow.mtl */,
+				F32AD2D71CD9C6A0009B1FE8 /* arrow.obj */,
 				F33138081CD62484000705D5 /* bblock.mtl */,
 				F33138091CD62484000705D5 /* bblock.obj */,
 				F3E0F5591CD0A4D8005D0EEE /* gouraudMultiLight.omg */,
@@ -2151,6 +2157,7 @@
 				F39FA5CA1C0DE6C200CC0BB4 /* lounge.ogg in Resources */,
 				9472227A1B9AD466008D601B /* leaf.png in Resources */,
 				9483965A1C4B542D000D69BA /* generalLighting.omg in Resources */,
+				F32AD2DA1CD9C91D009B1FE8 /* arrow.mtl in Resources */,
 				F3D020841CC50D7E0019EF64 /* bob_idle.md5anim in Resources */,
 				F3BCACBB1BFF26FE002003B7 /* Main_iPhone.storyboard in Resources */,
 				947FA31F1BA4854A00695A4E /* ram.obj in Resources */,
@@ -2162,6 +2169,7 @@
 				F3D020881CC50D7E0019EF64 /* bob.md5mesh in Resources */,
 				9435525E1BEF091F00FC4ADA /* wired_fragment.glsl in Resources */,
 				F30E41DD1C2D548E00A88527 /* sphere.png in Resources */,
+				F32AD2D81CD9C6A0009B1FE8 /* arrow.obj in Resources */,
 				F38A22E71BAAA40500FADEC0 /* SimpleGouraudFragment.glsl in Resources */,
 				F3D171781C6DCCD900A9507D /* generalLightingProjector.omg in Resources */,
 				F3E0F55A1CD0A4D8005D0EEE /* gouraudMultiLight.omg in Resources */,
