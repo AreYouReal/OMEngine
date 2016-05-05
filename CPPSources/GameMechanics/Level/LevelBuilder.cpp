@@ -12,7 +12,6 @@ void Levelbuilder::buildLevel(std::queue<float> &actions){
         if(mLastDir != dir){
             addArrow = true;
             mLastDir = dir;
-            v3d::print(dir);
             if(dir.x > 0.1){
                 actions.push(0);
             }else{
@@ -30,17 +29,14 @@ void Levelbuilder::buildLevel(std::queue<float> &actions){
             addArrow = false;
         }
         addNewBlock(newPos, addArrow);
+        mLastBlockPoss = newPos;
     }
 }
 
 
 void Levelbuilder::addNewBlock(v3d blockPos, bool addArrow){
     if(mesh){
-        mLastBlockPoss = blockPos;
-        v3d::print(blockPos);
-        up<GameObject> go = std::unique_ptr<GameObject>(new GameObject("block"));
-        
-        go = std::unique_ptr<GameObject>(new GameObject("bblock_Cube"));
+        up<GameObject> go = std::unique_ptr<GameObject>(new GameObject("bblock_Cube"));
         up<MeshRendererComponent> mrc = up<MeshRendererComponent>(new MeshRendererComponent(go.get(), mesh));
         go->addComponent(ComponentEnum::MESH_RENDERER, std::move(mrc));
         
@@ -51,29 +47,23 @@ void Levelbuilder::addNewBlock(v3d blockPos, bool addArrow){
         rbc_1->mBody->setWorldTransform(t);
         
         go->addComponent(ComponentEnum::RIGID_BODY, std::move(rbc_1));
-        
+
         up<DebugDrawComponent> ddc = up<DebugDrawComponent>(new DebugDrawComponent(go.get()));
         go->addComponent(ComponentEnum::DEBUG_DRAW, std::move(ddc));
-
-        
         go->mTransform = v3d(blockPos);
-        if(addArrow) addArrowToBlock(go.get());
+        if(addArrow && prevObj != nullptr) addArrowToBlock(prevObj);
         
-        
+        prevObj = go.get();
         Scene::instance()->addObjOnScene(std::move(go));
     }
 }
 
 void Levelbuilder::addArrowToBlock(GameObject *parent){
     if(arrow){
-        sp<GameObject> go = std::shared_ptr<GameObject>(new GameObject("arrow"));
-        
-        go = std::unique_ptr<GameObject>(new GameObject("ArrowObj_Plane"));
+        sp<GameObject> go = std::unique_ptr<GameObject>(new GameObject("ArrowObj_Plane"));
         up<MeshRendererComponent> mrc = up<MeshRendererComponent>(new MeshRendererComponent(go.get(), arrow));
         go->addComponent(ComponentEnum::MESH_RENDERER, std::move(mrc));
-        
         go->mTransform = v3d(0, 0, 2);
-        
         parent->addChild(go);
     }
 }
@@ -85,7 +75,6 @@ v3d Levelbuilder::calculateNewPoss(v3d lastPos){
         x = 0; y = step;
     }else{
         x = step; y = 0;
-        if((rand() % 2) > 0 ) x = -x;
     }
     return (lastPos + v3d(x, y, 0));
 }

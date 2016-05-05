@@ -8,6 +8,8 @@ public:
     sp<ObjMesh> mesh;
     sp<ObjMesh> arrow;
     
+    GameObject *prevObj;
+    
     void buildLevel(std::queue<float> &actions);
     
     
