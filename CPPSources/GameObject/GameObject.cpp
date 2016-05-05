@@ -16,6 +16,7 @@ GameObject::~GameObject(){
 }
 
 void GameObject::addChild(sp<GameObject> child){
+    child->parent = this;
     mChildren.push_back(std::move(child));
 }
 
@@ -53,8 +54,11 @@ v3d GameObject::getPosition(){
         btVector3 origin = rBody->mBody->getWorldTransform().getOrigin();
         mTransform.mPosition = v3d(origin.x(), origin.y(), origin.z());
     }
-    
-    return mTransform.mPosition;
+    v3d parentPos(0, 0, 0);
+    if(parent != nullptr)
+        parentPos = parent->getPosition();
+        
+    return (mTransform.mPosition + parentPos);
 }
 
 m4d GameObject::transformMatrix(){

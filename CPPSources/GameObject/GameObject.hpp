@@ -28,6 +28,8 @@ public:
     IComponent *getComponent(const ComponentEnum &name);
     
     
+    GameObject *parent = nullptr;
+    
     void release();
     
     void addChild(sp<GameObject> child);

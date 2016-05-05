@@ -35,6 +35,7 @@ void MeshRendererComponent::draw(){
         if(mesh){
             mesh->shadowDraw = shadowDraw;
             if(!Camera::instance()->sphereDistanceInFrustum(go->getPosition(), mesh->outlines.radius)){
+//                logMessage("Renderer: Skip object: %s, [%f, %f, %f]\n", go->name.c_str(), go->getPosition().x, go->getPosition().y, go->getPosition().z);
                 continue;
             }
 //            modelM =  m4d::translate(mesh->outlines.location);
@@ -68,7 +69,7 @@ void MeshRendererComponent::draw(){
 
 
 void MeshRendererComponent::onDestroy(){
-    
+
 }
 
 void MeshRendererComponent::addMesh(sp<ObjMesh> mesh){
