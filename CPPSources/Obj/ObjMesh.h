@@ -19,8 +19,8 @@ struct ObjTriangleList{
     std::vector<ObjTriangleIndex>   tIndices;
     std::vector<unsigned short>     indices;
     sp<ObjMaterial>                 material;  // Pointer to the material to use when draw this list.
-    bool                            useUVs;     // True if triangle list is using UVs.
-    int                             mode;       // Drawing mode (Default: GL_TRIANGLES).
+    bool                            useUVs = false;     // True if triangle list is using UVs.
+    int                             mode = GL_TRIANGLES;       // Drawing mode (Default: GL_TRIANGLES).
     unsigned int                    vbo;
 };
 

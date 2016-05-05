@@ -29,7 +29,7 @@ sp<Obj> Obj::load(const char *filename){
         if(!line[0] || line[0] == '#'){
             // go to next object line
         }else if( line[0] == 'f' && line[1] == ' '){    // Read face indices...
-            bool useUVs; int vertexIndex[3]  = {0, 0, 0}, normalIndex[3] = {0, 0, 0}, uvIndex[3] = {0, 0, 0};
+            bool useUVs = false; int vertexIndex[3]  = {0, 0, 0}, normalIndex[3] = {0, 0, 0}, uvIndex[3] = {0, 0, 0};
             if(!Obj::readIndices(line, vertexIndex, normalIndex, uvIndex, useUVs)){
                 last = line[0];
                 line = strtok(NULL, "\n");
@@ -117,7 +117,7 @@ void Obj::addMesh(sp<ObjMesh> mesh, sp<ObjTriangleList> tList, char* name, char*
     mesh->tLists.push_back(tList);
     
     tList->mode = GL_TRIANGLES;
-    if(useUVs) tList->useUVs = useUVs;
+    tList->useUVs = useUVs;
     if(usemtl[0]) tList->material = Materials::instance()->getMaterial(usemtl);
     name[0]         = 0;
     usemtl[0]       = 0;
@@ -159,6 +159,7 @@ void Obj::builNormalsAndTangents(){
                 
                 
                 if(list->useUVs){
+                    logMessage("useUV TRUE");
                     v3d tangent;
                     v3d uv1, uv2;
                     float c;
