@@ -26,15 +26,16 @@ void Levelbuilder::buildLevel(std::queue<float> &actions){
                     }
                 }
             }
+        }else{
+            addArrow = false;
         }
         addNewBlock(newPos, addArrow);
-        addArrow = false;
     }
 }
 
 
 void Levelbuilder::addNewBlock(v3d blockPos, bool addArrow){
-    if(mesh && addArrow){
+    if(mesh){
         mLastBlockPoss = blockPos;
         v3d::print(blockPos);
         up<GameObject> go = std::unique_ptr<GameObject>(new GameObject("block"));
@@ -56,7 +57,7 @@ void Levelbuilder::addNewBlock(v3d blockPos, bool addArrow){
 
         
         go->mTransform = v3d(blockPos);
-        addArrowToBlock(go.get());
+        if(addArrow) addArrowToBlock(go.get());
         
         
         Scene::instance()->addObjOnScene(std::move(go));
