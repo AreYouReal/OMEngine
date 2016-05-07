@@ -15,8 +15,7 @@ PlayerController::PlayerController(GameObject * const gameObject){
     if(amc){
 //        amc->md5->
     }
-    
-    // Figure out why box shape penetrates in bulding blocks....
+
     {
         delete mRigidBodyComp->mBody->getCollisionShape();
         btSphereShape *newShaper = new btSphereShape(1.0f);
@@ -29,6 +28,7 @@ void PlayerController::debugInit(){
 }
 
 void PlayerController::onTouch(){
+    mRigidBodyComp->mBody->activate();
     rotate();
     refreshVelocity();
 }
@@ -61,7 +61,8 @@ void PlayerController::refreshVelocity(){
 
 
 void PlayerController::update(){
-    if(mGo->getPosition().z < -10){
+    v3d pos = mGo->getPosition();
+    if(pos.z < -10){
         btTransform t = mRigidBodyComp->mBody->getWorldTransform();
         t.setOrigin(btVector3(0, 0, 1));
         btQuaternion q;
@@ -71,7 +72,6 @@ void PlayerController::update(){
         mRigidBodyComp->mBody->setLinearVelocity(btVector3(0, 0, 0));
         currentAction = actions;
     }
-        
 }
 
 PlayerController::~PlayerController(){
