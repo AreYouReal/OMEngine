@@ -87,7 +87,7 @@ void directionalLight(in vec4 color, in vec3 direction){
     lowp vec3 normal = texture(uSamplerBump, aTexCoord.xy).rgb * 2.0 - 1.0;
     lowp float ndotl = max( dot( normal, normalize(direction)), 0.0 );
     if(ndotl > 0.0){
-        lowp float ndoth = max(dot(normal, normalize(direction - posForLight)), 0.0);
+        lowp float ndoth = max(dot(normal, normalize(direction + posForLight)), 0.0);
         diffuseColor += texture(uSamplerDiffuse, aTexCoord.xy) * color * ndotl * uMaterial.diffuse;
         specularColor += uMaterial.specular * color * pow(ndoth, uMaterial.shininess);
     }
@@ -124,7 +124,7 @@ void omniLight(in vec4 color, in vec3 direction, int index){
     lowp float ndotl = max( dot( normal, normalize(direction)), 0.0 );
     if(ndotl > 0.0){
         float attenuation = attenuation(direction, index);
-        lowp float ndoth = max(dot(normal, normalize(direction - posForLight)), 0.0);
+        lowp float ndoth = max(dot(normal, normalize(direction + posForLight)), 0.0);
         diffuseColor += texture(uSamplerDiffuse, aTexCoord.xy) * uMaterial.diffuse * texture(uSamplerDiffuse, aTexCoord.xy) * color * ndotl * attenuation;
         specularColor += uMaterial.specular * color * pow(ndoth, uMaterial.shininess * 0.128) * attenuation;
     }

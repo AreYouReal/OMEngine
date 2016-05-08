@@ -1,12 +1,19 @@
-type PhongMultilight
+type PhongMultiLight
+
+GL_VERTEX_SHADER
 
 #version 300 es
 #define MAX_LIGHTS 2
 
 layout(location = 0) in vec4 aPosition;
 layout(location = 1) in vec3 aNormal;
-layout(location = 2) in vec3 aTexCoord;
+layout(location = 2) in vec2 aTexCoord;
 layout(location = 3) in vec3 aTangent;
+
+uniform mat4        uModelViewM;
+uniform mat4        uProjectionM;
+uniform lowp mat4   uNormalM;
+uniform mat4        uShadowM;
 
 struct Light{
     lowp int type;
@@ -14,4 +21,165 @@ struct Light{
     lowp vec3 position;
 };
 
-uniform mat4 uModelViewM;
+uniform Light uLightVS[MAX_LIGHTS];
+
+out vec2 texCoord;
+out vec3 position;
+out vec3 lightDirTS[MAX_LIGHTS];
+out vec3 spotDirs[MAX_LIGHTS];
+
+mat3 calculateTBNMatrix(){
+    lowp mat3 tbn;
+    tbn[2] = normalize(vec3(uNormalM * vec4(aNormal, 1.0)));
+    tbn[0] = normalize(vec3(uNormalM * vec4(aTangent, 1.0)));
+    tbn[1] = cross(tbn[2], tbn[0]);
+    return tbn;
+}
+
+void calculateOutVars(lowp mat3 tbn, lowp vec3 position){
+    for(int i = 0; i < MAX_LIGHTS; ++i){
+        switch (uLightVS[i].type) {
+            case 0:
+                lightDirTS[i] = uLightVS[i].direction * tbn;
+                break;
+            case 1:
+                lightDirTS[i] = (uLightVS[i].position - position) * tbn;
+                break;
+            case 2:
+                lightDirTS[i] = (uLightVS[i].position - position) * tbn;
+                spotDirs[i] = uLightVS[i].direction * tbn;
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+
+void main(){
+    position = vec3(uModelViewM * aPosition);
+    gl_Position = uProjectionM * vec4(position, 1.0);
+    lowp mat3 tbn = calculateTBNMatrix();
+    calculateOutVars(tbn, position);
+    position = -normalize(position * tbn);
+    
+    texCoord = aTexCoord;
+}
+
+
+GL_FRAGMENT_SHADER
+
+#version 300 es
+#define MAX_LIGHTS 2
+
+precision mediump float;
+
+struct Light{
+    lowp int type;
+    
+    lowp vec4 color;
+    
+    lowp float dst;
+    lowp float linAtten;
+    lowp float quadAtten;
+    
+    lowp float spotCosCutoff;
+    lowp float spotBlend;
+};
+
+struct Material{
+    lowp vec4 ambient;
+    lowp vec4 diffuse;
+    lowp vec4 specular;
+    mediump float shininess;
+};
+
+uniform Material uMaterial;
+uniform Light uLightFS[MAX_LIGHTS];
+
+uniform mediump sampler2D       uSamplerDiffuse;
+uniform mediump sampler2D       uSamplerBump;
+uniform lowp sampler2DShadow    uSamplerShadow;
+
+in vec3 lightDirTS[MAX_LIGHTS];
+in vec3 spotDirs[MAX_LIGHTS];
+in vec3 position;
+in vec2 texCoord;
+
+out vec4 fragColor;
+
+float attenuation(in vec3 position, int index){
+    float distance = length(position);
+    lowp float sphere = max((uLightFS[index].dst - distance)/uLightFS[index].dst, 0.0);
+    if(sphere <= 0.0) return 0.0f;
+    float lamDistSqr = uLightFS[index].dst * uLightFS[index].dst;
+    lowp float atten = uLightFS[index].dst / (uLightFS[index].dst + uLightFS[index].linAtten * distance);
+    atten *= lamDistSqr / (lamDistSqr + uLightFS[index].quadAtten * distance * distance);
+    atten *= sphere;
+    return atten;
+}
+
+vec4 spotLight(in Light light, in vec3 direction, in vec3 spotdir){
+    vec4 finalColor = vec4(0, 0, 0, 1);
+    lowp vec3 normal = texture(uSamplerBump, texCoord).rgb * 2.0 - 1.0;
+    lowp vec3 nlightdir = normalize(direction);
+    lowp float ndotl = max(dot(normal, nlightdir), 0.0);
+    if(ndotl > 0.0){
+        lowp float ldots = max(dot(nlightdir, spotdir), 0.0);
+        if(ldots > light.spotCosCutoff){
+            lowp float ndoth = max(dot(normal, normalize(nlightdir + position)), 0.0);
+            lowp float spot = ldots * clamp((ldots - light.spotCosCutoff)/light.spotBlend, 0.0, 1.0);
+            finalColor += texture(uSamplerDiffuse, texCoord) * uMaterial.diffuse * light.color * ndoth * spot;
+            finalColor += uMaterial.specular * light.color * pow(ndoth, uMaterial.shininess) * spot;
+     
+        }
+    }
+    return finalColor;
+}
+
+vec4 omniLight(in vec4 color, in vec3 direction, int index){
+    vec4 finalColor = vec4(0, 0, 0, 1);
+    lowp vec3 normal = texture(uSamplerBump, texCoord).rgb * 2.0 - 1.0;
+    lowp float ndotl = max(dot(normal, normalize(direction)), 0.0);
+    if(ndotl > 0.0){
+        float attenuation = attenuation(direction, index);
+        finalColor += texture(uSamplerDiffuse, texCoord) * uMaterial.diffuse * color * ndotl * attenuation;
+        lowp float ndoth = max(dot(normal, normalize(direction - position)), 0.0);
+        finalColor += uMaterial.specular * color * pow(ndoth, uMaterial.shininess) * attenuation;
+    }
+    return finalColor;
+}
+
+vec4 directionalLight(in vec4 color, in vec3 direction){
+    vec4 finalColor = vec4(0, 0, 0, 1);
+    lowp vec3 normal = texture(uSamplerBump, texCoord).rgb * 2.0 - 1.0;
+    lowp float ndotl = max(dot(normal, normalize(direction)), 0.0);
+    if(ndotl > 0.0){
+        float ndoth = max(dot(normal, normalize(direction + position)), 0.0);
+        finalColor += texture(uSamplerDiffuse, texCoord) * uMaterial.diffuse * color * ndotl;
+        finalColor += uMaterial.specular * color * pow(ndoth, uMaterial.shininess);
+    }
+    return finalColor;
+}
+
+void main(){
+    lowp vec4 finalColor = uMaterial.ambient;
+    for(int i = 0; i < MAX_LIGHTS; ++i){
+        switch (uLightFS[i].type) {
+            case 0:
+                finalColor += directionalLight(uLightFS[i].color, lightDirTS[i]);
+                break;
+            case 1:
+                finalColor += omniLight(uLightFS[i].color, lightDirTS[i], i);
+                break;
+            case 2:
+                finalColor += spotLight(uLightFS[i], lightDirTS[i], spotDirs[i]);
+                break;
+            default:
+                break;
+        }
+    }
+    
+    fragColor = finalColor;
+}
+

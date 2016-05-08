@@ -5,6 +5,7 @@
 #include "GreySP.hpp"
 #include "WireSP.hpp"
 #include "GouraudMultiLightSP.hpp"
+#include "PhongMultiLightSP.hpp"
 #include "SimpleGouraudPhongSP.hpp"
 #include "DepthSP.hpp"
 
@@ -50,6 +51,8 @@ sp<ShaderProgram> ShaderHelper::createProgram(const string programName, const Sh
             program = std::make_shared<WireSP>();
             break;
         case PhongMultiLight:
+            program = std::make_shared<PhongMultiLightSP>();
+            break;
         case GouraudMultiLight:
             program = std::make_shared<GouraudMultiLightSP>();
             break;

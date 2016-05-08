@@ -1,7 +1,5 @@
 #include "ShaderProgram.h"
 
-const int MAX_LIGHTS = 5;
-
 struct PhongMultiLightSP : ShaderProgram{
     uint numLights = 2;
     
