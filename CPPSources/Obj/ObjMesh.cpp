@@ -123,13 +123,14 @@ void ObjMesh::updateMin(v3d &min, v3d &vertex){
 
 void ObjMesh::buildVBO(){
     unsigned int v3dSize = sizeof(v3d);
-    glInfo.stride = v3dSize;
-    glInfo.stride += v3dSize;
-    glInfo.stride += v3dSize;
+    unsigned int v2dSize = sizeof(v2d);
+    glInfo.stride = v3dSize;            // Vertex
+    glInfo.stride += v3dSize;           // Normals
+    glInfo.stride += v3dSize;           // Face Normals
     
     if(vertexData[0].uvIndex != -1){
-        glInfo.stride += v3dSize;
-        glInfo.stride += v3dSize;
+        glInfo.stride += v3dSize;       // Tangent
+        glInfo.stride += v2dSize;   // UV
     }
     
     glInfo.size = (unsigned int)vertexData.size() * glInfo.stride;
@@ -155,8 +156,8 @@ void ObjMesh::buildVBO(){
         memcpy(vertexArray, &data->faceNormals[index], v3dSize);
         vertexArray += v3dSize;
         if(vertexData[0].uvIndex != -1){
-            memcpy(vertexArray, &data->UVs[vertexData[i].uvIndex], v3dSize);
-            vertexArray += v3dSize;
+            memcpy(vertexArray, &data->UVs[vertexData[i].uvIndex], v2dSize);
+            vertexArray += v2dSize;
             memcpy(vertexArray, &data->tangents[index], v3dSize);
             vertexArray += v3dSize;
         }

@@ -1,11 +1,16 @@
 #include "ShaderProgram.h"
 
-struct GouraudMultiLightSP : public ShaderProgram{
+const int MAX_LIGHTS = 5;
+
+struct PhongMultiLightSP : ShaderProgram{
     uint numLights = 2;
+    
     int numLightUniLoc = -1;
     
-    std::vector<LightUniformLocations>  lightLocs;
-
+    std::vector<LightUniformLocations>  vsLightLoc;
+    std::vector<LightUniformLocations>  fsLightLoc;
+    
+    
     virtual void initUniformLocations() override;
     virtual void setUniforms(const ObjMaterial *mat) override;
     

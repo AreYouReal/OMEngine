@@ -72,6 +72,18 @@ struct ShaderProgram{
     static const string uniProjectionMatName;
     static const string uniNormalMName;
     static const string uniShadowMName;
+    // LIGHT related
+    static const string type;
+    static const string position;
+    static const string direction;
+    static const string color;
+    static const string distance;
+    static const string linAtten;
+    static const string quadAtten;
+    static const string cosCutoff;
+    static const string blend;
+    
+    static const string numLights;
  
     // Uniform locations
     TransformUniformLocations transformLoc;

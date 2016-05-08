@@ -288,6 +288,7 @@
 		F3B0F6B71BF0AD9F0044A442 /* stb_truetype.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3B0F6B51BF0AD9F0044A442 /* stb_truetype.cpp */; };
 		F3B0F6BB1BF0ADDC0044A442 /* Font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3B0F6B91BF0ADDC0044A442 /* Font.cpp */; };
 		F3B0F6BF1BF0B7410044A442 /* FFF_Tusj.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3B0F6BE1BF0B5830044A442 /* FFF_Tusj.ttf */; };
+		F3BC2E901CDF733300D83A3B /* phongMultiLight.omg in Resources */ = {isa = PBXBuildFile; fileRef = F3BC2E8F1CDF733300D83A3B /* phongMultiLight.omg */; };
 		F3BCACBA1BFF26FE002003B7 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3BCACB61BFF26FE002003B7 /* Main_iPad.storyboard */; };
 		F3BCACBB1BFF26FE002003B7 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3BCACB81BFF26FE002003B7 /* Main_iPhone.storyboard */; };
 		F3BEAB1A1C43A6C00012DDCD /* lightingAttenuation.omg in Resources */ = {isa = PBXBuildFile; fileRef = F3BEAB191C43A6C00012DDCD /* lightingAttenuation.omg */; };
@@ -300,6 +301,7 @@
 		F3D5E10B1AF8F24400DD216B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F3D5E1091AF8F24400DD216B /* InfoPlist.strings */; };
 		F3D5E1191AF8F32E00DD216B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3D5E1181AF8F32E00DD216B /* Images.xcassets */; };
 		F3D5E1321AF8F4DD00DD216B /* iOSSRETests.m in Sources */ = {isa = PBXBuildFile; fileRef = F3D5E1051AF8F23400DD216B /* iOSSRETests.m */; };
+		F3D942461CDF745500AE0D0B /* PhongMultiLightSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3D942441CDF745500AE0D0B /* PhongMultiLightSP.cpp */; };
 		F3E0F5581CD09B1D005D0EEE /* GouraudMultiLightSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3E0F5561CD09B1D005D0EEE /* GouraudMultiLightSP.cpp */; };
 		F3E0F55A1CD0A4D8005D0EEE /* gouraudMultiLight.omg in Resources */ = {isa = PBXBuildFile; fileRef = F3E0F5591CD0A4D8005D0EEE /* gouraudMultiLight.omg */; };
 		F3EA6C2B1C3E8FA2002AF813 /* DebugDrawComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3EA6C291C3E8FA2002AF813 /* DebugDrawComponent.cpp */; };
@@ -903,6 +905,7 @@
 		F3B0F6BA1BF0ADDC0044A442 /* Font.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Font.hpp; path = ../../CPPSources/Txt/Font.hpp; sourceTree = SOURCE_ROOT; };
 		F3B0F6BE1BF0B5830044A442 /* FFF_Tusj.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FFF_Tusj.ttf; path = ../Android/assets/fonts/FFF_Tusj.ttf; sourceTree = SOURCE_ROOT; };
 		F3B0F6C01BF0BA250044A442 /* foo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = foo.ttf; path = ../Android/assets/fonts/foo.ttf; sourceTree = SOURCE_ROOT; };
+		F3BC2E8F1CDF733300D83A3B /* phongMultiLight.omg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = phongMultiLight.omg; path = OMEngine/Platforms/Android/assets/phongMultiLight.omg; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
 		F3BCACB71BFF26FE002003B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = OMEiOS/Base.lproj/Main_iPad.storyboard; sourceTree = SOURCE_ROOT; };
 		F3BCACB91BFF26FE002003B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = OMEiOS/Base.lproj/Main_iPhone.storyboard; sourceTree = SOURCE_ROOT; };
 		F3BEAB191C43A6C00012DDCD /* lightingAttenuation.omg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = lightingAttenuation.omg; path = OMEngine/Platforms/Android/assets/lightingAttenuation.omg; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
@@ -918,6 +921,8 @@
 		F3D5E10C1AF8F2C600DD216B /* OMEiOS.temp_caseinsensitive_rename-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "OMEiOS.temp_caseinsensitive_rename-Info.plist"; path = "../../../OMEngine/Platforms/iOS/OMEiOS/OMEiOS.temp_caseinsensitive_rename-Info.plist"; sourceTree = "<group>"; };
 		F3D5E10D1AF8F2C600DD216B /* OMEiOS.temp_caseinsensitive_rename-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "OMEiOS.temp_caseinsensitive_rename-Prefix.pch"; path = "../../../OMEngine/Platforms/iOS/OMEiOS/OMEiOS.temp_caseinsensitive_rename-Prefix.pch"; sourceTree = "<group>"; };
 		F3D5E1181AF8F32E00DD216B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = OMEiOS/Images.xcassets; sourceTree = SOURCE_ROOT; };
+		F3D942441CDF745500AE0D0B /* PhongMultiLightSP.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PhongMultiLightSP.cpp; path = OMEngine/CPPSources/Shaders/PhongMultiLightSP.cpp; sourceTree = "<group>"; };
+		F3D942451CDF745500AE0D0B /* PhongMultiLightSP.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = PhongMultiLightSP.hpp; path = OMEngine/CPPSources/Shaders/PhongMultiLightSP.hpp; sourceTree = "<group>"; };
 		F3E0F5561CD09B1D005D0EEE /* GouraudMultiLightSP.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GouraudMultiLightSP.cpp; path = OMEngine/CPPSources/Shaders/GouraudMultiLightSP.cpp; sourceTree = "<group>"; };
 		F3E0F5571CD09B1D005D0EEE /* GouraudMultiLightSP.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = GouraudMultiLightSP.hpp; path = OMEngine/CPPSources/Shaders/GouraudMultiLightSP.hpp; sourceTree = "<group>"; };
 		F3E0F5591CD0A4D8005D0EEE /* gouraudMultiLight.omg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = gouraudMultiLight.omg; path = OMEngine/Platforms/Android/assets/gouraudMultiLight.omg; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
@@ -1047,6 +1052,7 @@
 		7626524017F10E6C007CCD43 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F3BC2E8F1CDF733300D83A3B /* phongMultiLight.omg */,
 				F32AD2D91CD9C91D009B1FE8 /* arrow.mtl */,
 				F32AD2D71CD9C6A0009B1FE8 /* arrow.obj */,
 				F33138081CD62484000705D5 /* bblock.mtl */,
@@ -2026,6 +2032,8 @@
 				F3A843261CCF5DD2006D1B94 /* DepthSP.hpp */,
 				F3E0F5561CD09B1D005D0EEE /* GouraudMultiLightSP.cpp */,
 				F3E0F5571CD09B1D005D0EEE /* GouraudMultiLightSP.hpp */,
+				F3D942441CDF745500AE0D0B /* PhongMultiLightSP.cpp */,
+				F3D942451CDF745500AE0D0B /* PhongMultiLightSP.hpp */,
 			);
 			name = Programs;
 			sourceTree = "<group>";
@@ -2141,6 +2149,7 @@
 				94DCA2F81BE13C6100435661 /* Scene.obj in Resources */,
 				F328C4FF1BF4997F0037AC6D /* font_vertex.glsl in Resources */,
 				F3D5E1191AF8F32E00DD216B /* Images.xcassets in Resources */,
+				F3BC2E901CDF733300D83A3B /* phongMultiLight.omg in Resources */,
 				9488ADA51CDAE2D100436916 /* bob.md5mesh in Resources */,
 				9488ADA01CDAE2D100436916 /* bob_helmet_normal.png in Resources */,
 				F3AB027B1CA7FFFE00CB8FC9 /* particle.png in Resources */,
@@ -2241,6 +2250,7 @@
 				94788FCC1BD4CFD200B55A25 /* btBox2dShape.cpp in Sources */,
 				9478901C1BD4CFD200B55A25 /* btMultiBodyConstraint.cpp in Sources */,
 				94788FE91BD4CFD200B55A25 /* btTriangleBuffer.cpp in Sources */,
+				F3D942461CDF745500AE0D0B /* PhongMultiLightSP.cpp in Sources */,
 				947890071BD4CFD200B55A25 /* btKinematicCharacterController.cpp in Sources */,
 				94788FD61BD4CFD200B55A25 /* btConvexInternalShape.cpp in Sources */,
 				94788FAC1BD4CFD200B55A25 /* btDbvtBroadphase.cpp in Sources */,

@@ -17,32 +17,27 @@ void GouraudMultiLightSP::setUniforms(const ObjMaterial *mat){
 
 void GouraudMultiLightSP::initLightUniLocations(){
     string lightName = "uLight";
-    string type = "type";
-    string position = "position";
-    string direction = "direction";
-    string color = "color";
-    string distance = "dst";
-    string linAtten = "linAtten";
-    string quadAtten = "quadAtten";
-    string cosCutoff = "spotCosCutoff";
-    string blend    = "spotBlend";
+
     
     for(int i = 0; i < numLights; ++i){
+        LightUniformLocations lightUniLocs;
         string index = "[" + std::to_string(i) + "].";
         string lightNameIndex = lightName + index;
         
-        lightLocs[i].type           = getUniformLocation(lightNameIndex + type );
-        lightLocs[i].position       = getUniformLocation(lightNameIndex + position );
-        lightLocs[i].direction      = getUniformLocation(lightNameIndex + direction);
-        lightLocs[i].color          = getUniformLocation(lightNameIndex + color);
-        lightLocs[i].distance       = getUniformLocation(lightNameIndex + distance);
-        lightLocs[i].linAtten       = getUniformLocation(lightNameIndex + linAtten);
-        lightLocs[i].quadAtten      = getUniformLocation(lightNameIndex + quadAtten);
-        lightLocs[i].spotCosCutoff  = getUniformLocation(lightNameIndex + cosCutoff);
-        lightLocs[i].spotBlend      = getUniformLocation(lightNameIndex + blend);
+        lightUniLocs.type           = getUniformLocation(lightNameIndex + ShaderProgram::type );
+        lightUniLocs.position       = getUniformLocation(lightNameIndex + ShaderProgram::position );
+        lightUniLocs.direction      = getUniformLocation(lightNameIndex + ShaderProgram::direction);
+        lightUniLocs.color          = getUniformLocation(lightNameIndex + ShaderProgram::color);
+        lightUniLocs.distance       = getUniformLocation(lightNameIndex + ShaderProgram::distance);
+        lightUniLocs.linAtten       = getUniformLocation(lightNameIndex + ShaderProgram::linAtten);
+        lightUniLocs.quadAtten      = getUniformLocation(lightNameIndex + ShaderProgram::quadAtten);
+        lightUniLocs.spotCosCutoff  = getUniformLocation(lightNameIndex + ShaderProgram::cosCutoff);
+        lightUniLocs.spotBlend      = getUniformLocation(lightNameIndex + ShaderProgram::blend);
+        
+        lightLocs.push_back(lightUniLocs);
     }
     
-    numLightUniLoc = getUniformLocation("numLights");
+    numLightUniLoc = getUniformLocation(ShaderProgram::numLights);
 }
 
 void GouraudMultiLightSP::setLightUniforms(){

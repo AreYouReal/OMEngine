@@ -41,7 +41,7 @@ private:
     std::vector<v3d>            normals;
     std::vector<v3d>            faceNormals;
     std::vector<v3d>            tangents;
-    std::vector<v3d>            UVs;
+    std::vector<v2d>            UVs;
     
 // Static
     void addMesh(sp<ObjMesh> mesh, sp<ObjTriangleList> tList, char* name, char* usemtl, char* group, bool useUVs);

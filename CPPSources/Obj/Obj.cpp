@@ -56,7 +56,7 @@ sp<Obj> Obj::load(const char *filename){
             // go to next object line
         } else if(sscanf(line, "vt %f %f", &v.x, &v.y) == 2){           // Read UVs.
             v.y = 1.0f - v.y;
-            data->UVs.push_back(v);
+            data->UVs.push_back(v2d(v.x, v.y));
         }else if(line[0] == 'v' && line[1] == 'n' ){    last = line[0];
         }else if(sscanf(line, "usemtl %s", str) == 1){  strcpy(usemtl, str);
         }else if(sscanf(line, "o %s", str) == 1){       strcpy(name, str);
@@ -159,9 +159,8 @@ void Obj::builNormalsAndTangents(){
                 
                 
                 if(list->useUVs){
-                    logMessage("useUV TRUE");
                     v3d tangent;
-                    v3d uv1, uv2;
+                    v2d uv1, uv2;
                     float c;
                     uv1 = UVs[list->tIndices[k].uvIndex[2]] - UVs[list->tIndices[k].uvIndex[0]];
                     uv2 = UVs[list->tIndices[k].uvIndex[1]] - UVs[list->tIndices[k].uvIndex[0]];

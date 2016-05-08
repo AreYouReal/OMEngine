@@ -13,6 +13,18 @@ const string ShaderProgram::uniProjectionMatName{"uProjectionM"};
 const string ShaderProgram::uniNormalMName      {"uNormalM"};
 const string ShaderProgram::uniShadowMName      {"uShadowM"};
 
+const string ShaderProgram::type                {"type"};
+const string ShaderProgram::position            {"position"};
+const string ShaderProgram::direction           {"direction"};
+const string ShaderProgram::color               {"color"};
+const string ShaderProgram::distance            {"dst"};
+const string ShaderProgram::linAtten            {"linAtten"};
+const string ShaderProgram::quadAtten           {"quadAtten"};
+const string ShaderProgram::cosCutoff           {"spotCosCutoff"};
+const string ShaderProgram::blend               {"spotBlend"};
+const string ShaderProgram::numLights           {"numLights"};
+
+
 
 ShaderProgram::ShaderProgram(){
     logGLError();
