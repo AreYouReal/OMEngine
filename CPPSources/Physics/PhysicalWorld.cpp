@@ -17,7 +17,7 @@ PhysicalWorld::~PhysicalWorld(){
 
 void PhysicalWorld::update(float deltaTime){
     physicsWorld->updateAabbs();
-    physicsWorld->stepSimulation( deltaTime );
+    physicsWorld->stepSimulation( 1.0f/60.0f );
 }
 
 bool PhysicalWorld::addBodyToPhysicalWork(btRigidBody *body){

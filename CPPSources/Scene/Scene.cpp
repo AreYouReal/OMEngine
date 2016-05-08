@@ -52,7 +52,7 @@ bool Scene::init(){
     logGLError();
     
     player = new PlayerController(bob);
-    Camera::instance()->follow(bob, v3d(-5, -5, 10));
+    Camera::instance()->follow(bob, v3d(-3, -3, 5));
 
     
     lBuilder = new Levelbuilder();
