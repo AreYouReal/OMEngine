@@ -35,6 +35,7 @@ $(SRC_PATH)/CPPSources/Shaders/DepthSP.cpp\
 $(SRC_PATH)/CPPSources/Shaders/GouraudMultiLightSP.cpp\
 $(SRC_PATH)/CPPSources/Shaders/GreySP.cpp\
 $(SRC_PATH)/CPPSources/Shaders/NormalSP.cpp\
+$(SRC_PATH)/CPPSources/Shaders/PhongMultiLightSP.cpp\
 $(SRC_PATH)/CPPSources/Shaders/Shader.cpp\
 $(SRC_PATH)/CPPSources/Shaders/ShaderHelper.cpp\
 $(SRC_PATH)/CPPSources/Shaders/ShaderProgram.cpp\

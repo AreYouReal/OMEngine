@@ -17,7 +17,7 @@ public:
     
 private:
     
-    float playerSpeed = 20;
+    float playerSpeed = 10;
     
 // Fields
     GameObject *mGo;
