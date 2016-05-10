@@ -249,6 +249,10 @@
 		F38A22E71BAAA40500FADEC0 /* SimpleGouraudFragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F38A22E61BAAA40500FADEC0 /* SimpleGouraudFragment.glsl */; };
 		F38A22E91BAAAD8800FADEC0 /* tree.png in Resources */ = {isa = PBXBuildFile; fileRef = F38A22E81BAAAD8800FADEC0 /* tree.png */; };
 		F393D6AB1C0DC8EC0053C5FA /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F393D6AA1C0DC8EC0053C5FA /* OpenAL.framework */; };
+		F398A78F1CE1C63200824FD1 /* monster.md5anim in Resources */ = {isa = PBXBuildFile; fileRef = F398A78C1CE1C63200824FD1 /* monster.md5anim */; };
+		F398A7901CE1C63200824FD1 /* monster.md5mesh in Resources */ = {isa = PBXBuildFile; fileRef = F398A78D1CE1C63200824FD1 /* monster.md5mesh */; };
+		F398A7911CE1C63200824FD1 /* monster.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F398A78E1CE1C63200824FD1 /* monster.mtl */; };
+		F398A7931CE1C66500824FD1 /* monster.png in Resources */ = {isa = PBXBuildFile; fileRef = F398A7921CE1C66500824FD1 /* monster.png */; };
 		F39A501E1BB3EE9B0080B846 /* LightSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F39A501C1BB3EE9B0080B846 /* LightSource.cpp */; };
 		F39A50211BB3F0090080B846 /* Illuminator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F39A501F1BB3F0090080B846 /* Illuminator.cpp */; };
 		F39A50261BB40E5B0080B846 /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F39A50241BB40E5B0080B846 /* GameObject.cpp */; };
@@ -833,6 +837,10 @@
 		F38A22E61BAAA40500FADEC0 /* SimpleGouraudFragment.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = SimpleGouraudFragment.glsl; path = ../Android/assets/shaders/SimpleGouraudFragment.glsl; sourceTree = SOURCE_ROOT; };
 		F38A22E81BAAAD8800FADEC0 /* tree.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tree.png; path = ../Android/assets/tree.png; sourceTree = SOURCE_ROOT; };
 		F393D6AA1C0DC8EC0053C5FA /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
+		F398A78C1CE1C63200824FD1 /* monster.md5anim */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = monster.md5anim; path = OMEngine/Platforms/Android/assets/monster.md5anim; sourceTree = "<group>"; };
+		F398A78D1CE1C63200824FD1 /* monster.md5mesh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = monster.md5mesh; path = OMEngine/Platforms/Android/assets/monster.md5mesh; sourceTree = "<group>"; };
+		F398A78E1CE1C63200824FD1 /* monster.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = monster.mtl; path = OMEngine/Platforms/Android/assets/monster.mtl; sourceTree = "<group>"; };
+		F398A7921CE1C66500824FD1 /* monster.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = monster.png; path = OMEngine/Platforms/Android/assets/monster.png; sourceTree = "<group>"; };
 		F39A501C1BB3EE9B0080B846 /* LightSource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LightSource.cpp; sourceTree = "<group>"; };
 		F39A501D1BB3EE9B0080B846 /* LightSource.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = LightSource.hpp; path = ../../CPPSources/Light/LightSource.hpp; sourceTree = SOURCE_ROOT; };
 		F39A501F1BB3F0090080B846 /* Illuminator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Illuminator.cpp; sourceTree = "<group>"; };
@@ -1052,6 +1060,10 @@
 		7626524017F10E6C007CCD43 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F398A7921CE1C66500824FD1 /* monster.png */,
+				F398A78C1CE1C63200824FD1 /* monster.md5anim */,
+				F398A78D1CE1C63200824FD1 /* monster.md5mesh */,
+				F398A78E1CE1C63200824FD1 /* monster.mtl */,
 				F3BC2E8F1CDF733300D83A3B /* phongMultiLight.omg */,
 				F32AD2D91CD9C91D009B1FE8 /* arrow.mtl */,
 				F32AD2D71CD9C6A0009B1FE8 /* arrow.obj */,
@@ -2142,6 +2154,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F398A78F1CE1C63200824FD1 /* monster.md5anim in Resources */,
 				F328C4FE1BF4997F0037AC6D /* font_fragment.glsl in Resources */,
 				F3CAEEE51BB01A7600DCF182 /* default_gray_vertex.glsl in Resources */,
 				F328C4FB1BF491930037AC6D /* foo.ttf in Resources */,
@@ -2154,6 +2167,7 @@
 				9488ADA01CDAE2D100436916 /* bob_helmet_normal.png in Resources */,
 				F3AB027B1CA7FFFE00CB8FC9 /* particle.png in Resources */,
 				9488AD9E1CDAE2D100436916 /* bob_face_normal.png in Resources */,
+				F398A7901CE1C63200824FD1 /* monster.md5mesh in Resources */,
 				9488ADA31CDAE2D100436916 /* bob_lamp_normal.png in Resources */,
 				9488ADA61CDAE2D100436916 /* bob.mtl in Resources */,
 				94499BF11BDD2FC6006E379D /* diffuse.png in Resources */,
@@ -2208,10 +2222,12 @@
 				F331380C1CD62484000705D5 /* bblock.obj in Resources */,
 				F3AB027C1CA7FFFE00CB8FC9 /* particles.omg in Resources */,
 				F3A263961C33BD360021B3B6 /* light_point_fragment.glsl in Resources */,
+				F398A7931CE1C66500824FD1 /* monster.png in Resources */,
 				94EF0C5E1BA70E5400EBF5EE /* pos_norm_vertex.glsl in Resources */,
 				947222771B9AD466008D601B /* background.png in Resources */,
 				F331380B1CD62484000705D5 /* bblock.mtl in Resources */,
 				F39FA5011C0DD9B500CC0BB4 /* test.raw in Resources */,
+				F398A7911CE1C63200824FD1 /* monster.mtl in Resources */,
 				F38A22E11BAA979700FADEC0 /* vertexPerPixel.glsl in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

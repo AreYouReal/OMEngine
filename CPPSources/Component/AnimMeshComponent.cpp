@@ -13,13 +13,16 @@ AnimMeshComponent::AnimMeshComponent(GameObject* const go, const string meshName
     
     init();
     
-    md5->loadAction("walk", "bob_walk.md5anim");
-    md5->loadAction("idle", "bob_idle.md5anim");
+    for(auto const &action : actionsToLoad){
+        std::size_t pos = action.find(".md5anim");
+        string actionName = action.substr(0, pos);
+        md5->loadAction(actionName, action);
+    }
     
     md5->mAnimType = md5::MD5::AnimType::SINGLE_ACTION;
 
 //    md5->playAction("idle", md5::Action::InterpolationMethod::FRAME);
-    md5->playAction("walk", md5::Action::InterpolationMethod::FRAME);
+    md5->playAction(md5->actions.begin()->first, md5::Action::InterpolationMethod::FRAME);
 
 }
 
