@@ -23,6 +23,9 @@ static std::map<string, string>  meshShaderTable{
     std::pair<string, string>("lamp", "phongMultiLight.omg"),
     
     std::pair<string, string>("bblock_Cube", "SimpleGouraud"),
+
+std::pair<string, string>("monster", "phongMultiLight.omg"),
+
 };
 
 Materials::Materials(){

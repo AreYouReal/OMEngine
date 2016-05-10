@@ -52,7 +52,7 @@ bool Scene::init(){
     logGLError();
     
     player = new PlayerController(bob);
-    Camera::instance()->follow(bob, v3d(-3, -3, 5));
+    Camera::instance()->follow(bob, v3d(-7, -7, 10));
 
     
     lBuilder = new Levelbuilder();
@@ -350,6 +350,8 @@ void Scene::createBob(){
     up<AnimMeshComponent> mamc = up<AnimMeshComponent>(new AnimMeshComponent(monster.get(), "monster.md5mesh", "monster.mtl", actions));
     monster->addComponent(ComponentEnum::ANIM_MESH, std::move(mamc));
     monster->mTransform = (v3d(0, 0, 3));
+    monster->mTransform.mScale = v3d(0.1, 0.1, 0.1);
+    monster->mTransform.rotate(90, v3d(1, 0, 0));
     
     addObjOnScene(std::move(monster));
 

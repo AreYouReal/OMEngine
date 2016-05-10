@@ -1,9 +1,9 @@
 # Blender MTL File: 'monster.blend'
 # Material Count: 1
 
-newmtl monster.001
+newmtl monster
 Ns 96.078431
-Ka 1.176471 1.176471 1.176471
+Ka 0.100000 0.100000 0.100000
 Kd 0.800000 0.800000 0.800000
 Ks 0.450000 0.450000 0.450000
 Ke 0.000000 0.000000 0.000000
