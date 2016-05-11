@@ -18,7 +18,7 @@ private:
     v3d mLastDir;
     
     v3d  calculateNewPoss(v3d lastPos);
-    void addNewBlock(v3d blockPos, bool addArrow);
-    void addArrowToBlock(GameObject *parent);
+    void addNewBlock(v3d blockPos, const bool addArrow,const float rotation);
+    void addArrowToBlock(GameObject * const parent, const float rotation);
 
 };

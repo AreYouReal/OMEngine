@@ -120,6 +120,8 @@ sp<Action> MD5::loadAction(string name, string filename){
     up<FileContent> content = readBytesFromFile(filename.c_str());
     if(!content.get()) return nullptr;
     
+    logMessage("file loaded!\n");
+    
     sp<Action> action = std::make_shared<Action>();
     action->name = name;
     
