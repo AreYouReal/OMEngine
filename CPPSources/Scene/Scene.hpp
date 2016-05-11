@@ -27,6 +27,7 @@ public:
     bool init();
     
     void addObjOnScene(up<GameObject> go);
+    bool removeObjectFromTheScene(GameObject *go);
     void update(float deltaTime);
     void drawDepth();
     void draw();

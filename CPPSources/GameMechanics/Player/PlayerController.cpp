@@ -1,4 +1,5 @@
 #include "PlayerController.hpp"
+#include "btSphereShape.h"
 
 PlayerController::PlayerController(GameObject * const gameObject){
     mGo = gameObject;
@@ -6,6 +7,11 @@ PlayerController::PlayerController(GameObject * const gameObject){
     mRigidBodyComp->mBody->setAngularFactor(btVector3(0, 0, 0));
     mRigidBodyComp->mBody->setFriction(0.0);
     mRigidBodyComp->mBody->setRestitution(0.0);
+//    btTransform t = mRigidBodyComp->mBody->getWorldTransform();
+//    btQuaternion currQ = t.getRotation();
+//    currQ.setEuler(0, 0, PI);
+//    t.setRotation(currQ);
+//    mRigidBodyComp->mBody->setWorldTransform(t);
     mGo->mTransform.mScale = v3d(0.5, 0.5, 0.5);
     
     mRigidBodyComp->mBody->setGravity(btVector3(0, 0, -98));
@@ -37,19 +43,18 @@ void PlayerController::rotate(){
         btTransform t = mRigidBodyComp->mBody->getWorldTransform();
         btQuaternion currQ = t.getRotation();
 //        logMessage("Quat(before): %f, %f, %f, %f\n", currQ.x(), currQ.y(), currQ.z(), currQ.w() );
-        btQuaternion q;
-        float angle = 0.0f;
+
+        ArrowAction act;
         if(currentAction.size() > 0){
-            angle = currentAction.front();
-            logMessage("ANGLE: %f\n", angle);
+            act = currentAction.front();
             currentAction.pop();
         }
-        q.setRotation(btVector3(0, 0, 1), angle + PI * 0.5);
+        btQuaternion q(act.rotation.x, act.rotation.y, act.rotation.z, act.rotation.w);
         currQ = q;
 //        logMessage("Quat(after): %f, %f, %f, %f\n", currQ.x(), currQ.y(), currQ.z(), currQ.w() );
         t.setRotation(currQ);
         mRigidBodyComp->mBody->setWorldTransform(t);
-        mGo->mTransform.rotate(180 / PI * angle, v3d(0, 0, 1));
+        mGo->mTransform.rotate(act.rotation);
     }
 }
 

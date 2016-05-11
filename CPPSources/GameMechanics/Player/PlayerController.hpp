@@ -1,7 +1,11 @@
 #pragma once
 
 #include "GameObject.hpp"
+#include "ArrowAction.hpp"
+
 #include <queue>
+
+class ArrowAction;
 
 class PlayerController{
 public:
@@ -14,8 +18,8 @@ public:
     
     void update();
     
-    std::queue<float> actions{};
-    std::queue<float> currentAction{};
+    std::queue<ArrowAction> actions{};
+    std::queue<ArrowAction> currentAction{};
     
 private:
     

@@ -69,6 +69,10 @@ void Scene::addObjOnScene(up<GameObject> go){
     mObjects.push_back(std::move(go));
 }
 
+bool Scene::removeObjectFromTheScene(GameObject *go){
+    return false;
+}
+
 void Scene::update(float deltaTime){
     Camera::instance()->update();
     PhysicalWorld::instance()->update(deltaTime);

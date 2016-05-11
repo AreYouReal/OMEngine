@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Scene.hpp"
+#include "ArrowAction.hpp"
 
 #include <queue>
 
@@ -12,7 +13,7 @@ public:
     
     GameObject *prevObj;
     
-    void buildLevel(std::queue<float> &actions);
+    void buildLevel(std::queue<ArrowAction> &actions);
     
     
 private:
@@ -20,7 +21,7 @@ private:
     v3d mLastDir;
     
     v3d  calculateNewPoss(v3d lastPos);
-    void addNewBlock(v3d blockPos, const bool addArrow,const float rotation);
-    void addArrowToBlock(GameObject * const parent, const float rotation);
+    void addNewBlock(v3d blockPos, const bool addArrow, ArrowAction action);
+    void addArrowToBlock(GameObject * const parent, ArrowAction action);
 
 };

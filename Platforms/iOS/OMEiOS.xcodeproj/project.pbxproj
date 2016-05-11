@@ -253,7 +253,7 @@
 		F398A7901CE1C63200824FD1 /* monster.md5mesh in Resources */ = {isa = PBXBuildFile; fileRef = F398A78D1CE1C63200824FD1 /* monster.md5mesh */; };
 		F398A7911CE1C63200824FD1 /* monster.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F398A78E1CE1C63200824FD1 /* monster.mtl */; };
 		F398A7931CE1C66500824FD1 /* monster.png in Resources */ = {isa = PBXBuildFile; fileRef = F398A7921CE1C66500824FD1 /* monster.png */; };
-		F399F7B81CE349AF00132DB5 /* Action.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F399F7B61CE349AF00132DB5 /* Action.cpp */; };
+		F399F7B81CE349AF00132DB5 /* ArrowAction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F399F7B61CE349AF00132DB5 /* ArrowAction.cpp */; };
 		F39A501E1BB3EE9B0080B846 /* LightSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F39A501C1BB3EE9B0080B846 /* LightSource.cpp */; };
 		F39A50211BB3F0090080B846 /* Illuminator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F39A501F1BB3F0090080B846 /* Illuminator.cpp */; };
 		F39A50261BB40E5B0080B846 /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F39A50241BB40E5B0080B846 /* GameObject.cpp */; };
@@ -842,8 +842,8 @@
 		F398A78D1CE1C63200824FD1 /* monster.md5mesh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = monster.md5mesh; path = OMEngine/Platforms/Android/assets/monster.md5mesh; sourceTree = "<group>"; };
 		F398A78E1CE1C63200824FD1 /* monster.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = monster.mtl; path = OMEngine/Platforms/Android/assets/monster.mtl; sourceTree = "<group>"; };
 		F398A7921CE1C66500824FD1 /* monster.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = monster.png; path = OMEngine/Platforms/Android/assets/monster.png; sourceTree = "<group>"; };
-		F399F7B61CE349AF00132DB5 /* Action.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Action.cpp; sourceTree = "<group>"; };
-		F399F7B71CE349AF00132DB5 /* Action.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Action.hpp; sourceTree = "<group>"; };
+		F399F7B61CE349AF00132DB5 /* ArrowAction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ArrowAction.cpp; sourceTree = "<group>"; };
+		F399F7B71CE349AF00132DB5 /* ArrowAction.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ArrowAction.hpp; sourceTree = "<group>"; };
 		F39A501C1BB3EE9B0080B846 /* LightSource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LightSource.cpp; sourceTree = "<group>"; };
 		F39A501D1BB3EE9B0080B846 /* LightSource.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = LightSource.hpp; path = ../../CPPSources/Light/LightSource.hpp; sourceTree = SOURCE_ROOT; };
 		F39A501F1BB3F0090080B846 /* Illuminator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Illuminator.cpp; sourceTree = "<group>"; };
@@ -2058,8 +2058,8 @@
 			children = (
 				F3F9D3A21CD75865002EF3FC /* Level */,
 				F3F9D39E1CD749AB002EF3FC /* Player */,
-				F399F7B61CE349AF00132DB5 /* Action.cpp */,
-				F399F7B71CE349AF00132DB5 /* Action.hpp */,
+				F399F7B61CE349AF00132DB5 /* ArrowAction.cpp */,
+				F399F7B71CE349AF00132DB5 /* ArrowAction.hpp */,
 			);
 			name = GameMechanics;
 			path = OMEngine/CPPSources/GameMechanics;
@@ -2419,7 +2419,7 @@
 				F35AA90F1CC659D300957429 /* AnimMeshComponent.cpp in Sources */,
 				F3B0F6B71BF0AD9F0044A442 /* stb_truetype.cpp in Sources */,
 				F39FA5C51C0DE15400CC0BB4 /* window.c in Sources */,
-				F399F7B81CE349AF00132DB5 /* Action.cpp in Sources */,
+				F399F7B81CE349AF00132DB5 /* ArrowAction.cpp in Sources */,
 				94788FB51BD4CFD200B55A25 /* btBoxBoxDetector.cpp in Sources */,
 				94788FEF1BD4CFD200B55A25 /* btUniformScalingShape.cpp in Sources */,
 				947890031BD4CFD200B55A25 /* btPolyhedralContactClipping.cpp in Sources */,
