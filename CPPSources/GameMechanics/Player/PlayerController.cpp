@@ -1,5 +1,4 @@
 #include "PlayerController.hpp"
-#include "btSphereShape.h"
 
 PlayerController::PlayerController(GameObject * const gameObject){
     mGo = gameObject;
