@@ -289,6 +289,7 @@
 		F3B0F6B71BF0AD9F0044A442 /* stb_truetype.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3B0F6B51BF0AD9F0044A442 /* stb_truetype.cpp */; };
 		F3B0F6BB1BF0ADDC0044A442 /* Font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3B0F6B91BF0ADDC0044A442 /* Font.cpp */; };
 		F3B0F6BF1BF0B7410044A442 /* FFF_Tusj.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3B0F6BE1BF0B5830044A442 /* FFF_Tusj.ttf */; };
+		F3B3C3A41CE770F700CB5A25 /* BBlock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3B3C3A21CE770F700CB5A25 /* BBlock.cpp */; };
 		F3BC2E901CDF733300D83A3B /* phongMultiLight.omg in Resources */ = {isa = PBXBuildFile; fileRef = F3BC2E8F1CDF733300D83A3B /* phongMultiLight.omg */; };
 		F3BCACBA1BFF26FE002003B7 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3BCACB61BFF26FE002003B7 /* Main_iPad.storyboard */; };
 		F3BCACBB1BFF26FE002003B7 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3BCACB81BFF26FE002003B7 /* Main_iPhone.storyboard */; };
@@ -908,6 +909,8 @@
 		F3B0F6BA1BF0ADDC0044A442 /* Font.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Font.hpp; path = ../../CPPSources/Txt/Font.hpp; sourceTree = SOURCE_ROOT; };
 		F3B0F6BE1BF0B5830044A442 /* FFF_Tusj.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FFF_Tusj.ttf; path = ../Android/assets/fonts/FFF_Tusj.ttf; sourceTree = SOURCE_ROOT; };
 		F3B0F6C01BF0BA250044A442 /* foo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = foo.ttf; path = ../Android/assets/fonts/foo.ttf; sourceTree = SOURCE_ROOT; };
+		F3B3C3A21CE770F700CB5A25 /* BBlock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BBlock.cpp; sourceTree = "<group>"; };
+		F3B3C3A31CE770F700CB5A25 /* BBlock.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BBlock.hpp; sourceTree = "<group>"; };
 		F3BC2E8F1CDF733300D83A3B /* phongMultiLight.omg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = phongMultiLight.omg; path = OMEngine/Platforms/Android/assets/phongMultiLight.omg; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
 		F3BCACB71BFF26FE002003B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = OMEiOS/Base.lproj/Main_iPad.storyboard; sourceTree = SOURCE_ROOT; };
 		F3BCACB91BFF26FE002003B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = OMEiOS/Base.lproj/Main_iPhone.storyboard; sourceTree = SOURCE_ROOT; };
@@ -2067,6 +2070,8 @@
 			children = (
 				F3F9D3A31CD75874002EF3FC /* LevelBuilder.cpp */,
 				F3F9D3A41CD75874002EF3FC /* LevelBuilder.hpp */,
+				F3B3C3A21CE770F700CB5A25 /* BBlock.cpp */,
+				F3B3C3A31CE770F700CB5A25 /* BBlock.hpp */,
 			);
 			path = Level;
 			sourceTree = "<group>";
@@ -2421,6 +2426,7 @@
 				947890171BD4CFD200B55A25 /* btUniversalConstraint.cpp in Sources */,
 				94788FC11BD4CFD200B55A25 /* btEmptyCollisionAlgorithm.cpp in Sources */,
 				F39FA5B11C0DE15400CC0BB4 /* bitwise.c in Sources */,
+				F3B3C3A41CE770F700CB5A25 /* BBlock.cpp in Sources */,
 				94788FB21BD4CFD200B55A25 /* btActivatingCollisionAlgorithm.cpp in Sources */,
 				94D5DA631BE2018100DFB8BC /* bChunk.cpp in Sources */,
 				94788FAD1BD4CFD200B55A25 /* btDispatcher.cpp in Sources */,
