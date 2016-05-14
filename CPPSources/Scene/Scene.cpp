@@ -323,7 +323,7 @@ void Scene::createBob(){
     up<GameObject> go = std::unique_ptr<GameObject>(new GameObject("BOB"));
     std::vector<string> actions;
     actions.push_back("bob_walk.md5anim");
-//    actions.push_back("bob_idle.md5anim");
+    actions.push_back("bob_idle.md5anim");
 
     
     bob = go.get();

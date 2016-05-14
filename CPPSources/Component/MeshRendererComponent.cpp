@@ -69,7 +69,7 @@ void MeshRendererComponent::draw(){
 
 
 void MeshRendererComponent::onDestroy(){
-
+    logMessage("Destroy mesh renderer component!");
 }
 
 void MeshRendererComponent::addMesh(sp<ObjMesh> mesh){

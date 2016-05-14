@@ -67,7 +67,7 @@ struct Mesh{
 struct Action{
     string name;
     unsigned int nFrames;
-    std::vector<std::vector<Joint>>    frame;    // ????
+    std::vector<std::vector<Joint>>    frame;
     std::vector<Joint>    pose;
     int         currFrame;
     int         nextFrame;
@@ -131,7 +131,8 @@ public:
         void updateActions(const float timeStep);
         
         void playAction(const string name, const Action::InterpolationMethod method);
-        
+    void stopAllActions();
+    
         void blendActions(const std::vector<Joint> &pose_1, const std::vector<Joint> &pose_2, Action::InterpolationMethod interpolationMethod, float blend);
     
     void addActions(sp<Action> action1, sp<Action> action2, Action::InterpolationMethod interpolationMethod, float blend);
@@ -139,9 +140,7 @@ public:
     private:
         static sp<Mesh> loadMeshData(char* line);
         
-    std::vector<sp<Action>> currentActions;
-
-    
+        std::vector<sp<Action>> currentActions;
         
         void buildPoseWeightedNormalsTangents();
         void updateBoundMesh();

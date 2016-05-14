@@ -525,6 +525,7 @@ bool MD5::updateAction(const sp<Action> action, const float timeStep){
 }
 
 void MD5::playAction(const string name, const Action::InterpolationMethod method){
+    
     sp<Action> action = getAction(name);
     if(!action) return;
     action->fps = 1.0f / 24.0f;
@@ -533,8 +534,17 @@ void MD5::playAction(const string name, const Action::InterpolationMethod method
     action->state = md5::Action::State::PLAY;
     if(!action->frameTime && method == Action::InterpolationMethod::FRAME)
         action->frameTime = action->fps;
-    
+
+    currentActions.clear();
     currentActions.push_back(action);
+
+    logMessage("Current action: %s\n", currentActions[0]->name.c_str());
+}
+
+void MD5::stopAllActions(){
+    for(auto const &act : actions){
+        act.second->state = Action::State::STOP;
+    }
 }
 
 void MD5::blendActions(const std::vector<Joint> &pose_1, const std::vector<Joint> &pose_2, Action::InterpolationMethod interpolationMethod, float blend){

@@ -63,6 +63,11 @@ void PlayerController::rotate(){
                 logMessage("Unable to remove object from scene!\n");
             }
         }
+        
+        AnimMeshComponent *amc = static_cast<AnimMeshComponent*>(mGo->getComponent(ComponentEnum::ANIM_MESH));
+        
+        static AnimMeshComponent::AnimationStates currentState = AnimMeshComponent::AnimationStates::IDLE;
+        amc->setState( currentState = (currentState == AnimMeshComponent::AnimationStates::IDLE) ? AnimMeshComponent::AnimationStates::RUN : AnimMeshComponent::AnimationStates::IDLE );
     }
 }
 
