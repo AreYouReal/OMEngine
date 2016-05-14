@@ -70,6 +70,12 @@ void Scene::addObjOnScene(up<GameObject> go){
 }
 
 bool Scene::removeObjectFromTheScene(GameObject *go){
+    for(int i = 0; i < mObjects.size(); ++i){
+        if(mObjects[i].get() == go){
+            mObjects.erase(mObjects.begin() + i);
+            return true;
+        }
+    }
     return false;
 }
 
@@ -347,17 +353,17 @@ void Scene::createBob(){
     mObjRess.insert(std::pair<string, sp<Obj>>("arrow", arrowObj));
     
     
-    up<GameObject> monster = std::unique_ptr<GameObject>(new GameObject("MONSTER"));
-    std::vector<string>  monsterActions;
-    actions.clear();
-    actions.push_back("monster.md5anim");
-    
-    up<AnimMeshComponent> mamc = up<AnimMeshComponent>(new AnimMeshComponent(monster.get(), "monster.md5mesh", "monster.mtl", actions));
-    monster->addComponent(ComponentEnum::ANIM_MESH, std::move(mamc));
-    monster->mTransform = (v3d(0, 0, 3));
-    monster->mTransform.mScale = v3d(0.1, 0.1, 0.1);
-    monster->mTransform.rotate(90, v3d(1, 0, 0));
-    
-    addObjOnScene(std::move(monster));
+//    up<GameObject> monster = std::unique_ptr<GameObject>(new GameObject("MONSTER"));
+//    std::vector<string>  monsterActions;
+//    actions.clear();
+//    actions.push_back("monster.md5anim");
+//    
+//    up<AnimMeshComponent> mamc = up<AnimMeshComponent>(new AnimMeshComponent(monster.get(), "monster.md5mesh", "monster.mtl", actions));
+//    monster->addComponent(ComponentEnum::ANIM_MESH, std::move(mamc));
+//    monster->mTransform = (v3d(0, 0, 3));
+//    monster->mTransform.mScale = v3d(0.1, 0.1, 0.1);
+//    monster->mTransform.rotate(90, v3d(1, 0, 0));
+//    
+//    addObjOnScene(std::move(monster));
 
 }

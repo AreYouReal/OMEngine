@@ -1,5 +1,6 @@
 #include "PlayerController.hpp"
 #include "btSphereShape.h"
+#include "Scene.hpp"
 
 PlayerController::PlayerController(GameObject * const gameObject){
     mGo = gameObject;
@@ -55,6 +56,13 @@ void PlayerController::rotate(){
         t.setRotation(currQ);
         mRigidBodyComp->mBody->setWorldTransform(t);
         mGo->mTransform.rotate(act.rotation);
+        if(act.arrowObj != nullptr){
+            if( Scene::instance()->removeObjectFromTheScene(act.arrowObj)){
+                logMessage("Succesfully removed object from scene!\n");
+            }else{
+                logMessage("Unable to remove object from scene!\n");
+            }
+        }
     }
 }
 

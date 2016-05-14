@@ -3,10 +3,10 @@
 
 
 void Levelbuilder::buildLevel(std::queue<ArrowAction> &actions){
-    addNewBlock(v3d(0, 0, 0), true, ArrowAction(nullptr, q4d()));
     srand(time(0));
     bool addArrow = false;
     ArrowAction act;
+    addNewBlock(v3d(0, 0, 0), true, &act);
     for(unsigned int i = 0; i < blockCount; ++i){
         v3d newPos = calculateNewPoss(mLastBlockPoss);
         v3d dir = newPos - mLastBlockPoss;
@@ -28,16 +28,16 @@ void Levelbuilder::buildLevel(std::queue<ArrowAction> &actions){
                 }
             }
             act = ArrowAction(nullptr, q4d(rotation, v3d(0, 0, 1)));
-            actions.push(act);
         }else{
             addArrow = false;
         }
-        addNewBlock(newPos, addArrow, act);
+        addNewBlock(newPos, addArrow, &act);
+        if(addArrow) actions.push(act);
         mLastBlockPoss = newPos;
     }
 }
 
-void Levelbuilder::addNewBlock(v3d blockPos, bool addArrow, ArrowAction action){
+void Levelbuilder::addNewBlock(v3d blockPos, bool addArrow, ArrowAction *action){
     if(mesh){
         up<GameObject> go = std::unique_ptr<GameObject>(new GameObject("bblock_Cube"));
         up<MeshRendererComponent> mrc = up<MeshRendererComponent>(new MeshRendererComponent(go.get(), mesh));
@@ -61,14 +61,16 @@ void Levelbuilder::addNewBlock(v3d blockPos, bool addArrow, ArrowAction action){
     }
 }
 
-void Levelbuilder::addArrowToBlock(GameObject *parent, ArrowAction action){
+void Levelbuilder::addArrowToBlock(GameObject *parent, ArrowAction *action){
     if(arrow){
-        sp<GameObject> go = std::unique_ptr<GameObject>(new GameObject("ArrowObj_Plane"));
+        up<GameObject> go = std::unique_ptr<GameObject>(new GameObject("ArrowObj_Plane"));
         up<MeshRendererComponent> mrc = up<MeshRendererComponent>(new MeshRendererComponent(go.get(), arrow));
         go->addComponent(ComponentEnum::MESH_RENDERER, std::move(mrc));
-        go->mTransform = v3d(0, 0, 2);
-        go->mTransform.rotate(action.rotation);
-        parent->addChild(go);
+        go->mTransform.rotate(action->rotation);
+        go->mTransform.mPosition = parent->mTransform.mPosition + v3d(0, 0, 2);
+        go->mTransform.refreshTransformMatrix();
+        action->arrowObj = go.get();
+        Scene::instance()->addObjOnScene(std::move(go));
     }
 }
 
