@@ -21,6 +21,9 @@ public:
     
     btRigidBody             *mBody;
     
+    void setContantCallback(PhysicContactCallback pcc);
+    void setNearCallback(PhysicNearCallback pnc);
+
 private:
     
     float                   mMass;

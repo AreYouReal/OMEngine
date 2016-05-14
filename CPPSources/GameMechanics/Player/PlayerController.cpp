@@ -2,31 +2,33 @@
 #include "btSphereShape.h"
 #include "Scene.hpp"
 
+
+bool onPlayerPhysicalContact(btManifoldPoint &point, const btCollisionObjectWrapper *obj0, int part0, int index0, const btCollisionObjectWrapper *obj1, int part1, int index1){
+//    GameObject *go0 = ((GameObject*)((btCollisionObject*)obj0->getCollisionObject())->getUserPointer());
+//    GameObject *go1 = ((GameObject*)((btCollisionObject*)obj1->getCollisionObject())->getUserPointer());
+//    logMessage("Onbj1 : %s   <-> Obj2: %s \n", go0->name.c_str(), go1->name.c_str());
+    return true;
+}
+
 PlayerController::PlayerController(GameObject * const gameObject){
     mGo = gameObject;
     mRigidBodyComp = static_cast<RigidBodyComponent*>(mGo->getComponent(ComponentEnum::RIGID_BODY));
     mRigidBodyComp->mBody->setAngularFactor(btVector3(0, 0, 0));
     mRigidBodyComp->mBody->setFriction(0.0);
     mRigidBodyComp->mBody->setRestitution(0.0);
-//    btTransform t = mRigidBodyComp->mBody->getWorldTransform();
-//    btQuaternion currQ = t.getRotation();
-//    currQ.setEuler(0, 0, PI);
-//    t.setRotation(currQ);
-//    mRigidBodyComp->mBody->setWorldTransform(t);
+
     mGo->mTransform.mScale = v3d(0.5, 0.5, 0.5);
     
     mRigidBodyComp->mBody->setGravity(btVector3(0, 0, -98));
-    
-    AnimMeshComponent *amc = static_cast<AnimMeshComponent *>(mGo->getComponent(ComponentEnum::ANIM_MESH));
-    if(amc){
-//        amc->md5->
-    }
 
     {
         delete mRigidBodyComp->mBody->getCollisionShape();
         btSphereShape *newShaper = new btSphereShape(1.0f);
         mRigidBodyComp->mBody->setCollisionShape(newShaper);
     }
+    
+    mRigidBodyComp->setContantCallback(onPlayerPhysicalContact);
+    
 }
 
 void PlayerController::debugInit(){
@@ -94,3 +96,6 @@ void PlayerController::update(){
 PlayerController::~PlayerController(){
 
 }
+
+
+

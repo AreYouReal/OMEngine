@@ -34,5 +34,4 @@ private:
 // Helpers
     void rotate();
     void refreshVelocity();
-    
 };

@@ -62,3 +62,17 @@ void RigidBodyComponent::update(){
 }
 
 void RigidBodyComponent::draw(){}
+
+
+void RigidBodyComponent::setContantCallback(PhysicContactCallback pcc){
+    mContactCC = pcc;
+    if(mContactCC){
+        mBody->setCollisionFlags(mBody->getCollisionFlags() | btCollisionObject::CF_CUSTOM_MATERIAL_CALLBACK);
+        gContactAddedCallback = mContactCC;
+    }
+}
+
+void RigidBodyComponent::setNearCallback(PhysicNearCallback pnc){
+    mNearCC = pnc;
+    if(mNearCC){ PhysicalWorld::instance()->addNearCallback(mNearCC); }
+}
