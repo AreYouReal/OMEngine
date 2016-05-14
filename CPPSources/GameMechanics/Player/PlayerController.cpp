@@ -50,7 +50,7 @@ void PlayerController::rotate(){
             currentAction.pop();
         }
         btQuaternion q(act.rotation.x, act.rotation.y, act.rotation.z, act.rotation.w);
-        currQ = q;
+        currQ = q * rotationCorrection;
 //        logMessage("Quat(after): %f, %f, %f, %f\n", currQ.x(), currQ.y(), currQ.z(), currQ.w() );
         t.setRotation(currQ);
         mRigidBodyComp->mBody->setWorldTransform(t);

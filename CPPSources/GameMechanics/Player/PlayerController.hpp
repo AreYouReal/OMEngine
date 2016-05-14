@@ -25,6 +25,8 @@ private:
     
     float playerSpeed = 10;
     
+    btQuaternion rotationCorrection{btVector3(0, 0, 1), 0.5f * PI};
+    
 // Fields
     GameObject *mGo;
     RigidBodyComponent *mRigidBodyComp;
