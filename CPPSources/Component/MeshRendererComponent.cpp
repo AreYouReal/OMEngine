@@ -22,6 +22,7 @@ MeshRendererComponent::~MeshRendererComponent(){
 void MeshRendererComponent::draw(){
     m4d modelM = go->transformMatrix();
     Camera::instance()->pushMMatrix(modelM);
+    if(visible)
     for (auto const& mesh : mMeshes) {
         
         if(mesh){

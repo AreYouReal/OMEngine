@@ -1,6 +1,6 @@
 #include "LevelBuilder.hpp"
 #include "Scene.hpp"
-
+#include "BBlock.hpp"
 
 #pragma mark IComponent Interface Related
 LevelBuilder::LevelBuilder(GameObject * const gameObject) : IComponent(gameObject){}
@@ -36,12 +36,28 @@ ArrowAction* LevelBuilder::popAction(){
     if(!actions.empty()){
         ArrowAction *action = actions.front();
         actions.pop();
+        action->hide();
         return action;
     }
     return nullptr;
 }
 
+void LevelBuilder::onHideBlock(GameObject *blockOBj){
+    for(int i = 0; i < activeblocks.size(); ++i){
+        if(activeblocks[i] == blockOBj){
+            activeblocks.erase(activeblocks.begin() + i);
+            (static_cast<MeshRendererComponent*>(blockOBj->getComponent(ComponentEnum::MESH_RENDERER)))->visible = false;
+            inactiveBlocks.push_back(blockOBj);
+            break;
+        }
+    }
+}
 
+void LevelBuilder::update(){
+    if(!inactiveBlocks.empty()){
+        
+    }
+}
 
 #pragma mark Private Helpers
 void LevelBuilder::addNewBlock(v3d blockPos, float rotation){
@@ -64,6 +80,9 @@ void LevelBuilder::addNewBlock(v3d blockPos, float rotation){
         if(rotation >= 0 && prevObj != nullptr) addArrowToBlock(prevObj, rotation);
         
         prevObj = go.get();
+        addBlockComponent(go.get());
+        activeblocks.push_back(go.get());
+        
         Scene::instance()->addObjOnScene(std::move(go));
     }
 }
@@ -99,6 +118,12 @@ v3d LevelBuilder::calculateNewPoss(v3d lastPos){
     }
     return (lastPos + v3d(x, y, 0));
 }
+
+void LevelBuilder::addBlockComponent(GameObject *go){
+    up<BBlock> block = std::unique_ptr<BBlock>(new BBlock(go, this));
+    go->addComponent(ComponentEnum::BBLOCK, std::move(block));
+}
+
 
 float LevelBuilder::getRotationAngle(v3d newPos, v3d lastDir){
     v3d dir = newPos - mLastBlockPoss;

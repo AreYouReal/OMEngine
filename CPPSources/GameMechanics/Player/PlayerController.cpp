@@ -2,11 +2,18 @@
 #include "btSphereShape.h"
 #include "Scene.hpp"
 
+#include "BBlock.hpp"
 
 bool onPlayerPhysicalContact(btManifoldPoint &point, const btCollisionObjectWrapper *obj0, int part0, int index0, const btCollisionObjectWrapper *obj1, int part1, int index1){
 //    GameObject *go0 = ((GameObject*)((btCollisionObject*)obj0->getCollisionObject())->getUserPointer());
-//    GameObject *go1 = ((GameObject*)((btCollisionObject*)obj1->getCollisionObject())->getUserPointer());
+    GameObject *go1 = ((GameObject*)((btCollisionObject*)obj1->getCollisionObject())->getUserPointer());
 //    logMessage("Onbj1 : %s   <-> Obj2: %s \n", go0->name.c_str(), go1->name.c_str());
+    
+    BBlock* blockComp = static_cast<BBlock*>(go1->getComponent(ComponentEnum::BBLOCK));
+    if(blockComp){
+        blockComp->hide();
+    }
+    
     return true;
 }
 

@@ -13,11 +13,16 @@ public:
     // IComponent interface
     LevelBuilder(GameObject * const gameObject);
     virtual         ~LevelBuilder();
+    
+    virtual void update() override;
+    
     // endof IComponent interface
     
     void InitWithMeshes(sp<ObjMesh> block, sp<ObjMesh> arrow);
 
     void buildLevel();
+    
+    void onHideBlock(GameObject *blockOBj);
     
     ArrowAction * popAction();
     
@@ -29,11 +34,11 @@ private:
     std::vector<GameObject*> blockPool;
     std::vector<GameObject*> arrowPool;
     
-    std::queue<GameObject*> activeblocks;
-    std::queue<GameObject*> inactiveBlocks;
+    std::vector<GameObject*> activeblocks;
+    std::vector<GameObject*> inactiveBlocks;
     
-    std::queue<GameObject*> activeArrows;
-    std::queue<GameObject*> inactiveArrows;
+    std::vector<GameObject*> activeArrows;
+    std::vector<GameObject*> inactiveArrows;
     
     unsigned int blockCount{50};
     
@@ -52,4 +57,6 @@ private:
     
     float getRotationAngle(v3d newPos, v3d lastDir);
 
+    void addBlockComponent(GameObject *go);
+    
 };

@@ -15,3 +15,7 @@ ArrowAction::~ArrowAction(){
 void ArrowAction::apply(const PlayerController *ctr){
         
 }
+
+void ArrowAction::hide(){
+    (static_cast<MeshRendererComponent*>(go->getComponent(ComponentEnum::MESH_RENDERER)))->visible = false;
+}
