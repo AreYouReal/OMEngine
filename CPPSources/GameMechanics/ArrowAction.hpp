@@ -1,15 +1,17 @@
 #pragma once
 
-#include "GameObject.hpp"
+#include "IComponent.hpp"
+#include "q4d.h"
+
 
 class PlayerController;
 
-struct ArrowAction{
+struct ArrowAction : public IComponent{
     
-    ArrowAction();
-    ArrowAction(GameObject * go, q4d rot);
-    
-    GameObject *arrowObj = nullptr;
+    ArrowAction(GameObject * const gameObject);
+    ArrowAction(GameObject * const gameObject, q4d rot);
+    virtual ~ArrowAction();
+
     q4d rotation{0, v3d(0, 0, 1)};
     
     void apply(const PlayerController * ctr);

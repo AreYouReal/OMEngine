@@ -10,14 +10,13 @@ bool onPlayerPhysicalContact(btManifoldPoint &point, const btCollisionObjectWrap
     return true;
 }
 
-PlayerController::PlayerController(GameObject * const gameObject){
-    mGo = gameObject;
-    mRigidBodyComp = static_cast<RigidBodyComponent*>(mGo->getComponent(ComponentEnum::RIGID_BODY));
+PlayerController::PlayerController(GameObject * const gameObject) : IComponent(gameObject){
+    mRigidBodyComp = static_cast<RigidBodyComponent*>(go->getComponent(ComponentEnum::RIGID_BODY));
     mRigidBodyComp->mBody->setAngularFactor(btVector3(0, 0, 0));
     mRigidBodyComp->mBody->setFriction(0.0);
     mRigidBodyComp->mBody->setRestitution(0.0);
 
-    mGo->mTransform.mScale = v3d(0.5, 0.5, 0.5);
+    go->mTransform.mScale = v3d(0.5, 0.5, 0.5);
     
     mRigidBodyComp->mBody->setGravity(btVector3(0, 0, -98));
 
@@ -31,8 +30,12 @@ PlayerController::PlayerController(GameObject * const gameObject){
     
 }
 
-void PlayerController::debugInit(){
-    currentAction = actions;
+PlayerController::~PlayerController(){
+    onDestroy();
+}
+
+void PlayerController::init(LevelBuilder *lb){
+    mLevelBuilder = lb;
 }
 
 void PlayerController::onTouch(){
@@ -47,26 +50,17 @@ void PlayerController::rotate(){
         btQuaternion currQ = t.getRotation();
 //        logMessage("Quat(before): %f, %f, %f, %f\n", currQ.x(), currQ.y(), currQ.z(), currQ.w() );
 
-        ArrowAction act;
-        if(currentAction.size() > 0){
-            act = currentAction.front();
-            currentAction.pop();
-        }
-        btQuaternion q(act.rotation.x, act.rotation.y, act.rotation.z, act.rotation.w);
+        ArrowAction * act = mLevelBuilder->popAction();
+        if(act == nullptr) return;
+        
+        btQuaternion q(act->rotation.x, act->rotation.y, act->rotation.z, act->rotation.w);
         currQ = q * rotationCorrection;
 //        logMessage("Quat(after): %f, %f, %f, %f\n", currQ.x(), currQ.y(), currQ.z(), currQ.w() );
         t.setRotation(currQ);
         mRigidBodyComp->mBody->setWorldTransform(t);
-        mGo->mTransform.rotate(act.rotation);
-        if(act.arrowObj != nullptr){
-            if( Scene::instance()->removeObjectFromTheScene(act.arrowObj)){
-                logMessage("Succesfully removed object from scene!\n");
-            }else{
-                logMessage("Unable to remove object from scene!\n");
-            }
-        }
-        
-        AnimMeshComponent *amc = static_cast<AnimMeshComponent*>(mGo->getComponent(ComponentEnum::ANIM_MESH));
+        go->mTransform.rotate(act->rotation);
+
+        AnimMeshComponent *amc = static_cast<AnimMeshComponent*>(go->getComponent(ComponentEnum::ANIM_MESH));
         
         static AnimMeshComponent::AnimationStates currentState = AnimMeshComponent::AnimationStates::IDLE;
         amc->setState( currentState = (currentState == AnimMeshComponent::AnimationStates::IDLE) ? AnimMeshComponent::AnimationStates::RUN : AnimMeshComponent::AnimationStates::IDLE );
@@ -74,13 +68,13 @@ void PlayerController::rotate(){
 }
 
 void PlayerController::refreshVelocity(){
-    v3d front = mGo->mTransform.mFront.normalize();
+    v3d front = go->mTransform.mFront.normalize();
     mRigidBodyComp->mBody->setLinearVelocity(btVector3(front.x * playerSpeed, front.y * playerSpeed, front.z * playerSpeed));
 }
 
 
 void PlayerController::update(){
-    v3d pos = mGo->getPosition();
+    v3d pos = go->getPosition();
     if(pos.z < -10){
         btTransform t = mRigidBodyComp->mBody->getWorldTransform();
         t.setOrigin(btVector3(0, 0, 1));
@@ -89,13 +83,10 @@ void PlayerController::update(){
         t.setRotation(q);
         mRigidBodyComp->mBody->setWorldTransform(t);
         mRigidBodyComp->mBody->setLinearVelocity(btVector3(0, 0, 0));
-        currentAction = actions;
     }
 }
 
-PlayerController::~PlayerController(){
 
-}
 
 
 

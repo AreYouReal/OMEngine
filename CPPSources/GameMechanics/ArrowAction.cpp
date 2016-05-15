@@ -2,20 +2,16 @@
 
 #include "Scene.hpp"
 
-ArrowAction::ArrowAction(){}
+ArrowAction::ArrowAction(GameObject * const gameObject) : IComponent(gameObject){}
 
-ArrowAction::ArrowAction(GameObject * go, q4d rot){
-    arrowObj = go;
+ArrowAction::ArrowAction(GameObject * const gameObject, q4d rot) : IComponent(gameObject){
     rotation = rot;
+}
+
+ArrowAction::~ArrowAction(){
+    onDestroy();
 }
 
 void ArrowAction::apply(const PlayerController *ctr){
         
-}
-
-void ArrowAction::remove(){
-    if(arrowObj != nullptr){
-        Scene::instance()->removeObjectFromTheScene(arrowObj);
-        arrowObj = nullptr;
-    }
 }

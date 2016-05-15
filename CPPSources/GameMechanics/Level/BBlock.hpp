@@ -1,18 +1,14 @@
 #pragma once
 
-#include "GameObject.hpp"
+#include "IComponent.hpp"
+#include "m4d.h"
 
-class BBlock{
+class BBlock : public IComponent {
 public:
-    BBlock(GameObject *go);
-    ~BBlock();
+    BBlock(GameObject * const go);
+    virtual ~BBlock();
     
     void reinit(v3d newPos);
     void show();
-    void hide();
-    
-private:
-    GameObject *mGo;
-    
-    
+    void hide();    
 };

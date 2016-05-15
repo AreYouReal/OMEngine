@@ -6,7 +6,7 @@
 
 GameObject *bob;
 PlayerController *player;
-Levelbuilder *lBuilder;
+LevelBuilder *lBuilder;
 
 Scene::Scene(){
     logGLError();
@@ -54,14 +54,13 @@ bool Scene::init(){
     player = new PlayerController(bob);
     Camera::instance()->follow(bob, v3d(-7, -7, 10));
 
+    up<GameObject> go = std::unique_ptr<GameObject>(new GameObject("LevelBuilder"));
+    lBuilder = new LevelBuilder(go.get());
+    lBuilder->InitWithMeshes(mObjRess["bblock"]->getMesh("bblock_Cube"), mObjRess["arrow"]->getMesh("ArrowObj_Plane"));
     
-    lBuilder = new Levelbuilder();
-    lBuilder->mesh = mObjRess["bblock"]->getMesh("bblock_Cube");
-    lBuilder->arrow = mObjRess["arrow"]->getMesh("ArrowObj_Plane");
+    lBuilder->buildLevel();
     
-    lBuilder->buildLevel(player->actions);
-    
-    player->debugInit();
+    player->init(lBuilder);
     return true;
 }
 

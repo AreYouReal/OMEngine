@@ -2,45 +2,52 @@
 #include "Scene.hpp"
 
 
-void Levelbuilder::buildLevel(std::queue<ArrowAction> &actions){
-    srand(time(0));
-    bool addArrow = false;
-    ArrowAction act;
-    addNewBlock(v3d(0, 0, 0), true, &act);
-    for(unsigned int i = 0; i < blockCount; ++i){
-        v3d newPos = calculateNewPoss(mLastBlockPoss);
-        v3d dir = newPos - mLastBlockPoss;
-        float rotation = 0.0f;
-        if(mLastDir != dir){
-            addArrow = true;
-            mLastDir = dir;
-            if(dir.x > 0.1){
-                rotation = 0.0f;
-            }else{
-                if(dir.y < -0.1){
-                    rotation = 270.0f;
-                }else{
-                    if(dir.y > 0.1){
-                        rotation = 90.0f;
-                    }else{
-                        rotation = 180.0f;
-                    }
-                }
-            }
-            act = ArrowAction(nullptr, q4d(rotation, v3d(0, 0, 1)));
-        }else{
-            addArrow = false;
-        }
-        addNewBlock(newPos, addArrow, &act);
-        if(addArrow) actions.push(act);
-        mLastBlockPoss = newPos;
-    }
+#pragma mark IComponent Interface Related
+LevelBuilder::LevelBuilder(GameObject * const gameObject) : IComponent(gameObject){}
+
+LevelBuilder::~LevelBuilder(){
+    onDestroy();
 }
 
-void Levelbuilder::addNewBlock(v3d blockPos, bool addArrow, ArrowAction *action){
-    if(mesh){
+void LevelBuilder::InitWithMeshes(sp<ObjMesh> block, sp<ObjMesh> arrow){
+    mBlock = block;
+    mArrow = arrow;
+}
+
+
+#pragma mark Public
+void LevelBuilder::buildLevel(){
+    srand(time(0));
+    
+    addNewBlock(v3d(0, 0, 0), 0.0f);
+    
+    for(unsigned int i = 0; i < blockCount; ++i){
+        v3d newPos = calculateNewPoss(mLastBlockPoss);
+        float rotation = getRotationAngle(newPos, mLastBlockPoss);
+        
+        addNewBlock(newPos, rotation);
+
+        mLastBlockPoss = newPos;
+    }
+    
+}
+
+ArrowAction* LevelBuilder::popAction(){
+    if(!actions.empty()){
+        ArrowAction *action = actions.front();
+        actions.pop();
+        return action;
+    }
+    return nullptr;
+}
+
+
+
+#pragma mark Private Helpers
+void LevelBuilder::addNewBlock(v3d blockPos, float rotation){
+    if(mBlock){
         up<GameObject> go = std::unique_ptr<GameObject>(new GameObject("bblock_Cube"));
-        up<MeshRendererComponent> mrc = up<MeshRendererComponent>(new MeshRendererComponent(go.get(), mesh));
+        up<MeshRendererComponent> mrc = up<MeshRendererComponent>(new MeshRendererComponent(go.get(), mBlock));
         go->addComponent(ComponentEnum::MESH_RENDERER, std::move(mrc));
         
         up<RigidBodyComponent> rbc_1 = up<RigidBodyComponent>(new RigidBodyComponent(go.get(), 0.0f));
@@ -54,27 +61,29 @@ void Levelbuilder::addNewBlock(v3d blockPos, bool addArrow, ArrowAction *action)
         up<DebugDrawComponent> ddc = up<DebugDrawComponent>(new DebugDrawComponent(go.get()));
         go->addComponent(ComponentEnum::DEBUG_DRAW, std::move(ddc));
         go->mTransform = v3d(blockPos);
-        if(addArrow && prevObj != nullptr) addArrowToBlock(prevObj, action);
+        if(rotation >= 0 && prevObj != nullptr) addArrowToBlock(prevObj, rotation);
         
         prevObj = go.get();
         Scene::instance()->addObjOnScene(std::move(go));
     }
 }
 
-void Levelbuilder::addArrowToBlock(GameObject *parent, ArrowAction *action){
-    if(arrow){
+void LevelBuilder::addArrowToBlock(GameObject *parent, float rotation){
+    if(mArrow){
         up<GameObject> go = std::unique_ptr<GameObject>(new GameObject("ArrowObj_Plane"));
-        up<MeshRendererComponent> mrc = up<MeshRendererComponent>(new MeshRendererComponent(go.get(), arrow));
+        up<MeshRendererComponent> mrc = up<MeshRendererComponent>(new MeshRendererComponent(go.get(), mArrow));
         go->addComponent(ComponentEnum::MESH_RENDERER, std::move(mrc));
-        go->mTransform.rotate(action->rotation);
+        up<ArrowAction> aa = std::unique_ptr<ArrowAction>(new ArrowAction(go.get(), q4d(rotation, v3d(0, 0, 1))));
+        actions.push(aa.get());
+        go->mTransform.rotate(aa->rotation);
         go->mTransform.mPosition = parent->mTransform.mPosition + v3d(0, 0, 2);
         go->mTransform.refreshTransformMatrix();
-        action->arrowObj = go.get();
+        go->addComponent(ComponentEnum::ACTION_ARROW, std::move(aa));
         Scene::instance()->addObjOnScene(std::move(go));
     }
 }
 
-v3d Levelbuilder::calculateNewPoss(v3d lastPos){
+v3d LevelBuilder::calculateNewPoss(v3d lastPos){
     int x, y;
     int step = 2;
     if((rand() % 2) > 0){
@@ -89,4 +98,27 @@ v3d Levelbuilder::calculateNewPoss(v3d lastPos){
 //        }
     }
     return (lastPos + v3d(x, y, 0));
+}
+
+float LevelBuilder::getRotationAngle(v3d newPos, v3d lastDir){
+    v3d dir = newPos - mLastBlockPoss;
+    float rotation = -1.0f;
+    if(mLastDir != dir){
+        mLastDir = dir;
+        if(dir.x > 0.1){
+            rotation = 0.0f;
+        }else{
+            if(dir.y < -0.1){
+                rotation = 270.0f;
+            }else{
+                if(dir.y > 0.1){
+                    rotation = 90.0f;
+                }else{
+                    rotation = 180.0f;
+                }
+            }
+        }
+        return rotation;
+    }
+    return -1.0f;
 }

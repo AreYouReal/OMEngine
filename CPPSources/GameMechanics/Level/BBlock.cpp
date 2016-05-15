@@ -1,12 +1,10 @@
 #include "BBlock.hpp"
 
 
-BBlock::BBlock(GameObject *go){
-    mGo = go;
-}
+BBlock::BBlock(GameObject * const gameObject) : IComponent(gameObject){}
 
 BBlock::~BBlock(){
-
+    onDestroy();
 }
 
 void BBlock::reinit(v3d newPosition){

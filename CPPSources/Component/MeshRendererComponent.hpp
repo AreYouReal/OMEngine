@@ -12,9 +12,7 @@ public:
     MeshRendererComponent( GameObject * const gameObject, const std::vector<sp<ObjMesh>> &meshes);
     
     virtual ~MeshRendererComponent();
-    
-    virtual bool init()     override;
-    virtual void update()   override;
+
     virtual void draw()     override;
     virtual void onDestroy()  override;
 

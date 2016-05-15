@@ -1,25 +1,23 @@
 #pragma once
 
-#include "GameObject.hpp"
+#include "IComponent.hpp"
 #include "ArrowAction.hpp"
+#include "RigidBodyComponent.hpp"
+#include "LevelBuilder.hpp"
 
 #include <queue>
 
 class ArrowAction;
 
-class PlayerController{
+class PlayerController : IComponent{
 public:
     PlayerController(GameObject * const gameObject);
-    ~PlayerController();
+    virtual ~PlayerController();
     
-    void debugInit();
+    virtual void update() override;
     
+    void init(LevelBuilder *lb);
     void onTouch();
-    
-    void update();
-    
-    std::queue<ArrowAction> actions{};
-    std::queue<ArrowAction> currentAction{};
     
 private:
     
@@ -28,9 +26,10 @@ private:
     btQuaternion rotationCorrection{btVector3(0, 0, 1), 0.5f * PI};
     
 // Fields
-    GameObject *mGo;
     RigidBodyComponent *mRigidBodyComp;
 
+    LevelBuilder    *mLevelBuilder;
+    
 // Helpers
     void rotate();
     void refreshVelocity();

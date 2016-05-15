@@ -19,14 +19,6 @@ MeshRendererComponent::~MeshRendererComponent(){
     onDestroy();
 }
 
-
-bool MeshRendererComponent::init(){
-    return true;
-}
-
-void MeshRendererComponent::update(){
-}
-
 void MeshRendererComponent::draw(){
     m4d modelM = go->transformMatrix();
     Camera::instance()->pushMMatrix(modelM);
