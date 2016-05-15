@@ -55,12 +55,17 @@ bool Scene::init(){
     Camera::instance()->follow(bob, v3d(-7, -7, 10));
 
     up<GameObject> go = std::unique_ptr<GameObject>(new GameObject("LevelBuilder"));
-    lBuilder = new LevelBuilder(go.get());
+    up<LevelBuilder> lb = std::unique_ptr<LevelBuilder>(new LevelBuilder(go.get()));
+    lBuilder = lb.get();
+    go->addComponent(ComponentEnum::LEVEL_BUILDER, std::move(lb));
     lBuilder->InitWithMeshes(mObjRess["bblock"]->getMesh("bblock_Cube"), mObjRess["arrow"]->getMesh("ArrowObj_Plane"));
     
     lBuilder->buildLevel();
     
     player->init(lBuilder);
+    addObjOnScene(std::move(go));
+    
+    
     return true;
 }
 
@@ -82,9 +87,8 @@ void Scene::update(float deltaTime){
     Camera::instance()->update();
     PhysicalWorld::instance()->update(deltaTime);
     for(const auto& go : mObjects){
-        for(int i = (int)ComponentEnum::MESH_RENDERER; i <= (int)ComponentEnum::DEBUG_DRAW; ++i){
-            IComponent *comp = go->getComponent((ComponentEnum)i);
-            if(comp) comp->update();
+        for(auto const &comp : go->mComponents){
+            comp.second->update();
         }
     }
         

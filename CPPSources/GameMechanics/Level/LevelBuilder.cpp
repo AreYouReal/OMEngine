@@ -55,7 +55,7 @@ void LevelBuilder::onHideBlock(GameObject *blockOBj){
 
 void LevelBuilder::update(){
     if(!inactiveBlocks.empty()){
-        
+        logMessage("inactiveBLock size: %d\n", inactiveBlocks.size());
     }
 }
 

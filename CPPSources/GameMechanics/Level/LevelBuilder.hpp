@@ -40,7 +40,7 @@ private:
     std::vector<GameObject*> activeArrows;
     std::vector<GameObject*> inactiveArrows;
     
-    unsigned int blockCount{50};
+    unsigned int blockCount{5};
     
     GameObject *prevObj {nullptr};
 
