@@ -57,6 +57,7 @@ private:
     
     float getRotationAngle(v3d newPos, v3d lastDir);
 
-    void addBlockComponent(GameObject *go);
+    void addBlockComponent(GameObject*);
+    void activateBlock(GameObject*);
     
 };

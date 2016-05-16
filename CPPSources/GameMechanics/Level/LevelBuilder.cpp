@@ -55,6 +55,8 @@ void LevelBuilder::onHideBlock(GameObject *blockOBj){
 
 void LevelBuilder::update(){
     if(!inactiveBlocks.empty()){
+        activateBlock(inactiveBlocks[0]);
+//        inactiveBlocks.erase(inactiveBlocks.begin());
         logMessage("inactiveBLock size: %d\n", inactiveBlocks.size());
     }
 }
@@ -146,4 +148,25 @@ float LevelBuilder::getRotationAngle(v3d newPos, v3d lastDir){
         return rotation;
     }
     return -1.0f;
+}
+
+void LevelBuilder::activateBlock(GameObject *go){
+    BBlock *blockComp = static_cast<BBlock*>(go->getComponent(ComponentEnum::BBLOCK));
+    if(blockComp){
+        v3d newPos = calculateNewPoss(mLastBlockPoss);
+        blockComp->reinit(newPos);
+        MeshRendererComponent *mmc = static_cast<MeshRendererComponent*>(go->getComponent(ComponentEnum::MESH_RENDERER));
+        if(mmc){
+            mmc->visible = true;
+        }
+        mLastBlockPoss = newPos;
+        for(int i = 0; i < inactiveBlocks.size(); ++i){
+            if(inactiveBlocks[i] == go){
+                inactiveBlocks.erase(inactiveBlocks.begin() + i);
+                activeblocks.push_back(go);
+                break;
+            }
+        }
+    
+    }
 }

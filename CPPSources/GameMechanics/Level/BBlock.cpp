@@ -11,7 +11,10 @@ BBlock::~BBlock(){
 }
 
 void BBlock::reinit(v3d newPosition){
-
+    RigidBodyComponent *rbc = static_cast<RigidBodyComponent*>(go->getComponent(ComponentEnum::RIGID_BODY));
+    if(rbc){
+        rbc->mBody->translate(btVector3(newPosition.x, newPosition.y, newPosition.z));
+    }
 }
 
 void BBlock::show(){
