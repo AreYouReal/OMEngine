@@ -25,12 +25,12 @@ public:
 private:
     LevelBuilder *mLB = nullptr;
 
-    BlockState mState{FADE_IN};
+    BlockState mState{NORMAL};
 
-    float waitTime = .5f;
+    float waitTime = 2.0f;
     
-    float fadeInTime = .5f;
-    float fadeOutTime = 2.0f;
+    float fadeInTime = 1.0f;
+    float fadeOutTime = 1.0f;
     
     void fadeIn();
     void fadeOut();
