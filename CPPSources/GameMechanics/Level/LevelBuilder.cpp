@@ -154,7 +154,7 @@ void LevelBuilder::activateBlock(GameObject *go){
     BBlock *blockComp = static_cast<BBlock*>(go->getComponent(ComponentEnum::BBLOCK));
     if(blockComp){
         v3d newPos = calculateNewPoss(mLastBlockPoss);
-        blockComp->reinit(newPos);
+        blockComp->show(newPos);
         MeshRendererComponent *mmc = static_cast<MeshRendererComponent*>(go->getComponent(ComponentEnum::MESH_RENDERER));
         if(mmc){
             mmc->visible = true;

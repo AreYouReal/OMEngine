@@ -7,16 +7,32 @@
 class BBlock : public IComponent {
 public:
     
-    BBlock(GameObject * const gameObject, LevelBuilder * const lb);
+    enum BlockState{ FADE_IN, NORMAL, FADE_OUT };
     
-    BBlock(GameObject * const go);
+    BBlock(GameObject * const, LevelBuilder * const);
+    
+    BBlock(GameObject * const);
     virtual ~BBlock();
     
-    void reinit(v3d newPos);
-    void show();
+    virtual void update() override;
+    
+    void setState(BlockState);
+
+    void show(v3d);
     void hide();
     
     
 private:
     LevelBuilder *mLB = nullptr;
+
+    BlockState mState{FADE_IN};
+
+    float waitTime = .5f;
+    
+    float fadeInTime = .5f;
+    float fadeOutTime = 2.0f;
+    
+    void fadeIn();
+    void fadeOut();
+    void normal();
 };
