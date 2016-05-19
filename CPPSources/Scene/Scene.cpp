@@ -4,7 +4,7 @@
 #include "PlayerController.hpp"
 #include "LevelBuilder.hpp"
 
-GameObject *bob;
+GameObject *minimon;
 PlayerController *player;
 LevelBuilder *lBuilder;
 
@@ -51,8 +51,8 @@ bool Scene::init(){
     
     logGLError();
     
-    player = new PlayerController(bob);
-    Camera::instance()->follow(bob, v3d(-7, -7, 10));
+    player = new PlayerController(minimon);
+    Camera::instance()->follow(minimon, v3d(-7, -7, 10));
 
     up<GameObject> go = std::unique_ptr<GameObject>(new GameObject("LevelBuilder"));
     up<LevelBuilder> lb = std::unique_ptr<LevelBuilder>(new LevelBuilder(go.get()));
@@ -140,9 +140,6 @@ void Scene::draw(){
 
     for(const auto& go : mObjects){
         for(int i = (int)ComponentEnum::MESH_RENDERER; i <= (int)ComponentEnum::DEBUG_DRAW; ++i){
-            if(!go->name.compare("MONSTER")){
-                int breahereplease = 0;
-            }
             IComponent *comp = go->getComponent((ComponentEnum)i);
             if(comp){
 //                sp<Texture> projTexture = Materials::instance()->getTexture("projector.png");
@@ -326,25 +323,6 @@ logGLError();
 }
 
 void Scene::createBob(){
-    up<GameObject> go = std::unique_ptr<GameObject>(new GameObject("BOB"));
-    std::vector<string> actions;
-    actions.push_back("bob_walk.md5anim");
-    actions.push_back("bob_idle.md5anim");
-
-    
-    bob = go.get();
-    
-    up<AnimMeshComponent> amc = up<AnimMeshComponent>(new AnimMeshComponent(go.get(), "bob.md5mesh", "bob.mtl", actions));
-    go->addComponent(ComponentEnum::ANIM_MESH, std::move(amc));
-    go->mTransform = (v3d(0, 0, 5));
-    
-    up<RigidBodyComponent> rbc_1 = up<RigidBodyComponent>(new RigidBodyComponent(go.get(), 5.0f));
-    go->addComponent(ComponentEnum::RIGID_BODY, std::move(rbc_1));
-    
-    up<DebugDrawComponent> ddc = up<DebugDrawComponent>(new DebugDrawComponent(go.get()));
-    go->addComponent(ComponentEnum::DEBUG_DRAW, std::move(ddc));
-    
-    addObjOnScene(std::move(go));
 
     sp<Obj> bblockObj = Obj::load("bblock.obj");
     bblockObj->build();
@@ -361,11 +339,20 @@ void Scene::createBob(){
     
     up<GameObject> monster = std::unique_ptr<GameObject>(new GameObject("MONSTER"));
     std::vector<string>  monsterActions;
-    actions.clear();
-    actions.push_back("minimon.md5anim");
+    monsterActions.clear();
+    monsterActions.push_back("minimon.md5anim");
     
-    up<AnimMeshComponent> mamc = up<AnimMeshComponent>(new AnimMeshComponent(monster.get(), "minimon.md5mesh", "minimon.mtl", actions));
+    minimon = monster.get();
+    
+    up<AnimMeshComponent> mamc = up<AnimMeshComponent>(new AnimMeshComponent(monster.get(), "minimon.md5mesh", "minimon.mtl", monsterActions));
     monster->addComponent(ComponentEnum::ANIM_MESH, std::move(mamc));
+    
+    up<RigidBodyComponent> rbc_1 = up<RigidBodyComponent>(new RigidBodyComponent(monster.get(), 5.0f));
+    monster->addComponent(ComponentEnum::RIGID_BODY, std::move(rbc_1));
+    
+    up<DebugDrawComponent> ddc = up<DebugDrawComponent>(new DebugDrawComponent(monster.get()));
+    monster->addComponent(ComponentEnum::DEBUG_DRAW, std::move(ddc));
+    
     monster->mTransform = (v3d(0, 0, 3));
     monster->mTransform.mScale = v3d(3, 3, 3);
     q4d fR(-90, v3d(1, 0, 0));

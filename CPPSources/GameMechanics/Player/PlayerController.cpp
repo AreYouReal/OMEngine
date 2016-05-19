@@ -14,8 +14,6 @@ bool onPlayerPhysicalContact(btManifoldPoint &point, const btCollisionObjectWrap
 //        blockComp->hide();
 //    }
     
-    static_cast<AnimMeshComponent*>(((GameObject*)((btCollisionObject*)obj0->getCollisionObject())->getUserPointer())->getComponent(ComponentEnum::ANIM_MESH))->visible = false;
-    
     return true;
 }
 
