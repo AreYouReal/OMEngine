@@ -15,6 +15,8 @@ $(SRC_PATH)/CPPSources/Component/DebugDrawComponent.cpp\
 $(SRC_PATH)/CPPSources/Component/MeshRendererComponent.cpp\
 $(SRC_PATH)/CPPSources/Component/RigidBodyComponent.cpp\
 $(SRC_PATH)/CPPSources/DEBUG/WiredCube.cpp\
+$(SRC_PATH)/CPPSources/GameMechanics/ArrowAction.cpp\
+$(SRC_PATH)/CPPSources/GameMechanics/Level/BBlock.cpp\
 $(SRC_PATH)/CPPSources/GameMechanics/Level/LevelBuilder.cpp\
 $(SRC_PATH)/CPPSources/GameMechanics/Player/PlayerController.cpp\
 $(SRC_PATH)/CPPSources/GameObject/GameObject.cpp\
@@ -253,6 +255,7 @@ $(SRC_PATH)/CPPSources/Audio\
 $(SRC_PATH)/CPPSources/Camera\
 $(SRC_PATH)/CPPSources/Component\
 $(SRC_PATH)/CPPSources/DEBUG\
+$(SRC_PATH)/CPPSources/GameMechanics\
 $(SRC_PATH)/CPPSources/GameMechanics/Level\
 $(SRC_PATH)/CPPSources/GameMechanics/Player\
 $(SRC_PATH)/CPPSources/GameObject\
