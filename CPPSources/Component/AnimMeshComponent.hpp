@@ -19,6 +19,8 @@ public:
     virtual void    onDestroy() override;
     
     void setState(AnimationStates state);
+    
+    bool visible = true;
 
 private:
     sp<md5::MD5>    md5;

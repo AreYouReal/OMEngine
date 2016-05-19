@@ -245,6 +245,10 @@
 		F38A22E31BAAA15400FADEC0 /* SimpeGouraudVertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F38A22E21BAAA15400FADEC0 /* SimpeGouraudVertex.glsl */; };
 		F38A22E71BAAA40500FADEC0 /* SimpleGouraudFragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F38A22E61BAAA40500FADEC0 /* SimpleGouraudFragment.glsl */; };
 		F393D6AB1C0DC8EC0053C5FA /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F393D6AA1C0DC8EC0053C5FA /* OpenAL.framework */; };
+		F39444791CEE0C6500466C10 /* minimon.md5anim in Resources */ = {isa = PBXBuildFile; fileRef = F39444751CEE0C6500466C10 /* minimon.md5anim */; };
+		F394447A1CEE0C6500466C10 /* minimon.md5mesh in Resources */ = {isa = PBXBuildFile; fileRef = F39444761CEE0C6500466C10 /* minimon.md5mesh */; };
+		F394447B1CEE0C6500466C10 /* minimon.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F39444771CEE0C6500466C10 /* minimon.mtl */; };
+		F394447C1CEE0C6500466C10 /* minimon.png in Resources */ = {isa = PBXBuildFile; fileRef = F39444781CEE0C6500466C10 /* minimon.png */; };
 		F398A78F1CE1C63200824FD1 /* monster.md5anim in Resources */ = {isa = PBXBuildFile; fileRef = F398A78C1CE1C63200824FD1 /* monster.md5anim */; };
 		F398A7901CE1C63200824FD1 /* monster.md5mesh in Resources */ = {isa = PBXBuildFile; fileRef = F398A78D1CE1C63200824FD1 /* monster.md5mesh */; };
 		F398A7911CE1C63200824FD1 /* monster.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F398A78E1CE1C63200824FD1 /* monster.mtl */; };
@@ -831,6 +835,10 @@
 		F38A22E21BAAA15400FADEC0 /* SimpeGouraudVertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = SimpeGouraudVertex.glsl; path = ../Android/assets/shaders/SimpeGouraudVertex.glsl; sourceTree = SOURCE_ROOT; };
 		F38A22E61BAAA40500FADEC0 /* SimpleGouraudFragment.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = SimpleGouraudFragment.glsl; path = ../Android/assets/shaders/SimpleGouraudFragment.glsl; sourceTree = SOURCE_ROOT; };
 		F393D6AA1C0DC8EC0053C5FA /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
+		F39444751CEE0C6500466C10 /* minimon.md5anim */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon.md5anim; path = OMEngine/Platforms/Android/assets/minimon.md5anim; sourceTree = "<group>"; };
+		F39444761CEE0C6500466C10 /* minimon.md5mesh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon.md5mesh; path = OMEngine/Platforms/Android/assets/minimon.md5mesh; sourceTree = "<group>"; };
+		F39444771CEE0C6500466C10 /* minimon.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon.mtl; path = OMEngine/Platforms/Android/assets/minimon.mtl; sourceTree = "<group>"; };
+		F39444781CEE0C6500466C10 /* minimon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = minimon.png; path = OMEngine/Platforms/Android/assets/minimon.png; sourceTree = "<group>"; };
 		F398A78C1CE1C63200824FD1 /* monster.md5anim */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = monster.md5anim; path = OMEngine/Platforms/Android/assets/monster.md5anim; sourceTree = "<group>"; };
 		F398A78D1CE1C63200824FD1 /* monster.md5mesh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = monster.md5mesh; path = OMEngine/Platforms/Android/assets/monster.md5mesh; sourceTree = "<group>"; };
 		F398A78E1CE1C63200824FD1 /* monster.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = monster.mtl; path = OMEngine/Platforms/Android/assets/monster.mtl; sourceTree = "<group>"; };
@@ -1058,6 +1066,10 @@
 		7626524017F10E6C007CCD43 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F39444751CEE0C6500466C10 /* minimon.md5anim */,
+				F39444761CEE0C6500466C10 /* minimon.md5mesh */,
+				F39444771CEE0C6500466C10 /* minimon.mtl */,
+				F39444781CEE0C6500466C10 /* minimon.png */,
 				F398A7921CE1C66500824FD1 /* monster.png */,
 				F398A78C1CE1C63200824FD1 /* monster.md5anim */,
 				F398A78D1CE1C63200824FD1 /* monster.md5mesh */,
@@ -2162,6 +2174,7 @@
 				F3D5E1191AF8F32E00DD216B /* Images.xcassets in Resources */,
 				F3BC2E901CDF733300D83A3B /* phongMultiLight.omg in Resources */,
 				9488ADA51CDAE2D100436916 /* bob.md5mesh in Resources */,
+				F394447A1CEE0C6500466C10 /* minimon.md5mesh in Resources */,
 				9488ADA01CDAE2D100436916 /* bob_helmet_normal.png in Resources */,
 				F3AB027B1CA7FFFE00CB8FC9 /* particle.png in Resources */,
 				9488AD9E1CDAE2D100436916 /* bob_face_normal.png in Resources */,
@@ -2175,6 +2188,7 @@
 				F39FA5CA1C0DE6C200CC0BB4 /* lounge.ogg in Resources */,
 				9472227A1B9AD466008D601B /* leaf.png in Resources */,
 				9483965A1C4B542D000D69BA /* generalLighting.omg in Resources */,
+				F39444791CEE0C6500466C10 /* minimon.md5anim in Resources */,
 				F32AD2DA1CD9C91D009B1FE8 /* arrow.mtl in Resources */,
 				F3BCACBB1BFF26FE002003B7 /* Main_iPhone.storyboard in Resources */,
 				947FA31F1BA4854A00695A4E /* ram.obj in Resources */,
@@ -2195,10 +2209,12 @@
 				F3D5E10B1AF8F24400DD216B /* InfoPlist.strings in Resources */,
 				F3CAEEE71BB01B8800DCF182 /* default_gray_fragment.glsl in Resources */,
 				9472227D1B9AD466008D601B /* treemomo.obj in Resources */,
+				F394447C1CEE0C6500466C10 /* minimon.png in Resources */,
 				9488ADA21CDAE2D100436916 /* bob_lamp_diffuse.png in Resources */,
 				F3BCACBA1BFF26FE002003B7 /* Main_iPad.storyboard in Resources */,
 				F3A7ADA21CA0161500FF8910 /* shadowProjector.omg in Resources */,
 				F3417B191C0F4907006902C9 /* 00.ogg in Resources */,
+				F394447B1CEE0C6500466C10 /* minimon.mtl in Resources */,
 				94DCA2F71BE13C6100435661 /* Scene.mtl in Resources */,
 				94EF0C601BA70F6700EBF5EE /* norm_as_color_fragment.glsl in Resources */,
 				947222791B9AD466008D601B /* grass.png in Resources */,

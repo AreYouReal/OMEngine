@@ -9,10 +9,12 @@ bool onPlayerPhysicalContact(btManifoldPoint &point, const btCollisionObjectWrap
     GameObject *go1 = ((GameObject*)((btCollisionObject*)obj1->getCollisionObject())->getUserPointer());
 //    logMessage("Onbj1 : %s   <-> Obj2: %s \n", go0->name.c_str(), go1->name.c_str());
     
-    BBlock* blockComp = static_cast<BBlock*>(go1->getComponent(ComponentEnum::BBLOCK));
-    if(blockComp){
-        blockComp->hide();
-    }
+//    BBlock* blockComp = static_cast<BBlock*>(go1->getComponent(ComponentEnum::BBLOCK));
+//    if(blockComp){
+//        blockComp->hide();
+//    }
+    
+    static_cast<AnimMeshComponent*>(((GameObject*)((btCollisionObject*)obj0->getCollisionObject())->getUserPointer())->getComponent(ComponentEnum::ANIM_MESH))->visible = false;
     
     return true;
 }

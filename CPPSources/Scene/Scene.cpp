@@ -140,6 +140,9 @@ void Scene::draw(){
 
     for(const auto& go : mObjects){
         for(int i = (int)ComponentEnum::MESH_RENDERER; i <= (int)ComponentEnum::DEBUG_DRAW; ++i){
+            if(!go->name.compare("MONSTER")){
+                int breahereplease = 0;
+            }
             IComponent *comp = go->getComponent((ComponentEnum)i);
             if(comp){
 //                sp<Texture> projTexture = Materials::instance()->getTexture("projector.png");
@@ -356,17 +359,19 @@ void Scene::createBob(){
     mObjRess.insert(std::pair<string, sp<Obj>>("arrow", arrowObj));
     
     
-//    up<GameObject> monster = std::unique_ptr<GameObject>(new GameObject("MONSTER"));
-//    std::vector<string>  monsterActions;
-//    actions.clear();
-//    actions.push_back("monster.md5anim");
-//    
-//    up<AnimMeshComponent> mamc = up<AnimMeshComponent>(new AnimMeshComponent(monster.get(), "monster.md5mesh", "monster.mtl", actions));
-//    monster->addComponent(ComponentEnum::ANIM_MESH, std::move(mamc));
-//    monster->mTransform = (v3d(0, 0, 3));
-//    monster->mTransform.mScale = v3d(0.1, 0.1, 0.1);
-//    monster->mTransform.rotate(90, v3d(1, 0, 0));
-//    
-//    addObjOnScene(std::move(monster));
+    up<GameObject> monster = std::unique_ptr<GameObject>(new GameObject("MONSTER"));
+    std::vector<string>  monsterActions;
+    actions.clear();
+    actions.push_back("minimon.md5anim");
+    
+    up<AnimMeshComponent> mamc = up<AnimMeshComponent>(new AnimMeshComponent(monster.get(), "minimon.md5mesh", "minimon.mtl", actions));
+    monster->addComponent(ComponentEnum::ANIM_MESH, std::move(mamc));
+    monster->mTransform = (v3d(0, 0, 3));
+    monster->mTransform.mScale = v3d(3, 3, 3);
+    q4d fR(-90, v3d(1, 0, 0));
+    q4d sR(-180, v3d(0, 0, 1));
+    monster->mTransform.rotate(fR * sR);
+    
+    addObjOnScene(std::move(monster));
 
 }

@@ -42,6 +42,8 @@ void AnimMeshComponent::update(){
 }
 
 void AnimMeshComponent::draw(){
+    if(!visible) return;
+    
     m4d modelM = go->transformMatrix();
     Camera::instance()->pushMMatrix(modelM);
     md5->draw();

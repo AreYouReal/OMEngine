@@ -24,14 +24,14 @@ static std::map<string, string>  meshShaderTable{
     
     std::pair<string, string>("bblock_Cube", "SimpleGouraud"),
 
-std::pair<string, string>("monster", "phongMultiLight.omg"),
+std::pair<string, string>("minimon", "phongMultiLight.omg"),
 
 };
 
 Materials::Materials(){
     loadPrograms();
     loadMaterial("bob.mtl");
-    loadMaterial("monster.mtl");
+    loadMaterial("minimon.mtl");
     loadOMGFile("generalLighting.omg");
 }
 
