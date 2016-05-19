@@ -16,7 +16,10 @@ void BBlock::show(v3d newPosition){
     RigidBodyComponent *rbc = static_cast<RigidBodyComponent*>(go->getComponent(ComponentEnum::RIGID_BODY));
     if(rbc){
         rbc->mBody->setMassProps(0, btVector3(0, 0, 0));
-        rbc->mBody->translate(btVector3(newPosition.x, newPosition.y, newPosition.z));
+        btTransform t = rbc->mBody->getWorldTransform();
+        t.setOrigin(btVector3(newPosition.x, newPosition.y, newPosition.z));
+        rbc->mBody->setCenterOfMassTransform(t);
+        rbc->mBody->setFriction(0.0);
     }
 }
 
@@ -27,11 +30,11 @@ void BBlock::hide(){
 void BBlock::update(){
     switch (mState) {
         case FADE_IN:
-            fadeIn();
+//            fadeIn();
             break;
         case NORMAL:
             // do nothing;
-            normal();
+//            normal();
             break;
         case FADE_OUT:
             fadeOut();
@@ -62,8 +65,8 @@ void BBlock::fadeOut(){
             }
             
             mState = NORMAL;
-            fadeOutTime = 1.0f;
-            waitTime = 1.0f;
+            fadeOutTime = .5f;
+            waitTime = 0.5f;
             if(mLB)
                 mLB->onHideBlock(go);
         }

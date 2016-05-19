@@ -60,12 +60,12 @@ void PlayerController::rotate(){
         ArrowAction * act = mLevelBuilder->popAction();
         if(act == nullptr) return;
         
-        btQuaternion q(act->rotation.x, act->rotation.y, act->rotation.z, act->rotation.w);
+        btQuaternion q(act->mRotation.x, act->mRotation.y, act->mRotation.z, act->mRotation.w);
         currQ = q * rotationCorrection;
 //        logMessage("Quat(after): %f, %f, %f, %f\n", currQ.x(), currQ.y(), currQ.z(), currQ.w() );
         t.setRotation(currQ);
         mRigidBodyComp->mBody->setWorldTransform(t);
-        go->mTransform.rotate(act->rotation);
+        go->mTransform.rotate(act->mRotation);
 
         AnimMeshComponent *amc = static_cast<AnimMeshComponent*>(go->getComponent(ComponentEnum::ANIM_MESH));
         

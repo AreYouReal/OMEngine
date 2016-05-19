@@ -12,8 +12,9 @@ struct ArrowAction : public IComponent{
     ArrowAction(GameObject * const gameObject, q4d rot);
     virtual ~ArrowAction();
 
-    q4d rotation{0, v3d(0, 0, 1)};
+    q4d mRotation{0, v3d(0, 0, 1)};
     
     void apply(const PlayerController * ctr);
+    void show(v3d position, float rotation);
     void hide();
 };

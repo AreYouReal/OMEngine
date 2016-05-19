@@ -37,6 +37,13 @@ ArrowAction* LevelBuilder::popAction(){
         ArrowAction *action = actions.front();
         actions.pop();
         action->hide();
+        for(int i = 0; i < activeArrows.size(); ++i){
+            if(activeArrows[i] == action->go){
+                inactiveArrows.push_back(activeArrows[i]);
+                activeArrows.erase(activeArrows.begin() + i);
+                break;
+            }
+        }
         return action;
     }
     return nullptr;
@@ -96,10 +103,11 @@ void LevelBuilder::addArrowToBlock(GameObject *parent, float rotation){
         go->addComponent(ComponentEnum::MESH_RENDERER, std::move(mrc));
         up<ArrowAction> aa = std::unique_ptr<ArrowAction>(new ArrowAction(go.get(), q4d(rotation, v3d(0, 0, 1))));
         actions.push(aa.get());
-        go->mTransform.rotate(aa->rotation);
+        go->mTransform.rotate(aa->mRotation);
         go->mTransform.mPosition = parent->mTransform.mPosition + v3d(0, 0, 2);
         go->mTransform.refreshTransformMatrix();
         go->addComponent(ComponentEnum::ACTION_ARROW, std::move(aa));
+        activeArrows.push_back(go.get());
         Scene::instance()->addObjOnScene(std::move(go));
     }
 }
@@ -118,7 +126,13 @@ v3d LevelBuilder::calculateNewPoss(v3d lastPos){
 //            x = -x;
 //        }
     }
-    return (lastPos + v3d(x, y, 0));
+        v3d newPos = lastPos + v3d(x, y, 0);
+    
+    v3d::print(mLastBlockPoss);
+    v3d::print(newPos);
+    
+
+    return newPos;
 }
 
 void LevelBuilder::addBlockComponent(GameObject *go){
@@ -159,7 +173,9 @@ void LevelBuilder::activateBlock(GameObject *go){
         if(mmc){
             mmc->visible = true;
         }
-        mLastBlockPoss = newPos;
+
+
+        
         for(int i = 0; i < inactiveBlocks.size(); ++i){
             if(inactiveBlocks[i] == go){
                 inactiveBlocks.erase(inactiveBlocks.begin() + i);
@@ -167,6 +183,20 @@ void LevelBuilder::activateBlock(GameObject *go){
                 break;
             }
         }
-    
+        float rotation = getRotationAngle(newPos, mLastBlockPoss);
+        v3d::print(mLastBlockPoss);
+        v3d::print(newPos);
+        logMessage("New rotation: %f\n", rotation);
+        if(rotation > -1){
+            if(inactiveArrows.size() > 0){
+                GameObject *go = inactiveArrows[0];
+                inactiveArrows.erase(inactiveArrows.begin());
+                activeArrows.push_back(go);
+                ArrowAction *aa = static_cast<ArrowAction*>( go->getComponent(ComponentEnum::ACTION_ARROW) );
+                aa->show(mLastBlockPoss + v3d(0, 0, 2), rotation);
+                actions.push(aa);
+            }
+        }
+        mLastBlockPoss = newPos;
     }
 }

@@ -27,10 +27,10 @@ private:
 
     BlockState mState{NORMAL};
 
-    float waitTime = 2.0f;
+    float waitTime = 1.5f;
     
-    float fadeInTime = 1.0f;
-    float fadeOutTime = 1.0f;
+    float fadeInTime = .5f;
+    float fadeOutTime = .5f;
     
     void fadeIn();
     void fadeOut();

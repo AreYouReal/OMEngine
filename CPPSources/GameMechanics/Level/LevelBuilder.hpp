@@ -30,17 +30,13 @@ private:
     
     std::queue<ArrowAction*> actions;
     
-    
-    std::vector<GameObject*> blockPool;
-    std::vector<GameObject*> arrowPool;
-    
     std::vector<GameObject*> activeblocks;
     std::vector<GameObject*> inactiveBlocks;
     
     std::vector<GameObject*> activeArrows;
     std::vector<GameObject*> inactiveArrows;
     
-    unsigned int blockCount{5};
+    unsigned int blockCount{15};
     
     GameObject *prevObj {nullptr};
 
