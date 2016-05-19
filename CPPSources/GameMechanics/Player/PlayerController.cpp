@@ -90,6 +90,8 @@ void PlayerController::update(){
         t.setRotation(q);
         mRigidBodyComp->mBody->setWorldTransform(t);
         mRigidBodyComp->mBody->setLinearVelocity(btVector3(0, 0, 0));
+        
+        mLevelBuilder->refresh();
     }
 }
 

@@ -10,6 +10,7 @@ ArrowAction::ArrowAction(GameObject * const gameObject, q4d rot) : IComponent(ga
 
 ArrowAction::~ArrowAction(){
     onDestroy();
+    logMessage("ARROW COMPONENT DESTRUCTOR\n");
 }
 
 void ArrowAction::apply(const PlayerController *ctr){

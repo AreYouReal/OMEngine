@@ -26,6 +26,8 @@ public:
     
     ArrowAction * popAction();
     
+    void refresh();
+    
 private:
     
     std::queue<ArrowAction*> actions;
