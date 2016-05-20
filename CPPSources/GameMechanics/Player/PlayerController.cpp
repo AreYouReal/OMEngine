@@ -9,10 +9,10 @@ bool onPlayerPhysicalContact(btManifoldPoint &point, const btCollisionObjectWrap
     GameObject *go1 = ((GameObject*)((btCollisionObject*)obj1->getCollisionObject())->getUserPointer());
 //    logMessage("Onbj1 : %s   <-> Obj2: %s \n", go0->name.c_str(), go1->name.c_str());
     
-//    BBlock* blockComp = static_cast<BBlock*>(go1->getComponent(ComponentEnum::BBLOCK));
-//    if(blockComp){
-//        blockComp->hide();
-//    }
+    BBlock* blockComp = static_cast<BBlock*>(go1->getComponent(ComponentEnum::BBLOCK));
+    if(blockComp){
+        blockComp->hide();
+    }
     
     return true;
 }
@@ -23,7 +23,9 @@ PlayerController::PlayerController(GameObject * const gameObject) : IComponent(g
     mRigidBodyComp->mBody->setFriction(0.0);
     mRigidBodyComp->mBody->setRestitution(0.0);
 
-    go->mTransform.mScale = v3d(0.5, 0.5, 0.5);
+    btTransform t = mRigidBodyComp->mBody->getWorldTransform();
+    t.setOrigin(btVector3(0, 5, 0));
+    mRigidBodyComp->mBody->setCenterOfMassTransform(t);
     
     mRigidBodyComp->mBody->setGravity(btVector3(0, -98, 0));
 

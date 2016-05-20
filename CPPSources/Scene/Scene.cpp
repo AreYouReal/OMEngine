@@ -134,7 +134,7 @@ void Scene::draw(){
     logGLError();
     
     glViewport(0, 0, Camera::instance()->width(), Camera::instance()->height());
-    glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
+    glClearColor(0.8f, 0.8f, 0.8f, 1.0f);
     glClear( GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT );
 
 
@@ -150,7 +150,7 @@ void Scene::draw(){
         }
     }
     
-    Illuminator::instance()->getLightSource()->draw();
+//    Illuminator::instance()->getLightSource()->draw();
 }
 
 void Scene::setRenderObjectState(RenderObjectType newState){
@@ -164,97 +164,6 @@ void Scene::touchBegin(const int x, const int y){
 }
 
 // DEBUG AND TEST STUFF GOES HERE
-void Scene::createTestScene(){
-    
-    sp<Obj> object = Obj::load("treemomo.obj");
-    object->build();
-    object->clear(); // Free mesh data.
-    
-    mObjRess.insert(std::pair<string, sp<Obj>>("scene", object));
-    
-    /// TEST CODE
-    
-    up<GameObject> ground;
-
-    // Tree
-    
-    up<GameObject> treeAndLeafs = std::unique_ptr<GameObject>(new GameObject());
-    
-    up<MeshRendererComponent> mrc_1 = up<MeshRendererComponent>(new MeshRendererComponent(treeAndLeafs.get()));
-    mrc_1->addMesh(object->getMesh("leaf"));
-    mrc_1->addMesh(object->getMesh("tree"));
-    
-    treeAndLeafs->mTransform = (v3d(0, 0, 5));
-    treeAndLeafs->addComponent(ComponentEnum::MESH_RENDERER, std::move(mrc_1));
-    
-    up<RigidBodyComponent> rbc_1 = up<RigidBodyComponent>(new RigidBodyComponent(treeAndLeafs.get()));
-    treeAndLeafs->addComponent(ComponentEnum::RIGID_BODY, std::move(rbc_1));
-
-    up<DebugDrawComponent> debugDraw = up<DebugDrawComponent>(new DebugDrawComponent(treeAndLeafs.get()));
-    
-    treeAndLeafs->addComponent(ComponentEnum::DEBUG_DRAW, std::move(debugDraw));
-    
-    
-    //------------------------------
-    addObjOnScene(std::move(treeAndLeafs));
-    
-    // MOMO
-    up<GameObject> momo = std::unique_ptr<GameObject>(new GameObject());
-
-    mrc_1 = up<MeshRendererComponent>(new MeshRendererComponent(momo.get()));
-    mrc_1->addMesh(object->getMesh("momo"));
-    
-    momo->name = "momo";
-    momo->mTransform = (v3d(1.3, 0, 7));
-    momo->addComponent(ComponentEnum::MESH_RENDERER, std::move(mrc_1));
-    
-    up<RigidBodyComponent> rbc_2 = up<RigidBodyComponent>(new RigidBodyComponent(momo.get()));
-    momo->addComponent(ComponentEnum::RIGID_BODY, std::move(rbc_2));
-
-    debugDraw = up<DebugDrawComponent>(new DebugDrawComponent(momo.get()));
-    
-    momo->addComponent(ComponentEnum::DEBUG_DRAW, std::move(debugDraw));
-    
-    //----------------------------
-    addObjOnScene(std::move(momo));
-    
-    // GROUND
-    
-    ground = std::unique_ptr<GameObject>(new GameObject());
-    ground->mTransform = (v3d(0, 0, 0));
-
-    
-    mrc_1 = up<MeshRendererComponent>(new MeshRendererComponent(ground.get()));
-    mrc_1->addMesh(object->getMesh("grass_ground"));
-    
-    ground->addComponent(ComponentEnum::MESH_RENDERER, std::move(mrc_1));
-    
-    up<RigidBodyComponent> rbc_3 = up<RigidBodyComponent>(new RigidBodyComponent(ground.get(), 0.0f));
-    ground->addComponent(ComponentEnum::RIGID_BODY, std::move(rbc_3));
-    
-    debugDraw = up<DebugDrawComponent>(new DebugDrawComponent(ground.get()));
-    
-    ground->addComponent(ComponentEnum::DEBUG_DRAW, std::move(debugDraw));
-    
-    addObjOnScene(std::move(ground));
-}
-
-
-
-
-void Scene::createMOMO(){    
-    up<GameObject> m = std::unique_ptr<GameObject>(new GameObject());
-    m->mTransform = (v3d(2, 0, 10));
-    
-    up<MeshRendererComponent> mrc_1 = up<MeshRendererComponent>(new MeshRendererComponent(m.get()));
-    mrc_1->addMesh(mObjRess["scene"]->getMesh("momo"));
-    
-    m->addComponent(ComponentEnum::MESH_RENDERER, std::move(mrc_1));
-    
-//    PhysicalWorld::instance()->addPBodyToGameObject(m.get(), PhysicalBodyShape::BOX, 1.0f, m->getDimensions());
-    
-    addObjOnScene(std::move(m));
-}
 
 void Scene::createBallsScene(){
     
@@ -350,8 +259,8 @@ void Scene::createBob(){
     up<RigidBodyComponent> rbc_1 = up<RigidBodyComponent>(new RigidBodyComponent(monster.get(), 5.0f));
     monster->addComponent(ComponentEnum::RIGID_BODY, std::move(rbc_1));
     
-    up<DebugDrawComponent> ddc = up<DebugDrawComponent>(new DebugDrawComponent(monster.get()));
-    monster->addComponent(ComponentEnum::DEBUG_DRAW, std::move(ddc));
+//    up<DebugDrawComponent> ddc = up<DebugDrawComponent>(new DebugDrawComponent(monster.get()));
+//    monster->addComponent(ComponentEnum::DEBUG_DRAW, std::move(ddc));
     
 //    monster->mTransform = (v3d(0, 0, 3));
     monster->mTransform.mScale = v3d(3, 3, 3);

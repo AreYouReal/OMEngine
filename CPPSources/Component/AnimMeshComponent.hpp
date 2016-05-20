@@ -21,6 +21,8 @@ public:
     void setState(AnimationStates state);
     
     bool visible = true;
+    
+    v3d dimension(){ return md5->dimension; };
 
 private:
     sp<md5::MD5>    md5;
