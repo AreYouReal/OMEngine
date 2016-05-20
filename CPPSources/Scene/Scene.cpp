@@ -355,6 +355,8 @@ void Scene::createBob(){
     
     monster->mTransform = (v3d(0, 0, 3));
     monster->mTransform.mScale = v3d(3, 3, 3);
+    q4d sR(-180, v3d(0, 0, 1));
+    monster->mTransform.rotate(sR);
     
     addObjOnScene(std::move(monster));
 

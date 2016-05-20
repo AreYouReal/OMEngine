@@ -24,7 +24,6 @@ void LevelBuilder::buildLevel(){
     for(unsigned int i = 0; i < blockCount; ++i){
         v3d newPos = calculateNewPoss(mLastBlockPoss);
         float rotation = getRotationAngle(newPos, mLastBlockPoss);
-                logMessage("New rotation: %f\n", rotation);
         addNewBlock(newPos, rotation);
 
         mLastBlockPoss = newPos;
@@ -104,7 +103,7 @@ void LevelBuilder::addArrowToBlock(GameObject *parent, float rotation){
         up<ArrowAction> aa = std::unique_ptr<ArrowAction>(new ArrowAction(go.get(), q4d(rotation, v3d(0, 1, 0))));
         actions.push(aa.get());
         go->mTransform.rotate(aa->mRotation);
-        go->mTransform.mPosition = parent->mTransform.mPosition + v3d(0, 0, 2);
+        go->mTransform.mPosition = parent->mTransform.mPosition + v3d(0, 2, 0);
         go->mTransform.refreshTransformMatrix();
         go->addComponent(ComponentEnum::ACTION_ARROW, std::move(aa));
         activeArrows.push_back(go.get());

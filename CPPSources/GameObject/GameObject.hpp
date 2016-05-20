@@ -24,20 +24,22 @@ public:
     ~GameObject();
     
     
-    void addComponent(const ComponentEnum &name, const up<IComponent> comp);
-    IComponent *getComponent(const ComponentEnum &name);
+    void addComponent(const ComponentEnum&, const up<IComponent>);
+    IComponent *getComponent(const ComponentEnum&);
     
     
     GameObject *parent = nullptr;
     
     void release();
     
-    void addChild(sp<GameObject> child);
+    void addChild(sp<GameObject>);
     void destroyChildren();
     
     Transform   mTransform{};
     v3d getDimensions();
     v3d getPosition();
+    
+    void setPosition(v3d);
     
     m4d transformMatrix();
     

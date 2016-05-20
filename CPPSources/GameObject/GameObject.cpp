@@ -63,7 +63,7 @@ v3d GameObject::getPosition(){
 
 m4d GameObject::transformMatrix(){
     RigidBodyComponent *rBody = static_cast<RigidBodyComponent*>( getComponent(ComponentEnum::RIGID_BODY) );
-    if(rBody){ return rBody->transformMatrix(); }
+    if(rBody){ return /*mTransform.transformMatrix() **/ rBody->transformMatrix(); }
     
     return mTransform.transformMatrix();
 }
