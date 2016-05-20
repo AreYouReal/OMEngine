@@ -65,6 +65,8 @@ void PlayerController::rotate(){
 //        logMessage("Quat(after): %f, %f, %f, %f\n", currQ.x(), currQ.y(), currQ.z(), currQ.w() );
         t.setRotation(currQ);
         mRigidBodyComp->mBody->setWorldTransform(t);
+        
+        
         go->mTransform.rotate(act->mRotation);
 
         AnimMeshComponent *amc = static_cast<AnimMeshComponent*>(go->getComponent(ComponentEnum::ANIM_MESH));

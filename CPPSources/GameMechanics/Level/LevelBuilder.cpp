@@ -116,7 +116,7 @@ void LevelBuilder::addArrowToBlock(GameObject *parent, float rotation){
 
 v3d LevelBuilder::calculateNewPoss(v3d lastPos){
     int x, y;
-    int step = 2;
+    int step = 1;
     if((rand() % 2) > 0){
         x = 0; y = step;
 //        if((rand() % 2) > 0){
