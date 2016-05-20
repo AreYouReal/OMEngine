@@ -215,6 +215,9 @@
 		F30E41DB1C2D548E00A88527 /* floor.png in Resources */ = {isa = PBXBuildFile; fileRef = F30E41D71C2D548E00A88527 /* floor.png */; };
 		F30E41DC1C2D548E00A88527 /* sphere_n.png in Resources */ = {isa = PBXBuildFile; fileRef = F30E41D81C2D548E00A88527 /* sphere_n.png */; };
 		F30E41DD1C2D548E00A88527 /* sphere.png in Resources */ = {isa = PBXBuildFile; fileRef = F30E41D91C2D548E00A88527 /* sphere.png */; };
+		F31C1AC91CEF31950087D843 /* minimon.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F31C1AC71CEF31950087D843 /* minimon.mtl */; };
+		F31C1ACA1CEF31950087D843 /* minimon.png in Resources */ = {isa = PBXBuildFile; fileRef = F31C1AC81CEF31950087D843 /* minimon.png */; };
+		F31C1ACC1CEF31FB0087D843 /* minimon_run.md5anim in Resources */ = {isa = PBXBuildFile; fileRef = F31C1ACB1CEF31FB0087D843 /* minimon_run.md5anim */; };
 		F328C4FB1BF491930037AC6D /* foo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3B0F6C01BF0BA250044A442 /* foo.ttf */; };
 		F328C4FE1BF4997F0037AC6D /* font_fragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F328C4FC1BF4997F0037AC6D /* font_fragment.glsl */; };
 		F328C4FF1BF4997F0037AC6D /* font_vertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F328C4FD1BF4997F0037AC6D /* font_vertex.glsl */; };
@@ -246,14 +249,7 @@
 		F38A22E31BAAA15400FADEC0 /* SimpeGouraudVertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F38A22E21BAAA15400FADEC0 /* SimpeGouraudVertex.glsl */; };
 		F38A22E71BAAA40500FADEC0 /* SimpleGouraudFragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F38A22E61BAAA40500FADEC0 /* SimpleGouraudFragment.glsl */; };
 		F393D6AB1C0DC8EC0053C5FA /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F393D6AA1C0DC8EC0053C5FA /* OpenAL.framework */; };
-		F39444791CEE0C6500466C10 /* minimon.md5anim in Resources */ = {isa = PBXBuildFile; fileRef = F39444751CEE0C6500466C10 /* minimon.md5anim */; };
 		F394447A1CEE0C6500466C10 /* minimon.md5mesh in Resources */ = {isa = PBXBuildFile; fileRef = F39444761CEE0C6500466C10 /* minimon.md5mesh */; };
-		F394447B1CEE0C6500466C10 /* minimon.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F39444771CEE0C6500466C10 /* minimon.mtl */; };
-		F394447C1CEE0C6500466C10 /* minimon.png in Resources */ = {isa = PBXBuildFile; fileRef = F39444781CEE0C6500466C10 /* minimon.png */; };
-		F398A78F1CE1C63200824FD1 /* monster.md5anim in Resources */ = {isa = PBXBuildFile; fileRef = F398A78C1CE1C63200824FD1 /* monster.md5anim */; };
-		F398A7901CE1C63200824FD1 /* monster.md5mesh in Resources */ = {isa = PBXBuildFile; fileRef = F398A78D1CE1C63200824FD1 /* monster.md5mesh */; };
-		F398A7911CE1C63200824FD1 /* monster.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F398A78E1CE1C63200824FD1 /* monster.mtl */; };
-		F398A7931CE1C66500824FD1 /* monster.png in Resources */ = {isa = PBXBuildFile; fileRef = F398A7921CE1C66500824FD1 /* monster.png */; };
 		F399F7B81CE349AF00132DB5 /* ArrowAction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F399F7B61CE349AF00132DB5 /* ArrowAction.cpp */; };
 		F39A501E1BB3EE9B0080B846 /* LightSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F39A501C1BB3EE9B0080B846 /* LightSource.cpp */; };
 		F39A50211BB3F0090080B846 /* Illuminator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F39A501F1BB3F0090080B846 /* Illuminator.cpp */; };
@@ -791,6 +787,9 @@
 		F30E41D71C2D548E00A88527 /* floor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = floor.png; path = OMEngine/Platforms/Android/assets/floor.png; sourceTree = "<group>"; };
 		F30E41D81C2D548E00A88527 /* sphere_n.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sphere_n.png; path = OMEngine/Platforms/Android/assets/sphere_n.png; sourceTree = "<group>"; };
 		F30E41D91C2D548E00A88527 /* sphere.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sphere.png; path = OMEngine/Platforms/Android/assets/sphere.png; sourceTree = "<group>"; };
+		F31C1AC71CEF31950087D843 /* minimon.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon.mtl; path = OMEngine/Platforms/Android/assets/minimon.mtl; sourceTree = "<group>"; };
+		F31C1AC81CEF31950087D843 /* minimon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = minimon.png; path = OMEngine/Platforms/Android/assets/minimon.png; sourceTree = "<group>"; };
+		F31C1ACB1CEF31FB0087D843 /* minimon_run.md5anim */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon_run.md5anim; path = OMEngine/Platforms/Android/assets/minimon_run.md5anim; sourceTree = "<group>"; };
 		F328C4FC1BF4997F0037AC6D /* font_fragment.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = font_fragment.glsl; path = ../Android/assets/shaders/font_fragment.glsl; sourceTree = SOURCE_ROOT; };
 		F328C4FD1BF4997F0037AC6D /* font_vertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = font_vertex.glsl; path = ../Android/assets/shaders/font_vertex.glsl; sourceTree = SOURCE_ROOT; };
 		F32AD2D71CD9C6A0009B1FE8 /* arrow.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = arrow.obj; path = OMEngine/Platforms/Android/assets/arrow.obj; sourceTree = "<group>"; };
@@ -837,14 +836,7 @@
 		F38A22E21BAAA15400FADEC0 /* SimpeGouraudVertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = SimpeGouraudVertex.glsl; path = ../Android/assets/shaders/SimpeGouraudVertex.glsl; sourceTree = SOURCE_ROOT; };
 		F38A22E61BAAA40500FADEC0 /* SimpleGouraudFragment.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = SimpleGouraudFragment.glsl; path = ../Android/assets/shaders/SimpleGouraudFragment.glsl; sourceTree = SOURCE_ROOT; };
 		F393D6AA1C0DC8EC0053C5FA /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
-		F39444751CEE0C6500466C10 /* minimon.md5anim */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon.md5anim; path = OMEngine/Platforms/Android/assets/minimon.md5anim; sourceTree = "<group>"; };
 		F39444761CEE0C6500466C10 /* minimon.md5mesh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon.md5mesh; path = OMEngine/Platforms/Android/assets/minimon.md5mesh; sourceTree = "<group>"; };
-		F39444771CEE0C6500466C10 /* minimon.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon.mtl; path = OMEngine/Platforms/Android/assets/minimon.mtl; sourceTree = "<group>"; };
-		F39444781CEE0C6500466C10 /* minimon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = minimon.png; path = OMEngine/Platforms/Android/assets/minimon.png; sourceTree = "<group>"; };
-		F398A78C1CE1C63200824FD1 /* monster.md5anim */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = monster.md5anim; path = OMEngine/Platforms/Android/assets/monster.md5anim; sourceTree = "<group>"; };
-		F398A78D1CE1C63200824FD1 /* monster.md5mesh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = monster.md5mesh; path = OMEngine/Platforms/Android/assets/monster.md5mesh; sourceTree = "<group>"; };
-		F398A78E1CE1C63200824FD1 /* monster.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = monster.mtl; path = OMEngine/Platforms/Android/assets/monster.mtl; sourceTree = "<group>"; };
-		F398A7921CE1C66500824FD1 /* monster.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = monster.png; path = OMEngine/Platforms/Android/assets/monster.png; sourceTree = "<group>"; };
 		F399F7B61CE349AF00132DB5 /* ArrowAction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ArrowAction.cpp; sourceTree = "<group>"; };
 		F399F7B71CE349AF00132DB5 /* ArrowAction.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ArrowAction.hpp; sourceTree = "<group>"; };
 		F39A501C1BB3EE9B0080B846 /* LightSource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LightSource.cpp; sourceTree = "<group>"; };
@@ -1068,15 +1060,11 @@
 		7626524017F10E6C007CCD43 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F31C1ACB1CEF31FB0087D843 /* minimon_run.md5anim */,
+				F31C1AC71CEF31950087D843 /* minimon.mtl */,
+				F31C1AC81CEF31950087D843 /* minimon.png */,
 				F33DAD231CEEF52A00BCA654 /* phongMultiLight.omg */,
-				F39444751CEE0C6500466C10 /* minimon.md5anim */,
 				F39444761CEE0C6500466C10 /* minimon.md5mesh */,
-				F39444771CEE0C6500466C10 /* minimon.mtl */,
-				F39444781CEE0C6500466C10 /* minimon.png */,
-				F398A7921CE1C66500824FD1 /* monster.png */,
-				F398A78C1CE1C63200824FD1 /* monster.md5anim */,
-				F398A78D1CE1C63200824FD1 /* monster.md5mesh */,
-				F398A78E1CE1C63200824FD1 /* monster.mtl */,
 				F3BC2E8F1CDF733300D83A3B /* phongMultiLightBump.omg */,
 				F32AD2D91CD9C91D009B1FE8 /* arrow.mtl */,
 				F32AD2D71CD9C6A0009B1FE8 /* arrow.obj */,
@@ -2167,7 +2155,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F398A78F1CE1C63200824FD1 /* monster.md5anim in Resources */,
 				F328C4FE1BF4997F0037AC6D /* font_fragment.glsl in Resources */,
 				F3CAEEE51BB01A7600DCF182 /* default_gray_vertex.glsl in Resources */,
 				F328C4FB1BF491930037AC6D /* foo.ttf in Resources */,
@@ -2181,7 +2168,6 @@
 				9488ADA01CDAE2D100436916 /* bob_helmet_normal.png in Resources */,
 				F3AB027B1CA7FFFE00CB8FC9 /* particle.png in Resources */,
 				9488AD9E1CDAE2D100436916 /* bob_face_normal.png in Resources */,
-				F398A7901CE1C63200824FD1 /* monster.md5mesh in Resources */,
 				9488ADA31CDAE2D100436916 /* bob_lamp_normal.png in Resources */,
 				9488ADA61CDAE2D100436916 /* bob.mtl in Resources */,
 				9472227C1B9AD466008D601B /* treemomo.mtl in Resources */,
@@ -2190,9 +2176,9 @@
 				F3C5D0781C85B1E800686AF1 /* writedepth.omg in Resources */,
 				F30E41DC1C2D548E00A88527 /* sphere_n.png in Resources */,
 				F39FA5CA1C0DE6C200CC0BB4 /* lounge.ogg in Resources */,
+				F31C1ACA1CEF31950087D843 /* minimon.png in Resources */,
 				9472227A1B9AD466008D601B /* leaf.png in Resources */,
 				9483965A1C4B542D000D69BA /* generalLighting.omg in Resources */,
-				F39444791CEE0C6500466C10 /* minimon.md5anim in Resources */,
 				F32AD2DA1CD9C91D009B1FE8 /* arrow.mtl in Resources */,
 				F3BCACBB1BFF26FE002003B7 /* Main_iPhone.storyboard in Resources */,
 				947FA31F1BA4854A00695A4E /* ram.obj in Resources */,
@@ -2200,6 +2186,7 @@
 				F30E41DA1C2D548E00A88527 /* floor_n.png in Resources */,
 				947FA31D1BA4854A00695A4E /* char_ram_col.png in Resources */,
 				9488ADA11CDAE2D100436916 /* bob_idle.md5anim in Resources */,
+				F31C1ACC1CEF31FB0087D843 /* minimon_run.md5anim in Resources */,
 				9435525E1BEF091F00FC4ADA /* wired_fragment.glsl in Resources */,
 				F30E41DD1C2D548E00A88527 /* sphere.png in Resources */,
 				F32AD2D81CD9C6A0009B1FE8 /* arrow.obj in Resources */,
@@ -2213,12 +2200,11 @@
 				F3D5E10B1AF8F24400DD216B /* InfoPlist.strings in Resources */,
 				F3CAEEE71BB01B8800DCF182 /* default_gray_fragment.glsl in Resources */,
 				9472227D1B9AD466008D601B /* treemomo.obj in Resources */,
-				F394447C1CEE0C6500466C10 /* minimon.png in Resources */,
 				9488ADA21CDAE2D100436916 /* bob_lamp_diffuse.png in Resources */,
 				F3BCACBA1BFF26FE002003B7 /* Main_iPad.storyboard in Resources */,
+				F31C1AC91CEF31950087D843 /* minimon.mtl in Resources */,
 				F3A7ADA21CA0161500FF8910 /* shadowProjector.omg in Resources */,
 				F3417B191C0F4907006902C9 /* 00.ogg in Resources */,
-				F394447B1CEE0C6500466C10 /* minimon.mtl in Resources */,
 				94DCA2F71BE13C6100435661 /* Scene.mtl in Resources */,
 				94EF0C601BA70F6700EBF5EE /* norm_as_color_fragment.glsl in Resources */,
 				947222791B9AD466008D601B /* grass.png in Resources */,
@@ -2236,12 +2222,10 @@
 				F331380C1CD62484000705D5 /* bblock.obj in Resources */,
 				F3AB027C1CA7FFFE00CB8FC9 /* particles.omg in Resources */,
 				F3A263961C33BD360021B3B6 /* light_point_fragment.glsl in Resources */,
-				F398A7931CE1C66500824FD1 /* monster.png in Resources */,
 				94EF0C5E1BA70E5400EBF5EE /* pos_norm_vertex.glsl in Resources */,
 				947222771B9AD466008D601B /* background.png in Resources */,
 				F331380B1CD62484000705D5 /* bblock.mtl in Resources */,
 				F39FA5011C0DD9B500CC0BB4 /* test.raw in Resources */,
-				F398A7911CE1C63200824FD1 /* monster.mtl in Resources */,
 				F38A22E11BAA979700FADEC0 /* vertexPerPixel.glsl in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

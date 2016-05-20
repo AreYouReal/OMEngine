@@ -66,7 +66,7 @@ void PlayerController::rotate(){
         t.setRotation(currQ);
         mRigidBodyComp->mBody->setWorldTransform(t);
         
-        go->mTransform.rotate(act->mRotation);
+        currentFronVector = frontVector * act->mRotation.matrix();
 
         AnimMeshComponent *amc = static_cast<AnimMeshComponent*>(go->getComponent(ComponentEnum::ANIM_MESH));
         
@@ -77,7 +77,7 @@ void PlayerController::rotate(){
 
 void PlayerController::refreshVelocity(){
     v3d front = go->mTransform.mFront.normalize();
-    mRigidBodyComp->mBody->setLinearVelocity(btVector3(front.x * playerSpeed, front.y * playerSpeed, front.z * playerSpeed));
+    mRigidBodyComp->mBody->setLinearVelocity(btVector3(currentFronVector.x * playerSpeed, currentFronVector.y * playerSpeed, currentFronVector.z * playerSpeed));
 }
 
 

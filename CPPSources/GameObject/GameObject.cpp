@@ -61,9 +61,21 @@ v3d GameObject::getPosition(){
     return (mTransform.mPosition + parentPos);
 }
 
+
+void GameObject::setPosition(v3d pos){
+    RigidBodyComponent *rBody = static_cast<RigidBodyComponent*>( getComponent(ComponentEnum::RIGID_BODY) );
+    if(rBody){
+        btTransform t = rBody->mBody->getWorldTransform();
+        t.setOrigin(btVector3(pos.x, pos.y, pos.z));
+        rBody->mBody->setCenterOfMassTransform(t);
+    }else{
+        mTransform.mPosition = pos;
+    }
+}
+
 m4d GameObject::transformMatrix(){
     RigidBodyComponent *rBody = static_cast<RigidBodyComponent*>( getComponent(ComponentEnum::RIGID_BODY) );
-    if(rBody){ return /*mTransform.transformMatrix() **/ rBody->transformMatrix(); }
+    if(rBody){ return rBody->transformMatrix() * mTransform.transformMatrix(); }
     
     return mTransform.transformMatrix();
 }

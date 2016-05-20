@@ -21,6 +21,9 @@ public:
     
 private:
     
+    v3d frontVector{0, 0, 1};
+    v3d currentFronVector{};
+    
     float playerSpeed = 10;
     
     btQuaternion rotationCorrection{btVector3(0, 1, 0), 0.5f * PI};

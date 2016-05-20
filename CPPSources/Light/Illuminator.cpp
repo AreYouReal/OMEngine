@@ -5,8 +5,8 @@
 
 Illuminator::Illuminator(){
     logGLError();
-    lightSources.push_back(std::make_shared<LightSource>(LightSource::Type::DIRECTION, v3d(0, 0, 5), v4d(1, 1, 1, 1)));
-    lightSources.push_back(std::make_shared<LightSource>(LightSource::Type::DIRECTION, v3d(0, -15, 5), v4d(1, 1, 1, 1), 100));
+    lightSources.push_back(std::make_shared<LightSource>(LightSource::Type::DIRECTION, v3d(0, 5, -5), v4d(1, 1, 1, 1)));
+    lightSources.push_back(std::make_shared<LightSource>(LightSource::Type::DIRECTION, v3d(0, 15, -5), v4d(1, 1, 1, 1), 100));
 }
 
 Illuminator::~Illuminator(){
@@ -36,8 +36,8 @@ void Illuminator::update(const float deltaTime){
     
     float rad = PI * alpha/ 180;
     float x = cosf(rad) * height;
-    float y = sinf(rad) * height;
-    v3d pos(x, y, height);
+    float z = sinf(rad) * height;
+    v3d pos(x, height, z);
     lightSources[0]->setPosition(pos);
 //    v3d::print(pos);
     alpha += 50.0f * deltaTime;

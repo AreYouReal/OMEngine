@@ -79,7 +79,7 @@ void Transform::moveForward(float velocity){
 
 void Transform::moveRight(float velocity){
     mPosition += mRight * velocity;
-        refreshTransformMatrix();
+    refreshTransformMatrix();
 }
 
 #pragma mark helpers
