@@ -52,7 +52,7 @@ bool Scene::init(){
     logGLError();
     
     player = new PlayerController(minimon);
-    Camera::instance()->follow(minimon, v3d(-7, -7, 10));
+    Camera::instance()->follow(minimon, v3d(-7, 7, 10));
 
     up<GameObject> go = std::unique_ptr<GameObject>(new GameObject("LevelBuilder"));
     up<LevelBuilder> lb = std::unique_ptr<LevelBuilder>(new LevelBuilder(go.get()));
@@ -355,9 +355,6 @@ void Scene::createBob(){
     
     monster->mTransform = (v3d(0, 0, 3));
     monster->mTransform.mScale = v3d(3, 3, 3);
-    q4d fR(-90, v3d(1, 0, 0));
-    q4d sR(-180, v3d(0, 0, 1));
-    monster->mTransform.rotate(fR * sR);
     
     addObjOnScene(std::move(monster));
 

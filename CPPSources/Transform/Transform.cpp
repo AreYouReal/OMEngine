@@ -7,15 +7,15 @@ Transform::Transform() : mPosition(0.0f, 0.0f, 0.0f), mRotation(0.0f, 0.0f, 0.0f
 
 Transform::Transform(v3d& position): Transform() {
     mPosition = position;
-    mUp = v3d(0, 0, 1);
-    mFront = v3d(0, -1, 0);
+    mUp = v3d(0, 1, 0);
+    mFront = v3d(0, 0, -1);
     refreshTransformMatrix();
 }
 
 Transform::Transform(v3d&& position): Transform() {
     mPosition = std::move(position);
-    mUp = v3d(0, 0, 1);
-    mFront = v3d(0, -1, 0);
+    mUp = v3d(0, 1, 0);
+    mFront = v3d(0, 0, -1);
     refreshTransformMatrix();
 }
 

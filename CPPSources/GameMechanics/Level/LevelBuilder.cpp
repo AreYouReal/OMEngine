@@ -24,7 +24,7 @@ void LevelBuilder::buildLevel(){
     for(unsigned int i = 0; i < blockCount; ++i){
         v3d newPos = calculateNewPoss(mLastBlockPoss);
         float rotation = getRotationAngle(newPos, mLastBlockPoss);
-        
+                logMessage("New rotation: %f\n", rotation);
         addNewBlock(newPos, rotation);
 
         mLastBlockPoss = newPos;
@@ -101,39 +101,32 @@ void LevelBuilder::addArrowToBlock(GameObject *parent, float rotation){
         up<GameObject> go = std::unique_ptr<GameObject>(new GameObject("ArrowObj_Plane"));
         up<MeshRendererComponent> mrc = up<MeshRendererComponent>(new MeshRendererComponent(go.get(), mArrow));
         go->addComponent(ComponentEnum::MESH_RENDERER, std::move(mrc));
-        up<ArrowAction> aa = std::unique_ptr<ArrowAction>(new ArrowAction(go.get(), q4d(rotation, v3d(0, 0, 1))));
-        logMessage("Actions push! \n");
+        up<ArrowAction> aa = std::unique_ptr<ArrowAction>(new ArrowAction(go.get(), q4d(rotation, v3d(0, 1, 0))));
         actions.push(aa.get());
         go->mTransform.rotate(aa->mRotation);
         go->mTransform.mPosition = parent->mTransform.mPosition + v3d(0, 0, 2);
         go->mTransform.refreshTransformMatrix();
         go->addComponent(ComponentEnum::ACTION_ARROW, std::move(aa));
-        logMessage("Add to obkect arrow: %s\n", go->name.c_str());
         activeArrows.push_back(go.get());
         Scene::instance()->addObjOnScene(std::move(go));
     }
 }
 
 v3d LevelBuilder::calculateNewPoss(v3d lastPos){
-    int x, y;
-    int step = 1;
+    int x, z;
+    int step = 2;
     if((rand() % 2) > 0){
-        x = 0; y = step;
+        x = 0; z = step;
 //        if((rand() % 2) > 0){
 //            y = -y;
 //        }
     }else{
-        x = step; y = 0;
+        x = step; z = 0;
 //        if((rand() % 2) > 0){
 //            x = -x;
 //        }
     }
-        v3d newPos = lastPos + v3d(x, y, 0);
-    
-    v3d::print(mLastBlockPoss);
-    v3d::print(newPos);
-    
-
+    v3d newPos = lastPos + v3d(x, 0, z);
     return newPos;
 }
 
@@ -151,11 +144,11 @@ float LevelBuilder::getRotationAngle(v3d newPos, v3d lastDir){
         if(dir.x > 0.1){
             rotation = 0.0f;
         }else{
-            if(dir.y < -0.1){
-                rotation = 270.0f;
+            if(dir.z < -0.1){
+                rotation = 90.0f;
             }else{
-                if(dir.y > 0.1){
-                    rotation = 90.0f;
+                if(dir.z > 0.1){
+                    rotation = 270.0f;
                 }else{
                     rotation = 180.0f;
                 }
@@ -186,8 +179,6 @@ void LevelBuilder::activateBlock(GameObject *go){
             }
         }
         float rotation = getRotationAngle(newPos, mLastBlockPoss);
-        v3d::print(mLastBlockPoss);
-        v3d::print(newPos);
         logMessage("New rotation: %f\n", rotation);
         if(rotation > -1){
             if(inactiveArrows.size() > 0){
@@ -196,7 +187,7 @@ void LevelBuilder::activateBlock(GameObject *go){
                 activeArrows.push_back(arrowGO);
                 ArrowAction *aa = static_cast<ArrowAction*>( arrowGO->getComponent(ComponentEnum::ACTION_ARROW) );
                 if(aa){
-                    aa->show(mLastBlockPoss + v3d(0, 0, 2), rotation);
+                    aa->show(mLastBlockPoss + v3d(0, 2, 0), rotation);
                     logMessage("Actions push! \n");
                     actions.push(aa);
                 }

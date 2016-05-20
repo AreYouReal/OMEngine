@@ -25,7 +25,7 @@ PlayerController::PlayerController(GameObject * const gameObject) : IComponent(g
 
     go->mTransform.mScale = v3d(0.5, 0.5, 0.5);
     
-    mRigidBodyComp->mBody->setGravity(btVector3(0, 0, -98));
+    mRigidBodyComp->mBody->setGravity(btVector3(0, -98, 0));
 
     {
         delete mRigidBodyComp->mBody->getCollisionShape();
@@ -84,9 +84,9 @@ void PlayerController::refreshVelocity(){
 
 void PlayerController::update(){
     v3d pos = go->getPosition();
-    if(pos.z < -10){
+    if(pos.y < -10){
         btTransform t = mRigidBodyComp->mBody->getWorldTransform();
-        t.setOrigin(btVector3(0, 0, 1));
+        t.setOrigin(btVector3(0, 3, 0));
         btQuaternion q;
         q.setEuler(0, 0, 0);
         t.setRotation(q);

@@ -66,7 +66,7 @@ void PhysicalWorld::init(){
                                                               cInterface.get(),
                                                               cSolver.get(),
                                                               cConfig.get());
-    physicsWorld->setGravity(btVector3(0, 0, -9.8f));
+    physicsWorld->setGravity(btVector3(0, -9.8f, 0 ));
 }
 
 void PhysicalWorld::destroyTheWorld(){

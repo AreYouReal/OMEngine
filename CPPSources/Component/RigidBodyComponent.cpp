@@ -56,7 +56,7 @@ bool RigidBodyComponent::init(){
 void RigidBodyComponent::update(){
     if(mBody){
         mBody->getWorldTransform().getOpenGLMatrix((float *)mTransformMatrix.pointer());
-        mTransformMatrix = m4d::transpose(mTransformMatrix) * go->mTransform.transformMatrix();
+        mTransformMatrix =  m4d::transpose(mTransformMatrix);
         //        logMessage("%s %f, %f, %f\n", mObjMeshes[0]->getName().c_str(), pBody->getWorldTransform().m_origin[0], pBody->getWorldTransform().m_origin[1], pBody->getWorldTransform().m_origin[2]);
     }
 }

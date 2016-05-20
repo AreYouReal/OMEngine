@@ -18,7 +18,7 @@ void ArrowAction::apply(const PlayerController *ctr){
 }
 
 void ArrowAction::show(v3d position, float rotation){
-    mRotation = q4d(rotation, v3d(0, 0, 1));
+    mRotation = q4d(rotation, v3d(0, 1, 0));
     go->mTransform.rotate(mRotation);
     go->mTransform.mPosition = position;
     go->mTransform.refreshTransformMatrix();
