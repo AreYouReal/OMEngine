@@ -178,11 +178,11 @@ void Camera::update(){
         transform.mFront = mGoToFollow->getPosition() - transform.mPosition;
     }
     refreshViewAndNormalMatrix();
-    refreshProjectorMatrix();
+    refreshShadowMatrix();
 }
 
 void Camera::setWidthAndHeight(float width, float height){
-    if(mWidth == width && mHeight == height) return;
+    if(mWidth == width && mHeight == height && viewportMatrix[2] != 0 && viewportMatrix[3] != 0) return;
     mWidth = width;
     mHeight = height;
     refreshProjMatrix();
@@ -207,8 +207,8 @@ const m4d& Camera::orthoMatrix() const{
     return mOrthoMatrix;
 }
 
-const m4d& Camera::projectorMatrix() const{
-    return mProjectorMatrix;
+const m4d& Camera::shadowMatrix() const{
+    return mShadowMatrix;
 }
 
 const m4d Camera::modelViewMatrix() const{
@@ -264,33 +264,33 @@ void Camera::refreshProjMatrix(){
     buildFrustum();
 }
 
-void Camera::refreshProjectorMatrix(){
+void Camera::refreshShadowMatrix(){
     sp<LightSource> light = Illuminator::instance()->getLightSource();
     m4d perspective = m4d::perspective(70, mWidth, mHeight, mNear, mFar);
 
     m4d lookAt = light->getLookAtFromPointView();
     
-    mProjectorMatrix.m[0].x = 0.5f;
-    mProjectorMatrix.m[0].y = 0.0f;
-    mProjectorMatrix.m[0].z = 0.0f;
-    mProjectorMatrix.m[0].w = 0.0f;
+    mShadowMatrix.m[0].x = 0.5f;
+    mShadowMatrix.m[0].y = 0.0f;
+    mShadowMatrix.m[0].z = 0.0f;
+    mShadowMatrix.m[0].w = 0.0f;
     
-    mProjectorMatrix.m[1].x = 0.0f;
-    mProjectorMatrix.m[1].y = 0.5f;
-    mProjectorMatrix.m[1].z = 0.0f;
-    mProjectorMatrix.m[1].w = 0.0f;
+    mShadowMatrix.m[1].x = 0.0f;
+    mShadowMatrix.m[1].y = 0.5f;
+    mShadowMatrix.m[1].z = 0.0f;
+    mShadowMatrix.m[1].w = 0.0f;
     
-    mProjectorMatrix.m[2].x = 0.0f;
-    mProjectorMatrix.m[2].y = 0.0f;
-    mProjectorMatrix.m[2].z = 0.5f;
-    mProjectorMatrix.m[2].w = 0.0f;
+    mShadowMatrix.m[2].x = 0.0f;
+    mShadowMatrix.m[2].y = 0.0f;
+    mShadowMatrix.m[2].z = 0.5f;
+    mShadowMatrix.m[2].w = 0.0f;
     
-    mProjectorMatrix.m[3].x = 0.5f;
-    mProjectorMatrix.m[3].y = 0.5f;
-    mProjectorMatrix.m[3].z = 0.5f;
-    mProjectorMatrix.m[3].w = 1.0f;
+    mShadowMatrix.m[3].x = 0.5f;
+    mShadowMatrix.m[3].y = 0.5f;
+    mShadowMatrix.m[3].z = 0.5f;
+    mShadowMatrix.m[3].w = 1.0f;
     
-    mProjectorMatrix = m4d::transpose(mProjectorMatrix) * perspective * lookAt;
+    mShadowMatrix = m4d::transpose(mShadowMatrix) * perspective * lookAt;
     // Do not forget translate this matrix to object position before drawing.
 }
 
@@ -490,7 +490,37 @@ void Camera::popMMatrix(){
     return mMstack.pop();
 }
 
+v3d Camera::farPlanePoint(v3d screenPoint){
+    m4d unprojMatrix = m4d::inverse( mProjectionMatrix * mViewMatrix );
+    
+    screenPoint.y = viewportMatrix[3] - screenPoint.y;
+    
+    screenPoint.x = (screenPoint.x - viewportMatrix[0]) / viewportMatrix[2];
+    screenPoint.y = (screenPoint.y - viewportMatrix[1]) / viewportMatrix[3];
+    screenPoint.x = screenPoint.x * 2.0f - 1.0f;
+    screenPoint.y = screenPoint.y * 2.0f - 1.0f;
+    screenPoint.z = screenPoint.z * 2.0f - 1.0f;
+    
+    
+    v4d screenVec(screenPoint);
+ 
+    v4d farPlanevec = screenVec * unprojMatrix;
+    
+    return v3d(farPlanevec);
+}
 
+void Camera::collisionRay(v3d screenPoint){
+    v3d fpp = farPlanePoint(screenPoint);
+    btVector3 from(transform.mPosition.x, transform.mPosition.y, transform.mPosition.z);
+    btVector3 to(fpp.x, fpp.y, fpp.z);
+    btCollisionWorld::ClosestRayResultCallback collisionRay(from, to);
+    PhysicalWorld::instance()->pWorld()->rayTest(from, to, collisionRay);
+    if(collisionRay.hasHit()){
+        logMessage("HIS OBJECT: %s\n", ((GameObject*)collisionRay.m_collisionObject->getUserPointer())->name.c_str());
+    }else{
+        logMessage("no hit!\n");
+    }
+}
 
 
 

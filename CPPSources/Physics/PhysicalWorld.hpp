@@ -38,6 +38,9 @@ public:
     
     void addNearCallback(PhysicNearCallback nearCC);
     
+    const sp<btSoftRigidDynamicsWorld>    pWorld() const { return physicsWorld; };
+    
+    
 private:
     
     void init();

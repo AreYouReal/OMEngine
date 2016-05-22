@@ -158,6 +158,8 @@ void Scene::setRenderObjectState(RenderObjectType newState){
 }
 
 void Scene::touchBegin(const int x, const int y){
+    v3d farPlaneCoord = Camera::instance()->farPlanePoint(v3d(x, y, 1.0f));
+    Camera::instance()->collisionRay(farPlaneCoord);
     if(player){
         player->onTouch();
     }

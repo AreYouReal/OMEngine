@@ -8,6 +8,8 @@
 #include "m4d.h"
 #include "Transform.hpp"
 
+#include "btCollisionWorld.h"
+
 class GameObject;
 class Camera : public Singleton<Camera>{
 public:
@@ -50,11 +52,17 @@ public:
     void pushMMatrix(m4d matrix);
     void popMMatrix();
 
+// Object picking related
+    void collisionRay(v3d screenPoint);
+    
+    v3d farPlanePoint(v3d screenPoint);
+    
+    
 // Projector or shadows
     bool initShadowBuffer();
     
-    const m4d& projectorMatrix() const;
-    void refreshProjectorMatrix();
+    const m4d& shadowMatrix() const;
+    void refreshShadowMatrix();
     
     // Shadow related
     unsigned int shadowBuffer()     { return mShadowmapBuffer;  }
@@ -93,7 +101,7 @@ private:
     v3d         mFollowDistance;
     
 // Projector 
-    m4d mProjectorMatrix;
+    m4d mShadowMatrix;
     
     unsigned int mDepthTexture;
     unsigned int mShadowTexture;

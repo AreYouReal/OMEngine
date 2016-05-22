@@ -83,7 +83,7 @@ void ShaderProgram::setUniforms(const ObjMaterial *mat){
         }else if(!strcmp(entry.second.name.c_str(), "uSamplerProjector")){
             glUniform1i(entry.second.location, 0);
         }else if(!strcmp(entry.second.name.c_str(), "uProjM")){
-            matrix = Camera::instance()->projectorMatrix();
+            matrix = Camera::instance()->shadowMatrix();
             glUniformMatrix4fv(entry.second.location, 1, GL_TRUE, matrix.pointer());
         }
 

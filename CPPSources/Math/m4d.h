@@ -51,8 +51,7 @@ public:
     static m4d translate(float x, float y, float z);
     static m4d translate(v3d& translate);
     
-    static void print(const m4d& m);
-    
+    static void print(const m4d& m);    
 };
 
 
