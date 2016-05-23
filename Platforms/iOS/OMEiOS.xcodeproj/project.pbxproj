@@ -245,6 +245,9 @@
 		F37D26441C5F705500433B4F /* NormalSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F37D26421C5F705500433B4F /* NormalSP.cpp */; };
 		F380B7901BBBDC550049E755 /* ObjMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F380B78C1BBBDC550049E755 /* ObjMesh.cpp */; };
 		F380B7911BBBDC550049E755 /* Obj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F380B78E1BBBDC550049E755 /* Obj.cpp */; };
+		F38600AD1CF3486E000BF704 /* minimon_idle.md5anim in Resources */ = {isa = PBXBuildFile; fileRef = F38600AA1CF3486E000BF704 /* minimon_idle.md5anim */; };
+		F38600AE1CF3486E000BF704 /* minimon_jump_1.md5anim in Resources */ = {isa = PBXBuildFile; fileRef = F38600AB1CF3486E000BF704 /* minimon_jump_1.md5anim */; };
+		F38600AF1CF3486E000BF704 /* minimon_jump_2.md5anim in Resources */ = {isa = PBXBuildFile; fileRef = F38600AC1CF3486E000BF704 /* minimon_jump_2.md5anim */; };
 		F38A22E11BAA979700FADEC0 /* vertexPerPixel.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F38A22E01BAA979700FADEC0 /* vertexPerPixel.glsl */; };
 		F38A22E31BAAA15400FADEC0 /* SimpeGouraudVertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F38A22E21BAAA15400FADEC0 /* SimpeGouraudVertex.glsl */; };
 		F38A22E71BAAA40500FADEC0 /* SimpleGouraudFragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F38A22E61BAAA40500FADEC0 /* SimpleGouraudFragment.glsl */; };
@@ -832,6 +835,9 @@
 		F380B78D1BBBDC550049E755 /* ObjMesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjMesh.h; sourceTree = "<group>"; };
 		F380B78E1BBBDC550049E755 /* Obj.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Obj.cpp; sourceTree = "<group>"; };
 		F380B78F1BBBDC550049E755 /* Obj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Obj.h; sourceTree = "<group>"; };
+		F38600AA1CF3486E000BF704 /* minimon_idle.md5anim */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon_idle.md5anim; path = OMEngine/Platforms/Android/assets/minimon_idle.md5anim; sourceTree = "<group>"; };
+		F38600AB1CF3486E000BF704 /* minimon_jump_1.md5anim */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon_jump_1.md5anim; path = OMEngine/Platforms/Android/assets/minimon_jump_1.md5anim; sourceTree = "<group>"; };
+		F38600AC1CF3486E000BF704 /* minimon_jump_2.md5anim */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon_jump_2.md5anim; path = OMEngine/Platforms/Android/assets/minimon_jump_2.md5anim; sourceTree = "<group>"; };
 		F38A22E01BAA979700FADEC0 /* vertexPerPixel.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = vertexPerPixel.glsl; path = ../Android/assets/shaders/vertexPerPixel.glsl; sourceTree = SOURCE_ROOT; };
 		F38A22E21BAAA15400FADEC0 /* SimpeGouraudVertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = SimpeGouraudVertex.glsl; path = ../Android/assets/shaders/SimpeGouraudVertex.glsl; sourceTree = SOURCE_ROOT; };
 		F38A22E61BAAA40500FADEC0 /* SimpleGouraudFragment.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = SimpleGouraudFragment.glsl; path = ../Android/assets/shaders/SimpleGouraudFragment.glsl; sourceTree = SOURCE_ROOT; };
@@ -1060,6 +1066,9 @@
 		7626524017F10E6C007CCD43 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F38600AA1CF3486E000BF704 /* minimon_idle.md5anim */,
+				F38600AB1CF3486E000BF704 /* minimon_jump_1.md5anim */,
+				F38600AC1CF3486E000BF704 /* minimon_jump_2.md5anim */,
 				F31C1ACB1CEF31FB0087D843 /* minimon_run.md5anim */,
 				F31C1AC71CEF31950087D843 /* minimon.mtl */,
 				F31C1AC81CEF31950087D843 /* minimon.png */,
@@ -2167,6 +2176,7 @@
 				F394447A1CEE0C6500466C10 /* minimon.md5mesh in Resources */,
 				9488ADA01CDAE2D100436916 /* bob_helmet_normal.png in Resources */,
 				F3AB027B1CA7FFFE00CB8FC9 /* particle.png in Resources */,
+				F38600AD1CF3486E000BF704 /* minimon_idle.md5anim in Resources */,
 				9488AD9E1CDAE2D100436916 /* bob_face_normal.png in Resources */,
 				9488ADA31CDAE2D100436916 /* bob_lamp_normal.png in Resources */,
 				9488ADA61CDAE2D100436916 /* bob.mtl in Resources */,
@@ -2193,6 +2203,7 @@
 				F38A22E71BAAA40500FADEC0 /* SimpleGouraudFragment.glsl in Resources */,
 				F3D171781C6DCCD900A9507D /* generalLightingProjector.omg in Resources */,
 				F3E0F55A1CD0A4D8005D0EEE /* gouraudMultiLight.omg in Resources */,
+				F38600AE1CF3486E000BF704 /* minimon_jump_1.md5anim in Resources */,
 				9488ADA71CDAE2D100436916 /* bob.omg in Resources */,
 				9488AD9D1CDAE2D100436916 /* bob_face_diffuse.png in Resources */,
 				F3B0F6BF1BF0B7410044A442 /* FFF_Tusj.ttf in Resources */,
@@ -2214,6 +2225,7 @@
 				9488AD9F1CDAE2D100436916 /* bob_helmet_diffuse.png in Resources */,
 				9488ADA41CDAE2D100436916 /* bob_walk.md5anim in Resources */,
 				F38A22E31BAAA15400FADEC0 /* SimpeGouraudVertex.glsl in Resources */,
+				F38600AF1CF3486E000BF704 /* minimon_jump_2.md5anim in Resources */,
 				F30E41DB1C2D548E00A88527 /* floor.png in Resources */,
 				F3D171761C6DCBF200A9507D /* projector.png in Resources */,
 				947FA31E1BA4854A00695A4E /* ram.mtl in Resources */,

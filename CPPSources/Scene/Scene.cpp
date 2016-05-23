@@ -52,7 +52,7 @@ bool Scene::init(){
     logGLError();
     
     player = new PlayerController(minimon);
-    Camera::instance()->follow(minimon, v3d(-5, 5, 5));
+    Camera::instance()->follow(minimon, v3d(-5, 2, 0));
 
     up<GameObject> go = std::unique_ptr<GameObject>(new GameObject("LevelBuilder"));
     up<LevelBuilder> lb = std::unique_ptr<LevelBuilder>(new LevelBuilder(go.get()));
@@ -255,7 +255,12 @@ void Scene::createBob(){
     up<GameObject> monster = std::unique_ptr<GameObject>(new GameObject("MONSTER"));
     std::vector<string>  monsterActions;
     monsterActions.clear();
+    monsterActions.push_back("minimon_idle.md5anim");
     monsterActions.push_back("minimon_run.md5anim");
+    monsterActions.push_back("minimon_jump_1.md5anim");
+    monsterActions.push_back("minimon_jump_2.md5anim");
+
+    
     
     minimon = monster.get();
     

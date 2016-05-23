@@ -511,7 +511,6 @@ v3d Camera::farPlanePoint(int screenX, int screenY){
     x = x * 2.0f - 1.0f;
     y = y * 2.0f - 1.0f;
     
-    
     v4d screenVec(x, y, 1.0f, 1.0f);
  
     v4d farPlanevec = screenVec * unprojMatrix;

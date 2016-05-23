@@ -27,7 +27,9 @@ PlayerController::PlayerController(GameObject * const gameObject) : IComponent(g
     t.setOrigin(btVector3(0, 5, 0));
     mRigidBodyComp->mBody->setCenterOfMassTransform(t);
     
-    mRigidBodyComp->mBody->setGravity(btVector3(0, -98, 0));
+    go->setPosition(v3d(0, 10, 0));
+    
+    mRigidBodyComp->mBody->setGravity(btVector3(0, 0, 0));
 
     {
         delete mRigidBodyComp->mBody->getCollisionShape();
