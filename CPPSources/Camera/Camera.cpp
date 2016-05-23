@@ -493,10 +493,10 @@ void Camera::popMMatrix(){
 v3d Camera::farPlanePoint(v3d screenPoint){
     m4d unprojMatrix = m4d::inverse( mProjectionMatrix * mViewMatrix );
     
-    screenPoint.y = viewportMatrix[3] - screenPoint.y;
+    screenPoint.y = mHeight - screenPoint.y;
     
-    screenPoint.x = (screenPoint.x - viewportMatrix[0]) / viewportMatrix[2];
-    screenPoint.y = (screenPoint.y - viewportMatrix[1]) / viewportMatrix[3];
+    screenPoint.x = (screenPoint.x) / mWidth;
+    screenPoint.y = (screenPoint.y) / mHeight;
     screenPoint.x = screenPoint.x * 2.0f - 1.0f;
     screenPoint.y = screenPoint.y * 2.0f - 1.0f;
     screenPoint.z = screenPoint.z * 2.0f - 1.0f;
@@ -510,7 +510,9 @@ v3d Camera::farPlanePoint(v3d screenPoint){
 }
 
 void Camera::collisionRay(v3d screenPoint){
+    v3d::print(screenPoint);
     v3d fpp = farPlanePoint(screenPoint);
+    v3d::print(fpp);
     btVector3 from(transform.mPosition.x, transform.mPosition.y, transform.mPosition.z);
     btVector3 to(fpp.x, fpp.y, fpp.z);
     btCollisionWorld::ClosestRayResultCallback collisionRay(from, to);

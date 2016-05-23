@@ -82,14 +82,16 @@ void LevelBuilder::addNewBlock(v3d blockPos, float rotation){
         
         go->addComponent(ComponentEnum::RIGID_BODY, std::move(rbc_1));
 
-//        up<DebugDrawComponent> ddc = up<DebugDrawComponent>(new DebugDrawComponent(go.get()));
-//        go->addComponent(ComponentEnum::DEBUG_DRAW, std::move(ddc));
+        up<DebugDrawComponent> ddc = up<DebugDrawComponent>(new DebugDrawComponent(go.get()));
+        go->addComponent(ComponentEnum::DEBUG_DRAW, std::move(ddc));
         go->setPosition(blockPos);
         if(rotation >= 0 && prevObj != nullptr) addArrowToBlock(prevObj, rotation);
         
         prevObj = go.get();
         addBlockComponent(go.get());
         activeblocks.push_back(go.get());
+        
+        logMessage("Block POS: [%f, %f, %f]\n", go->getPosition().x, go->getPosition().y, go->getPosition().z );
         
         Scene::instance()->addObjOnScene(std::move(go));
     }

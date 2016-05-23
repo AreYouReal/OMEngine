@@ -150,6 +150,12 @@
  /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openal/al.h \
  /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openal/alc.h \
  /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Transform/Transform.hpp \
+ /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/BulletCollision/CollisionDispatch/btCollisionWorld.h \
+ /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/BulletCollision/CollisionDispatch/btCollisionDispatcher.h \
+ /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/BulletCollision/BroadphaseCollision/btOverlappingPairCache.h \
+ /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/BulletCollision/BroadphaseCollision/btBroadphaseInterface.h \
+ /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/BulletCollision/BroadphaseCollision/btBroadphaseProxy.h \
+ /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/BulletCollision/BroadphaseCollision/btOverlappingPairCallback.h \
  /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Material/ObjMaterial.h \
  /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Texture/Texture.h \
  /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Material/Materials.hpp \
@@ -457,6 +463,18 @@
 /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/openal/alc.h:
 
 /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Transform/Transform.hpp:
+
+/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/BulletCollision/CollisionDispatch/btCollisionWorld.h:
+
+/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/BulletCollision/CollisionDispatch/btCollisionDispatcher.h:
+
+/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/BulletCollision/BroadphaseCollision/btOverlappingPairCache.h:
+
+/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/BulletCollision/BroadphaseCollision/btBroadphaseInterface.h:
+
+/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/BulletCollision/BroadphaseCollision/btBroadphaseProxy.h:
+
+/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Utils/3dPart/BulletPhysics/BulletCollision/BroadphaseCollision/btOverlappingPairCallback.h:
 
 /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Material/ObjMaterial.h:
 

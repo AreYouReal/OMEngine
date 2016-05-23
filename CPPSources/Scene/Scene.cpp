@@ -158,8 +158,8 @@ void Scene::setRenderObjectState(RenderObjectType newState){
 }
 
 void Scene::touchBegin(const int x, const int y){
-    v3d farPlaneCoord = Camera::instance()->farPlanePoint(v3d(x, y, 1.0f));
-    Camera::instance()->collisionRay(farPlaneCoord);
+    logMessage("Screen coors: x -> %d  y -> %d\n", x, y);
+    Camera::instance()->collisionRay(v3d(x, y, 1.0f));
     if(player){
         player->onTouch();
     }
@@ -261,8 +261,8 @@ void Scene::createBob(){
     up<RigidBodyComponent> rbc_1 = up<RigidBodyComponent>(new RigidBodyComponent(monster.get(), 5.0f));
     monster->addComponent(ComponentEnum::RIGID_BODY, std::move(rbc_1));
     
-//    up<DebugDrawComponent> ddc = up<DebugDrawComponent>(new DebugDrawComponent(monster.get()));
-//    monster->addComponent(ComponentEnum::DEBUG_DRAW, std::move(ddc));
+    up<DebugDrawComponent> ddc = up<DebugDrawComponent>(new DebugDrawComponent(monster.get()));
+    monster->addComponent(ComponentEnum::DEBUG_DRAW, std::move(ddc));
     
 //    monster->mTransform = (v3d(0, 0, 3));
     monster->mTransform.mScale = v3d(3, 3, 3);
