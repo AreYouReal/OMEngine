@@ -23,19 +23,16 @@ PlayerController::PlayerController(GameObject * const gameObject) : IComponent(g
     mRigidBodyComp->mBody->setFriction(0.0);
     mRigidBodyComp->mBody->setRestitution(0.0);
 
-    btTransform t = mRigidBodyComp->mBody->getWorldTransform();
-    t.setOrigin(btVector3(0, 5, 0));
-    mRigidBodyComp->mBody->setCenterOfMassTransform(t);
-    
+   
     go->setPosition(v3d(0, 10, 0));
     
     mRigidBodyComp->mBody->setGravity(btVector3(0, 0, 0));
 
-    {
-        delete mRigidBodyComp->mBody->getCollisionShape();
-        btSphereShape *newShaper = new btSphereShape(1.0f);
-        mRigidBodyComp->mBody->setCollisionShape(newShaper);
-    }
+//    {
+//        delete mRigidBodyComp->mBody->getCollisionShape();
+//        btSphereShape *newShaper = new btSphereShape(1.0f);
+//        mRigidBodyComp->mBody->setCollisionShape(newShaper);
+//    }
     
     mRigidBodyComp->setContantCallback(onPlayerPhysicalContact);
     

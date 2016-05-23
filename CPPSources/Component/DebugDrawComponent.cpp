@@ -18,7 +18,8 @@ void DebugDrawComponent::update(){}
 
 void DebugDrawComponent::draw(){
     v3d position = go->getPosition();
-    Camera::instance()->pushMMatrix( m4d::translate(position) * m4d::scale(go->getDimensions()) );
+    v3d dimesions = go->getDimensions();
+    Camera::instance()->pushMMatrix( m4d::translate(position) * m4d::scale(dimesions) );
     wc.draw();
     Camera::instance()->popMMatrix();
 }

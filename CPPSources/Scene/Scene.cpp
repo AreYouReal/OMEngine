@@ -267,15 +267,16 @@ void Scene::createBob(){
     up<AnimMeshComponent> mamc = up<AnimMeshComponent>(new AnimMeshComponent(monster.get(), "minimon.md5mesh", "minimon.mtl", monsterActions));
     monster->addComponent(ComponentEnum::ANIM_MESH, std::move(mamc));
     
+//    monster->mTransform.mScale = v3d(3, 3, 3);
+//    monster->mTransform.refreshTransformMatrix();
+
+    
     up<RigidBodyComponent> rbc_1 = up<RigidBodyComponent>(new RigidBodyComponent(monster.get(), 5.0f));
     monster->addComponent(ComponentEnum::RIGID_BODY, std::move(rbc_1));
     
     up<DebugDrawComponent> ddc = up<DebugDrawComponent>(new DebugDrawComponent(monster.get()));
     monster->addComponent(ComponentEnum::DEBUG_DRAW, std::move(ddc));
-    
-//    monster->mTransform = (v3d(0, 0, 3));
-    monster->mTransform.mScale = v3d(3, 3, 3);
-    monster->mTransform.refreshTransformMatrix();
+
     q4d sR(90, v3d(0, 1, 0));
     monster->mTransform.rotate(sR);
     

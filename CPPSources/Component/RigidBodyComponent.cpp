@@ -33,7 +33,7 @@ bool RigidBodyComponent::init(){
     
     
     btDefaultMotionState *defaultMotionState = new btDefaultMotionState(transform);
-    btCollisionShape *collShape = new btBoxShape(btVector3(size.x * 0.5f, size.y * 0.5f, size.z * 0.5f));
+    btCollisionShape *collShape = new btBoxShape(btVector3(size.x * 0.5, size.y * 0.5, size.z * 0.5));
     
     btVector3 localInertia(0.0f, 0.0f, 0.0f);
     if(mMass > 0.0f){
