@@ -490,7 +490,7 @@ void Camera::popMMatrix(){
     return mMstack.pop();
 }
 
-v3d Camera::farPlanePoint(v3d screenPoint){
+v3d Camera::farPlanePoint(int screenX, int screenY){
     m4d unprojMatrix = m4d::inverse( mProjectionMatrix * mViewMatrix );
     
 #ifdef ANDROID
@@ -501,36 +501,35 @@ v3d Camera::farPlanePoint(v3d screenPoint){
 #endif
     mWidth = 320; mHeight = 480;
 #endif
+    float x = screenX;
+    float y = screenY;
+    
+    y = mHeight - y;
+    
+    x = (x) / mWidth;
+    y = (y) / mHeight;
+    x = x * 2.0f - 1.0f;
+    y = y * 2.0f - 1.0f;
     
     
-    screenPoint.y = mHeight - screenPoint.y;
-    
-    screenPoint.x = (screenPoint.x) / mWidth;
-    screenPoint.y = (screenPoint.y) / mHeight;
-    screenPoint.x = screenPoint.x * 2.0f - 1.0f;
-    screenPoint.y = screenPoint.y * 2.0f - 1.0f;
-    screenPoint.z = screenPoint.z * 2.0f - 1.0f;
-    
-    
-    v4d screenVec(screenPoint);
+    v4d screenVec(x, y, 1.0f, 1.0f);
  
     v4d farPlanevec = screenVec * unprojMatrix;
     
     return v3d(farPlanevec);
 }
 
-void Camera::collisionRay(v3d screenPoint){
-    v3d::print(screenPoint);
-    v3d fpp = farPlanePoint(screenPoint);
+GameObject* Camera::collisionRayIntersection(int screenX, int screenY){
+    v3d fpp = farPlanePoint(screenX, screenY);
     v3d::print(fpp);
     btVector3 from(transform.mPosition.x, transform.mPosition.y, transform.mPosition.z);
     btVector3 to(fpp.x, fpp.y, fpp.z);
     btCollisionWorld::ClosestRayResultCallback collisionRay(from, to);
     PhysicalWorld::instance()->pWorld()->rayTest(from, to, collisionRay);
     if(collisionRay.hasHit()){
-        logMessage("HIS OBJECT: %s\n", ((GameObject*)collisionRay.m_collisionObject->getUserPointer())->name.c_str());
+        return ((GameObject*)collisionRay.m_collisionObject->getUserPointer());
     }else{
-        logMessage("no hit!\n");
+        return nullptr;
     }
 }
 

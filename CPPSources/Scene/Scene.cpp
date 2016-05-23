@@ -158,8 +158,12 @@ void Scene::setRenderObjectState(RenderObjectType newState){
 }
 
 void Scene::touchBegin(const int x, const int y){
-    logMessage("Screen coors: x -> %d  y -> %d\n", x, y);
-    Camera::instance()->collisionRay(v3d(x, y, 1.0f));
+
+    GameObject * collidedObj = Camera::instance()->collisionRayIntersection(x, y);
+    if(collidedObj != nullptr){
+        logMessage("Collided object! : %s\n", collidedObj->name.c_str());
+    }
+
     if(player){
         player->onTouch();
     }

@@ -53,9 +53,9 @@ public:
     void popMMatrix();
 
 // Object picking related
-    void collisionRay(v3d screenPoint);
+    GameObject* collisionRayIntersection(int screenX, int screenY);
     
-    v3d farPlanePoint(v3d screenPoint);
+
     
     
 // Projector or shadows
@@ -113,4 +113,6 @@ private:
     void refreshViewAndNormalMatrix();
     void refreshProjMatrix();
     void buildFrustum();
+    
+    v3d farPlanePoint(int screenX, int screenY);
 };
