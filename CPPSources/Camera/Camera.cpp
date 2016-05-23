@@ -493,6 +493,16 @@ void Camera::popMMatrix(){
 v3d Camera::farPlanePoint(v3d screenPoint){
     m4d unprojMatrix = m4d::inverse( mProjectionMatrix * mViewMatrix );
     
+#ifdef ANDROID
+
+#else
+#ifdef __APPLE__
+
+#endif
+    mWidth = 320; mHeight = 480;
+#endif
+    
+    
     screenPoint.y = mHeight - screenPoint.y;
     
     screenPoint.x = (screenPoint.x) / mWidth;
