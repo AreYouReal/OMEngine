@@ -34,16 +34,17 @@ bool Scene::init(){
     Camera::instance()->initShadowBuffer();
     
     up<GameObject> go = std::unique_ptr<GameObject>(new GameObject("Light"));
-    go->setPosition(v3d(0, 1, 0));
-    go->setFront(v3d(0, -1, 0));
+    
+    go->setFront(v3d(0, -1, -1));
     up<LightSource> light = up<LightSource>(new LightSource(go.get(), LightSource::Type::DIRECTION, v4d(1, 1, 1, 1)) );
     go->addComponent(ComponentEnum::LIGHT_SOURCE, std::move(light));
     addObjOnScene(std::move(go));
     
-//    up<GameObject> go = std::unique_ptr<GameObject>(new GameObject("Light"));
-//    up<LightSource> light = up<LightSource>(new LightSource(go.get(), LightSource::Type::DIRECTION, v4d(1, 1, 1, 1)) );
-//    go->addComponent(ComponentEnum::LIGHT_SOURCE, std::move(light));
-//    addObjOnScene(std::move(go));
+    go = std::unique_ptr<GameObject>(new GameObject("Light"));
+    light = up<LightSource>(new LightSource(go.get(), LightSource::Type::DIRECTION, v4d(1, 0, 0, 1)) );
+//    go->setFront(v3d(5, 5, 0));
+    go->addComponent(ComponentEnum::LIGHT_SOURCE, std::move(light));
+    addObjOnScene(std::move(go));
     
     loadBlockObj();
     loadArrowObj();
@@ -68,11 +69,23 @@ void Scene::update(float deltaTime){
 }
 
 void Scene::draw(){
+    
+    static bool increase = false;
+    static float redComp = 0.1f;
+    if(increase){
+        redComp += 0.1f * Time::deltaTime;
+        if(redComp > 0.35) increase = false;
+    }else{
+        redComp -= 0.1f * Time::deltaTime;
+        if(redComp < 0.1f) increase = true;
+    }
+
+    
     logGLError();
     glBindFramebuffer(GL_FRAMEBUFFER, Camera::instance()->mMainBuffer);
     glColorMask ( GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE );
     glViewport(0, 0, Camera::instance()->width(), Camera::instance()->height());
-    glClearColor(0.8f, 0.8f, 0.8f, 1.0f);
+    glClearColor(redComp, 0.1f, 0.1f, 1.0f);
     glClear( GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT );
     
     
