@@ -30,7 +30,7 @@ void Transform::translate(v3d tVector){
     refreshTransformMatrix();
 }
 
-inline void Transform::translate(float deltaX, float deltaY, float deltaZ){
+void Transform::translate(float deltaX, float deltaY, float deltaZ){
     mPosition += v3d(deltaX, deltaY, deltaZ);
     refreshTransformMatrix();
 }
