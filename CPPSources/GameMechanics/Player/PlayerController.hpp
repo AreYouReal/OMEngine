@@ -3,13 +3,14 @@
 #include "IComponent.hpp"
 #include "ArrowAction.hpp"
 #include "RigidBodyComponent.hpp"
-#include "LevelBuilder.hpp"
+
 
 #include <queue>
 
 class ArrowAction;
+class LevelBuilder;
 
-class PlayerController : IComponent{
+class PlayerController : public IComponent{
 public:
     PlayerController(GameObject * const gameObject);
     virtual ~PlayerController();

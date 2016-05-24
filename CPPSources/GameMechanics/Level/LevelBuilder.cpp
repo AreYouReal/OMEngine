@@ -25,7 +25,6 @@ void LevelBuilder::buildLevel(){
         v3d newPos = calculateNewPoss(mLastBlockPoss);
         float rotation = getRotationAngle(newPos, mLastBlockPoss);
         addNewBlock(newPos, rotation);
-        logMessage("New rotation: %f\n", rotation);
         mLastBlockPoss = newPos;
     }
     
@@ -63,7 +62,6 @@ void LevelBuilder::update(){
     if(!inactiveBlocks.empty()){
         activateBlock(inactiveBlocks[0]);
 //        inactiveBlocks.erase(inactiveBlocks.begin());
-        logMessage("inactiveBLock size: %d\n", inactiveBlocks.size());
     }
 }
 
@@ -90,8 +88,6 @@ void LevelBuilder::addNewBlock(v3d blockPos, float rotation){
         prevObj = go.get();
         addBlockComponent(go.get());
         activeblocks.push_back(go.get());
-        
-        logMessage("Block POS: [%f, %f, %f]\n", go->getPosition().x, go->getPosition().y, go->getPosition().z );
         
         Scene::instance()->addObjOnScene(std::move(go));
     }
@@ -180,7 +176,6 @@ void LevelBuilder::activateBlock(GameObject *go){
             }
         }
         float rotation = getRotationAngle(newPos, mLastBlockPoss);
-        logMessage("New rotation: %f\n", rotation);
         if(rotation > -1){
             if(inactiveArrows.size() > 0){
                 GameObject *arrowGO = inactiveArrows[0];
@@ -189,7 +184,6 @@ void LevelBuilder::activateBlock(GameObject *go){
                 ArrowAction *aa = static_cast<ArrowAction*>( arrowGO->getComponent(ComponentEnum::ACTION_ARROW) );
                 if(aa){
                     aa->show(mLastBlockPoss + v3d(0, 2, 0), rotation);
-                    logMessage("Actions push! \n");
                     actions.push(aa);
                 }
             }

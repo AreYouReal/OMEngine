@@ -188,7 +188,7 @@ void Camera::setWidthAndHeight(float width, float height){
     refreshProjMatrix();
     glGetIntegerv(GL_VIEWPORT, viewportMatrix);
     
-    logMessage("width: %f\theight:%f \t\t glWidth:%d\tglHeight:%d\n", width, height, viewportMatrix[2], viewportMatrix[3]);
+//    logMessage("width: %f\theight:%f \t\t glWidth:%d\tglHeight:%d\n", width, height, viewportMatrix[2], viewportMatrix[3]);
 }
 
 const m4d& Camera::viewMatrix() const{

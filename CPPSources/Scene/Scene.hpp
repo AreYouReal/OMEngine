@@ -14,6 +14,8 @@
 #include "DebugDrawComponent.hpp"
 #include "AnimMeshComponent.hpp"
 
+#include "PlayerController.hpp"
+
 class Scene : public Singleton<Scene>{
 
 public:
@@ -37,21 +39,15 @@ public:
     void touchBegin(const int x, const int y);
     
 // DEBUG
-    
-    // Ground, bg, tree and momos...
-    void createMOMO();
-    void createTestScene();
-    
     // Balls
-    
     void createBallsScene();
     
     
     // Light test
-    
-    void createLightTestScene();
-    
-    void createBob();
+    void loadBlockObj();
+    void loadArrowObj();
+    up<PlayerController> createPlayer();
+    LevelBuilder *createLevelBuilder();
     
     void addMeshRendererOnScene(string objName, string meshName);
     
