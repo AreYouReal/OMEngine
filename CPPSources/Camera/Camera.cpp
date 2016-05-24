@@ -265,7 +265,7 @@ void Camera::refreshProjMatrix(){
 }
 
 void Camera::refreshShadowMatrix(){
-    sp<LightSource> light = Illuminator::instance()->getLightSource();
+    LightSource* light = Illuminator::instance()->getLightSource();
     m4d perspective = m4d::perspective(70, mWidth, mHeight, mNear, mFar);
 
     m4d lookAt = light->getLookAtFromPointView();

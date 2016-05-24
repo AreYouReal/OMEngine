@@ -38,8 +38,10 @@ public:
     Transform   mTransform{};
     v3d getDimensions();
     v3d getPosition();
+    v3d getFront();
     
     void setPosition(v3d);
+    void setFront(v3d);
     
     m4d transformMatrix();
     

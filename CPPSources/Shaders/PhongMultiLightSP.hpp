@@ -15,5 +15,5 @@ struct PhongMultiLightSP : ShaderProgram{
     
     void initLightUniLocations();
     void setLightUniforms();
-    void setUniformForLightSource(sp<LightSource> light, int index);
+    void setUniformForLightSource(LightSource* light, int index);
 };

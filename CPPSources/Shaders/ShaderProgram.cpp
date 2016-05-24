@@ -91,7 +91,7 @@ void ShaderProgram::setUniforms(const ObjMaterial *mat){
     
     char tmp[128] = {""};
     for(int i = 0; i < 1; ++i){
-        sp<LightSource> light =Illuminator::instance()->getLightSource(i);
+        LightSource* light =Illuminator::instance()->getLightSource(i);
         v4d lightInEyeSpace = light->getPositionInEyeSpace();
         v4d color = light->getColor();
         v4d directionInEyeSpace = light->getDirectionInEyeSpace();

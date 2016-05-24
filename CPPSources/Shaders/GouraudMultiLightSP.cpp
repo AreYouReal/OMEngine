@@ -43,14 +43,14 @@ void GouraudMultiLightSP::initLightUniLocations(){
 void GouraudMultiLightSP::setLightUniforms(){
     glUniform1i(numLightUniLoc, numLights);
     for(int i = 0; i < numLights; ++i){
-        sp<LightSource> light = Illuminator::instance()->getLightSource(i);
+        LightSource* light = Illuminator::instance()->getLightSource(i);
         if(light != nullptr){
             setUniformForLightSource(light, i);
         }
     }
 }
 
-void GouraudMultiLightSP::setUniformForLightSource(sp<LightSource> light, int index){
+void GouraudMultiLightSP::setUniformForLightSource(LightSource* light, int index){
     glUniform1i(lightLocs[index].type, light->type());
     v3d temp = light->getDirectionInEyeSpace();
     glUniform3fv(lightLocs[index].direction, 1, &temp.x);

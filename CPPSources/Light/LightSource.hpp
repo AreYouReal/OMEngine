@@ -1,38 +1,32 @@
 #pragma once
 
-
 #include <memory>
-
-#include "v3d.h"
-
-#include "Camera.h"
-
 #include "ObjMaterial.h"
+#include "IComponent.hpp"
+#include "GameObject.hpp"
 
-#include "WiredCube.hpp"
-
-
-class LightSource{
+class LightSource : public IComponent{
 
 public:
     enum Type{ DIRECTION = 0, POINT = 1, SPOT = 2 };
-    
-    LightSource();
-    LightSource(Type type, v3d position, v4d color, float distance = 30, float linAttenuation = .5f, float quadAttenuation = 1.0f);
-    ~LightSource();
+  
+    // IComponent
+    LightSource(GameObject * const);
+    LightSource(GameObject * const, Type type, v4d color, float distance = 30, float linAttenuation = .5f, float quadAttenuation = 1.0f);
+    virtual ~LightSource();
+   
+    virtual void update() override;
+    //--------
     
     const v4d&  getColor()      const { return mColor; }
-    const v3d&  getPosition()   const { return mTransform.mPosition; }
+    const v3d  getPosition()   const { return go->getPosition(); }
     const Type  type()          const { return mType; }
     const float distance()      const { return mDistance; }
     const float linearAtten()   const { return mLinearAttenuation; }
     const float quadAtten()     const {return mQuadraticAttenuation; }
     const v4d   getPositionInEyeSpace()  const;
     const v3d   getDirectionInEyeSpace() const;
-    
-    void draw() const;
-    
-    void setPosition(const v3d pos);
+
     void setColor(v4d color);
     
     m4d     getLookAtFromPointView();
@@ -47,16 +41,8 @@ private:
     float   mQuadraticAttenuation;
     float   mDistance;
     
-    Transform mTransform;
-    
     unsigned int vbo;
     unsigned int vao;
-    
-    
-    // Separate debug draw
-    sp<ObjMaterial> mMaterial;
-    WiredCube wc;
-    //----------------
     
     void setAttributes() const;
 };

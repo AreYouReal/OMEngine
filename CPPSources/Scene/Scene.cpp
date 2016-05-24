@@ -33,6 +33,17 @@ bool Scene::init(){
     logGLError();
     Camera::instance()->initShadowBuffer();
     
+    up<GameObject> go = std::unique_ptr<GameObject>(new GameObject("Light"));
+    go->setPosition(v3d(0, 1, 0));
+    go->setFront(v3d(0, -1, 0));
+    up<LightSource> light = up<LightSource>(new LightSource(go.get(), LightSource::Type::DIRECTION, v4d(1, 1, 1, 1)) );
+    go->addComponent(ComponentEnum::LIGHT_SOURCE, std::move(light));
+    addObjOnScene(std::move(go));
+    
+//    up<GameObject> go = std::unique_ptr<GameObject>(new GameObject("Light"));
+//    up<LightSource> light = up<LightSource>(new LightSource(go.get(), LightSource::Type::DIRECTION, v4d(1, 1, 1, 1)) );
+//    go->addComponent(ComponentEnum::LIGHT_SOURCE, std::move(light));
+//    addObjOnScene(std::move(go));
     
     loadBlockObj();
     loadArrowObj();

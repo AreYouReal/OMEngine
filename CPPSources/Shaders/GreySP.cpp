@@ -21,7 +21,7 @@ void GreySP::setUniforms(ObjMaterial *mat){
     NormalSP::setUniforms(mat);
     m4d matrix = Camera::instance()->normalMatrix();
     glUniformMatrix4fv(normMatUniLoc, 1, GL_TRUE, matrix.pointer());
-    sp<LightSource> light = Illuminator::instance()->getLightSource();
+    LightSource* light = Illuminator::instance()->getLightSource();
     v3d lightPosInEyeSpace = light->getDirectionInEyeSpace();
     glUniform3fv(lightPosUniLoc, 1, &lightPosInEyeSpace.x);
     v4d lightColor = light->getColor();

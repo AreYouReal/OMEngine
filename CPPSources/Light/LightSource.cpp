@@ -2,40 +2,31 @@
 
 #include "OMUtils.h"
 #include <cmath>
+#include "Illuminator.hpp"
 
-LightSource::LightSource() : LightSource(Type::SPOT, v3d(), v4d()){
-    logGLError();
+LightSource::LightSource(GameObject * const gameObject) : IComponent(gameObject){
+    Illuminator::instance()->addLight(this);
 }
 
-LightSource::LightSource(Type type, v3d position, v4d color, float distance, float linAttenuation, float quadAttenuation): mType(type), mTransform(position), mColor(color), mLinearAttenuation(linAttenuation), mQuadraticAttenuation(quadAttenuation), mDistance(distance){
-    logGLError();
+LightSource::LightSource(GameObject * const gameObject, Type type, v4d color, float distance, float linAttenuation, float quadAttenuation) : IComponent(gameObject), mType(type), mColor(color), mDistance(distance), mLinearAttenuation(linAttenuation), mQuadraticAttenuation(quadAttenuation){
     spotCosCutoff = cosf(M_PI/180 * 55.0f);
-    mTransform.mFront = mTransform.mPosition.normalize();
-    logGLError();
+    Illuminator::instance()->addLight(this);
 }
 
-LightSource::~LightSource(){}
-
-void LightSource::draw() const{
-    Camera::instance()->pushMMatrix(mTransform.transformMatrix() * m4d::scale(distance(), distance(), distance()));
-    wc.draw();
-    Camera::instance()->popMMatrix();
+LightSource::~LightSource(){
+    Illuminator::instance()->removeLight(this);
 }
+
 
 
 const v4d LightSource::getPositionInEyeSpace() const{
-    v3d position = (Camera::instance()->viewMatrix() * v4d(mTransform.mPosition, 1.0));
+    v3d position = (Camera::instance()->viewMatrix() * v4d(go->getPosition(), 1.0));
     return position;
 }
 
 const v3d LightSource::getDirectionInEyeSpace() const{
-    v3d direction =  (Camera::instance()->viewMatrix() * v3d::normalize(mTransform.mPosition));
+    v3d direction =  (Camera::instance()->viewMatrix() * v3d::normalize(go->getFront()));
     return direction;
-}
-
-void LightSource::setPosition(const v3d pos){
-    mTransform.mPosition = pos;
-    mTransform.refreshTransformMatrix();
 }
 
 void LightSource::setColor(v4d color){
@@ -47,4 +38,8 @@ m4d LightSource::getLookAtFromPointView(){
     v3d up(0, 0, 1);
     v3d center(0, 0, 0);
     return m4d::lookAt(pos, center, up);
+}
+
+void LightSource::update(){
+    
 }

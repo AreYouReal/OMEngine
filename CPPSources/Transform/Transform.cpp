@@ -3,19 +3,24 @@
 #include "OMUtils.h"
 
 Transform::Transform() : mPosition(0.0f, 0.0f, 0.0f), mRotation(0.0f, 0.0f, 0.0f, 0.0f), mScale(1.0f, 1.0f, 1.0f) {
+    mFront = v3d(0, 0, 1);
+    mRight = v3d(1, 0, 0);
+    refreshTransformMatrix();
 }
 
 Transform::Transform(v3d& position): Transform() {
     mPosition = position;
     mUp = v3d(0, 1, 0);
-    mFront = v3d(0, 0, -1);
+    mFront = v3d(0, 0, 1);
+    mRight = v3d(1, 0, 0);
     refreshTransformMatrix();
 }
 
 Transform::Transform(v3d&& position): Transform() {
     mPosition = std::move(position);
     mUp = v3d(0, 1, 0);
-    mFront = v3d(0, 0, -1);
+    mFront = v3d(0, 0, 1);
+    mRight = v3d(1, 0, 0);
     refreshTransformMatrix();
 }
 

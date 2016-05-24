@@ -5,24 +5,23 @@
 
 Illuminator::Illuminator(){
     logGLError();
-    lightSources.push_back(std::make_shared<LightSource>(LightSource::Type::POINT, v3d(0, 5, -5), v4d(1, 1, 1, 1)));
-    lightSources.push_back(std::make_shared<LightSource>(LightSource::Type::DIRECTION, v3d(0, 15, -5), v4d(1, 1, 1, 1)));
 }
 
 Illuminator::~Illuminator(){
+
 }
 
-sp<LightSource> Illuminator::getLightSource(){
+LightSource* Illuminator::getLightSource(){
     if(lightSources.size() > 0) return lightSources[0];
     return nullptr;
 }
 
-sp<LightSource> Illuminator::getLightSource(int index){
+LightSource* Illuminator::getLightSource(int index){
     if(index < 0 || index >= lightSources.size()) return lightSources[0];
     return lightSources[index];
 }
 
-bool Illuminator::addLightSource(sp<LightSource> lSource){
+bool Illuminator::addLightSource(LightSource* lSource){
     lightSources.push_back(lSource);
     return true;
 }
@@ -38,7 +37,7 @@ void Illuminator::update(const float deltaTime){
     float x = cosf(rad) * height;
     float z = sinf(rad) * height;
     v3d pos(x, height, z);
-    lightSources[0]->setPosition(pos);
+    lightSources[0]->go->setPosition(pos);
 //    v3d::print(pos);
     alpha += 50.0f * deltaTime;
     
@@ -56,3 +55,15 @@ void Illuminator::update(const float deltaTime){
 //    }
 }
 
+void Illuminator::addLight(LightSource *light){
+    lightSources.push_back(light);
+}
+
+void Illuminator::removeLight(LightSource *light){
+    for(int i = 0; i < lightSources.size(); ++i){
+        if(lightSources[i] == light){
+            lightSources.erase(lightSources.begin() + i);
+            break;
+        }
+    }
+}

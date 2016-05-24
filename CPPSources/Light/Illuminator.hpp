@@ -16,17 +16,17 @@ public:
     Illuminator& operator=(const Illuminator& rhs) = delete;
     ~Illuminator();
 
-    bool addLightSource(sp<LightSource> lSource);
+    bool addLightSource(LightSource* lSource);
     
-    sp<LightSource> getLightSource();
-    
-    sp<LightSource> getLightSource(int index);
-    
+    LightSource* getLightSource();
+    LightSource* getLightSource(int index);
     
     void update(const float deltaTime);
     
+    void addLight(LightSource *light);
+    void removeLight(LightSource * light);
     
 private:
   
-    std::vector<sp<LightSource>> lightSources;
+    std::vector<LightSource*> lightSources;
 };

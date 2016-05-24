@@ -49,14 +49,14 @@ void PhongMultiLightSP::setUniforms(const ObjMaterial *mat){
 
 void PhongMultiLightSP::setLightUniforms(){
     for(int i = 0; i < numLights; ++i){
-        sp<LightSource> light = Illuminator::instance()->getLightSource(i);
+        LightSource *light = Illuminator::instance()->getLightSource(i);
         if(light != nullptr){
             setUniformForLightSource(light, i);
         }
     }
 }
 
-void PhongMultiLightSP::setUniformForLightSource(sp<LightSource> light, int index){
+void PhongMultiLightSP::setUniformForLightSource(LightSource* light, int index){
     glUniform1i(vsLightLoc[index].type, light->type());
     glUniform1i(fsLightLoc[index].type, light->type());
     

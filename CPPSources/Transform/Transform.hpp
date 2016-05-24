@@ -40,6 +40,4 @@ private:
     
     std::weak_ptr<Transform> parentTransform;
     std::vector<std::weak_ptr<Transform>> childTransforms;
-    
-
 };

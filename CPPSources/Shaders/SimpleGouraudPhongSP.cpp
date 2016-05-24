@@ -23,7 +23,7 @@ void SimpleGouraudPhongSP::initLightUniLocations(){
 
 
 void SimpleGouraudPhongSP::setLightUniforms(){
-    sp<LightSource> light = Illuminator::instance()->getLightSource();
+    LightSource* light = Illuminator::instance()->getLightSource();
 
     glUniform1i(lightLoc.type, light->type());
     

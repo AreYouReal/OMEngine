@@ -64,6 +64,13 @@ v3d GameObject::getPosition(){
     return (mTransform.mPosition + parentPos);
 }
 
+v3d GameObject::getFront(){
+    return mTransform.mFront;
+}
+
+void GameObject::setFront(v3d fronDir){
+    mTransform.mFront = fronDir.normalize();
+}
 
 void GameObject::setPosition(v3d pos){
     RigidBodyComponent *rBody = static_cast<RigidBodyComponent*>( getComponent(ComponentEnum::RIGID_BODY) );
