@@ -115,7 +115,7 @@ void Scene::setRenderObjectState(RenderObjectType newState){
 
 void Scene::touchBegin(const int x, const int y){
 
-    lBuilder->buildLevel();
+    lBuilder->refresh();
     
     GameObject * collidedObj = Camera::instance()->collisionRayIntersection(x, y);
     if(collidedObj != nullptr){

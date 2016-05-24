@@ -23,7 +23,13 @@ public:
     bool visible = true;
     
     v3d dimension(){ return md5->dimension; };
+    
+    AnimationStates getState(){ return mState; };
 
 private:
     sp<md5::MD5>    md5;
+    
+    AnimationStates mState{AnimationStates::IDLE};
+    
+    void updateAnimation();
 };

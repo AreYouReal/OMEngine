@@ -31,7 +31,8 @@ private:
     
 // Fields
     RigidBodyComponent *mRigidBodyComp;
-
+    AnimMeshComponent *mAnimMeshComp;
+    
     LevelBuilder    *mLevelBuilder;
     
 // Helpers

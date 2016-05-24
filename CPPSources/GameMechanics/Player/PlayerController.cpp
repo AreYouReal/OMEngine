@@ -32,6 +32,11 @@ PlayerController::PlayerController(GameObject * const gameObject) : IComponent(g
 
     Camera::instance()->follow(go, camFollowPositions[0]);
     
+    
+    mAnimMeshComp = static_cast<AnimMeshComponent*>(go->getComponent(ComponentEnum::ANIM_MESH));
+
+    
+    
 //    {
 //        delete mRigidBodyComp->mBody->getCollisionShape();
 //        btSphereShape *newShaper = new btSphereShape(1.0f);
@@ -53,6 +58,15 @@ void PlayerController::init(LevelBuilder *lb){
 void PlayerController::onTouch(){
     static int camPos = 0;
     if(camPos > 2) camPos = 0;
+    
+    static AnimMeshComponent::AnimationStates animState = AnimMeshComponent::AnimationStates::IDLE;
+    if(animState == AnimMeshComponent::AnimationStates::IDLE){
+        animState = AnimMeshComponent::AnimationStates::RUN;
+    }else{
+        animState = AnimMeshComponent::AnimationStates::IDLE;
+    }
+    mAnimMeshComp->setState(animState);
+    
         Camera::instance()->follow(go, camFollowPositions[camPos++]);
 //    mRigidBodyComp->mBody->activate();
 //    rotate();
