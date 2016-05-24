@@ -8,7 +8,9 @@
                 android:label="OMEngine"
                 android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
 				android:launchMode="singleTask"
-                android:configChanges="orientation|keyboardHidden">
+                android:configChanges="orientation|keyboardHidden"
+                android:screenOrientation="portrait"
+             android:icon="@drawable/icon">
             <meta-data android:name="android.app.lib_name" 
                 android:value="OME" />
             <intent-filter>
