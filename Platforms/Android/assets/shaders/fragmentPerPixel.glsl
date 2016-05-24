@@ -28,10 +28,10 @@ void main(){
     lowp vec4 diffuseColor = texture( uSamplerDiffuse, texCoord.xy );
     mediump vec3 L;
     
-    if(uLight.type > 0){
-        L = normalize(uLight.position - position);
-    }else{
+    if(uLight.type == 0){
         L = uLight.direction;
+    }else{
+        L = normalize(uLight.position - position);
     }
     float intensity = max(dot(normal, L), 0.0);
     mediump vec4 specular;

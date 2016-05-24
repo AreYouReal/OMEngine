@@ -26,7 +26,7 @@ static std::map<string, string>  meshShaderTable{
     
     std::pair<string, string>("ArrowObj_Plane", "normAsColor"),
 
-std::pair<string, string>("minimon", "phongMultiLight.omg"),
+    std::pair<string, string>("minimon", "phongMultiLight.omg"),
 
 };
 

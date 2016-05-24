@@ -28,6 +28,8 @@ public:
     
     void refresh();
     
+    void clearLevel();
+    
 private:
     
     std::queue<ArrowAction*> actions;
@@ -50,12 +52,14 @@ private:
     
     v3d  calculateNewPoss(v3d lastPos);
     void addNewBlock(v3d blockPos, float rotation);
-    void addArrowToBlock(GameObject * const parent, float rotation);
+    void addArrowToBlock(float rotation);
     
     
     float getRotationAngle(v3d newPos, v3d lastDir);
 
     void addBlockComponent(GameObject*);
     void activateBlock(GameObject*);
+    
+
     
 };

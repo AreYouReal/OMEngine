@@ -520,7 +520,6 @@ v3d Camera::farPlanePoint(int screenX, int screenY){
 
 GameObject* Camera::collisionRayIntersection(int screenX, int screenY){
     v3d fpp = farPlanePoint(screenX, screenY);
-    v3d::print(fpp);
     btVector3 from(transform.mPosition.x, transform.mPosition.y, transform.mPosition.z);
     btVector3 to(fpp.x, fpp.y, fpp.z);
     btCollisionWorld::ClosestRayResultCallback collisionRay(from, to);

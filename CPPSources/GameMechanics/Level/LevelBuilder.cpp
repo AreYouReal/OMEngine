@@ -80,10 +80,10 @@ void LevelBuilder::addNewBlock(v3d blockPos, float rotation){
         
         go->addComponent(ComponentEnum::RIGID_BODY, std::move(rbc_1));
 
-        up<DebugDrawComponent> ddc = up<DebugDrawComponent>(new DebugDrawComponent(go.get()));
-        go->addComponent(ComponentEnum::DEBUG_DRAW, std::move(ddc));
+//        up<DebugDrawComponent> ddc = up<DebugDrawComponent>(new DebugDrawComponent(go.get()));
+//        go->addComponent(ComponentEnum::DEBUG_DRAW, std::move(ddc));
         go->setPosition(blockPos);
-        if(rotation >= 0 && prevObj != nullptr) addArrowToBlock(prevObj, rotation);
+        if(rotation >= 0 && prevObj != nullptr) addArrowToBlock(rotation);
         
         prevObj = go.get();
         addBlockComponent(go.get());
@@ -93,7 +93,7 @@ void LevelBuilder::addNewBlock(v3d blockPos, float rotation){
     }
 }
 
-void LevelBuilder::addArrowToBlock(GameObject *parent, float rotation){
+void LevelBuilder::addArrowToBlock(float rotation){
     if(mArrow){
         up<GameObject> go = std::unique_ptr<GameObject>(new GameObject("ArrowObj_Plane"));
         up<MeshRendererComponent> mrc = up<MeshRendererComponent>(new MeshRendererComponent(go.get(), mArrow));
@@ -101,7 +101,7 @@ void LevelBuilder::addArrowToBlock(GameObject *parent, float rotation){
         up<ArrowAction> aa = std::unique_ptr<ArrowAction>(new ArrowAction(go.get(), q4d(rotation, v3d(0, 1, 0))));
         actions.push(aa.get());
         go->mTransform.rotate(aa->mRotation);
-        go->mTransform.mPosition = parent->getPosition()+ v3d(0, 2, 0);
+        go->mTransform.mPosition = prevObj->getPosition()+ v3d(0, 2, 0);
         go->mTransform.refreshTransformMatrix();
         go->addComponent(ComponentEnum::ACTION_ARROW, std::move(aa));
         activeArrows.push_back(go.get());
@@ -186,6 +186,8 @@ void LevelBuilder::activateBlock(GameObject *go){
                     aa->show(mLastBlockPoss + v3d(0, 2, 0), rotation);
                     actions.push(aa);
                 }
+            }else{
+                addArrowToBlock(rotation);
             }
         }
         mLastBlockPoss = newPos;
@@ -194,6 +196,11 @@ void LevelBuilder::activateBlock(GameObject *go){
 
 
 void LevelBuilder::refresh(){
+    clearLevel();
+    buildLevel();
+}
+
+void LevelBuilder::clearLevel(){
     for(auto const &go : activeblocks){
         Scene::instance()->removeObjectFromTheScene(go);
     }
@@ -221,5 +228,4 @@ void LevelBuilder::refresh(){
     
     mLastBlockPoss = v3d(0, 0, 0);
     mLastDir = v3d(0, 0, 0);
-    buildLevel();
 }

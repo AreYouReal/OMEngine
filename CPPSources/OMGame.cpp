@@ -2,17 +2,11 @@
 #include "Texture.h"
 #include "Camera.h"
 #include "Scene.hpp"
-#include "PhysicalWorld.hpp"
 
-#include "GameObject.hpp"
-#include "Obj.h"
 
 #include "OMUtils.h"
 
-#include "WiredCube.hpp"
-
 #include "Font.hpp"
-
 
 #include <future>
 #include <thread>
@@ -64,16 +58,13 @@ void OMGame::Update(const float deltaTime){
     Scene::instance()->update(deltaTime);
 }
 
-
+    Stopwatch stopwatch;
 void OMGame::Draw (){
 //    static unsigned int start = getMilliTime(), fps = 0;
 //    if( getMilliTime() - start >= 1000 ) {
 //        logMessage( "FPS: %d\n", fps ); start = getMilliTime();
 //        fps = 0;
 //    } ++fps;
-    
-    
-    Stopwatch stopwatch;
     
     Camera::instance()->setWidthAndHeight(appContext->width, appContext->height);
 

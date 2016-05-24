@@ -113,10 +113,7 @@ void Scene::setRenderObjectState(RenderObjectType newState){
     if(mDrawingState != newState) mDrawingState = newState;
 }
 
-void Scene::touchBegin(const int x, const int y){
-
-    lBuilder->refresh();
-    
+void Scene::touchBegin(const int x, const int y){   
     GameObject * collidedObj = Camera::instance()->collisionRayIntersection(x, y);
     if(collidedObj != nullptr){
         logMessage("Collided object! : %s\n", collidedObj->name.c_str());
@@ -186,15 +183,15 @@ up<PlayerController> Scene::createPlayer(){
 
     q4d sR(90, v3d(0, 1, 0));
     monster->mTransform.rotate(sR);
-    monster->mTransform.translate(0, -1.5f, 0);
+    monster->mTransform.translate(0, -1.0f, 0);
     monster->mTransform.mScale = v3d(3, 3, 3);
     monster->mTransform.refreshTransformMatrix();
     
     up<RigidBodyComponent> rbc_1 = up<RigidBodyComponent>(new RigidBodyComponent(monster.get(), 5.0f));
     monster->addComponent(ComponentEnum::RIGID_BODY, std::move(rbc_1));
     
-    up<DebugDrawComponent> ddc = up<DebugDrawComponent>(new DebugDrawComponent(monster.get()));
-    monster->addComponent(ComponentEnum::DEBUG_DRAW, std::move(ddc));
+//    up<DebugDrawComponent> ddc = up<DebugDrawComponent>(new DebugDrawComponent(monster.get()));
+//    monster->addComponent(ComponentEnum::DEBUG_DRAW, std::move(ddc));
     
     up<PlayerController> player = up<PlayerController>( new PlayerController(monster.get()));
     

@@ -35,16 +35,19 @@ IComponent *GameObject::getComponent(const ComponentEnum &name){
 
 
 v3d GameObject::getDimensions(){
+    v3d dimensions;
     MeshRendererComponent *mrc = static_cast<MeshRendererComponent *>(getComponent(ComponentEnum::MESH_RENDERER));
     if(mrc){
-        return mrc->getDimensions();
+        dimensions = mrc->getDimensions();
+        return v3d(dimensions.x * mTransform.mScale.x, dimensions.y * mTransform.mScale.y, dimensions.z * mTransform.mScale.z );
     }else{
         AnimMeshComponent *amc = static_cast<AnimMeshComponent *>(getComponent(ComponentEnum::ANIM_MESH));
         if(amc){
-            return amc->dimension();
+            dimensions = amc->dimension();
+            return v3d(dimensions.x * mTransform.mScale.x, dimensions.y * mTransform.mScale.y, dimensions.z * mTransform.mScale.z );
         }
     }
-    return v3d(1, 1, 1);
+    return dimensions;
 }
 
 

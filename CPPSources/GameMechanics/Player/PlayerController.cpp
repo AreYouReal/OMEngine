@@ -4,7 +4,7 @@
 #include "LevelBuilder.hpp"
 #include "BBlock.hpp"
 
-std::vector<v3d> camFollowPositions{v3d(0, 2, 5), v3d(-5, 2, 0), v3d(-5, 2, 5),};
+std::vector<v3d> camFollowPositions{v3d(0, 2, 5), v3d(-10, 5, 5), v3d(-5, 2, 5),};
 
 
 bool onPlayerPhysicalContact(btManifoldPoint &point, const btCollisionObjectWrapper *obj0, int part0, int index0, const btCollisionObjectWrapper *obj1, int part1, int index1){
@@ -25,23 +25,17 @@ PlayerController::PlayerController(GameObject * const gameObject) : IComponent(g
     mRigidBodyComp->mBody->setFriction(0.0);
     mRigidBodyComp->mBody->setRestitution(0.0);
 
-   
-    go->setPosition(v3d(0, 10, 0));
-    
-    mRigidBodyComp->mBody->setGravity(btVector3(0, 0, 0));
 
-    Camera::instance()->follow(go, camFollowPositions[0]);
-    
-    
+
     mAnimMeshComp = static_cast<AnimMeshComponent*>(go->getComponent(ComponentEnum::ANIM_MESH));
-
     
+        startPose();
     
-//    {
-//        delete mRigidBodyComp->mBody->getCollisionShape();
-//        btSphereShape *newShaper = new btSphereShape(1.0f);
-//        mRigidBodyComp->mBody->setCollisionShape(newShaper);
-//    }
+    {
+        delete mRigidBodyComp->mBody->getCollisionShape();
+        btSphereShape *newShaper = new btSphereShape(1.0f);
+        mRigidBodyComp->mBody->setCollisionShape(newShaper);
+    }
     
     mRigidBodyComp->setContantCallback(onPlayerPhysicalContact);
     
@@ -56,21 +50,18 @@ void PlayerController::init(LevelBuilder *lb){
 }
 
 void PlayerController::onTouch(){
-    static int camPos = 0;
-    if(camPos > 2) camPos = 0;
-    
-    static AnimMeshComponent::AnimationStates animState = AnimMeshComponent::AnimationStates::IDLE;
-    if(animState == AnimMeshComponent::AnimationStates::IDLE){
-        animState = AnimMeshComponent::AnimationStates::RUN;
+    if(!mActive){
+         mAnimMeshComp->setState(AnimMeshComponent::AnimationStates::RUN);
+        Camera::instance()->follow(go, camFollowPositions[1]);
+        mRigidBodyComp->mBody->setGravity(btVector3(0, -98, 0));
+        mLevelBuilder->buildLevel();
+        mActive = true;
+                mRigidBodyComp->mBody->activate();
     }else{
-        animState = AnimMeshComponent::AnimationStates::IDLE;
+        mRigidBodyComp->mBody->activate();
+        rotate();
+        refreshVelocity();
     }
-    mAnimMeshComp->setState(animState);
-    
-        Camera::instance()->follow(go, camFollowPositions[camPos++]);
-//    mRigidBodyComp->mBody->activate();
-//    rotate();
-//    refreshVelocity();
 }
 
 void PlayerController::rotate(){
@@ -86,11 +77,6 @@ void PlayerController::rotate(){
         mRigidBodyComp->mBody->setWorldTransform(t);
         
         currentFronVector = frontVector * act->mRotation.matrix();
-
-        AnimMeshComponent *amc = static_cast<AnimMeshComponent*>(go->getComponent(ComponentEnum::ANIM_MESH));
-        
-        static AnimMeshComponent::AnimationStates currentState = AnimMeshComponent::AnimationStates::IDLE;
-        amc->setState( currentState = (currentState == AnimMeshComponent::AnimationStates::IDLE) ? AnimMeshComponent::AnimationStates::RUN : AnimMeshComponent::AnimationStates::IDLE );
     }
 }
 
@@ -102,16 +88,23 @@ void PlayerController::refreshVelocity(){
 void PlayerController::update(){
     v3d pos = go->getPosition();
     if(pos.y < -10){
-        btTransform t = mRigidBodyComp->mBody->getWorldTransform();
-        t.setOrigin(btVector3(0, 3, 0));
-        btQuaternion q;
-        q.setEuler(0, 0, 0);
-        t.setRotation(q);
-        mRigidBodyComp->mBody->setWorldTransform(t);
-        mRigidBodyComp->mBody->setLinearVelocity(btVector3(0, 0, 0));
-        
-        mLevelBuilder->refresh();
+        startPose();
+        mActive = false;
+        mLevelBuilder->clearLevel();
     }
+}
+
+void PlayerController::startPose(){
+    go->setPosition(v3d(0, 10, 0));
+    btTransform t = mRigidBodyComp->mBody->getWorldTransform();
+    btQuaternion q;
+    q.setEuler(90, 0, 0);
+    t.setRotation(q);
+    mRigidBodyComp->mBody->setCenterOfMassTransform(t);
+    mRigidBodyComp->mBody->setGravity(btVector3(0, 0, 0));
+    Camera::instance()->follow(go, camFollowPositions[0]);
+    mRigidBodyComp->mBody->setLinearVelocity(btVector3(0, 0, 0));
+    mAnimMeshComp->setState(AnimMeshComponent::AnimationStates::IDLE);
 }
 
 

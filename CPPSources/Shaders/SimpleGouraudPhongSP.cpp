@@ -24,7 +24,7 @@ void SimpleGouraudPhongSP::initLightUniLocations(){
 
 void SimpleGouraudPhongSP::setLightUniforms(){
     sp<LightSource> light = Illuminator::instance()->getLightSource();
-    
+
     glUniform1i(lightLoc.type, light->type());
     
     v3d temp = light->getPositionInEyeSpace();
