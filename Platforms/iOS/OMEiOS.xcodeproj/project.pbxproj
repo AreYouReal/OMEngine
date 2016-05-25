@@ -176,19 +176,6 @@
 		947FA31E1BA4854A00695A4E /* ram.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 947FA31B1BA4854A00695A4E /* ram.mtl */; };
 		947FA31F1BA4854A00695A4E /* ram.obj in Resources */ = {isa = PBXBuildFile; fileRef = 947FA31C1BA4854A00695A4E /* ram.obj */; };
 		9483965A1C4B542D000D69BA /* generalLighting.omg in Resources */ = {isa = PBXBuildFile; fileRef = 948396591C4B542D000D69BA /* generalLighting.omg */; };
-		9488AD9B1CDAE2D100436916 /* bob_body_diffuse.png in Resources */ = {isa = PBXBuildFile; fileRef = 9488AD8E1CDAE2D100436916 /* bob_body_diffuse.png */; };
-		9488AD9C1CDAE2D100436916 /* bob_body_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 9488AD8F1CDAE2D100436916 /* bob_body_normal.png */; };
-		9488AD9D1CDAE2D100436916 /* bob_face_diffuse.png in Resources */ = {isa = PBXBuildFile; fileRef = 9488AD901CDAE2D100436916 /* bob_face_diffuse.png */; };
-		9488AD9E1CDAE2D100436916 /* bob_face_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 9488AD911CDAE2D100436916 /* bob_face_normal.png */; };
-		9488AD9F1CDAE2D100436916 /* bob_helmet_diffuse.png in Resources */ = {isa = PBXBuildFile; fileRef = 9488AD921CDAE2D100436916 /* bob_helmet_diffuse.png */; };
-		9488ADA01CDAE2D100436916 /* bob_helmet_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 9488AD931CDAE2D100436916 /* bob_helmet_normal.png */; };
-		9488ADA11CDAE2D100436916 /* bob_idle.md5anim in Resources */ = {isa = PBXBuildFile; fileRef = 9488AD941CDAE2D100436916 /* bob_idle.md5anim */; };
-		9488ADA21CDAE2D100436916 /* bob_lamp_diffuse.png in Resources */ = {isa = PBXBuildFile; fileRef = 9488AD951CDAE2D100436916 /* bob_lamp_diffuse.png */; };
-		9488ADA31CDAE2D100436916 /* bob_lamp_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 9488AD961CDAE2D100436916 /* bob_lamp_normal.png */; };
-		9488ADA41CDAE2D100436916 /* bob_walk.md5anim in Resources */ = {isa = PBXBuildFile; fileRef = 9488AD971CDAE2D100436916 /* bob_walk.md5anim */; };
-		9488ADA51CDAE2D100436916 /* bob.md5mesh in Resources */ = {isa = PBXBuildFile; fileRef = 9488AD981CDAE2D100436916 /* bob.md5mesh */; };
-		9488ADA61CDAE2D100436916 /* bob.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 9488AD991CDAE2D100436916 /* bob.mtl */; };
-		9488ADA71CDAE2D100436916 /* bob.omg in Resources */ = {isa = PBXBuildFile; fileRef = 9488AD9A1CDAE2D100436916 /* bob.omg */; };
 		94CE87CC1B62B4D000752D5C /* m4d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94CE87C61B62B4D000752D5C /* m4d.cpp */; };
 		94CE87CD1B62B4D000752D5C /* q4d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94CE87C81B62B4D000752D5C /* q4d.cpp */; };
 		94CE87CE1B62B4D000752D5C /* v3d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94CE87CA1B62B4D000752D5C /* v3d.cpp */; };
@@ -729,19 +716,6 @@
 		947FA31B1BA4854A00695A4E /* ram.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ram.mtl; path = ../Android/assets/ram.mtl; sourceTree = SOURCE_ROOT; };
 		947FA31C1BA4854A00695A4E /* ram.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ram.obj; path = ../Android/assets/ram.obj; sourceTree = SOURCE_ROOT; };
 		948396591C4B542D000D69BA /* generalLighting.omg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = generalLighting.omg; path = OMEngine/Platforms/Android/assets/generalLighting.omg; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
-		9488AD8E1CDAE2D100436916 /* bob_body_diffuse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bob_body_diffuse.png; path = OMEngine/Platforms/Android/assets/bob_body_diffuse.png; sourceTree = "<group>"; };
-		9488AD8F1CDAE2D100436916 /* bob_body_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bob_body_normal.png; path = OMEngine/Platforms/Android/assets/bob_body_normal.png; sourceTree = "<group>"; };
-		9488AD901CDAE2D100436916 /* bob_face_diffuse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bob_face_diffuse.png; path = OMEngine/Platforms/Android/assets/bob_face_diffuse.png; sourceTree = "<group>"; };
-		9488AD911CDAE2D100436916 /* bob_face_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bob_face_normal.png; path = OMEngine/Platforms/Android/assets/bob_face_normal.png; sourceTree = "<group>"; };
-		9488AD921CDAE2D100436916 /* bob_helmet_diffuse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bob_helmet_diffuse.png; path = OMEngine/Platforms/Android/assets/bob_helmet_diffuse.png; sourceTree = "<group>"; };
-		9488AD931CDAE2D100436916 /* bob_helmet_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bob_helmet_normal.png; path = OMEngine/Platforms/Android/assets/bob_helmet_normal.png; sourceTree = "<group>"; };
-		9488AD941CDAE2D100436916 /* bob_idle.md5anim */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = bob_idle.md5anim; path = OMEngine/Platforms/Android/assets/bob_idle.md5anim; sourceTree = "<group>"; };
-		9488AD951CDAE2D100436916 /* bob_lamp_diffuse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bob_lamp_diffuse.png; path = OMEngine/Platforms/Android/assets/bob_lamp_diffuse.png; sourceTree = "<group>"; };
-		9488AD961CDAE2D100436916 /* bob_lamp_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bob_lamp_normal.png; path = OMEngine/Platforms/Android/assets/bob_lamp_normal.png; sourceTree = "<group>"; };
-		9488AD971CDAE2D100436916 /* bob_walk.md5anim */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = bob_walk.md5anim; path = OMEngine/Platforms/Android/assets/bob_walk.md5anim; sourceTree = "<group>"; };
-		9488AD981CDAE2D100436916 /* bob.md5mesh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = bob.md5mesh; path = OMEngine/Platforms/Android/assets/bob.md5mesh; sourceTree = "<group>"; };
-		9488AD991CDAE2D100436916 /* bob.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = bob.mtl; path = OMEngine/Platforms/Android/assets/bob.mtl; sourceTree = "<group>"; };
-		9488AD9A1CDAE2D100436916 /* bob.omg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = bob.omg; path = OMEngine/Platforms/Android/assets/bob.omg; sourceTree = "<group>"; };
 		948BACC21B6DFB5C004A052C /* Shortcuts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Shortcuts.h; sourceTree = "<group>"; };
 		94CE87C61B62B4D000752D5C /* m4d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = m4d.cpp; path = ../../CPPSources/Math/m4d.cpp; sourceTree = SOURCE_ROOT; };
 		94CE87C71B62B4D000752D5C /* m4d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = m4d.h; path = ../../CPPSources/Math/m4d.h; sourceTree = SOURCE_ROOT; };
@@ -1080,20 +1054,6 @@
 				F33138081CD62484000705D5 /* bblock.mtl */,
 				F33138091CD62484000705D5 /* bblock.obj */,
 				F3E0F5591CD0A4D8005D0EEE /* gouraudMultiLight.omg */,
-				9488AD8E1CDAE2D100436916 /* bob_body_diffuse.png */,
-				9488AD8F1CDAE2D100436916 /* bob_body_normal.png */,
-				9488AD901CDAE2D100436916 /* bob_face_diffuse.png */,
-				9488AD911CDAE2D100436916 /* bob_face_normal.png */,
-				9488AD921CDAE2D100436916 /* bob_helmet_diffuse.png */,
-				9488AD931CDAE2D100436916 /* bob_helmet_normal.png */,
-				9488AD941CDAE2D100436916 /* bob_idle.md5anim */,
-				9488AD951CDAE2D100436916 /* bob_lamp_diffuse.png */,
-				9488AD961CDAE2D100436916 /* bob_lamp_normal.png */,
-				9488AD971CDAE2D100436916 /* bob_walk.md5anim */,
-				9488AD981CDAE2D100436916 /* bob.md5mesh */,
-				9488AD991CDAE2D100436916 /* bob.mtl */,
-				9488AD9A1CDAE2D100436916 /* bob.omg */,
-				F307C9171CBF791200CF9623 /* bob */,
 				F3AB02791CA7FFFE00CB8FC9 /* particle.png */,
 				F3AB027A1CA7FFFE00CB8FC9 /* particles.omg */,
 				F3A7ADA11CA0161500FF8910 /* shadowProjector.omg */,
@@ -1802,14 +1762,6 @@
 			path = ../../CPPSources/DEBUG;
 			sourceTree = SOURCE_ROOT;
 		};
-		F307C9171CBF791200CF9623 /* bob */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = bob;
-			path = OMEngine/Platforms/Android/assets/bob;
-			sourceTree = "<group>";
-		};
 		F34129CC1BB52B63006F4D4D /* Material */ = {
 			isa = PBXGroup;
 			children = (
@@ -2172,15 +2124,10 @@
 				F328C4FF1BF4997F0037AC6D /* font_vertex.glsl in Resources */,
 				F3D5E1191AF8F32E00DD216B /* Images.xcassets in Resources */,
 				F3BC2E901CDF733300D83A3B /* phongMultiLightBump.omg in Resources */,
-				9488ADA51CDAE2D100436916 /* bob.md5mesh in Resources */,
 				F36587701CF5C85700D85EBB /* actionArrow.mtl in Resources */,
 				F394447A1CEE0C6500466C10 /* minimon.md5mesh in Resources */,
-				9488ADA01CDAE2D100436916 /* bob_helmet_normal.png in Resources */,
 				F3AB027B1CA7FFFE00CB8FC9 /* particle.png in Resources */,
 				F38600AD1CF3486E000BF704 /* minimon_idle.md5anim in Resources */,
-				9488AD9E1CDAE2D100436916 /* bob_face_normal.png in Resources */,
-				9488ADA31CDAE2D100436916 /* bob_lamp_normal.png in Resources */,
-				9488ADA61CDAE2D100436916 /* bob.mtl in Resources */,
 				9472227C1B9AD466008D601B /* treemomo.mtl in Resources */,
 				94DCA2F61BE13C6100435661 /* Scene.bullet in Resources */,
 				F33DAD241CEEF52A00BCA654 /* phongMultiLight.omg in Resources */,
@@ -2195,7 +2142,6 @@
 				F3A263971C33BD360021B3B6 /* light_point_vertex.glsl in Resources */,
 				F30E41DA1C2D548E00A88527 /* floor_n.png in Resources */,
 				947FA31D1BA4854A00695A4E /* char_ram_col.png in Resources */,
-				9488ADA11CDAE2D100436916 /* bob_idle.md5anim in Resources */,
 				F31C1ACC1CEF31FB0087D843 /* minimon_run.md5anim in Resources */,
 				9435525E1BEF091F00FC4ADA /* wired_fragment.glsl in Resources */,
 				F30E41DD1C2D548E00A88527 /* sphere.png in Resources */,
@@ -2204,14 +2150,10 @@
 				F3E0F55A1CD0A4D8005D0EEE /* gouraudMultiLight.omg in Resources */,
 				F36587711CF5C85700D85EBB /* actionArrow.obj in Resources */,
 				F38600AE1CF3486E000BF704 /* minimon_jump_1.md5anim in Resources */,
-				9488ADA71CDAE2D100436916 /* bob.omg in Resources */,
-				9488AD9D1CDAE2D100436916 /* bob_face_diffuse.png in Resources */,
 				F3B0F6BF1BF0B7410044A442 /* FFF_Tusj.ttf in Resources */,
-				9488AD9B1CDAE2D100436916 /* bob_body_diffuse.png in Resources */,
 				F3D5E10B1AF8F24400DD216B /* InfoPlist.strings in Resources */,
 				F3CAEEE71BB01B8800DCF182 /* default_gray_fragment.glsl in Resources */,
 				9472227D1B9AD466008D601B /* treemomo.obj in Resources */,
-				9488ADA21CDAE2D100436916 /* bob_lamp_diffuse.png in Resources */,
 				F3BCACBA1BFF26FE002003B7 /* Main_iPad.storyboard in Resources */,
 				F31C1AC91CEF31950087D843 /* minimon.mtl in Resources */,
 				F3A7ADA21CA0161500FF8910 /* shadowProjector.omg in Resources */,
@@ -2222,14 +2164,11 @@
 				F368E8CA1BA6AE5A00F322AF /* fragmentPerPixel.glsl in Resources */,
 				9472227B1B9AD466008D601B /* momo.png in Resources */,
 				947222781B9AD466008D601B /* balloon.png in Resources */,
-				9488AD9F1CDAE2D100436916 /* bob_helmet_diffuse.png in Resources */,
-				9488ADA41CDAE2D100436916 /* bob_walk.md5anim in Resources */,
 				F38A22E31BAAA15400FADEC0 /* SimpeGouraudVertex.glsl in Resources */,
 				F38600AF1CF3486E000BF704 /* minimon_jump_2.md5anim in Resources */,
 				F30E41DB1C2D548E00A88527 /* floor.png in Resources */,
 				F3D171761C6DCBF200A9507D /* projector.png in Resources */,
 				947FA31E1BA4854A00695A4E /* ram.mtl in Resources */,
-				9488AD9C1CDAE2D100436916 /* bob_body_normal.png in Resources */,
 				F3BEAB1A1C43A6C00012DDCD /* lightingAttenuation.omg in Resources */,
 				F331380C1CD62484000705D5 /* bblock.obj in Resources */,
 				F3AB027C1CA7FFFE00CB8FC9 /* particles.omg in Resources */,

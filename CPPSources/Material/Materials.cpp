@@ -4,13 +4,6 @@
 #include "ShaderHelper.h"
 
 static std::map<string, string>  meshShaderTable{
-    // treemomo.obj meshes
-    std::pair<string, string>("background", "defaultPerVertex"),
-    std::pair<string, string>("baloon", "defaultPerVertex"),
-    std::pair<string, string>("grass_ground", "defaultPerVertex"),
-    std::pair<string, string>("momo", "defaultPerVertex"),
-    std::pair<string, string>("tree", "defaultPerVertex"),
-    std::pair<string, string>("leaf", "defaultPerVertex"),
     // Scene.obj meshes
     std::pair<string, string>("floor", "shadowProjector.omg"),
     std::pair<string, string>("sphere2_sphere.002", "shadowProjector.omg"),
@@ -32,9 +25,8 @@ static std::map<string, string>  meshShaderTable{
 
 Materials::Materials(){
     loadPrograms();
-    loadMaterial("bob.mtl");
     loadMaterial("minimon.mtl");
-    loadOMGFile("generalLighting.omg");
+    loadOMGFile("phongMultiLight.omg");
 }
 
 Materials::~Materials(){
@@ -60,8 +52,6 @@ bool Materials::loadMaterial(const std::string &name){
     str[255] = {""};
     
     v3d v;
-    
-//    logMessage("Line processing! %d\n", materials.size());
 
     while(line){
         if(!line[0] || line[0] == '#' ){ line = strtok( NULL, "\n" ); continue;
