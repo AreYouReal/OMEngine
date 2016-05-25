@@ -381,7 +381,7 @@ void MD5::buildPoseWeightedNormalsTangents(){
             }
         }
         
-        for(unsigned int i = 0; i < mesh->nWeight; ++i){
+        for(unsigned int i = 0; i < mesh->weights.size(); ++i){
             mesh->weights[i].normal = mesh->weights[i].normal.normalize();
             mesh->weights[i].tangent = mesh->weights[i].tangent.normalize();
         }
