@@ -35,32 +35,26 @@ public:
     void draw();
     void setRenderObjectState(RenderObjectType newState);
     
-    
     void touchBegin(const int x, const int y);
     
-// DEBUG
-    // Balls
-    void createBallsScene();
     
-    
-    // Light test
-    void loadBlockObj();
-    void loadArrowObj();
-    up<PlayerController> createPlayer();
-    LevelBuilder *createLevelBuilder();
-    
-    void addMeshRendererOnScene(string objName, string meshName);
     
 private:
 
 // Fields
     RenderObjectType  mDrawingState = RenderObjectType::SOLID;
-
     std::vector<up<GameObject>> mObjects;
-    
     std::map<string, sp<Obj>> mObjRess;
     
 //Helpers
+    void addLight();
+    
+    void loadBlockObj();
+    void loadArrowObj();
+    
+    up<PlayerController> createPlayer();
+    LevelBuilder *createLevelBuilder();
+    
     
     
 };

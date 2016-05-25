@@ -41,5 +41,11 @@ m4d LightSource::getLookAtFromPointView(){
 }
 
 void LightSource::update(){
+    static float degrees = 0.0f;
+    if(degrees > 360.0f){
+        degrees = 0.0f;
+    }
+    degrees += 50 * Time::deltaTime;
     
+    go->mTransform.rotate(degrees, v3d(0, 1, 0));
 }

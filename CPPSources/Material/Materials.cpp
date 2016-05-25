@@ -4,23 +4,9 @@
 #include "ShaderHelper.h"
 
 static std::map<string, string>  meshShaderTable{
-    // Scene.obj meshes
-    std::pair<string, string>("floor", "shadowProjector.omg"),
-    std::pair<string, string>("sphere2_sphere.002", "shadowProjector.omg"),
-    std::pair<string, string>("sphere1_sphere.001", "shadowProjector.omg"),
-    std::pair<string, string>("sphere3_sphere", "shadowProjector.omg"),
-    // MD5 BOB
-    std::pair<string, string>("body", "phongMultiLight.omg"),
-    std::pair<string, string>("head", "phongMultiLight.omg"),
-    std::pair<string, string>("helmet", "phongMultiLight.omg"),
-    std::pair<string, string>("lamp", "phongMultiLight.omg"),
-    
     std::pair<string, string>("bblock", "Normal"),
-    
     std::pair<string, string>("actionArrow", "Normal"),
-
     std::pair<string, string>("minimon", "phongMultiLight.omg"),
-
 };
 
 Materials::Materials(){

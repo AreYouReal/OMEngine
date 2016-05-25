@@ -175,7 +175,6 @@
 		947FA31D1BA4854A00695A4E /* char_ram_col.png in Resources */ = {isa = PBXBuildFile; fileRef = 947FA31A1BA4854A00695A4E /* char_ram_col.png */; };
 		947FA31E1BA4854A00695A4E /* ram.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 947FA31B1BA4854A00695A4E /* ram.mtl */; };
 		947FA31F1BA4854A00695A4E /* ram.obj in Resources */ = {isa = PBXBuildFile; fileRef = 947FA31C1BA4854A00695A4E /* ram.obj */; };
-		9483965A1C4B542D000D69BA /* generalLighting.omg in Resources */ = {isa = PBXBuildFile; fileRef = 948396591C4B542D000D69BA /* generalLighting.omg */; };
 		94CE87CC1B62B4D000752D5C /* m4d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94CE87C61B62B4D000752D5C /* m4d.cpp */; };
 		94CE87CD1B62B4D000752D5C /* q4d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94CE87C81B62B4D000752D5C /* q4d.cpp */; };
 		94CE87CE1B62B4D000752D5C /* v3d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94CE87CA1B62B4D000752D5C /* v3d.cpp */; };
@@ -192,16 +191,9 @@
 		94D5DA671BE2018100DFB8BC /* btBulletWorldImporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94D5DA5F1BE2018100DFB8BC /* btBulletWorldImporter.cpp */; };
 		94D5DA681BE2018100DFB8BC /* btWorldImporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94D5DA611BE2018100DFB8BC /* btWorldImporter.cpp */; };
 		94D85AC61BB65477008ED8CF /* Transform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94D85AC41BB65477008ED8CF /* Transform.cpp */; };
-		94DCA2F61BE13C6100435661 /* Scene.bullet in Resources */ = {isa = PBXBuildFile; fileRef = 94DCA2F31BE13C6100435661 /* Scene.bullet */; };
-		94DCA2F71BE13C6100435661 /* Scene.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 94DCA2F41BE13C6100435661 /* Scene.mtl */; };
-		94DCA2F81BE13C6100435661 /* Scene.obj in Resources */ = {isa = PBXBuildFile; fileRef = 94DCA2F51BE13C6100435661 /* Scene.obj */; };
 		94EF0C5E1BA70E5400EBF5EE /* pos_norm_vertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 94EF0C5D1BA70E5400EBF5EE /* pos_norm_vertex.glsl */; };
 		94EF0C601BA70F6700EBF5EE /* norm_as_color_fragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 94EF0C5F1BA70F6700EBF5EE /* norm_as_color_fragment.glsl */; };
 		94FAF39E1BEE939F0087CC0C /* WiredCube.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94FAF39C1BEE939F0087CC0C /* WiredCube.cpp */; };
-		F30E41DA1C2D548E00A88527 /* floor_n.png in Resources */ = {isa = PBXBuildFile; fileRef = F30E41D61C2D548E00A88527 /* floor_n.png */; };
-		F30E41DB1C2D548E00A88527 /* floor.png in Resources */ = {isa = PBXBuildFile; fileRef = F30E41D71C2D548E00A88527 /* floor.png */; };
-		F30E41DC1C2D548E00A88527 /* sphere_n.png in Resources */ = {isa = PBXBuildFile; fileRef = F30E41D81C2D548E00A88527 /* sphere_n.png */; };
-		F30E41DD1C2D548E00A88527 /* sphere.png in Resources */ = {isa = PBXBuildFile; fileRef = F30E41D91C2D548E00A88527 /* sphere.png */; };
 		F31C1AC91CEF31950087D843 /* minimon.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F31C1AC71CEF31950087D843 /* minimon.mtl */; };
 		F31C1ACA1CEF31950087D843 /* minimon.png in Resources */ = {isa = PBXBuildFile; fileRef = F31C1AC81CEF31950087D843 /* minimon.png */; };
 		F31C1ACC1CEF31FB0087D843 /* minimon_run.md5anim in Resources */ = {isa = PBXBuildFile; fileRef = F31C1ACB1CEF31FB0087D843 /* minimon_run.md5anim */; };
@@ -244,7 +236,6 @@
 		F39A501E1BB3EE9B0080B846 /* LightSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F39A501C1BB3EE9B0080B846 /* LightSource.cpp */; };
 		F39A50211BB3F0090080B846 /* Illuminator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F39A501F1BB3F0090080B846 /* Illuminator.cpp */; };
 		F39A50261BB40E5B0080B846 /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F39A50241BB40E5B0080B846 /* GameObject.cpp */; };
-		F39FA5011C0DD9B500CC0BB4 /* test.raw in Resources */ = {isa = PBXBuildFile; fileRef = F39FA5001C0DD9B500CC0BB4 /* test.raw */; };
 		F39FA5AF1C0DE15400CC0BB4 /* analysis.c in Sources */ = {isa = PBXBuildFile; fileRef = F39FA5801C0DE15400CC0BB4 /* analysis.c */; };
 		F39FA5B01C0DE15400CC0BB4 /* bitrate.c in Sources */ = {isa = PBXBuildFile; fileRef = F39FA5821C0DE15400CC0BB4 /* bitrate.c */; };
 		F39FA5B11C0DE15400CC0BB4 /* bitwise.c in Sources */ = {isa = PBXBuildFile; fileRef = F39FA5841C0DE15400CC0BB4 /* bitwise.c */; };
@@ -284,7 +275,6 @@
 		F3BC2E901CDF733300D83A3B /* phongMultiLightBump.omg in Resources */ = {isa = PBXBuildFile; fileRef = F3BC2E8F1CDF733300D83A3B /* phongMultiLightBump.omg */; };
 		F3BCACBA1BFF26FE002003B7 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3BCACB61BFF26FE002003B7 /* Main_iPad.storyboard */; };
 		F3BCACBB1BFF26FE002003B7 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3BCACB81BFF26FE002003B7 /* Main_iPhone.storyboard */; };
-		F3BEAB1A1C43A6C00012DDCD /* lightingAttenuation.omg in Resources */ = {isa = PBXBuildFile; fileRef = F3BEAB191C43A6C00012DDCD /* lightingAttenuation.omg */; };
 		F3C52B2C1BBD079F009F3604 /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3C52B2A1BBD079F009F3604 /* Scene.cpp */; };
 		F3C5D0781C85B1E800686AF1 /* writedepth.omg in Resources */ = {isa = PBXBuildFile; fileRef = F3C5D0771C85B1E800686AF1 /* writedepth.omg */; };
 		F3CAEEE51BB01A7600DCF182 /* default_gray_vertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F3CAEEE41BB01A7600DCF182 /* default_gray_vertex.glsl */; };
@@ -715,7 +705,6 @@
 		947FA31A1BA4854A00695A4E /* char_ram_col.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = char_ram_col.png; path = ../Android/assets/char_ram_col.png; sourceTree = SOURCE_ROOT; };
 		947FA31B1BA4854A00695A4E /* ram.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ram.mtl; path = ../Android/assets/ram.mtl; sourceTree = SOURCE_ROOT; };
 		947FA31C1BA4854A00695A4E /* ram.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ram.obj; path = ../Android/assets/ram.obj; sourceTree = SOURCE_ROOT; };
-		948396591C4B542D000D69BA /* generalLighting.omg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = generalLighting.omg; path = OMEngine/Platforms/Android/assets/generalLighting.omg; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
 		948BACC21B6DFB5C004A052C /* Shortcuts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Shortcuts.h; sourceTree = "<group>"; };
 		94CE87C61B62B4D000752D5C /* m4d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = m4d.cpp; path = ../../CPPSources/Math/m4d.cpp; sourceTree = SOURCE_ROOT; };
 		94CE87C71B62B4D000752D5C /* m4d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = m4d.h; path = ../../CPPSources/Math/m4d.h; sourceTree = SOURCE_ROOT; };
@@ -751,19 +740,12 @@
 		94D5DA621BE2018100DFB8BC /* btWorldImporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = btWorldImporter.h; sourceTree = "<group>"; };
 		94D85AC41BB65477008ED8CF /* Transform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Transform.cpp; sourceTree = "<group>"; };
 		94D85AC51BB65477008ED8CF /* Transform.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Transform.hpp; sourceTree = "<group>"; };
-		94DCA2F31BE13C6100435661 /* Scene.bullet */ = {isa = PBXFileReference; lastKnownFileType = file; name = Scene.bullet; path = ../Android/assets/Scene.bullet; sourceTree = SOURCE_ROOT; };
-		94DCA2F41BE13C6100435661 /* Scene.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Scene.mtl; path = ../Android/assets/Scene.mtl; sourceTree = SOURCE_ROOT; };
-		94DCA2F51BE13C6100435661 /* Scene.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Scene.obj; path = ../Android/assets/Scene.obj; sourceTree = SOURCE_ROOT; };
 		94E5A0DD1BA3FF0700066CC5 /* FileContent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileContent.h; sourceTree = "<group>"; };
 		94EF0C5D1BA70E5400EBF5EE /* pos_norm_vertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = pos_norm_vertex.glsl; path = ../Android/assets/shaders/pos_norm_vertex.glsl; sourceTree = SOURCE_ROOT; };
 		94EF0C5F1BA70F6700EBF5EE /* norm_as_color_fragment.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = norm_as_color_fragment.glsl; path = ../Android/assets/shaders/norm_as_color_fragment.glsl; sourceTree = SOURCE_ROOT; };
 		94FAF39C1BEE939F0087CC0C /* WiredCube.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WiredCube.cpp; sourceTree = "<group>"; };
 		94FAF39D1BEE939F0087CC0C /* WiredCube.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = WiredCube.hpp; sourceTree = "<group>"; };
 		94FFA85E1BD8D95500E44EBE /* MeshGLInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MeshGLInfo.h; sourceTree = "<group>"; };
-		F30E41D61C2D548E00A88527 /* floor_n.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = floor_n.png; path = OMEngine/Platforms/Android/assets/floor_n.png; sourceTree = "<group>"; };
-		F30E41D71C2D548E00A88527 /* floor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = floor.png; path = OMEngine/Platforms/Android/assets/floor.png; sourceTree = "<group>"; };
-		F30E41D81C2D548E00A88527 /* sphere_n.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sphere_n.png; path = OMEngine/Platforms/Android/assets/sphere_n.png; sourceTree = "<group>"; };
-		F30E41D91C2D548E00A88527 /* sphere.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sphere.png; path = OMEngine/Platforms/Android/assets/sphere.png; sourceTree = "<group>"; };
 		F31C1AC71CEF31950087D843 /* minimon.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon.mtl; path = OMEngine/Platforms/Android/assets/minimon.mtl; sourceTree = "<group>"; };
 		F31C1AC81CEF31950087D843 /* minimon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = minimon.png; path = OMEngine/Platforms/Android/assets/minimon.png; sourceTree = "<group>"; };
 		F31C1ACB1CEF31FB0087D843 /* minimon_run.md5anim */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon_run.md5anim; path = OMEngine/Platforms/Android/assets/minimon_run.md5anim; sourceTree = "<group>"; };
@@ -825,7 +807,6 @@
 		F39A50201BB3F0090080B846 /* Illuminator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Illuminator.hpp; sourceTree = "<group>"; };
 		F39A50241BB40E5B0080B846 /* GameObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameObject.cpp; sourceTree = "<group>"; };
 		F39A50251BB40E5B0080B846 /* GameObject.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GameObject.hpp; sourceTree = "<group>"; };
-		F39FA5001C0DD9B500CC0BB4 /* test.raw */ = {isa = PBXFileReference; lastKnownFileType = file; name = test.raw; path = OMEngine/Platforms/Android/assets/test.raw; sourceTree = "<group>"; };
 		F39FA5801C0DE15400CC0BB4 /* analysis.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = analysis.c; sourceTree = "<group>"; };
 		F39FA5811C0DE15400CC0BB4 /* backends.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = backends.h; sourceTree = "<group>"; };
 		F39FA5821C0DE15400CC0BB4 /* bitrate.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bitrate.c; sourceTree = "<group>"; };
@@ -896,7 +877,6 @@
 		F3BC2E8F1CDF733300D83A3B /* phongMultiLightBump.omg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = phongMultiLightBump.omg; path = OMEngine/Platforms/Android/assets/phongMultiLightBump.omg; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
 		F3BCACB71BFF26FE002003B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = OMEiOS/Base.lproj/Main_iPad.storyboard; sourceTree = SOURCE_ROOT; };
 		F3BCACB91BFF26FE002003B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = OMEiOS/Base.lproj/Main_iPhone.storyboard; sourceTree = SOURCE_ROOT; };
-		F3BEAB191C43A6C00012DDCD /* lightingAttenuation.omg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = lightingAttenuation.omg; path = OMEngine/Platforms/Android/assets/lightingAttenuation.omg; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
 		F3C52B2A1BBD079F009F3604 /* Scene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Scene.cpp; sourceTree = "<group>"; };
 		F3C52B2B1BBD079F009F3604 /* Scene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Scene.hpp; sourceTree = "<group>"; };
 		F3C5D0771C85B1E800686AF1 /* writedepth.omg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = writedepth.omg; path = OMEngine/Platforms/Android/assets/writedepth.omg; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
@@ -1060,20 +1040,10 @@
 				F3C5D0771C85B1E800686AF1 /* writedepth.omg */,
 				F3D171771C6DCCD900A9507D /* generalLightingProjector.omg */,
 				F3D171751C6DCBF200A9507D /* projector.png */,
-				948396591C4B542D000D69BA /* generalLighting.omg */,
-				F3BEAB191C43A6C00012DDCD /* lightingAttenuation.omg */,
-				F30E41D61C2D548E00A88527 /* floor_n.png */,
-				F30E41D71C2D548E00A88527 /* floor.png */,
-				F30E41D81C2D548E00A88527 /* sphere_n.png */,
-				F30E41D91C2D548E00A88527 /* sphere.png */,
 				F3417B181C0F4907006902C9 /* 00.ogg */,
 				F39FA5C91C0DE6C200CC0BB4 /* lounge.ogg */,
-				F39FA5001C0DD9B500CC0BB4 /* test.raw */,
 				F3B0F6C01BF0BA250044A442 /* foo.ttf */,
 				F3B0F6BE1BF0B5830044A442 /* FFF_Tusj.ttf */,
-				94DCA2F31BE13C6100435661 /* Scene.bullet */,
-				94DCA2F41BE13C6100435661 /* Scene.mtl */,
-				94DCA2F51BE13C6100435661 /* Scene.obj */,
 				F368E8C41BA6AE5A00F322AF /* shaders */,
 				947FA31A1BA4854A00695A4E /* char_ram_col.png */,
 				947FA31B1BA4854A00695A4E /* ram.mtl */,
@@ -2120,7 +2090,6 @@
 				F3CAEEE51BB01A7600DCF182 /* default_gray_vertex.glsl in Resources */,
 				F328C4FB1BF491930037AC6D /* foo.ttf in Resources */,
 				9435525F1BEF091F00FC4ADA /* wired_vertex.glsl in Resources */,
-				94DCA2F81BE13C6100435661 /* Scene.obj in Resources */,
 				F328C4FF1BF4997F0037AC6D /* font_vertex.glsl in Resources */,
 				F3D5E1191AF8F32E00DD216B /* Images.xcassets in Resources */,
 				F3BC2E901CDF733300D83A3B /* phongMultiLightBump.omg in Resources */,
@@ -2129,22 +2098,17 @@
 				F3AB027B1CA7FFFE00CB8FC9 /* particle.png in Resources */,
 				F38600AD1CF3486E000BF704 /* minimon_idle.md5anim in Resources */,
 				9472227C1B9AD466008D601B /* treemomo.mtl in Resources */,
-				94DCA2F61BE13C6100435661 /* Scene.bullet in Resources */,
 				F33DAD241CEEF52A00BCA654 /* phongMultiLight.omg in Resources */,
 				F3C5D0781C85B1E800686AF1 /* writedepth.omg in Resources */,
-				F30E41DC1C2D548E00A88527 /* sphere_n.png in Resources */,
 				F39FA5CA1C0DE6C200CC0BB4 /* lounge.ogg in Resources */,
 				F31C1ACA1CEF31950087D843 /* minimon.png in Resources */,
 				9472227A1B9AD466008D601B /* leaf.png in Resources */,
-				9483965A1C4B542D000D69BA /* generalLighting.omg in Resources */,
 				F3BCACBB1BFF26FE002003B7 /* Main_iPhone.storyboard in Resources */,
 				947FA31F1BA4854A00695A4E /* ram.obj in Resources */,
 				F3A263971C33BD360021B3B6 /* light_point_vertex.glsl in Resources */,
-				F30E41DA1C2D548E00A88527 /* floor_n.png in Resources */,
 				947FA31D1BA4854A00695A4E /* char_ram_col.png in Resources */,
 				F31C1ACC1CEF31FB0087D843 /* minimon_run.md5anim in Resources */,
 				9435525E1BEF091F00FC4ADA /* wired_fragment.glsl in Resources */,
-				F30E41DD1C2D548E00A88527 /* sphere.png in Resources */,
 				F38A22E71BAAA40500FADEC0 /* SimpleGouraudFragment.glsl in Resources */,
 				F3D171781C6DCCD900A9507D /* generalLightingProjector.omg in Resources */,
 				F3E0F55A1CD0A4D8005D0EEE /* gouraudMultiLight.omg in Resources */,
@@ -2158,7 +2122,6 @@
 				F31C1AC91CEF31950087D843 /* minimon.mtl in Resources */,
 				F3A7ADA21CA0161500FF8910 /* shadowProjector.omg in Resources */,
 				F3417B191C0F4907006902C9 /* 00.ogg in Resources */,
-				94DCA2F71BE13C6100435661 /* Scene.mtl in Resources */,
 				94EF0C601BA70F6700EBF5EE /* norm_as_color_fragment.glsl in Resources */,
 				947222791B9AD466008D601B /* grass.png in Resources */,
 				F368E8CA1BA6AE5A00F322AF /* fragmentPerPixel.glsl in Resources */,
@@ -2166,17 +2129,14 @@
 				947222781B9AD466008D601B /* balloon.png in Resources */,
 				F38A22E31BAAA15400FADEC0 /* SimpeGouraudVertex.glsl in Resources */,
 				F38600AF1CF3486E000BF704 /* minimon_jump_2.md5anim in Resources */,
-				F30E41DB1C2D548E00A88527 /* floor.png in Resources */,
 				F3D171761C6DCBF200A9507D /* projector.png in Resources */,
 				947FA31E1BA4854A00695A4E /* ram.mtl in Resources */,
-				F3BEAB1A1C43A6C00012DDCD /* lightingAttenuation.omg in Resources */,
 				F331380C1CD62484000705D5 /* bblock.obj in Resources */,
 				F3AB027C1CA7FFFE00CB8FC9 /* particles.omg in Resources */,
 				F3A263961C33BD360021B3B6 /* light_point_fragment.glsl in Resources */,
 				94EF0C5E1BA70E5400EBF5EE /* pos_norm_vertex.glsl in Resources */,
 				947222771B9AD466008D601B /* background.png in Resources */,
 				F331380B1CD62484000705D5 /* bblock.mtl in Resources */,
-				F39FA5011C0DD9B500CC0BB4 /* test.raw in Resources */,
 				F38A22E11BAA979700FADEC0 /* vertexPerPixel.glsl in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

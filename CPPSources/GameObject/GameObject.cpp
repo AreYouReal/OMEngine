@@ -35,7 +35,7 @@ IComponent *GameObject::getComponent(const ComponentEnum &name){
 
 
 v3d GameObject::getDimensions(){
-    v3d dimensions;
+    v3d dimensions(0.1f, 0.1f, 0.1f);
     MeshRendererComponent *mrc = static_cast<MeshRendererComponent *>(getComponent(ComponentEnum::MESH_RENDERER));
     if(mrc){
         dimensions = mrc->getDimensions();

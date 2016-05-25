@@ -40,18 +40,7 @@ bool Scene::init(){
     logGLError();
     Camera::instance()->initShadowBuffer();
     
-    up<GameObject> go = std::unique_ptr<GameObject>(new GameObject("Light"));
-    
-    go->setFront(v3d(0, 1, -1));
-    up<LightSource> light = up<LightSource>(new LightSource(go.get(), LightSource::Type::DIRECTION, v4d(1, 1, 1, 1)) );
-    go->addComponent(ComponentEnum::LIGHT_SOURCE, std::move(light));
-    addObjOnScene(std::move(go));
-    
-    go = std::unique_ptr<GameObject>(new GameObject("Light"));
-    light = up<LightSource>(new LightSource(go.get(), LightSource::Type::DIRECTION, v4d(1, 0, 0, 1)) );
-//    go->setFront(v3d(5, 5, 0));
-    go->addComponent(ComponentEnum::LIGHT_SOURCE, std::move(light));
-    addObjOnScene(std::move(go));
+    addLight();
     
     loadBlockObj();
     loadArrowObj();
@@ -70,29 +59,16 @@ void Scene::update(float deltaTime){
             comp.second->update();
         }
     }
-        
-    Illuminator::instance()->update(deltaTime);
     player->update();
 }
 
 void Scene::draw(){
     
-    static bool increase = false;
-    static float redComp = 0.1f;
-    if(increase){
-        redComp += 0.1f * Time::deltaTime;
-        if(redComp > 0.35) increase = false;
-    }else{
-        redComp -= 0.1f * Time::deltaTime;
-        if(redComp < 0.1f) increase = true;
-    }
-
-    
     logGLError();
     glBindFramebuffer(GL_FRAMEBUFFER, Camera::instance()->mMainBuffer);
     glColorMask ( GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE );
     glViewport(0, 0, Camera::instance()->width(), Camera::instance()->height());
-    glClearColor(redComp, 0.1f, 0.1f, 1.0f);
+    glClearColor(0.8f, 0.8f, 0.8f, 1.0f);
     glClear( GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT );
     
     
@@ -108,7 +84,6 @@ void Scene::draw(){
         }
     }
     
-    //    Illuminator::instance()->getLightSource()->draw();
     logGLError();
 }
 
@@ -156,33 +131,6 @@ void Scene::touchBegin(const int x, const int y){
 }
 
 #pragma mark Init Helpers
-void Scene::createBallsScene(){
-    
-    sp<Obj> object = Obj::load("Scene.obj");
-    object->build();
-    object->clear();
-    
-    mObjRess.insert(std::pair<string, sp<Obj>>("ballsScene", object));
-    
-    up<GameObject> interior = std::unique_ptr<GameObject>(new GameObject("interior"));
-    up<MeshRendererComponent> mrc = up<MeshRendererComponent>(new MeshRendererComponent(interior.get(), mObjRess["ballsScene"]->getMesh(interior->name)));
-    interior->addComponent(ComponentEnum::MESH_RENDERER, std::move(mrc));
-    
-    up<GameObject> camera = std::unique_ptr<GameObject>(new GameObject("player"));
-    mrc = up<MeshRendererComponent>(new MeshRendererComponent(camera.get(), mObjRess["ballsScene"]->getMesh(camera->name)));
-    camera->addComponent(ComponentEnum::MESH_RENDERER, std::move(mrc));
-    
-    std::vector<GameObject*> objs;
-    objs.push_back(interior.get());
-    objs.push_back(camera.get());
-    
-    PhysicalWorld::instance()->loadPhysicsWorldFromFile("Scene.bullet", objs);
-    
-    addObjOnScene(std::move(interior));
-    addObjOnScene(std::move(camera));
-    
-}
-
 void Scene::loadBlockObj(){
     sp<Obj> bblockObj = Obj::load(bblockObjName.c_str());
     bblockObj->build();
@@ -197,6 +145,27 @@ void Scene::loadArrowObj(){
     arrowObj->clear();
     
     mObjRess.insert(std::pair<string, sp<Obj>>(actionObjName, arrowObj));
+}
+
+void Scene::addLight(){
+    up<GameObject> go = std::unique_ptr<GameObject>(new GameObject("Light"));
+    
+    go->setFront(v3d(0, 1, -1));
+    up<LightSource> light = up<LightSource>(new LightSource(go.get(), LightSource::Type::DIRECTION, v4d(1, 1, 1, 1)) );
+    go->addComponent(ComponentEnum::LIGHT_SOURCE, std::move(light));
+    
+    up<DebugDrawComponent> debugDraw = up<DebugDrawComponent>(new DebugDrawComponent(go.get()));
+    go->addComponent(ComponentEnum::DEBUG_DRAW, std::move(debugDraw));
+    
+    addObjOnScene(std::move(go));
+    
+//    go = std::unique_ptr<GameObject>(new GameObject("Light"));
+//    light = up<LightSource>(new LightSource(go.get(), LightSource::Type::DIRECTION, v4d(1, 0, 0, 1)) );
+//    go->setFront(v3d(5, 5, 0));
+//    go->addComponent(ComponentEnum::LIGHT_SOURCE, std::move(light));
+//    debugDraw = up<DebugDrawComponent>(new DebugDrawComponent(go.get()));
+//    go->addComponent(ComponentEnum::DEBUG_DRAW, std::move(debugDraw));
+//    addObjOnScene(std::move(go));
 }
 
 up<PlayerController> Scene::createPlayer(){

@@ -21,8 +21,6 @@ public:
     LightSource* getLightSource();
     LightSource* getLightSource(int index);
     
-    void update(const float deltaTime);
-    
     void addLight(LightSource *light);
     void removeLight(LightSource * light);
     
