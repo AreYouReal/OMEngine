@@ -221,8 +221,6 @@
 		F328C4FB1BF491930037AC6D /* foo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3B0F6C01BF0BA250044A442 /* foo.ttf */; };
 		F328C4FE1BF4997F0037AC6D /* font_fragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F328C4FC1BF4997F0037AC6D /* font_fragment.glsl */; };
 		F328C4FF1BF4997F0037AC6D /* font_vertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F328C4FD1BF4997F0037AC6D /* font_vertex.glsl */; };
-		F32AD2D81CD9C6A0009B1FE8 /* arrow.obj in Resources */ = {isa = PBXBuildFile; fileRef = F32AD2D71CD9C6A0009B1FE8 /* arrow.obj */; };
-		F32AD2DA1CD9C91D009B1FE8 /* arrow.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F32AD2D91CD9C91D009B1FE8 /* arrow.mtl */; };
 		F32EB63C1C5FA5E00057F474 /* GreySP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F32EB63A1C5FA5E00057F474 /* GreySP.cpp */; };
 		F331380B1CD62484000705D5 /* bblock.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F33138081CD62484000705D5 /* bblock.mtl */; };
 		F331380C1CD62484000705D5 /* bblock.obj in Resources */ = {isa = PBXBuildFile; fileRef = F33138091CD62484000705D5 /* bblock.obj */; };
@@ -234,6 +232,8 @@
 		F34129D81BB53DBC006F4D4D /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F34129D61BB53DBC006F4D4D /* Texture.cpp */; };
 		F3417B191C0F4907006902C9 /* 00.ogg in Resources */ = {isa = PBXBuildFile; fileRef = F3417B181C0F4907006902C9 /* 00.ogg */; };
 		F35AA90F1CC659D300957429 /* AnimMeshComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F35AA90D1CC659D300957429 /* AnimMeshComponent.cpp */; };
+		F36587701CF5C85700D85EBB /* actionArrow.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F365876E1CF5C85700D85EBB /* actionArrow.mtl */; };
+		F36587711CF5C85700D85EBB /* actionArrow.obj in Resources */ = {isa = PBXBuildFile; fileRef = F365876F1CF5C85700D85EBB /* actionArrow.obj */; };
 		F368E8C01BA6AC9F00F322AF /* lodepng.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F368E8B71BA6AC9F00F322AF /* lodepng.cpp */; };
 		F368E8C11BA6AC9F00F322AF /* NvTriStrip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F368E8BA1BA6AC9F00F322AF /* NvTriStrip.cpp */; };
 		F368E8C21BA6AC9F00F322AF /* NvTriStripObjects.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F368E8BC1BA6AC9F00F322AF /* NvTriStripObjects.cpp */; };
@@ -795,8 +795,6 @@
 		F31C1ACB1CEF31FB0087D843 /* minimon_run.md5anim */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon_run.md5anim; path = OMEngine/Platforms/Android/assets/minimon_run.md5anim; sourceTree = "<group>"; };
 		F328C4FC1BF4997F0037AC6D /* font_fragment.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = font_fragment.glsl; path = ../Android/assets/shaders/font_fragment.glsl; sourceTree = SOURCE_ROOT; };
 		F328C4FD1BF4997F0037AC6D /* font_vertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = font_vertex.glsl; path = ../Android/assets/shaders/font_vertex.glsl; sourceTree = SOURCE_ROOT; };
-		F32AD2D71CD9C6A0009B1FE8 /* arrow.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = arrow.obj; path = OMEngine/Platforms/Android/assets/arrow.obj; sourceTree = "<group>"; };
-		F32AD2D91CD9C91D009B1FE8 /* arrow.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = arrow.mtl; path = OMEngine/Platforms/Android/assets/arrow.mtl; sourceTree = "<group>"; };
 		F32EB63A1C5FA5E00057F474 /* GreySP.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GreySP.cpp; path = OMEngine/CPPSources/Shaders/GreySP.cpp; sourceTree = "<group>"; };
 		F32EB63B1C5FA5E00057F474 /* GreySP.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = GreySP.hpp; path = OMEngine/CPPSources/Shaders/GreySP.hpp; sourceTree = "<group>"; };
 		F33138081CD62484000705D5 /* bblock.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = bblock.mtl; path = OMEngine/Platforms/Android/assets/bblock.mtl; sourceTree = "<group>"; };
@@ -814,6 +812,8 @@
 		F3473FA41BC3E607001DE43A /* Singleton.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Singleton.hpp; sourceTree = "<group>"; };
 		F35AA90D1CC659D300957429 /* AnimMeshComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimMeshComponent.cpp; sourceTree = "<group>"; };
 		F35AA90E1CC659D300957429 /* AnimMeshComponent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AnimMeshComponent.hpp; sourceTree = "<group>"; };
+		F365876E1CF5C85700D85EBB /* actionArrow.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = actionArrow.mtl; path = OMEngine/Platforms/Android/assets/actionArrow.mtl; sourceTree = "<group>"; };
+		F365876F1CF5C85700D85EBB /* actionArrow.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = actionArrow.obj; path = OMEngine/Platforms/Android/assets/actionArrow.obj; sourceTree = "<group>"; };
 		F368E8B71BA6AC9F00F322AF /* lodepng.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lodepng.cpp; sourceTree = "<group>"; };
 		F368E8B81BA6AC9F00F322AF /* lodepng.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lodepng.h; sourceTree = "<group>"; };
 		F368E8BA1BA6AC9F00F322AF /* NvTriStrip.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NvTriStrip.cpp; sourceTree = "<group>"; };
@@ -1066,6 +1066,8 @@
 		7626524017F10E6C007CCD43 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F365876E1CF5C85700D85EBB /* actionArrow.mtl */,
+				F365876F1CF5C85700D85EBB /* actionArrow.obj */,
 				F38600AA1CF3486E000BF704 /* minimon_idle.md5anim */,
 				F38600AB1CF3486E000BF704 /* minimon_jump_1.md5anim */,
 				F38600AC1CF3486E000BF704 /* minimon_jump_2.md5anim */,
@@ -1074,9 +1076,7 @@
 				F31C1AC81CEF31950087D843 /* minimon.png */,
 				F33DAD231CEEF52A00BCA654 /* phongMultiLight.omg */,
 				F3BC2E8F1CDF733300D83A3B /* phongMultiLightBump.omg */,
-				F32AD2D91CD9C91D009B1FE8 /* arrow.mtl */,
 				F39444761CEE0C6500466C10 /* minimon.md5mesh */,
-				F32AD2D71CD9C6A0009B1FE8 /* arrow.obj */,
 				F33138081CD62484000705D5 /* bblock.mtl */,
 				F33138091CD62484000705D5 /* bblock.obj */,
 				F3E0F5591CD0A4D8005D0EEE /* gouraudMultiLight.omg */,
@@ -2173,6 +2173,7 @@
 				F3D5E1191AF8F32E00DD216B /* Images.xcassets in Resources */,
 				F3BC2E901CDF733300D83A3B /* phongMultiLightBump.omg in Resources */,
 				9488ADA51CDAE2D100436916 /* bob.md5mesh in Resources */,
+				F36587701CF5C85700D85EBB /* actionArrow.mtl in Resources */,
 				F394447A1CEE0C6500466C10 /* minimon.md5mesh in Resources */,
 				9488ADA01CDAE2D100436916 /* bob_helmet_normal.png in Resources */,
 				F3AB027B1CA7FFFE00CB8FC9 /* particle.png in Resources */,
@@ -2189,7 +2190,6 @@
 				F31C1ACA1CEF31950087D843 /* minimon.png in Resources */,
 				9472227A1B9AD466008D601B /* leaf.png in Resources */,
 				9483965A1C4B542D000D69BA /* generalLighting.omg in Resources */,
-				F32AD2DA1CD9C91D009B1FE8 /* arrow.mtl in Resources */,
 				F3BCACBB1BFF26FE002003B7 /* Main_iPhone.storyboard in Resources */,
 				947FA31F1BA4854A00695A4E /* ram.obj in Resources */,
 				F3A263971C33BD360021B3B6 /* light_point_vertex.glsl in Resources */,
@@ -2199,10 +2199,10 @@
 				F31C1ACC1CEF31FB0087D843 /* minimon_run.md5anim in Resources */,
 				9435525E1BEF091F00FC4ADA /* wired_fragment.glsl in Resources */,
 				F30E41DD1C2D548E00A88527 /* sphere.png in Resources */,
-				F32AD2D81CD9C6A0009B1FE8 /* arrow.obj in Resources */,
 				F38A22E71BAAA40500FADEC0 /* SimpleGouraudFragment.glsl in Resources */,
 				F3D171781C6DCCD900A9507D /* generalLightingProjector.omg in Resources */,
 				F3E0F55A1CD0A4D8005D0EEE /* gouraudMultiLight.omg in Resources */,
+				F36587711CF5C85700D85EBB /* actionArrow.obj in Resources */,
 				F38600AE1CF3486E000BF704 /* minimon_jump_1.md5anim in Resources */,
 				9488ADA71CDAE2D100436916 /* bob.omg in Resources */,
 				9488AD9D1CDAE2D100436916 /* bob_face_diffuse.png in Resources */,

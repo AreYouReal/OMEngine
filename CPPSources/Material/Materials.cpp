@@ -22,9 +22,9 @@ static std::map<string, string>  meshShaderTable{
     std::pair<string, string>("helmet", "phongMultiLight.omg"),
     std::pair<string, string>("lamp", "phongMultiLight.omg"),
     
-    std::pair<string, string>("bblock_Cube", "phongMultiLight.omg"),
+    std::pair<string, string>("bblock", "Normal"),
     
-    std::pair<string, string>("ArrowObj_Plane", "normAsColor"),
+    std::pair<string, string>("actionArrow", "Normal"),
 
     std::pair<string, string>("minimon", "phongMultiLight.omg"),
 
@@ -194,12 +194,13 @@ bool Materials::isMaterialExist(const string &name){
 
 void Materials::loadPrograms(){
     logGLError();
-    addProgram(ShaderHelper::createProgram("normAsColor",   "pos_norm_vertex.glsl",     "norm_as_color_fragment.glsl"   , ShaderHelper::ShaderType::Normal));
+    addProgram(ShaderHelper::createProgram("Normal",   "pos_norm_vertex.glsl",     "norm_as_color_fragment.glsl"   , ShaderHelper::ShaderType::Normal));
     logGLError();
-    addProgram(ShaderHelper::createProgram("defaultGrey",    "default_gray_vertex.glsl", "default_gray_fragment.glsl"   , ShaderHelper::ShaderType::Grey ));
+    addProgram(ShaderHelper::createProgram("Grey",    "default_gray_vertex.glsl", "default_gray_fragment.glsl"   , ShaderHelper::ShaderType::Grey ));
     addProgram(ShaderHelper::createProgram("SimpleGouraud","SimpeGouraudVertex.glsl",     "SimpleGouraudFragment.glsl"      , ShaderHelper::ShaderType::SimplePhong  ));
     addProgram(ShaderHelper::createProgram("SimplePhong", "vertexPerPixel.glsl",      "fragmentPerPixel.glsl"      ,ShaderHelper::ShaderType::SimplePhong   ));
     addProgram(ShaderHelper::createProgram("wired",           "wired_vertex.glsl",        "wired_fragment.glsl"  , ShaderHelper::ShaderType::Wired ));
+    
     addProgram(ShaderHelper::createProgram("lightPoint",      "light_point_vertex.glsl",  "light_point_fragment.glsl"     ));
     addProgram(ShaderHelper::createProgram("font",            "font_vertex.glsl",         "font_fragment.glsl"            ));
 }

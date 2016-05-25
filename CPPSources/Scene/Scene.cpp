@@ -3,6 +3,13 @@
 #include "Shortcuts.h"
 #include "LevelBuilder.hpp"
 
+
+const std::string actionObjName{"actionArrow.obj"};
+const std::string bblockObjName{"bblock.obj"};
+
+const string actionArrowMeshName{"actionArrow"};
+const string bblockMeshName{"bblock"};
+
 up<PlayerController> player;
 
 LevelBuilder *lBuilder;
@@ -35,7 +42,7 @@ bool Scene::init(){
     
     up<GameObject> go = std::unique_ptr<GameObject>(new GameObject("Light"));
     
-    go->setFront(v3d(0, -1, -1));
+    go->setFront(v3d(0, 1, -1));
     up<LightSource> light = up<LightSource>(new LightSource(go.get(), LightSource::Type::DIRECTION, v4d(1, 1, 1, 1)) );
     go->addComponent(ComponentEnum::LIGHT_SOURCE, std::move(light));
     addObjOnScene(std::move(go));
@@ -177,19 +184,19 @@ void Scene::createBallsScene(){
 }
 
 void Scene::loadBlockObj(){
-    sp<Obj> bblockObj = Obj::load("bblock.obj");
+    sp<Obj> bblockObj = Obj::load(bblockObjName.c_str());
     bblockObj->build();
     bblockObj->clear();
     
-    mObjRess.insert(std::pair<string, sp<Obj>>("bblock", bblockObj));
+    mObjRess.insert(std::pair<string, sp<Obj>>(bblockObjName, bblockObj));
 }
 
 void Scene::loadArrowObj(){
-    sp<Obj> arrowObj = Obj::load("arrow.obj");
+    sp<Obj> arrowObj = Obj::load(actionObjName.c_str());
     arrowObj->build();
     arrowObj->clear();
     
-    mObjRess.insert(std::pair<string, sp<Obj>>("arrow", arrowObj));
+    mObjRess.insert(std::pair<string, sp<Obj>>(actionObjName, arrowObj));
 }
 
 up<PlayerController> Scene::createPlayer(){
@@ -227,7 +234,7 @@ up<PlayerController> Scene::createPlayer(){
 LevelBuilder *Scene::createLevelBuilder(){
     up<GameObject> go = std::unique_ptr<GameObject>(new GameObject("LevelBuilder"));
     up<LevelBuilder> lb = std::unique_ptr<LevelBuilder>(new LevelBuilder(go.get()));
-    lb->InitWithMeshes(mObjRess["bblock"]->getMesh("bblock_Cube"), mObjRess["arrow"]->getMesh("ArrowObj_Plane"));
+    lb->InitWithMeshes(mObjRess[bblockObjName]->getMesh(bblockMeshName), mObjRess[actionObjName]->getMesh(actionArrowMeshName));
     LevelBuilder *returnValue = lb.get();
         go->addComponent(ComponentEnum::LEVEL_BUILDER, std::move(lb));
     addObjOnScene(std::move(go));
