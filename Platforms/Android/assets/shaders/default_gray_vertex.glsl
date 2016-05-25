@@ -1,6 +1,7 @@
 #version 300 es
 
 struct Light{
+    int type;
     lowp vec3 position;
     lowp vec4 color;
 };
@@ -18,8 +19,13 @@ out lowp vec4 color;
 void main(){
     
     vec3 position = (uModelViewM * aPosition).xyz;
-    vec3 L = normalize(uLight.position - position);
-    
+    vec3 L;
+    if(uLight.type == 0){
+        L = normalize(uLight.position);
+    }else{
+        L = normalize(uLight.position - position);
+    }
+
     vec3 normal = (uNormalM * aNormal).xyz;
     
     float intensity = max(dot(normal.xyz, L), 0.0);

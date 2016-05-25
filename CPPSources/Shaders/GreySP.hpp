@@ -7,9 +7,10 @@ struct GreySP : public NormalSP{
     int normMatUniLoc;
     int lightPosUniLoc;
     int lightColorUniLoc;
+    int lightTypeLocation;
 
-    virtual void initUniformLocations();
+    virtual void initUniformLocations() override;
     
-    virtual void setUniforms(ObjMaterial *mat);
+    virtual void setUniforms(const ObjMaterial *mat) override;
     
 };

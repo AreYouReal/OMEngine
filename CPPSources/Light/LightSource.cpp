@@ -47,5 +47,5 @@ void LightSource::update(){
     }
     degrees += 50 * Time::deltaTime;
     
-    go->mTransform.rotate(degrees, v3d(0, 1, 0));
+    go->mTransform.rotate(degrees, v3d(1, 1, 0));
 }

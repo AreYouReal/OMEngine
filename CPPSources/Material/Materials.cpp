@@ -4,7 +4,7 @@
 #include "ShaderHelper.h"
 
 static std::map<string, string>  meshShaderTable{
-    std::pair<string, string>("bblock", "Normal"),
+    std::pair<string, string>("bblock", "Grey"),
     std::pair<string, string>("actionArrow", "Normal"),
     std::pair<string, string>("minimon", "phongMultiLight.omg"),
 };
@@ -150,7 +150,7 @@ sp<ShaderProgram> Materials::getProgram(const string &name){
 
 sp<ShaderProgram> Materials::getProgramFoMesh(const string &name){
     if(meshShaderTable.find(name) != meshShaderTable.end()){
-//        logMessage("Get program for mesh name: %s %s \n", name.c_str(), meshShaderTable[name].c_str());
+        logMessage("Get program for mesh name: %s %s \n", name.c_str(), meshShaderTable[name].c_str());
         return getProgram(meshShaderTable[name]);
     }
     return getProgram("normAsColor");
@@ -158,6 +158,7 @@ sp<ShaderProgram> Materials::getProgramFoMesh(const string &name){
 
 bool Materials::addMaterial(const sp<ObjMaterial> mat){
     if(materials.find(mat->name) == materials.end()){
+            logMessage("Adding material: %s\n", mat->name.c_str());
         materials.insert(std::pair<string, sp<ObjMaterial>>(mat->name, mat));
         return true;
     }else

@@ -13,11 +13,13 @@ void GreySP::initUniformLocations(){
             lightPosUniLoc = uniform.second.location;
         }else if(!uniform.second.name.compare("uLight.color")){
             lightColorUniLoc = uniform.second.location;
+        }else if(!uniform.second.name.compare("uLight.type")){
+            lightTypeLocation = uniform.second.location;
         }
     }
 }
 
-void GreySP::setUniforms(ObjMaterial *mat){
+void GreySP::setUniforms(const ObjMaterial *mat){
     NormalSP::setUniforms(mat);
     m4d matrix = Camera::instance()->normalMatrix();
     glUniformMatrix4fv(normMatUniLoc, 1, GL_TRUE, matrix.pointer());
@@ -26,4 +28,5 @@ void GreySP::setUniforms(ObjMaterial *mat){
     glUniform3fv(lightPosUniLoc, 1, &lightPosInEyeSpace.x);
     v4d lightColor = light->getColor();
     glUniform4fv(lightColorUniLoc, 1, &lightColor.x);
+    glUniform1i(lightTypeLocation, light->type());
 }
