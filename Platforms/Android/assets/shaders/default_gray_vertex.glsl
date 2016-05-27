@@ -30,7 +30,7 @@ void main(){
     
     float intensity = max(dot(normal.xyz, L), 0.0);
     if(intensity > 0.0){
-        color = vec4(.5, .5, .5, 1.0) * intensity;
+        color = vec4(.7, .3, .3, 1.0) * intensity;
     }else{
         color = vec4(0.0, 0.0, 0.0, 1.0);
     }

@@ -205,11 +205,15 @@
 		F331380C1CD62484000705D5 /* bblock.obj in Resources */ = {isa = PBXBuildFile; fileRef = F33138091CD62484000705D5 /* bblock.obj */; };
 		F33138101CD62640000705D5 /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3C52B2A1BBD079F009F3604 /* Scene.cpp */; };
 		F3392F611C117B4E005E850E /* Sound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3392F5F1C117B4E005E850E /* Sound.cpp */; };
+		F33CD3401CF83FEA0035D50D /* candy.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F33CD33D1CF83FEA0035D50D /* candy.mtl */; };
+		F33CD3411CF83FEA0035D50D /* candy.obj in Resources */ = {isa = PBXBuildFile; fileRef = F33CD33E1CF83FEA0035D50D /* candy.obj */; };
+		F33CD3421CF83FEA0035D50D /* texture2.png in Resources */ = {isa = PBXBuildFile; fileRef = F33CD33F1CF83FEA0035D50D /* texture2.png */; };
 		F33DAD241CEEF52A00BCA654 /* phongMultiLight.omg in Resources */ = {isa = PBXBuildFile; fileRef = F33DAD231CEEF52A00BCA654 /* phongMultiLight.omg */; };
 		F34129D01BB52BB7006F4D4D /* Materials.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F34129CE1BB52BB7006F4D4D /* Materials.cpp */; };
 		F34129D51BB53D6E006F4D4D /* ObjMaterial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F34129D31BB53D6E006F4D4D /* ObjMaterial.cpp */; };
 		F34129D81BB53DBC006F4D4D /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F34129D61BB53DBC006F4D4D /* Texture.cpp */; };
 		F3417B191C0F4907006902C9 /* 00.ogg in Resources */ = {isa = PBXBuildFile; fileRef = F3417B181C0F4907006902C9 /* 00.ogg */; };
+		F34C4B2A1CF857C0005211A9 /* LevelBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F34C4B281CF857C0005211A9 /* LevelBuilder.cpp */; };
 		F35AA90F1CC659D300957429 /* AnimMeshComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F35AA90D1CC659D300957429 /* AnimMeshComponent.cpp */; };
 		F36587701CF5C85700D85EBB /* actionArrow.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F365876E1CF5C85700D85EBB /* actionArrow.mtl */; };
 		F36587711CF5C85700D85EBB /* actionArrow.obj in Resources */ = {isa = PBXBuildFile; fileRef = F365876F1CF5C85700D85EBB /* actionArrow.obj */; };
@@ -289,7 +293,6 @@
 		F3E0F55A1CD0A4D8005D0EEE /* gouraudMultiLight.omg in Resources */ = {isa = PBXBuildFile; fileRef = F3E0F5591CD0A4D8005D0EEE /* gouraudMultiLight.omg */; };
 		F3EA6C2B1C3E8FA2002AF813 /* DebugDrawComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3EA6C291C3E8FA2002AF813 /* DebugDrawComponent.cpp */; };
 		F3F9D3A11CD749B8002EF3FC /* PlayerController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3F9D39F1CD749B8002EF3FC /* PlayerController.cpp */; };
-		F3F9D3A51CD75874002EF3FC /* LevelBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3F9D3A31CD75874002EF3FC /* LevelBuilder.cpp */; };
 		F3FAE8B81B6B77D6007AF169 /* ShaderProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3FAE8B61B6B77D6007AF169 /* ShaderProgram.cpp */; };
 		F3FAE8BB1B6B7885007AF169 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3FAE8B91B6B7885007AF169 /* Shader.cpp */; };
 /* End PBXBuildFile section */
@@ -757,6 +760,9 @@
 		F33138091CD62484000705D5 /* bblock.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = bblock.obj; path = OMEngine/Platforms/Android/assets/bblock.obj; sourceTree = "<group>"; };
 		F3392F5F1C117B4E005E850E /* Sound.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sound.cpp; sourceTree = "<group>"; };
 		F3392F601C117B4E005E850E /* Sound.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Sound.hpp; sourceTree = "<group>"; };
+		F33CD33D1CF83FEA0035D50D /* candy.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = candy.mtl; path = OMEngine/Platforms/Android/assets/candy.mtl; sourceTree = "<group>"; };
+		F33CD33E1CF83FEA0035D50D /* candy.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = candy.obj; path = OMEngine/Platforms/Android/assets/candy.obj; sourceTree = "<group>"; };
+		F33CD33F1CF83FEA0035D50D /* texture2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = texture2.png; path = OMEngine/Platforms/Android/assets/texture2.png; sourceTree = "<group>"; };
 		F33DAD231CEEF52A00BCA654 /* phongMultiLight.omg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = phongMultiLight.omg; path = OMEngine/Platforms/Android/assets/phongMultiLight.omg; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
 		F34129CE1BB52BB7006F4D4D /* Materials.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Materials.cpp; sourceTree = "<group>"; };
 		F34129CF1BB52BB7006F4D4D /* Materials.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Materials.hpp; sourceTree = "<group>"; };
@@ -766,6 +772,8 @@
 		F34129D71BB53DBC006F4D4D /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Texture.h; sourceTree = "<group>"; };
 		F3417B181C0F4907006902C9 /* 00.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; name = 00.ogg; path = OMEngine/Platforms/Android/assets/00.ogg; sourceTree = "<group>"; };
 		F3473FA41BC3E607001DE43A /* Singleton.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Singleton.hpp; sourceTree = "<group>"; };
+		F34C4B281CF857C0005211A9 /* LevelBuilder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LevelBuilder.cpp; sourceTree = "<group>"; };
+		F34C4B291CF857C0005211A9 /* LevelBuilder.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LevelBuilder.hpp; sourceTree = "<group>"; };
 		F35AA90D1CC659D300957429 /* AnimMeshComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimMeshComponent.cpp; sourceTree = "<group>"; };
 		F35AA90E1CC659D300957429 /* AnimMeshComponent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AnimMeshComponent.hpp; sourceTree = "<group>"; };
 		F365876E1CF5C85700D85EBB /* actionArrow.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = actionArrow.mtl; path = OMEngine/Platforms/Android/assets/actionArrow.mtl; sourceTree = "<group>"; };
@@ -898,8 +906,6 @@
 		F3EA6C2A1C3E8FA2002AF813 /* DebugDrawComponent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DebugDrawComponent.hpp; sourceTree = "<group>"; };
 		F3F9D39F1CD749B8002EF3FC /* PlayerController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerController.cpp; sourceTree = "<group>"; };
 		F3F9D3A01CD749B8002EF3FC /* PlayerController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PlayerController.hpp; sourceTree = "<group>"; };
-		F3F9D3A31CD75874002EF3FC /* LevelBuilder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LevelBuilder.cpp; sourceTree = "<group>"; };
-		F3F9D3A41CD75874002EF3FC /* LevelBuilder.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LevelBuilder.hpp; sourceTree = "<group>"; };
 		F3FAE8B61B6B77D6007AF169 /* ShaderProgram.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShaderProgram.cpp; path = ../../CPPSources/Shaders/ShaderProgram.cpp; sourceTree = SOURCE_ROOT; };
 		F3FAE8B71B6B77D6007AF169 /* ShaderProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShaderProgram.h; path = ../../CPPSources/Shaders/ShaderProgram.h; sourceTree = SOURCE_ROOT; };
 		F3FAE8B91B6B7885007AF169 /* Shader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Shader.cpp; path = ../../CPPSources/Shaders/Shader.cpp; sourceTree = SOURCE_ROOT; };
@@ -1020,6 +1026,9 @@
 		7626524017F10E6C007CCD43 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F33CD33D1CF83FEA0035D50D /* candy.mtl */,
+				F33CD33E1CF83FEA0035D50D /* candy.obj */,
+				F33CD33F1CF83FEA0035D50D /* texture2.png */,
 				F365876E1CF5C85700D85EBB /* actionArrow.mtl */,
 				F365876F1CF5C85700D85EBB /* actionArrow.obj */,
 				F38600AA1CF3486E000BF704 /* minimon_idle.md5anim */,
@@ -2002,8 +2011,8 @@
 		F3F9D3A21CD75865002EF3FC /* Level */ = {
 			isa = PBXGroup;
 			children = (
-				F3F9D3A31CD75874002EF3FC /* LevelBuilder.cpp */,
-				F3F9D3A41CD75874002EF3FC /* LevelBuilder.hpp */,
+				F34C4B281CF857C0005211A9 /* LevelBuilder.cpp */,
+				F34C4B291CF857C0005211A9 /* LevelBuilder.hpp */,
 				F3B3C3A21CE770F700CB5A25 /* BBlock.cpp */,
 				F3B3C3A31CE770F700CB5A25 /* BBlock.hpp */,
 			);
@@ -2111,6 +2120,7 @@
 				9435525E1BEF091F00FC4ADA /* wired_fragment.glsl in Resources */,
 				F38A22E71BAAA40500FADEC0 /* SimpleGouraudFragment.glsl in Resources */,
 				F3D171781C6DCCD900A9507D /* generalLightingProjector.omg in Resources */,
+				F33CD3411CF83FEA0035D50D /* candy.obj in Resources */,
 				F3E0F55A1CD0A4D8005D0EEE /* gouraudMultiLight.omg in Resources */,
 				F36587711CF5C85700D85EBB /* actionArrow.obj in Resources */,
 				F38600AE1CF3486E000BF704 /* minimon_jump_1.md5anim in Resources */,
@@ -2132,9 +2142,11 @@
 				F3D171761C6DCBF200A9507D /* projector.png in Resources */,
 				947FA31E1BA4854A00695A4E /* ram.mtl in Resources */,
 				F331380C1CD62484000705D5 /* bblock.obj in Resources */,
+				F33CD3401CF83FEA0035D50D /* candy.mtl in Resources */,
 				F3AB027C1CA7FFFE00CB8FC9 /* particles.omg in Resources */,
 				F3A263961C33BD360021B3B6 /* light_point_fragment.glsl in Resources */,
 				94EF0C5E1BA70E5400EBF5EE /* pos_norm_vertex.glsl in Resources */,
+				F33CD3421CF83FEA0035D50D /* texture2.png in Resources */,
 				947222771B9AD466008D601B /* background.png in Resources */,
 				F331380B1CD62484000705D5 /* bblock.mtl in Resources */,
 				F38A22E11BAA979700FADEC0 /* vertexPerPixel.glsl in Resources */,
@@ -2195,7 +2207,6 @@
 				F3E0F5581CD09B1D005D0EEE /* GouraudMultiLightSP.cpp in Sources */,
 				94D85AC61BB65477008ED8CF /* Transform.cpp in Sources */,
 				F3A843271CCF5DD2006D1B94 /* DepthSP.cpp in Sources */,
-				F3F9D3A51CD75874002EF3FC /* LevelBuilder.cpp in Sources */,
 				94788FC71BD4CFD200B55A25 /* btSphereBoxCollisionAlgorithm.cpp in Sources */,
 				F39A50261BB40E5B0080B846 /* GameObject.cpp in Sources */,
 				F39FA5BB1C0DE15400CC0BB4 /* lsp.c in Sources */,
@@ -2282,6 +2293,7 @@
 				94788FF61BD4CFD200B55A25 /* btTriangleShapeEx.cpp in Sources */,
 				94788FDD1BD4CFD200B55A25 /* btHeightfieldTerrainShape.cpp in Sources */,
 				F3710A151BA6CA6000235C68 /* Camera.cpp in Sources */,
+				F34C4B2A1CF857C0005211A9 /* LevelBuilder.cpp in Sources */,
 				F3B0F6BB1BF0ADDC0044A442 /* Font.cpp in Sources */,
 				947890061BD4CFD200B55A25 /* btVoronoiSimplexSolver.cpp in Sources */,
 				94FAF39E1BEE939F0087CC0C /* WiredCube.cpp in Sources */,

@@ -100,7 +100,7 @@ void LevelBuilder::addArrowToBlock(float rotation){
         go->addComponent(ComponentEnum::MESH_RENDERER, std::move(mrc));
         up<ArrowAction> aa = std::unique_ptr<ArrowAction>(new ArrowAction(go.get(), q4d(rotation, v3d(0, 1, 0))));
         actions.push(aa.get());
-        go->mTransform.rotate(aa->mRotation);
+        go->mTransform.rotate(aa->mActionRotation);
         go->mTransform.mPosition = prevObj->getPosition()+ v3d(0, 2, 0);
         go->mTransform.refreshTransformMatrix();
         go->addComponent(ComponentEnum::ACTION_ARROW, std::move(aa));

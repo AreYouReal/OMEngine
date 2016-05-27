@@ -5,7 +5,7 @@
 
 static std::map<string, string>  meshShaderTable{
     std::pair<string, string>("bblock", "Grey"),
-    std::pair<string, string>("actionArrow", "Normal"),
+    std::pair<string, string>("candy", "phongMultiLight.omg"),
     std::pair<string, string>("minimon", "phongMultiLight.omg"),
 };
 
