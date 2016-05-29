@@ -111,7 +111,7 @@ void LevelBuilder::addCandyToBlock(LAction action){
         rbc->mBody->setCollisionFlags(rbc->mBody->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE );
         go->addComponent(ComponentEnum::RIGID_BODY, std::move(rbc));
         
-                go->setPosition(prevObj->getPosition()+ v3d(0, 2, 0));
+        go->setPosition(prevObj->getPosition()+ v3d(0, 2, 0));
         
 //        up<DebugDrawComponent> ddc = up<DebugDrawComponent>(new DebugDrawComponent(go.get()));
 //        go->addComponent(ComponentEnum::DEBUG_DRAW, std::move(ddc));
@@ -151,7 +151,7 @@ void LevelBuilder::addBlockComponent(GameObject *go){
 
 LAction LevelBuilder::getAction(v3d newPos, v3d lastDir){
     v3d dir = newPos - mLastBlockPoss;
-    float rotation = -1.0f;
+
     LAction action(LAction::NONE);
     
     float length = v3d::length(mLastBlockPoss - newPos) ;
@@ -162,6 +162,7 @@ LAction LevelBuilder::getAction(v3d newPos, v3d lastDir){
     }
     
     if(mLastDir != dir){
+        float rotation = -1.0f;
         mLastDir = dir;
         if(dir.x > 0.1){
             rotation = 90.0f;
