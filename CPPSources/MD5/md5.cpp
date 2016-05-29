@@ -544,7 +544,7 @@ void MD5::playAction(const string name, const Action::InterpolationMethod method
     
     currentActions.push_back(action);
 
-    logMessage("Current action: %s\n", currentActions[0]->name.c_str());
+//    logMessage("Current action: %s\n", currentActions[0]->name.c_str());
 }
 
 void MD5::stopAllActions(){

@@ -125,19 +125,19 @@ v3d LevelBuilder::calculateNewPoss(v3d lastPos){
     int x, z;
     int step = 2;
     int randValue = rand() % 10;
-    if(randValue > 3){
-        x = 0; z = step;
-//        if((rand() % 2) > 0){
-//            y = -y;
-//        }
-    }else if(randValue > 7){
-        x = step; z = 0;
-    }else {
-        x = 2 * step;
-//        if((rand() % 2) > 0){
-//            x = -x;
-//        }
-        z = 0;
+    
+    if(randValue > 1){
+        if(randValue> 5){
+            x = 0; z = step;
+        }else{
+            x = step; z = 0;
+        }
+    }else{
+        if(randValue % 2 == 0){
+            x = 4 * step;         z = 0;
+        }else{
+            z = 4 * step; x = 0;
+        }
     }
     v3d newPos = lastPos + v3d(x, 0, z);
     return newPos;
@@ -158,7 +158,7 @@ LAction LevelBuilder::getAction(v3d newPos, v3d lastDir){
     
     if(length > 3.0f){
         action.mType = LAction::Type::JUMP;
-        action.mMagnitude = 6500.0f;
+        action.mMagnitude = 7250.0f;
     }
     
     if(mLastDir != dir){
