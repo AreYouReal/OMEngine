@@ -7,6 +7,8 @@
 
 #include <queue>
 
+#include "LevelRelated.cpp"
+
 class LevelBuilder : public IComponent{
 public:
 
@@ -24,7 +26,7 @@ public:
     
     void onHideBlock(GameObject *blockOBj);
     
-    ArrowAction * popAction();
+    LevelRelated::Action popAction();
     
     void refresh();
     
@@ -32,7 +34,7 @@ public:
     
 private:
     
-    std::queue<ArrowAction*> actions;
+    std::queue<LevelRelated::Action> actions;
     
     std::vector<GameObject*> activeblocks;
     std::vector<GameObject*> inactiveBlocks;

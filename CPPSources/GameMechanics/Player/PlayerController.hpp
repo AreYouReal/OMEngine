@@ -1,13 +1,9 @@
 #pragma once
 
 #include "IComponent.hpp"
-#include "ArrowAction.hpp"
 #include "RigidBodyComponent.hpp"
-
-
 #include <queue>
 
-class ArrowAction;
 class LevelBuilder;
 
 class PlayerController : public IComponent{

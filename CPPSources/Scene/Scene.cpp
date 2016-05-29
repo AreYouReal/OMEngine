@@ -59,7 +59,6 @@ void Scene::update(float deltaTime){
             comp.second->update();
         }
     }
-    player->update();
 }
 
 void Scene::draw(){

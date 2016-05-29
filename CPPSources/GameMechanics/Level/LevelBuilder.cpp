@@ -30,21 +30,16 @@ void LevelBuilder::buildLevel(){
     
 }
 
-ArrowAction* LevelBuilder::popAction(){
+LevelRelated::Action LevelBuilder::popAction(){
     if(!actions.empty()){
-        ArrowAction *action = actions.front();
+        LevelRelated::Action action = actions.front();
         actions.pop();
-        action->hide();
-        for(int i = 0; i < activeArrows.size(); ++i){
-            if(activeArrows[i] == action->go){
-                inactiveArrows.push_back(activeArrows[i]);
-                activeArrows.erase(activeArrows.begin() + i);
-                break;
-            }
-        }
         return action;
     }
-    return nullptr;
+    LevelRelated::Action act;
+    act.mRotation = q4d(90, v3d(0, 1, 0));
+    act.mType = LevelRelated::Action::Type::YAW;
+    return act;
 }
 
 void LevelBuilder::onHideBlock(GameObject *blockOBj){
@@ -99,7 +94,10 @@ void LevelBuilder::addArrowToBlock(float rotation){
         up<MeshRendererComponent> mrc = up<MeshRendererComponent>(new MeshRendererComponent(go.get(), mArrow));
         go->addComponent(ComponentEnum::MESH_RENDERER, std::move(mrc));
         up<ArrowAction> aa = std::unique_ptr<ArrowAction>(new ArrowAction(go.get(), q4d(rotation, v3d(0, 1, 0))));
-        actions.push(aa.get());
+        LevelRelated::Action act;
+        act.mRotation = aa->mActionRotation;
+        act.mType = LevelRelated::Action::Type::YAW;
+        actions.push(act);
         go->mTransform.rotate(aa->mActionRotation);
         go->mTransform.mPosition = prevObj->getPosition()+ v3d(0, 2, 0);
         go->mTransform.refreshTransformMatrix();
@@ -184,7 +182,10 @@ void LevelBuilder::activateBlock(GameObject *go){
                 ArrowAction *aa = static_cast<ArrowAction*>( arrowGO->getComponent(ComponentEnum::ACTION_ARROW) );
                 if(aa){
                     aa->show(mLastBlockPoss + v3d(0, 2, 0), rotation);
-                    actions.push(aa);
+                    LevelRelated::Action act;
+                    act.mType = LevelRelated::Action::Type::YAW;
+                    act.mRotation = aa->mActionRotation;
+                    actions.push(act);
                 }
             }else{
                 addArrowToBlock(rotation);
@@ -224,7 +225,7 @@ void LevelBuilder::clearLevel(){
     inactiveArrows.clear();
     prevObj = nullptr;
     
-    actions = std::queue<ArrowAction*>{};
+    actions = std::queue<LevelRelated::Action>{};
     
     mLastBlockPoss = v3d(0, 0, 0);
     mLastDir = v3d(0, 0, 0);

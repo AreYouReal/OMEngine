@@ -68,15 +68,14 @@ void PlayerController::rotate(){
     if(mRigidBodyComp){
         btTransform t = mRigidBodyComp->mBody->getWorldTransform();
         btQuaternion currQ = t.getRotation();
-        ArrowAction * act = mLevelBuilder->popAction();
-        if(act == nullptr) return;
+        LevelRelated::Action act = mLevelBuilder->popAction();
         
-        btQuaternion q(act->mActionRotation.x, act->mActionRotation.y, act->mActionRotation.z, act->mActionRotation.w);
+        btQuaternion q(act.mRotation.x, act.mRotation.y, act.mRotation.z, act.mRotation.w);
         currQ = q * rotationCorrection;
         t.setRotation(currQ);
         mRigidBodyComp->mBody->setWorldTransform(t);
         
-        currentFronVector = frontVector * act->mActionRotation.matrix();
+        currentFronVector = frontVector * act.mRotation.matrix();
     }
 }
 

@@ -215,6 +215,7 @@
 		F3417B191C0F4907006902C9 /* 00.ogg in Resources */ = {isa = PBXBuildFile; fileRef = F3417B181C0F4907006902C9 /* 00.ogg */; };
 		F34C4B2A1CF857C0005211A9 /* LevelBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F34C4B281CF857C0005211A9 /* LevelBuilder.cpp */; };
 		F35AA90F1CC659D300957429 /* AnimMeshComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F35AA90D1CC659D300957429 /* AnimMeshComponent.cpp */; };
+		F361DB8B1CFAC946008A9725 /* LevelRelated.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F361DB891CFAC946008A9725 /* LevelRelated.cpp */; };
 		F36587701CF5C85700D85EBB /* actionArrow.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F365876E1CF5C85700D85EBB /* actionArrow.mtl */; };
 		F36587711CF5C85700D85EBB /* actionArrow.obj in Resources */ = {isa = PBXBuildFile; fileRef = F365876F1CF5C85700D85EBB /* actionArrow.obj */; };
 		F368E8C01BA6AC9F00F322AF /* lodepng.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F368E8B71BA6AC9F00F322AF /* lodepng.cpp */; };
@@ -776,6 +777,9 @@
 		F34C4B291CF857C0005211A9 /* LevelBuilder.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LevelBuilder.hpp; sourceTree = "<group>"; };
 		F35AA90D1CC659D300957429 /* AnimMeshComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimMeshComponent.cpp; sourceTree = "<group>"; };
 		F35AA90E1CC659D300957429 /* AnimMeshComponent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AnimMeshComponent.hpp; sourceTree = "<group>"; };
+		F361DB871CFAC92B008A9725 /* PlayerAction.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PlayerAction.hpp; sourceTree = "<group>"; };
+		F361DB891CFAC946008A9725 /* LevelRelated.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LevelRelated.cpp; sourceTree = "<group>"; };
+		F361DB8A1CFAC946008A9725 /* LevelRelated.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LevelRelated.hpp; sourceTree = "<group>"; };
 		F365876E1CF5C85700D85EBB /* actionArrow.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = actionArrow.mtl; path = OMEngine/Platforms/Android/assets/actionArrow.mtl; sourceTree = "<group>"; };
 		F365876F1CF5C85700D85EBB /* actionArrow.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = actionArrow.obj; path = OMEngine/Platforms/Android/assets/actionArrow.obj; sourceTree = "<group>"; };
 		F368E8B71BA6AC9F00F322AF /* lodepng.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lodepng.cpp; sourceTree = "<group>"; };
@@ -2015,6 +2019,9 @@
 				F34C4B291CF857C0005211A9 /* LevelBuilder.hpp */,
 				F3B3C3A21CE770F700CB5A25 /* BBlock.cpp */,
 				F3B3C3A31CE770F700CB5A25 /* BBlock.hpp */,
+				F361DB871CFAC92B008A9725 /* PlayerAction.hpp */,
+				F361DB891CFAC946008A9725 /* LevelRelated.cpp */,
+				F361DB8A1CFAC946008A9725 /* LevelRelated.hpp */,
 			);
 			path = Level;
 			sourceTree = "<group>";
@@ -2369,6 +2376,7 @@
 				94788FB41BD4CFD200B55A25 /* btBoxBoxCollisionAlgorithm.cpp in Sources */,
 				94CE87CD1B62B4D000752D5C /* q4d.cpp in Sources */,
 				94788FF11BD4CFD200B55A25 /* btGenericPoolAllocator.cpp in Sources */,
+				F361DB8B1CFAC946008A9725 /* LevelRelated.cpp in Sources */,
 				947890311BD4CFD200B55A25 /* btConvexHullComputer.cpp in Sources */,
 				947890291BD4CFD200B55A25 /* btSoftBodyConcaveCollisionAlgorithm.cpp in Sources */,
 				9478902C1BD4CFD200B55A25 /* btSoftRigidCollisionAlgorithm.cpp in Sources */,
