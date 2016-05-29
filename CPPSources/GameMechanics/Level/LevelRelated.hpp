@@ -1,7 +1,9 @@
 #pragma once
 
-#include "LevelRelated.hpp"
 #include "GameObject.hpp"
+
+class LevelBuilder;
+
 
 namespace  LevelRelated {
     
@@ -21,7 +23,7 @@ namespace  LevelRelated {
     
     struct Candy : public IComponent{
         
-        Candy(GameObject * const gameObject);
+        Candy(GameObject * const gameObject, LevelBuilder * const);
         virtual ~Candy();
         
         virtual void update() override;
@@ -36,6 +38,7 @@ namespace  LevelRelated {
         void hide();
         
     private:
+        LevelBuilder *mLevelBuilder;
         
         void rotationAnim();
         

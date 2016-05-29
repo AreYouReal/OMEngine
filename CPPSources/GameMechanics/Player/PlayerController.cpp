@@ -14,6 +14,13 @@ bool onPlayerPhysicalContact(btManifoldPoint &point, const btCollisionObjectWrap
     BBlock* blockComp = static_cast<BBlock*>(go1->getComponent(ComponentEnum::BBLOCK));
     if(blockComp){
         blockComp->hide();
+            return true;
+    }
+    
+    LevelRelated::Candy* candy = static_cast<LevelRelated::Candy*>(go1->getComponent(ComponentEnum::CANDY));
+    if(candy){
+        candy->hide();
+            return true;
     }
     
     return true;
@@ -80,6 +87,7 @@ void PlayerController::rotate(){
                 t.setRotation(currQ);
                 mRigidBodyComp->mBody->setWorldTransform(t);
                 mAnimMeshComp->setState(AnimMeshComponent::AnimationStates::JUMP, false);
+                        currentFronVector = frontVector * act.mRotation.matrix();
             }
             break;
             case LevelRelated::Action::Type::YAW:
@@ -89,6 +97,7 @@ void PlayerController::rotate(){
                 t.setRotation(currQ);
                 mRigidBodyComp->mBody->setWorldTransform(t);
                 mAnimMeshComp->setState(AnimMeshComponent::AnimationStates::RUN, true);
+                        currentFronVector = frontVector * act.mRotation.matrix();
             break;
             }
             case LevelRelated::Action::Type::JUMP:
@@ -99,7 +108,7 @@ void PlayerController::rotate(){
             break;
         }
         
-        currentFronVector = frontVector * act.mRotation.matrix();
+
     
         logMessage("ACTION! %d, %f\n", act.mType, act.mMagnitude);
     }

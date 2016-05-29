@@ -50,6 +50,17 @@ void LevelBuilder::onHideBlock(GameObject *blockOBj){
     }
 }
 
+void LevelBuilder::onHideCandy(GameObject *candyOBj){
+    for(int i = 0; i < activeCandies.size(); ++i){
+        if(activeCandies[i] == candyOBj){
+            activeCandies.erase(activeCandies.begin() + i);
+            (static_cast<MeshRendererComponent*>(candyOBj->getComponent(ComponentEnum::MESH_RENDERER)))->visible = false;
+            inactiveCandies.push_back(candyOBj);
+            break;
+        }
+    }
+}
+
 void LevelBuilder::update(){
     if(!inactiveBlocks.empty()){
         activateBlock(inactiveBlocks[0]);
@@ -87,16 +98,24 @@ void LevelBuilder::addNewBlock(v3d blockPos, LAction action){
 }
 
 void LevelBuilder::addCandyToBlock(LAction action){
-    if(mArrow){
-        up<GameObject> go = std::unique_ptr<GameObject>(new GameObject("ArrowObj_Plane"));
+    if(mArrow && action.mType != LAction::Type::NONE){
+        up<GameObject> go = std::unique_ptr<GameObject>(new GameObject("Candy"));
         up<MeshRendererComponent> mrc = up<MeshRendererComponent>(new MeshRendererComponent(go.get(), mArrow));
         go->addComponent(ComponentEnum::MESH_RENDERER, std::move(mrc));
-        up<LevelRelated::Candy> aa = std::unique_ptr<LevelRelated::Candy>(new LevelRelated::Candy(go.get()));
-        logMessage("Add Action %d\n", action.mType);
+        up<LevelRelated::Candy> aa = std::unique_ptr<LevelRelated::Candy>(new LevelRelated::Candy(go.get(), this));
         actions.push(action);
-        go->mTransform.mPosition = prevObj->getPosition()+ v3d(0, 2, 0);
-        go->mTransform.refreshTransformMatrix();
+
         go->addComponent(ComponentEnum::CANDY, std::move(aa));
+        
+        up<RigidBodyComponent> rbc = up<RigidBodyComponent>(new RigidBodyComponent(go.get(), 0.0f));
+        rbc->mBody->setCollisionFlags(rbc->mBody->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE );
+        go->addComponent(ComponentEnum::RIGID_BODY, std::move(rbc));
+        
+                go->setPosition(prevObj->getPosition()+ v3d(0, 2, 0));
+        
+//        up<DebugDrawComponent> ddc = up<DebugDrawComponent>(new DebugDrawComponent(go.get()));
+//        go->addComponent(ComponentEnum::DEBUG_DRAW, std::move(ddc));
+        
         activeCandies.push_back(go.get());
         Scene::instance()->addObjOnScene(std::move(go));
     }
@@ -137,17 +156,9 @@ LAction LevelBuilder::getAction(v3d newPos, v3d lastDir){
     
     float length = v3d::length(mLastBlockPoss - newPos) ;
     
-    
-    logMessage("PREV: ");
-    v3d::print(mLastBlockPoss);
-    logMessage("CURRENT: ");
-    v3d::print(newPos);
-    logMessage("Length: %f\n", length);
-
-    
     if(length > 3.0f){
         action.mType = LAction::Type::JUMP;
-        action.mMagnitude = 7500.0f;
+        action.mMagnitude = 6500.0f;
     }
     
     if(mLastDir != dir){
@@ -187,8 +198,6 @@ void LevelBuilder::activateBlock(GameObject *go){
             mmc->visible = true;
         }
 
-
-        
         for(int i = 0; i < inactiveBlocks.size(); ++i){
             if(inactiveBlocks[i] == go){
                 inactiveBlocks.erase(inactiveBlocks.begin() + i);
@@ -197,7 +206,7 @@ void LevelBuilder::activateBlock(GameObject *go){
             }
         }
         LAction action = getAction(newPos, mLastBlockPoss);
-
+        mLastBlockPoss = newPos;
         if(action.mType != LAction::Type::NONE){
             if(inactiveCandies.size() > 0){
                 GameObject *arrowGO = inactiveCandies[0];

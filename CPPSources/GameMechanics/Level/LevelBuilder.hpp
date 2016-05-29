@@ -28,6 +28,8 @@ public:
     
     void onHideBlock(GameObject *blockOBj);
     
+    void onHideCandy(GameObject *candyOBj);
+    
     LAction popAction();
     
     void refresh();
