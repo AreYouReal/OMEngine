@@ -244,7 +244,7 @@ void MD5::setPose(){
     switch (mAnimType) {
         case SINGLE_ACTION:
             if(currentActions.size() != 0)
-                mBindPose = currentActions[0]->pose;
+                mBindPose = currentActions.back()->pose;
             break;
         case BLEND_ACTIONS:
             if(currentActions.size() >= 2){
@@ -499,6 +499,7 @@ bool MD5::updateAction(const sp<Action> action, const float timeStep){
                             action->currFrame = 0;
                         }else{
                             action->state = Action::State::STOP;
+                            currentActions.pop_back();
                             break;
                         }
                     }
@@ -524,18 +525,23 @@ bool MD5::updateAction(const sp<Action> action, const float timeStep){
     return false;
 }
 
-void MD5::playAction(const string name, const Action::InterpolationMethod method){
+void MD5::playAction(const string name, const Action::InterpolationMethod method, bool loop){
     
     sp<Action> action = getAction(name);
     if(!action) return;
     action->fps = 1.0f / 24.0f;
     action->method = method;
-    action->loop = true;
+    action->loop = loop;
+    action->currFrame = 0;
     action->state = md5::Action::State::PLAY;
     if(!action->frameTime && method == Action::InterpolationMethod::FRAME)
         action->frameTime = action->fps;
 
-    currentActions.clear();
+    
+    if(currentActions.size() > 0){
+        prevAction = currentActions.front();
+    }
+    
     currentActions.push_back(action);
 
     logMessage("Current action: %s\n", currentActions[0]->name.c_str());

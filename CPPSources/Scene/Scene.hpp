@@ -52,7 +52,7 @@ private:
     void loadBlockObj();
     void loadArrowObj();
     
-    up<PlayerController> createPlayer();
+    PlayerController *createPlayer();
     LevelBuilder *createLevelBuilder();
     
     

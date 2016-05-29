@@ -6,13 +6,13 @@
 
 
 GameObject::GameObject(string name) : name(name){
-    logMessage("GameObject constructor");
+    logMessage("GameObject constructor\n");
 }
 
 GameObject::GameObject(sp<Transform>, sp<ObjMesh>, string n) : name(n){ }
 
 GameObject::~GameObject(){
-    logMessage("GameObject destructor");
+    logMessage("GameObject destructor\n");
 }
 
 void GameObject::addChild(sp<GameObject> child){

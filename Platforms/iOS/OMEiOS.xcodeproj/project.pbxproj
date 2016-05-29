@@ -237,7 +237,6 @@
 		F38A22E71BAAA40500FADEC0 /* SimpleGouraudFragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F38A22E61BAAA40500FADEC0 /* SimpleGouraudFragment.glsl */; };
 		F393D6AB1C0DC8EC0053C5FA /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F393D6AA1C0DC8EC0053C5FA /* OpenAL.framework */; };
 		F394447A1CEE0C6500466C10 /* minimon.md5mesh in Resources */ = {isa = PBXBuildFile; fileRef = F39444761CEE0C6500466C10 /* minimon.md5mesh */; };
-		F399F7B81CE349AF00132DB5 /* ArrowAction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F399F7B61CE349AF00132DB5 /* ArrowAction.cpp */; };
 		F39A501E1BB3EE9B0080B846 /* LightSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F39A501C1BB3EE9B0080B846 /* LightSource.cpp */; };
 		F39A50211BB3F0090080B846 /* Illuminator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F39A501F1BB3F0090080B846 /* Illuminator.cpp */; };
 		F39A50261BB40E5B0080B846 /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F39A50241BB40E5B0080B846 /* GameObject.cpp */; };
@@ -777,7 +776,6 @@
 		F34C4B291CF857C0005211A9 /* LevelBuilder.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LevelBuilder.hpp; sourceTree = "<group>"; };
 		F35AA90D1CC659D300957429 /* AnimMeshComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimMeshComponent.cpp; sourceTree = "<group>"; };
 		F35AA90E1CC659D300957429 /* AnimMeshComponent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AnimMeshComponent.hpp; sourceTree = "<group>"; };
-		F361DB871CFAC92B008A9725 /* PlayerAction.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PlayerAction.hpp; sourceTree = "<group>"; };
 		F361DB891CFAC946008A9725 /* LevelRelated.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LevelRelated.cpp; sourceTree = "<group>"; };
 		F361DB8A1CFAC946008A9725 /* LevelRelated.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LevelRelated.hpp; sourceTree = "<group>"; };
 		F365876E1CF5C85700D85EBB /* actionArrow.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = actionArrow.mtl; path = OMEngine/Platforms/Android/assets/actionArrow.mtl; sourceTree = "<group>"; };
@@ -811,8 +809,6 @@
 		F38A22E61BAAA40500FADEC0 /* SimpleGouraudFragment.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = SimpleGouraudFragment.glsl; path = ../Android/assets/shaders/SimpleGouraudFragment.glsl; sourceTree = SOURCE_ROOT; };
 		F393D6AA1C0DC8EC0053C5FA /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		F39444761CEE0C6500466C10 /* minimon.md5mesh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon.md5mesh; path = OMEngine/Platforms/Android/assets/minimon.md5mesh; sourceTree = "<group>"; };
-		F399F7B61CE349AF00132DB5 /* ArrowAction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ArrowAction.cpp; sourceTree = "<group>"; };
-		F399F7B71CE349AF00132DB5 /* ArrowAction.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ArrowAction.hpp; sourceTree = "<group>"; };
 		F39A501C1BB3EE9B0080B846 /* LightSource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LightSource.cpp; sourceTree = "<group>"; };
 		F39A501D1BB3EE9B0080B846 /* LightSource.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = LightSource.hpp; path = ../../CPPSources/Light/LightSource.hpp; sourceTree = SOURCE_ROOT; };
 		F39A501F1BB3F0090080B846 /* Illuminator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Illuminator.cpp; sourceTree = "<group>"; };
@@ -1996,8 +1992,6 @@
 			children = (
 				F3F9D3A21CD75865002EF3FC /* Level */,
 				F3F9D39E1CD749AB002EF3FC /* Player */,
-				F399F7B61CE349AF00132DB5 /* ArrowAction.cpp */,
-				F399F7B71CE349AF00132DB5 /* ArrowAction.hpp */,
 			);
 			name = GameMechanics;
 			path = OMEngine/CPPSources/GameMechanics;
@@ -2019,7 +2013,6 @@
 				F34C4B291CF857C0005211A9 /* LevelBuilder.hpp */,
 				F3B3C3A21CE770F700CB5A25 /* BBlock.cpp */,
 				F3B3C3A31CE770F700CB5A25 /* BBlock.hpp */,
-				F361DB871CFAC92B008A9725 /* PlayerAction.hpp */,
 				F361DB891CFAC946008A9725 /* LevelRelated.cpp */,
 				F361DB8A1CFAC946008A9725 /* LevelRelated.hpp */,
 			);
@@ -2342,7 +2335,6 @@
 				F35AA90F1CC659D300957429 /* AnimMeshComponent.cpp in Sources */,
 				F3B0F6B71BF0AD9F0044A442 /* stb_truetype.cpp in Sources */,
 				F39FA5C51C0DE15400CC0BB4 /* window.c in Sources */,
-				F399F7B81CE349AF00132DB5 /* ArrowAction.cpp in Sources */,
 				94788FB51BD4CFD200B55A25 /* btBoxBoxDetector.cpp in Sources */,
 				94788FEF1BD4CFD200B55A25 /* btUniformScalingShape.cpp in Sources */,
 				947890031BD4CFD200B55A25 /* btPolyhedralContactClipping.cpp in Sources */,

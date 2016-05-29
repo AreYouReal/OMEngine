@@ -130,7 +130,7 @@ public:
         bool updateAction(const sp<Action> action, const float timeStep);
         void updateActions(const float timeStep);
         
-        void playAction(const string name, const Action::InterpolationMethod method);
+        void playAction(const string name, const Action::InterpolationMethod method, bool loop = true);
     void stopAllActions();
     
         void blendActions(const std::vector<Joint> &pose_1, const std::vector<Joint> &pose_2, Action::InterpolationMethod interpolationMethod, float blend);
@@ -139,7 +139,10 @@ public:
         
     private:
         static sp<Mesh> loadMeshData(char* line);
-        
+    
+    
+        sp<Action> prevAction;
+    
         std::vector<sp<Action>> currentActions;
         
         void buildPoseWeightedNormalsTangents();

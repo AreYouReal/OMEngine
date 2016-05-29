@@ -18,7 +18,7 @@ public:
     virtual void    draw() override;
     virtual void    onDestroy() override;
     
-    void setState(AnimationStates state);
+    void setState(AnimationStates state, bool loop);
     
     bool visible = true;
     
@@ -31,5 +31,5 @@ private:
     
     AnimationStates mState{AnimationStates::IDLE};
     
-    void updateAnimation();
+    void updateAnimation(bool loop);
 };

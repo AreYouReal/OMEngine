@@ -3,11 +3,13 @@
 #include "IComponent.hpp"
 
 #include "Scene.hpp"
-#include "ArrowAction.hpp"
 
 #include <queue>
 
-#include "LevelRelated.cpp"
+
+#include "LevelRelated.hpp"
+
+using LAction = LevelRelated::Action;
 
 class LevelBuilder : public IComponent{
 public:
@@ -26,7 +28,7 @@ public:
     
     void onHideBlock(GameObject *blockOBj);
     
-    LevelRelated::Action popAction();
+    LAction popAction();
     
     void refresh();
     
@@ -39,8 +41,8 @@ private:
     std::vector<GameObject*> activeblocks;
     std::vector<GameObject*> inactiveBlocks;
     
-    std::vector<GameObject*> activeArrows;
-    std::vector<GameObject*> inactiveArrows;
+    std::vector<GameObject*> activeCandies;
+    std::vector<GameObject*> inactiveCandies;
     
     unsigned int blockCount{15};
     
@@ -53,11 +55,11 @@ private:
     v3d mLastDir{0, 0, 0};
     
     v3d  calculateNewPoss(v3d lastPos);
-    void addNewBlock(v3d blockPos, float rotation);
-    void addArrowToBlock(float rotation);
+    void addNewBlock(v3d blockPos, LAction action);
+    void addCandyToBlock(LAction action);
     
     
-    float getRotationAngle(v3d newPos, v3d lastDir);
+    LevelRelated::Action getAction(v3d newPos, v3d lastDir);
 
     void addBlockComponent(GameObject*);
     void activateBlock(GameObject*);

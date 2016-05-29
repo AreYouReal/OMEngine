@@ -19,3 +19,5 @@ using PhysicContactCallback = bool(*)(btManifoldPoint &point, const btCollisionO
                                       const btCollisionObjectWrapper *obj1, int part1, int index1);
 
 using PhysicNearCallback = void(*)(btBroadphasePair &pair, btCollisionDispatcher &despatcher, const btDispatcherInfo &info );
+
+

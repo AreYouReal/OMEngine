@@ -53,24 +53,24 @@ void AnimMeshComponent::draw(){
 void AnimMeshComponent::onDestroy(){
 }
 
-void AnimMeshComponent::setState(AnimMeshComponent::AnimationStates state){
+void AnimMeshComponent::setState(AnimMeshComponent::AnimationStates state, bool loop){
     mState = state;
-    updateAnimation();
+    updateAnimation(loop);
 }
 
-void AnimMeshComponent::updateAnimation(){
+void AnimMeshComponent::updateAnimation(bool loop){
     switch (mState) {
         case AnimationStates::NONE:
             md5->stopAllActions();
             break;
         case AnimationStates::IDLE:
-            md5->playAction("minimon_idle", md5::Action::InterpolationMethod::FRAME);
+            md5->playAction("minimon_idle", md5::Action::InterpolationMethod::FRAME, loop);
             break;
         case AnimationStates::RUN:
-            md5->playAction("minimon_run", md5::Action::InterpolationMethod::FRAME);
+            md5->playAction("minimon_run", md5::Action::InterpolationMethod::FRAME, loop);
             break;
         case AnimationStates::JUMP:
-            md5->playAction("minimon_jump_2", md5::Action::InterpolationMethod::FRAME);
+            md5->playAction("minimon_jump_2", md5::Action::InterpolationMethod::FRAME, loop);
             break;
         default:
             logMessage("Unknown animatino state!");

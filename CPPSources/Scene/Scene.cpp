@@ -10,7 +10,7 @@ const std::string bblockObjName{"bblock.obj"};
 const string actionArrowMeshName{"candy"};
 const string bblockMeshName{"bblock"};
 
-up<PlayerController> player;
+PlayerController *player;
 
 LevelBuilder *lBuilder;
 
@@ -54,8 +54,8 @@ bool Scene::init(){
 void Scene::update(float deltaTime){
     Camera::instance()->update();
     PhysicalWorld::instance()->update(deltaTime);
-    for(const auto& go : mObjects){
-        for(auto const &comp : go->mComponents){
+    for(int i = 0; i < mObjects.size(); ++i){
+        for(auto const &comp : mObjects[i]->mComponents){
             comp.second->update();
         }
     }
@@ -167,7 +167,7 @@ void Scene::addLight(){
 //    addObjOnScene(std::move(go));
 }
 
-up<PlayerController> Scene::createPlayer(){
+PlayerController* Scene::createPlayer(){
     up<GameObject> monster = std::unique_ptr<GameObject>(new GameObject("MONSTER"));
     std::vector<string>  monsterActions;
     monsterActions.clear();
@@ -192,11 +192,15 @@ up<PlayerController> Scene::createPlayer(){
 //    up<DebugDrawComponent> ddc = up<DebugDrawComponent>(new DebugDrawComponent(monster.get()));
 //    monster->addComponent(ComponentEnum::DEBUG_DRAW, std::move(ddc));
     
+    
+    
     up<PlayerController> player = up<PlayerController>( new PlayerController(monster.get()));
+    PlayerController *ctr = player.get();
+    monster->addComponent(ComponentEnum::PLAYER_CTR, std::move(player));
     
     addObjOnScene(std::move(monster));
 
-    return player;
+    return ctr;
 }
 
 LevelBuilder *Scene::createLevelBuilder(){
