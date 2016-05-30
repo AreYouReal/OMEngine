@@ -11,7 +11,7 @@ AnimMeshComponent::AnimMeshComponent(GameObject* const go, const string meshName
     
     md5 = md5::MD5::loadMesh(meshName);
     
-    init();
+    initAnimMesh();
     
     for(auto const &action : actionsToLoad){
         std::size_t pos = action.find(".md5anim");
@@ -30,7 +30,7 @@ AnimMeshComponent::~AnimMeshComponent(){
     onDestroy();
 }
 
-bool AnimMeshComponent::init(){
+bool AnimMeshComponent::initAnimMesh(){
     md5->optimize(128);
     md5->build();
     md5->freeMeshData();

@@ -10,9 +10,7 @@ public:
     DebugDrawComponent( GameObject * const gameObject);
     
     virtual ~DebugDrawComponent();
-    
-    virtual bool init()     override;
-    virtual void update()   override;
+
     virtual void draw()     override;
     virtual void onDestroy()  override;
     

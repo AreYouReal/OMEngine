@@ -49,7 +49,7 @@ PlayerController::~PlayerController(){
     onDestroy();
 }
 
-void PlayerController::init(LevelBuilder *lb){
+void PlayerController::setLevelBuilder(LevelBuilder *lb){
     mLevelBuilder = lb;
 }
 
@@ -79,26 +79,33 @@ void PlayerController::applyAction(){
             {
                 mAnimMeshComp->setState(AnimMeshComponent::AnimationStates::JUMP, false);
                 currentFronVector = frontVector * act.mRotation.matrix();
+                mJump = true;
             }
             break;
             case LevelRelated::Action::Type::YAW:
             {
                 mAnimMeshComp->setState(AnimMeshComponent::AnimationStates::RUN, true);
                 currentFronVector = frontVector * act.mRotation.matrix();
+                mJump = false;
             break;
             }
             case LevelRelated::Action::Type::JUMP:
                 mAnimMeshComp->setState(AnimMeshComponent::AnimationStates::JUMP, false);
+                mJump = true;
             break;
             default:
             break;
         }
-        logMessage("ACTION! %d, %f\n", act.mType, act.mMagnitude);
     }
 }
 
 void PlayerController::refreshVelocity(){
-    mRigidBodyComp->mBody->setLinearVelocity(btVector3(currentFronVector.x * playerSpeed, currentFronVector.y * playerSpeed, currentFronVector.z * playerSpeed));
+    if(mJump){
+        mRigidBodyComp->mBody->setLinearVelocity(btVector3(currentFronVector.x * jumpSpeed, currentFronVector.y  + jumpSpeed, currentFronVector.z * jumpSpeed));
+    }else{
+        mRigidBodyComp->mBody->setLinearVelocity(btVector3(currentFronVector.x * playerSpeed, currentFronVector.y * playerSpeed, currentFronVector.z * playerSpeed));
+    }
+
 }
 
 void PlayerController::update(){

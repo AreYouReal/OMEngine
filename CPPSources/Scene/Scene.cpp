@@ -47,7 +47,8 @@ bool Scene::init(){
     
     player = createPlayer();
     lBuilder = createLevelBuilder();
-    player->init(lBuilder);
+    player->setLevelBuilder(lBuilder);
+
     return true;
 }
 
@@ -216,6 +217,9 @@ LevelBuilder *Scene::createLevelBuilder(){
 
 #pragma mark Remove/Add object
 void Scene::addObjOnScene(up<GameObject> go){
+    for(auto const &comp : go->mComponents){
+        comp.second->init();
+    }
     mObjects.push_back(std::move(go));
 }
 

@@ -10,16 +10,10 @@ DebugDrawComponent::~DebugDrawComponent(){
     onDestroy();
 }
 
-bool DebugDrawComponent::init(){
-    return true;
-}
-
-void DebugDrawComponent::update(){}
-
 void DebugDrawComponent::draw(){
     v3d position = go->getPosition();
     v3d dimesions = go->getDimensions();
-    Camera::instance()->pushMMatrix( m4d::translate(position) * m4d::scale(dimesions) );
+    Camera::instance()->pushMMatrix( go->transformMatrix() );
     wc.draw();
     Camera::instance()->popMMatrix();
 }

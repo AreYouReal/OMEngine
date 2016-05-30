@@ -3,6 +3,9 @@
 
 using namespace LevelRelated;
 
+
+#pragma mark  ACTION
+
 Action::Action(Type type) : mType(type){};
 Action::Action(Type type, q4d rotation, float magnitude)    : mType(type), mRotation(rotation), mMagnitude(magnitude){ }
 Action::Action(Type type, q4d rotation)                     : Action(type, rotation, 0.0f){}
@@ -37,19 +40,21 @@ void Action::yawAction(RigidBodyComponent * const rBody){
 }
 
 void Action::jumpAction(RigidBodyComponent * const rBody){
-    rBody->mBody->applyCentralForce(btVector3(0, mMagnitude, 0));
+//    rBody->mBody->applyCentralForce(btVector3(0, mMagnitude, 0));
 }
 
 void Action::yawAndJumpAction(RigidBodyComponent * const rBody){
     btTransform t = rBody->mBody->getWorldTransform();
     btQuaternion currQ = t.getRotation();
-    rBody->mBody->applyCentralForce(btVector3(0, mMagnitude, 0));
+//    rBody->mBody->applyCentralForce(btVector3(0, mMagnitude, 0));
     btQuaternion q(mRotation.x, mRotation.y, mRotation.z, mRotation.w);
     currQ = q * rotationCorrection;
     t.setRotation(currQ);
     rBody->mBody->setWorldTransform(t);
 }
 
+
+#pragma mark CANDY
 
 Candy::Candy(GameObject * const gameObject, LevelBuilder * const builder) : IComponent(gameObject){
     rotAngle = randomRotationAngle();
@@ -72,16 +77,27 @@ void Candy::hide(){
     mLevelBuilder->onHideCandy(go);
 }
 
+bool Candy::init(){
+    mRigiBodyComp = static_cast<RigidBodyComponent*>( go->getComponent(ComponentEnum::RIGID_BODY));
+    rotAngle = randomRotationAngle();
+    return true;
+}
+
 void Candy::update(){
     rotationAnim();
 }
 
-
 void Candy::rotationAnim(){
-//    rotAngle += 250 * Time::deltaTime;
-//    if(rotAngle > 360) rotAngle = 0;
-//    q4d currentRotation = q4d(rotAngle, rotationAxis);
-//    go->mTransform.rotate(currentRotation);
+    rotAngle += 250 * Time::deltaTime;
+    if(rotAngle > 360) rotAngle = 0;
+
+    btTransform transform = mRigiBodyComp->mBody->getWorldTransform();
+    q4d currentRotation(rotAngle, rotationAxis);
+    q4d rotation = currentRotation * initRotation;
+    btQuaternion cr(rotation.x, rotation.y, rotation.z, rotation.w);
+    transform.setRotation(cr);
+    mRigiBodyComp->mBody->setCenterOfMassTransform(transform);
+
 }
 
 float Candy::randomRotationAngle(){

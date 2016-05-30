@@ -104,7 +104,9 @@ void LevelBuilder::addCandyToBlock(LAction action){
         go->addComponent(ComponentEnum::MESH_RENDERER, std::move(mrc));
         up<LevelRelated::Candy> aa = std::unique_ptr<LevelRelated::Candy>(new LevelRelated::Candy(go.get(), this));
         actions.push(action);
-
+        
+        go->mTransform.mScale = v3d(0.5f, 0.5f, 0.5f);
+        go->mTransform.refreshTransformMatrix();
         go->addComponent(ComponentEnum::CANDY, std::move(aa));
         
         up<RigidBodyComponent> rbc = up<RigidBodyComponent>(new RigidBodyComponent(go.get(), 0.0f));
@@ -134,9 +136,9 @@ v3d LevelBuilder::calculateNewPoss(v3d lastPos){
         }
     }else{
         if(randValue % 2 == 0){
-            x = 4 * step;         z = 0;
+            x = 2 * step;         z = 0;
         }else{
-            z = 4 * step; x = 0;
+            z = 2 * step; x = 0;
         }
     }
     v3d newPos = lastPos + v3d(x, 0, z);
@@ -158,7 +160,7 @@ LAction LevelBuilder::getAction(v3d newPos, v3d lastDir){
     
     if(length > 3.0f){
         action.mType = LAction::Type::JUMP;
-        action.mMagnitude = 750.0f;
+        action.mMagnitude = 700.0f;
     }
     
     if(mLastDir != dir){

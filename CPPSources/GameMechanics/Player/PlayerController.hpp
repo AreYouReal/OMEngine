@@ -13,15 +13,20 @@ public:
     
     virtual void update() override;
     
-    void init(LevelBuilder *lb);
+    void setLevelBuilder(LevelBuilder *lb);
     void onTouch();
     
 private:
     
     v3d frontVector{0, 0, 1};
     v3d currentFronVector{};
+    float upLinVelocity = 0.0f;
     
     float playerSpeed = 7.5;
+    
+    bool mJump = false;
+    float jumpSpeed = 4.0f;
+    
     
 // Fields
     RigidBodyComponent  *mRigidBodyComp;

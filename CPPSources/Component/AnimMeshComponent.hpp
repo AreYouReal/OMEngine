@@ -13,7 +13,10 @@ public:
     
     virtual         ~AnimMeshComponent();
     
-    virtual bool    init() override;
+    bool    initAnimMesh();
+    
+    
+    
     virtual void    update() override;
     virtual void    draw() override;
     virtual void    onDestroy() override;

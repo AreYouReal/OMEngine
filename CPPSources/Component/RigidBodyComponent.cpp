@@ -1,7 +1,7 @@
 #include "RigidBodyComponent.hpp"
 
 RigidBodyComponent::RigidBodyComponent(GameObject * const gameObject, const float mass,PhysicContactCallback contactCC, PhysicNearCallback nearCC) : IComponent(gameObject),  mMass(mass), mContactCC(contactCC), mNearCC(nearCC){
-    init();
+    initRigidBody();
 }
 
 RigidBodyComponent::~RigidBodyComponent(){
@@ -17,7 +17,7 @@ void RigidBodyComponent::onDestroy(){
     }
 }
 
-bool RigidBodyComponent::init(){
+bool RigidBodyComponent::initRigidBody(){
     
     if(!go){
         logMessage("Null object for RigidBody Component game object!");

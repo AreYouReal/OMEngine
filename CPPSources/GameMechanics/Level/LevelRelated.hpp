@@ -36,7 +36,9 @@ namespace  LevelRelated {
         Candy(GameObject * const gameObject, LevelBuilder * const);
         virtual ~Candy();
         
-        virtual void update() override;
+        virtual bool init()     override;
+        virtual void update()   override;
+        
         
         q4d initRotation{45, v3d(1, 0, 0)};
         
@@ -49,6 +51,8 @@ namespace  LevelRelated {
         
     private:
         LevelBuilder *mLevelBuilder;
+        
+        RigidBodyComponent *mRigiBodyComp;
         
         void rotationAnim();
         
