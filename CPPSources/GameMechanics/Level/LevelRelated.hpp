@@ -19,6 +19,16 @@ namespace  LevelRelated {
         Type    mType;
         q4d     mRotation;
         float   mMagnitude;
+        
+        btQuaternion rotationCorrection{btVector3(0, 1, 0), 0.5f * PI};
+
+        void apply(RigidBodyComponent * const rBody);
+    
+    private:
+        
+        void yawAction(RigidBodyComponent * const rBody);
+        void yawAndJumpAction(RigidBodyComponent * const rBody);
+        void jumpAction(RigidBodyComponent * const rBody);
     };
     
     struct Candy : public IComponent{

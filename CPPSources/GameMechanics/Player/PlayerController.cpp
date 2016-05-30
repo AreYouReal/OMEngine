@@ -32,11 +32,9 @@ PlayerController::PlayerController(GameObject * const gameObject) : IComponent(g
     mRigidBodyComp->mBody->setFriction(0.0);
     mRigidBodyComp->mBody->setRestitution(0.0);
 
-
-
     mAnimMeshComp = static_cast<AnimMeshComponent*>(go->getComponent(ComponentEnum::ANIM_MESH));
     
-        startPose();
+    startPose();
     
     {
         delete mRigidBodyComp->mBody->getCollisionShape();
@@ -45,7 +43,6 @@ PlayerController::PlayerController(GameObject * const gameObject) : IComponent(g
     }
     
     mRigidBodyComp->setContantCallback(onPlayerPhysicalContact);
-    
 }
 
 PlayerController::~PlayerController(){
@@ -58,58 +55,44 @@ void PlayerController::init(LevelBuilder *lb){
 
 void PlayerController::onTouch(){
     if(!mActive){
-         mAnimMeshComp->setState(AnimMeshComponent::AnimationStates::RUN, true);
+        mAnimMeshComp->setState(AnimMeshComponent::AnimationStates::RUN, true);
         Camera::instance()->follow(go, camFollowPositions[1]);
         mRigidBodyComp->mBody->setGravity(btVector3(0, -9.8, 0));
         mLevelBuilder->buildLevel();
         mActive = true;
-                mRigidBodyComp->mBody->activate();
+        mRigidBodyComp->mBody->activate();
     }else{
         mRigidBodyComp->mBody->activate();
-        rotate();
+        applyAction();
         refreshVelocity();
     }
 }
 
-void PlayerController::rotate(){
+void PlayerController::applyAction(){
     if(mRigidBodyComp){
-        btTransform t = mRigidBodyComp->mBody->getWorldTransform();
-        btQuaternion currQ = t.getRotation();
         LevelRelated::Action act = mLevelBuilder->popAction();
         
+        act.apply(mRigidBodyComp);
 
-        
         switch (act.mType) {
-            case LevelRelated::Action::Type::YAW_JUMP:{
-                mRigidBodyComp->mBody->applyCentralForce(btVector3(0, act.mMagnitude, 0));
-                btQuaternion q(act.mRotation.x, act.mRotation.y, act.mRotation.z, act.mRotation.w);
-                currQ = q * rotationCorrection;
-                t.setRotation(currQ);
-                mRigidBodyComp->mBody->setWorldTransform(t);
+            case LevelRelated::Action::Type::YAW_JUMP:
+            {
                 mAnimMeshComp->setState(AnimMeshComponent::AnimationStates::JUMP, false);
-                        currentFronVector = frontVector * act.mRotation.matrix();
+                currentFronVector = frontVector * act.mRotation.matrix();
             }
             break;
             case LevelRelated::Action::Type::YAW:
             {
-                btQuaternion q(act.mRotation.x, act.mRotation.y, act.mRotation.z, act.mRotation.w);
-                currQ = q * rotationCorrection;
-                t.setRotation(currQ);
-                mRigidBodyComp->mBody->setWorldTransform(t);
                 mAnimMeshComp->setState(AnimMeshComponent::AnimationStates::RUN, true);
-                        currentFronVector = frontVector * act.mRotation.matrix();
+                currentFronVector = frontVector * act.mRotation.matrix();
             break;
             }
             case LevelRelated::Action::Type::JUMP:
-                mRigidBodyComp->mBody->applyCentralForce(btVector3(0, act.mMagnitude, 0));
                 mAnimMeshComp->setState(AnimMeshComponent::AnimationStates::JUMP, false);
             break;
             default:
             break;
         }
-        
-
-    
         logMessage("ACTION! %d, %f\n", act.mType, act.mMagnitude);
     }
 }
@@ -117,7 +100,6 @@ void PlayerController::rotate(){
 void PlayerController::refreshVelocity(){
     mRigidBodyComp->mBody->setLinearVelocity(btVector3(currentFronVector.x * playerSpeed, currentFronVector.y * playerSpeed, currentFronVector.z * playerSpeed));
 }
-
 
 void PlayerController::update(){
     v3d pos = go->getPosition();
@@ -140,8 +122,3 @@ void PlayerController::startPose(){
     mRigidBodyComp->mBody->setLinearVelocity(btVector3(0, 0, 0));
     mAnimMeshComp->setState(AnimMeshComponent::AnimationStates::IDLE, true);
 }
-
-
-
-
-

@@ -8,8 +8,50 @@ Action::Action(Type type, q4d rotation, float magnitude)    : mType(type), mRota
 Action::Action(Type type, q4d rotation)                     : Action(type, rotation, 0.0f){}
 Action::Action(Type type, float magnitude)                  : Action(type, q4d(0, v3d(0, 1, 0)), magnitude){}
 
-Candy::Candy(GameObject * const gameObject, LevelBuilder * const builder) : IComponent(gameObject){
+
+void Action::apply(RigidBodyComponent *rBody){
+    if(rBody == nullptr) return;
     
+    switch (mType) {
+        case YAW:
+            yawAction(rBody);
+            break;
+        case JUMP:
+            jumpAction(rBody);
+            break;
+        case YAW_JUMP:
+            yawAndJumpAction(rBody);
+            break;
+        default:
+            break;
+    }
+}
+
+void Action::yawAction(RigidBodyComponent * const rBody){
+    btTransform t = rBody->mBody->getWorldTransform();
+    btQuaternion currQ = t.getRotation();
+    btQuaternion q(mRotation.x, mRotation.y, mRotation.z, mRotation.w);
+    currQ = q * rotationCorrection;
+    t.setRotation(currQ);
+    rBody->mBody->setWorldTransform(t);
+}
+
+void Action::jumpAction(RigidBodyComponent * const rBody){
+    rBody->mBody->applyCentralForce(btVector3(0, mMagnitude, 0));
+}
+
+void Action::yawAndJumpAction(RigidBodyComponent * const rBody){
+    btTransform t = rBody->mBody->getWorldTransform();
+    btQuaternion currQ = t.getRotation();
+    rBody->mBody->applyCentralForce(btVector3(0, mMagnitude, 0));
+    btQuaternion q(mRotation.x, mRotation.y, mRotation.z, mRotation.w);
+    currQ = q * rotationCorrection;
+    t.setRotation(currQ);
+    rBody->mBody->setWorldTransform(t);
+}
+
+
+Candy::Candy(GameObject * const gameObject, LevelBuilder * const builder) : IComponent(gameObject){
     rotAngle = randomRotationAngle();
     mLevelBuilder = builder;
 }

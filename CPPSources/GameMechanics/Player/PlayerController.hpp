@@ -23,20 +23,14 @@ private:
     
     float playerSpeed = 7.5;
     
-    btQuaternion rotationCorrection{btVector3(0, 1, 0), 0.5f * PI};
-    
 // Fields
-    RigidBodyComponent *mRigidBodyComp;
-    AnimMeshComponent *mAnimMeshComp;
-    
-    LevelBuilder    *mLevelBuilder;
+    RigidBodyComponent  *mRigidBodyComp;
+    AnimMeshComponent   *mAnimMeshComp;
+    LevelBuilder        *mLevelBuilder;
     
 // Helpers
-    void rotate();
+    void applyAction();
     void refreshVelocity();
-    
     bool mActive{false};
-    
-    
     void startPose();
 };
