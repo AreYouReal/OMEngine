@@ -158,7 +158,7 @@ LAction LevelBuilder::getAction(v3d newPos, v3d lastDir){
     
     if(length > 3.0f){
         action.mType = LAction::Type::JUMP;
-        action.mMagnitude = 7250.0f;
+        action.mMagnitude = 750.0f;
     }
     
     if(mLastDir != dir){

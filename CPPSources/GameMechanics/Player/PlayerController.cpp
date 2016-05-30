@@ -60,7 +60,7 @@ void PlayerController::onTouch(){
     if(!mActive){
          mAnimMeshComp->setState(AnimMeshComponent::AnimationStates::RUN, true);
         Camera::instance()->follow(go, camFollowPositions[1]);
-        mRigidBodyComp->mBody->setGravity(btVector3(0, -98, 0));
+        mRigidBodyComp->mBody->setGravity(btVector3(0, -9.8, 0));
         mLevelBuilder->buildLevel();
         mActive = true;
                 mRigidBodyComp->mBody->activate();
