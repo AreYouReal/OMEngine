@@ -17,8 +17,6 @@ LightSource::~LightSource(){
     Illuminator::instance()->removeLight(this);
 }
 
-
-
 const v4d LightSource::getPositionInEyeSpace() const{
     v3d position = (Camera::instance()->viewMatrix() * v4d(go->getPosition(), 1.0));
     return position;
