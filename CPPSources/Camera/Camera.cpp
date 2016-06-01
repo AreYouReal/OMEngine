@@ -169,12 +169,12 @@ void Camera::setUp(v3d up){
 void Camera::follow(GameObject *go, v3d distance){
     mGoToFollow = go;
     mFollowDistance = distance;
-
 }
 
 void Camera::update(){
     if(mGoToFollow){
-        transform.mPosition = mGoToFollow->getPosition() + mFollowDistance;
+        transform.mPosition = v3d::lerp(transform.mPosition, mGoToFollow->getPosition() + mFollowDistance, Time::deltaTime );
+//        transform.mPosition = mGoToFollow->getPosition() + mFollowDistance;
         transform.mFront = mGoToFollow->getPosition() - transform.mPosition;
     }
     refreshViewAndNormalMatrix();

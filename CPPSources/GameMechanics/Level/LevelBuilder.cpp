@@ -128,7 +128,7 @@ v3d LevelBuilder::calculateNewPoss(v3d lastPos){
     int step = 2;
     int randValue = rand() % 10;
     
-    if(randValue > 1){
+    if(randValue < 9){
         if(randValue> 5){
             x = 0; z = step;
         }else{

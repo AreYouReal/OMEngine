@@ -537,9 +537,15 @@ void MD5::playAction(const string name, const Action::InterpolationMethod method
     if(!action->frameTime && method == Action::InterpolationMethod::FRAME)
         action->frameTime = action->fps;
 
+
+    
     
     if(currentActions.size() > 0){
-        prevAction = currentActions.front();
+        if(!currentActions.front()->loop){
+            currentActions.pop_back();
+        }
+        if(currentActions.size() > 0)
+            prevAction = currentActions.front();
     }
     
     currentActions.push_back(action);

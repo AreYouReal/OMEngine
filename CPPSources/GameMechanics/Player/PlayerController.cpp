@@ -4,7 +4,7 @@
 #include "LevelBuilder.hpp"
 #include "BBlock.hpp"
 
-std::vector<v3d> camFollowPositions{v3d(0, 2, 5), v3d(-10, 5, 5), v3d(-5, 2, 5),};
+std::vector<v3d> camFollowPositions{v3d(0, 2, 5), v3d(-10, 5, 5), v3d(5, 5, 10),v3d(5, 5, -10), v3d(-10, 5, -5)};
 
 
 bool onPlayerPhysicalContact(btManifoldPoint &point, const btCollisionObjectWrapper *obj0, int part0, int index0, const btCollisionObjectWrapper *obj1, int part1, int index1){
@@ -36,11 +36,15 @@ PlayerController::PlayerController(GameObject * const gameObject) : IComponent(g
     
     startPose();
     
-    {
-        delete mRigidBodyComp->mBody->getCollisionShape();
-        btSphereShape *newShaper = new btSphereShape(1.0f);
-        mRigidBodyComp->mBody->setCollisionShape(newShaper);
-    }
+    btCollisionShape *shape = mRigidBodyComp->mBody->getCollisionShape();
+    shape->setLocalScaling(btVector3(0.5f, 0.5f, 0.5f));
+    
+    
+//    {
+//        delete mRigidBodyComp->mBody->getCollisionShape();
+//        btSphereShape *newShaper = new btSphereShape(1.0f);
+//        mRigidBodyComp->mBody->setCollisionShape(newShaper);
+//    }
     
     mRigidBodyComp->setContantCallback(onPlayerPhysicalContact);
 }
@@ -110,10 +114,25 @@ void PlayerController::refreshVelocity(){
 
 void PlayerController::update(){
     v3d pos = go->getPosition();
-    if(pos.y < -10){
+    if(pos.y < -3){
         startPose();
         mActive = false;
         mLevelBuilder->clearLevel();
+    }else{
+        static float timer = 10.0f;
+        if(timer < 0.0f){
+            logMessage("Change camera follow position!\n");
+            static int followIndex = 0;
+            timer = 10.0f;
+            ++followIndex;
+            if(followIndex >= camFollowPositions.size()){
+                followIndex = 1;
+            }
+            Camera::instance()->follow(go, camFollowPositions[followIndex]);
+            //            logMessage("Camera changing followIndex!\n");
+            //            v3d::print(camFollowPositions[followIndex]);
+        }
+        timer -= Time::deltaTime;
     }
 }
 

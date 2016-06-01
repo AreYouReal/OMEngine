@@ -54,9 +54,7 @@ public:
 
 // Object picking related
     GameObject* collisionRayIntersection(int screenX, int screenY);
-    
 
-    
     
 // Projector or shadows
     bool initShadowBuffer();
@@ -115,4 +113,8 @@ private:
     void buildFrustum();
     
     v3d farPlanePoint(int screenX, int screenY);
+    
+    
+    
+    
 };

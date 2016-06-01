@@ -68,7 +68,7 @@ void Scene::draw(){
     glBindFramebuffer(GL_FRAMEBUFFER, Camera::instance()->mMainBuffer);
     glColorMask ( GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE );
     glViewport(0, 0, Camera::instance()->width(), Camera::instance()->height());
-    glClearColor(0.8f, 0.8f, 0.8f, 1.0f);
+    glClearColor(0.35f, 0.75f, 1.0f, 1.0f);
     glClear( GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT );
     
     
@@ -183,7 +183,7 @@ PlayerController* Scene::createPlayer(){
 
     q4d sR(90, v3d(0, 1, 0));
     monster->mTransform.rotate(sR);
-    monster->mTransform.translate(0, -1.0f, 0);
+    monster->mTransform.translate(0, -.85f, 0);
     monster->mTransform.mScale = v3d(3, 3, 3);
     monster->mTransform.refreshTransformMatrix();
     
