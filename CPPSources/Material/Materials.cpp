@@ -4,7 +4,7 @@
 #include "ShaderHelper.h"
 
 static std::map<string, string>  meshShaderTable{
-    std::pair<string, string>("bblock", "Grey"),
+    std::pair<string, string>("bblock", "gouraudMultiLight.omg"),
     std::pair<string, string>("candy", "phongMultiLight.omg"),
     std::pair<string, string>("minimon", "phongMultiLight.omg"),
 };
@@ -13,6 +13,7 @@ Materials::Materials(){
     loadPrograms();
     loadMaterial("minimon.mtl");
     loadOMGFile("phongMultiLight.omg");
+    loadOMGFile("gouraudMultiLight.omg");
 }
 
 Materials::~Materials(){
@@ -173,7 +174,7 @@ void Materials::loadPrograms(){
     logGLError();
     addProgram(ShaderHelper::createProgram("Normal",   "pos_norm_vertex.glsl",     "norm_as_color_fragment.glsl"   , ShaderHelper::ShaderType::Normal));
     logGLError();
-    addProgram(ShaderHelper::createProgram("Grey",    "default_gray_vertex.glsl", "default_gray_fragment.glsl"   , ShaderHelper::ShaderType::Grey ));
+    addProgram(ShaderHelper::createProgram("OneColor",    "default_color_vertex.glsl", "default_color_fragment.glsl"   , ShaderHelper::ShaderType::OneColor ));
     addProgram(ShaderHelper::createProgram("SimpleGouraud","SimpeGouraudVertex.glsl",     "SimpleGouraudFragment.glsl"      , ShaderHelper::ShaderType::SimplePhong  ));
     addProgram(ShaderHelper::createProgram("SimplePhong", "vertexPerPixel.glsl",      "fragmentPerPixel.glsl"      ,ShaderHelper::ShaderType::SimplePhong   ));
     addProgram(ShaderHelper::createProgram("wired",           "wired_vertex.glsl",        "wired_fragment.glsl"  , ShaderHelper::ShaderType::Wired ));

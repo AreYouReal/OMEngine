@@ -1,7 +1,7 @@
-#include "GreySP.hpp"
+#include "OneColorSP.hpp"
 
 
-void GreySP::initUniformLocations(){
+void OneColorSP::initUniformLocations(){
     for(const auto &uniform : uniforms){
         if(!uniform.second.name.compare(ShaderProgram::uniModelViewMatName)){
             modelViewMatrixUniLoc = uniform.second.location;
@@ -15,11 +15,13 @@ void GreySP::initUniformLocations(){
             lightColorUniLoc = uniform.second.location;
         }else if(!uniform.second.name.compare("uLight.type")){
             lightTypeLocation = uniform.second.location;
+        }else if(!uniform.second.name.compare("uColor")){
+            colorLocation = uniform.second.location;
         }
     }
 }
 
-void GreySP::setUniforms(const ObjMaterial *mat){
+void OneColorSP::setUniforms(const ObjMaterial *mat){
     NormalSP::setUniforms(mat);
     m4d matrix = Camera::instance()->normalMatrix();
     glUniformMatrix4fv(normMatUniLoc, 1, GL_TRUE, matrix.pointer());
@@ -29,4 +31,5 @@ void GreySP::setUniforms(const ObjMaterial *mat){
     v4d lightColor = light->getColor();
     glUniform4fv(lightColorUniLoc, 1, &lightColor.x);
     glUniform1i(lightTypeLocation, light->type());
+    glUniform4fv(colorLocation, 1, &mat->diffuse.x);
 }

@@ -2,7 +2,7 @@
 #include "OMGame.h"
 
 #include "NormalSP.hpp"
-#include "GreySP.hpp"
+#include "OneColorSP.hpp"
 #include "WireSP.hpp"
 #include "GouraudMultiLightSP.hpp"
 #include "PhongMultiLightSP.hpp"
@@ -12,11 +12,11 @@
 #pragma mark Public
 
 std::map<string, ShaderHelper::ShaderType> enumTypeTable{
-    std::pair<string, ShaderHelper::ShaderType>("Depth",                ShaderHelper::Depth            ),
+    std::pair<string, ShaderHelper::ShaderType>("Depth",                ShaderHelper::Depth             ),
     std::pair<string, ShaderHelper::ShaderType>("Normal",               ShaderHelper::Normal            ),
-    std::pair<string, ShaderHelper::ShaderType>("Grey",                 ShaderHelper::Grey              ),
-    std::pair<string, ShaderHelper::ShaderType>("SimpleGouraud",        ShaderHelper::SimpleGouraud),
-    std::pair<string, ShaderHelper::ShaderType>("SimplePhong",          ShaderHelper::SimplePhong  ),
+    std::pair<string, ShaderHelper::ShaderType>("OneColor",             ShaderHelper::OneColor          ),
+    std::pair<string, ShaderHelper::ShaderType>("SimpleGouraud",        ShaderHelper::SimpleGouraud     ),
+    std::pair<string, ShaderHelper::ShaderType>("SimplePhong",          ShaderHelper::SimplePhong       ),
     std::pair<string, ShaderHelper::ShaderType>("Wired",                ShaderHelper::Wired             ),
     std::pair<string, ShaderHelper::ShaderType>("GouraudMultiLight",    ShaderHelper::GouraudMultiLight ),
     std::pair<string, ShaderHelper::ShaderType>("PhongMultiLight",      ShaderHelper::PhongMultiLight   ),
@@ -40,8 +40,8 @@ sp<ShaderProgram> ShaderHelper::createProgram(const string programName, const Sh
         case Normal:
             program = std::make_shared<NormalSP>();
             break;
-        case Grey:
-            program = std::make_shared<GreySP>();
+        case OneColor:
+            program = std::make_shared<OneColorSP>();
             break;
         case SimpleGouraud:
         case SimplePhong:

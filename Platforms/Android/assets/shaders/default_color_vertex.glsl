@@ -6,15 +6,18 @@ struct Light{
     lowp vec4 color;
 };
 
-uniform mediump mat4 uModelViewM;
-uniform mediump mat4 uProjectionM;
-uniform mediump mat4 uNormalM;
-uniform Light uLight;
+uniform mediump mat4    uModelViewM;
+uniform mediump mat4    uProjectionM;
+uniform mediump mat4    uNormalM;
+uniform Light           uLight;
+uniform lowp    vec4    uColor;
 
 layout(location = 0) in vec4 aPosition;
 layout(location = 1) in vec4 aNormal;
 
 out lowp vec4 color;
+
+
 
 void main(){
     
@@ -30,7 +33,8 @@ void main(){
     
     float intensity = max(dot(normal.xyz, L), 0.0);
     if(intensity > 0.0){
-        color = vec4(.7, .3, .3, 1.0) * intensity;
+        color = uColor * intensity;
+        
     }else{
         color = vec4(0.0, 0.0, 0.0, 1.0);
     }
