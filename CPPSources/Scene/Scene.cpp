@@ -40,7 +40,7 @@ bool Scene::init(){
     logGLError();
     Camera::instance()->initShadowBuffer();
     
-    addLight();
+   
     
     loadBlockObj();
     loadArrowObj();
@@ -48,6 +48,10 @@ bool Scene::init(){
     player = createPlayer();
     lBuilder = createLevelBuilder();
     player->setLevelBuilder(lBuilder);
+    
+    
+     addLight();
+
 
     return true;
 }
@@ -160,9 +164,12 @@ void Scene::addLight(){
     addObjOnScene(std::move(go));
     
     go = std::unique_ptr<GameObject>(new GameObject("Light"));
-    light = up<LightSource>(new LightSource(go.get(), LightSource::Type::DIRECTION, v4d(1, 0, 0, 1)) );
+    light = up<LightSource>(new LightSource(go.get(), LightSource::Type::POINT, v4d(1, 1, 1, 1), 15) );
     go->setFront(v3d(5, 5, 0));
+    light->follow(player->go);
     go->addComponent(ComponentEnum::LIGHT_SOURCE, std::move(light));
+    debugDraw = up<DebugDrawComponent>(new DebugDrawComponent(go.get()));
+    go->addComponent(ComponentEnum::DEBUG_DRAW, std::move(debugDraw));
     debugDraw = up<DebugDrawComponent>(new DebugDrawComponent(go.get()));
     go->addComponent(ComponentEnum::DEBUG_DRAW, std::move(debugDraw));
     addObjOnScene(std::move(go));

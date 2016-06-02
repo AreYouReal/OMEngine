@@ -29,10 +29,12 @@ public:
 
     void setColor(v4d color);
     
+    void follow(GameObject *go);
     m4d     getLookAtFromPointView();
     
     float spotCosCutoff = 0.0f;
     float spotBlend = 0.05f;
+
     
 private:
     Type    mType;
@@ -45,4 +47,7 @@ private:
     unsigned int vao;
     
     void setAttributes() const;
+    
+    
+    GameObject *mFollowObj = nullptr;
 };

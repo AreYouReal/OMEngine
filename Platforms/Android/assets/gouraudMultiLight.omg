@@ -41,7 +41,6 @@ uniform Material uMaterial;
 uniform Light    uLight[MAX_LIGHTS];
 uniform int     numLights;
 
-uniform mediump sampler2D       uSamplerDiffuse;
 uniform lowp sampler2DShadow    uSamplerShadow;
 
 vec3 lightDirectionTS[MAX_LIGHTS];
@@ -86,12 +85,12 @@ void directionalLight(in vec4 color, in vec3 direction){
 float attenuation(in vec3 direction, int index){
     highp float dist = length(direction);
     lowp float sphere = max((uLight[index].dst - dist)/uLight[index].dst, 0.0);
-    if(sphere <= 0.0) return 1.0;
+    if(sphere <= 0.0) return 0.0;
     highp float lamdistsqr = uLight[index].dst * uLight[index].dst;
     lowp float att = uLight[index].dst / (uLight[index].dst + uLight[index].linAtten * dist);
     att *= lamdistsqr / (lamdistsqr + uLight[index].quadAtten * dist * dist);
     att *= sphere;
-    return 1.0;
+    return att;
 }
 
 void spotLight(in Light light, in highp vec3 direction, in lowp vec3 spotdir){
@@ -102,7 +101,7 @@ void spotLight(in Light light, in highp vec3 direction, in lowp vec3 spotdir){
         if(ldots > light.spotCosCutoff){
             lowp float ndoth = max(dot(normal, normalize(nlightdir + posForLight)), 0.0);
             lowp float spot = ldots * clamp((ldots - light.spotCosCutoff)/light.spotBlend, 0.0, 1.0);
-            diffuseColor += texture(uSamplerDiffuse, aTexCoord.xy) * uMaterial.diffuse * light.color * ndoth * spot;
+            diffuseColor += uMaterial.diffuse * light.color * ndoth * spot;
             specularColor += uMaterial.specular * light.color * pow(ndoth, uMaterial.shininess) * spot;
         }
     }
@@ -113,7 +112,7 @@ void omniLight(in vec4 color, in vec3 direction, int index){
     if(ndotl > 0.0){
         float attenuation = attenuation(direction, index);
         lowp float ndoth = max(dot(normal, normalize(direction + posForLight)), 0.0);
-        diffuseColor += texture(uSamplerDiffuse, aTexCoord.xy) * uMaterial.diffuse * texture(uSamplerDiffuse, aTexCoord.xy) * color * ndotl * attenuation;
+        diffuseColor += uMaterial.diffuse * color * ndotl * attenuation;
         specularColor += uMaterial.specular * color * pow(ndoth, uMaterial.shininess * 0.128) * attenuation;
     }
 }
