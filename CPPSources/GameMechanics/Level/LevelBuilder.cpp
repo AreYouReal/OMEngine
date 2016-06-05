@@ -66,6 +66,21 @@ void LevelBuilder::update(){
         activateBlock(inactiveBlocks[0]);
 //        inactiveBlocks.erase(inactiveBlocks.begin());
     }
+    
+    
+    static float time = 15.0f;
+    if(time <= 0.0f){
+        time = 15.0f;
+        
+        v4d randomColor(static_cast <float> (rand()) / static_cast <float> (RAND_MAX), static_cast <float> (rand()) / static_cast <float> (RAND_MAX), static_cast <float> (rand()) / static_cast <float> (RAND_MAX), 1.0f);
+        sp<ObjMaterial> bblockMat =  Materials::instance()->getMaterial("BBlockMTL");
+        bblockMat->diffuse = randomColor;
+        
+        v4d oneMoreRandomColor(static_cast <float> (rand()) / static_cast <float> (RAND_MAX), static_cast <float> (rand()) / static_cast <float> (RAND_MAX), static_cast <float> (rand()) / static_cast <float> (RAND_MAX), 1.0f);
+        
+        Camera::instance()->mClearColor = oneMoreRandomColor;
+    }
+    time -= Time::deltaTime;
 }
 
 #pragma mark Private Helpers

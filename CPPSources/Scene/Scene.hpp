@@ -55,6 +55,4 @@ private:
     PlayerController *createPlayer();
     LevelBuilder *createLevelBuilder();
     
-    
-    
 };

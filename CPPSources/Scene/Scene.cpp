@@ -72,7 +72,7 @@ void Scene::draw(){
     glBindFramebuffer(GL_FRAMEBUFFER, Camera::instance()->mMainBuffer);
     glColorMask ( GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE );
     glViewport(0, 0, Camera::instance()->width(), Camera::instance()->height());
-    glClearColor(0.35f, 0.75f, 1.0f, 1.0f);
+    glClearColor(Camera::instance()->mClearColor.x, Camera::instance()->mClearColor.y, Camera::instance()->mClearColor.z, Camera::instance()->mClearColor.w);
     glClear( GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT );
     
     

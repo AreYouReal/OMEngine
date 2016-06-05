@@ -6,7 +6,6 @@
 
 std::vector<v3d> camFollowPositions{v3d(0, 2, 5), v3d(-10, 5, 5), v3d(5, 5, 10),v3d(5, 5, -10), v3d(-10, 5, -5)};
 
-
 bool onPlayerPhysicalContact(btManifoldPoint &point, const btCollisionObjectWrapper *obj0, int part0, int index0, const btCollisionObjectWrapper *obj1, int part1, int index1){
     GameObject *go1 = ((GameObject*)((btCollisionObject*)obj1->getCollisionObject())->getUserPointer());
 //    logMessage("Onbj1 : %s   <-> Obj2: %s \n", go0->name.c_str(), go1->name.c_str());
@@ -131,7 +130,9 @@ void PlayerController::update(){
             Camera::instance()->follow(go, camFollowPositions[followIndex]);
             //            logMessage("Camera changing followIndex!\n");
             //            v3d::print(camFollowPositions[followIndex]);
+
         }
+        
         timer -= Time::deltaTime;
     }
 }

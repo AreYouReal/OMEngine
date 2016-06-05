@@ -66,13 +66,16 @@ public:
     unsigned int shadowBuffer()     { return mShadowmapBuffer;  }
     unsigned int shadowmapWidth()   { return mShadowmapWidth;   }
     unsigned int shadowmapHeight()  { return mShadowmapHeight;  }
-    unsigned int depthTexture()    { return mDepthTexture;    }
+    unsigned int depthTexture()     { return mDepthTexture;     }
     unsigned int shadowTexture()    { return mShadowTexture;    }
     
     // Main render bufffer handle
     int mMainBuffer;
     
     bool shadowDraw = false;
+    
+    // Clear Color
+    v4d     mClearColor{0.35f, 0.75f, 1.0f, 1.0f};
     
 private:
     
@@ -114,7 +117,7 @@ private:
     
     v3d farPlanePoint(int screenX, int screenY);
     
-    
+
     
     
 };
