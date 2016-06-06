@@ -9,6 +9,8 @@
 
 AnimMeshComponent::AnimMeshComponent(GameObject* const go, const string meshName, const string materialname, std::vector<string> &actionsToLoad) : IComponent(go){
     
+    Materials::instance()->loadMaterial(materialname);
+    
     md5 = md5::MD5::loadMesh(meshName);
     
     initAnimMesh();
@@ -16,6 +18,13 @@ AnimMeshComponent::AnimMeshComponent(GameObject* const go, const string meshName
     for(auto const &action : actionsToLoad){
         std::size_t pos = action.find(".md5anim");
         string actionName = action.substr(0, pos);
+        if(actionName.find("idle") != string::npos){
+            stateActionTable.insert(std::pair<AnimationStates, string>(AnimationStates::IDLE, actionName));
+        }else if(actionName.find("run") != string::npos){
+            stateActionTable.insert(std::pair<AnimationStates, string>(AnimationStates::RUN, actionName));
+        }else if(actionName.find("jump") != string::npos){
+            stateActionTable.insert(std::pair<AnimationStates, string>(AnimationStates::JUMP, actionName));
+        }
         md5->loadAction(actionName, action);
     }
     
@@ -64,13 +73,9 @@ void AnimMeshComponent::updateAnimation(bool loop){
             md5->stopAllActions();
             break;
         case AnimationStates::IDLE:
-            md5->playAction("minimon_1_idle", md5::Action::InterpolationMethod::FRAME, loop);
-            break;
         case AnimationStates::RUN:
-            md5->playAction("minimon_1_run", md5::Action::InterpolationMethod::FRAME, loop);
-            break;
         case AnimationStates::JUMP:
-            md5->playAction("minimon_1_jump", md5::Action::InterpolationMethod::FRAME, loop);
+            md5->playAction(stateActionTable[mState], md5::Action::InterpolationMethod::FRAME, loop);
             break;
         default:
             logMessage("Unknown animatino state!");

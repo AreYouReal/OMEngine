@@ -232,6 +232,30 @@
 		F386CD331D056ECF00079815 /* minimon_1.md5mesh in Resources */ = {isa = PBXBuildFile; fileRef = F386CD2D1D056ECF00079815 /* minimon_1.md5mesh */; };
 		F386CD341D056ECF00079815 /* minimon_1.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F386CD2E1D056ECF00079815 /* minimon_1.mtl */; };
 		F386CD351D056ECF00079815 /* minimon_1.png in Resources */ = {isa = PBXBuildFile; fileRef = F386CD2F1D056ECF00079815 /* minimon_1.png */; };
+		F386CD3E1D0580D000079815 /* minimon_2_idle.md5anim in Resources */ = {isa = PBXBuildFile; fileRef = F386CD381D0580D000079815 /* minimon_2_idle.md5anim */; };
+		F386CD3F1D0580D000079815 /* minimon_2_jump.md5anim in Resources */ = {isa = PBXBuildFile; fileRef = F386CD391D0580D000079815 /* minimon_2_jump.md5anim */; };
+		F386CD401D0580D000079815 /* minimon_2_run.md5anim in Resources */ = {isa = PBXBuildFile; fileRef = F386CD3A1D0580D000079815 /* minimon_2_run.md5anim */; };
+		F386CD411D0580D000079815 /* minimon_2.md5mesh in Resources */ = {isa = PBXBuildFile; fileRef = F386CD3B1D0580D000079815 /* minimon_2.md5mesh */; };
+		F386CD421D0580D000079815 /* minimon_2.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F386CD3C1D0580D000079815 /* minimon_2.mtl */; };
+		F386CD431D0580D000079815 /* minimon_2.png in Resources */ = {isa = PBXBuildFile; fileRef = F386CD3D1D0580D000079815 /* minimon_2.png */; };
+		F386CD4A1D0583E200079815 /* minimon_3_idle.md5anim in Resources */ = {isa = PBXBuildFile; fileRef = F386CD441D0583E200079815 /* minimon_3_idle.md5anim */; };
+		F386CD4B1D0583E200079815 /* minimon_3_jump.md5anim in Resources */ = {isa = PBXBuildFile; fileRef = F386CD451D0583E200079815 /* minimon_3_jump.md5anim */; };
+		F386CD4C1D0583E200079815 /* minimon_3_run.md5anim in Resources */ = {isa = PBXBuildFile; fileRef = F386CD461D0583E200079815 /* minimon_3_run.md5anim */; };
+		F386CD4D1D0583E200079815 /* minimon_3.md5mesh in Resources */ = {isa = PBXBuildFile; fileRef = F386CD471D0583E200079815 /* minimon_3.md5mesh */; };
+		F386CD4E1D0583E200079815 /* minimon_3.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F386CD481D0583E200079815 /* minimon_3.mtl */; };
+		F386CD4F1D0583E200079815 /* minimon_3.png in Resources */ = {isa = PBXBuildFile; fileRef = F386CD491D0583E200079815 /* minimon_3.png */; };
+		F386CD561D05853900079815 /* minimon_4_idle.md5anim in Resources */ = {isa = PBXBuildFile; fileRef = F386CD501D05853900079815 /* minimon_4_idle.md5anim */; };
+		F386CD571D05853900079815 /* minimon_4_jump.md5anim in Resources */ = {isa = PBXBuildFile; fileRef = F386CD511D05853900079815 /* minimon_4_jump.md5anim */; };
+		F386CD581D05853900079815 /* minimon_4_run.md5anim in Resources */ = {isa = PBXBuildFile; fileRef = F386CD521D05853900079815 /* minimon_4_run.md5anim */; };
+		F386CD591D05853900079815 /* minimon_4.md5mesh in Resources */ = {isa = PBXBuildFile; fileRef = F386CD531D05853900079815 /* minimon_4.md5mesh */; };
+		F386CD5A1D05853900079815 /* minimon_4.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F386CD541D05853900079815 /* minimon_4.mtl */; };
+		F386CD5B1D05853900079815 /* minimon_4.png in Resources */ = {isa = PBXBuildFile; fileRef = F386CD551D05853900079815 /* minimon_4.png */; };
+		F386CD621D05862800079815 /* minimon_5_idle.md5anim in Resources */ = {isa = PBXBuildFile; fileRef = F386CD5C1D05862800079815 /* minimon_5_idle.md5anim */; };
+		F386CD631D05862800079815 /* minimon_5_jump.md5anim in Resources */ = {isa = PBXBuildFile; fileRef = F386CD5D1D05862800079815 /* minimon_5_jump.md5anim */; };
+		F386CD641D05862800079815 /* minimon_5_run.md5anim in Resources */ = {isa = PBXBuildFile; fileRef = F386CD5E1D05862800079815 /* minimon_5_run.md5anim */; };
+		F386CD651D05862800079815 /* minimon_5.md5mesh in Resources */ = {isa = PBXBuildFile; fileRef = F386CD5F1D05862800079815 /* minimon_5.md5mesh */; };
+		F386CD661D05862800079815 /* minimon_5.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F386CD601D05862800079815 /* minimon_5.mtl */; };
+		F386CD671D05862800079815 /* minimon_5.png in Resources */ = {isa = PBXBuildFile; fileRef = F386CD611D05862800079815 /* minimon_5.png */; };
 		F38A22E11BAA979700FADEC0 /* vertexPerPixel.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F38A22E01BAA979700FADEC0 /* vertexPerPixel.glsl */; };
 		F38A22E31BAAA15400FADEC0 /* SimpeGouraudVertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F38A22E21BAAA15400FADEC0 /* SimpeGouraudVertex.glsl */; };
 		F38A22E71BAAA40500FADEC0 /* SimpleGouraudFragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F38A22E61BAAA40500FADEC0 /* SimpleGouraudFragment.glsl */; };
@@ -803,6 +827,30 @@
 		F386CD2D1D056ECF00079815 /* minimon_1.md5mesh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon_1.md5mesh; path = OMEngine/Platforms/Android/assets/minimon_1.md5mesh; sourceTree = "<group>"; };
 		F386CD2E1D056ECF00079815 /* minimon_1.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon_1.mtl; path = OMEngine/Platforms/Android/assets/minimon_1.mtl; sourceTree = "<group>"; };
 		F386CD2F1D056ECF00079815 /* minimon_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = minimon_1.png; path = OMEngine/Platforms/Android/assets/minimon_1.png; sourceTree = "<group>"; };
+		F386CD381D0580D000079815 /* minimon_2_idle.md5anim */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon_2_idle.md5anim; path = OMEngine/Platforms/Android/assets/minimon_2_idle.md5anim; sourceTree = "<group>"; };
+		F386CD391D0580D000079815 /* minimon_2_jump.md5anim */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon_2_jump.md5anim; path = OMEngine/Platforms/Android/assets/minimon_2_jump.md5anim; sourceTree = "<group>"; };
+		F386CD3A1D0580D000079815 /* minimon_2_run.md5anim */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon_2_run.md5anim; path = OMEngine/Platforms/Android/assets/minimon_2_run.md5anim; sourceTree = "<group>"; };
+		F386CD3B1D0580D000079815 /* minimon_2.md5mesh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon_2.md5mesh; path = OMEngine/Platforms/Android/assets/minimon_2.md5mesh; sourceTree = "<group>"; };
+		F386CD3C1D0580D000079815 /* minimon_2.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon_2.mtl; path = OMEngine/Platforms/Android/assets/minimon_2.mtl; sourceTree = "<group>"; };
+		F386CD3D1D0580D000079815 /* minimon_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = minimon_2.png; path = OMEngine/Platforms/Android/assets/minimon_2.png; sourceTree = "<group>"; };
+		F386CD441D0583E200079815 /* minimon_3_idle.md5anim */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon_3_idle.md5anim; path = OMEngine/Platforms/Android/assets/minimon_3_idle.md5anim; sourceTree = "<group>"; };
+		F386CD451D0583E200079815 /* minimon_3_jump.md5anim */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon_3_jump.md5anim; path = OMEngine/Platforms/Android/assets/minimon_3_jump.md5anim; sourceTree = "<group>"; };
+		F386CD461D0583E200079815 /* minimon_3_run.md5anim */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon_3_run.md5anim; path = OMEngine/Platforms/Android/assets/minimon_3_run.md5anim; sourceTree = "<group>"; };
+		F386CD471D0583E200079815 /* minimon_3.md5mesh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon_3.md5mesh; path = OMEngine/Platforms/Android/assets/minimon_3.md5mesh; sourceTree = "<group>"; };
+		F386CD481D0583E200079815 /* minimon_3.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon_3.mtl; path = OMEngine/Platforms/Android/assets/minimon_3.mtl; sourceTree = "<group>"; };
+		F386CD491D0583E200079815 /* minimon_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = minimon_3.png; path = OMEngine/Platforms/Android/assets/minimon_3.png; sourceTree = "<group>"; };
+		F386CD501D05853900079815 /* minimon_4_idle.md5anim */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon_4_idle.md5anim; path = OMEngine/Platforms/Android/assets/minimon_4_idle.md5anim; sourceTree = "<group>"; };
+		F386CD511D05853900079815 /* minimon_4_jump.md5anim */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon_4_jump.md5anim; path = OMEngine/Platforms/Android/assets/minimon_4_jump.md5anim; sourceTree = "<group>"; };
+		F386CD521D05853900079815 /* minimon_4_run.md5anim */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon_4_run.md5anim; path = OMEngine/Platforms/Android/assets/minimon_4_run.md5anim; sourceTree = "<group>"; };
+		F386CD531D05853900079815 /* minimon_4.md5mesh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon_4.md5mesh; path = OMEngine/Platforms/Android/assets/minimon_4.md5mesh; sourceTree = "<group>"; };
+		F386CD541D05853900079815 /* minimon_4.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon_4.mtl; path = OMEngine/Platforms/Android/assets/minimon_4.mtl; sourceTree = "<group>"; };
+		F386CD551D05853900079815 /* minimon_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = minimon_4.png; path = OMEngine/Platforms/Android/assets/minimon_4.png; sourceTree = "<group>"; };
+		F386CD5C1D05862800079815 /* minimon_5_idle.md5anim */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon_5_idle.md5anim; path = OMEngine/Platforms/Android/assets/minimon_5_idle.md5anim; sourceTree = "<group>"; };
+		F386CD5D1D05862800079815 /* minimon_5_jump.md5anim */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon_5_jump.md5anim; path = OMEngine/Platforms/Android/assets/minimon_5_jump.md5anim; sourceTree = "<group>"; };
+		F386CD5E1D05862800079815 /* minimon_5_run.md5anim */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon_5_run.md5anim; path = OMEngine/Platforms/Android/assets/minimon_5_run.md5anim; sourceTree = "<group>"; };
+		F386CD5F1D05862800079815 /* minimon_5.md5mesh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon_5.md5mesh; path = OMEngine/Platforms/Android/assets/minimon_5.md5mesh; sourceTree = "<group>"; };
+		F386CD601D05862800079815 /* minimon_5.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon_5.mtl; path = OMEngine/Platforms/Android/assets/minimon_5.mtl; sourceTree = "<group>"; };
+		F386CD611D05862800079815 /* minimon_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = minimon_5.png; path = OMEngine/Platforms/Android/assets/minimon_5.png; sourceTree = "<group>"; };
 		F38A22E01BAA979700FADEC0 /* vertexPerPixel.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = vertexPerPixel.glsl; path = ../Android/assets/shaders/vertexPerPixel.glsl; sourceTree = SOURCE_ROOT; };
 		F38A22E21BAAA15400FADEC0 /* SimpeGouraudVertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = SimpeGouraudVertex.glsl; path = ../Android/assets/shaders/SimpeGouraudVertex.glsl; sourceTree = SOURCE_ROOT; };
 		F38A22E61BAAA40500FADEC0 /* SimpleGouraudFragment.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = SimpleGouraudFragment.glsl; path = ../Android/assets/shaders/SimpleGouraudFragment.glsl; sourceTree = SOURCE_ROOT; };
@@ -1024,6 +1072,30 @@
 		7626524017F10E6C007CCD43 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F386CD5C1D05862800079815 /* minimon_5_idle.md5anim */,
+				F386CD5D1D05862800079815 /* minimon_5_jump.md5anim */,
+				F386CD5E1D05862800079815 /* minimon_5_run.md5anim */,
+				F386CD5F1D05862800079815 /* minimon_5.md5mesh */,
+				F386CD601D05862800079815 /* minimon_5.mtl */,
+				F386CD611D05862800079815 /* minimon_5.png */,
+				F386CD501D05853900079815 /* minimon_4_idle.md5anim */,
+				F386CD511D05853900079815 /* minimon_4_jump.md5anim */,
+				F386CD521D05853900079815 /* minimon_4_run.md5anim */,
+				F386CD531D05853900079815 /* minimon_4.md5mesh */,
+				F386CD541D05853900079815 /* minimon_4.mtl */,
+				F386CD551D05853900079815 /* minimon_4.png */,
+				F386CD441D0583E200079815 /* minimon_3_idle.md5anim */,
+				F386CD451D0583E200079815 /* minimon_3_jump.md5anim */,
+				F386CD461D0583E200079815 /* minimon_3_run.md5anim */,
+				F386CD471D0583E200079815 /* minimon_3.md5mesh */,
+				F386CD481D0583E200079815 /* minimon_3.mtl */,
+				F386CD491D0583E200079815 /* minimon_3.png */,
+				F386CD381D0580D000079815 /* minimon_2_idle.md5anim */,
+				F386CD391D0580D000079815 /* minimon_2_jump.md5anim */,
+				F386CD3A1D0580D000079815 /* minimon_2_run.md5anim */,
+				F386CD3B1D0580D000079815 /* minimon_2.md5mesh */,
+				F386CD3C1D0580D000079815 /* minimon_2.mtl */,
+				F386CD3D1D0580D000079815 /* minimon_2.png */,
 				F386CD2A1D056ECF00079815 /* minimon_1_idle.md5anim */,
 				F386CD2B1D056ECF00079815 /* minimon_1_jump.md5anim */,
 				F386CD2C1D056ECF00079815 /* minimon_1_run.md5anim */,
@@ -2093,20 +2165,29 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F386CD401D0580D000079815 /* minimon_2_run.md5anim in Resources */,
 				F328C4FE1BF4997F0037AC6D /* font_fragment.glsl in Resources */,
 				F3CAEEE51BB01A7600DCF182 /* default_color_vertex.glsl in Resources */,
 				F328C4FB1BF491930037AC6D /* foo.ttf in Resources */,
 				9435525F1BEF091F00FC4ADA /* wired_vertex.glsl in Resources */,
+				F386CD671D05862800079815 /* minimon_5.png in Resources */,
 				F328C4FF1BF4997F0037AC6D /* font_vertex.glsl in Resources */,
 				F3D5E1191AF8F32E00DD216B /* Images.xcassets in Resources */,
 				F3BC2E901CDF733300D83A3B /* phongMultiLightBump.omg in Resources */,
+				F386CD621D05862800079815 /* minimon_5_idle.md5anim in Resources */,
+				F386CD631D05862800079815 /* minimon_5_jump.md5anim in Resources */,
+				F386CD431D0580D000079815 /* minimon_2.png in Resources */,
+				F386CD4A1D0583E200079815 /* minimon_3_idle.md5anim in Resources */,
 				F36587701CF5C85700D85EBB /* actionArrow.mtl in Resources */,
+				F386CD4F1D0583E200079815 /* minimon_3.png in Resources */,
 				F3AB027B1CA7FFFE00CB8FC9 /* particle.png in Resources */,
 				9472227C1B9AD466008D601B /* treemomo.mtl in Resources */,
+				F386CD3F1D0580D000079815 /* minimon_2_jump.md5anim in Resources */,
 				F33DAD241CEEF52A00BCA654 /* phongMultiLight.omg in Resources */,
 				F3C5D0781C85B1E800686AF1 /* writedepth.omg in Resources */,
 				F39FA5CA1C0DE6C200CC0BB4 /* lounge.ogg in Resources */,
 				F386CD331D056ECF00079815 /* minimon_1.md5mesh in Resources */,
+				F386CD651D05862800079815 /* minimon_5.md5mesh in Resources */,
 				F386CD321D056ECF00079815 /* minimon_1_run.md5anim in Resources */,
 				9472227A1B9AD466008D601B /* leaf.png in Resources */,
 				F3BCACBB1BFF26FE002003B7 /* Main_iPhone.storyboard in Resources */,
@@ -2114,28 +2195,40 @@
 				F3A263971C33BD360021B3B6 /* light_point_vertex.glsl in Resources */,
 				947FA31D1BA4854A00695A4E /* char_ram_col.png in Resources */,
 				9435525E1BEF091F00FC4ADA /* wired_fragment.glsl in Resources */,
+				F386CD5B1D05853900079815 /* minimon_4.png in Resources */,
+				F386CD421D0580D000079815 /* minimon_2.mtl in Resources */,
 				F38A22E71BAAA40500FADEC0 /* SimpleGouraudFragment.glsl in Resources */,
 				F3D171781C6DCCD900A9507D /* generalLightingProjector.omg in Resources */,
 				F33CD3411CF83FEA0035D50D /* candy.obj in Resources */,
 				F3E0F55A1CD0A4D8005D0EEE /* gouraudMultiLight.omg in Resources */,
 				F36587711CF5C85700D85EBB /* actionArrow.obj in Resources */,
+				F386CD561D05853900079815 /* minimon_4_idle.md5anim in Resources */,
+				F386CD641D05862800079815 /* minimon_5_run.md5anim in Resources */,
 				F3B0F6BF1BF0B7410044A442 /* FFF_Tusj.ttf in Resources */,
 				F3D5E10B1AF8F24400DD216B /* InfoPlist.strings in Resources */,
 				F3CAEEE71BB01B8800DCF182 /* default_color_fragment.glsl in Resources */,
 				9472227D1B9AD466008D601B /* treemomo.obj in Resources */,
 				F3BCACBA1BFF26FE002003B7 /* Main_iPad.storyboard in Resources */,
+				F386CD4E1D0583E200079815 /* minimon_3.mtl in Resources */,
 				F386CD311D056ECF00079815 /* minimon_1_jump.md5anim in Resources */,
+				F386CD571D05853900079815 /* minimon_4_jump.md5anim in Resources */,
 				F3A7ADA21CA0161500FF8910 /* shadowProjector.omg in Resources */,
 				F3417B191C0F4907006902C9 /* 00.ogg in Resources */,
 				94EF0C601BA70F6700EBF5EE /* norm_as_color_fragment.glsl in Resources */,
 				947222791B9AD466008D601B /* grass.png in Resources */,
 				F368E8CA1BA6AE5A00F322AF /* fragmentPerPixel.glsl in Resources */,
+				F386CD581D05853900079815 /* minimon_4_run.md5anim in Resources */,
 				9472227B1B9AD466008D601B /* momo.png in Resources */,
 				947222781B9AD466008D601B /* balloon.png in Resources */,
 				F38A22E31BAAA15400FADEC0 /* SimpeGouraudVertex.glsl in Resources */,
+				F386CD4B1D0583E200079815 /* minimon_3_jump.md5anim in Resources */,
+				F386CD411D0580D000079815 /* minimon_2.md5mesh in Resources */,
 				F3D171761C6DCBF200A9507D /* projector.png in Resources */,
 				947FA31E1BA4854A00695A4E /* ram.mtl in Resources */,
+				F386CD661D05862800079815 /* minimon_5.mtl in Resources */,
 				F331380C1CD62484000705D5 /* bblock.obj in Resources */,
+				F386CD4C1D0583E200079815 /* minimon_3_run.md5anim in Resources */,
+				F386CD3E1D0580D000079815 /* minimon_2_idle.md5anim in Resources */,
 				F33CD3401CF83FEA0035D50D /* candy.mtl in Resources */,
 				F3AB027C1CA7FFFE00CB8FC9 /* particles.omg in Resources */,
 				F386CD301D056ECF00079815 /* minimon_1_idle.md5anim in Resources */,
@@ -2143,7 +2236,10 @@
 				94EF0C5E1BA70E5400EBF5EE /* pos_norm_vertex.glsl in Resources */,
 				F33CD3421CF83FEA0035D50D /* texture2.png in Resources */,
 				947222771B9AD466008D601B /* background.png in Resources */,
+				F386CD4D1D0583E200079815 /* minimon_3.md5mesh in Resources */,
 				F386CD341D056ECF00079815 /* minimon_1.mtl in Resources */,
+				F386CD591D05853900079815 /* minimon_4.md5mesh in Resources */,
+				F386CD5A1D05853900079815 /* minimon_4.mtl in Resources */,
 				F331380B1CD62484000705D5 /* bblock.mtl in Resources */,
 				F38A22E11BAA979700FADEC0 /* vertexPerPixel.glsl in Resources */,
 				F386CD351D056ECF00079815 /* minimon_1.png in Resources */,

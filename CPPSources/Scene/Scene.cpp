@@ -10,6 +10,8 @@ const std::string bblockObjName{"bblock.obj"};
 const string actionArrowMeshName{"candy"};
 const string bblockMeshName{"bblock"};
 
+string monsterName{"minimon_"};
+
 PlayerController *player;
 
 LevelBuilder *lBuilder;
@@ -37,6 +39,9 @@ Scene::~Scene(){
 #pragma OME event functions
 
 bool Scene::init(){
+    srand(time(0));
+    monsterName += std::to_string(1 + rand() % 5);
+    
     logGLError();
     Camera::instance()->initShadowBuffer();
     
@@ -176,14 +181,14 @@ void Scene::addLight(){
 }
 
 PlayerController* Scene::createPlayer(){
-    up<GameObject> monster = std::unique_ptr<GameObject>(new GameObject("MONSTER_1"));
+    up<GameObject> monster = std::unique_ptr<GameObject>(new GameObject(monsterName));
     std::vector<string>  monsterActions;
     monsterActions.clear();
-    monsterActions.push_back("minimon_1_idle.md5anim");
-    monsterActions.push_back("minimon_1_run.md5anim");
-    monsterActions.push_back("minimon_1_jump.md5anim");
+    monsterActions.push_back(monsterName + "_idle.md5anim");
+    monsterActions.push_back(monsterName + "_run.md5anim");
+    monsterActions.push_back(monsterName + "_jump.md5anim");
     
-    up<AnimMeshComponent> mamc = up<AnimMeshComponent>(new AnimMeshComponent(monster.get(), "minimon_1.md5mesh", "minimon_1.mtl", monsterActions));
+    up<AnimMeshComponent> mamc = up<AnimMeshComponent>(new AnimMeshComponent(monster.get(), monsterName + ".md5mesh", monsterName + ".mtl", monsterActions));
     monster->addComponent(ComponentEnum::ANIM_MESH, std::move(mamc));
 
 

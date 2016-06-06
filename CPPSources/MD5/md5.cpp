@@ -527,6 +527,8 @@ bool MD5::updateAction(const sp<Action> action, const float timeStep){
 
 void MD5::playAction(const string name, const Action::InterpolationMethod method, bool loop){
     
+    logMessage("Play Action%s\n", name.c_str());
+    
     sp<Action> action = getAction(name);
     if(!action) return;
     action->fps = 1.0f / 24.0f;

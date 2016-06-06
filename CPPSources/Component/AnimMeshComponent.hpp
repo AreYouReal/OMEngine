@@ -34,5 +34,7 @@ private:
     
     AnimationStates mState{AnimationStates::IDLE};
     
+    std::map<AnimationStates, string> stateActionTable;
+    
     void updateAnimation(bool loop);
 };
