@@ -176,15 +176,14 @@ void Scene::addLight(){
 }
 
 PlayerController* Scene::createPlayer(){
-    up<GameObject> monster = std::unique_ptr<GameObject>(new GameObject("MONSTER"));
+    up<GameObject> monster = std::unique_ptr<GameObject>(new GameObject("MONSTER_1"));
     std::vector<string>  monsterActions;
     monsterActions.clear();
-    monsterActions.push_back("minimon_idle.md5anim");
-    monsterActions.push_back("minimon_run.md5anim");
-    monsterActions.push_back("minimon_jump_1.md5anim");
-    monsterActions.push_back("minimon_jump_2.md5anim");
+    monsterActions.push_back("minimon_1_idle.md5anim");
+    monsterActions.push_back("minimon_1_run.md5anim");
+    monsterActions.push_back("minimon_1_jump.md5anim");
     
-    up<AnimMeshComponent> mamc = up<AnimMeshComponent>(new AnimMeshComponent(monster.get(), "minimon.md5mesh", "minimon.mtl", monsterActions));
+    up<AnimMeshComponent> mamc = up<AnimMeshComponent>(new AnimMeshComponent(monster.get(), "minimon_1.md5mesh", "minimon_1.mtl", monsterActions));
     monster->addComponent(ComponentEnum::ANIM_MESH, std::move(mamc));
 
 
@@ -197,8 +196,8 @@ PlayerController* Scene::createPlayer(){
     up<RigidBodyComponent> rbc_1 = up<RigidBodyComponent>(new RigidBodyComponent(monster.get(), 5.0f));
     monster->addComponent(ComponentEnum::RIGID_BODY, std::move(rbc_1));
     
-//    up<DebugDrawComponent> ddc = up<DebugDrawComponent>(new DebugDrawComponent(monster.get()));
-//    monster->addComponent(ComponentEnum::DEBUG_DRAW, std::move(ddc));
+    up<DebugDrawComponent> ddc = up<DebugDrawComponent>(new DebugDrawComponent(monster.get()));
+    monster->addComponent(ComponentEnum::DEBUG_DRAW, std::move(ddc));
     
     
     

@@ -1,7 +1,7 @@
 # Blender MTL File: 'mini-mon_3.blend'
 # Material Count: 1
 
-newmtl minimon
+newmtl minimon_1
 Ns 96.078431
 Ka 0.050000 0.050000 0.050000
 Kd 0.800000 0.800000 0.800000
@@ -10,4 +10,4 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd minimon.png
+map_Kd minimon_1.png

@@ -64,19 +64,13 @@ void AnimMeshComponent::updateAnimation(bool loop){
             md5->stopAllActions();
             break;
         case AnimationStates::IDLE:
-            md5->playAction("minimon_idle", md5::Action::InterpolationMethod::FRAME, loop);
+            md5->playAction("minimon_1_idle", md5::Action::InterpolationMethod::FRAME, loop);
             break;
         case AnimationStates::RUN:
-            md5->playAction("minimon_run", md5::Action::InterpolationMethod::FRAME, loop);
+            md5->playAction("minimon_1_run", md5::Action::InterpolationMethod::FRAME, loop);
             break;
         case AnimationStates::JUMP:
-            md5->playAction("minimon_jump_2", md5::Action::InterpolationMethod::FRAME, loop);
-//            if(rand() % 3 == 0){
-//                
-//            }else{
-//                md5->playAction("minimon_jump_1", md5::Action::InterpolationMethod::FRAME, loop);
-//            }
-
+            md5->playAction("minimon_1_jump", md5::Action::InterpolationMethod::FRAME, loop);
             break;
         default:
             logMessage("Unknown animatino state!");

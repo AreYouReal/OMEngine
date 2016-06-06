@@ -6,12 +6,12 @@
 static std::map<string, string>  meshShaderTable{
     std::pair<string, string>("bblock", "gouraudMultiLight.omg"),
     std::pair<string, string>("candy", "phongMultiLight.omg"),
-    std::pair<string, string>("minimon", "phongMultiLight.omg"),
+    std::pair<string, string>("minimon_1", "phongMultiLight.omg"),
 };
 
 Materials::Materials(){
     loadPrograms();
-    loadMaterial("minimon.mtl");
+    loadMaterial("minimon_1.mtl");
     loadOMGFile("phongMultiLight.omg");
     loadOMGFile("gouraudMultiLight.omg");
 }

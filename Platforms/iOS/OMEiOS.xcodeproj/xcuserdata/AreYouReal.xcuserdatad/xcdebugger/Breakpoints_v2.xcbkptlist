@@ -30,14 +30,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../../CPPSources/Material/Materials.cpp"
-            timestampString = "486811571.971857"
+            filePath = "../../CPPSources/Utils/OMUtils.cpp"
+            timestampString = "486895494.816135"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "135"
-            endingLineNumber = "135"
-            landmarkName = "Materials::getMaterial(const std::string &amp;name)"
-            landmarkType = "5">
+            startingLineNumber = "294"
+            endingLineNumber = "294"
+            landmarkName = "loadRawPNGData(const char *filename, unsigned int &amp;width, unsigned int &amp;height)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
