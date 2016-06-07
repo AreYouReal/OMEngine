@@ -211,6 +211,9 @@
 		F34129D81BB53DBC006F4D4D /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F34129D61BB53DBC006F4D4D /* Texture.cpp */; };
 		F3417B191C0F4907006902C9 /* 00.ogg in Resources */ = {isa = PBXBuildFile; fileRef = F3417B181C0F4907006902C9 /* 00.ogg */; };
 		F34C4B2A1CF857C0005211A9 /* LevelBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F34C4B281CF857C0005211A9 /* LevelBuilder.cpp */; };
+		F359437E1D06DB28006B25F5 /* candy_2.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F359437B1D06DB28006B25F5 /* candy_2.mtl */; };
+		F359437F1D06DB28006B25F5 /* candy_2.obj in Resources */ = {isa = PBXBuildFile; fileRef = F359437C1D06DB28006B25F5 /* candy_2.obj */; };
+		F35943801D06DB28006B25F5 /* candy_2.png in Resources */ = {isa = PBXBuildFile; fileRef = F359437D1D06DB28006B25F5 /* candy_2.png */; };
 		F35AA90F1CC659D300957429 /* AnimMeshComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F35AA90D1CC659D300957429 /* AnimMeshComponent.cpp */; };
 		F361DB8B1CFAC946008A9725 /* LevelRelated.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F361DB891CFAC946008A9725 /* LevelRelated.cpp */; };
 		F36587701CF5C85700D85EBB /* actionArrow.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F365876E1CF5C85700D85EBB /* actionArrow.mtl */; };
@@ -794,6 +797,9 @@
 		F3473FA41BC3E607001DE43A /* Singleton.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Singleton.hpp; sourceTree = "<group>"; };
 		F34C4B281CF857C0005211A9 /* LevelBuilder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LevelBuilder.cpp; sourceTree = "<group>"; };
 		F34C4B291CF857C0005211A9 /* LevelBuilder.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LevelBuilder.hpp; sourceTree = "<group>"; };
+		F359437B1D06DB28006B25F5 /* candy_2.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = candy_2.mtl; path = OMEngine/Platforms/Android/assets/candy_2.mtl; sourceTree = "<group>"; };
+		F359437C1D06DB28006B25F5 /* candy_2.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = candy_2.obj; path = OMEngine/Platforms/Android/assets/candy_2.obj; sourceTree = "<group>"; };
+		F359437D1D06DB28006B25F5 /* candy_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = candy_2.png; path = OMEngine/Platforms/Android/assets/candy_2.png; sourceTree = "<group>"; };
 		F35AA90D1CC659D300957429 /* AnimMeshComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimMeshComponent.cpp; sourceTree = "<group>"; };
 		F35AA90E1CC659D300957429 /* AnimMeshComponent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AnimMeshComponent.hpp; sourceTree = "<group>"; };
 		F361DB891CFAC946008A9725 /* LevelRelated.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LevelRelated.cpp; sourceTree = "<group>"; };
@@ -1072,6 +1078,9 @@
 		7626524017F10E6C007CCD43 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F359437B1D06DB28006B25F5 /* candy_2.mtl */,
+				F359437C1D06DB28006B25F5 /* candy_2.obj */,
+				F359437D1D06DB28006B25F5 /* candy_2.png */,
 				F386CD5C1D05862800079815 /* minimon_5_idle.md5anim */,
 				F386CD5D1D05862800079815 /* minimon_5_jump.md5anim */,
 				F386CD5E1D05862800079815 /* minimon_5_run.md5anim */,
@@ -2184,6 +2193,7 @@
 				9472227C1B9AD466008D601B /* treemomo.mtl in Resources */,
 				F386CD3F1D0580D000079815 /* minimon_2_jump.md5anim in Resources */,
 				F33DAD241CEEF52A00BCA654 /* phongMultiLight.omg in Resources */,
+				F359437E1D06DB28006B25F5 /* candy_2.mtl in Resources */,
 				F3C5D0781C85B1E800686AF1 /* writedepth.omg in Resources */,
 				F39FA5CA1C0DE6C200CC0BB4 /* lounge.ogg in Resources */,
 				F386CD331D056ECF00079815 /* minimon_1.md5mesh in Resources */,
@@ -2200,6 +2210,7 @@
 				F38A22E71BAAA40500FADEC0 /* SimpleGouraudFragment.glsl in Resources */,
 				F3D171781C6DCCD900A9507D /* generalLightingProjector.omg in Resources */,
 				F33CD3411CF83FEA0035D50D /* candy.obj in Resources */,
+				F359437F1D06DB28006B25F5 /* candy_2.obj in Resources */,
 				F3E0F55A1CD0A4D8005D0EEE /* gouraudMultiLight.omg in Resources */,
 				F36587711CF5C85700D85EBB /* actionArrow.obj in Resources */,
 				F386CD561D05853900079815 /* minimon_4_idle.md5anim in Resources */,
@@ -2213,6 +2224,7 @@
 				F386CD311D056ECF00079815 /* minimon_1_jump.md5anim in Resources */,
 				F386CD571D05853900079815 /* minimon_4_jump.md5anim in Resources */,
 				F3A7ADA21CA0161500FF8910 /* shadowProjector.omg in Resources */,
+				F35943801D06DB28006B25F5 /* candy_2.png in Resources */,
 				F3417B191C0F4907006902C9 /* 00.ogg in Resources */,
 				94EF0C601BA70F6700EBF5EE /* norm_as_color_fragment.glsl in Resources */,
 				947222791B9AD466008D601B /* grass.png in Resources */,

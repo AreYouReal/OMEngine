@@ -4,10 +4,10 @@
 #include "LevelBuilder.hpp"
 
 
-const std::string actionObjName{"candy.obj"};
+const std::string actionObjName{"candy_2.obj"};
 const std::string bblockObjName{"bblock.obj"};
 
-const string actionArrowMeshName{"candy"};
+const string actionArrowMeshName{"candy_2"};
 const string bblockMeshName{"bblock"};
 
 string monsterName{"minimon_"};
