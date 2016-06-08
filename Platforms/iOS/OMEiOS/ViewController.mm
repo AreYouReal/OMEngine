@@ -1,5 +1,4 @@
 #import "ViewController.h"
-#include "OMUtils.h"
 #include "OMGame.h"
 
 
@@ -7,7 +6,6 @@
     OMContext _OMContext;
 }
 @property (strong, nonatomic) EAGLContext *context;
-@property (strong, nonatomic) GLKBaseEffect *effect;
 
 - (void)setupGL;
 - (void)tearDownGL;
