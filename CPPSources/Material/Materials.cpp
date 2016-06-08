@@ -5,8 +5,11 @@
 
 static std::map<string, string>  meshShaderTable{
     std::pair<string, string>("bblock", "gouraudMultiLight.omg"),
-    std::pair<string, string>("candy", "phongMultiLight.omg"),
+    std::pair<string, string>("candy_1", "phongMultiLight.omg"),
     std::pair<string, string>("candy_2", "phongMultiLight.omg"),
+    std::pair<string, string>("candy_3", "phongMultiLight.omg"),
+    std::pair<string, string>("candy_4", "phongMultiLight.omg"),
+    std::pair<string, string>("candy_5", "phongMultiLight.omg"),
     std::pair<string, string>("minimon_1", "phongMultiLight.omg"),
     std::pair<string, string>("minimon_2", "phongMultiLight.omg"),
     std::pair<string, string>("minimon_3", "phongMultiLight.omg"),

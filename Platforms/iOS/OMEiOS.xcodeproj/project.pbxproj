@@ -198,11 +198,7 @@
 		F34129D81BB53DBC006F4D4D /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F34129D61BB53DBC006F4D4D /* Texture.cpp */; };
 		F3417B191C0F4907006902C9 /* 00.ogg in Resources */ = {isa = PBXBuildFile; fileRef = F3417B181C0F4907006902C9 /* 00.ogg */; };
 		F34C4B2A1CF857C0005211A9 /* LevelBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F34C4B281CF857C0005211A9 /* LevelBuilder.cpp */; };
-		F359437E1D06DB28006B25F5 /* candy_2.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F359437B1D06DB28006B25F5 /* candy_2.mtl */; };
-		F359437F1D06DB28006B25F5 /* candy_2.obj in Resources */ = {isa = PBXBuildFile; fileRef = F359437C1D06DB28006B25F5 /* candy_2.obj */; };
 		F35943801D06DB28006B25F5 /* candy_2.png in Resources */ = {isa = PBXBuildFile; fileRef = F359437D1D06DB28006B25F5 /* candy_2.png */; };
-		F35943841D070313006B25F5 /* candy_1.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F35943811D070313006B25F5 /* candy_1.mtl */; };
-		F35943851D070313006B25F5 /* candy_1.obj in Resources */ = {isa = PBXBuildFile; fileRef = F35943821D070313006B25F5 /* candy_1.obj */; };
 		F35943861D070313006B25F5 /* candy_1.png in Resources */ = {isa = PBXBuildFile; fileRef = F35943831D070313006B25F5 /* candy_1.png */; };
 		F35AA90F1CC659D300957429 /* AnimMeshComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F35AA90D1CC659D300957429 /* AnimMeshComponent.cpp */; };
 		F361DB8B1CFAC946008A9725 /* LevelRelated.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F361DB891CFAC946008A9725 /* LevelRelated.cpp */; };
@@ -279,6 +275,11 @@
 		F39FA5C51C0DE15400CC0BB4 /* window.c in Sources */ = {isa = PBXBuildFile; fileRef = F39FA5AD1C0DE15400CC0BB4 /* window.c */; };
 		F39FA5CA1C0DE6C200CC0BB4 /* lounge.ogg in Resources */ = {isa = PBXBuildFile; fileRef = F39FA5C91C0DE6C200CC0BB4 /* lounge.ogg */; };
 		F3A1A4EA1C60CBA000DBBB4B /* WireSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3A1A4E81C60CBA000DBBB4B /* WireSP.cpp */; };
+		F3A254621D08102600F53BB7 /* candies.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F3A2545D1D08102600F53BB7 /* candies.mtl */; };
+		F3A254631D08102600F53BB7 /* candies.obj in Resources */ = {isa = PBXBuildFile; fileRef = F3A2545E1D08102600F53BB7 /* candies.obj */; };
+		F3A254641D08102600F53BB7 /* candy_3.png in Resources */ = {isa = PBXBuildFile; fileRef = F3A2545F1D08102600F53BB7 /* candy_3.png */; };
+		F3A254651D08102600F53BB7 /* candy_4.png in Resources */ = {isa = PBXBuildFile; fileRef = F3A254601D08102600F53BB7 /* candy_4.png */; };
+		F3A254661D08102600F53BB7 /* candy_5.png in Resources */ = {isa = PBXBuildFile; fileRef = F3A254611D08102600F53BB7 /* candy_5.png */; };
 		F3A263961C33BD360021B3B6 /* light_point_fragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F3A263941C33BD360021B3B6 /* light_point_fragment.glsl */; };
 		F3A263971C33BD360021B3B6 /* light_point_vertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F3A263951C33BD360021B3B6 /* light_point_vertex.glsl */; };
 		F3A7ADA21CA0161500FF8910 /* shadowProjector.omg in Resources */ = {isa = PBXBuildFile; fileRef = F3A7ADA11CA0161500FF8910 /* shadowProjector.omg */; };
@@ -772,11 +773,7 @@
 		F3473FA41BC3E607001DE43A /* Singleton.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Singleton.hpp; sourceTree = "<group>"; };
 		F34C4B281CF857C0005211A9 /* LevelBuilder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LevelBuilder.cpp; sourceTree = "<group>"; };
 		F34C4B291CF857C0005211A9 /* LevelBuilder.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LevelBuilder.hpp; sourceTree = "<group>"; };
-		F359437B1D06DB28006B25F5 /* candy_2.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = candy_2.mtl; path = OMEngine/Platforms/Android/assets/candy_2.mtl; sourceTree = "<group>"; };
-		F359437C1D06DB28006B25F5 /* candy_2.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = candy_2.obj; path = OMEngine/Platforms/Android/assets/candy_2.obj; sourceTree = "<group>"; };
 		F359437D1D06DB28006B25F5 /* candy_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = candy_2.png; path = OMEngine/Platforms/Android/assets/candy_2.png; sourceTree = "<group>"; };
-		F35943811D070313006B25F5 /* candy_1.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = candy_1.mtl; path = OMEngine/Platforms/Android/assets/candy_1.mtl; sourceTree = "<group>"; };
-		F35943821D070313006B25F5 /* candy_1.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = candy_1.obj; path = OMEngine/Platforms/Android/assets/candy_1.obj; sourceTree = "<group>"; };
 		F35943831D070313006B25F5 /* candy_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = candy_1.png; path = OMEngine/Platforms/Android/assets/candy_1.png; sourceTree = "<group>"; };
 		F35AA90D1CC659D300957429 /* AnimMeshComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimMeshComponent.cpp; sourceTree = "<group>"; };
 		F35AA90E1CC659D300957429 /* AnimMeshComponent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AnimMeshComponent.hpp; sourceTree = "<group>"; };
@@ -893,6 +890,11 @@
 		F39FA5C91C0DE6C200CC0BB4 /* lounge.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; name = lounge.ogg; path = OMEngine/Platforms/Android/assets/lounge.ogg; sourceTree = "<group>"; };
 		F3A1A4E81C60CBA000DBBB4B /* WireSP.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = WireSP.cpp; path = OMEngine/CPPSources/Shaders/WireSP.cpp; sourceTree = "<group>"; };
 		F3A1A4E91C60CBA000DBBB4B /* WireSP.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = WireSP.hpp; path = OMEngine/CPPSources/Shaders/WireSP.hpp; sourceTree = "<group>"; };
+		F3A2545D1D08102600F53BB7 /* candies.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = candies.mtl; path = OMEngine/Platforms/Android/assets/candies.mtl; sourceTree = "<group>"; };
+		F3A2545E1D08102600F53BB7 /* candies.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = candies.obj; path = OMEngine/Platforms/Android/assets/candies.obj; sourceTree = "<group>"; };
+		F3A2545F1D08102600F53BB7 /* candy_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = candy_3.png; path = OMEngine/Platforms/Android/assets/candy_3.png; sourceTree = "<group>"; };
+		F3A254601D08102600F53BB7 /* candy_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = candy_4.png; path = OMEngine/Platforms/Android/assets/candy_4.png; sourceTree = "<group>"; };
+		F3A254611D08102600F53BB7 /* candy_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = candy_5.png; path = OMEngine/Platforms/Android/assets/candy_5.png; sourceTree = "<group>"; };
 		F3A263941C33BD360021B3B6 /* light_point_fragment.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = light_point_fragment.glsl; sourceTree = "<group>"; };
 		F3A263951C33BD360021B3B6 /* light_point_vertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = light_point_vertex.glsl; sourceTree = "<group>"; };
 		F3A7ADA11CA0161500FF8910 /* shadowProjector.omg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = shadowProjector.omg; path = OMEngine/Platforms/Android/assets/shadowProjector.omg; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
@@ -1054,11 +1056,12 @@
 		7626524017F10E6C007CCD43 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				F35943811D070313006B25F5 /* candy_1.mtl */,
-				F35943821D070313006B25F5 /* candy_1.obj */,
+				F3A2545D1D08102600F53BB7 /* candies.mtl */,
+				F3A2545E1D08102600F53BB7 /* candies.obj */,
+				F3A2545F1D08102600F53BB7 /* candy_3.png */,
+				F3A254601D08102600F53BB7 /* candy_4.png */,
+				F3A254611D08102600F53BB7 /* candy_5.png */,
 				F35943831D070313006B25F5 /* candy_1.png */,
-				F359437B1D06DB28006B25F5 /* candy_2.mtl */,
-				F359437C1D06DB28006B25F5 /* candy_2.obj */,
 				F359437D1D06DB28006B25F5 /* candy_2.png */,
 				F386CD5C1D05862800079815 /* minimon_5_idle.md5anim */,
 				F386CD5D1D05862800079815 /* minimon_5_jump.md5anim */,
@@ -2140,6 +2143,7 @@
 			files = (
 				F386CD401D0580D000079815 /* minimon_2_run.md5anim in Resources */,
 				F328C4FE1BF4997F0037AC6D /* font_fragment.glsl in Resources */,
+				F3A254651D08102600F53BB7 /* candy_4.png in Resources */,
 				F3CAEEE51BB01A7600DCF182 /* default_color_vertex.glsl in Resources */,
 				F328C4FB1BF491930037AC6D /* foo.ttf in Resources */,
 				9435525F1BEF091F00FC4ADA /* wired_vertex.glsl in Resources */,
@@ -2150,13 +2154,13 @@
 				F386CD621D05862800079815 /* minimon_5_idle.md5anim in Resources */,
 				F386CD631D05862800079815 /* minimon_5_jump.md5anim in Resources */,
 				F386CD431D0580D000079815 /* minimon_2.png in Resources */,
+				F3A254661D08102600F53BB7 /* candy_5.png in Resources */,
 				F386CD4A1D0583E200079815 /* minimon_3_idle.md5anim in Resources */,
 				F386CD4F1D0583E200079815 /* minimon_3.png in Resources */,
 				F3AB027B1CA7FFFE00CB8FC9 /* particle.png in Resources */,
+				F3A254641D08102600F53BB7 /* candy_3.png in Resources */,
 				F386CD3F1D0580D000079815 /* minimon_2_jump.md5anim in Resources */,
-				F35943851D070313006B25F5 /* candy_1.obj in Resources */,
 				F33DAD241CEEF52A00BCA654 /* phongMultiLight.omg in Resources */,
-				F359437E1D06DB28006B25F5 /* candy_2.mtl in Resources */,
 				F3C5D0781C85B1E800686AF1 /* writedepth.omg in Resources */,
 				F39FA5CA1C0DE6C200CC0BB4 /* lounge.ogg in Resources */,
 				F386CD331D056ECF00079815 /* minimon_1.md5mesh in Resources */,
@@ -2169,12 +2173,10 @@
 				F386CD421D0580D000079815 /* minimon_2.mtl in Resources */,
 				F38A22E71BAAA40500FADEC0 /* SimpleGouraudFragment.glsl in Resources */,
 				F3D171781C6DCCD900A9507D /* generalLightingProjector.omg in Resources */,
-				F359437F1D06DB28006B25F5 /* candy_2.obj in Resources */,
 				F3E0F55A1CD0A4D8005D0EEE /* gouraudMultiLight.omg in Resources */,
 				F386CD561D05853900079815 /* minimon_4_idle.md5anim in Resources */,
 				F386CD641D05862800079815 /* minimon_5_run.md5anim in Resources */,
 				F3B0F6BF1BF0B7410044A442 /* FFF_Tusj.ttf in Resources */,
-				F35943841D070313006B25F5 /* candy_1.mtl in Resources */,
 				F3D5E10B1AF8F24400DD216B /* InfoPlist.strings in Resources */,
 				F3CAEEE71BB01B8800DCF182 /* default_color_fragment.glsl in Resources */,
 				F3BCACBA1BFF26FE002003B7 /* Main_iPad.storyboard in Resources */,
@@ -2183,8 +2185,10 @@
 				F386CD571D05853900079815 /* minimon_4_jump.md5anim in Resources */,
 				F3A7ADA21CA0161500FF8910 /* shadowProjector.omg in Resources */,
 				F35943801D06DB28006B25F5 /* candy_2.png in Resources */,
+				F3A254621D08102600F53BB7 /* candies.mtl in Resources */,
 				F3417B191C0F4907006902C9 /* 00.ogg in Resources */,
 				94EF0C601BA70F6700EBF5EE /* norm_as_color_fragment.glsl in Resources */,
+				F3A254631D08102600F53BB7 /* candies.obj in Resources */,
 				F368E8CA1BA6AE5A00F322AF /* fragmentPerPixel.glsl in Resources */,
 				F386CD581D05853900079815 /* minimon_4_run.md5anim in Resources */,
 				F38A22E31BAAA15400FADEC0 /* SimpeGouraudVertex.glsl in Resources */,

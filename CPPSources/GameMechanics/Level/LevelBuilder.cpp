@@ -9,9 +9,9 @@ LevelBuilder::~LevelBuilder(){
     onDestroy();
 }
 
-void LevelBuilder::InitWithMeshes(sp<ObjMesh> block, sp<ObjMesh> arrow){
+void LevelBuilder::InitWithMeshes(sp<ObjMesh> block, std::vector<sp<ObjMesh>> candies){
     mBlock = block;
-    mArrow = arrow;
+    mCandies = candies;
 }
 
 
@@ -101,7 +101,17 @@ void LevelBuilder::addNewBlock(v3d blockPos, LAction action){
 //        up<DebugDrawComponent> ddc = up<DebugDrawComponent>(new DebugDrawComponent(go.get()));
 //        go->addComponent(ComponentEnum::DEBUG_DRAW, std::move(ddc));
         go->setPosition(blockPos);
-        if(action.mType != LAction::Type::NONE && prevObj != nullptr) addCandyToBlock(action);
+        
+        
+        
+        if(action.mType != LAction::Type::NONE){
+            actions.push(action);
+
+        }
+        
+        if(prevObj != nullptr){
+            addCandyToBlock();
+        }
         
         prevObj = go.get();
         addBlockComponent(go.get());
@@ -112,14 +122,13 @@ void LevelBuilder::addNewBlock(v3d blockPos, LAction action){
     }
 }
 
-void LevelBuilder::addCandyToBlock(LAction action){
-    if(mArrow && action.mType != LAction::Type::NONE){
+void LevelBuilder::addCandyToBlock(){
+    if(mCandies.size() > 0 && ((rand() % 100) < mCandyChance)){
         up<GameObject> go = std::unique_ptr<GameObject>(new GameObject("Candy"));
-        up<MeshRendererComponent> mrc = up<MeshRendererComponent>(new MeshRendererComponent(go.get(), mArrow));
+        up<MeshRendererComponent> mrc = up<MeshRendererComponent>(new MeshRendererComponent(go.get(), mCandies[rand()%mCandies.size()]));
         go->addComponent(ComponentEnum::MESH_RENDERER, std::move(mrc));
         up<LevelRelated::Candy> aa = std::unique_ptr<LevelRelated::Candy>(new LevelRelated::Candy(go.get(), this));
-        actions.push(action);
-        
+
         go->mTransform.mScale = v3d(0.5f, 0.5f, 0.5f);
         go->mTransform.refreshTransformMatrix();
         go->addComponent(ComponentEnum::CANDY, std::move(aa));

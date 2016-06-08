@@ -4,10 +4,10 @@
 #include "LevelBuilder.hpp"
 
 
-const std::string actionObjName{"candy_2.obj"};
+const std::string actionObjName{"candies.obj"};
 const std::string bblockObjName{"bblock.obj"};
 
-const string actionArrowMeshName{"candy_2"};
+const string actionArrowMeshName{"candy_1"};
 const string bblockMeshName{"bblock"};
 
 string monsterName{"minimon_"};
@@ -218,7 +218,7 @@ PlayerController* Scene::createPlayer(){
 LevelBuilder *Scene::createLevelBuilder(){
     up<GameObject> go = std::unique_ptr<GameObject>(new GameObject("LevelBuilder"));
     up<LevelBuilder> lb = std::unique_ptr<LevelBuilder>(new LevelBuilder(go.get()));
-    lb->InitWithMeshes(mObjRess[bblockObjName]->getMesh(bblockMeshName), mObjRess[actionObjName]->getMesh(actionArrowMeshName));
+    lb->InitWithMeshes(mObjRess[bblockObjName]->getMesh(bblockMeshName), mObjRess[actionObjName]->getAllMeshes());
     LevelBuilder *returnValue = lb.get();
         go->addComponent(ComponentEnum::LEVEL_BUILDER, std::move(lb));
     addObjOnScene(std::move(go));

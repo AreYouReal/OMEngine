@@ -22,7 +22,7 @@ public:
     
     // endof IComponent interface
     
-    void InitWithMeshes(sp<ObjMesh> block, sp<ObjMesh> arrow);
+    void InitWithMeshes(sp<ObjMesh> block, std::vector<sp<ObjMesh>> candies);
 
     void buildLevel();
     
@@ -51,14 +51,17 @@ private:
     GameObject *prevObj {nullptr};
 
     sp<ObjMesh> mBlock {nullptr};
-    sp<ObjMesh> mArrow {nullptr};
+    std::vector<sp<ObjMesh>> mCandies {nullptr};
     
     v3d mLastBlockPoss{0, 0, 0};
     v3d mLastDir{0, 0, 0};
     
+    
+    float mCandyChance = 50.0f;
+    
     v3d  calculateNewPoss(v3d lastPos);
     void addNewBlock(v3d blockPos, LAction action);
-    void addCandyToBlock(LAction action);
+    void addCandyToBlock();
     
     
     LevelRelated::Action getAction(v3d newPos, v3d lastDir);
