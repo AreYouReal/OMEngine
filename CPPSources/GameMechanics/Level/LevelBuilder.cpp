@@ -98,8 +98,12 @@ void LevelBuilder::addNewBlock(v3d blockPos, LAction action){
         
         go->addComponent(ComponentEnum::RIGID_BODY, std::move(rbc_1));
 
-//        up<DebugDrawComponent> ddc = up<DebugDrawComponent>(new DebugDrawComponent(go.get()));
-//        go->addComponent(ComponentEnum::DEBUG_DRAW, std::move(ddc));
+        
+        if(OMGame::debugFlag){
+            up<DebugDrawComponent> ddc = up<DebugDrawComponent>(new DebugDrawComponent(go.get()));
+            go->addComponent(ComponentEnum::DEBUG_DRAW, std::move(ddc));
+        }
+
         go->setPosition(blockPos);
         
         
@@ -139,8 +143,11 @@ void LevelBuilder::addCandyToBlock(){
         
         go->setPosition(prevObj->getPosition()+ v3d(0, 2, 0));
         
-//        up<DebugDrawComponent> ddc = up<DebugDrawComponent>(new DebugDrawComponent(go.get()));
-//        go->addComponent(ComponentEnum::DEBUG_DRAW, std::move(ddc));
+        if(OMGame::debugFlag){
+            up<DebugDrawComponent> ddc = up<DebugDrawComponent>(new DebugDrawComponent(go.get()));
+            go->addComponent(ComponentEnum::DEBUG_DRAW, std::move(ddc));
+        }
+
         
         activeCandies.push_back(go.get());
         Scene::instance()->addObjOnScene(std::move(go));

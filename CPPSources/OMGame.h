@@ -14,8 +14,8 @@ public:
     static void Exit            ( );
 
     static    OMContext*      getAppContext();
-    static  bool debugFlag;
-
+    static  bool debugFlag;    
+    
 private:
     static void printGLInfo();
     static void initOGL(const float width, const float height);

@@ -163,8 +163,10 @@ void Scene::addLight(){
     up<LightSource> light = up<LightSource>(new LightSource(go.get(), LightSource::Type::DIRECTION, v4d(1, 1, 1, 1)) );
     go->addComponent(ComponentEnum::LIGHT_SOURCE, std::move(light));
     
-    up<DebugDrawComponent> debugDraw = up<DebugDrawComponent>(new DebugDrawComponent(go.get()));
-    go->addComponent(ComponentEnum::DEBUG_DRAW, std::move(debugDraw));
+    if(OMGame::debugFlag){
+        up<DebugDrawComponent> debugDraw = up<DebugDrawComponent>(new DebugDrawComponent(go.get()));
+        go->addComponent(ComponentEnum::DEBUG_DRAW, std::move(debugDraw));
+    }
     
     addObjOnScene(std::move(go));
     
@@ -173,10 +175,14 @@ void Scene::addLight(){
     go->setFront(v3d(5, 5, 0));
     light->follow(player->go);
     go->addComponent(ComponentEnum::LIGHT_SOURCE, std::move(light));
-    debugDraw = up<DebugDrawComponent>(new DebugDrawComponent(go.get()));
-    go->addComponent(ComponentEnum::DEBUG_DRAW, std::move(debugDraw));
-    debugDraw = up<DebugDrawComponent>(new DebugDrawComponent(go.get()));
-    go->addComponent(ComponentEnum::DEBUG_DRAW, std::move(debugDraw));
+
+    if(OMGame::debugFlag){
+        up<DebugDrawComponent> debugDraw = up<DebugDrawComponent>(new DebugDrawComponent(go.get()));
+        go->addComponent(ComponentEnum::DEBUG_DRAW, std::move(debugDraw));
+    }
+
+    
+
     addObjOnScene(std::move(go));
 }
 
@@ -201,11 +207,11 @@ PlayerController* Scene::createPlayer(){
     up<RigidBodyComponent> rbc_1 = up<RigidBodyComponent>(new RigidBodyComponent(monster.get(), 5.0f));
     monster->addComponent(ComponentEnum::RIGID_BODY, std::move(rbc_1));
     
-    up<DebugDrawComponent> ddc = up<DebugDrawComponent>(new DebugDrawComponent(monster.get()));
-    monster->addComponent(ComponentEnum::DEBUG_DRAW, std::move(ddc));
-    
-    
-    
+    if(OMGame::debugFlag){
+        up<DebugDrawComponent> ddc = up<DebugDrawComponent>(new DebugDrawComponent(monster.get()));
+        monster->addComponent(ComponentEnum::DEBUG_DRAW, std::move(ddc));
+    }
+
     up<PlayerController> player = up<PlayerController>( new PlayerController(monster.get()));
     PlayerController *ctr = player.get();
     monster->addComponent(ComponentEnum::PLAYER_CTR, std::move(player));

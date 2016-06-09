@@ -16,6 +16,8 @@
 
 #include "PlayerController.hpp"
 
+#include "OMGame.h"
+
 class Scene : public Singleton<Scene>{
 
 public:
