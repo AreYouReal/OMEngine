@@ -4,7 +4,7 @@
 
 #include "q4d.h"
 
-class Transform{
+class Transform  {
 
 public:
     Transform();
@@ -37,7 +37,4 @@ public:
     
 private:
     m4d mTransformMatrix;
-    
-    std::weak_ptr<Transform> parentTransform;
-    std::vector<std::weak_ptr<Transform>> childTransforms;
 };
