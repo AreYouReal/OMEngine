@@ -2,6 +2,7 @@
 #include "Camera.h"
 #include "Shortcuts.h"
 #include "LevelBuilder.hpp"
+#include "CandyMonster.hpp"
 
 
 const std::string actionObjName{"candies.obj"};
@@ -9,8 +10,6 @@ const std::string bblockObjName{"bblock.obj"};
 
 const string actionArrowMeshName{"candy_1"};
 const string bblockMeshName{"bblock"};
-
-string monsterName{"minimon_"};
 
 PlayerController *player;
 
@@ -40,7 +39,6 @@ Scene::~Scene(){
 
 bool Scene::init(){
     srand(time(0));
-    monsterName += std::to_string(1 + rand() % 5);
     
     logGLError();
     Camera::instance()->initShadowBuffer();
@@ -187,36 +185,19 @@ void Scene::addLight(){
 }
 
 PlayerController* Scene::createPlayer(){
-    up<GameObject> monster = std::unique_ptr<GameObject>(new GameObject(monsterName));
-    std::vector<string>  monsterActions;
-    monsterActions.clear();
-    monsterActions.push_back(monsterName + "_idle.md5anim");
-    monsterActions.push_back(monsterName + "_run.md5anim");
-    monsterActions.push_back(monsterName + "_jump.md5anim");
     
-    up<AnimMeshComponent> mamc = up<AnimMeshComponent>(new AnimMeshComponent(monster.get(), monsterName + ".md5mesh", monsterName + ".mtl", monsterActions));
-    monster->addComponent(ComponentEnum::ANIM_MESH, std::move(mamc));
-
-
-    q4d sR(90, v3d(0, 1, 0));
-    monster->mTransform.rotate(sR);
-    monster->mTransform.translate(0, -.85f, 0);
-    monster->mTransform.mScale = v3d(3, 3, 3);
-    monster->mTransform.refreshTransformMatrix();
-    
-    up<RigidBodyComponent> rbc_1 = up<RigidBodyComponent>(new RigidBodyComponent(monster.get(), 5.0f));
-    monster->addComponent(ComponentEnum::RIGID_BODY, std::move(rbc_1));
+    up<GameObject> candyMonster = CandyMonster::create(CandyMonster::CandyType::TYPE_4);
     
     if(OMGame::debugFlag){
-        up<DebugDrawComponent> ddc = up<DebugDrawComponent>(new DebugDrawComponent(monster.get()));
-        monster->addComponent(ComponentEnum::DEBUG_DRAW, std::move(ddc));
+        up<DebugDrawComponent> ddc = up<DebugDrawComponent>(new DebugDrawComponent(candyMonster.get()));
+        candyMonster->addComponent(ComponentEnum::DEBUG_DRAW, std::move(ddc));
     }
 
-    up<PlayerController> player = up<PlayerController>( new PlayerController(monster.get()));
+    up<PlayerController> player = up<PlayerController>( new PlayerController(candyMonster.get()));
     PlayerController *ctr = player.get();
-    monster->addComponent(ComponentEnum::PLAYER_CTR, std::move(player));
+    candyMonster->addComponent(ComponentEnum::PLAYER_CTR, std::move(player));
     
-    addObjOnScene(std::move(monster));
+    addObjOnScene(std::move(candyMonster));
 
     return ctr;
 }
