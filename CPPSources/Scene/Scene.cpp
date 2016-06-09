@@ -155,11 +155,13 @@ void Scene::addLight(){
     
     go->setFront(v3d(0, 1, -1));
     up<LightSource> light = up<LightSource>(new LightSource(go.get(), LightSource::Type::DIRECTION, v4d(1, 1, 1, 1)) );
-    go->addComponent(ComponentEnum::LIGHT_SOURCE, std::move(light));
+    light->IComponent::mComponentType = ComponentEnum::LIGHT_SOURCE;
+    go->addComponent(std::move(light));
     
     if(OMGame::debugFlag){
         up<DebugDrawComponent> debugDraw = up<DebugDrawComponent>(new DebugDrawComponent(go.get()));
-        go->addComponent(ComponentEnum::DEBUG_DRAW, std::move(debugDraw));
+        debugDraw->mComponentType = ComponentEnum::DEBUG_DRAW;
+        go->addComponent(std::move(debugDraw));
     }
     
     addObjOnScene(std::move(go));
@@ -168,11 +170,13 @@ void Scene::addLight(){
     light = up<LightSource>(new LightSource(go.get(), LightSource::Type::POINT, v4d(1, 1, 1, 1), 15) );
     go->setFront(v3d(5, 5, 0));
     light->follow(player->go);
-    go->addComponent(ComponentEnum::LIGHT_SOURCE, std::move(light));
+    light->IComponent::mComponentType = ComponentEnum::LIGHT_SOURCE;
+    go->addComponent(std::move(light));
 
     if(OMGame::debugFlag){
         up<DebugDrawComponent> debugDraw = up<DebugDrawComponent>(new DebugDrawComponent(go.get()));
-        go->addComponent(ComponentEnum::DEBUG_DRAW, std::move(debugDraw));
+        debugDraw->mComponentType = ComponentEnum::DEBUG_DRAW;
+        go->addComponent(std::move(debugDraw));
     }
 
     
@@ -186,12 +190,14 @@ PlayerController* Scene::createPlayer(){
     
     if(OMGame::debugFlag){
         up<DebugDrawComponent> ddc = up<DebugDrawComponent>(new DebugDrawComponent(candyMonster.get()));
-        candyMonster->addComponent(ComponentEnum::DEBUG_DRAW, std::move(ddc));
+        ddc->mComponentType = ComponentEnum::DEBUG_DRAW;
+        candyMonster->addComponent(std::move(ddc));
     }
 
     up<PlayerController> player = up<PlayerController>( new PlayerController(candyMonster.get()));
     PlayerController *ctr = player.get();
-    candyMonster->addComponent(ComponentEnum::PLAYER_CTR, std::move(player));
+    ctr->IComponent::mComponentType = ComponentEnum::PLAYER_CTR;
+    candyMonster->addComponent(std::move(player));
     
     addObjOnScene(std::move(candyMonster));
     
@@ -217,7 +223,8 @@ LevelBuilder *Scene::createLevelBuilder(){
     up<LevelBuilder> lb = std::unique_ptr<LevelBuilder>(new LevelBuilder(go.get()));
     lb->InitWithMeshes(mObjRess[bblockObjName]->getMesh(bblockMeshName), mObjRess[actionObjName]->getAllMeshes());
     LevelBuilder *returnValue = lb.get();
-    go->addComponent(ComponentEnum::LEVEL_BUILDER, std::move(lb));
+    lb->IComponent::mComponentType = ComponentEnum::LEVEL_BUILDER;
+    go->addComponent(std::move(lb));
     addObjOnScene(std::move(go));
     return returnValue;
 }

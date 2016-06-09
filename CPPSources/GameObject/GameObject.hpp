@@ -23,7 +23,7 @@ public:
     ~GameObject();
     
     
-    void addComponent(const ComponentEnum&, const up<IComponent>);
+    void addComponent(const up<IComponent>);
     IComponent *getComponent(const ComponentEnum&);
     
     

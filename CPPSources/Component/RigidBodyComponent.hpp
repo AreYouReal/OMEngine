@@ -32,6 +32,5 @@ private:
     float                   mMass;
     PhysicContactCallback   mContactCC; // :)))))
     PhysicNearCallback      mNearCC;
-    m4d                     mTransformMatrix;
-
+    m4d ATTRIBUTE_ALIGNED16(mTransformMatrix);
 };

@@ -246,6 +246,7 @@
 		F38A22E11BAA979700FADEC0 /* vertexPerPixel.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F38A22E01BAA979700FADEC0 /* vertexPerPixel.glsl */; };
 		F38A22E31BAAA15400FADEC0 /* SimpeGouraudVertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F38A22E21BAAA15400FADEC0 /* SimpeGouraudVertex.glsl */; };
 		F38A22E71BAAA40500FADEC0 /* SimpleGouraudFragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F38A22E61BAAA40500FADEC0 /* SimpleGouraudFragment.glsl */; };
+		F38D59C21D09B31D0084BDAE /* MonsterSelector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F38D59C01D09B31D0084BDAE /* MonsterSelector.cpp */; };
 		F393D6AB1C0DC8EC0053C5FA /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F393D6AA1C0DC8EC0053C5FA /* OpenAL.framework */; };
 		F39A501E1BB3EE9B0080B846 /* LightSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F39A501C1BB3EE9B0080B846 /* LightSource.cpp */; };
 		F39A50211BB3F0090080B846 /* Illuminator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F39A501F1BB3F0090080B846 /* Illuminator.cpp */; };
@@ -834,6 +835,8 @@
 		F38A22E01BAA979700FADEC0 /* vertexPerPixel.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = vertexPerPixel.glsl; path = ../Android/assets/shaders/vertexPerPixel.glsl; sourceTree = SOURCE_ROOT; };
 		F38A22E21BAAA15400FADEC0 /* SimpeGouraudVertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = SimpeGouraudVertex.glsl; path = ../Android/assets/shaders/SimpeGouraudVertex.glsl; sourceTree = SOURCE_ROOT; };
 		F38A22E61BAAA40500FADEC0 /* SimpleGouraudFragment.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = SimpleGouraudFragment.glsl; path = ../Android/assets/shaders/SimpleGouraudFragment.glsl; sourceTree = SOURCE_ROOT; };
+		F38D59C01D09B31D0084BDAE /* MonsterSelector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MonsterSelector.cpp; sourceTree = "<group>"; };
+		F38D59C11D09B31D0084BDAE /* MonsterSelector.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MonsterSelector.hpp; sourceTree = "<group>"; };
 		F393D6AA1C0DC8EC0053C5FA /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		F39A501C1BB3EE9B0080B846 /* LightSource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LightSource.cpp; sourceTree = "<group>"; };
 		F39A501D1BB3EE9B0080B846 /* LightSource.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = LightSource.hpp; path = ../../CPPSources/Light/LightSource.hpp; sourceTree = SOURCE_ROOT; };
@@ -1909,6 +1912,15 @@
 			path = ../../CPPSources/Obj;
 			sourceTree = SOURCE_ROOT;
 		};
+		F38D59BF1D09B2ED0084BDAE /* LoadingScreen */ = {
+			isa = PBXGroup;
+			children = (
+				F38D59C01D09B31D0084BDAE /* MonsterSelector.cpp */,
+				F38D59C11D09B31D0084BDAE /* MonsterSelector.hpp */,
+			);
+			path = LoadingScreen;
+			sourceTree = "<group>";
+		};
 		F39A501B1BB3EE8E0080B846 /* Light */ = {
 			isa = PBXGroup;
 			children = (
@@ -2047,6 +2059,7 @@
 		F3F9D39D1CD749AB002EF3FC /* GameMechanics */ = {
 			isa = PBXGroup;
 			children = (
+				F38D59BF1D09B2ED0084BDAE /* LoadingScreen */,
 				F3C5FB3E1D092D2400BFE0CA /* Monsters */,
 				F3F9D3A21CD75865002EF3FC /* Level */,
 				F3F9D39E1CD749AB002EF3FC /* Player */,
@@ -2414,6 +2427,7 @@
 				947890031BD4CFD200B55A25 /* btPolyhedralContactClipping.cpp in Sources */,
 				94788FAB1BD4CFD200B55A25 /* btDbvt.cpp in Sources */,
 				9478901A1BD4CFD200B55A25 /* btSimpleDynamicsWorld.cpp in Sources */,
+				F38D59C21D09B31D0084BDAE /* MonsterSelector.cpp in Sources */,
 				94788FBE1BD4CFD200B55A25 /* btConvexConvexAlgorithm.cpp in Sources */,
 				F3392F611C117B4E005E850E /* Sound.cpp in Sources */,
 				94788FEE1BD4CFD200B55A25 /* btTriangleMeshShape.cpp in Sources */,

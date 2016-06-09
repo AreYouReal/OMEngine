@@ -49,7 +49,7 @@ bool RigidBodyComponent::initRigidBody(){
     if(mNearCC){ PhysicalWorld::instance()->addNearCallback(mNearCC); }
     
     
-    m4d ATTRIBUTE_ALIGNED16(mTransformMatrix);
+
     return true;
 }
 

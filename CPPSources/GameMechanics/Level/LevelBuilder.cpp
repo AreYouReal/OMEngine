@@ -88,25 +88,25 @@ void LevelBuilder::addNewBlock(v3d blockPos, LAction action){
     if(mBlock){
         up<GameObject> go = std::unique_ptr<GameObject>(new GameObject("bblock_Cube"));
         up<MeshRendererComponent> mrc = up<MeshRendererComponent>(new MeshRendererComponent(go.get(), mBlock));
-        go->addComponent(ComponentEnum::MESH_RENDERER, std::move(mrc));
+        mrc->IComponent::mComponentType = ComponentEnum::MESH_RENDERER;
+        go->addComponent(std::move(mrc));
         
         up<RigidBodyComponent> rbc_1 = up<RigidBodyComponent>(new RigidBodyComponent(go.get(), 0.0f));
         
         btTransform t = rbc_1->mBody->getWorldTransform();
         t.setOrigin(btVector3(blockPos.x, blockPos.y, blockPos.z));
         rbc_1->mBody->setWorldTransform(t);
-        
-        go->addComponent(ComponentEnum::RIGID_BODY, std::move(rbc_1));
+        rbc_1->mComponentType = ComponentEnum::RIGID_BODY;
+        go->addComponent(std::move(rbc_1));
 
         
         if(OMGame::debugFlag){
             up<DebugDrawComponent> ddc = up<DebugDrawComponent>(new DebugDrawComponent(go.get()));
-            go->addComponent(ComponentEnum::DEBUG_DRAW, std::move(ddc));
+            ddc->mComponentType = ComponentEnum::DEBUG_DRAW;
+            go->addComponent(std::move(ddc));
         }
 
         go->setPosition(blockPos);
-        
-        
         
         if(action.mType != LAction::Type::NONE){
             actions.push(action);
@@ -130,22 +130,25 @@ void LevelBuilder::addCandyToBlock(){
     if(mCandies.size() > 0 && ((rand() % 100) < mCandyChance)){
         up<GameObject> go = std::unique_ptr<GameObject>(new GameObject("Candy"));
         up<MeshRendererComponent> mrc = up<MeshRendererComponent>(new MeshRendererComponent(go.get(), mCandies[rand()%mCandies.size()]));
-        go->addComponent(ComponentEnum::MESH_RENDERER, std::move(mrc));
+        mrc->mComponentType = ComponentEnum::MESH_RENDERER;
+        go->addComponent(std::move(mrc));
         up<LevelRelated::Candy> aa = std::unique_ptr<LevelRelated::Candy>(new LevelRelated::Candy(go.get(), this));
-
+        aa->mComponentType = ComponentEnum::CANDY;
         go->mTransform.mScale = v3d(0.5f, 0.5f, 0.5f);
         go->mTransform.refreshTransformMatrix();
-        go->addComponent(ComponentEnum::CANDY, std::move(aa));
+        go->addComponent(std::move(aa));
         
         up<RigidBodyComponent> rbc = up<RigidBodyComponent>(new RigidBodyComponent(go.get(), 0.0f));
         rbc->mBody->setCollisionFlags(rbc->mBody->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE );
-        go->addComponent(ComponentEnum::RIGID_BODY, std::move(rbc));
+        rbc->mComponentType = ComponentEnum::RIGID_BODY;
+        go->addComponent(std::move(rbc));
         
         go->setPosition(prevObj->getPosition()+ v3d(0, 2, 0));
         
         if(OMGame::debugFlag){
             up<DebugDrawComponent> ddc = up<DebugDrawComponent>(new DebugDrawComponent(go.get()));
-            go->addComponent(ComponentEnum::DEBUG_DRAW, std::move(ddc));
+            ddc->mComponentType = ComponentEnum::DEBUG_DRAW;
+            go->addComponent(std::move(ddc));
         }
 
         
@@ -178,7 +181,8 @@ v3d LevelBuilder::calculateNewPoss(v3d lastPos){
 
 void LevelBuilder::addBlockComponent(GameObject *go){
     up<BBlock> block = std::unique_ptr<BBlock>(new BBlock(go, this));
-    go->addComponent(ComponentEnum::BBLOCK, std::move(block));
+    block->mComponentType = ComponentEnum::BBLOCK;
+    go->addComponent(std::move(block));
 }
 
 
