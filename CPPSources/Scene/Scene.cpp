@@ -3,6 +3,7 @@
 #include "Shortcuts.h"
 #include "LevelBuilder.hpp"
 #include "CandyMonster.hpp"
+#include "MonsterSelector.hpp"
 
 
 const std::string actionObjName{"candies.obj"};
@@ -42,13 +43,11 @@ bool Scene::init(){
     
     logGLError();
     Camera::instance()->initShadowBuffer();
-    
-   
-    
+
     loadBlockObj();
     loadArrowObj();
     
-        createCandyMonsters();
+    createCandyMonsters();
     
     player = createPlayer();
     lBuilder = createLevelBuilder();
@@ -69,7 +68,7 @@ void Scene::update(float deltaTime){
         mObjects[i]->update();
     }
     static float degree = 10.0f;
-    degree += 1.1f;
+    degree += 5.1f;
     candyMonsters->mTransform.rotate(degree, v3d(0, 1, 0));
 }
 
@@ -186,7 +185,7 @@ void Scene::addLight(){
 
 PlayerController* Scene::createPlayer(){
     
-    up<GameObject> candyMonster = CandyMonster::create(CandyMonster::CandyType::TYPE_4);
+    up<GameObject> candyMonster = CandyMonster::create(CandyMonster::CandyType::TYPE_1);
     
     if(OMGame::debugFlag){
         up<DebugDrawComponent> ddc = up<DebugDrawComponent>(new DebugDrawComponent(candyMonster.get()));
@@ -206,16 +205,17 @@ PlayerController* Scene::createPlayer(){
 
 
 void Scene::createCandyMonsters(){
-    up<GameObject> monsterSelector = up<GameObject>(new GameObject("MSelector"));
-    monsterSelector->mTransform.rotate(90, v3d(0, 1, 0));
-    candyMonsters = monsterSelector.get();
+    up<GameObject> monsterSelectorObject = up<GameObject>(new GameObject("MSelector"));
+    candyMonsters = monsterSelectorObject.get();
+    
+    MonsterSelector *selector = MonsterSelector::add(monsterSelectorObject.get());
+    
     for(int i =  1; i <= 5; ++i){
         up<GameObject> candyMonster = CandyMonster::create((CandyMonster::CandyType)i);
-        candyMonster->mTransform.translate(0, 0, 3 * i);
-        monsterSelector->addChild(std::move(candyMonster));
+        selector->addMonster(std::move(candyMonster));
     }
     
-    addObjOnScene(std::move(monsterSelector));
+    addObjOnScene(std::move(monsterSelectorObject));
 }
 
 LevelBuilder *Scene::createLevelBuilder(){

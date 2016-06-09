@@ -7,7 +7,6 @@
 
 const float PI = atan(1.0f)*4.0f;
 
-
 // Forward declaration
 struct v3d;
 struct m4d;
