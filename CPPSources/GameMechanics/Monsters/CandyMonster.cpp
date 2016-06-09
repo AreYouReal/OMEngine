@@ -22,10 +22,10 @@ up<GameObject> CandyMonster::create(CandyMonster::CandyType type){
     q4d sR(90, v3d(0, 1, 0));
     monster->mTransform.rotate(sR);
     monster->mTransform.translate(0, -.85f, 0);
-    monster->mTransform.mScale = v3d(3, 3, 3);
+//    monster->mTransform.mScale = v3d(3, 3, 3);
     monster->mTransform.refreshTransformMatrix();
     
-    up<RigidBodyComponent> rbc_1 = up<RigidBodyComponent>(new RigidBodyComponent(monster.get(), 5.0f));
+    up<RigidBodyComponent> rbc_1 = up<RigidBodyComponent>(new RigidBodyComponent(monster.get(), 0.0f));
     monster->addComponent(ComponentEnum::RIGID_BODY, std::move(rbc_1));
     
     return std::move(monster);

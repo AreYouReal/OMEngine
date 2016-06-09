@@ -58,4 +58,6 @@ private:
     PlayerController *createPlayer();
     LevelBuilder *createLevelBuilder();
     
+    void createCandyMonsters();
+    
 };

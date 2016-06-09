@@ -48,6 +48,8 @@ bool Scene::init(){
     loadBlockObj();
     loadArrowObj();
     
+        createCandyMonsters();
+    
     player = createPlayer();
     lBuilder = createLevelBuilder();
     player->setLevelBuilder(lBuilder);
@@ -198,8 +200,17 @@ PlayerController* Scene::createPlayer(){
     candyMonster->addComponent(ComponentEnum::PLAYER_CTR, std::move(player));
     
     addObjOnScene(std::move(candyMonster));
-
+    
     return ctr;
+}
+
+void Scene::createCandyMonsters(){
+    for(int i =  1; i <= 5; ++i){
+        up<GameObject> candyMonster = CandyMonster::create((CandyMonster::CandyType)i);
+        candyMonster->mTransform.translate(0, 0, 3 * i);
+        
+        addObjOnScene(std::move(candyMonster));
+    }
 }
 
 LevelBuilder *Scene::createLevelBuilder(){
