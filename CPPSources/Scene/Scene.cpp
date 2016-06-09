@@ -61,12 +61,16 @@ bool Scene::init(){
     return true;
 }
 
+GameObject *candyMonsters;
 void Scene::update(float deltaTime){
     Camera::instance()->update();
     PhysicalWorld::instance()->update(deltaTime);
     for(int i = 0; i < mObjects.size(); ++i){
         mObjects[i]->update();
     }
+    static float degree = 10.0f;
+    degree += 1.1f;
+    candyMonsters->mTransform.rotate(degree, v3d(0, 1, 0));
 }
 
 void Scene::draw(){
@@ -194,10 +198,11 @@ PlayerController* Scene::createPlayer(){
     return ctr;
 }
 
+
 void Scene::createCandyMonsters(){
     up<GameObject> monsterSelector = up<GameObject>(new GameObject("MSelector"));
-    
-    
+    monsterSelector->mTransform.rotate(90, v3d(0, 1, 0));
+    candyMonsters = monsterSelector.get();
     for(int i =  1; i <= 5; ++i){
         up<GameObject> candyMonster = CandyMonster::create((CandyMonster::CandyType)i);
         candyMonster->mTransform.translate(0, 0, 3 * i);
@@ -212,7 +217,7 @@ LevelBuilder *Scene::createLevelBuilder(){
     up<LevelBuilder> lb = std::unique_ptr<LevelBuilder>(new LevelBuilder(go.get()));
     lb->InitWithMeshes(mObjRess[bblockObjName]->getMesh(bblockMeshName), mObjRess[actionObjName]->getAllMeshes());
     LevelBuilder *returnValue = lb.get();
-        go->addComponent(ComponentEnum::LEVEL_BUILDER, std::move(lb));
+    go->addComponent(ComponentEnum::LEVEL_BUILDER, std::move(lb));
     addObjOnScene(std::move(go));
     return returnValue;
 }

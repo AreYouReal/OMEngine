@@ -103,8 +103,13 @@ void GameObject::setPosition(v3d pos){
 }
 
 m4d GameObject::transformMatrix(){
-    RigidBodyComponent *rBody = static_cast<RigidBodyComponent*>( getComponent(ComponentEnum::RIGID_BODY) );
-    if(rBody){ return rBody->transformMatrix() * mTransform.transformMatrix(); }
+    m4d m = mTransform.transformMatrix();
+    if(parent != nullptr)
+        m = parent->transformMatrix() * m;
     
-    return mTransform.transformMatrix();
+    
+    RigidBodyComponent *rBody = static_cast<RigidBodyComponent*>( getComponent(ComponentEnum::RIGID_BODY) );
+    if(rBody){ return rBody->transformMatrix() * m; }
+    
+    return m;
 }
