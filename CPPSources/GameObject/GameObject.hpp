@@ -20,7 +20,6 @@ public:
     
     string name;
     GameObject(string name = "noname");
-    GameObject(sp<Transform>, sp<ObjMesh>, string n = "noname");
     ~GameObject();
     
     
@@ -30,9 +29,12 @@ public:
     
     GameObject *parent = nullptr;
     
+    void update();
+    void draw();
+    
     void release();
     
-    void addChild(sp<GameObject>);
+    void addChild(up<GameObject>);
     void destroyChildren();
     
     Transform   mTransform{};
@@ -45,7 +47,7 @@ public:
     
     m4d transformMatrix();
     
-    std::vector<sp<GameObject>> mChildren;
+    std::vector<up<GameObject>> mChildren;
 
     std::map<ComponentEnum, up<IComponent>> mComponents;
 };

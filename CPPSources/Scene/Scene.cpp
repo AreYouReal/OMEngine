@@ -65,9 +65,7 @@ void Scene::update(float deltaTime){
     Camera::instance()->update();
     PhysicalWorld::instance()->update(deltaTime);
     for(int i = 0; i < mObjects.size(); ++i){
-        for(auto const &comp : mObjects[i]->mComponents){
-            comp.second->update();
-        }
+        mObjects[i]->update();
     }
 }
 
@@ -82,15 +80,7 @@ void Scene::draw(){
     
     
     for(const auto& go : mObjects){
-        for(int i = (int)ComponentEnum::MESH_RENDERER; i <= (int)ComponentEnum::DEBUG_DRAW; ++i){
-            IComponent *comp = go->getComponent((ComponentEnum)i);
-            if(comp){
-                //                sp<Texture> projTexture = Materials::instance()->getTexture("projector.png");
-                //                glActiveTexture(GL_TEXTURE0);
-                //                glBindTexture(GL_TEXTURE_2D, Camera::instance()->depthTexture());
-                comp->draw();
-            }
-        }
+        go->draw();
     }
     
     logGLError();
@@ -205,12 +195,16 @@ PlayerController* Scene::createPlayer(){
 }
 
 void Scene::createCandyMonsters(){
+    up<GameObject> monsterSelector = up<GameObject>(new GameObject("MSelector"));
+    
+    
     for(int i =  1; i <= 5; ++i){
         up<GameObject> candyMonster = CandyMonster::create((CandyMonster::CandyType)i);
         candyMonster->mTransform.translate(0, 0, 3 * i);
-        
-        addObjOnScene(std::move(candyMonster));
+        monsterSelector->addChild(std::move(candyMonster));
     }
+    
+    addObjOnScene(std::move(monsterSelector));
 }
 
 LevelBuilder *Scene::createLevelBuilder(){

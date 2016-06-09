@@ -45,16 +45,7 @@ void MeshRendererComponent::draw(){
                 mesh->draw();
                 glDisable(GL_BLEND);
             }
-         
-            
 //            Camera::instance()->popMVMatrix();
-        }
-    }
-    
-    for(auto const &child : go->mChildren){
-        IComponent *meshRendererComp = child->getComponent(ComponentEnum::MESH_RENDERER);
-        if(meshRendererComp){
-            meshRendererComp->draw();
         }
     }
     Camera::instance()->popMMatrix();

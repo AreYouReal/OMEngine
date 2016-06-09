@@ -9,13 +9,32 @@ GameObject::GameObject(string name) : name(name){
     logMessage("GameObject constructor\n");
 }
 
-GameObject::GameObject(sp<Transform>, sp<ObjMesh>, string n) : name(n){ }
-
 GameObject::~GameObject(){
     logMessage("GameObject destructor\n");
 }
 
-void GameObject::addChild(sp<GameObject> child){
+
+void GameObject::update(){
+    for(auto const& comp : mComponents){
+        comp.second->update();
+    }
+    
+    for(auto const& child : mChildren){
+        child->update();
+    }
+}
+
+void GameObject::draw(){
+    for(auto const& comp : mComponents){
+        comp.second->draw();
+    }
+    
+    for(auto const& child : mChildren){
+        child->draw();
+    }
+}
+
+void GameObject::addChild(up<GameObject> child){
     child->parent = this;
     mChildren.push_back(std::move(child));
 }
