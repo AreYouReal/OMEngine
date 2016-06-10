@@ -20,16 +20,16 @@ up<GameObject> CandyMonster::create(CandyMonster::CandyType type){
     mamc->mComponentType = ComponentEnum::ANIM_MESH;
     monster->addComponent(std::move(mamc));
     
-    q4d sR(90, v3d(0, 1, 0));
+    q4d sR(180, v3d(0, 1, 0));
     monster->mTransform.rotate(sR);
     monster->mTransform.translate(0, -.85f, 0);
     monster->mTransform.mScale = v3d(3, 3, 3);
     monster->mTransform.refreshTransformMatrix();
     
-    up<RigidBodyComponent> rbc_1 = up<RigidBodyComponent>(new RigidBodyComponent(monster.get(), 5.0f));
-    rbc_1->mBody->setGravity(btVector3(0, 0, 0));
-    rbc_1->mComponentType = ComponentEnum::RIGID_BODY;
-    monster->addComponent(std::move(rbc_1));
+//    up<RigidBodyComponent> rbc_1 = up<RigidBodyComponent>(new RigidBodyComponent(monster.get(), 5.0f));
+//    rbc_1->mBody->setGravity(btVector3(0, 0, 0));
+//    rbc_1->mComponentType = ComponentEnum::RIGID_BODY;
+//    monster->addComponent(std::move(rbc_1));
     
     return std::move(monster);
 }

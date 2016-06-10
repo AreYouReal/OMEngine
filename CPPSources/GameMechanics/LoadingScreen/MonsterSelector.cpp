@@ -2,6 +2,19 @@
 #include "Shortcuts.h"
 #include "GameObject.hpp"
 
+
+void MonsterSelector::update(){
+    if(toAngle == currentAngle) return;
+
+    currentAngle += 50.0f * Time::deltaTime;
+    if(currentAngle > toAngle) currentAngle = toAngle;
+    if(currentAngle >= 360){
+        currentAngle = 0.0f;
+        toAngle = 0.0f;
+    }
+    go->mTransform.rotate(currentAngle, v3d(0, 1, 0));
+}
+
 MonsterSelector* MonsterSelector::add(GameObject *const go){
     up<MonsterSelector> component = up<MonsterSelector>(new MonsterSelector(go));
     component->mComponentType = ComponentEnum::MONSTER_SELECTOR;
@@ -19,4 +32,17 @@ void MonsterSelector::addMonster(up<GameObject> monsterObj){
     );
     monsterObj->mTransform.translate( pos );
     go->addChild(std::move(monsterObj));
+    go->setPosition(v3d(0, 0, -7));
+}
+
+void MonsterSelector::onTouchBegin(const int x, const int y){
+    toAngle += 72.0f;
+}
+
+void MonsterSelector::onTouchMove(const int x, const int y){
+
+}
+
+void MonsterSelector::onTouchEnd(const int x, const int y){
+
 }

@@ -4,7 +4,7 @@
 #include "LevelBuilder.hpp"
 #include "BBlock.hpp"
 
-std::vector<v3d> camFollowPositions{v3d(0, 30, 10), v3d(-10, 5, 5), v3d(5, 5, 10),v3d(5, 5, -10), v3d(-10, 5, -5)};
+std::vector<v3d> camFollowPositions{v3d(0, 10, 10), v3d(-10, 5, 5), v3d(5, 5, 10),v3d(5, 5, -10), v3d(-10, 5, -5)};
 
 bool onPlayerPhysicalContact(btManifoldPoint &point, const btCollisionObjectWrapper *obj0, int part0, int index0, const btCollisionObjectWrapper *obj1, int part1, int index1){
     GameObject *go1 = ((GameObject*)((btCollisionObject*)obj1->getCollisionObject())->getUserPointer());
@@ -57,18 +57,18 @@ void PlayerController::setLevelBuilder(LevelBuilder *lb){
 }
 
 void PlayerController::onTouch(){
-    if(!mActive){
-        mAnimMeshComp->setState(AnimMeshComponent::AnimationStates::RUN, true);
-        Camera::instance()->follow(go, camFollowPositions[1]);
-        mRigidBodyComp->mBody->setGravity(btVector3(0, -9.8, 0));
-        mLevelBuilder->buildLevel();
-        mActive = true;
-        mRigidBodyComp->mBody->activate();
-    }else{
-        mRigidBodyComp->mBody->activate();
-        applyAction();
-        refreshVelocity();
-    }
+//    if(!mActive){
+//        mAnimMeshComp->setState(AnimMeshComponent::AnimationStates::RUN, true);
+//        Camera::instance()->follow(go, camFollowPositions[1]);
+//        mRigidBodyComp->mBody->setGravity(btVector3(0, -9.8, 0));
+//        mLevelBuilder->buildLevel();
+//        mActive = true;
+//        mRigidBodyComp->mBody->activate();
+//    }else{
+//        mRigidBodyComp->mBody->activate();
+//        applyAction();
+//        refreshVelocity();
+//    }
 }
 
 void PlayerController::applyAction(){
@@ -145,7 +145,7 @@ void PlayerController::startPose(){
     t.setRotation(q);
     mRigidBodyComp->mBody->setCenterOfMassTransform(t);
     mRigidBodyComp->mBody->setGravity(btVector3(0, 0, 0));
-    Camera::instance()->follow(go, camFollowPositions[0]);
+//    Camera::instance()->follow(go, camFollowPositions[0]);
     mRigidBodyComp->mBody->setLinearVelocity(btVector3(0, 0, 0));
     mAnimMeshComp->setState(AnimMeshComponent::AnimationStates::IDLE, true);
 }

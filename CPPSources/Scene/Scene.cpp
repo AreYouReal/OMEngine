@@ -12,9 +12,9 @@ const std::string bblockObjName{"bblock.obj"};
 const string actionArrowMeshName{"candy_1"};
 const string bblockMeshName{"bblock"};
 
-PlayerController *player;
-
-LevelBuilder *lBuilder;
+PlayerController *player    = nullptr;
+LevelBuilder *lBuilder      = nullptr;
+MonsterSelector *mSelector  = nullptr;
 
 #pragma Constr/Destr
 Scene::Scene(){
@@ -49,27 +49,26 @@ bool Scene::init(){
     
     createCandyMonsters();
     
-    player = createPlayer();
-    lBuilder = createLevelBuilder();
-    player->setLevelBuilder(lBuilder);
+//    player = createPlayer();
+//    lBuilder = createLevelBuilder();
+//    player->setLevelBuilder(lBuilder);
     
     
      addLight();
 
+    
+    Camera::instance()->setPosition(v3d(0, 9, 6));
 
     return true;
 }
 
-GameObject *candyMonsters;
 void Scene::update(float deltaTime){
     Camera::instance()->update();
     PhysicalWorld::instance()->update(deltaTime);
     for(int i = 0; i < mObjects.size(); ++i){
         mObjects[i]->update();
     }
-    static float degree = 10.0f;
-    degree += 5.1f;
-    candyMonsters->mTransform.rotate(degree, v3d(0, 1, 0));
+
 }
 
 void Scene::draw(){
@@ -121,7 +120,7 @@ void Scene::setRenderObjectState(RenderObjectType newState){
     if(mDrawingState != newState) mDrawingState = newState;
 }
 
-void Scene::touchBegin(const int x, const int y){   
+void Scene::onTouchBegin(const int x, const int y){
     GameObject * collidedObj = Camera::instance()->collisionRayIntersection(x, y);
     if(collidedObj != nullptr){
         logMessage("Collided object! : %s\n", collidedObj->name.c_str());
@@ -129,6 +128,22 @@ void Scene::touchBegin(const int x, const int y){
 
     if(player){
         player->onTouch();
+    }
+    
+    if(mSelector){
+        mSelector->onTouchBegin(x, y);
+    }
+}
+
+void Scene::onTouchMove(const int x, const int y){
+    if(mSelector){
+        mSelector->onTouchMove(x, y);
+    }
+}
+
+void Scene::onTouchEnd(const int x, const int y){
+    if(mSelector){
+        mSelector->onTouchEnd(x, y);
     }
 }
 
@@ -168,7 +183,7 @@ void Scene::addLight(){
     go = std::unique_ptr<GameObject>(new GameObject("Light"));
     light = up<LightSource>(new LightSource(go.get(), LightSource::Type::POINT, v4d(1, 1, 1, 1), 15) );
     go->setFront(v3d(5, 5, 0));
-    light->follow(player->go);
+//    light->follow(player->go);
     light->IComponent::mComponentType = ComponentEnum::LIGHT_SOURCE;
     go->addComponent(std::move(light));
 
@@ -186,7 +201,11 @@ void Scene::addLight(){
 PlayerController* Scene::createPlayer(){
     
     up<GameObject> candyMonster = CandyMonster::create(CandyMonster::CandyType::TYPE_1);
-    
+    up<RigidBodyComponent> rbc_1 = up<RigidBodyComponent>(new RigidBodyComponent(candyMonster.get(), 5.0f));
+    rbc_1->mBody->setGravity(btVector3(0, 0, 0));
+    rbc_1->mComponentType = ComponentEnum::RIGID_BODY;
+    candyMonster->addComponent(std::move(rbc_1));
+
     if(OMGame::debugFlag){
         up<DebugDrawComponent> ddc = up<DebugDrawComponent>(new DebugDrawComponent(candyMonster.get()));
         ddc->mComponentType = ComponentEnum::DEBUG_DRAW;
@@ -205,14 +224,12 @@ PlayerController* Scene::createPlayer(){
 
 
 void Scene::createCandyMonsters(){
-    up<GameObject> monsterSelectorObject = up<GameObject>(new GameObject("MSelector"));
-    candyMonsters = monsterSelectorObject.get();
-    
-    MonsterSelector *selector = MonsterSelector::add(monsterSelectorObject.get());
+    up<GameObject> monsterSelectorObject = up<GameObject>(new GameObject("MSelector"));    
+    mSelector = MonsterSelector::add(monsterSelectorObject.get());
     
     for(int i =  1; i <= 5; ++i){
         up<GameObject> candyMonster = CandyMonster::create((CandyMonster::CandyType)i);
-        selector->addMonster(std::move(candyMonster));
+        mSelector->addMonster(std::move(candyMonster));
     }
     
     addObjOnScene(std::move(monsterSelectorObject));

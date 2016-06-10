@@ -105,11 +105,11 @@ void GameObject::setPosition(v3d pos){
 m4d GameObject::transformMatrix(){
     m4d m = mTransform.transformMatrix();
     if(parent != nullptr)
-        m = parent->transformMatrix() * m;
+        m =  parent->transformMatrix() * m;
     
     
     RigidBodyComponent *rBody = static_cast<RigidBodyComponent*>( getComponent(ComponentEnum::RIGID_BODY) );
-    if(rBody){ return rBody->transformMatrix() * m; }
+    if(rBody){ return  rBody->transformMatrix() * m; }
     
     return m;
 }

@@ -98,7 +98,7 @@ private:
     std::stack<m4d> mMstack;
     
 // Camera following
-    GameObject *mGoToFollow;
+    GameObject *mGoToFollow = nullptr;
     v3d         mFollowDistance;
     
 // Projector 

@@ -37,7 +37,9 @@ public:
     void draw();
     void setRenderObjectState(RenderObjectType newState);
     
-    void touchBegin(const int x, const int y);
+    void onTouchBegin(const int x, const int y);
+    void onTouchMove(const int x, const int y);
+    void onTouchEnd(const int x, const int y);
     
     
     
