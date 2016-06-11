@@ -57,8 +57,9 @@ bool Scene::init(){
      addLight();
 
     
-    Camera::instance()->setPosition(v3d(0, 9, 6));
-
+    Camera::instance()->setPosition(v3d(0, 12, 6));
+    Camera::instance()->setFront( v3d(0, 10, 0));
+    
     return true;
 }
 
@@ -181,8 +182,10 @@ void Scene::addLight(){
     addObjOnScene(std::move(go));
     
     go = std::unique_ptr<GameObject>(new GameObject("Light"));
-    light = up<LightSource>(new LightSource(go.get(), LightSource::Type::POINT, v4d(1, 1, 1, 1), 15) );
-    go->setFront(v3d(5, 5, 0));
+    light = up<LightSource>(new LightSource(go.get(), LightSource::Type::POINT, v4d(1, 1, 1, 1), 50) );
+//    go->setFront(v3d(5, 5, 0));
+    // TODO: Why z = -z fro proper lighting calculations!?
+    go->setPosition(v3d(0, 10, -3));
 //    light->follow(player->go);
     light->IComponent::mComponentType = ComponentEnum::LIGHT_SOURCE;
     go->addComponent(std::move(light));

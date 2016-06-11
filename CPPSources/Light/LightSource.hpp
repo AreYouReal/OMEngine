@@ -12,7 +12,7 @@ public:
   
     // IComponent
     LightSource(GameObject * const);
-    LightSource(GameObject * const, Type type, v4d color, float distance = 30, float linAttenuation = .5f, float quadAttenuation = 1.0f);
+    LightSource(GameObject * const, Type type, v4d color, float distance = 100, float linAttenuation = .5f, float quadAttenuation = 1.0f);
     virtual ~LightSource();
    
     virtual void update() override;

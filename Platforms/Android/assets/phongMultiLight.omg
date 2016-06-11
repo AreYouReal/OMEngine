@@ -36,7 +36,7 @@ void calculateOutVars(lowp vec3 position){
                 lightDirTS[i] = uLightVS[i].direction;
                 break;
             case 1:
-                lightDirTS[i] = (uLightVS[i].position - position);
+                lightDirTS[i] = normalize(uLightVS[i].position - position);
                 break;
             case 2:
                 lightDirTS[i] = (uLightVS[i].position - position);

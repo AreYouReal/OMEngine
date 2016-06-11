@@ -24,7 +24,7 @@ private:
     float radius = 7.0f;
 
     float currentAngle = 0.0f;
-    float toAngle = 45.0f;
+    float toAngle = 0.0f;
     
     
 };
