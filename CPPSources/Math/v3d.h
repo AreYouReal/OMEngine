@@ -72,6 +72,14 @@ struct v2d{
 v2d operator+(const v2d &lhs, const v2d &rhs);
 v2d operator-(const v2d &lhs, const v2d &rhs);
 
+inline bool operator!=(const v2d &lhs, const v2d &rhs){
+    return (lhs.x != rhs.x || lhs.y != rhs.y);
+}
+
+inline bool operator==(const v2d &lhs, const v2d &rhs){
+    return (lhs.x == rhs.x && lhs.y == rhs.y);
+}
+
 inline bool operator!=(const v3d &lhs, const v3d &rhs){
     return (lhs.x != rhs.x || lhs.y != rhs.y || lhs.z != rhs.z);
 }

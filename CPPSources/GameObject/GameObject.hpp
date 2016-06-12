@@ -50,4 +50,6 @@ public:
     std::vector<up<GameObject>> mChildren;
 
     std::map<ComponentEnum, up<IComponent>> mComponents;
+    
+    bool mActive = true;
 };

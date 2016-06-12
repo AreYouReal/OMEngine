@@ -15,6 +15,8 @@ GameObject::~GameObject(){
 
 
 void GameObject::update(){
+    if(!mActive) return;
+    
     for(auto const& comp : mComponents){
         comp.second->update();
     }
@@ -25,6 +27,8 @@ void GameObject::update(){
 }
 
 void GameObject::draw(){
+    if(!mActive) return;
+    
     for(auto const& comp : mComponents){
         comp.second->draw();
     }

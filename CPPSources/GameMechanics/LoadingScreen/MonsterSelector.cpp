@@ -6,8 +6,20 @@
 void MonsterSelector::update(){
     if(toAngle == currentAngle) return;
 
-    currentAngle += 50.0f * Time::deltaTime;
-    if(currentAngle > toAngle) currentAngle = toAngle;
+    
+    int multiplier = currentAngle > toAngle ? -1 : 1;
+    
+    currentAngle += multiplier * 50.0f * Time::deltaTime;
+    if(multiplier > 0){
+        if(currentAngle > toAngle){
+            currentAngle = toAngle;
+        }
+    }else{
+        if(currentAngle < toAngle){
+            currentAngle = toAngle;
+        }
+    }
+
     if(currentAngle >= 360){
         currentAngle = 0.0f;
         toAngle = 0.0f;
@@ -23,6 +35,18 @@ MonsterSelector* MonsterSelector::add(GameObject *const go){
     return comp;
 }
 
+CandyMonster::CandyType MonsterSelector::getCurrentSelectedMonster(){
+    logMessage("ToAngle %f \n", toAngle);
+    
+    float angle = -toAngle;
+    
+    if(angle < 0) angle = 360 + angle;
+    
+    CandyMonster::CandyType type = (CandyMonster::CandyType) (int)(angle/72 + 1);
+    
+    return type;
+}
+
 void MonsterSelector::addMonster(up<GameObject> monsterObj){
     float rads = 72.0f / 180 * PI * go->mChildren.size();
     float x = sinf(rads) * radius;
@@ -35,13 +59,40 @@ void MonsterSelector::addMonster(up<GameObject> monsterObj){
 }
 
 void MonsterSelector::onTouchBegin(const int x, const int y){
-    toAngle += 72.0f;
+    if(changeInProgress()) return;
+    
+    mPrevTouchPos = v2d(x, y);
+    mCurrentTouchPos = v2d(x, y);
+    
+//    toAngle += 72.0f;
 }
 
 void MonsterSelector::onTouchMove(const int x, const int y){
-
+    if(changeInProgress()) return;
+    
+    if(mPrevTouchPos.x == 0 && mPrevTouchPos.y == 0){
+        mPrevTouchPos = v2d(x, y);
+    }else{
+        mCurrentTouchPos = v2d(x, y);
+    }
 }
 
 void MonsterSelector::onTouchEnd(const int x, const int y){
+    if(changeInProgress()) return;
 
+    if(mPrevTouchPos == mCurrentTouchPos) return;
+    
+    if(mPrevTouchPos.x - mCurrentTouchPos.x > 0){
+        toAngle -= 72;
+    }else{
+        toAngle += 72;
+    }
+    
+    mPrevTouchPos = v2d(0, 0);
+    mCurrentTouchPos = v2d(0, 0);
+}
+
+
+bool MonsterSelector::changeInProgress(){
+    return (toAngle != currentAngle);
 }

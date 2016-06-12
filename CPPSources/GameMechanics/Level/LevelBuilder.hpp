@@ -24,6 +24,8 @@ public:
     
     void InitWithMeshes(sp<ObjMesh> block, std::vector<sp<ObjMesh>> candies);
 
+    void createFirstBlock();
+    
     void buildLevel();
     
     void onHideBlock(GameObject *blockOBj);

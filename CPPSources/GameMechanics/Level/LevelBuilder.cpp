@@ -16,8 +16,18 @@ void LevelBuilder::InitWithMeshes(sp<ObjMesh> block, std::vector<sp<ObjMesh>> ca
 
 
 #pragma mark Public
+
+void LevelBuilder::createFirstBlock(){
+    addNewBlock(mLastBlockPoss + v3d(0, 7, 0), LAction(LAction::NONE));
+}
+
 void LevelBuilder::buildLevel(){
     srand(time(0));
+    
+    if(activeblocks[0] != nullptr){
+        activeblocks[0]->setPosition(v3d(0, 0, 0));
+        mLastBlockPoss = v3d(0, 0, 0);
+    }
     
     addNewBlock(mLastBlockPoss, LAction(LAction::NONE));
     

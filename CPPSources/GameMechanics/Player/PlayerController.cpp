@@ -57,18 +57,18 @@ void PlayerController::setLevelBuilder(LevelBuilder *lb){
 }
 
 void PlayerController::onTouch(){
-//    if(!mActive){
-//        mAnimMeshComp->setState(AnimMeshComponent::AnimationStates::RUN, true);
-//        Camera::instance()->follow(go, camFollowPositions[1]);
-//        mRigidBodyComp->mBody->setGravity(btVector3(0, -9.8, 0));
-//        mLevelBuilder->buildLevel();
-//        mActive = true;
-//        mRigidBodyComp->mBody->activate();
-//    }else{
-//        mRigidBodyComp->mBody->activate();
-//        applyAction();
-//        refreshVelocity();
-//    }
+    if(!mActive){
+        mAnimMeshComp->setState(AnimMeshComponent::AnimationStates::RUN, true);
+        Camera::instance()->follow(go, camFollowPositions[1]);
+        mRigidBodyComp->mBody->setGravity(btVector3(0, -9.8, 0));
+        mLevelBuilder->buildLevel();
+        mActive = true;
+        mRigidBodyComp->mBody->activate();
+    }else{
+        mRigidBodyComp->mBody->activate();
+        applyAction();
+        refreshVelocity();
+    }
 }
 
 void PlayerController::applyAction(){
@@ -117,6 +117,7 @@ void PlayerController::update(){
         startPose();
         mActive = false;
         mLevelBuilder->clearLevel();
+        mLevelBuilder->createFirstBlock();
     }else{
         static float timer = 10.0f;
         if(timer < 0.0f){

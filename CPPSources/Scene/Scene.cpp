@@ -49,10 +49,8 @@ bool Scene::init(){
     
     createCandyMonsters();
     
-//    player = createPlayer();
-//    lBuilder = createLevelBuilder();
-//    player->setLevelBuilder(lBuilder);
-    
+    lBuilder = createLevelBuilder();
+    lBuilder->createFirstBlock();
     
      addLight();
 
@@ -125,14 +123,22 @@ void Scene::onTouchBegin(const int x, const int y){
     GameObject * collidedObj = Camera::instance()->collisionRayIntersection(x, y);
     if(collidedObj != nullptr){
         logMessage("Collided object! : %s\n", collidedObj->name.c_str());
-    }
-
-    if(player){
-        player->onTouch();
-    }
-    
-    if(mSelector){
-        mSelector->onTouchBegin(x, y);
+        if(player == nullptr){
+            player = createPlayer();
+            player->setLevelBuilder(lBuilder);
+            mSelector->go->mActive = false;
+        }
+        if(player){
+            player->onTouch();
+        }
+    }else{
+        if(mSelector){
+            mSelector->onTouchBegin(x, y);
+        }
+        
+        if(player){
+            player->onTouch();
+        }
     }
 }
 
@@ -202,8 +208,7 @@ void Scene::addLight(){
 }
 
 PlayerController* Scene::createPlayer(){
-    
-    up<GameObject> candyMonster = CandyMonster::create(CandyMonster::CandyType::TYPE_1);
+    up<GameObject> candyMonster = CandyMonster::create(mSelector->getCurrentSelectedMonster());
     up<RigidBodyComponent> rbc_1 = up<RigidBodyComponent>(new RigidBodyComponent(candyMonster.get(), 5.0f));
     rbc_1->mBody->setGravity(btVector3(0, 0, 0));
     rbc_1->mComponentType = ComponentEnum::RIGID_BODY;
@@ -214,6 +219,7 @@ PlayerController* Scene::createPlayer(){
         ddc->mComponentType = ComponentEnum::DEBUG_DRAW;
         candyMonster->addComponent(std::move(ddc));
     }
+    candyMonster->mTransform.rotate(90, v3d(0, 1, 0));
 
     up<PlayerController> player = up<PlayerController>( new PlayerController(candyMonster.get()));
     PlayerController *ctr = player.get();

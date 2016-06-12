@@ -16,6 +16,8 @@ public:
     void setLevelBuilder(LevelBuilder *lb);
     void onTouch();
     
+    bool active(){return mActive;};
+    
 private:
     
     v3d frontVector{0, 0, 1};
