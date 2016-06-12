@@ -9,7 +9,7 @@ void MonsterSelector::update(){
     
     int multiplier = currentAngle > toAngle ? -1 : 1;
     
-    currentAngle += multiplier * 50.0f * Time::deltaTime;
+    currentAngle += multiplier * 150.0f * Time::deltaTime;
     if(multiplier > 0){
         if(currentAngle > toAngle){
             currentAngle = toAngle;

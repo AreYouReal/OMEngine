@@ -16,7 +16,7 @@
 
 using UserData = struct{};
 static OMContext       *appContext;
-bool OMGame::debugFlag  = true;
+bool OMGame::debugFlag  = false;
 
 // TODO: remove
 Font *f;

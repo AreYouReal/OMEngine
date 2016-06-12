@@ -229,8 +229,11 @@
  /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/DEBUG/WiredCube.hpp \
  /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/GameMechanics/Player/PlayerController.hpp \
  /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/sources/cxx-stl/llvm-libc++/libcxx/include/queue \
+ /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/OMGame.h \
  /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/GameMechanics/Level/LevelBuilder.hpp \
- /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/GameMechanics/Level/LevelRelated.hpp
+ /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/GameMechanics/Level/LevelRelated.hpp \
+ /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/GameMechanics/Monsters/CandyMonster.hpp \
+ /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/GameMechanics/LoadingScreen/MonsterSelector.hpp
 
 /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Scene/Scene.hpp:
 
@@ -690,6 +693,12 @@
 
 /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/sources/cxx-stl/llvm-libc++/libcxx/include/queue:
 
+/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/OMGame.h:
+
 /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/GameMechanics/Level/LevelBuilder.hpp:
 
 /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/GameMechanics/Level/LevelRelated.hpp:
+
+/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/GameMechanics/Monsters/CandyMonster.hpp:
+
+/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/GameMechanics/LoadingScreen/MonsterSelector.hpp:

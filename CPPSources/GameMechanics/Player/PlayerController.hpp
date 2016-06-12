@@ -27,7 +27,7 @@ private:
     float playerSpeed = 7.5;
     
     bool mJump = false;
-    float jumpSpeed = 4.5f;
+    float jumpSpeed = 7.5f;
     
     
 // Fields

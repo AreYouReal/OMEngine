@@ -180,9 +180,9 @@ v3d LevelBuilder::calculateNewPoss(v3d lastPos){
         }
     }else{
         if(randValue % 2 == 0){
-            x = 2 * step;         z = 0;
+            x = 3 * step;         z = 0;
         }else{
-            z = 2 * step; x = 0;
+            z = 3 * step; x = 0;
         }
     }
     v3d newPos = lastPos + v3d(x, 0, z);

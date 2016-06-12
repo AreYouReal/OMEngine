@@ -253,6 +253,7 @@
  /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Audio/Sound.hpp \
  /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Component/DebugDrawComponent.hpp \
  /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/DEBUG/WiredCube.hpp \
+ /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/OMGame.h \
  /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/GameMechanics/Level/LevelBuilder.hpp \
  /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/GameMechanics/Level/LevelRelated.hpp \
  /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/GameMechanics/Level/BBlock.hpp
@@ -762,6 +763,8 @@
 /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Component/DebugDrawComponent.hpp:
 
 /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/DEBUG/WiredCube.hpp:
+
+/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/OMGame.h:
 
 /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/GameMechanics/Level/LevelBuilder.hpp:
 

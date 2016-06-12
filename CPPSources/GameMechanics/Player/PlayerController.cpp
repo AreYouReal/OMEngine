@@ -104,7 +104,7 @@ void PlayerController::applyAction(){
 
 void PlayerController::refreshVelocity(){
     if(mJump){
-        mRigidBodyComp->mBody->setLinearVelocity(btVector3(currentFronVector.x * jumpSpeed, currentFronVector.y  + jumpSpeed, currentFronVector.z * jumpSpeed));
+        mRigidBodyComp->mBody->setLinearVelocity(btVector3(currentFronVector.x * jumpSpeed, currentFronVector.y  + jumpSpeed/2.5, currentFronVector.z * jumpSpeed));
     }else{
         mRigidBodyComp->mBody->setLinearVelocity(btVector3(currentFronVector.x * playerSpeed, currentFronVector.y * playerSpeed, currentFronVector.z * playerSpeed));
     }

@@ -55,7 +55,7 @@ bool Scene::init(){
      addLight();
 
     
-    Camera::instance()->setPosition(v3d(0, 12, 6));
+    Camera::instance()->setPosition(v3d(0, 10, 5));
     Camera::instance()->setFront( v3d(0, 10, 0));
     
     return true;

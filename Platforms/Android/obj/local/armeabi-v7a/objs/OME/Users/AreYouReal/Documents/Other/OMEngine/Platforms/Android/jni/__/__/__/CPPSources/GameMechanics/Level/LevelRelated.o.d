@@ -253,7 +253,8 @@
  /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/Component/DebugDrawComponent.hpp \
  /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/DEBUG/WiredCube.hpp \
  /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/GameMechanics/Player/PlayerController.hpp \
- /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/sources/cxx-stl/llvm-libc++/libcxx/include/queue
+ /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/sources/cxx-stl/llvm-libc++/libcxx/include/queue \
+ /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/OMGame.h
 
 /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/GameMechanics/Level/LevelRelated.hpp:
 
@@ -762,3 +763,5 @@
 /Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/GameMechanics/Player/PlayerController.hpp:
 
 /Users/AreYouReal/Documents/Tools/Android/android-ndk-r10e/sources/cxx-stl/llvm-libc++/libcxx/include/queue:
+
+/Users/AreYouReal/Documents/Other/OMEngine/Platforms/Android/jni/../../../CPPSources/OMGame.h:
