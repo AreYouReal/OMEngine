@@ -87,7 +87,7 @@ void PlayerController::applyAction(){
             break;
             case LevelRelated::Action::Type::YAW:
             {
-                mAnimMeshComp->setState(AnimMeshComponent::AnimationStates::RUN, true);
+//                mAnimMeshComp->setState(AnimMeshComponent::AnimationStates::RUN, true);
                 currentFronVector = frontVector * act.mRotation.matrix();
                 mJump = false;
             break;

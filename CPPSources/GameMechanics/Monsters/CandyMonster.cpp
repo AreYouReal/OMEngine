@@ -26,10 +26,5 @@ up<GameObject> CandyMonster::create(CandyMonster::CandyType type){
     monster->mTransform.mScale = v3d(3, 3, 3);
     monster->mTransform.refreshTransformMatrix();
     
-//    up<RigidBodyComponent> rbc_1 = up<RigidBodyComponent>(new RigidBodyComponent(monster.get(), 5.0f));
-//    rbc_1->mBody->setGravity(btVector3(0, 0, 0));
-//    rbc_1->mComponentType = ComponentEnum::RIGID_BODY;
-//    monster->addComponent(std::move(rbc_1));
-    
     return std::move(monster);
 }

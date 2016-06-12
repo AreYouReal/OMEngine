@@ -2,10 +2,8 @@
 #include "Shortcuts.h"
 #include "GameObject.hpp"
 
-
 void MonsterSelector::update(){
     if(toAngle == currentAngle) return;
-
     
     int multiplier = currentAngle > toAngle ? -1 : 1;
     
@@ -36,12 +34,11 @@ MonsterSelector* MonsterSelector::add(GameObject *const go){
 }
 
 CandyMonster::CandyType MonsterSelector::getCurrentSelectedMonster(){
-    logMessage("ToAngle %f \n", toAngle);
-    
     float angle = -toAngle;
     
     if(angle < 0) angle = 360 + angle;
     
+    if(angle == 360) angle = 0;
     CandyMonster::CandyType type = (CandyMonster::CandyType) (int)(angle/72 + 1);
     
     return type;
@@ -63,8 +60,6 @@ void MonsterSelector::onTouchBegin(const int x, const int y){
     
     mPrevTouchPos = v2d(x, y);
     mCurrentTouchPos = v2d(x, y);
-    
-//    toAngle += 72.0f;
 }
 
 void MonsterSelector::onTouchMove(const int x, const int y){
@@ -82,16 +77,12 @@ void MonsterSelector::onTouchEnd(const int x, const int y){
 
     if(mPrevTouchPos == mCurrentTouchPos) return;
     
-    if(mPrevTouchPos.x - mCurrentTouchPos.x > 0){
-        toAngle -= 72;
-    }else{
-        toAngle += 72;
-    }
+    if(mPrevTouchPos.x - mCurrentTouchPos.x > 0){   toAngle -= 72;
+    }else{                                          toAngle += 72; }
     
     mPrevTouchPos = v2d(0, 0);
     mCurrentTouchPos = v2d(0, 0);
 }
-
 
 bool MonsterSelector::changeInProgress(){
     return (toAngle != currentAngle);
