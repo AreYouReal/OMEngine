@@ -117,7 +117,6 @@ void PlayerController::update(){
         startPose();
         mActive = false;
         mLevelBuilder->clearLevel();
-        mLevelBuilder->createFirstBlock();
     }else{
         static float timer = 10.0f;
         if(timer < 0.0f){

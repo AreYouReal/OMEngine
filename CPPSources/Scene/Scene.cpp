@@ -6,11 +6,7 @@
 #include "MonsterSelector.hpp"
 
 
-const std::string actionObjName{"candies.obj"};
-const std::string bblockObjName{"bblock.obj"};
 
-const string actionArrowMeshName{"candy_1"};
-const string bblockMeshName{"bblock"};
 
 PlayerController *player    = nullptr;
 LevelBuilder *lBuilder      = nullptr;
@@ -44,13 +40,10 @@ bool Scene::init(){
     logGLError();
     Camera::instance()->initShadowBuffer();
 
-    loadBlockObj();
-    loadArrowObj();
     
     createCandyMonsters();
     
     lBuilder = createLevelBuilder();
-    lBuilder->createFirstBlock();
     
      addLight();
 
@@ -155,21 +148,7 @@ void Scene::onTouchEnd(const int x, const int y){
 }
 
 #pragma mark Init Helpers
-void Scene::loadBlockObj(){
-    sp<Obj> bblockObj = Obj::load(bblockObjName.c_str());
-    bblockObj->build();
-    bblockObj->clear();
-    
-    mObjRess.insert(std::pair<string, sp<Obj>>(bblockObjName, bblockObj));
-}
 
-void Scene::loadArrowObj(){
-    sp<Obj> arrowObj = Obj::load(actionObjName.c_str());
-    arrowObj->build();
-    arrowObj->clear();
-    
-    mObjRess.insert(std::pair<string, sp<Obj>>(actionObjName, arrowObj));
-}
 
 void Scene::addLight(){
     up<GameObject> go = std::unique_ptr<GameObject>(new GameObject("Light"));
@@ -246,8 +225,9 @@ void Scene::createCandyMonsters(){
 
 LevelBuilder *Scene::createLevelBuilder(){
     up<GameObject> go = std::unique_ptr<GameObject>(new GameObject("LevelBuilder"));
+    AssetManager::instance()->getMeshFromObj("bblock.obj", "bblock");
     up<LevelBuilder> lb = std::unique_ptr<LevelBuilder>(new LevelBuilder(go.get()));
-    lb->InitWithMeshes(mObjRess[bblockObjName]->getMesh(bblockMeshName), mObjRess[actionObjName]->getAllMeshes());
+    lb->InitWithMeshes(AssetManager::instance()->getMeshFromObj("bblock.obj", "bblock"), AssetManager::instance()->getAllMeshesFromObj("candies.obj"));
     LevelBuilder *returnValue = lb.get();
     lb->IComponent::mComponentType = ComponentEnum::LEVEL_BUILDER;
     go->addComponent(std::move(lb));

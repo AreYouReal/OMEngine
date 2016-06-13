@@ -4,11 +4,11 @@
 #include "Singleton.hpp"
 #include "GameObject.hpp"
 #include "Illuminator.hpp"
+#include "AssetManager.hpp"
 
 #include "PhysicalWorld.hpp"
 
 #include "Boombox.hpp"
-
 
 #include "MeshRendererComponent.hpp"
 #include "DebugDrawComponent.hpp"
@@ -41,21 +41,14 @@ public:
     void onTouchMove(const int x, const int y);
     void onTouchEnd(const int x, const int y);
     
-    
-    
-    
 private:
 
 // Fields
     RenderObjectType  mDrawingState = RenderObjectType::SOLID;
     std::vector<up<GameObject>> mObjects;
-    std::map<string, sp<Obj>> mObjRess;
     
 //Helpers
     void addLight();
-    
-    void loadBlockObj();
-    void loadArrowObj();
     
     PlayerController *createPlayer();
     LevelBuilder *createLevelBuilder();
