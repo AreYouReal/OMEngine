@@ -15,6 +15,7 @@ MonsterSelector *mSelector  = nullptr;
 #pragma Constr/Destr
 Scene::Scene(){
     logGLError();
+    AssetManager::instance()->init();
     Camera::instance();
     Materials::instance();
     Illuminator::instance();
@@ -45,8 +46,8 @@ bool Scene::init(){
     
     lBuilder = createLevelBuilder();
     
-     addLight();
-
+    addLight();
+    addPlayButton();
     
     Camera::instance()->setPosition(v3d(0, 10, 5));
     Camera::instance()->setFront( v3d(0, 10, 0));
@@ -116,22 +117,26 @@ void Scene::onTouchBegin(const int x, const int y){
     GameObject * collidedObj = Camera::instance()->collisionRayIntersection(x, y);
     if(collidedObj != nullptr){
         logMessage("Collided object! : %s\n", collidedObj->name.c_str());
-        if(player == nullptr){
-            player = createPlayer();
-            player->setLevelBuilder(lBuilder);
-            mSelector->go->mActive = false;
-        }
+
         if(player){
             player->onTouch();
         }
     }else{
-        if(mSelector){
-            mSelector->onTouchBegin(x, y);
-        }
-        
-        if(player){
-            player->onTouch();
-        }
+
+    }
+    
+    if(mSelector){
+        mSelector->onTouchBegin(x, y);
+    }
+    
+    if(player == nullptr){
+        player = createPlayer();
+        player->setLevelBuilder(lBuilder);
+        mSelector->go->mActive = false;
+    }
+    
+    if(player){
+        player->onTouch();
     }
 }
 
@@ -149,6 +154,17 @@ void Scene::onTouchEnd(const int x, const int y){
 
 #pragma mark Init Helpers
 
+void Scene::addPlayButton(){
+    up<GameObject> play = up<GameObject>(new GameObject("PLAY"));
+    up<MeshRendererComponent> mrc = up<MeshRendererComponent>(new MeshRendererComponent(play.get(), AssetManager::instance()->getMeshFromObj("play_btn.obj", "play_btn")));
+    mrc->mComponentType = ComponentEnum::MESH_RENDERER;
+    play->addComponent(std::move(mrc));
+    
+    play->setPosition(v3d(0, 9, 0));
+    play->mTransform.refreshTransformMatrix();
+    
+    addObjOnScene(std::move(play));
+}
 
 void Scene::addLight(){
     up<GameObject> go = std::unique_ptr<GameObject>(new GameObject("Light"));
@@ -225,7 +241,6 @@ void Scene::createCandyMonsters(){
 
 LevelBuilder *Scene::createLevelBuilder(){
     up<GameObject> go = std::unique_ptr<GameObject>(new GameObject("LevelBuilder"));
-    AssetManager::instance()->getMeshFromObj("bblock.obj", "bblock");
     up<LevelBuilder> lb = std::unique_ptr<LevelBuilder>(new LevelBuilder(go.get()));
     lb->InitWithMeshes(AssetManager::instance()->getMeshFromObj("bblock.obj", "bblock"), AssetManager::instance()->getAllMeshesFromObj("candies.obj"));
     LevelBuilder *returnValue = lb.get();

@@ -20,11 +20,6 @@ void LevelBuilder::InitWithMeshes(sp<ObjMesh> block, std::vector<sp<ObjMesh>> ca
 void LevelBuilder::buildLevel(){
     srand(time(0));
     
-    if(activeblocks[0] != nullptr){
-        activeblocks[0]->setPosition(v3d(0, 0, 0));
-        mLastBlockPoss = v3d(0, 0, 0);
-    }
-    
     addNewBlock(mLastBlockPoss, LAction(LAction::NONE));
     
     for(unsigned int i = 0; i < blockCount; ++i){

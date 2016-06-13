@@ -5,14 +5,10 @@
 #include "GameObject.hpp"
 #include "Illuminator.hpp"
 #include "AssetManager.hpp"
-
 #include "PhysicalWorld.hpp"
-
 #include "Boombox.hpp"
 
-#include "MeshRendererComponent.hpp"
 #include "DebugDrawComponent.hpp"
-#include "AnimMeshComponent.hpp"
 
 #include "PlayerController.hpp"
 
@@ -48,6 +44,7 @@ private:
     std::vector<up<GameObject>> mObjects;
     
 //Helpers
+    void addPlayButton();
     void addLight();
     
     PlayerController *createPlayer();

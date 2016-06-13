@@ -302,6 +302,8 @@
 		F3CAEEE71BB01B8800DCF182 /* default_color_fragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F3CAEEE61BB01B8800DCF182 /* default_color_fragment.glsl */; };
 		F3CBE9681D0E999400F5AEA5 /* PlayButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3CBE9661D0E999400F5AEA5 /* PlayButton.cpp */; };
 		F3CBE96C1D0E9AB200F5AEA5 /* AssetManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3CBE96A1D0E9AB200F5AEA5 /* AssetManager.cpp */; };
+		F3CBE96F1D0EA2F500F5AEA5 /* play_btn.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F3CBE96D1D0EA2F500F5AEA5 /* play_btn.mtl */; };
+		F3CBE9701D0EA2F500F5AEA5 /* play_btn.obj in Resources */ = {isa = PBXBuildFile; fileRef = F3CBE96E1D0EA2F500F5AEA5 /* play_btn.obj */; };
 		F3D171761C6DCBF200A9507D /* projector.png in Resources */ = {isa = PBXBuildFile; fileRef = F3D171751C6DCBF200A9507D /* projector.png */; };
 		F3D171781C6DCCD900A9507D /* generalLightingProjector.omg in Resources */ = {isa = PBXBuildFile; fileRef = F3D171771C6DCCD900A9507D /* generalLightingProjector.omg */; };
 		F3D5E10B1AF8F24400DD216B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F3D5E1091AF8F24400DD216B /* InfoPlist.strings */; };
@@ -932,6 +934,8 @@
 		F3CBE9671D0E999400F5AEA5 /* PlayButton.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PlayButton.hpp; sourceTree = "<group>"; };
 		F3CBE96A1D0E9AB200F5AEA5 /* AssetManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AssetManager.cpp; sourceTree = "<group>"; };
 		F3CBE96B1D0E9AB200F5AEA5 /* AssetManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AssetManager.hpp; sourceTree = "<group>"; };
+		F3CBE96D1D0EA2F500F5AEA5 /* play_btn.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = play_btn.mtl; path = OMEngine/Platforms/Android/assets/play_btn.mtl; sourceTree = "<group>"; };
+		F3CBE96E1D0EA2F500F5AEA5 /* play_btn.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = play_btn.obj; path = OMEngine/Platforms/Android/assets/play_btn.obj; sourceTree = "<group>"; };
 		F3D171751C6DCBF200A9507D /* projector.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = projector.png; path = OMEngine/Platforms/Android/assets/projector.png; sourceTree = "<group>"; };
 		F3D171771C6DCCD900A9507D /* generalLightingProjector.omg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = generalLightingProjector.omg; path = OMEngine/Platforms/Android/assets/generalLightingProjector.omg; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
 		F3D5E1051AF8F23400DD216B /* iOSSRETests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iOSSRETests.m; path = OMEiOSTests/iOSSRETests.m; sourceTree = SOURCE_ROOT; };
@@ -1068,6 +1072,8 @@
 		7626524017F10E6C007CCD43 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F3CBE96D1D0EA2F500F5AEA5 /* play_btn.mtl */,
+				F3CBE96E1D0EA2F500F5AEA5 /* play_btn.obj */,
 				F3A2545D1D08102600F53BB7 /* candies.mtl */,
 				F3A2545E1D08102600F53BB7 /* candies.obj */,
 				F3A2545F1D08102600F53BB7 /* candy_3.png */,
@@ -2185,6 +2191,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3CBE96F1D0EA2F500F5AEA5 /* play_btn.mtl in Resources */,
 				F386CD401D0580D000079815 /* minimon_2_run.md5anim in Resources */,
 				F328C4FE1BF4997F0037AC6D /* font_fragment.glsl in Resources */,
 				F3A254651D08102600F53BB7 /* candy_4.png in Resources */,
@@ -2246,6 +2253,7 @@
 				F386CD3E1D0580D000079815 /* minimon_2_idle.md5anim in Resources */,
 				F3AB027C1CA7FFFE00CB8FC9 /* particles.omg in Resources */,
 				F386CD301D056ECF00079815 /* minimon_1_idle.md5anim in Resources */,
+				F3CBE9701D0EA2F500F5AEA5 /* play_btn.obj in Resources */,
 				F3A263961C33BD360021B3B6 /* light_point_fragment.glsl in Resources */,
 				94EF0C5E1BA70E5400EBF5EE /* pos_norm_vertex.glsl in Resources */,
 				F386CD4D1D0583E200079815 /* minimon_3.md5mesh in Resources */,

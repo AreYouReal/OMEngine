@@ -10,6 +10,12 @@ const string playBtnObjName("play_btn.obj");
 const string playBtnMeshName("play_btn");
 
 
+void AssetManager::init(){
+    loadPlayBtnObj();
+    loadBlockObj();
+    loadArrowObj();
+}
+
 std::vector<sp<ObjMesh>> AssetManager::getAllMeshesFromObj(string objFileName){
     if(mObjRess.find(objFileName) != mObjRess.end()){
         return mObjRess[objFileName]->getAllMeshes();
@@ -19,7 +25,7 @@ std::vector<sp<ObjMesh>> AssetManager::getAllMeshesFromObj(string objFileName){
 
 sp<ObjMesh> AssetManager::getMeshFromObj(string objFileName, string meshName){
     if(mObjRess.find(objFileName) != mObjRess.end()){
-        mObjRess[objFileName]->getMesh(meshName);
+        return mObjRess[objFileName]->getMesh(meshName);
     }
     return nullptr;
 }

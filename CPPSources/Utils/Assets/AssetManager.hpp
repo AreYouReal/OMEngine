@@ -8,6 +8,8 @@
 class AssetManager : public Singleton<AssetManager>{
 
 public:
+    void init();
+    
     
     void loadPlayBtnObj();
     void loadBlockObj();
@@ -18,7 +20,7 @@ public:
     std::vector<sp<ObjMesh>> getAllMeshesFromObj(string objFileName);
     
 private:
-
+    
     std::map<string, sp<Obj>> mObjRess;
     
 };
