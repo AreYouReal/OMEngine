@@ -11,6 +11,7 @@
 PlayerController *player    = nullptr;
 LevelBuilder *lBuilder      = nullptr;
 MonsterSelector *mSelector  = nullptr;
+PlayButton      *playButton = nullptr;
 
 #pragma Constr/Destr
 Scene::Scene(){
@@ -49,8 +50,8 @@ bool Scene::init(){
     addLight();
     addPlayButton();
     
-    Camera::instance()->setPosition(v3d(0, 10, 5));
-    Camera::instance()->setFront( v3d(0, 10, 0));
+    Camera::instance()->setPosition(v3d(0, 11, 5));
+    Camera::instance()->setFront( v3d(0, 9, 0));
     
     return true;
 }
@@ -116,21 +117,26 @@ void Scene::setRenderObjectState(RenderObjectType newState){
 void Scene::onTouchBegin(const int x, const int y){
     GameObject * collidedObj = Camera::instance()->collisionRayIntersection(x, y);
     if(collidedObj != nullptr){
-        logMessage("Collided object! : %s\n", collidedObj->name.c_str());
-        if(player == nullptr){
-            player = createPlayer();
-            player->setLevelBuilder(lBuilder);
-            mSelector->go->mActive = false;
-        }
-        if(player){
-            player->onTouch();
+        if(!collidedObj->name.compare("PLAY")){
+            if(player == nullptr){
+                player = createPlayer();
+                player->setLevelBuilder(lBuilder);
+                mSelector->go->mActive = false;
+            }
+            if(player){
+                player->onTouch();
+            }
+            playButton->go->mActive = false;
         }
     }else{
         if(mSelector){
             mSelector->onTouchBegin(x, y);
         }
+        
         if(player){
-            player->onTouch();
+            if(player->active()){
+                player->onTouch();
+            }
         }
     }
     
@@ -152,7 +158,9 @@ void Scene::onTouchEnd(const int x, const int y){
 #pragma mark Init Helpers
 
 void Scene::addPlayButton(){
-    addObjOnScene(std::move(PlayButton::create()));
+    up<GameObject> playBTN = PlayButton::create();
+    playButton = static_cast<PlayButton*>(playBTN->getComponent(ComponentEnum::PLAY_BTN));
+    addObjOnScene(std::move(playBTN));
 }
 
 void Scene::addLight(){
