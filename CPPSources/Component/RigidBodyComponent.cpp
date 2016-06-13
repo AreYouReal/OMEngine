@@ -1,6 +1,7 @@
 #include "RigidBodyComponent.hpp"
 
 RigidBodyComponent::RigidBodyComponent(GameObject * const gameObject, const float mass,PhysicContactCallback contactCC, PhysicNearCallback nearCC) : IComponent(gameObject),  mMass(mass), mContactCC(contactCC), mNearCC(nearCC){
+    mComponentType = ComponentEnum::RIGID_BODY;
     initRigidBody();
 }
 

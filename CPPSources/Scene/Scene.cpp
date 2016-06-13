@@ -4,7 +4,7 @@
 #include "LevelBuilder.hpp"
 #include "CandyMonster.hpp"
 #include "MonsterSelector.hpp"
-
+#include "PlayButton.hpp"
 
 
 
@@ -117,27 +117,24 @@ void Scene::onTouchBegin(const int x, const int y){
     GameObject * collidedObj = Camera::instance()->collisionRayIntersection(x, y);
     if(collidedObj != nullptr){
         logMessage("Collided object! : %s\n", collidedObj->name.c_str());
-
+        if(player == nullptr){
+            player = createPlayer();
+            player->setLevelBuilder(lBuilder);
+            mSelector->go->mActive = false;
+        }
         if(player){
             player->onTouch();
         }
     }else{
+        if(mSelector){
+            mSelector->onTouchBegin(x, y);
+        }
+        if(player){
+            player->onTouch();
+        }
+    }
+    
 
-    }
-    
-    if(mSelector){
-        mSelector->onTouchBegin(x, y);
-    }
-    
-    if(player == nullptr){
-        player = createPlayer();
-        player->setLevelBuilder(lBuilder);
-        mSelector->go->mActive = false;
-    }
-    
-    if(player){
-        player->onTouch();
-    }
 }
 
 void Scene::onTouchMove(const int x, const int y){
@@ -155,15 +152,7 @@ void Scene::onTouchEnd(const int x, const int y){
 #pragma mark Init Helpers
 
 void Scene::addPlayButton(){
-    up<GameObject> play = up<GameObject>(new GameObject("PLAY"));
-    up<MeshRendererComponent> mrc = up<MeshRendererComponent>(new MeshRendererComponent(play.get(), AssetManager::instance()->getMeshFromObj("play_btn.obj", "play_btn")));
-    mrc->mComponentType = ComponentEnum::MESH_RENDERER;
-    play->addComponent(std::move(mrc));
-    
-    play->setPosition(v3d(0, 9, 0));
-    play->mTransform.refreshTransformMatrix();
-    
-    addObjOnScene(std::move(play));
+    addObjOnScene(std::move(PlayButton::create()));
 }
 
 void Scene::addLight(){

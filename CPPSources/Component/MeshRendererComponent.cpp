@@ -4,13 +4,16 @@
 #include "btBoxShape.h"
 
 MeshRendererComponent::MeshRendererComponent(GameObject * const gameObject): IComponent(gameObject){
+    mComponentType = ComponentEnum::MESH_RENDERER;
 }
 
 MeshRendererComponent::MeshRendererComponent( GameObject * const gameObject, const sp<ObjMesh> mesh) : IComponent(gameObject){
+    mComponentType = ComponentEnum::MESH_RENDERER;
     mMeshes.push_back(mesh);
 }
 
 MeshRendererComponent::MeshRendererComponent(GameObject * const gameObject, const std::vector<sp<ObjMesh>> &meshes) : IComponent(gameObject){
+    mComponentType = ComponentEnum::MESH_RENDERER;
     mMeshes = meshes;
     logMessage("MeshRendererComponent constructor with meshes!\n");
 }
