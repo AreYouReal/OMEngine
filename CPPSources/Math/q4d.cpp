@@ -160,8 +160,8 @@ void q4d::print(const q4d& q4){
 }
 
 q4d q4d::lerp(const q4d &q1, const q4d &q2, float t){
-    if(t == 1.0f) return q4d(q2);
-    else if(t == 0.0f) return q4d(q1);
+    if(t >= 1.0f) return q4d(q2);
+    else if(t <= 0.0f) return q4d(q1);
     else{
         float dot = v4d::dot(q1, q2);
         q4d temp(q2);

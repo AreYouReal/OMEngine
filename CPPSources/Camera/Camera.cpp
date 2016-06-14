@@ -86,10 +86,14 @@ bool Camera::initShadowBuffer(){
 Camera::~Camera(){}
 
 void Camera::update(){
-    if(movingRoutine()){
-    
+    if(mMoveToPosition.x != 9999){
+        movingRoutine();
     }else{
         followingRoutine();
+    }
+    
+    if(mRotateTo.x != 9999){
+        rotateRoutine();
     }
     
     refreshViewAndNormalMatrix();
@@ -110,9 +114,9 @@ void Camera::moveTo(const v3d position, const float time){
     mMovingTime = time;
 }
 
-void Camera::rotateTo(float deg, v3d &axis){
-    transform.rotate(deg * axis.x , deg * axis.y, deg * axis.z);
-    refreshViewAndNormalMatrix();
+void Camera::rotateTo(float deg, v3d axis, float time){
+    mRotateTo = q4d(deg, axis);
+    mRotationTime = time;
 }
 
 void Camera::setPosition(v3d pos){
@@ -120,7 +124,6 @@ void Camera::setPosition(v3d pos){
     refreshViewAndNormalMatrix();
 }
 void Camera::setFront(v3d front){
-    //    v3d::print(front);
     transform.mFront = front - transform.mPosition;
     refreshViewAndNormalMatrix();
 }
@@ -465,7 +468,7 @@ v3d Camera::farPlanePoint(int screenX, int screenY){
     return v3d(farPlanevec);
 }
 
-bool Camera::movingRoutine(){
+void Camera::movingRoutine(){
     if(mMoveToPosition.x != 9999){
         static float moveTime = mMovingTime;
         if(moveTime <= 0.0f){
@@ -477,18 +480,27 @@ bool Camera::movingRoutine(){
             transform.mPosition = v3d::lerp(transform.mPosition, mMoveToPosition, percent);
         }
         moveTime -= Time::deltaTime;
-        return true;
-    }else{
-        return false;
     }
 }
 
-bool Camera::followingRoutine(){
+void Camera::followingRoutine(){
     if(mGoToFollow){
         transform.mPosition = v3d::lerp(transform.mPosition, mGoToFollow->getPosition() + mFollowDistance, Time::deltaTime );
         transform.mFront = mGoToFollow->getPosition() - transform.mPosition;
-        return true;
-    }else{
-        return false;
+    }
+}
+
+void Camera::rotateRoutine(){
+    if(mRotateTo.x != 9999){
+        static float time = mRotationTime;
+        if(time <= 0.0f){
+            transform.mRotation = mRotateTo;
+            mRotateTo = q4d(9999, 9999, 9999, 9999);
+            mRotationTime = -1.0f;
+        }else{
+            float percent = (mRotationTime - time) / mRotationTime;
+            transform.rotate( q4d::lerp(transform.mRotation, mRotateTo, percent) );
+        }
+        time -= Time::deltaTime;
     }
 }

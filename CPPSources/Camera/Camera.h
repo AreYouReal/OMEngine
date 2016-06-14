@@ -40,7 +40,7 @@ public:
     
     // Moving related
     void moveTo(const v3d position, const float time);
-    void rotateTo(float angle, v3d& axis);
+    void rotateTo(float angle, v3d axis, float time);
     
 // Matrix related
     void pushMMatrix(m4d matrix);
@@ -70,7 +70,7 @@ public:
     
 private:
     
-    Transform transform;    // Use mFront, mUp, mPosition for view matrix
+    Transform transform{};    // Use mFront, mUp, mPosition for view matrix
     
     float mFovy, mWidth, mHeight, mNear, mFar;  // Projection matrix vars
     
@@ -87,6 +87,9 @@ private:
 // Camera moving
     v3d         mMoveToPosition{9999, 9999, 9999};
     float       mMovingTime = 0.0f;
+    
+    q4d         mRotateTo{9999, 9999, 9999, 9999};
+    float       mRotationTime = 0.0f;
     
 // Camera following
     GameObject *mGoToFollow = nullptr;
@@ -109,6 +112,7 @@ private:
     
     
 // Moving related
-    bool movingRoutine();
-    bool followingRoutine();
+    void movingRoutine();
+    void followingRoutine();
+    void rotateRoutine();
 };

@@ -28,12 +28,12 @@ public:
     void refreshTransformMatrix();
     
     
-    v3d mPosition;
-    v3d mScale;
-    q4d mRotation;
-    v3d mFront;
-    v3d mUp;
-    v3d mRight;
+    v3d mPosition{0, 0, 0};
+    v3d mScale{1, 1, 1};
+    q4d mRotation = q4d(0, 0, 0, 0);
+    v3d mFront{0, 0, 1};
+    v3d mUp{0, 1, 0};
+    v3d mRight{1, 0, 0};
     
 private:
     m4d mTransformMatrix;
