@@ -83,73 +83,36 @@ bool Camera::initShadowBuffer(){
     return true;
 }
 
-Camera::~Camera(){
-}
+Camera::~Camera(){}
 
-
-void Camera::onTouchBegin(const int x, const int y){
-    if(x < mWidth * 0.5f){
-        moveLocation.x = x;
-        moveLocation.y = y;
+void Camera::update(){
+    if(movingRoutine()){
+    
     }else{
-        viewLocation.x = x;
-        viewLocation.y = y;
+        followingRoutine();
     }
-//    logMessage("Camera::onTouchBegin [ %d, %d ]\n", x, y);
+    
+    refreshViewAndNormalMatrix();
+    refreshShadowMatrix();
 }
 
-void Camera::onTouchMove(const int x, const int y){
-    if((x > (mWidth * 0.5f) - (mWidth * 0.05f)) && (x < (mWidth * 0.5f) + (mWidth * 0.05f))){
-        moveDelta = {.0f, .0f, .0f};
-        moveLocation.x = x; moveLocation.y = y;
-        viewLocation.x = x; viewLocation.y = y;
-    }else if( x < (mWidth * 0.5f)){
-        v3d touch(x, y, 0.0f);
-        moveDelta = (touch - moveLocation).normalize();
-        moveDelta.z = CLAMP(v3d::length(moveLocation - touch) / 256.0f, 0.0f, 1.0f);
-    }else{
-        viewDelta.x = viewDelta.x * 0.75f + (x - viewLocation.x) * 0.25f;
-        viewDelta.y = viewDelta.y * 0.75f + (y - viewLocation.y) * 0.25f;
-        viewLocation.x = x; viewLocation.y = y;
-    }
-    
-    if(viewDelta.x || viewDelta.y){
-        if(viewDelta.y){
-//            logMessage("viewDelta.y: %f\n", viewDelta.y);
-            v3d axis(1.0f, .0f, 0.0f);
-            rotate(viewDelta.y, Camera::instance()->transform.mRight);
-        }
-        
-        if(viewDelta.x){
-//            logMessage("viewDelta.x: %f\n", viewDelta.x);
-            rotate(-viewDelta.x, Camera::instance()->transform.mUp);
-        }
-        
-        viewDelta.x = 0; viewDelta.y = 0;
-    }
-    
-    if(moveDelta.z){
-        if(moveDelta.y){
-            int sign = SIGN(moveDelta.y);
-            transform.moveForward(sign * moveDelta.z );
-        }
-//        if(moveDelta.x){
-//            int sign = SIGN(moveDelta.x);
-//            transform.moveRight(sign * moveDelta.z);
-//        }
-//        logMessage("Move delta Z: %f\n", moveDelta.z);
-        refreshViewAndNormalMatrix();
-    }
-    
-    
-//    logMessage("Camera::onTouchMove [ %d, %d ]\n", x, y);
+void Camera::setWidthAndHeight(float width, float height){
+    if(mWidth == width && mHeight == height && viewportMatrix[2] != 0 && viewportMatrix[3] != 0) return;
+    mWidth = width;
+    mHeight = height;
+    refreshProjMatrix();
+    glGetIntegerv(GL_VIEWPORT, viewportMatrix);
 }
 
+#pragma Transform related
+void Camera::moveTo(const v3d position, const float time){
+    mMoveToPosition = position;
+    mMovingTime = time;
+}
 
-void Camera::onTouchEnd(const int x, const int y){
-    moveDelta.z = 0.0f;
-    
-//    logMessage("Camera::onTouchEnd [ %d, %d ]\n", x, y);
+void Camera::rotateTo(float deg, v3d &axis){
+    transform.rotate(deg * axis.x , deg * axis.y, deg * axis.z);
+    refreshViewAndNormalMatrix();
 }
 
 void Camera::setPosition(v3d pos){
@@ -157,7 +120,7 @@ void Camera::setPosition(v3d pos){
     refreshViewAndNormalMatrix();
 }
 void Camera::setFront(v3d front){
-//    v3d::print(front);
+    //    v3d::print(front);
     transform.mFront = front - transform.mPosition;
     refreshViewAndNormalMatrix();
 }
@@ -171,26 +134,19 @@ void Camera::follow(GameObject *go, v3d distance){
     mFollowDistance = distance;
 }
 
-void Camera::update(){
-    if(mGoToFollow){
-        transform.mPosition = v3d::lerp(transform.mPosition, mGoToFollow->getPosition() + mFollowDistance, Time::deltaTime );
-//        transform.mPosition = mGoToFollow->getPosition() + mFollowDistance;
-        transform.mFront = mGoToFollow->getPosition() - transform.mPosition;
+#pragma Visibility Check related
+float Camera::sphereDistanceInFrustum(v3d location, float radius){
+    float d;
+    for(unsigned int i = 0; i < 6; ++i){
+        d = frustum[i].x * location.x + frustum[i].y * location.y + frustum[i].z * location.z + frustum[i].w;
+        if(d < -radius){
+            return 0.0f;
+        }
     }
-    refreshViewAndNormalMatrix();
-    refreshShadowMatrix();
+    return d + radius;
 }
 
-void Camera::setWidthAndHeight(float width, float height){
-    if(mWidth == width && mHeight == height && viewportMatrix[2] != 0 && viewportMatrix[3] != 0) return;
-    mWidth = width;
-    mHeight = height;
-    refreshProjMatrix();
-    glGetIntegerv(GL_VIEWPORT, viewportMatrix);
-    
-//    logMessage("width: %f\theight:%f \t\t glWidth:%d\tglHeight:%d\n", width, height, viewportMatrix[2], viewportMatrix[3]);
-}
-
+#pragma Matrix getters
 const m4d& Camera::viewMatrix() const{
     return mViewMatrix;
 }
@@ -228,27 +184,13 @@ const m4d Camera::modelViewMatrix() const{
 
 }
 
-
-void Camera::rotate(float angle, float x, float y, float z){
-    v3d axis(x, y, z);
-    transform.rotate(angle, axis);
-    refreshViewAndNormalMatrix();
+void Camera::pushMMatrix(m4d matrix){
+    if(mMstack.empty()) mMstack.push(matrix);
+    else mMstack.push(mMstack.top() * matrix);
 }
 
-void Camera::rotate(float deg, v3d &axis){
-    transform.rotate(deg * axis.x , deg * axis.y, deg * axis.z);
-    refreshViewAndNormalMatrix();
-}
-
-float Camera::sphereDistanceInFrustum(v3d location, float radius){
-    float d;
-    for(unsigned int i = 0; i < 6; ++i){
-        d = frustum[i].x * location.x + frustum[i].y * location.y + frustum[i].z * location.z + frustum[i].w;
-        if(d < -radius){
-            return 0.0f;
-        }
-    }
-    return d + radius;
+void Camera::popMMatrix(){
+    return mMstack.pop();
 }
 
 #pragma mark PRIVATE(HELPERS)
@@ -481,13 +423,18 @@ void Camera::buildFrustum(){
     frustum[ 5 ].w *= t;
 }
 
-void Camera::pushMMatrix(m4d matrix){
-    if(mMstack.empty()) mMstack.push(matrix);
-    else mMstack.push(mMstack.top() * matrix);
-}
-
-void Camera::popMMatrix(){
-    return mMstack.pop();
+#pragma Camera Raycasting related
+GameObject* Camera::collisionRayIntersection(int screenX, int screenY){
+    v3d fpp = farPlanePoint(screenX, screenY);
+    btVector3 from(transform.mPosition.x, transform.mPosition.y, transform.mPosition.z);
+    btVector3 to(fpp.x, fpp.y, fpp.z);
+    btCollisionWorld::ClosestRayResultCallback collisionRay(from, to);
+    PhysicalWorld::instance()->pWorld()->rayTest(from, to, collisionRay);
+    if(collisionRay.hasHit()){
+        return ((GameObject*)collisionRay.m_collisionObject->getUserPointer());
+    }else{
+        return nullptr;
+    }
 }
 
 v3d Camera::farPlanePoint(int screenX, int screenY){
@@ -518,18 +465,30 @@ v3d Camera::farPlanePoint(int screenX, int screenY){
     return v3d(farPlanevec);
 }
 
-GameObject* Camera::collisionRayIntersection(int screenX, int screenY){
-    v3d fpp = farPlanePoint(screenX, screenY);
-    btVector3 from(transform.mPosition.x, transform.mPosition.y, transform.mPosition.z);
-    btVector3 to(fpp.x, fpp.y, fpp.z);
-    btCollisionWorld::ClosestRayResultCallback collisionRay(from, to);
-    PhysicalWorld::instance()->pWorld()->rayTest(from, to, collisionRay);
-    if(collisionRay.hasHit()){
-        return ((GameObject*)collisionRay.m_collisionObject->getUserPointer());
+bool Camera::movingRoutine(){
+    if(mMoveToPosition.x != 9999){
+        static float moveTime = mMovingTime;
+        if(moveTime <= 0.0f){
+            transform.mPosition = mMoveToPosition;
+            mMoveToPosition = v3d(9999, 9999, 9999);
+            mMovingTime = -1.0f;
+        }else{
+            float percent = (mMovingTime - moveTime) / mMovingTime;
+            transform.mPosition = v3d::lerp(transform.mPosition, mMoveToPosition, percent);
+        }
+        moveTime -= Time::deltaTime;
+        return true;
     }else{
-        return nullptr;
+        return false;
     }
 }
 
-
-
+bool Camera::followingRoutine(){
+    if(mGoToFollow){
+        transform.mPosition = v3d::lerp(transform.mPosition, mGoToFollow->getPosition() + mFollowDistance, Time::deltaTime );
+        transform.mFront = mGoToFollow->getPosition() - transform.mPosition;
+        return true;
+    }else{
+        return false;
+    }
+}

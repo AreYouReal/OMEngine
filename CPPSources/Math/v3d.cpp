@@ -49,8 +49,8 @@ void v3d::print(const v3d& vec3){
 }
 
 v3d v3d::lerp(const v3d &v1, const v3d &v2, const float blend){
-    if(blend == 1.0f) return v3d(v2);
-    else if(blend == 0.0f) return v3d(v1);
+    if(blend >= 1.0f) return v3d(v2);
+    else if(blend <= 0.0f) return v3d(v1);
     else{
         return v3d(  v1.x + blend * (v2.x - v1.x)
                    , v1.y + blend * (v2.y - v1.y)

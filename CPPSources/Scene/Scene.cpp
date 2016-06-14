@@ -115,31 +115,31 @@ void Scene::setRenderObjectState(RenderObjectType newState){
 }
 
 void Scene::onTouchBegin(const int x, const int y){
-    GameObject * collidedObj = Camera::instance()->collisionRayIntersection(x, y);
-    if(collidedObj != nullptr){
-        if(!collidedObj->name.compare("PLAY")){
-            if(player == nullptr){
-                player = createPlayer();
-                player->setLevelBuilder(lBuilder);
-                mSelector->go->mActive = false;
-            }
-            if(player){
-                player->onTouch();
-            }
-            playButton->go->mActive = false;
-        }
-    }else{
-        if(mSelector){
-            mSelector->onTouchBegin(x, y);
-        }
-        
-        if(player){
-            if(player->active()){
-                player->onTouch();
-            }
-        }
-    }
-    
+//    GameObject * collidedObj = Camera::instance()->collisionRayIntersection(x, y);
+//    if(collidedObj != nullptr){
+//        if(!collidedObj->name.compare("PLAY")){
+//            if(player == nullptr){
+//                player = createPlayer();
+//                player->setLevelBuilder(lBuilder);
+//                mSelector->go->mActive = false;
+//            }
+//            if(player){
+//                player->onTouch();
+//            }
+//            playButton->go->mActive = false;
+//        }
+//    }else{
+//        if(mSelector){
+//            mSelector->onTouchBegin(x, y);
+//        }
+//        
+//        if(player){
+//            if(player->active()){
+//                player->onTouch();
+//            }
+//        }
+//    }
+    Camera::instance()->moveTo(v3d(0, 11, 15), 30.0f);
 
 }
 
