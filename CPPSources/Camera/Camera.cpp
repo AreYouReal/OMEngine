@@ -13,8 +13,6 @@
 Camera::Camera(float fovy, float width, float height, float near, float far)
 :mFovy(fovy), mWidth(width), mHeight(height), mNear(near), mFar(far){
 transform.mPosition = v3d(8.0f, 5.0f, -6.0f);
-transform.mFront = v3d(.0f, 0.0f, -1.0f);
-transform.mUp = v3d(0.0f, 1.0f, 0.0f);
 refreshViewAndNormalMatrix();
 refreshProjMatrix();
 }
@@ -92,8 +90,8 @@ void Camera::update(){
         followingRoutine();
     }
     
-    if(mRotateTo.x != 9999){
-        rotateRoutine();
+    if(mLookAtAim.x != 9999){
+        lookAtRoutine();
     }
     
     refreshViewAndNormalMatrix();
@@ -114,17 +112,18 @@ void Camera::moveTo(const v3d position, const float time){
     mMovingTime = time;
 }
 
-void Camera::rotateTo(float deg, v3d axis, float time){
-    mRotateTo = q4d(deg, axis);
-    mRotationTime = time;
-}
-
 void Camera::setPosition(v3d pos){
     transform.mPosition = pos;
     refreshViewAndNormalMatrix();
 }
-void Camera::setFront(v3d front){
-    transform.mFront = front - transform.mPosition;
+void Camera::lookAt(v3d front, const float time){
+    if(time <= 0.0f){
+        mLookAt = front;
+        transform.mFront = front - transform.mPosition;
+    }else{
+        mLookAtAim = front;
+        mLookAtTime = time;
+    }
     refreshViewAndNormalMatrix();
 }
 void Camera::setUp(v3d up){
@@ -491,18 +490,16 @@ void Camera::followingRoutine(){
     }
 }
 
-void Camera::rotateRoutine(){
-    if(mRotateTo.x != 9999){
-        static float time = mRotationTime;
+void Camera::lookAtRoutine(){
+    if(mLookAtAim.x != 9999){
+        static float time = mLookAtTime;
         if(time <= 0.0f){
-            transform.mRotation = mRotateTo;
-            mRotateTo = q4d(9999, 9999, 9999, 9999);
-            mRotationTime = -1.0f;
+            transform.mFront = (mLookAtAim - transform.mPosition).normalize();
+            mLookAtAim = v3d(9999, 9999, 9999);
+            mLookAtTime = -1.0f;
         }else{
-            float percent = (mRotationTime - time) / mRotationTime;
-            float deltaTimePercent = percent * Time::deltaTime;
-            q4d rotate = q4d::lerp(transform.mRotation, mRotateTo, deltaTimePercent);
-            transform.rotate( rotate );
+            float percent = (mLookAtTime - time) / mLookAtTime;
+            transform.mFront =  (v3d::lerp(mLookAt, mLookAtAim, percent ) - transform.mPosition).normalize();
         }
         time -= Time::deltaTime;
     }

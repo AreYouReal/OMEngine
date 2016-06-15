@@ -55,7 +55,6 @@ void Transform::rotate(float deg, v3d axis){
 
 void Transform::rotate(q4d rotation){
     mRotation = rotation;
-    q4d::print(rotation);
     mFront = baseFront * mRotation.matrix();
     mUp = baseUp * mRotation.matrix();
     mRight = v3d::cross(mUp, mFront);

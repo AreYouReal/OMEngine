@@ -175,7 +175,7 @@ q4d q4d::lerp(const q4d &q1, const q4d &q2, float t){
         }
         
         float k0, k1;
-        
+                
         if(dot > 0.999999f){
             k0 = 1.0f - t;
             k1 = t;

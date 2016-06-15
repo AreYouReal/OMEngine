@@ -51,7 +51,7 @@ bool Scene::init(){
     addPlayButton();
     
     Camera::instance()->setPosition(v3d(0, 11, 5));
-    Camera::instance()->setFront( v3d(0, 9, 0));
+    Camera::instance()->lookAt( v3d(0, 9, 0));
     
     return true;
 }
@@ -141,8 +141,7 @@ void Scene::onTouchBegin(const int x, const int y){
 //    }
 //    Camera::instance()->moveTo(v3d(0, 11, 15), 3.0f);
 
-    
-    Camera::instance()->rotateTo(220, v3d(0, 1, 0), 30.0f);
+    Camera::instance()->lookAt(v3d(0, 5, 0), 10.0f);
     
 }
 

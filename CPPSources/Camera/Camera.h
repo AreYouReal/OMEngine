@@ -34,13 +34,12 @@ public:
     // Transform related
     void setWidthAndHeight(float width, float height);
     void setPosition(v3d pos);
-    void setFront(v3d front);
+    void lookAt(v3d front,const float time = -1.0f);
     void setUp(v3d up);
     void follow(GameObject *go, v3d distance);
     
     // Moving related
     void moveTo(const v3d position, const float time);
-    void rotateTo(float angle, v3d axis, float time);
     
 // Matrix related
     void pushMMatrix(m4d matrix);
@@ -71,7 +70,7 @@ public:
 private:
     
     Transform transform{};    // Use mFront, mUp, mPosition for view matrix
-    
+    v3d     mLookAt;
     float mFovy, mWidth, mHeight, mNear, mFar;  // Projection matrix vars
     
     m4d mViewMatrix;
@@ -88,8 +87,8 @@ private:
     v3d         mMoveToPosition{9999, 9999, 9999};
     float       mMovingTime = 0.0f;
     
-    q4d         mRotateTo{9999, 9999, 9999, 9999};
-    float       mRotationTime = 0.0f;
+    v3d         mLookAtAim{9999, 9999, 9999};
+    float       mLookAtTime = 0.0f;
     
 // Camera following
     GameObject *mGoToFollow = nullptr;
@@ -114,5 +113,5 @@ private:
 // Moving related
     void movingRoutine();
     void followingRoutine();
-    void rotateRoutine();
+    void lookAtRoutine();
 };
