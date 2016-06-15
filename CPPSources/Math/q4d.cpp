@@ -146,6 +146,7 @@ m4d q4d::matrix(){
 
 void q4d::normalize(){
     float length = magnitude();
+    if(length <= 0.0f) return;
     x /= length; y /= length; z /= length; w /= length;
 }
 
@@ -174,6 +175,7 @@ q4d q4d::lerp(const q4d &q1, const q4d &q2, float t){
         }
         
         float k0, k1;
+        
         if(dot > 0.999999f){
             k0 = 1.0f - t;
             k1 = t;
@@ -192,6 +194,7 @@ q4d q4d::lerp(const q4d &q1, const q4d &q2, float t){
                    , ((k0 * q1.w) + (k1 * temp.w)) );
     }
 }
+
 q4d q4d::slerp(const q4d& q1, const q4d& q2, float t){
     return lerp(q1, q1, t);
 }

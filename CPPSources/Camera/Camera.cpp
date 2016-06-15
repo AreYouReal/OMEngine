@@ -477,7 +477,8 @@ void Camera::movingRoutine(){
             mMovingTime = -1.0f;
         }else{
             float percent = (mMovingTime - moveTime) / mMovingTime;
-            transform.mPosition = v3d::lerp(transform.mPosition, mMoveToPosition, percent);
+            v3d::print(transform.mPosition);
+            transform.mPosition = v3d::lerp(transform.mPosition, mMoveToPosition, percent * Time::deltaTime);
         }
         moveTime -= Time::deltaTime;
     }
@@ -499,7 +500,9 @@ void Camera::rotateRoutine(){
             mRotationTime = -1.0f;
         }else{
             float percent = (mRotationTime - time) / mRotationTime;
-            transform.rotate( q4d::lerp(transform.mRotation, mRotateTo, percent) );
+            float deltaTimePercent = percent * Time::deltaTime;
+            q4d rotate = q4d::lerp(transform.mRotation, mRotateTo, deltaTimePercent);
+            transform.rotate( rotate );
         }
         time -= Time::deltaTime;
     }

@@ -2,6 +2,9 @@
 
 #include "OMUtils.h"
 
+v3d Transform::baseFront{0, 0, 1};
+v3d Transform::baseUp{0, 1, 0};
+
 Transform::Transform() : mPosition(0.0f, 0.0f, 0.0f), mRotation(0.0f, 0.0f, 0.0f, 0.0f), mScale(1.0f, 1.0f, 1.0f) {
     mFront = v3d(0, 0, 1);
     mRight = v3d(1, 0, 0);
@@ -42,25 +45,19 @@ void Transform::translate(float deltaX, float deltaY, float deltaZ){
 
 void Transform::rotate(float xRad, float yRad, float zRad){
     mRotation = q4d(xRad, v3d(1.0f, 0.0f, 0.0f)) * q4d(yRad, v3d(0.0f, 1.0f, 0.0f)) * q4d(zRad, v3d(0.0f, 0.0f, 1.0f));
-    
-    mFront = mFront * mRotation.matrix();
-    mUp = mUp * mRotation.matrix();
-    mRight = v3d::cross(mUp, mFront);
-    refreshTransformMatrix();
+    rotate(mRotation);
 }
 
 void Transform::rotate(float deg, v3d axis){
     mRotation = q4d(deg, axis);
-    mFront = mFront * mRotation.matrix();
-    mUp = mUp * mRotation.matrix();
-    mRight = v3d::cross(mUp, mFront);
-    refreshTransformMatrix();
+    rotate(mRotation);
 }
 
 void Transform::rotate(q4d rotation){
     mRotation = rotation;
-    mFront = mFront * mRotation.matrix();
-    mUp = mUp * mRotation.matrix();
+    q4d::print(rotation);
+    mFront = baseFront * mRotation.matrix();
+    mUp = baseUp * mRotation.matrix();
     mRight = v3d::cross(mUp, mFront);
     refreshTransformMatrix();
 }

@@ -35,6 +35,10 @@ public:
     v3d mUp{0, 1, 0};
     v3d mRight{1, 0, 0};
     
+    static v3d baseFront;
+    static v3d baseUp;
+
+    
 private:
     m4d mTransformMatrix;
 };

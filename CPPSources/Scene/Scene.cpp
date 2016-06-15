@@ -139,10 +139,10 @@ void Scene::onTouchBegin(const int x, const int y){
 //            }
 //        }
 //    }
-    Camera::instance()->moveTo(v3d(0, 11, 15), 30.0f);
+//    Camera::instance()->moveTo(v3d(0, 11, 15), 3.0f);
 
     
-    Camera::instance()->rotateTo(50, v3d(0, 1, 0), 10.0f);
+    Camera::instance()->rotateTo(220, v3d(0, 1, 0), 30.0f);
     
 }
 
