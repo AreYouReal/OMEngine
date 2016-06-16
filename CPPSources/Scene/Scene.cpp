@@ -32,26 +32,56 @@ Scene::~Scene(){
     Boombox::destroy();
 }
 
+
+#pragma Public
+void Scene::switchState(Scene::State newState){
+    switch (newState) {
+        case Scene::State::START_VIEW:
+            startViewRoutine();
+            break;
+        case Scene::State::SELECT_MONSTER_VIEW:
+            selectMonsterRoutine();
+            break;
+        case Scene::State::LEVEL_VIEW:
+            levelRoutine();
+            break;
+        default:
+            break;
+    }
+    mState = newState;
+}
+
+#pragma mark Remove/Add object
+void Scene::addObjOnScene(up<GameObject> go){
+    for(auto const &comp : go->mComponents){
+        comp.second->init();
+    }
+    mObjects.push_back(std::move(go));
+}
+
+bool Scene::removeObjectFromTheScene(GameObject *go){
+    for(int i = 0; i < mObjects.size(); ++i){
+        if(mObjects[i].get() == go){
+            mObjects.erase(mObjects.begin() + i);
+            return true;
+        }
+    }
+    return false;
+}
+
 #pragma OME event functions
 
 bool Scene::init(){
     srand(time(0));
     
     logGLError();
-    Camera::instance()->initShadowBuffer();
 
+    switchState(State::START_VIEW);
     
-    createCandyMonsters();
-    
-    
-    up<GameObject> levelBuilderObject = LevelBuilder::create();
-    lBuilder = static_cast<LevelBuilder*>( levelBuilderObject->getComponent(ComponentEnum::LEVEL_BUILDER) );
+    Camera::instance()->initShadowBuffer();
     
     addLight();
-    addPlayButton();
-    
-    Camera::instance()->setPosition(v3d(0, 11, 5));
-    Camera::instance()->lookAt( v3d(0, 9, 0));
+
     
     return true;
 }
@@ -66,18 +96,10 @@ void Scene::update(float deltaTime){
 }
 
 void Scene::draw(){
-    
     logGLError();
-    glBindFramebuffer(GL_FRAMEBUFFER, Camera::instance()->mMainBuffer);
-    glColorMask ( GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE );
-    glViewport(0, 0, Camera::instance()->width(), Camera::instance()->height());
-    glClearColor(Camera::instance()->mClearColor.x, Camera::instance()->mClearColor.y, Camera::instance()->mClearColor.z, Camera::instance()->mClearColor.w);
-    glClear( GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT );
-    
-    
-    for(const auto& go : mObjects){
-        go->draw();
-    }
+
+    Camera::instance()->draw();
+    for(const auto& go : mObjects){ go->draw(); }
     
     logGLError();
 }
@@ -115,45 +137,51 @@ void Scene::setRenderObjectState(RenderObjectType newState){
 }
 
 void Scene::onTouchBegin(const int x, const int y){
-//    GameObject * collidedObj = Camera::instance()->collisionRayIntersection(x, y);
-//    if(collidedObj != nullptr){
-//        if(!collidedObj->name.compare("PLAY")){
-//            if(player == nullptr){
-//                player = createPlayer();
-//                player->setLevelBuilder(lBuilder);
-//                mSelector->go->mActive = false;
-//            }
-//            if(player){
-//                player->onTouch();
-//            }
-//            playButton->go->mActive = false;
-//        }
-//    }else{
-//        if(mSelector){
-//            mSelector->onTouchBegin(x, y);
-//        }
-//        
-//        if(player){
-//            if(player->active()){
-//                player->onTouch();
-//            }
-//        }
-//    }
-//    Camera::instance()->moveTo(v3d(0, 11, 15), 3.0f);
-
-    Camera::instance()->lookAt(v3d(0, 5, 0), 10.0f);
-    
+    switch (mState) {
+        case State::START_VIEW:{
+            GameObject * collidedObj = Camera::instance()->collisionRayIntersection(x, y);
+            if(collidedObj){
+                if(!collidedObj->name.compare("PLAY")){
+                    if(playButton->go->mActive)
+                        switchState(LEVEL_VIEW);
+                }
+            }
+            break;
+        }
+        case State::SELECT_MONSTER_VIEW:
+            if(mSelector){
+                mSelector->onTouchBegin(x, y);
+            }
+            break;
+        case State::LEVEL_VIEW:
+            if(player) player->onTouch();
+            break;
+        default:
+            break;
+    }
 }
 
 void Scene::onTouchMove(const int x, const int y){
-    if(mSelector){
-        mSelector->onTouchMove(x, y);
+    switch (mState) {
+        case State::SELECT_MONSTER_VIEW:
+            if(mSelector){
+                mSelector->onTouchBegin(x, y);
+            }
+            break;
+        default:
+            break;
     }
 }
 
 void Scene::onTouchEnd(const int x, const int y){
-    if(mSelector){
-        mSelector->onTouchEnd(x, y);
+    switch (mState) {
+        case State::SELECT_MONSTER_VIEW:
+            if(mSelector){
+                mSelector->onTouchBegin(x, y);
+            }
+            break;
+        default:
+            break;
     }
 }
 
@@ -202,7 +230,7 @@ void Scene::addLight(){
 }
 
 PlayerController* Scene::createPlayer(){
-    up<GameObject> candyMonster = CandyMonster::create(mSelector->getCurrentSelectedMonster());
+    up<GameObject> candyMonster = CandyMonster::create(CandyMonster::TYPE_1);
     up<RigidBodyComponent> rbc_1 = up<RigidBodyComponent>(new RigidBodyComponent(candyMonster.get(), 5.0f));
     rbc_1->mBody->setGravity(btVector3(0, 0, 0));
     rbc_1->mComponentType = ComponentEnum::RIGID_BODY;
@@ -225,33 +253,46 @@ PlayerController* Scene::createPlayer(){
     return ctr;
 }
 
-
-void Scene::createCandyMonsters(){
-    up<GameObject> monsterSelectorObject = up<GameObject>(new GameObject("MSelector"));    
-    mSelector = MonsterSelector::add(monsterSelectorObject.get());
-    
-    for(int i =  1; i <= 5; ++i){
-        up<GameObject> candyMonster = CandyMonster::create((CandyMonster::CandyType)i);
-        mSelector->addMonster(std::move(candyMonster));
+void Scene::startViewRoutine(){
+    addPlayButton();
+    showPlayButton();
+    if(player == nullptr){
+        player = createPlayer();
     }
-    
-    addObjOnScene(std::move(monsterSelectorObject));
+    Camera::instance()->setPosition(v3d(0, 11, 5));
+    Camera::instance()->lookAt( v3d(0, 9, 0));
 }
 
-#pragma mark Remove/Add object
-void Scene::addObjOnScene(up<GameObject> go){
-    for(auto const &comp : go->mComponents){
-        comp.second->init();
+void Scene::levelRoutine(){
+     hidePlayButton();
+    if(!lBuilder){
+        up<GameObject> levelBuilderObject = LevelBuilder::create();
+        lBuilder = static_cast<LevelBuilder*>( levelBuilderObject->getComponent(ComponentEnum::LEVEL_BUILDER) );
+        lBuilder->buildLevel();
+        player->setLevelBuilder(lBuilder);
+        player->activate();
+        addObjOnScene(std::move(levelBuilderObject));
     }
-    mObjects.push_back(std::move(go));
 }
 
-bool Scene::removeObjectFromTheScene(GameObject *go){
-    for(int i = 0; i < mObjects.size(); ++i){
-        if(mObjects[i].get() == go){
-            mObjects.erase(mObjects.begin() + i);
-            return true;
+void Scene::selectMonsterRoutine(){
+    if(!mSelector){
+        up<GameObject> monsterSelectorObject = up<GameObject>(new GameObject("MSelector"));
+        mSelector = MonsterSelector::add(monsterSelectorObject.get());
+        
+        for(int i =  1; i <= 5; ++i){
+            up<GameObject> candyMonster = CandyMonster::create((CandyMonster::CandyType)i);
+            mSelector->addMonster(std::move(candyMonster));
         }
+        
+        addObjOnScene(std::move(monsterSelectorObject));
     }
-    return false;
+}
+
+void Scene::showPlayButton(){
+    playButton->go->mActive = true;
+}
+
+void Scene::hidePlayButton(){
+    playButton->go->mActive = false;
 }

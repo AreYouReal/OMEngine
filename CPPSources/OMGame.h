@@ -5,6 +5,7 @@
 class OMGame{
     
 public:
+    
     static int  StartUp         ( OMContext * );
     static int  InitGameWorld   ();
     static void Update          ( const float );

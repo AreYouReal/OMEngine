@@ -18,6 +18,8 @@ class Scene : public Singleton<Scene>{
 
 public:
     
+    enum State{ START_VIEW, SELECT_MONSTER_VIEW, LEVEL_VIEW };
+    
     Scene();
     Scene(const Scene& rhs) = delete;
     Scene& operator=(const Scene& rhs) = delete;
@@ -37,11 +39,15 @@ public:
     void onTouchMove(const int x, const int y);
     void onTouchEnd(const int x, const int y);
     
+    void switchState(Scene::State newState);
+    
 private:
 
 // Fields
     RenderObjectType  mDrawingState = RenderObjectType::SOLID;
     std::vector<up<GameObject>> mObjects;
+    
+    State       mState{START_VIEW};
     
 //Helpers
     void addPlayButton();
@@ -50,6 +56,12 @@ private:
     PlayerController *createPlayer();
     LevelBuilder *createLevelBuilder();
     
-    void createCandyMonsters();
+    void startViewRoutine();
+    void selectMonsterRoutine();
+    void levelRoutine();
+    
+    
+    void showPlayButton();
+    void hidePlayButton();
     
 };

@@ -3,7 +3,9 @@
 #include "BBlock.hpp"
 
 #pragma mark IComponent Interface Related
-LevelBuilder::LevelBuilder(GameObject * const gameObject) : IComponent(gameObject){}
+LevelBuilder::LevelBuilder(GameObject * const gameObject) : IComponent(gameObject){
+    mComponentType = ComponentEnum::LEVEL_BUILDER;
+}
 
 LevelBuilder::~LevelBuilder(){
     onDestroy();
@@ -19,7 +21,6 @@ up<GameObject> LevelBuilder::create(){
     up<GameObject> go = std::unique_ptr<GameObject>(new GameObject("LevelBuilder"));
     up<LevelBuilder> lb = std::unique_ptr<LevelBuilder>(new LevelBuilder(go.get()));
     lb->InitWithMeshes(AssetManager::instance()->getMeshFromObj("bblock.obj", "bblock"), AssetManager::instance()->getAllMeshesFromObj("candies.obj"));
-    lb->IComponent::mComponentType = ComponentEnum::LEVEL_BUILDER;
     go->addComponent(std::move(lb));
     return go;
 }

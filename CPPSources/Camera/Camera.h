@@ -19,6 +19,7 @@ public:
     Camera& operator=(const Camera& rhs) = delete;
     ~Camera();
     
+    void draw();
     void update();
     
     // Getters
@@ -30,6 +31,10 @@ public:
     const m4d& projectionMatrix() const;
     const m4d& normalMatrix() const;
     const m4d& orthoMatrix() const;
+   
+    // General drawing vars
+    int     mMainBuffer;
+    v4d     mClearColor{0.35f, 0.75f, 1.0f, 1.0f};
     
     // Transform related
     void setWidthAndHeight(float width, float height);
@@ -51,9 +56,7 @@ public:
 // Object picking related
     GameObject* collisionRayIntersection(int screenX, int screenY);
     
-    // General drawing vars
-    int     mMainBuffer;
-    v4d     mClearColor{0.35f, 0.75f, 1.0f, 1.0f};
+
     
 // Shadow related
     bool            shadowDraw = false;
@@ -79,6 +82,8 @@ private:
     m4d mNormalMatrix;
     v4d frustum[6];
     int viewportMatrix[4];
+    
+
     
 // Matrix stack
     std::stack<m4d> mMstack;

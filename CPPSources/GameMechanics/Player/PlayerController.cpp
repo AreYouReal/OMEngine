@@ -56,15 +56,16 @@ void PlayerController::setLevelBuilder(LevelBuilder *lb){
     mLevelBuilder = lb;
 }
 
+void PlayerController::activate(){
+    mAnimMeshComp->setState(AnimMeshComponent::AnimationStates::JUMP, false);
+    Camera::instance()->follow(go, camFollowPositions[1]);
+    mRigidBodyComp->mBody->setGravity(btVector3(0, -9.8, 0));
+    mActive = true;
+    mRigidBodyComp->mBody->activate();
+}
+
 void PlayerController::onTouch(){
-    if(!mActive){
-        mAnimMeshComp->setState(AnimMeshComponent::AnimationStates::RUN, true);
-        Camera::instance()->follow(go, camFollowPositions[1]);
-        mRigidBodyComp->mBody->setGravity(btVector3(0, -9.8, 0));
-        mLevelBuilder->buildLevel();
-        mActive = true;
-        mRigidBodyComp->mBody->activate();
-    }else{
+    if(mActive){
         mRigidBodyComp->mBody->activate();
         applyAction();
         refreshVelocity();
@@ -87,7 +88,7 @@ void PlayerController::applyAction(){
             break;
             case LevelRelated::Action::Type::YAW:
             {
-//                mAnimMeshComp->setState(AnimMeshComponent::AnimationStates::RUN, true);
+                mAnimMeshComp->setState(AnimMeshComponent::AnimationStates::RUN, true);
                 currentFronVector = frontVector * act.mRotation.matrix();
                 mJump = false;
             break;

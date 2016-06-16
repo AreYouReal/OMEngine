@@ -83,6 +83,14 @@ bool Camera::initShadowBuffer(){
 
 Camera::~Camera(){}
 
+void Camera::draw(){
+    glBindFramebuffer(GL_FRAMEBUFFER, mMainBuffer);
+    glColorMask ( GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE );
+    glViewport(0, 0, mWidth, mHeight);
+    glClearColor(mClearColor.x, mClearColor.y, mClearColor.z, mClearColor.w);
+    glClear( GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT );
+}
+
 void Camera::update(){
     if(mMoveToPosition.x != 9999){
         movingRoutine();

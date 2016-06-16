@@ -16,6 +16,7 @@ public:
     void setLevelBuilder(LevelBuilder *lb);
     void onTouch();
     
+    void activate();
     bool active(){return mActive;};
     
 private:
