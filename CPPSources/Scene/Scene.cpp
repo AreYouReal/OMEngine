@@ -6,12 +6,10 @@
 #include "MonsterSelector.hpp"
 #include "PlayButton.hpp"
 
-
-
-PlayerController *player    = nullptr;
-LevelBuilder *lBuilder      = nullptr;
-MonsterSelector *mSelector  = nullptr;
-PlayButton      *playButton = nullptr;
+PlayerController    *player    = nullptr;
+LevelBuilder        *lBuilder      = nullptr;
+MonsterSelector     *mSelector  = nullptr;
+PlayButton          *playButton = nullptr;
 
 #pragma Constr/Destr
 Scene::Scene(){
@@ -45,7 +43,9 @@ bool Scene::init(){
     
     createCandyMonsters();
     
-    lBuilder = createLevelBuilder();
+    
+    up<GameObject> levelBuilderObject = LevelBuilder::create();
+    lBuilder = static_cast<LevelBuilder*>( levelBuilderObject->getComponent(ComponentEnum::LEVEL_BUILDER) );
     
     addLight();
     addPlayButton();
@@ -237,18 +237,6 @@ void Scene::createCandyMonsters(){
     
     addObjOnScene(std::move(monsterSelectorObject));
 }
-
-LevelBuilder *Scene::createLevelBuilder(){
-    up<GameObject> go = std::unique_ptr<GameObject>(new GameObject("LevelBuilder"));
-    up<LevelBuilder> lb = std::unique_ptr<LevelBuilder>(new LevelBuilder(go.get()));
-    lb->InitWithMeshes(AssetManager::instance()->getMeshFromObj("bblock.obj", "bblock"), AssetManager::instance()->getAllMeshesFromObj("candies.obj"));
-    LevelBuilder *returnValue = lb.get();
-    lb->IComponent::mComponentType = ComponentEnum::LEVEL_BUILDER;
-    go->addComponent(std::move(lb));
-    addObjOnScene(std::move(go));
-    return returnValue;
-}
-
 
 #pragma mark Remove/Add object
 void Scene::addObjOnScene(up<GameObject> go){

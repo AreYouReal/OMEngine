@@ -15,6 +15,16 @@ void LevelBuilder::InitWithMeshes(sp<ObjMesh> block, std::vector<sp<ObjMesh>> ca
 }
 
 
+up<GameObject> LevelBuilder::create(){
+    up<GameObject> go = std::unique_ptr<GameObject>(new GameObject("LevelBuilder"));
+    up<LevelBuilder> lb = std::unique_ptr<LevelBuilder>(new LevelBuilder(go.get()));
+    lb->InitWithMeshes(AssetManager::instance()->getMeshFromObj("bblock.obj", "bblock"), AssetManager::instance()->getAllMeshesFromObj("candies.obj"));
+    lb->IComponent::mComponentType = ComponentEnum::LEVEL_BUILDER;
+    go->addComponent(std::move(lb));
+    return go;
+}
+
+
 #pragma mark Public
 
 void LevelBuilder::buildLevel(){

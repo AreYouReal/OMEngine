@@ -36,6 +36,9 @@ public:
     
     void clearLevel();
     
+    
+    static up<GameObject> create();
+    
 private:
     
     std::queue<LevelRelated::Action> actions;
