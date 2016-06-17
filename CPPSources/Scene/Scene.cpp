@@ -268,11 +268,12 @@ void Scene::levelRoutine(){
     if(!lBuilder){
         up<GameObject> levelBuilderObject = LevelBuilder::create();
         lBuilder = static_cast<LevelBuilder*>( levelBuilderObject->getComponent(ComponentEnum::LEVEL_BUILDER) );
-        lBuilder->buildLevel();
+
         player->setLevelBuilder(lBuilder);
-        player->activate();
         addObjOnScene(std::move(levelBuilderObject));
     }
+    lBuilder->buildLevel();
+    player->activate();
 }
 
 void Scene::selectMonsterRoutine(){

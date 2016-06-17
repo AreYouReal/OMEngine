@@ -118,6 +118,7 @@ void PlayerController::update(){
         startPose();
         mActive = false;
         mLevelBuilder->clearLevel();
+        Scene::instance()->switchState(Scene::State::START_VIEW);
         Camera::instance()->follow(nullptr, v3d(0,0,0));
         Camera::instance()->setPosition(v3d(0, 11, 5));
         Camera::instance()->lookAt( v3d(0, 9, 0));
