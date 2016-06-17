@@ -11,6 +11,8 @@ LevelBuilder        *lBuilder      = nullptr;
 MonsterSelector     *mSelector  = nullptr;
 PlayButton          *playButton = nullptr;
 
+float doubleTapTime = 1.0f;
+
 #pragma Constr/Destr
 Scene::Scene(){
     logGLError();
@@ -145,6 +147,19 @@ void Scene::onTouchBegin(const int x, const int y){
                     if(playButton->go->mActive)
                         switchState(LEVEL_VIEW);
                 }
+            }else{
+                static unsigned int startMillisec = 0;
+                if(startMillisec == 0){
+                    startMillisec = getMilliTime();
+                }else{
+                    float secDelta = (getMilliTime() - startMillisec)/1000.0f;
+                    logMessage("Sec delta %f\n", secDelta);
+                    if(secDelta > doubleTapTime){
+                        startMillisec = 0;
+                    }else{
+                        switchState(State::SELECT_MONSTER_VIEW);
+                    }
+                }
             }
             break;
         }
@@ -165,7 +180,7 @@ void Scene::onTouchMove(const int x, const int y){
     switch (mState) {
         case State::SELECT_MONSTER_VIEW:
             if(mSelector){
-                mSelector->onTouchBegin(x, y);
+                mSelector->onTouchMove(x, y);
             }
             break;
         default:
@@ -177,7 +192,7 @@ void Scene::onTouchEnd(const int x, const int y){
     switch (mState) {
         case State::SELECT_MONSTER_VIEW:
             if(mSelector){
-                mSelector->onTouchBegin(x, y);
+                mSelector->onTouchEnd(x, y);
             }
             break;
         default:
