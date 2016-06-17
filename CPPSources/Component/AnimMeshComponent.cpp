@@ -7,25 +7,21 @@
 
 #include "GameObject.hpp"
 
-AnimMeshComponent::AnimMeshComponent(GameObject* const go, const string meshName, const string materialname, std::vector<string> &actionsToLoad) : IComponent(go){
+#include "AssetManager.hpp"
+
+AnimMeshComponent::AnimMeshComponent(GameObject* const go, sp<md5::MD5> md5Obj) : IComponent(go){
+
+    md5 = md5Obj;
     
-    Materials::instance()->loadMaterial(materialname);
-    
-    md5 = md5::MD5::loadMesh(meshName);
-    
-    initAnimMesh();
-    
-    for(auto const &action : actionsToLoad){
-        std::size_t pos = action.find(".md5anim");
-        string actionName = action.substr(0, pos);
-        if(actionName.find("idle") != string::npos){
+    for(auto const &action : md5->getAllActions()){
+        string actionName = action.first;
+        if(action.first.find("idle") != string::npos){
             stateActionTable.insert(std::pair<AnimationStates, string>(AnimationStates::IDLE, actionName));
-        }else if(actionName.find("run") != string::npos){
+        }else if(action.first.find("run") != string::npos){
             stateActionTable.insert(std::pair<AnimationStates, string>(AnimationStates::RUN, actionName));
-        }else if(actionName.find("jump") != string::npos){
+        }else if(action.first.find("jump") != string::npos){
             stateActionTable.insert(std::pair<AnimationStates, string>(AnimationStates::JUMP, actionName));
         }
-        md5->loadAction(actionName, action);
     }
     
     md5->mAnimType = md5::MD5::AnimType::SINGLE_ACTION;
@@ -37,12 +33,6 @@ AnimMeshComponent::~AnimMeshComponent(){
     onDestroy();
 }
 
-bool AnimMeshComponent::initAnimMesh(){
-    md5->optimize(128);
-    md5->build();
-    md5->freeMeshData();
-    return true;
-}
 
 void AnimMeshComponent::update(){
     md5->updateActions(Time::deltaTime);

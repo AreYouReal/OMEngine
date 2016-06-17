@@ -1,4 +1,5 @@
 #include "CandyMonster.hpp"
+#include "AssetManager.hpp"
 
 CandyMonster::CandyMonster(GameObject * const gameObject) : IComponent(gameObject){};
 
@@ -16,7 +17,9 @@ up<GameObject> CandyMonster::create(CandyMonster::CandyType type){
     monsterActions.push_back(monsterName + "_run.md5anim");
     monsterActions.push_back(monsterName + "_jump.md5anim");
     
-    up<AnimMeshComponent> mamc = up<AnimMeshComponent>(new AnimMeshComponent(monster.get(), monsterName + ".md5mesh", monsterName + ".mtl", monsterActions));
+    sp<md5::MD5> md5 = AssetManager::instance()->loadMD5Mesh(monsterName + ".md5mesh", monsterActions, monsterName + ".mtl");
+    
+    up<AnimMeshComponent> mamc = up<AnimMeshComponent>(new AnimMeshComponent(monster.get(), md5));
     mamc->mComponentType = ComponentEnum::ANIM_MESH;
     monster->addComponent(std::move(mamc));
     

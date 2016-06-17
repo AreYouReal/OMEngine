@@ -9,13 +9,9 @@ public:
     enum AnimationStates{ NONE, IDLE, RUN, JUMP, FALL };
 
     
-    AnimMeshComponent(GameObject* const go, const string meshName, const string materialname, std::vector<string> &actionsToLoad);
+    AnimMeshComponent(GameObject* const go, sp<md5::MD5> md5Obj);
     
     virtual         ~AnimMeshComponent();
-    
-    bool    initAnimMesh();
-    
-    
     
     virtual void    update() override;
     virtual void    draw() override;

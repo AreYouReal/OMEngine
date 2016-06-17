@@ -53,3 +53,24 @@ void AssetManager::loadArrowObj(){
     
     mObjRess.insert(std::pair<string, sp<Obj>>(actionObjName, arrowObj));
 }
+
+sp<md5::MD5> AssetManager::loadMD5Mesh(string filename, std::vector<string> actionsToLoad, string materialname){
+    Materials::instance()->loadMaterial(materialname);
+    sp<md5::MD5> md5 = md5::MD5::loadMesh(filename);
+    std::size_t pos = filename.find(".md5mesh");
+    string meshName = filename.substr(0, pos);
+    if(md5){
+        md5->optimize(128);
+        md5->build();
+        md5->freeMeshData();
+        mMD5Ress.insert(std::pair<string, sp<md5::MD5>>(meshName, md5));
+    }
+    
+    for(auto const &filename : actionsToLoad){
+        std::size_t pos = filename.find(".md5anim");
+        string actionName = filename.substr(0, pos);
+        md5->loadAction(actionName, filename);
+    }
+    
+    return md5;
+}

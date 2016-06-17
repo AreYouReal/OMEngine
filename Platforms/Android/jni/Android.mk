@@ -19,6 +19,7 @@ $(SRC_PATH)/CPPSources/GameMechanics/Level/BBlock.cpp\
 $(SRC_PATH)/CPPSources/GameMechanics/Level/LevelBuilder.cpp\
 $(SRC_PATH)/CPPSources/GameMechanics/Level/LevelRelated.cpp\
 $(SRC_PATH)/CPPSources/GameMechanics/LoadingScreen/MonsterSelector.cpp\
+$(SRC_PATH)/CPPSources/GameMechanics/LoadingScreen/PlayButton.cpp\
 $(SRC_PATH)/CPPSources/GameMechanics/Monsters/CandyMonster.cpp\
 $(SRC_PATH)/CPPSources/GameMechanics/Player/PlayerController.cpp\
 $(SRC_PATH)/CPPSources/GameObject/GameObject.cpp\
@@ -247,6 +248,7 @@ $(SRC_PATH)/CPPSources/Utils/3dPart/vorbis/smallft.c\
 $(SRC_PATH)/CPPSources/Utils/3dPart/vorbis/synthesis.c\
 $(SRC_PATH)/CPPSources/Utils/3dPart/vorbis/vorbisfile.c\
 $(SRC_PATH)/CPPSources/Utils/3dPart/vorbis/window.c\
+$(SRC_PATH)/CPPSources/Utils/Assets/AssetManager.cpp\
 $(SRC_PATH)/CPPSources/Utils/OMUtils.cpp\
 $(SRC_PATH)/CPPSources/Utils/Time.cpp\
 
@@ -296,6 +298,7 @@ $(SRC_PATH)/CPPSources/Utils/3dPart/nvtristrip\
 $(SRC_PATH)/CPPSources/Utils/3dPart/openal\
 $(SRC_PATH)/CPPSources/Utils/3dPart/ttf\
 $(SRC_PATH)/CPPSources/Utils/3dPart/vorbis\
+$(SRC_PATH)/CPPSources/Utils/Assets\
 $(SRC_PATH)/CPPSources/Utils\
 
 

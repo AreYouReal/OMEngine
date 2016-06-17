@@ -191,11 +191,15 @@ sp<Action> MD5::loadAction(string name, string filename){
     return actions[action->name];
 }
 
-sp<Action> MD5::getAction(const string name){
+const sp<Action> MD5::getAction(const string name) const{
     if(actions.find(name) == actions.end()){
         return nullptr;
     }
-    return actions[name];
+    return actions.at(name);
+}
+
+const std::map<string, sp<Action>> MD5::getAllActions() const{
+    return actions;
 }
 
 void MD5::optimize(unsigned int vertexCacheSize){

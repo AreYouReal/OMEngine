@@ -4,12 +4,12 @@
 #include "Shortcuts.h"
 #include "GameObject.hpp"
 #include "OMGame.h"
+#include "md5.hpp"
 
 class AssetManager : public Singleton<AssetManager>{
 
 public:
     void init();
-    
     
     void loadPlayBtnObj();
     void loadBlockObj();
@@ -19,8 +19,10 @@ public:
     
     std::vector<sp<ObjMesh>> getAllMeshesFromObj(string objFileName);
     
+    sp<md5::MD5> loadMD5Mesh(string filename, std::vector<string> actionsToLoad, string materialname);
+    
 private:
     
     std::map<string, sp<Obj>> mObjRess;
-    
+    std::map<string, sp<md5::MD5>> mMD5Ress;
 };

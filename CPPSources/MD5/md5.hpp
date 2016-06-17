@@ -125,8 +125,9 @@ public:
         static sp<MD5> loadMesh(const string filename);
         
         sp<Action> loadAction(const string name, const string filename);
-        sp<Action> getAction(const string name);
-        
+        const sp<Action> getAction(const string name) const;
+        const std::map<string, sp<Action>> getAllActions() const;
+    
         bool updateAction(const sp<Action> action, const float timeStep);
         void updateActions(const float timeStep);
         

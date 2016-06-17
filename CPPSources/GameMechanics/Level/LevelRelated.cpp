@@ -63,7 +63,7 @@ Candy::Candy(GameObject * const gameObject, LevelBuilder * const builder) : ICom
 
 Candy::~Candy(){
     onDestroy();
-    logMessage("ARROW COMPONENT DESTRUCTOR\n");
+    logMessage("CANDY COMPONENT DESTRUCTOR\n");
 }
 
 void Candy::show(v3d position){
