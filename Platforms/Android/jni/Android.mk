@@ -17,6 +17,7 @@ $(SRC_PATH)/CPPSources/Component/RigidBodyComponent.cpp\
 $(SRC_PATH)/CPPSources/DEBUG/WiredCube.cpp\
 $(SRC_PATH)/CPPSources/GameMechanics/Level/BBlock.cpp\
 $(SRC_PATH)/CPPSources/GameMechanics/Level/LevelBuilder.cpp\
+$(SRC_PATH)/CPPSources/GameMechanics/Level/LevelInfo.cpp\
 $(SRC_PATH)/CPPSources/GameMechanics/Level/LevelRelated.cpp\
 $(SRC_PATH)/CPPSources/GameMechanics/LoadingScreen/MonsterSelector.cpp\
 $(SRC_PATH)/CPPSources/GameMechanics/LoadingScreen/PlayButton.cpp\
