@@ -317,13 +317,18 @@ void LevelBuilder::clearLevel(){
     
     mLastBlockPoss = v3d(0, 0, 0);
     mLastDir = v3d(0, 0, 0);
+    currentLevel = 0;
+    mPoss = std::queue<v3d>();
 }
 
 void LevelBuilder::fillLevelPositions(){
     mCurrentLevelInfo = AssetManager::instance()->getLevelInfo(currentLevel);
     if(mCurrentLevelInfo){
+        v3d delta = mCurrentLevelInfo->poss[0] - mLastBlockPoss + v3d(0, 0, -2);
+        v3d::print(mLastBlockPoss);
+        v3d::print(mCurrentLevelInfo->poss[0]);
         for(auto const &pos : mCurrentLevelInfo->poss){
-            mPoss.push(pos);
+            mPoss.push(pos - delta);
         }
     }
 }
