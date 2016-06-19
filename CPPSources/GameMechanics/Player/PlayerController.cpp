@@ -10,11 +10,11 @@ bool onPlayerPhysicalContact(btManifoldPoint &point, const btCollisionObjectWrap
     GameObject *go1 = ((GameObject*)((btCollisionObject*)obj1->getCollisionObject())->getUserPointer());
 //    logMessage("Onbj1 : %s   <-> Obj2: %s \n", go0->name.c_str(), go1->name.c_str());
     
-//    BBlock* blockComp = static_cast<BBlock*>(go1->getComponent(ComponentEnum::BBLOCK));
-//    if(blockComp){
-//        blockComp->hide();
-//            return true;
-//    }
+    BBlock* blockComp = static_cast<BBlock*>(go1->getComponent(ComponentEnum::BBLOCK));
+    if(blockComp){
+        blockComp->hide();
+            return true;
+    }
     
     LevelRelated::Candy* candy = static_cast<LevelRelated::Candy*>(go1->getComponent(ComponentEnum::CANDY));
     if(candy){

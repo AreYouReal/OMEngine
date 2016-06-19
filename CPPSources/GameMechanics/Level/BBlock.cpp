@@ -54,10 +54,7 @@ void BBlock::fadeOut(){
     }else{
         if(fadeOutTime > 0){
             fadeOutTime -= Time::deltaTime;
-            RigidBodyComponent *rbc = static_cast<RigidBodyComponent*>(go->getComponent(ComponentEnum::RIGID_BODY));
-            if(rbc){
-                rbc->mBody->setMassProps(5, btVector3(0, 0, 0));
-            }
+            go->setPosition(go->getPosition() - v3d(0, 10, 0) * Time::deltaTime );
         }else{
             RigidBodyComponent *rbc = static_cast<RigidBodyComponent*>(go->getComponent(ComponentEnum::RIGID_BODY));
             if(rbc){

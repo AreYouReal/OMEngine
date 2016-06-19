@@ -30,7 +30,7 @@ private:
     float waitTime = 1.5f;
     
     float fadeInTime = .5f;
-    float fadeOutTime = .5f;
+    float fadeOutTime = 2.5f;
     
     void fadeIn();
     void fadeOut();
