@@ -65,14 +65,16 @@ private:
     
     int currentLevel = 0;
     sp<LevelInfo> mCurrentLevelInfo;
+    std::queue<v3d> mPoss;
     
-    v3d  calculateNewPoss(v3d lastPos);
+    v3d  getNewPos();
     void addNewBlock(v3d blockPos, LAction action);
     void addCandyToBlock();
     
     
     LevelRelated::Action getAction(v3d newPos, v3d lastDir);
 
+    void fillLevelPositions();
     void addBlockComponent(GameObject*);
     void activateBlock(GameObject*);
     

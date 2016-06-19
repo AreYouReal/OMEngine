@@ -84,7 +84,7 @@ sp<md5::MD5> AssetManager::loadMD5Mesh(string filename, std::vector<string> acti
 
 sp<LevelInfo> AssetManager::getLevelInfo(int num){
     if(num < 0 || num >= world.size()){
-        return world[0];
+        return nullptr;
     }
     return world[num];
 }

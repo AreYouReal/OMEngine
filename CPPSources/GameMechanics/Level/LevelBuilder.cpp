@@ -31,10 +31,10 @@ up<GameObject> LevelBuilder::create(){
 void LevelBuilder::buildLevel(){
     srand(time(0));
     
-    mCurrentLevelInfo = AssetManager::instance()->getLevelInfo(currentLevel);
+    fillLevelPositions();
     
-    for(unsigned int i = 0; i < mCurrentLevelInfo->poss.size(); ++i){
-        v3d newPos = mCurrentLevelInfo->poss[i];
+    for(unsigned int i = 0; i < blockCount; ++i){
+        v3d newPos = getNewPos();
         LAction action = getAction(newPos, mLastBlockPoss);
         addNewBlock(newPos, action);
     }
@@ -169,7 +169,17 @@ void LevelBuilder::addCandyToBlock(){
     }
 }
 
-v3d LevelBuilder::calculateNewPoss(v3d lastPos){
+v3d LevelBuilder::getNewPos(){
+    if(mPoss.size() == 0){
+        ++currentLevel;
+        fillLevelPositions();
+    }
+    if(mPoss.size() > 0){
+        v3d retVal = mPoss.front();
+        mPoss.pop();
+        return retVal;
+    }
+    
     int x, z;
     int step = 2;
     int randValue = rand() % 10;
@@ -187,7 +197,7 @@ v3d LevelBuilder::calculateNewPoss(v3d lastPos){
             z = 3 * step; x = 0;
         }
     }
-    v3d newPos = lastPos + v3d(x, 0, z);
+    v3d newPos = mLastBlockPoss + v3d(x, 0, z);
     return newPos;
 }
 
@@ -241,7 +251,7 @@ LAction LevelBuilder::getAction(v3d newPos, v3d lastDir){
 void LevelBuilder::activateBlock(GameObject *go){
     BBlock *blockComp = static_cast<BBlock*>(go->getComponent(ComponentEnum::BBLOCK));
     if(blockComp){
-        v3d newPos = calculateNewPoss(mLastBlockPoss);
+        v3d newPos = getNewPos();
         blockComp->show(newPos);
         MeshRendererComponent *mmc = static_cast<MeshRendererComponent*>(go->getComponent(ComponentEnum::MESH_RENDERER));
         if(mmc){
@@ -307,4 +317,13 @@ void LevelBuilder::clearLevel(){
     
     mLastBlockPoss = v3d(0, 0, 0);
     mLastDir = v3d(0, 0, 0);
+}
+
+void LevelBuilder::fillLevelPositions(){
+    mCurrentLevelInfo = AssetManager::instance()->getLevelInfo(currentLevel);
+    if(mCurrentLevelInfo){
+        for(auto const &pos : mCurrentLevelInfo->poss){
+            mPoss.push(pos);
+        }
+    }
 }
