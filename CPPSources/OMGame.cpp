@@ -18,6 +18,8 @@ using UserData = struct{};
 static OMContext       *appContext;
 bool OMGame::debugFlag  = false;
 
+bool disableScene = false;
+
 // TODO: remove
 Font *f;
 std::future<bool> asyncFuture;
@@ -35,7 +37,8 @@ OMContext* OMGame::getAppContext(){
 
 
 int OMGame::InitGameWorld (){
-  
+    AssetManager::instance()->init();
+      if(disableScene) return 1;
     
     logGLError();
 
@@ -54,12 +57,14 @@ int OMGame::InitGameWorld (){
 
 
 void OMGame::Update(const float deltaTime){
+    if(disableScene) return;
     Time::deltaTime = deltaTime;
     Scene::instance()->update(deltaTime);
 }
 
     Stopwatch stopwatch;
 void OMGame::Draw (){
+    if(disableScene) return;
 //    static unsigned int start = getMilliTime(), fps = 0;
 //    if( getMilliTime() - start >= 1000 ) {
 //        logMessage( "FPS: %d\n", fps ); start = getMilliTime();

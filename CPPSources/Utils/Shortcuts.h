@@ -1,7 +1,7 @@
 #pragma once
 
 #include <memory>
-
+#include <vector>
 
 
 template<typename T>
@@ -12,6 +12,8 @@ template<typename T>
 using wp = std::weak_ptr<T>;
 using string = std::string;
 
+template<typename T>
+using vec = std::vector<T>;
 
 #include "btCollisionDispatcher.h"
 /* Return true only if you change any variables of the contact point (such as the friction). */

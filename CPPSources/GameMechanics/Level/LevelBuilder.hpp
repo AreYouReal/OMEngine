@@ -39,6 +39,7 @@ public:
     
     static up<GameObject> create();
     
+    
 private:
     
     std::queue<LevelRelated::Action> actions;
@@ -61,6 +62,9 @@ private:
     
     
     float mCandyChance = 50.0f;
+    
+    int currentLevel = 0;
+    sp<LevelInfo> mCurrentLevelInfo;
     
     v3d  calculateNewPoss(v3d lastPos);
     void addNewBlock(v3d blockPos, LAction action);

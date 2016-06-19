@@ -31,10 +31,10 @@ up<GameObject> LevelBuilder::create(){
 void LevelBuilder::buildLevel(){
     srand(time(0));
     
-    addNewBlock(mLastBlockPoss, LAction(LAction::NONE));
+    mCurrentLevelInfo = AssetManager::instance()->getLevelInfo(currentLevel);
     
-    for(unsigned int i = 0; i < blockCount; ++i){
-        v3d newPos = calculateNewPoss(mLastBlockPoss);
+    for(unsigned int i = 0; i < mCurrentLevelInfo->poss.size(); ++i){
+        v3d newPos = mCurrentLevelInfo->poss[i];
         LAction action = getAction(newPos, mLastBlockPoss);
         addNewBlock(newPos, action);
     }

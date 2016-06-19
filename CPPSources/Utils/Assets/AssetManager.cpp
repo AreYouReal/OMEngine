@@ -14,6 +14,7 @@ void AssetManager::init(){
     loadPlayBtnObj();
     loadBlockObj();
     loadArrowObj();
+    loadWorldLevelInfo();
 }
 
 std::vector<sp<ObjMesh>> AssetManager::getAllMeshesFromObj(string objFileName){
@@ -54,6 +55,12 @@ void AssetManager::loadArrowObj(){
     mObjRess.insert(std::pair<string, sp<Obj>>(actionObjName, arrowObj));
 }
 
+void AssetManager::loadWorldLevelInfo(){
+    std::unique_ptr<FileContent> worldContent = readTextFile("worldA.cm");
+    string content = std::string( reinterpret_cast<const char*>(worldContent->content) );
+    world = LevelInfo::parseWorld(content);
+}
+
 sp<md5::MD5> AssetManager::loadMD5Mesh(string filename, std::vector<string> actionsToLoad, string materialname){
     Materials::instance()->loadMaterial(materialname);
     sp<md5::MD5> md5 = md5::MD5::loadMesh(filename);
@@ -73,4 +80,11 @@ sp<md5::MD5> AssetManager::loadMD5Mesh(string filename, std::vector<string> acti
     }
     
     return md5;
+}
+
+sp<LevelInfo> AssetManager::getLevelInfo(int num){
+    if(num < 0 || num >= world.size()){
+        return world[0];
+    }
+    return world[num];
 }
