@@ -314,10 +314,11 @@ void LevelBuilder::fillLevelPositions(){
     mCurrentLevelInfo = AssetManager::instance()->getLevelInfo(currentLevel);
     if(mCurrentLevelInfo){
         Camera::instance()->follow(mCurrentLevelInfo->camPos);
-        Camera::instance()->clearColor(mCurrentLevelInfo->bgColor, 10.0f);
+        Camera::instance()->clearColor(mCurrentLevelInfo->bgColor, 3.0f);
         blockMat = Materials::instance()->getMaterial("BBlockMTL");
         mAimColor = mCurrentLevelInfo->bblockColor;
-        mChangeColorTime = 5.0f;
+        mChangeColorTime = 3.0f;
+        mChangeColorCurrentTime = mChangeColorTime;
         v3d offset = v3d(0, 0, 0);
         if(currentLevel > 0){
             offset.z = -2;
@@ -333,15 +334,14 @@ void LevelBuilder::fillLevelPositions(){
 
 void LevelBuilder::changeColorRoutine(){
     if(mAimColor.w != 0.0f){
-        static float time = mChangeColorTime;
-        if(time <= 0.0f){
+        if(mChangeColorCurrentTime <= 0.0f){
             blockMat->diffuse = mAimColor;
             mAimColor = v4d(0, 0, 0, 0);
             mChangeColorTime = -1.0f;
         }else{
-            float percent = (mChangeColorTime - time) / mChangeColorTime;
+            float percent = (mChangeColorTime - mChangeColorCurrentTime) / mChangeColorTime;
             blockMat->diffuse = v4d::lerp(blockMat->diffuse, mAimColor, percent * Time::deltaTime);
         }
-        time -= Time::deltaTime;
+        mChangeColorCurrentTime -= Time::deltaTime;
     }
 }

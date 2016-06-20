@@ -122,6 +122,7 @@ void Camera::setWidthAndHeight(float width, float height){
 void Camera::moveTo(const v3d position, const float time){
     mMoveToPosition = position;
     mMovingTime = time;
+    mMovingCurrentTime = mMovingTime;
 }
 
 void Camera::setPosition(v3d pos){
@@ -135,6 +136,7 @@ void Camera::lookAt(v3d front, const float time){
     }else{
         mLookAtAim = front;
         mLookAtTime = time;
+        mLookAtCurrentTime = mLookAtTime;
     }
     refreshViewAndNormalMatrix();
 }
@@ -159,6 +161,7 @@ void Camera::clearColor(v4d color, float time){
     if(time > 0){
         mAimClearColor = color;
         mClearColorTime = time;
+        mCurrentClearColorTime = mClearColorTime;
     }else{
         mClearColor = color;
     }
@@ -497,17 +500,16 @@ v3d Camera::farPlanePoint(int screenX, int screenY){
 
 void Camera::movingRoutine(){
     if(mMoveToPosition.x != 9999){
-        static float moveTime = mMovingTime;
-        if(moveTime <= 0.0f){
+        if(mMovingCurrentTime <= 0.0f){
             transform.mPosition = mMoveToPosition;
             mMoveToPosition = v3d(9999, 9999, 9999);
             mMovingTime = -1.0f;
         }else{
-            float percent = (mMovingTime - moveTime) / mMovingTime;
+            float percent = (mMovingTime - mMovingCurrentTime) / mMovingTime;
             v3d::print(transform.mPosition);
             transform.mPosition = v3d::lerp(transform.mPosition, mMoveToPosition, percent * Time::deltaTime);
         }
-        moveTime -= Time::deltaTime;
+        mMovingCurrentTime -= Time::deltaTime;
     }
 }
 
@@ -520,30 +522,30 @@ void Camera::followingRoutine(){
 
 void Camera::lookAtRoutine(){
     if(mLookAtAim.x != 9999){
-        static float time = mLookAtTime;
-        if(time <= 0.0f){
+        if(mLookAtCurrentTime <= 0.0f){
             transform.mFront = (mLookAtAim - transform.mPosition).normalize();
             mLookAtAim = v3d(9999, 9999, 9999);
             mLookAtTime = -1.0f;
+            mLookAtCurrentTime = -1.0f;
         }else{
-            float percent = (mLookAtTime - time) / mLookAtTime;
+            float percent = (mLookAtTime - mLookAtCurrentTime) / mLookAtTime;
             transform.mFront =  (v3d::lerp(mLookAt, mLookAtAim, percent ) - transform.mPosition).normalize();
         }
-        time -= Time::deltaTime;
+        mLookAtCurrentTime -= Time::deltaTime;
     }
 }
 
 void Camera::clearColorRoutine(){
     if(mAimClearColor.w != 0.0f){
-        static float time = mClearColorTime;
-        if(time <= 0.0f){
+        if(mCurrentClearColorTime <= 0.0f){
             mClearColor = mAimClearColor;
             mAimClearColor = v4d(0, 0, 0, 0);
             mClearColorTime = -1.0f;
+            mCurrentClearColorTime = -1.0f;
         }else{
-            float percent = (mClearColorTime - time) / mClearColorTime;
+            float percent = (mClearColorTime - mCurrentClearColorTime) / mClearColorTime;
             mClearColor = v4d::lerp(mClearColor, mAimClearColor, percent * Time::deltaTime);
         }
-        time -= Time::deltaTime;
+        mCurrentClearColorTime -= Time::deltaTime;
     }
 }

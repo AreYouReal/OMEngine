@@ -90,6 +90,7 @@ private:
     v4d     mClearColor{0.35f, 0.75f, 1.0f, 1.0f};
     v4d     mAimClearColor{0, 0, 0, 0};
     float   mClearColorTime = 0.0f;
+    float   mCurrentClearColorTime = 0.0f;
     
 // Matrix stack
     std::stack<m4d> mMstack;
@@ -97,9 +98,11 @@ private:
 // Camera moving
     v3d         mMoveToPosition{9999, 9999, 9999};
     float       mMovingTime = 0.0f;
+    float       mMovingCurrentTime = 0.0f;
     
     v3d         mLookAtAim{9999, 9999, 9999};
     float       mLookAtTime = 0.0f;
+    float       mLookAtCurrentTime = 0.0f;
     
 // Camera following
     GameObject *mGoToFollow = nullptr;
