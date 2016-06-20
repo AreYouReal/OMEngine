@@ -4,6 +4,7 @@
 #include "Shortcuts.h"
 
 struct LevelInfo{
+    v3d camPos;
     v4d bgColor;
     v4d bblockColor;
     vec<v3d> poss;

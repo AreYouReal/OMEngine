@@ -159,6 +159,17 @@ float v4d::dot(const q4d &q1, const q4d &q2){
     return (q1.x * q2.x + q1.y * q2.y + q1.z * q2.z + q1.w * q2.w);
 }
 
+v4d v4d::lerp(const v4d &v1, const v4d &v2, const float blend){
+    if(blend >= 1.0f) return v4d(v2);
+    else if(blend <= 0.0f) return v4d(v1);
+    else{
+        return v4d(  v1.x + blend * (v2.x - v1.x)
+                   , v1.y + blend * (v2.y - v1.y)
+                   , v1.z + blend * (v2.z - v1.z)
+                   , v1.w + blend * (v2.w - v1.w));
+    }
+}
+
 v4d operator+(const v4d& v1, const v4d& v2){
     return v4d(v1.x + v2.x, v1.y + v2.y, v1.z + v2.z, v1.w + v2.w);
 }

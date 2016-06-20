@@ -20,8 +20,7 @@ public:
 
     void show(v3d);
     void hide();
-    
-    
+        
 private:
     LevelBuilder *mLB = nullptr;
 

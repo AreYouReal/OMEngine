@@ -79,20 +79,9 @@ void LevelBuilder::update(){
 //        inactiveBlocks.erase(inactiveBlocks.begin());
     }
     
-    
-    static float time = 15.0f;
-    if(time <= 0.0f){
-        time = 15.0f;
-        
-        v4d randomColor(static_cast <float> (rand()) / static_cast <float> (RAND_MAX), static_cast <float> (rand()) / static_cast <float> (RAND_MAX), static_cast <float> (rand()) / static_cast <float> (RAND_MAX), 1.0f);
-        sp<ObjMaterial> bblockMat =  Materials::instance()->getMaterial("BBlockMTL");
-        bblockMat->diffuse = randomColor;
-        
-        v4d oneMoreRandomColor(static_cast <float> (rand()) / static_cast <float> (RAND_MAX), static_cast <float> (rand()) / static_cast <float> (RAND_MAX), static_cast <float> (rand()) / static_cast <float> (RAND_MAX), 1.0f);
-        
-        Camera::instance()->mClearColor = oneMoreRandomColor;
+    if(mAimColor.w != 0.0f){
+        changeColorRoutine();
     }
-    time -= Time::deltaTime;
 }
 
 #pragma mark Private Helpers
@@ -324,11 +313,35 @@ void LevelBuilder::clearLevel(){
 void LevelBuilder::fillLevelPositions(){
     mCurrentLevelInfo = AssetManager::instance()->getLevelInfo(currentLevel);
     if(mCurrentLevelInfo){
-        v3d delta = mCurrentLevelInfo->poss[0] - mLastBlockPoss + v3d(0, 0, -2);
+        Camera::instance()->follow(mCurrentLevelInfo->camPos);
+        Camera::instance()->clearColor(mCurrentLevelInfo->bgColor, 10.0f);
+        blockMat = Materials::instance()->getMaterial("BBlockMTL");
+        mAimColor = mCurrentLevelInfo->bblockColor;
+        mChangeColorTime = 5.0f;
+        v3d offset = v3d(0, 0, 0);
+        if(currentLevel > 0){
+            offset.z = -2;
+        }
+        v3d delta = mCurrentLevelInfo->poss[0] - mLastBlockPoss + offset;
         v3d::print(mLastBlockPoss);
         v3d::print(mCurrentLevelInfo->poss[0]);
         for(auto const &pos : mCurrentLevelInfo->poss){
             mPoss.push(pos - delta);
         }
+    }
+}
+
+void LevelBuilder::changeColorRoutine(){
+    if(mAimColor.w != 0.0f){
+        static float time = mChangeColorTime;
+        if(time <= 0.0f){
+            blockMat->diffuse = mAimColor;
+            mAimColor = v4d(0, 0, 0, 0);
+            mChangeColorTime = -1.0f;
+        }else{
+            float percent = (mChangeColorTime - time) / mChangeColorTime;
+            blockMat->diffuse = v4d::lerp(blockMat->diffuse, mAimColor, percent * Time::deltaTime);
+        }
+        time -= Time::deltaTime;
     }
 }

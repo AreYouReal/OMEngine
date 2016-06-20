@@ -78,6 +78,11 @@ private:
     void addBlockComponent(GameObject*);
     void activateBlock(GameObject*);
     
-
+    // Cahnge color routines
+    sp<ObjMaterial> blockMat = nullptr;
+    v4d     mAimColor{0, 0, 0, 0};
+    float   mChangeColorTime = 0.0f;
+    
+    void changeColorRoutine();
     
 };

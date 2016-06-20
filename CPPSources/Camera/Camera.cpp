@@ -102,6 +102,10 @@ void Camera::update(){
         lookAtRoutine();
     }
     
+    if(mAimClearColor.w != 0.0f){
+        clearColorRoutine();
+    }
+    
     refreshViewAndNormalMatrix();
     refreshShadowMatrix();
 }
@@ -142,6 +146,22 @@ void Camera::setUp(v3d up){
 void Camera::follow(GameObject *go, v3d distance){
     mGoToFollow = go;
     mFollowDistance = distance;
+}
+
+void Camera::follow(v3d distance){
+    if(mGoToFollow){
+        mFollowDistance = distance;
+    }
+}
+
+void Camera::clearColor(v4d color, float time){
+    logMessage("Camera clear color: %f\n", time);
+    if(time > 0){
+        mAimClearColor = color;
+        mClearColorTime = time;
+    }else{
+        mClearColor = color;
+    }
 }
 
 #pragma Visibility Check related
@@ -508,6 +528,21 @@ void Camera::lookAtRoutine(){
         }else{
             float percent = (mLookAtTime - time) / mLookAtTime;
             transform.mFront =  (v3d::lerp(mLookAt, mLookAtAim, percent ) - transform.mPosition).normalize();
+        }
+        time -= Time::deltaTime;
+    }
+}
+
+void Camera::clearColorRoutine(){
+    if(mAimClearColor.w != 0.0f){
+        static float time = mClearColorTime;
+        if(time <= 0.0f){
+            mClearColor = mAimClearColor;
+            mAimClearColor = v4d(0, 0, 0, 0);
+            mClearColorTime = -1.0f;
+        }else{
+            float percent = (mClearColorTime - time) / mClearColorTime;
+            mClearColor = v4d::lerp(mClearColor, mAimClearColor, percent * Time::deltaTime);
         }
         time -= Time::deltaTime;
     }

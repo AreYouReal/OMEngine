@@ -31,6 +31,8 @@ public:
     static float dot(const q4d& q1, const q4d& q2);
     
     static void print(const v4d& vec4);
+    
+    static v4d lerp(const v4d &v1, const v4d &v2, const float blend);
 };
 
 struct v3d{

@@ -34,7 +34,8 @@ public:
    
     // General drawing vars
     int     mMainBuffer;
-    v4d     mClearColor{0.35f, 0.75f, 1.0f, 1.0f};
+    
+    void    clearColor(v4d color, float time = - 1);
     
     // Transform related
     void setWidthAndHeight(float width, float height);
@@ -42,6 +43,9 @@ public:
     void lookAt(v3d front,const float time = -1.0f);
     void setUp(v3d up);
     void follow(GameObject *go, v3d distance);
+    void follow(v3d distance);
+    
+    
     
     // Moving related
     void moveTo(const v3d position, const float time);
@@ -83,7 +87,9 @@ private:
     v4d frustum[6];
     int viewportMatrix[4];
     
-
+    v4d     mClearColor{0.35f, 0.75f, 1.0f, 1.0f};
+    v4d     mAimClearColor{0, 0, 0, 0};
+    float   mClearColorTime = 0.0f;
     
 // Matrix stack
     std::stack<m4d> mMstack;
@@ -119,4 +125,5 @@ private:
     void movingRoutine();
     void followingRoutine();
     void lookAtRoutine();
+    void clearColorRoutine();
 };
