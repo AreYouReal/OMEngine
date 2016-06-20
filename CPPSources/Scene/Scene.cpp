@@ -11,7 +11,7 @@ LevelBuilder        *lBuilder      = nullptr;
 MonsterSelector     *mSelector  = nullptr;
 PlayButton          *playButton = nullptr;
 
-float doubleTapTime = 1.0f;
+float doubleTapTime = 0.4f;
 
 #pragma Constr/Destr
 Scene::Scene(){
@@ -139,6 +139,7 @@ void Scene::setRenderObjectState(RenderObjectType newState){
 }
 
 void Scene::onTouchBegin(const int x, const int y){
+    static unsigned int startMillisec = 0;
     switch (mState) {
         case State::START_VIEW:{
             GameObject * collidedObj = Camera::instance()->collisionRayIntersection(x, y);
@@ -148,7 +149,6 @@ void Scene::onTouchBegin(const int x, const int y){
                         switchState(LEVEL_VIEW);
                 }
             }else{
-                static unsigned int startMillisec = 0;
                 if(startMillisec == 0){
                     startMillisec = getMilliTime();
                 }else{
@@ -158,15 +158,29 @@ void Scene::onTouchBegin(const int x, const int y){
                         startMillisec = 0;
                     }else{
                         switchState(State::SELECT_MONSTER_VIEW);
+                        startMillisec = 0;
                     }
                 }
             }
             break;
         }
         case State::SELECT_MONSTER_VIEW:
-            if(mSelector){
-                mSelector->onTouchBegin(x, y);
+            if(startMillisec == 0){
+                startMillisec = getMilliTime();
+                if(mSelector){
+                    mSelector->onTouchBegin(x, y);
+                }
+            }else{
+                float secDelta = (getMilliTime() - startMillisec)/1000.0f;
+                logMessage("Sec delta %f\n", secDelta);
+                if(secDelta > doubleTapTime){
+                    startMillisec = 0;
+                }else{
+                    switchState(State::START_VIEW);
+                    startMillisec = 0;
+                }
             }
+
             break;
         case State::LEVEL_VIEW:
             if(player) player->onTouch();
@@ -203,6 +217,7 @@ void Scene::onTouchEnd(const int x, const int y){
 #pragma mark Init Helpers
 
 void Scene::addPlayButton(){
+    if(playButton) return;
     up<GameObject> playBTN = PlayButton::create();
     playButton = static_cast<PlayButton*>(playBTN->getComponent(ComponentEnum::PLAY_BTN));
     addObjOnScene(std::move(playBTN));
@@ -276,6 +291,14 @@ void Scene::startViewRoutine(){
     }
     Camera::instance()->setPosition(v3d(0, 11, 5));
     Camera::instance()->lookAt( v3d(0, 9, 0));
+    
+    if(player){
+        player->go->mActive = true;
+    }
+    
+    if(mSelector){
+        mSelector->go->mActive = false;
+    }
 }
 
 void Scene::levelRoutine(){
@@ -303,6 +326,13 @@ void Scene::selectMonsterRoutine(){
         }
         
         addObjOnScene(std::move(monsterSelectorObject));
+    }
+    
+    if(mSelector)
+        mSelector->go->mActive = true;
+    
+    if(player){
+        player->go->mActive = false;
     }
 }
 
