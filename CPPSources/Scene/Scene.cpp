@@ -229,7 +229,7 @@ void Scene::addLight(){
 //    go->setFront(v3d(5, 5, 0));
     // TODO: Why z = -z fro proper lighting calculations!?
     go->setPosition(v3d(0, 10, -3));
-//    light->follow(player->go);
+
     light->IComponent::mComponentType = ComponentEnum::LIGHT_SOURCE;
     go->addComponent(std::move(light));
 
@@ -289,6 +289,7 @@ void Scene::levelRoutine(){
     }
     lBuilder->buildLevel();
     player->activate();
+    Illuminator::instance()->getLightSource(1)->follow(player->go);
 }
 
 void Scene::selectMonsterRoutine(){
