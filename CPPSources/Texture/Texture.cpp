@@ -5,7 +5,11 @@
 Texture::Texture(const char* filename, unsigned int texelType, unsigned char byte, unsigned int format, unsigned int target, unsigned int ID) : texelType(texelType), byte(4), format(format), target(target), ID(ID){
     logGLError();
     this->filename = filename;
-    texelArray = loadRawPNGData(filename, width, height);
+    string file = filename;
+#ifdef ANDROID
+    file = "textures/" + file;
+#endif
+    texelArray = loadRawPNGData(file.c_str(), width, height);
     logGLError();
 }
 
