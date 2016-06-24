@@ -61,11 +61,15 @@ void AssetManager::loadWorldLevelInfo(){
     world = LevelInfo::parseWorld(content);
 }
 
-sp<md5::MD5> AssetManager::loadMD5Mesh(string filename, std::vector<string> actionsToLoad, string materialname){
+sp<md5::MD5> AssetManager::loadMD5Mesh(string name, std::vector<string> actionsToLoad, string materialname){
     Materials::instance()->loadMaterial(materialname);
-    sp<md5::MD5> md5 = md5::MD5::loadMesh(filename);
-    std::size_t pos = filename.find(".md5mesh");
-    string meshName = filename.substr(0, pos);
+    string fileName = name;
+#ifdef ANDROID
+    fileName = "animations/" + fileName;
+#endif
+    sp<md5::MD5> md5 = md5::MD5::loadMesh(fileName);
+    std::size_t pos = name.find(".md5mesh");
+    string meshName = name.substr(0, pos);
     if(md5){
         md5->optimize(128);
         md5->build();
@@ -73,10 +77,14 @@ sp<md5::MD5> AssetManager::loadMD5Mesh(string filename, std::vector<string> acti
         mMD5Ress.insert(std::pair<string, sp<md5::MD5>>(meshName, md5));
     }
     
-    for(auto const &filename : actionsToLoad){
-        std::size_t pos = filename.find(".md5anim");
-        string actionName = filename.substr(0, pos);
-        md5->loadAction(actionName, filename);
+    for(auto const &name : actionsToLoad){
+        string fileName = name;
+#ifdef ANDROID
+        fileName = "animations/" + fileName;
+#endif
+        std::size_t pos = name.find(".md5anim");
+        string actionName = name.substr(0, pos);
+        md5->loadAction(actionName, fileName);
     }
     
     return md5;

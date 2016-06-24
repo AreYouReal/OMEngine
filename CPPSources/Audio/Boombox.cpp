@@ -50,17 +50,17 @@ void Boombox::play(){
 }
 
 void Boombox::createAndLoadSoundBuffer(){
-    alGenBuffers(1, &sbuffer);
-    up<FileContent> soundSource = readBytesFromFile("test.raw");
-    
-    if(!soundSource) return;
-    
-    
-    alBufferData(sbuffer, AL_FORMAT_MONO16, soundSource->content, soundSource->size, 22050);
-    
-    
-    alGenSources(1, &sSource);
-    alSourcei(sSource, AL_BUFFER, sbuffer);
+//    alGenBuffers(1, &sbuffer);
+//    up<FileContent> soundSource = readBytesFromFile("audio/est.raw");
+//    
+//    if(!soundSource) return;
+//    
+//    
+//    alBufferData(sbuffer, AL_FORMAT_MONO16, soundSource->content, soundSource->size, 22050);
+//    
+//    
+//    alGenSources(1, &sSource);
+//    alSourcei(sSource, AL_BUFFER, sbuffer);
 }
 
 #include <thread>

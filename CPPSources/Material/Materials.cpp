@@ -34,11 +34,14 @@ bool Materials::loadMaterial(const std::string &name){
         logMessage("Material is already loaded: %s\n", name.c_str());
         return false;
     }
-    
-    std::unique_ptr<FileContent> objSource = readBytesFromFile(name.c_str());
+    string filename = name;
+#ifdef ANDROID
+    filename = "materials/" + filename;
+#endif
+    std::unique_ptr<FileContent> objSource = readBytesFromFile(filename.c_str());
     
     if(!objSource.get()){
-        logMessage("Unable to load material: %s\n", name.c_str());
+        logMessage("Unable to load material: %s\n", filename.c_str());
         return false;
     }
     

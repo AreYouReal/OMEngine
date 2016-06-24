@@ -184,18 +184,14 @@
 		94EF0C5E1BA70E5400EBF5EE /* pos_norm_vertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 94EF0C5D1BA70E5400EBF5EE /* pos_norm_vertex.glsl */; };
 		94EF0C601BA70F6700EBF5EE /* norm_as_color_fragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 94EF0C5F1BA70F6700EBF5EE /* norm_as_color_fragment.glsl */; };
 		94FAF39E1BEE939F0087CC0C /* WiredCube.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94FAF39C1BEE939F0087CC0C /* WiredCube.cpp */; };
-		F328C4FB1BF491930037AC6D /* foo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3B0F6C01BF0BA250044A442 /* foo.ttf */; };
 		F328C4FE1BF4997F0037AC6D /* font_fragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F328C4FC1BF4997F0037AC6D /* font_fragment.glsl */; };
 		F328C4FF1BF4997F0037AC6D /* font_vertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F328C4FD1BF4997F0037AC6D /* font_vertex.glsl */; };
 		F32EB63C1C5FA5E00057F474 /* OneColorSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F32EB63A1C5FA5E00057F474 /* OneColorSP.cpp */; };
-		F331380B1CD62484000705D5 /* bblock.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F33138081CD62484000705D5 /* bblock.mtl */; };
-		F331380C1CD62484000705D5 /* bblock.obj in Resources */ = {isa = PBXBuildFile; fileRef = F33138091CD62484000705D5 /* bblock.obj */; };
 		F33138101CD62640000705D5 /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3C52B2A1BBD079F009F3604 /* Scene.cpp */; };
 		F3392F611C117B4E005E850E /* Sound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3392F5F1C117B4E005E850E /* Sound.cpp */; };
 		F34129D01BB52BB7006F4D4D /* Materials.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F34129CE1BB52BB7006F4D4D /* Materials.cpp */; };
 		F34129D51BB53D6E006F4D4D /* ObjMaterial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F34129D31BB53D6E006F4D4D /* ObjMaterial.cpp */; };
 		F34129D81BB53DBC006F4D4D /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F34129D61BB53DBC006F4D4D /* Texture.cpp */; };
-		F3417B191C0F4907006902C9 /* 00.ogg in Resources */ = {isa = PBXBuildFile; fileRef = F3417B181C0F4907006902C9 /* 00.ogg */; };
 		F348E3D01D1D4FCA00D5EF0B /* candy_1.png in Resources */ = {isa = PBXBuildFile; fileRef = F348E3C61D1D4FCA00D5EF0B /* candy_1.png */; };
 		F348E3D11D1D4FCA00D5EF0B /* candy_2.png in Resources */ = {isa = PBXBuildFile; fileRef = F348E3C71D1D4FCA00D5EF0B /* candy_2.png */; };
 		F348E3D21D1D4FCA00D5EF0B /* candy_3.png in Resources */ = {isa = PBXBuildFile; fileRef = F348E3C81D1D4FCA00D5EF0B /* candy_3.png */; };
@@ -206,6 +202,41 @@
 		F348E3D71D1D4FCA00D5EF0B /* minimon_3.png in Resources */ = {isa = PBXBuildFile; fileRef = F348E3CD1D1D4FCA00D5EF0B /* minimon_3.png */; };
 		F348E3D81D1D4FCA00D5EF0B /* minimon_4.png in Resources */ = {isa = PBXBuildFile; fileRef = F348E3CE1D1D4FCA00D5EF0B /* minimon_4.png */; };
 		F348E3D91D1D4FCA00D5EF0B /* minimon_5.png in Resources */ = {isa = PBXBuildFile; fileRef = F348E3CF1D1D4FCA00D5EF0B /* minimon_5.png */; };
+		F348E3E31D1D52DA00D5EF0B /* bblock.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F348E3DB1D1D52DA00D5EF0B /* bblock.mtl */; };
+		F348E3E41D1D52DA00D5EF0B /* candies.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F348E3DC1D1D52DA00D5EF0B /* candies.mtl */; };
+		F348E3E51D1D52DA00D5EF0B /* minimon_1.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F348E3DD1D1D52DA00D5EF0B /* minimon_1.mtl */; };
+		F348E3E61D1D52DA00D5EF0B /* minimon_2.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F348E3DE1D1D52DA00D5EF0B /* minimon_2.mtl */; };
+		F348E3E71D1D52DA00D5EF0B /* minimon_3.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F348E3DF1D1D52DA00D5EF0B /* minimon_3.mtl */; };
+		F348E3E81D1D52DA00D5EF0B /* minimon_4.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F348E3E01D1D52DA00D5EF0B /* minimon_4.mtl */; };
+		F348E3E91D1D52DA00D5EF0B /* minimon_5.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F348E3E11D1D52DA00D5EF0B /* minimon_5.mtl */; };
+		F348E3EA1D1D52DA00D5EF0B /* play_btn.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F348E3E21D1D52DA00D5EF0B /* play_btn.mtl */; };
+		F348E4011D1D58DE00D5EF0B /* minimon_1.md5mesh in Resources */ = {isa = PBXBuildFile; fileRef = F348E3ED1D1D58DE00D5EF0B /* minimon_1.md5mesh */; };
+		F348E4021D1D58DE00D5EF0B /* minimon_1_idle.md5anim in Resources */ = {isa = PBXBuildFile; fileRef = F348E3EE1D1D58DE00D5EF0B /* minimon_1_idle.md5anim */; };
+		F348E4031D1D58DE00D5EF0B /* minimon_1_jump.md5anim in Resources */ = {isa = PBXBuildFile; fileRef = F348E3EF1D1D58DE00D5EF0B /* minimon_1_jump.md5anim */; };
+		F348E4041D1D58DE00D5EF0B /* minimon_1_run.md5anim in Resources */ = {isa = PBXBuildFile; fileRef = F348E3F01D1D58DE00D5EF0B /* minimon_1_run.md5anim */; };
+		F348E4051D1D58DE00D5EF0B /* minimon_2.md5mesh in Resources */ = {isa = PBXBuildFile; fileRef = F348E3F11D1D58DE00D5EF0B /* minimon_2.md5mesh */; };
+		F348E4061D1D58DE00D5EF0B /* minimon_2_idle.md5anim in Resources */ = {isa = PBXBuildFile; fileRef = F348E3F21D1D58DE00D5EF0B /* minimon_2_idle.md5anim */; };
+		F348E4071D1D58DE00D5EF0B /* minimon_2_jump.md5anim in Resources */ = {isa = PBXBuildFile; fileRef = F348E3F31D1D58DE00D5EF0B /* minimon_2_jump.md5anim */; };
+		F348E4081D1D58DE00D5EF0B /* minimon_2_run.md5anim in Resources */ = {isa = PBXBuildFile; fileRef = F348E3F41D1D58DE00D5EF0B /* minimon_2_run.md5anim */; };
+		F348E4091D1D58DE00D5EF0B /* minimon_3.md5mesh in Resources */ = {isa = PBXBuildFile; fileRef = F348E3F51D1D58DE00D5EF0B /* minimon_3.md5mesh */; };
+		F348E40A1D1D58DE00D5EF0B /* minimon_3_idle.md5anim in Resources */ = {isa = PBXBuildFile; fileRef = F348E3F61D1D58DE00D5EF0B /* minimon_3_idle.md5anim */; };
+		F348E40B1D1D58DE00D5EF0B /* minimon_3_jump.md5anim in Resources */ = {isa = PBXBuildFile; fileRef = F348E3F71D1D58DE00D5EF0B /* minimon_3_jump.md5anim */; };
+		F348E40C1D1D58DE00D5EF0B /* minimon_3_run.md5anim in Resources */ = {isa = PBXBuildFile; fileRef = F348E3F81D1D58DE00D5EF0B /* minimon_3_run.md5anim */; };
+		F348E40D1D1D58DE00D5EF0B /* minimon_4.md5mesh in Resources */ = {isa = PBXBuildFile; fileRef = F348E3F91D1D58DE00D5EF0B /* minimon_4.md5mesh */; };
+		F348E40E1D1D58DE00D5EF0B /* minimon_4_idle.md5anim in Resources */ = {isa = PBXBuildFile; fileRef = F348E3FA1D1D58DE00D5EF0B /* minimon_4_idle.md5anim */; };
+		F348E40F1D1D58DE00D5EF0B /* minimon_4_jump.md5anim in Resources */ = {isa = PBXBuildFile; fileRef = F348E3FB1D1D58DE00D5EF0B /* minimon_4_jump.md5anim */; };
+		F348E4101D1D58DE00D5EF0B /* minimon_4_run.md5anim in Resources */ = {isa = PBXBuildFile; fileRef = F348E3FC1D1D58DE00D5EF0B /* minimon_4_run.md5anim */; };
+		F348E4111D1D58DE00D5EF0B /* minimon_5.md5mesh in Resources */ = {isa = PBXBuildFile; fileRef = F348E3FD1D1D58DE00D5EF0B /* minimon_5.md5mesh */; };
+		F348E4121D1D58DE00D5EF0B /* minimon_5_idle.md5anim in Resources */ = {isa = PBXBuildFile; fileRef = F348E3FE1D1D58DE00D5EF0B /* minimon_5_idle.md5anim */; };
+		F348E4131D1D58DE00D5EF0B /* minimon_5_jump.md5anim in Resources */ = {isa = PBXBuildFile; fileRef = F348E3FF1D1D58DE00D5EF0B /* minimon_5_jump.md5anim */; };
+		F348E4141D1D58DE00D5EF0B /* minimon_5_run.md5anim in Resources */ = {isa = PBXBuildFile; fileRef = F348E4001D1D58DE00D5EF0B /* minimon_5_run.md5anim */; };
+		F348E4181D1D5AE800D5EF0B /* 00.ogg in Resources */ = {isa = PBXBuildFile; fileRef = F348E4161D1D5AE800D5EF0B /* 00.ogg */; };
+		F348E4191D1D5AE800D5EF0B /* lounge.ogg in Resources */ = {isa = PBXBuildFile; fileRef = F348E4171D1D5AE800D5EF0B /* lounge.ogg */; };
+		F348E41E1D1D5B5800D5EF0B /* bblock.obj in Resources */ = {isa = PBXBuildFile; fileRef = F348E41B1D1D5B5800D5EF0B /* bblock.obj */; };
+		F348E41F1D1D5B5800D5EF0B /* candies.obj in Resources */ = {isa = PBXBuildFile; fileRef = F348E41C1D1D5B5800D5EF0B /* candies.obj */; };
+		F348E4201D1D5B5800D5EF0B /* play_btn.obj in Resources */ = {isa = PBXBuildFile; fileRef = F348E41D1D1D5B5800D5EF0B /* play_btn.obj */; };
+		F348E4241D1D5C2700D5EF0B /* FFF_Tusj.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F348E4221D1D5C2700D5EF0B /* FFF_Tusj.ttf */; };
+		F348E4251D1D5C2700D5EF0B /* foo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F348E4231D1D5C2700D5EF0B /* foo.ttf */; };
 		F34C4B2A1CF857C0005211A9 /* LevelBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F34C4B281CF857C0005211A9 /* LevelBuilder.cpp */; };
 		F3592D601D16894100D88B18 /* LevelInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3592D5E1D16894100D88B18 /* LevelInfo.cpp */; };
 		F3592D621D1690E400D88B18 /* worldA.cm in Resources */ = {isa = PBXBuildFile; fileRef = F3592D611D1690E400D88B18 /* worldA.cm */; };
@@ -222,31 +253,6 @@
 		F37D26441C5F705500433B4F /* NormalSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F37D26421C5F705500433B4F /* NormalSP.cpp */; };
 		F380B7901BBBDC550049E755 /* ObjMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F380B78C1BBBDC550049E755 /* ObjMesh.cpp */; };
 		F380B7911BBBDC550049E755 /* Obj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F380B78E1BBBDC550049E755 /* Obj.cpp */; };
-		F386CD301D056ECF00079815 /* minimon_1_idle.md5anim in Resources */ = {isa = PBXBuildFile; fileRef = F386CD2A1D056ECF00079815 /* minimon_1_idle.md5anim */; };
-		F386CD311D056ECF00079815 /* minimon_1_jump.md5anim in Resources */ = {isa = PBXBuildFile; fileRef = F386CD2B1D056ECF00079815 /* minimon_1_jump.md5anim */; };
-		F386CD321D056ECF00079815 /* minimon_1_run.md5anim in Resources */ = {isa = PBXBuildFile; fileRef = F386CD2C1D056ECF00079815 /* minimon_1_run.md5anim */; };
-		F386CD331D056ECF00079815 /* minimon_1.md5mesh in Resources */ = {isa = PBXBuildFile; fileRef = F386CD2D1D056ECF00079815 /* minimon_1.md5mesh */; };
-		F386CD341D056ECF00079815 /* minimon_1.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F386CD2E1D056ECF00079815 /* minimon_1.mtl */; };
-		F386CD3E1D0580D000079815 /* minimon_2_idle.md5anim in Resources */ = {isa = PBXBuildFile; fileRef = F386CD381D0580D000079815 /* minimon_2_idle.md5anim */; };
-		F386CD3F1D0580D000079815 /* minimon_2_jump.md5anim in Resources */ = {isa = PBXBuildFile; fileRef = F386CD391D0580D000079815 /* minimon_2_jump.md5anim */; };
-		F386CD401D0580D000079815 /* minimon_2_run.md5anim in Resources */ = {isa = PBXBuildFile; fileRef = F386CD3A1D0580D000079815 /* minimon_2_run.md5anim */; };
-		F386CD411D0580D000079815 /* minimon_2.md5mesh in Resources */ = {isa = PBXBuildFile; fileRef = F386CD3B1D0580D000079815 /* minimon_2.md5mesh */; };
-		F386CD421D0580D000079815 /* minimon_2.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F386CD3C1D0580D000079815 /* minimon_2.mtl */; };
-		F386CD4A1D0583E200079815 /* minimon_3_idle.md5anim in Resources */ = {isa = PBXBuildFile; fileRef = F386CD441D0583E200079815 /* minimon_3_idle.md5anim */; };
-		F386CD4B1D0583E200079815 /* minimon_3_jump.md5anim in Resources */ = {isa = PBXBuildFile; fileRef = F386CD451D0583E200079815 /* minimon_3_jump.md5anim */; };
-		F386CD4C1D0583E200079815 /* minimon_3_run.md5anim in Resources */ = {isa = PBXBuildFile; fileRef = F386CD461D0583E200079815 /* minimon_3_run.md5anim */; };
-		F386CD4D1D0583E200079815 /* minimon_3.md5mesh in Resources */ = {isa = PBXBuildFile; fileRef = F386CD471D0583E200079815 /* minimon_3.md5mesh */; };
-		F386CD4E1D0583E200079815 /* minimon_3.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F386CD481D0583E200079815 /* minimon_3.mtl */; };
-		F386CD561D05853900079815 /* minimon_4_idle.md5anim in Resources */ = {isa = PBXBuildFile; fileRef = F386CD501D05853900079815 /* minimon_4_idle.md5anim */; };
-		F386CD571D05853900079815 /* minimon_4_jump.md5anim in Resources */ = {isa = PBXBuildFile; fileRef = F386CD511D05853900079815 /* minimon_4_jump.md5anim */; };
-		F386CD581D05853900079815 /* minimon_4_run.md5anim in Resources */ = {isa = PBXBuildFile; fileRef = F386CD521D05853900079815 /* minimon_4_run.md5anim */; };
-		F386CD591D05853900079815 /* minimon_4.md5mesh in Resources */ = {isa = PBXBuildFile; fileRef = F386CD531D05853900079815 /* minimon_4.md5mesh */; };
-		F386CD5A1D05853900079815 /* minimon_4.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F386CD541D05853900079815 /* minimon_4.mtl */; };
-		F386CD621D05862800079815 /* minimon_5_idle.md5anim in Resources */ = {isa = PBXBuildFile; fileRef = F386CD5C1D05862800079815 /* minimon_5_idle.md5anim */; };
-		F386CD631D05862800079815 /* minimon_5_jump.md5anim in Resources */ = {isa = PBXBuildFile; fileRef = F386CD5D1D05862800079815 /* minimon_5_jump.md5anim */; };
-		F386CD641D05862800079815 /* minimon_5_run.md5anim in Resources */ = {isa = PBXBuildFile; fileRef = F386CD5E1D05862800079815 /* minimon_5_run.md5anim */; };
-		F386CD651D05862800079815 /* minimon_5.md5mesh in Resources */ = {isa = PBXBuildFile; fileRef = F386CD5F1D05862800079815 /* minimon_5.md5mesh */; };
-		F386CD661D05862800079815 /* minimon_5.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F386CD601D05862800079815 /* minimon_5.mtl */; };
 		F38A22E11BAA979700FADEC0 /* vertexPerPixel.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F38A22E01BAA979700FADEC0 /* vertexPerPixel.glsl */; };
 		F38A22E31BAAA15400FADEC0 /* SimpeGouraudVertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F38A22E21BAAA15400FADEC0 /* SimpeGouraudVertex.glsl */; };
 		F38A22E71BAAA40500FADEC0 /* SimpleGouraudFragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F38A22E61BAAA40500FADEC0 /* SimpleGouraudFragment.glsl */; };
@@ -278,10 +284,7 @@
 		F39FA5C31C0DE15400CC0BB4 /* synthesis.c in Sources */ = {isa = PBXBuildFile; fileRef = F39FA5A91C0DE15400CC0BB4 /* synthesis.c */; };
 		F39FA5C41C0DE15400CC0BB4 /* vorbisfile.c in Sources */ = {isa = PBXBuildFile; fileRef = F39FA5AB1C0DE15400CC0BB4 /* vorbisfile.c */; };
 		F39FA5C51C0DE15400CC0BB4 /* window.c in Sources */ = {isa = PBXBuildFile; fileRef = F39FA5AD1C0DE15400CC0BB4 /* window.c */; };
-		F39FA5CA1C0DE6C200CC0BB4 /* lounge.ogg in Resources */ = {isa = PBXBuildFile; fileRef = F39FA5C91C0DE6C200CC0BB4 /* lounge.ogg */; };
 		F3A1A4EA1C60CBA000DBBB4B /* WireSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3A1A4E81C60CBA000DBBB4B /* WireSP.cpp */; };
-		F3A254621D08102600F53BB7 /* candies.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F3A2545D1D08102600F53BB7 /* candies.mtl */; };
-		F3A254631D08102600F53BB7 /* candies.obj in Resources */ = {isa = PBXBuildFile; fileRef = F3A2545E1D08102600F53BB7 /* candies.obj */; };
 		F3A263961C33BD360021B3B6 /* light_point_fragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F3A263941C33BD360021B3B6 /* light_point_fragment.glsl */; };
 		F3A263971C33BD360021B3B6 /* light_point_vertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F3A263951C33BD360021B3B6 /* light_point_vertex.glsl */; };
 		F3A2CEB11D1D46DC00C39277 /* generalLightingProjector.omg in Resources */ = {isa = PBXBuildFile; fileRef = F3A2CEA91D1D46DC00C39277 /* generalLightingProjector.omg */; };
@@ -294,10 +297,8 @@
 		F3A2CEB81D1D46DC00C39277 /* writedepth.omg in Resources */ = {isa = PBXBuildFile; fileRef = F3A2CEB01D1D46DC00C39277 /* writedepth.omg */; };
 		F3A843211CCF448C006D1B94 /* SimpleGouraudPhongSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3A8431F1CCF448C006D1B94 /* SimpleGouraudPhongSP.cpp */; };
 		F3A843271CCF5DD2006D1B94 /* DepthSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3A843251CCF5DD2006D1B94 /* DepthSP.cpp */; };
-		F3AB027B1CA7FFFE00CB8FC9 /* particle.png in Resources */ = {isa = PBXBuildFile; fileRef = F3AB02791CA7FFFE00CB8FC9 /* particle.png */; };
 		F3B0F6B71BF0AD9F0044A442 /* stb_truetype.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3B0F6B51BF0AD9F0044A442 /* stb_truetype.cpp */; };
 		F3B0F6BB1BF0ADDC0044A442 /* Font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3B0F6B91BF0ADDC0044A442 /* Font.cpp */; };
-		F3B0F6BF1BF0B7410044A442 /* FFF_Tusj.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3B0F6BE1BF0B5830044A442 /* FFF_Tusj.ttf */; };
 		F3B3C3A41CE770F700CB5A25 /* BBlock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3B3C3A21CE770F700CB5A25 /* BBlock.cpp */; };
 		F3BCACBA1BFF26FE002003B7 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3BCACB61BFF26FE002003B7 /* Main_iPad.storyboard */; };
 		F3BCACBB1BFF26FE002003B7 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3BCACB81BFF26FE002003B7 /* Main_iPhone.storyboard */; };
@@ -307,9 +308,6 @@
 		F3CAEEE71BB01B8800DCF182 /* default_color_fragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F3CAEEE61BB01B8800DCF182 /* default_color_fragment.glsl */; };
 		F3CBE9681D0E999400F5AEA5 /* PlayButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3CBE9661D0E999400F5AEA5 /* PlayButton.cpp */; };
 		F3CBE96C1D0E9AB200F5AEA5 /* AssetManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3CBE96A1D0E9AB200F5AEA5 /* AssetManager.cpp */; };
-		F3CBE96F1D0EA2F500F5AEA5 /* play_btn.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F3CBE96D1D0EA2F500F5AEA5 /* play_btn.mtl */; };
-		F3CBE9701D0EA2F500F5AEA5 /* play_btn.obj in Resources */ = {isa = PBXBuildFile; fileRef = F3CBE96E1D0EA2F500F5AEA5 /* play_btn.obj */; };
-		F3D171761C6DCBF200A9507D /* projector.png in Resources */ = {isa = PBXBuildFile; fileRef = F3D171751C6DCBF200A9507D /* projector.png */; };
 		F3D5E10B1AF8F24400DD216B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F3D5E1091AF8F24400DD216B /* InfoPlist.strings */; };
 		F3D5E1191AF8F32E00DD216B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3D5E1181AF8F32E00DD216B /* Images.xcassets */; };
 		F3D5E1321AF8F4DD00DD216B /* iOSSRETests.m in Sources */ = {isa = PBXBuildFile; fileRef = F3D5E1051AF8F23400DD216B /* iOSSRETests.m */; };
@@ -767,8 +765,6 @@
 		F328C4FD1BF4997F0037AC6D /* font_vertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = font_vertex.glsl; path = ../Android/assets/shaders/font_vertex.glsl; sourceTree = SOURCE_ROOT; };
 		F32EB63A1C5FA5E00057F474 /* OneColorSP.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OneColorSP.cpp; path = OMEngine/CPPSources/Shaders/OneColorSP.cpp; sourceTree = "<group>"; };
 		F32EB63B1C5FA5E00057F474 /* OneColorSP.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = OneColorSP.hpp; path = OMEngine/CPPSources/Shaders/OneColorSP.hpp; sourceTree = "<group>"; };
-		F33138081CD62484000705D5 /* bblock.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = bblock.mtl; path = OMEngine/Platforms/Android/assets/bblock.mtl; sourceTree = "<group>"; };
-		F33138091CD62484000705D5 /* bblock.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = bblock.obj; path = OMEngine/Platforms/Android/assets/bblock.obj; sourceTree = "<group>"; };
 		F3392F5F1C117B4E005E850E /* Sound.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sound.cpp; sourceTree = "<group>"; };
 		F3392F601C117B4E005E850E /* Sound.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Sound.hpp; sourceTree = "<group>"; };
 		F34129CE1BB52BB7006F4D4D /* Materials.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Materials.cpp; sourceTree = "<group>"; };
@@ -777,7 +773,6 @@
 		F34129D41BB53D6E006F4D4D /* ObjMaterial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjMaterial.h; sourceTree = "<group>"; };
 		F34129D61BB53DBC006F4D4D /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cpp; sourceTree = "<group>"; };
 		F34129D71BB53DBC006F4D4D /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Texture.h; sourceTree = "<group>"; };
-		F3417B181C0F4907006902C9 /* 00.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; name = 00.ogg; path = OMEngine/Platforms/Android/assets/00.ogg; sourceTree = "<group>"; };
 		F3473FA41BC3E607001DE43A /* Singleton.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Singleton.hpp; sourceTree = "<group>"; };
 		F348E3C61D1D4FCA00D5EF0B /* candy_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = candy_1.png; sourceTree = "<group>"; };
 		F348E3C71D1D4FCA00D5EF0B /* candy_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = candy_2.png; sourceTree = "<group>"; };
@@ -789,6 +784,41 @@
 		F348E3CD1D1D4FCA00D5EF0B /* minimon_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = minimon_3.png; sourceTree = "<group>"; };
 		F348E3CE1D1D4FCA00D5EF0B /* minimon_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = minimon_4.png; sourceTree = "<group>"; };
 		F348E3CF1D1D4FCA00D5EF0B /* minimon_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = minimon_5.png; sourceTree = "<group>"; };
+		F348E3DB1D1D52DA00D5EF0B /* bblock.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bblock.mtl; sourceTree = "<group>"; };
+		F348E3DC1D1D52DA00D5EF0B /* candies.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = candies.mtl; sourceTree = "<group>"; };
+		F348E3DD1D1D52DA00D5EF0B /* minimon_1.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = minimon_1.mtl; sourceTree = "<group>"; };
+		F348E3DE1D1D52DA00D5EF0B /* minimon_2.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = minimon_2.mtl; sourceTree = "<group>"; };
+		F348E3DF1D1D52DA00D5EF0B /* minimon_3.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = minimon_3.mtl; sourceTree = "<group>"; };
+		F348E3E01D1D52DA00D5EF0B /* minimon_4.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = minimon_4.mtl; sourceTree = "<group>"; };
+		F348E3E11D1D52DA00D5EF0B /* minimon_5.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = minimon_5.mtl; sourceTree = "<group>"; };
+		F348E3E21D1D52DA00D5EF0B /* play_btn.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = play_btn.mtl; sourceTree = "<group>"; };
+		F348E3ED1D1D58DE00D5EF0B /* minimon_1.md5mesh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = minimon_1.md5mesh; sourceTree = "<group>"; };
+		F348E3EE1D1D58DE00D5EF0B /* minimon_1_idle.md5anim */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = minimon_1_idle.md5anim; sourceTree = "<group>"; };
+		F348E3EF1D1D58DE00D5EF0B /* minimon_1_jump.md5anim */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = minimon_1_jump.md5anim; sourceTree = "<group>"; };
+		F348E3F01D1D58DE00D5EF0B /* minimon_1_run.md5anim */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = minimon_1_run.md5anim; sourceTree = "<group>"; };
+		F348E3F11D1D58DE00D5EF0B /* minimon_2.md5mesh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = minimon_2.md5mesh; sourceTree = "<group>"; };
+		F348E3F21D1D58DE00D5EF0B /* minimon_2_idle.md5anim */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = minimon_2_idle.md5anim; sourceTree = "<group>"; };
+		F348E3F31D1D58DE00D5EF0B /* minimon_2_jump.md5anim */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = minimon_2_jump.md5anim; sourceTree = "<group>"; };
+		F348E3F41D1D58DE00D5EF0B /* minimon_2_run.md5anim */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = minimon_2_run.md5anim; sourceTree = "<group>"; };
+		F348E3F51D1D58DE00D5EF0B /* minimon_3.md5mesh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = minimon_3.md5mesh; sourceTree = "<group>"; };
+		F348E3F61D1D58DE00D5EF0B /* minimon_3_idle.md5anim */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = minimon_3_idle.md5anim; sourceTree = "<group>"; };
+		F348E3F71D1D58DE00D5EF0B /* minimon_3_jump.md5anim */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = minimon_3_jump.md5anim; sourceTree = "<group>"; };
+		F348E3F81D1D58DE00D5EF0B /* minimon_3_run.md5anim */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = minimon_3_run.md5anim; sourceTree = "<group>"; };
+		F348E3F91D1D58DE00D5EF0B /* minimon_4.md5mesh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = minimon_4.md5mesh; sourceTree = "<group>"; };
+		F348E3FA1D1D58DE00D5EF0B /* minimon_4_idle.md5anim */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = minimon_4_idle.md5anim; sourceTree = "<group>"; };
+		F348E3FB1D1D58DE00D5EF0B /* minimon_4_jump.md5anim */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = minimon_4_jump.md5anim; sourceTree = "<group>"; };
+		F348E3FC1D1D58DE00D5EF0B /* minimon_4_run.md5anim */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = minimon_4_run.md5anim; sourceTree = "<group>"; };
+		F348E3FD1D1D58DE00D5EF0B /* minimon_5.md5mesh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = minimon_5.md5mesh; sourceTree = "<group>"; };
+		F348E3FE1D1D58DE00D5EF0B /* minimon_5_idle.md5anim */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = minimon_5_idle.md5anim; sourceTree = "<group>"; };
+		F348E3FF1D1D58DE00D5EF0B /* minimon_5_jump.md5anim */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = minimon_5_jump.md5anim; sourceTree = "<group>"; };
+		F348E4001D1D58DE00D5EF0B /* minimon_5_run.md5anim */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = minimon_5_run.md5anim; sourceTree = "<group>"; };
+		F348E4161D1D5AE800D5EF0B /* 00.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; path = 00.ogg; sourceTree = "<group>"; };
+		F348E4171D1D5AE800D5EF0B /* lounge.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; path = lounge.ogg; sourceTree = "<group>"; };
+		F348E41B1D1D5B5800D5EF0B /* bblock.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bblock.obj; sourceTree = "<group>"; };
+		F348E41C1D1D5B5800D5EF0B /* candies.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = candies.obj; sourceTree = "<group>"; };
+		F348E41D1D1D5B5800D5EF0B /* play_btn.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = play_btn.obj; sourceTree = "<group>"; };
+		F348E4221D1D5C2700D5EF0B /* FFF_Tusj.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FFF_Tusj.ttf; sourceTree = "<group>"; };
+		F348E4231D1D5C2700D5EF0B /* foo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = foo.ttf; sourceTree = "<group>"; };
 		F34C4B281CF857C0005211A9 /* LevelBuilder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LevelBuilder.cpp; sourceTree = "<group>"; };
 		F34C4B291CF857C0005211A9 /* LevelBuilder.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LevelBuilder.hpp; sourceTree = "<group>"; };
 		F3592D5E1D16894100D88B18 /* LevelInfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LevelInfo.cpp; sourceTree = "<group>"; };
@@ -819,31 +849,6 @@
 		F380B78D1BBBDC550049E755 /* ObjMesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjMesh.h; sourceTree = "<group>"; };
 		F380B78E1BBBDC550049E755 /* Obj.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Obj.cpp; sourceTree = "<group>"; };
 		F380B78F1BBBDC550049E755 /* Obj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Obj.h; sourceTree = "<group>"; };
-		F386CD2A1D056ECF00079815 /* minimon_1_idle.md5anim */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon_1_idle.md5anim; path = OMEngine/Platforms/Android/assets/minimon_1_idle.md5anim; sourceTree = "<group>"; };
-		F386CD2B1D056ECF00079815 /* minimon_1_jump.md5anim */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon_1_jump.md5anim; path = OMEngine/Platforms/Android/assets/minimon_1_jump.md5anim; sourceTree = "<group>"; };
-		F386CD2C1D056ECF00079815 /* minimon_1_run.md5anim */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon_1_run.md5anim; path = OMEngine/Platforms/Android/assets/minimon_1_run.md5anim; sourceTree = "<group>"; };
-		F386CD2D1D056ECF00079815 /* minimon_1.md5mesh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon_1.md5mesh; path = OMEngine/Platforms/Android/assets/minimon_1.md5mesh; sourceTree = "<group>"; };
-		F386CD2E1D056ECF00079815 /* minimon_1.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon_1.mtl; path = OMEngine/Platforms/Android/assets/minimon_1.mtl; sourceTree = "<group>"; };
-		F386CD381D0580D000079815 /* minimon_2_idle.md5anim */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon_2_idle.md5anim; path = OMEngine/Platforms/Android/assets/minimon_2_idle.md5anim; sourceTree = "<group>"; };
-		F386CD391D0580D000079815 /* minimon_2_jump.md5anim */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon_2_jump.md5anim; path = OMEngine/Platforms/Android/assets/minimon_2_jump.md5anim; sourceTree = "<group>"; };
-		F386CD3A1D0580D000079815 /* minimon_2_run.md5anim */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon_2_run.md5anim; path = OMEngine/Platforms/Android/assets/minimon_2_run.md5anim; sourceTree = "<group>"; };
-		F386CD3B1D0580D000079815 /* minimon_2.md5mesh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon_2.md5mesh; path = OMEngine/Platforms/Android/assets/minimon_2.md5mesh; sourceTree = "<group>"; };
-		F386CD3C1D0580D000079815 /* minimon_2.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon_2.mtl; path = OMEngine/Platforms/Android/assets/minimon_2.mtl; sourceTree = "<group>"; };
-		F386CD441D0583E200079815 /* minimon_3_idle.md5anim */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon_3_idle.md5anim; path = OMEngine/Platforms/Android/assets/minimon_3_idle.md5anim; sourceTree = "<group>"; };
-		F386CD451D0583E200079815 /* minimon_3_jump.md5anim */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon_3_jump.md5anim; path = OMEngine/Platforms/Android/assets/minimon_3_jump.md5anim; sourceTree = "<group>"; };
-		F386CD461D0583E200079815 /* minimon_3_run.md5anim */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon_3_run.md5anim; path = OMEngine/Platforms/Android/assets/minimon_3_run.md5anim; sourceTree = "<group>"; };
-		F386CD471D0583E200079815 /* minimon_3.md5mesh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon_3.md5mesh; path = OMEngine/Platforms/Android/assets/minimon_3.md5mesh; sourceTree = "<group>"; };
-		F386CD481D0583E200079815 /* minimon_3.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon_3.mtl; path = OMEngine/Platforms/Android/assets/minimon_3.mtl; sourceTree = "<group>"; };
-		F386CD501D05853900079815 /* minimon_4_idle.md5anim */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon_4_idle.md5anim; path = OMEngine/Platforms/Android/assets/minimon_4_idle.md5anim; sourceTree = "<group>"; };
-		F386CD511D05853900079815 /* minimon_4_jump.md5anim */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon_4_jump.md5anim; path = OMEngine/Platforms/Android/assets/minimon_4_jump.md5anim; sourceTree = "<group>"; };
-		F386CD521D05853900079815 /* minimon_4_run.md5anim */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon_4_run.md5anim; path = OMEngine/Platforms/Android/assets/minimon_4_run.md5anim; sourceTree = "<group>"; };
-		F386CD531D05853900079815 /* minimon_4.md5mesh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon_4.md5mesh; path = OMEngine/Platforms/Android/assets/minimon_4.md5mesh; sourceTree = "<group>"; };
-		F386CD541D05853900079815 /* minimon_4.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon_4.mtl; path = OMEngine/Platforms/Android/assets/minimon_4.mtl; sourceTree = "<group>"; };
-		F386CD5C1D05862800079815 /* minimon_5_idle.md5anim */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon_5_idle.md5anim; path = OMEngine/Platforms/Android/assets/minimon_5_idle.md5anim; sourceTree = "<group>"; };
-		F386CD5D1D05862800079815 /* minimon_5_jump.md5anim */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon_5_jump.md5anim; path = OMEngine/Platforms/Android/assets/minimon_5_jump.md5anim; sourceTree = "<group>"; };
-		F386CD5E1D05862800079815 /* minimon_5_run.md5anim */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon_5_run.md5anim; path = OMEngine/Platforms/Android/assets/minimon_5_run.md5anim; sourceTree = "<group>"; };
-		F386CD5F1D05862800079815 /* minimon_5.md5mesh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon_5.md5mesh; path = OMEngine/Platforms/Android/assets/minimon_5.md5mesh; sourceTree = "<group>"; };
-		F386CD601D05862800079815 /* minimon_5.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minimon_5.mtl; path = OMEngine/Platforms/Android/assets/minimon_5.mtl; sourceTree = "<group>"; };
 		F38A22E01BAA979700FADEC0 /* vertexPerPixel.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = vertexPerPixel.glsl; path = ../Android/assets/shaders/vertexPerPixel.glsl; sourceTree = SOURCE_ROOT; };
 		F38A22E21BAAA15400FADEC0 /* SimpeGouraudVertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = SimpeGouraudVertex.glsl; path = ../Android/assets/shaders/SimpeGouraudVertex.glsl; sourceTree = SOURCE_ROOT; };
 		F38A22E61BAAA40500FADEC0 /* SimpleGouraudFragment.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = SimpleGouraudFragment.glsl; path = ../Android/assets/shaders/SimpleGouraudFragment.glsl; sourceTree = SOURCE_ROOT; };
@@ -903,11 +908,8 @@
 		F39FA5AC1C0DE15400CC0BB4 /* vorbisfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vorbisfile.h; sourceTree = "<group>"; };
 		F39FA5AD1C0DE15400CC0BB4 /* window.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = window.c; sourceTree = "<group>"; };
 		F39FA5AE1C0DE15400CC0BB4 /* window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = window.h; sourceTree = "<group>"; };
-		F39FA5C91C0DE6C200CC0BB4 /* lounge.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; name = lounge.ogg; path = OMEngine/Platforms/Android/assets/lounge.ogg; sourceTree = "<group>"; };
 		F3A1A4E81C60CBA000DBBB4B /* WireSP.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = WireSP.cpp; path = OMEngine/CPPSources/Shaders/WireSP.cpp; sourceTree = "<group>"; };
 		F3A1A4E91C60CBA000DBBB4B /* WireSP.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = WireSP.hpp; path = OMEngine/CPPSources/Shaders/WireSP.hpp; sourceTree = "<group>"; };
-		F3A2545D1D08102600F53BB7 /* candies.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = candies.mtl; path = OMEngine/Platforms/Android/assets/candies.mtl; sourceTree = "<group>"; };
-		F3A2545E1D08102600F53BB7 /* candies.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = candies.obj; path = OMEngine/Platforms/Android/assets/candies.obj; sourceTree = "<group>"; };
 		F3A263941C33BD360021B3B6 /* light_point_fragment.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = light_point_fragment.glsl; sourceTree = "<group>"; };
 		F3A263951C33BD360021B3B6 /* light_point_vertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = light_point_vertex.glsl; sourceTree = "<group>"; };
 		F3A2CEA91D1D46DC00C39277 /* generalLightingProjector.omg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = generalLightingProjector.omg; sourceTree = "<group>"; };
@@ -922,13 +924,10 @@
 		F3A843201CCF448C006D1B94 /* SimpleGouraudPhongSP.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = SimpleGouraudPhongSP.hpp; path = OMEngine/CPPSources/Shaders/SimpleGouraudPhongSP.hpp; sourceTree = "<group>"; };
 		F3A843251CCF5DD2006D1B94 /* DepthSP.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DepthSP.cpp; path = OMEngine/CPPSources/Shaders/DepthSP.cpp; sourceTree = "<group>"; };
 		F3A843261CCF5DD2006D1B94 /* DepthSP.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = DepthSP.hpp; path = OMEngine/CPPSources/Shaders/DepthSP.hpp; sourceTree = "<group>"; };
-		F3AB02791CA7FFFE00CB8FC9 /* particle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = particle.png; path = OMEngine/Platforms/Android/assets/particle.png; sourceTree = "<group>"; };
 		F3B0F6B51BF0AD9F0044A442 /* stb_truetype.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = stb_truetype.cpp; path = ttf/stb_truetype.cpp; sourceTree = "<group>"; };
 		F3B0F6B61BF0AD9F0044A442 /* stb_truetype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = stb_truetype.h; path = ttf/stb_truetype.h; sourceTree = "<group>"; };
 		F3B0F6B91BF0ADDC0044A442 /* Font.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Font.cpp; path = ../../CPPSources/Txt/Font.cpp; sourceTree = SOURCE_ROOT; };
 		F3B0F6BA1BF0ADDC0044A442 /* Font.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Font.hpp; path = ../../CPPSources/Txt/Font.hpp; sourceTree = SOURCE_ROOT; };
-		F3B0F6BE1BF0B5830044A442 /* FFF_Tusj.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FFF_Tusj.ttf; path = ../Android/assets/fonts/FFF_Tusj.ttf; sourceTree = SOURCE_ROOT; };
-		F3B0F6C01BF0BA250044A442 /* foo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = foo.ttf; path = ../Android/assets/fonts/foo.ttf; sourceTree = SOURCE_ROOT; };
 		F3B3C3A21CE770F700CB5A25 /* BBlock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BBlock.cpp; sourceTree = "<group>"; };
 		F3B3C3A31CE770F700CB5A25 /* BBlock.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BBlock.hpp; sourceTree = "<group>"; };
 		F3BCACB71BFF26FE002003B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = OMEiOS/Base.lproj/Main_iPad.storyboard; sourceTree = SOURCE_ROOT; };
@@ -943,9 +942,6 @@
 		F3CBE9671D0E999400F5AEA5 /* PlayButton.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PlayButton.hpp; sourceTree = "<group>"; };
 		F3CBE96A1D0E9AB200F5AEA5 /* AssetManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AssetManager.cpp; sourceTree = "<group>"; };
 		F3CBE96B1D0E9AB200F5AEA5 /* AssetManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AssetManager.hpp; sourceTree = "<group>"; };
-		F3CBE96D1D0EA2F500F5AEA5 /* play_btn.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = play_btn.mtl; path = OMEngine/Platforms/Android/assets/play_btn.mtl; sourceTree = "<group>"; };
-		F3CBE96E1D0EA2F500F5AEA5 /* play_btn.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = play_btn.obj; path = OMEngine/Platforms/Android/assets/play_btn.obj; sourceTree = "<group>"; };
-		F3D171751C6DCBF200A9507D /* projector.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = projector.png; path = OMEngine/Platforms/Android/assets/projector.png; sourceTree = "<group>"; };
 		F3D5E1051AF8F23400DD216B /* iOSSRETests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iOSSRETests.m; path = OMEiOSTests/iOSSRETests.m; sourceTree = SOURCE_ROOT; };
 		F3D5E10A1AF8F24400DD216B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = OMEiOS/en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
 		F3D5E10C1AF8F2C600DD216B /* OMEiOS.temp_caseinsensitive_rename-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "OMEiOS.temp_caseinsensitive_rename-Info.plist"; path = "../../../OMEngine/Platforms/iOS/OMEiOS/OMEiOS.temp_caseinsensitive_rename-Info.plist"; sourceTree = "<group>"; };
@@ -1079,45 +1075,13 @@
 		7626524017F10E6C007CCD43 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F348E4211D1D5C2700D5EF0B /* fonts */,
+				F348E41A1D1D5B5800D5EF0B /* objects */,
+				F348E4151D1D5AE800D5EF0B /* audio */,
+				F348E3EC1D1D58DE00D5EF0B /* animations */,
+				F348E3DA1D1D52DA00D5EF0B /* materials */,
 				F348E3C51D1D4FCA00D5EF0B /* textures */,
 				F3592D611D1690E400D88B18 /* worldA.cm */,
-				F3CBE96D1D0EA2F500F5AEA5 /* play_btn.mtl */,
-				F3CBE96E1D0EA2F500F5AEA5 /* play_btn.obj */,
-				F3A2545D1D08102600F53BB7 /* candies.mtl */,
-				F3A2545E1D08102600F53BB7 /* candies.obj */,
-				F386CD5C1D05862800079815 /* minimon_5_idle.md5anim */,
-				F386CD5D1D05862800079815 /* minimon_5_jump.md5anim */,
-				F386CD5E1D05862800079815 /* minimon_5_run.md5anim */,
-				F386CD5F1D05862800079815 /* minimon_5.md5mesh */,
-				F386CD601D05862800079815 /* minimon_5.mtl */,
-				F386CD501D05853900079815 /* minimon_4_idle.md5anim */,
-				F386CD511D05853900079815 /* minimon_4_jump.md5anim */,
-				F386CD521D05853900079815 /* minimon_4_run.md5anim */,
-				F386CD531D05853900079815 /* minimon_4.md5mesh */,
-				F386CD541D05853900079815 /* minimon_4.mtl */,
-				F386CD441D0583E200079815 /* minimon_3_idle.md5anim */,
-				F386CD451D0583E200079815 /* minimon_3_jump.md5anim */,
-				F386CD461D0583E200079815 /* minimon_3_run.md5anim */,
-				F386CD471D0583E200079815 /* minimon_3.md5mesh */,
-				F386CD481D0583E200079815 /* minimon_3.mtl */,
-				F386CD381D0580D000079815 /* minimon_2_idle.md5anim */,
-				F386CD391D0580D000079815 /* minimon_2_jump.md5anim */,
-				F386CD3A1D0580D000079815 /* minimon_2_run.md5anim */,
-				F386CD3B1D0580D000079815 /* minimon_2.md5mesh */,
-				F386CD3C1D0580D000079815 /* minimon_2.mtl */,
-				F386CD2A1D056ECF00079815 /* minimon_1_idle.md5anim */,
-				F386CD2B1D056ECF00079815 /* minimon_1_jump.md5anim */,
-				F386CD2C1D056ECF00079815 /* minimon_1_run.md5anim */,
-				F386CD2D1D056ECF00079815 /* minimon_1.md5mesh */,
-				F386CD2E1D056ECF00079815 /* minimon_1.mtl */,
-				F33138081CD62484000705D5 /* bblock.mtl */,
-				F33138091CD62484000705D5 /* bblock.obj */,
-				F3AB02791CA7FFFE00CB8FC9 /* particle.png */,
-				F3D171751C6DCBF200A9507D /* projector.png */,
-				F3417B181C0F4907006902C9 /* 00.ogg */,
-				F39FA5C91C0DE6C200CC0BB4 /* lounge.ogg */,
-				F3B0F6C01BF0BA250044A442 /* foo.ttf */,
-				F3B0F6BE1BF0B5830044A442 /* FFF_Tusj.ttf */,
 				F368E8C41BA6AE5A00F322AF /* shaders */,
 			);
 			name = "Supporting Files";
@@ -1837,6 +1801,81 @@
 			path = OMEngine/Platforms/Android/assets/textures;
 			sourceTree = "<group>";
 		};
+		F348E3DA1D1D52DA00D5EF0B /* materials */ = {
+			isa = PBXGroup;
+			children = (
+				F348E3DB1D1D52DA00D5EF0B /* bblock.mtl */,
+				F348E3DC1D1D52DA00D5EF0B /* candies.mtl */,
+				F348E3DD1D1D52DA00D5EF0B /* minimon_1.mtl */,
+				F348E3DE1D1D52DA00D5EF0B /* minimon_2.mtl */,
+				F348E3DF1D1D52DA00D5EF0B /* minimon_3.mtl */,
+				F348E3E01D1D52DA00D5EF0B /* minimon_4.mtl */,
+				F348E3E11D1D52DA00D5EF0B /* minimon_5.mtl */,
+				F348E3E21D1D52DA00D5EF0B /* play_btn.mtl */,
+			);
+			name = materials;
+			path = OMEngine/Platforms/Android/assets/materials;
+			sourceTree = "<group>";
+		};
+		F348E3EC1D1D58DE00D5EF0B /* animations */ = {
+			isa = PBXGroup;
+			children = (
+				F348E3ED1D1D58DE00D5EF0B /* minimon_1.md5mesh */,
+				F348E3EE1D1D58DE00D5EF0B /* minimon_1_idle.md5anim */,
+				F348E3EF1D1D58DE00D5EF0B /* minimon_1_jump.md5anim */,
+				F348E3F01D1D58DE00D5EF0B /* minimon_1_run.md5anim */,
+				F348E3F11D1D58DE00D5EF0B /* minimon_2.md5mesh */,
+				F348E3F21D1D58DE00D5EF0B /* minimon_2_idle.md5anim */,
+				F348E3F31D1D58DE00D5EF0B /* minimon_2_jump.md5anim */,
+				F348E3F41D1D58DE00D5EF0B /* minimon_2_run.md5anim */,
+				F348E3F51D1D58DE00D5EF0B /* minimon_3.md5mesh */,
+				F348E3F61D1D58DE00D5EF0B /* minimon_3_idle.md5anim */,
+				F348E3F71D1D58DE00D5EF0B /* minimon_3_jump.md5anim */,
+				F348E3F81D1D58DE00D5EF0B /* minimon_3_run.md5anim */,
+				F348E3F91D1D58DE00D5EF0B /* minimon_4.md5mesh */,
+				F348E3FA1D1D58DE00D5EF0B /* minimon_4_idle.md5anim */,
+				F348E3FB1D1D58DE00D5EF0B /* minimon_4_jump.md5anim */,
+				F348E3FC1D1D58DE00D5EF0B /* minimon_4_run.md5anim */,
+				F348E3FD1D1D58DE00D5EF0B /* minimon_5.md5mesh */,
+				F348E3FE1D1D58DE00D5EF0B /* minimon_5_idle.md5anim */,
+				F348E3FF1D1D58DE00D5EF0B /* minimon_5_jump.md5anim */,
+				F348E4001D1D58DE00D5EF0B /* minimon_5_run.md5anim */,
+			);
+			name = animations;
+			path = OMEngine/Platforms/Android/assets/animations;
+			sourceTree = "<group>";
+		};
+		F348E4151D1D5AE800D5EF0B /* audio */ = {
+			isa = PBXGroup;
+			children = (
+				F348E4161D1D5AE800D5EF0B /* 00.ogg */,
+				F348E4171D1D5AE800D5EF0B /* lounge.ogg */,
+			);
+			name = audio;
+			path = OMEngine/Platforms/Android/assets/audio;
+			sourceTree = "<group>";
+		};
+		F348E41A1D1D5B5800D5EF0B /* objects */ = {
+			isa = PBXGroup;
+			children = (
+				F348E41B1D1D5B5800D5EF0B /* bblock.obj */,
+				F348E41C1D1D5B5800D5EF0B /* candies.obj */,
+				F348E41D1D1D5B5800D5EF0B /* play_btn.obj */,
+			);
+			name = objects;
+			path = OMEngine/Platforms/Android/assets/objects;
+			sourceTree = "<group>";
+		};
+		F348E4211D1D5C2700D5EF0B /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				F348E4221D1D5C2700D5EF0B /* FFF_Tusj.ttf */,
+				F348E4231D1D5C2700D5EF0B /* foo.ttf */,
+			);
+			name = fonts;
+			path = OMEngine/Platforms/Android/assets/fonts;
+			sourceTree = "<group>";
+		};
 		F368E8B51BA6AC9F00F322AF /* 3dPart */ = {
 			isa = PBXGroup;
 			children = (
@@ -2211,79 +2250,77 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F3CBE96F1D0EA2F500F5AEA5 /* play_btn.mtl in Resources */,
-				F386CD401D0580D000079815 /* minimon_2_run.md5anim in Resources */,
+				F348E4031D1D58DE00D5EF0B /* minimon_1_jump.md5anim in Resources */,
 				F328C4FE1BF4997F0037AC6D /* font_fragment.glsl in Resources */,
+				F348E3E51D1D52DA00D5EF0B /* minimon_1.mtl in Resources */,
 				F3CAEEE51BB01A7600DCF182 /* default_color_vertex.glsl in Resources */,
-				F328C4FB1BF491930037AC6D /* foo.ttf in Resources */,
+				F348E4101D1D58DE00D5EF0B /* minimon_4_run.md5anim in Resources */,
+				F348E4041D1D58DE00D5EF0B /* minimon_1_run.md5anim in Resources */,
+				F348E4121D1D58DE00D5EF0B /* minimon_5_idle.md5anim in Resources */,
+				F348E4011D1D58DE00D5EF0B /* minimon_1.md5mesh in Resources */,
 				9435525F1BEF091F00FC4ADA /* wired_vertex.glsl in Resources */,
+				F348E4061D1D58DE00D5EF0B /* minimon_2_idle.md5anim in Resources */,
 				F3A2CEB71D1D46DC00C39277 /* shadowProjector.omg in Resources */,
+				F348E4131D1D58DE00D5EF0B /* minimon_5_jump.md5anim in Resources */,
+				F348E4141D1D58DE00D5EF0B /* minimon_5_run.md5anim in Resources */,
 				F328C4FF1BF4997F0037AC6D /* font_vertex.glsl in Resources */,
 				F348E3D41D1D4FCA00D5EF0B /* candy_5.png in Resources */,
+				F348E4251D1D5C2700D5EF0B /* foo.ttf in Resources */,
 				F3D5E1191AF8F32E00DD216B /* Images.xcassets in Resources */,
-				F386CD621D05862800079815 /* minimon_5_idle.md5anim in Resources */,
-				F386CD631D05862800079815 /* minimon_5_jump.md5anim in Resources */,
-				F386CD4A1D0583E200079815 /* minimon_3_idle.md5anim in Resources */,
-				F3AB027B1CA7FFFE00CB8FC9 /* particle.png in Resources */,
-				F386CD3F1D0580D000079815 /* minimon_2_jump.md5anim in Resources */,
+				F348E3EA1D1D52DA00D5EF0B /* play_btn.mtl in Resources */,
+				F348E4051D1D58DE00D5EF0B /* minimon_2.md5mesh in Resources */,
 				F348E3D51D1D4FCA00D5EF0B /* minimon_1.png in Resources */,
-				F39FA5CA1C0DE6C200CC0BB4 /* lounge.ogg in Resources */,
-				F386CD331D056ECF00079815 /* minimon_1.md5mesh in Resources */,
-				F386CD651D05862800079815 /* minimon_5.md5mesh in Resources */,
-				F386CD321D056ECF00079815 /* minimon_1_run.md5anim in Resources */,
+				F348E40C1D1D58DE00D5EF0B /* minimon_3_run.md5anim in Resources */,
 				F3BCACBB1BFF26FE002003B7 /* Main_iPhone.storyboard in Resources */,
 				F3A2CEB21D1D46DC00C39277 /* gouraudMultiLight.omg in Resources */,
 				F3A2CEB41D1D46DC00C39277 /* phongMultiLight.omg in Resources */,
+				F348E4181D1D5AE800D5EF0B /* 00.ogg in Resources */,
 				F3A263971C33BD360021B3B6 /* light_point_vertex.glsl in Resources */,
 				F3A2CEB61D1D46DC00C39277 /* phongMultiLightTexture.omg in Resources */,
 				9435525E1BEF091F00FC4ADA /* wired_fragment.glsl in Resources */,
-				F386CD421D0580D000079815 /* minimon_2.mtl in Resources */,
 				F38A22E71BAAA40500FADEC0 /* SimpleGouraudFragment.glsl in Resources */,
-				F386CD561D05853900079815 /* minimon_4_idle.md5anim in Resources */,
-				F386CD641D05862800079815 /* minimon_5_run.md5anim in Resources */,
 				F3592D621D1690E400D88B18 /* worldA.cm in Resources */,
-				F3B0F6BF1BF0B7410044A442 /* FFF_Tusj.ttf in Resources */,
 				F3A2CEB51D1D46DC00C39277 /* phongMultiLightBump.omg in Resources */,
+				F348E41E1D1D5B5800D5EF0B /* bblock.obj in Resources */,
 				F3D5E10B1AF8F24400DD216B /* InfoPlist.strings in Resources */,
 				F3CAEEE71BB01B8800DCF182 /* default_color_fragment.glsl in Resources */,
+				F348E40D1D1D58DE00D5EF0B /* minimon_4.md5mesh in Resources */,
 				F3BCACBA1BFF26FE002003B7 /* Main_iPad.storyboard in Resources */,
-				F386CD4E1D0583E200079815 /* minimon_3.mtl in Resources */,
-				F386CD311D056ECF00079815 /* minimon_1_jump.md5anim in Resources */,
-				F386CD571D05853900079815 /* minimon_4_jump.md5anim in Resources */,
 				F348E3D01D1D4FCA00D5EF0B /* candy_1.png in Resources */,
+				F348E3E41D1D52DA00D5EF0B /* candies.mtl in Resources */,
 				F348E3D81D1D4FCA00D5EF0B /* minimon_4.png in Resources */,
 				F3A2CEB11D1D46DC00C39277 /* generalLightingProjector.omg in Resources */,
+				F348E3E71D1D52DA00D5EF0B /* minimon_3.mtl in Resources */,
+				F348E4241D1D5C2700D5EF0B /* FFF_Tusj.ttf in Resources */,
 				F348E3D71D1D4FCA00D5EF0B /* minimon_3.png in Resources */,
-				F3A254621D08102600F53BB7 /* candies.mtl in Resources */,
 				F348E3D31D1D4FCA00D5EF0B /* candy_4.png in Resources */,
+				F348E3E91D1D52DA00D5EF0B /* minimon_5.mtl in Resources */,
+				F348E41F1D1D5B5800D5EF0B /* candies.obj in Resources */,
+				F348E4021D1D58DE00D5EF0B /* minimon_1_idle.md5anim in Resources */,
 				F348E3D61D1D4FCA00D5EF0B /* minimon_2.png in Resources */,
-				F3417B191C0F4907006902C9 /* 00.ogg in Resources */,
 				94EF0C601BA70F6700EBF5EE /* norm_as_color_fragment.glsl in Resources */,
-				F3A254631D08102600F53BB7 /* candies.obj in Resources */,
+				F348E4191D1D5AE800D5EF0B /* lounge.ogg in Resources */,
+				F348E40E1D1D58DE00D5EF0B /* minimon_4_idle.md5anim in Resources */,
 				F348E3D21D1D4FCA00D5EF0B /* candy_3.png in Resources */,
+				F348E3E61D1D52DA00D5EF0B /* minimon_2.mtl in Resources */,
+				F348E4081D1D58DE00D5EF0B /* minimon_2_run.md5anim in Resources */,
+				F348E3E81D1D52DA00D5EF0B /* minimon_4.mtl in Resources */,
 				F3A2CEB31D1D46DC00C39277 /* particles.omg in Resources */,
 				F348E3D91D1D4FCA00D5EF0B /* minimon_5.png in Resources */,
+				F348E40B1D1D58DE00D5EF0B /* minimon_3_jump.md5anim in Resources */,
 				F368E8CA1BA6AE5A00F322AF /* fragmentPerPixel.glsl in Resources */,
-				F386CD581D05853900079815 /* minimon_4_run.md5anim in Resources */,
 				F38A22E31BAAA15400FADEC0 /* SimpeGouraudVertex.glsl in Resources */,
-				F386CD4B1D0583E200079815 /* minimon_3_jump.md5anim in Resources */,
-				F386CD411D0580D000079815 /* minimon_2.md5mesh in Resources */,
-				F3D171761C6DCBF200A9507D /* projector.png in Resources */,
+				F348E4071D1D58DE00D5EF0B /* minimon_2_jump.md5anim in Resources */,
+				F348E40F1D1D58DE00D5EF0B /* minimon_4_jump.md5anim in Resources */,
+				F348E4201D1D5B5800D5EF0B /* play_btn.obj in Resources */,
+				F348E40A1D1D58DE00D5EF0B /* minimon_3_idle.md5anim in Resources */,
+				F348E4111D1D58DE00D5EF0B /* minimon_5.md5mesh in Resources */,
 				F348E3D11D1D4FCA00D5EF0B /* candy_2.png in Resources */,
-				F386CD661D05862800079815 /* minimon_5.mtl in Resources */,
-				F331380C1CD62484000705D5 /* bblock.obj in Resources */,
-				F386CD4C1D0583E200079815 /* minimon_3_run.md5anim in Resources */,
-				F386CD3E1D0580D000079815 /* minimon_2_idle.md5anim in Resources */,
-				F386CD301D056ECF00079815 /* minimon_1_idle.md5anim in Resources */,
-				F3CBE9701D0EA2F500F5AEA5 /* play_btn.obj in Resources */,
 				F3A263961C33BD360021B3B6 /* light_point_fragment.glsl in Resources */,
+				F348E4091D1D58DE00D5EF0B /* minimon_3.md5mesh in Resources */,
 				94EF0C5E1BA70E5400EBF5EE /* pos_norm_vertex.glsl in Resources */,
-				F386CD4D1D0583E200079815 /* minimon_3.md5mesh in Resources */,
-				F386CD341D056ECF00079815 /* minimon_1.mtl in Resources */,
-				F386CD591D05853900079815 /* minimon_4.md5mesh in Resources */,
+				F348E3E31D1D52DA00D5EF0B /* bblock.mtl in Resources */,
 				F3A2CEB81D1D46DC00C39277 /* writedepth.omg in Resources */,
-				F386CD5A1D05853900079815 /* minimon_4.mtl in Resources */,
-				F331380B1CD62484000705D5 /* bblock.mtl in Resources */,
 				F38A22E11BAA979700FADEC0 /* vertexPerPixel.glsl in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,7 +9,13 @@ sp<Obj> Obj::load(const char *filename){
     
     logGLError();
     
-    std::unique_ptr<FileContent> objSource = readBytesFromFile(filename);
+    string newFilename = filename;
+#ifdef ANDROID
+    newFilename = "objects/" + newFilename;
+#endif
+    
+    
+    std::unique_ptr<FileContent> objSource = readBytesFromFile(newFilename.c_str());
 #pragma warning throw exception here
     if(!objSource.get()) return nullptr;
     
