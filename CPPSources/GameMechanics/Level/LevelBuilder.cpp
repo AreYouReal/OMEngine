@@ -16,7 +16,6 @@ void LevelBuilder::InitWithMeshes(sp<ObjMesh> block, std::vector<sp<ObjMesh>> ca
     mCandies = candies;
 }
 
-
 up<GameObject> LevelBuilder::create(){
     up<GameObject> go = std::unique_ptr<GameObject>(new GameObject("LevelBuilder"));
     up<LevelBuilder> lb = std::unique_ptr<LevelBuilder>(new LevelBuilder(go.get()));
@@ -24,7 +23,6 @@ up<GameObject> LevelBuilder::create(){
     go->addComponent(std::move(lb));
     return go;
 }
-
 
 #pragma mark Public
 
@@ -272,12 +270,6 @@ void LevelBuilder::activateBlock(GameObject *go){
     }
 }
 
-
-void LevelBuilder::refresh(){
-    clearLevel();
-    buildLevel();
-}
-
 void LevelBuilder::clearLevel(){
     for(auto const &go : activeblocks){
         Scene::instance()->removeObjectFromTheScene(go);
@@ -294,7 +286,6 @@ void LevelBuilder::clearLevel(){
     for(auto const &go : inactiveBlocks){
         Scene::instance()->removeObjectFromTheScene(go);
     }
-    
     
     activeblocks.clear();
     inactiveBlocks.clear();

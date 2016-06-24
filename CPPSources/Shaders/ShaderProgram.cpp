@@ -174,7 +174,9 @@ void ShaderProgram::setMaterialUniforms(const ObjMaterial *mat){
     
     glUniform1f(matLoc.shininess, mat->specularExponent);
     
-    glUniform1i(texLoc.diffuse, 1);
+    
+    if(texLoc.diffuse > 0)
+        glUniform1i(texLoc.diffuse, 1);
     
     if(texLoc.bump > 0)
         glUniform1i(texLoc.bump, 4);

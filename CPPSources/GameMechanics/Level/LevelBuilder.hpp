@@ -1,11 +1,8 @@
 #pragma once
 
 #include "IComponent.hpp"
-
 #include "Scene.hpp"
-
 #include <queue>
-
 
 #include "LevelRelated.hpp"
 
@@ -17,28 +14,20 @@ public:
     // IComponent interface
     LevelBuilder(GameObject * const gameObject);
     virtual         ~LevelBuilder();
-    
     virtual void update() override;
     
     // endof IComponent interface
     
-    void InitWithMeshes(sp<ObjMesh> block, std::vector<sp<ObjMesh>> candies);
-    
     void buildLevel();
     
     void onHideBlock(GameObject *blockOBj);
-    
     void onHideCandy(GameObject *candyOBj);
     
     LAction popAction();
     
-    void refresh();
-    
     void clearLevel();
     
-    
     static up<GameObject> create();
-    
     
 private:
     
@@ -60,20 +49,21 @@ private:
     v3d mLastBlockPoss{0, 0, 0};
     v3d mLastDir{0, 0, 0};
     
-    
-    float mCandyChance = 50.0f;
+    float mCandyChance = 10.0f;
     
     int currentLevel = 0;
     sp<LevelInfo> mCurrentLevelInfo;
     std::queue<v3d> mPoss;
     
+    void InitWithMeshes(sp<ObjMesh> block, std::vector<sp<ObjMesh>> candies);
+    
+// Random level generation related
     v3d  getNewPos();
     void addNewBlock(v3d blockPos, LAction action);
     void addCandyToBlock();
     
-    
     LevelRelated::Action getAction(v3d newPos, v3d lastDir);
-
+    
     void fillLevelPositions();
     void addBlockComponent(GameObject*);
     void activateBlock(GameObject*);

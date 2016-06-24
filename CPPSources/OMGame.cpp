@@ -35,7 +35,6 @@ OMContext* OMGame::getAppContext(){
     return appContext;
 }
 
-
 int OMGame::InitGameWorld (){
     AssetManager::instance()->init();
       if(disableScene) return 1;
@@ -62,14 +61,17 @@ void OMGame::Update(const float deltaTime){
     Scene::instance()->update(deltaTime);
 }
 
-    Stopwatch stopwatch;
+Stopwatch stopwatch;
+char tempBuff[122];
 void OMGame::Draw (){
     if(disableScene) return;
-//    static unsigned int start = getMilliTime(), fps = 0;
-//    if( getMilliTime() - start >= 1000 ) {
-//        logMessage( "FPS: %d\n", fps ); start = getMilliTime();
-//        fps = 0;
-//    } ++fps;
+    static unsigned int start = getMilliTime(), fps = 0;
+    if( getMilliTime() - start >= 1000 ) {
+
+        sprintf(tempBuff, "%.0f", ceilf(fps));
+        logMessage( "FPS: %d\n", fps ); start = getMilliTime();
+        fps = 0;
+    } ++fps;
     
     Camera::instance()->setWidthAndHeight(appContext->width, appContext->height);
 
@@ -80,9 +82,6 @@ void OMGame::Draw (){
     Scene::instance()->draw();
 
 //    Boombox::instance()->play();
-    
-    char tempBuff[122];
-    sprintf(tempBuff, "%.0f", ceilf(stopwatch.fps()));
     
     drawText(tempBuff);
 }

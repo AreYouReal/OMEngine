@@ -4,24 +4,24 @@
 #include "ShaderHelper.h"
 
 static std::map<string, string>  meshShaderTable{
-    std::pair<string, string>("bblock", "gouraudMultiLight.omg"),
-    std::pair<string, string>("play_btn", "gouraudMultiLight.omg"),
-    std::pair<string, string>("candy_1", "phongMultiLight.omg"),
-    std::pair<string, string>("candy_2", "phongMultiLight.omg"),
-    std::pair<string, string>("candy_3", "phongMultiLight.omg"),
-    std::pair<string, string>("candy_4", "phongMultiLight.omg"),
-    std::pair<string, string>("candy_5", "phongMultiLight.omg"),
-    std::pair<string, string>("minimon_1", "phongMultiLight.omg"),
-    std::pair<string, string>("minimon_2", "phongMultiLight.omg"),
-    std::pair<string, string>("minimon_3", "phongMultiLight.omg"),
-    std::pair<string, string>("minimon_4", "phongMultiLight.omg"),
-    std::pair<string, string>("minimon_5", "phongMultiLight.omg"),
+    std::pair<string, string>("bblock", "phongMultiLight.omg"),
+    std::pair<string, string>("play_btn", "phongMultiLight.omg"),
+    std::pair<string, string>("candy_1", "phongMultiLightTexture.omg"),
+    std::pair<string, string>("candy_2", "phongMultiLightTexture.omg"),
+    std::pair<string, string>("candy_3", "phongMultiLightTexture.omg"),
+    std::pair<string, string>("candy_4", "phongMultiLightTexture.omg"),
+    std::pair<string, string>("candy_5", "phongMultiLightTexture.omg"),
+    std::pair<string, string>("minimon_1", "phongMultiLightTexture.omg"),
+    std::pair<string, string>("minimon_2", "phongMultiLightTexture.omg"),
+    std::pair<string, string>("minimon_3", "phongMultiLightTexture.omg"),
+    std::pair<string, string>("minimon_4", "phongMultiLightTexture.omg"),
+    std::pair<string, string>("minimon_5", "phongMultiLightTexture.omg"),
 };
 
 Materials::Materials(){
     loadPrograms();
+    loadOMGFile("phongMultiLightTexture.omg");
     loadOMGFile("phongMultiLight.omg");
-    loadOMGFile("gouraudMultiLight.omg");
 }
 
 Materials::~Materials(){
@@ -219,7 +219,12 @@ void Materials::loadOMGFile(string fileName){
         logMessage("OMG program is already loaded!\n");
         return;
     }
-    up<FileContent> content = readTextFile(fileName);
+    string path = fileName;
+#ifdef ANDROID
+    path = "shaders/" + path;
+#endif
+
+    up<FileContent> content = readTextFile(path);
     if(!content){
         logMessage("Unable to load OMG file %s\n", fileName.c_str());
         return;
