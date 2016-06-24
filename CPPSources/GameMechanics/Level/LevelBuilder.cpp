@@ -196,7 +196,7 @@ void LevelBuilder::addBlockComponent(GameObject *go){
 
 
 LAction LevelBuilder::getAction(v3d newPos, v3d lastDir){
-    v3d dir = newPos - mLastBlockPoss;
+    v3d dir = (newPos - mLastBlockPoss).normalize();
 
     LAction action(LAction::NONE);
     
