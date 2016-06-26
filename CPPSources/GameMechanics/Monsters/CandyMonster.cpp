@@ -20,7 +20,6 @@ up<GameObject> CandyMonster::create(CandyMonster::CandyType type){
     sp<md5::MD5> md5 = AssetManager::instance()->loadMD5Mesh(monsterName + ".md5mesh", monsterActions, monsterName + ".mtl");
     
     up<AnimMeshComponent> mamc = up<AnimMeshComponent>(new AnimMeshComponent(monster.get(), md5));
-    mamc->mComponentType = ComponentEnum::ANIM_MESH;
     monster->addComponent(std::move(mamc));
     
     q4d sR(180, v3d(0, 1, 0));

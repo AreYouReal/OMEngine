@@ -58,6 +58,7 @@ private:
     
     void startViewRoutine();
     void selectMonsterRoutine();
+    void initMonsterSelector();
     void levelRoutine();
     
     

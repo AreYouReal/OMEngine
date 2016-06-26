@@ -112,6 +112,10 @@ void PlayerController::refreshVelocity(){
 
 }
 
+void PlayerController::refreshAnimMeshComp(){
+    mAnimMeshComp = static_cast<AnimMeshComponent*>(go->getComponent(ComponentEnum::ANIM_MESH));
+}
+
 void PlayerController::update(){
     v3d pos = go->getPosition();
     if(pos.y < -3){

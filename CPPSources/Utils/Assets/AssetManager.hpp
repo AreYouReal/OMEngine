@@ -22,8 +22,10 @@ public:
     std::vector<sp<ObjMesh>> getAllMeshesFromObj(string objFileName);
     
     sp<md5::MD5> loadMD5Mesh(string filename, std::vector<string> actionsToLoad, string materialname);
+    sp<md5::MD5> getMD5Mesh(const string name);
     
-        sp<LevelInfo> getLevelInfo(int num);
+    
+    sp<LevelInfo> getLevelInfo(int num);
     
 private:
     

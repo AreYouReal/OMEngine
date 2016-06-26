@@ -77,12 +77,15 @@ bool Scene::init(){
     srand(time(0));
     
     logGLError();
-
+    initMonsterSelector();
     switchState(State::START_VIEW);
     
     Camera::instance()->initShadowBuffer();
     
     addLight();
+    
+
+    mSelector->go->mActive = false;
 
     
     return true;
@@ -147,6 +150,19 @@ void Scene::onTouchBegin(const int x, const int y){
                 if(!collidedObj->name.compare("PLAY")){
                     if(playButton->go->mActive)
                         switchState(LEVEL_VIEW);
+                }else{
+                    if(startMillisec == 0){
+                        startMillisec = getMilliTime();
+                    }else{
+                        float secDelta = (getMilliTime() - startMillisec)/1000.0f;
+                        logMessage("Sec delta %f\n", secDelta);
+                        if(secDelta > doubleTapTime){
+                            startMillisec = getMilliTime();
+                        }else{
+                            switchState(State::SELECT_MONSTER_VIEW);
+                            startMillisec = 0;
+                        }
+                    }
                 }
             }else{
                 if(startMillisec == 0){
@@ -155,7 +171,7 @@ void Scene::onTouchBegin(const int x, const int y){
                     float secDelta = (getMilliTime() - startMillisec)/1000.0f;
                     logMessage("Sec delta %f\n", secDelta);
                     if(secDelta > doubleTapTime){
-                        startMillisec = 0;
+                        startMillisec = getMilliTime();
                     }else{
                         switchState(State::SELECT_MONSTER_VIEW);
                         startMillisec = 0;
@@ -174,7 +190,7 @@ void Scene::onTouchBegin(const int x, const int y){
                 float secDelta = (getMilliTime() - startMillisec)/1000.0f;
                 logMessage("Sec delta %f\n", secDelta);
                 if(secDelta > doubleTapTime){
-                    startMillisec = 0;
+                    startMillisec = getMilliTime();
                 }else{
                     switchState(State::START_VIEW);
                     startMillisec = 0;
@@ -260,7 +276,7 @@ void Scene::addLight(){
 }
 
 PlayerController* Scene::createPlayer(){
-    up<GameObject> candyMonster = CandyMonster::create(CandyMonster::TYPE_1);
+    up<GameObject> candyMonster = CandyMonster::create(mSelector->getCurrentSelectedMonster());
     up<RigidBodyComponent> rbc_1 = up<RigidBodyComponent>(new RigidBodyComponent(candyMonster.get(), 5.0f));
     rbc_1->mBody->setGravity(btVector3(0, 0, 0));
     rbc_1->mComponentType = ComponentEnum::RIGID_BODY;
@@ -288,6 +304,11 @@ void Scene::startViewRoutine(){
     showPlayButton();
     if(player == nullptr){
         player = createPlayer();
+    }else{
+        player->go->removeComponent(ComponentEnum::ANIM_MESH);
+        up<AnimMeshComponent> mamc = up<AnimMeshComponent>(new AnimMeshComponent(player->go, AssetManager::instance()->getMD5Mesh("minimon_" + std::to_string( (int) mSelector->getCurrentSelectedMonster())) ) );
+        player->go->addComponent(std::move(mamc));
+        player->refreshAnimMeshComp();
     }
     Camera::instance()->setPosition(v3d(0, 11, 5));
     Camera::instance()->lookAt( v3d(0, 9, 0));
@@ -316,6 +337,17 @@ void Scene::levelRoutine(){
 }
 
 void Scene::selectMonsterRoutine(){
+    initMonsterSelector();
+    
+    if(mSelector)
+        mSelector->go->mActive = true;
+    
+    if(player){
+        player->go->mActive = false;
+    }
+}
+
+void Scene::initMonsterSelector(){
     if(!mSelector){
         up<GameObject> monsterSelectorObject = up<GameObject>(new GameObject("MSelector"));
         mSelector = MonsterSelector::add(monsterSelectorObject.get());
@@ -326,13 +358,6 @@ void Scene::selectMonsterRoutine(){
         }
         
         addObjOnScene(std::move(monsterSelectorObject));
-    }
-    
-    if(mSelector)
-        mSelector->go->mActive = true;
-    
-    if(player){
-        player->go->mActive = false;
     }
 }
 

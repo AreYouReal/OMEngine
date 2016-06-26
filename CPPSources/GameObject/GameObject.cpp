@@ -47,8 +47,16 @@ void GameObject::destroyChildren(){
     mChildren.clear();
 }
 
-void GameObject::addComponent(up<IComponent> comp){
+IComponent* GameObject::addComponent(up<IComponent> comp){
+    IComponent *returnThis = comp.get();
     mComponents.insert(std::pair<ComponentEnum, up<IComponent>>(comp->mComponentType, std::move(comp)));
+    return returnThis;
+}
+
+void GameObject::removeComponent(ComponentEnum comp){
+    if(mComponents.find(comp) != mComponents.end()){
+        mComponents.erase(comp);
+    }
 }
 
 IComponent *GameObject::getComponent(const ComponentEnum &name){

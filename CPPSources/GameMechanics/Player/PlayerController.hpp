@@ -19,6 +19,8 @@ public:
     void activate();
     bool active(){return mActive;};
     
+    void refreshAnimMeshComp();
+    
 private:
     
     v3d frontVector{0, 0, 1};

@@ -27,6 +27,8 @@ AnimMeshComponent::AnimMeshComponent(GameObject* const go, sp<md5::MD5> md5Obj) 
     md5->mAnimType = md5::MD5::AnimType::SINGLE_ACTION;
 
     md5->playAction(md5->actions.begin()->first, md5::Action::InterpolationMethod::FRAME);
+    
+    mComponentType = ComponentEnum::ANIM_MESH;
 }
 
 AnimMeshComponent::~AnimMeshComponent(){

@@ -90,6 +90,13 @@ sp<md5::MD5> AssetManager::loadMD5Mesh(string name, std::vector<string> actionsT
     return md5;
 }
 
+sp<md5::MD5> AssetManager::getMD5Mesh(const string name){
+    if(mMD5Ress.find(name) != mMD5Ress.end()){
+        return mMD5Ress[name];
+    }
+    return nullptr;
+}
+
 sp<LevelInfo> AssetManager::getLevelInfo(int num){
     if(num < 0 || num >= world.size()){
         return nullptr;
