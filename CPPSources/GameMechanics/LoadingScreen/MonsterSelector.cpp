@@ -47,12 +47,11 @@ CandyMonster::CandyType MonsterSelector::getCurrentSelectedMonster(){
 void MonsterSelector::addMonster(up<GameObject> monsterObj){
     float rads = 72.0f / 180 * PI * go->mChildren.size();
     float x = sinf(rads) * radius;
-    float y = 10.0f;
+    float y = 0.0f;
     float z = cosf(rads) * radius;
     monsterObj->mTransform.translate( x, y, z);
     monsterObj->mTransform.rotate(180 + 72 * go->mChildren.size(), v3d(0, 1, 0));
     go->addChild(std::move(monsterObj));
-    go->setPosition(v3d(0, 0, -7));
 }
 
 void MonsterSelector::onTouchBegin(const int x, const int y){

@@ -310,8 +310,7 @@ void Scene::startViewRoutine(){
         player->go->addComponent(std::move(mamc));
         player->refreshAnimMeshComp();
     }
-    Camera::instance()->setPosition(v3d(0, 11, 5));
-    Camera::instance()->lookAt( v3d(0, 9, 0));
+
     
     if(player){
         player->go->mActive = true;
@@ -320,6 +319,10 @@ void Scene::startViewRoutine(){
     if(mSelector){
         mSelector->go->mActive = false;
     }
+
+    
+    Camera::instance()->moveTo(v3d(0, 11, 5), 1.5f);
+    Camera::instance()->lookAt( player->go->getPosition(), 1.5f);
 }
 
 void Scene::levelRoutine(){
@@ -334,6 +337,7 @@ void Scene::levelRoutine(){
     lBuilder->buildLevel();
     player->activate();
     Illuminator::instance()->getLightSource(1)->follow(player->go);
+
 }
 
 void Scene::selectMonsterRoutine(){
@@ -345,6 +349,9 @@ void Scene::selectMonsterRoutine(){
     if(player){
         player->go->mActive = false;
     }
+    
+    Camera::instance()->lookAt(mSelector->go->getPosition(), 1.5f);
+    Camera::instance()->moveTo(v3d(0, 11, 0), 1.5f);
 }
 
 void Scene::initMonsterSelector(){
@@ -357,6 +364,7 @@ void Scene::initMonsterSelector(){
             mSelector->addMonster(std::move(candyMonster));
         }
         
+        monsterSelectorObject->setPosition(v3d(0, 9, -15));
         addObjOnScene(std::move(monsterSelectorObject));
     }
 }

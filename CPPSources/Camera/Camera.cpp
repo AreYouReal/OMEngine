@@ -504,6 +504,7 @@ void Camera::movingRoutine(){
             transform.mPosition = mMoveToPosition;
             mMoveToPosition = v3d(9999, 9999, 9999);
             mMovingTime = -1.0f;
+            mMovingCurrentTime = -1.0f;
         }else{
             float percent = (mMovingTime - mMovingCurrentTime) / mMovingTime;
             v3d::print(transform.mPosition);
@@ -524,6 +525,7 @@ void Camera::lookAtRoutine(){
     if(mLookAtAim.x != 9999){
         if(mLookAtCurrentTime <= 0.0f){
             transform.mFront = (mLookAtAim - transform.mPosition).normalize();
+            mLookAt = mLookAtAim;
             mLookAtAim = v3d(9999, 9999, 9999);
             mLookAtTime = -1.0f;
             mLookAtCurrentTime = -1.0f;
