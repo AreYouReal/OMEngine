@@ -14,11 +14,17 @@ sp<LevelInfo> LevelInfo::parseLevelLine(const string line){
     if(line != ""){
         sp<LevelInfo> info = std::make_shared<LevelInfo>();
         
+        v4d bColor;
+        v4d bgColor;
         
         if(sscanf(line.c_str(), "%f %f %f %f %f %f %f %f %f %f %f ",
                   &info->camPos.x, &info->camPos.y, &info->camPos.z,
-                  &info->bgColor.x, &info->bgColor.y, &info->bgColor.z, &info->bgColor.w,
-                  &info->bblockColor.x, &info->bblockColor.y, &info->bblockColor.z, &info->bblockColor.w) == 11){
+                  &bColor.x, &bColor.y, &bColor.z, &bColor.w,
+                  &bgColor.x, &bgColor.y, &bgColor.z, &bgColor.w) == 11){
+          
+            
+            info->bblockColor = bColor / 255.0f;
+            info->bgColor = bgColor / 255.0f;
             
             std::string route = line.substr(line.find("f"));
             

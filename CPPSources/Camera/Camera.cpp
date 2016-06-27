@@ -102,10 +102,9 @@ void Camera::update(){
         if(mLookAtAim.x != 9999){
             lookAtRoutine();
         }
-        
-        if(mAimClearColor.w != 0.0f){
-            clearColorRoutine();
-        }
+    }
+    if(mAimClearColor.w != 0.0f){
+        clearColorRoutine();
     }
     
     refreshViewAndNormalMatrix();

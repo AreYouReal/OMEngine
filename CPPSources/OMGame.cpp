@@ -36,7 +36,6 @@ OMContext* OMGame::getAppContext(){
 }
 
 int OMGame::InitGameWorld (){
-    AssetManager::instance()->init();
       if(disableScene) return 1;
     
     logGLError();

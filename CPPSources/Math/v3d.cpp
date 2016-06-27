@@ -182,6 +182,10 @@ v4d operator*(const v4d& vec4, const float scalar){
     return v4d(vec4.x * scalar, vec4.y * scalar, vec4.z * scalar, vec4.w * scalar);
 }
 
+v4d operator/(v4d& vec4, const float scalar){
+    return v4d(vec4.x/scalar, vec4.y/scalar, vec4.z/scalar, vec4.w/scalar);
+}
+
 float* v4d::pointer(){
     return &x;
 }

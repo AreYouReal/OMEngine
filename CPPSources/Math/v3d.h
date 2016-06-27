@@ -100,3 +100,4 @@ v3d operator/(v3d& vec3, const float scalar);
 v4d operator+(const v4d& v1, const v4d& v2);
 v4d operator-(const v4d& v1, const v4d& v2);
 v4d operator*(const v4d& vec4, const float scalar);
+v4d operator/(v4d& vec4, const float scalar);

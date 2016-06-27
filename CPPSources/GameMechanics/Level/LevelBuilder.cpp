@@ -329,9 +329,10 @@ void LevelBuilder::changeColorRoutine(){
             blockMat->diffuse = mAimColor;
             mAimColor = v4d(0, 0, 0, 0);
             mChangeColorTime = -1.0f;
+            mChangeColorCurrentTime = -1.0f;
         }else{
             float percent = (mChangeColorTime - mChangeColorCurrentTime) / mChangeColorTime;
-            blockMat->diffuse = v4d::lerp(blockMat->diffuse, mAimColor, percent * Time::deltaTime);
+            blockMat->diffuse = v4d::lerp(blockMat->diffuse, mAimColor, percent );
         }
         mChangeColorCurrentTime -= Time::deltaTime;
     }
