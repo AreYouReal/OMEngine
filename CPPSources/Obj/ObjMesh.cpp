@@ -1,12 +1,6 @@
 #include "ObjMesh.h"
 #include "Scene.hpp"
 
-ObjMesh::ObjMesh(){
-}
-
-ObjMesh::~ObjMesh(){
-}
-
 unsigned int ObjMesh::draw(){
     unsigned int n = 0;
     
@@ -71,7 +65,7 @@ void ObjMesh::build(){
     updateBounds();
     buildVBO();
     initMaterial();
-logGLError();
+    logGLError();
     glGenVertexArrays(1, &glInfo.vao);
     glBindVertexArray(glInfo.vao);
     
@@ -100,12 +94,6 @@ void ObjMesh::updateBounds(){
     
     outlines.location = (outlines.min + outlines.max) * 0.5f;
     outlines.dimension = outlines.max - outlines.min;
-    //    mesh->radius =  mesh->dimension.x >= mesh->dimension.y ?
-    //                    mesh->dimension.x :
-    //                    mesh->dimension.y;
-    //    mesh->radius =  mesh->radius >= mesh->dimension.x ?
-    //                    mesh->radius * 0.5f :
-    //                    mesh->dimension.z * 0.5f;
     outlines.radius = v3d::length(outlines.max - outlines.min) * 0.5f;
 }
 
@@ -148,8 +136,8 @@ void ObjMesh::buildVBO(){
         index = vertexData[i].vIndex;
         memcpy(vertexArray, &data->vertices[index], v3dSize);
         // Center the pivot
-        v3d centerThePivot = data->vertices[index] - outlines.location;      // ??????????
-        memcpy(vertexArray, &centerThePivot, v3dSize);                       // ??????????
+        v3d centerThePivot = data->vertices[index] - outlines.location;
+        memcpy(vertexArray, &centerThePivot, v3dSize);
         vertexArray += v3dSize;
         memcpy(vertexArray, &data->normals[index], v3dSize);
         vertexArray += v3dSize;
@@ -167,9 +155,7 @@ void ObjMesh::buildVBO(){
     glBindBuffer(GL_ARRAY_BUFFER, glInfo.vbo);
     glBufferData(GL_ARRAY_BUFFER, glInfo.size, vertexStart, GL_STATIC_DRAW);
     free(vertexStart);
-    
-    //    logMessage("Mesh vertices vbo:  ARRAY  %d\n", mesh->vbo);
-    
+
     unsigned int off = 0;
     glInfo.offset[0] = off;
     off += v3dSize;
@@ -187,7 +173,6 @@ void ObjMesh::buildVBO(){
         glGenBuffers(1, &tLists[i]->vbo);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, tLists[i]->vbo);
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, tLists[i]->indices.size() * sizeof(unsigned short), &tLists[i]->indices[0], GL_STATIC_DRAW);
-        //        logMessage("tList VBO: %d\n", mesh->tLists[i].vbo);
     }
 }
 

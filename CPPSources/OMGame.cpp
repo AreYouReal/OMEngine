@@ -69,7 +69,8 @@ void OMGame::Draw (){
     if( getMilliTime() - start >= 1000 ) {
 
         sprintf(tempBuff, "%.0f", ceilf(fps));
-        logMessage( "FPS: %d\n", fps ); start = getMilliTime();
+//        logMessage( "FPS: %d\n", fps );
+        start = getMilliTime();
         fps = 0;
     } ++fps;
     

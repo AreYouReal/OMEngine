@@ -13,6 +13,12 @@ PlayButton          *playButton = nullptr;
 
 float doubleTapTime = 0.4f;
 
+v3d startCameraPos{0, 11, 5};
+v3d mSelectorPos{20, 10, -6};
+v3d selectCameraPOs{20, 11, 5};
+float camMovingTime = 2.0f;
+
+
 #pragma Constr/Destr
 Scene::Scene(){
     logGLError();
@@ -33,7 +39,6 @@ Scene::~Scene(){
     PhysicalWorld::destroy();
     Boombox::destroy();
 }
-
 
 #pragma Public
 void Scene::switchState(Scene::State newState){
@@ -306,6 +311,7 @@ void Scene::startViewRoutine(){
         player = createPlayer();
     }else{
         player->go->removeComponent(ComponentEnum::ANIM_MESH);
+        
         up<AnimMeshComponent> mamc = up<AnimMeshComponent>(new AnimMeshComponent(player->go, AssetManager::instance()->getMD5Mesh("minimon_" + std::to_string( (int) mSelector->getCurrentSelectedMonster())) ) );
         player->go->addComponent(std::move(mamc));
         player->refreshAnimMeshComp();
@@ -316,13 +322,12 @@ void Scene::startViewRoutine(){
         player->go->mActive = true;
     }
     
-    if(mSelector){
-        mSelector->go->mActive = false;
-    }
+//    if(mSelector){
+//        mSelector->go->mActive = false;
+//    }
 
-    
-    Camera::instance()->moveTo(v3d(0, 11, 5), 1.5f);
-    Camera::instance()->lookAt( player->go->getPosition(), 1.5f);
+    Camera::instance()->moveTo(startCameraPos, camMovingTime);
+    Camera::instance()->lookAt( player->go->getPosition(), camMovingTime);
 }
 
 void Scene::levelRoutine(){
@@ -338,6 +343,9 @@ void Scene::levelRoutine(){
     player->activate();
     Illuminator::instance()->getLightSource(1)->follow(player->go);
 
+    if(mSelector){
+        mSelector->go->mActive = false;
+    }
 }
 
 void Scene::selectMonsterRoutine(){
@@ -346,12 +354,12 @@ void Scene::selectMonsterRoutine(){
     if(mSelector)
         mSelector->go->mActive = true;
     
-    if(player){
-        player->go->mActive = false;
-    }
+//    if(player){
+//        player->go->mActive = false;
+//    }
     
-    Camera::instance()->lookAt(mSelector->go->getPosition(), 1.5f);
-    Camera::instance()->moveTo(v3d(0, 11, 0), 1.5f);
+    Camera::instance()->lookAt(mSelector->go->getPosition(), camMovingTime);
+    Camera::instance()->moveTo(selectCameraPOs, camMovingTime);
 }
 
 void Scene::initMonsterSelector(){
@@ -364,7 +372,8 @@ void Scene::initMonsterSelector(){
             mSelector->addMonster(std::move(candyMonster));
         }
         
-        monsterSelectorObject->setPosition(v3d(0, 9, -15));
+        monsterSelectorObject->setPosition(mSelectorPos);
+        monsterSelectorObject->mTransform.refreshTransformMatrix();
         addObjOnScene(std::move(monsterSelectorObject));
     }
 }

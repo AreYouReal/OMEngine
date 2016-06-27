@@ -1,12 +1,7 @@
-
 #include "AnimMeshComponent.hpp"
-
 #include "OMGame.h"
-
 #include "Camera.h"
-
 #include "GameObject.hpp"
-
 #include "AssetManager.hpp"
 
 AnimMeshComponent::AnimMeshComponent(GameObject* const go, sp<md5::MD5> md5Obj) : IComponent(go){

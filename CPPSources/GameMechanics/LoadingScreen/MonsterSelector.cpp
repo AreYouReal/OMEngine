@@ -41,6 +41,9 @@ CandyMonster::CandyType MonsterSelector::getCurrentSelectedMonster(){
     if(angle == 360) angle = 0;
     CandyMonster::CandyType type = (CandyMonster::CandyType) (int)(angle/72 + 1);
     
+    
+    logMessage("current angle: %f\n", angle );
+    
     return type;
 }
 

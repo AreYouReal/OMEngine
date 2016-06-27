@@ -1,6 +1,6 @@
 #pragma once
 
-// SREngine
+// OMEngine
 #include "OMUtils.h"
 #include "ObjMaterial.h"
 #include "Obj.h"
@@ -33,9 +33,6 @@ class ObjMesh{
     friend class Obj;
 public:
 // Functions
-    ObjMesh();
-    ~ObjMesh();
-    
     unsigned int    draw();
     void            build();
     void            setAttributes();

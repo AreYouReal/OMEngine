@@ -92,18 +92,20 @@ void Camera::draw(){
 }
 
 void Camera::update(){
-    if(mMoveToPosition.x != 9999){
-        movingRoutine();
-    }else{
+    if(mGoToFollow){
         followingRoutine();
-    }
-    
-    if(mLookAtAim.x != 9999){
-        lookAtRoutine();
-    }
-    
-    if(mAimClearColor.w != 0.0f){
-        clearColorRoutine();
+    }else{
+        if(mMoveToPosition.x != 9999){
+            movingRoutine();
+        }
+        
+        if(mLookAtAim.x != 9999){
+            lookAtRoutine();
+        }
+        
+        if(mAimClearColor.w != 0.0f){
+            clearColorRoutine();
+        }
     }
     
     refreshViewAndNormalMatrix();
@@ -507,10 +509,9 @@ void Camera::movingRoutine(){
             mMovingCurrentTime = -1.0f;
         }else{
             float percent = (mMovingTime - mMovingCurrentTime) / mMovingTime;
-            v3d::print(transform.mPosition);
-            transform.mPosition = v3d::lerp(transform.mPosition, mMoveToPosition, percent * Time::deltaTime);
+            transform.mPosition = v3d::lerp(transform.mPosition, mMoveToPosition, percent);
+                mMovingCurrentTime -= Time::deltaTime;
         }
-        mMovingCurrentTime -= Time::deltaTime;
     }
 }
 
@@ -546,7 +547,7 @@ void Camera::clearColorRoutine(){
             mCurrentClearColorTime = -1.0f;
         }else{
             float percent = (mClearColorTime - mCurrentClearColorTime) / mClearColorTime;
-            mClearColor = v4d::lerp(mClearColor, mAimClearColor, percent * Time::deltaTime);
+            mClearColor = v4d::lerp(mClearColor, mAimClearColor, percent);
         }
         mCurrentClearColorTime -= Time::deltaTime;
     }
