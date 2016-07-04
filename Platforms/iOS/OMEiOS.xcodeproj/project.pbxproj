@@ -238,6 +238,7 @@
 		F348E4241D1D5C2700D5EF0B /* FFF_Tusj.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F348E4221D1D5C2700D5EF0B /* FFF_Tusj.ttf */; };
 		F348E4251D1D5C2700D5EF0B /* foo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F348E4231D1D5C2700D5EF0B /* foo.ttf */; };
 		F34C4B2A1CF857C0005211A9 /* LevelBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F34C4B281CF857C0005211A9 /* LevelBuilder.cpp */; };
+		F34F0A621D2A2F4800C8CE20 /* skybox.omg in Resources */ = {isa = PBXBuildFile; fileRef = F34F0A611D2A2F4800C8CE20 /* skybox.omg */; };
 		F3592D601D16894100D88B18 /* LevelInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3592D5E1D16894100D88B18 /* LevelInfo.cpp */; };
 		F3592D621D1690E400D88B18 /* worldA.cm in Resources */ = {isa = PBXBuildFile; fileRef = F3592D611D1690E400D88B18 /* worldA.cm */; };
 		F35AA90F1CC659D300957429 /* AnimMeshComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F35AA90D1CC659D300957429 /* AnimMeshComponent.cpp */; };
@@ -821,6 +822,7 @@
 		F348E4231D1D5C2700D5EF0B /* foo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = foo.ttf; sourceTree = "<group>"; };
 		F34C4B281CF857C0005211A9 /* LevelBuilder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LevelBuilder.cpp; sourceTree = "<group>"; };
 		F34C4B291CF857C0005211A9 /* LevelBuilder.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LevelBuilder.hpp; sourceTree = "<group>"; };
+		F34F0A611D2A2F4800C8CE20 /* skybox.omg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = skybox.omg; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
 		F3592D5E1D16894100D88B18 /* LevelInfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LevelInfo.cpp; sourceTree = "<group>"; };
 		F3592D5F1D16894100D88B18 /* LevelInfo.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LevelInfo.hpp; sourceTree = "<group>"; };
 		F3592D611D1690E400D88B18 /* worldA.cm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = worldA.cm; path = OMEngine/Platforms/Android/assets/worldA.cm; sourceTree = "<group>"; };
@@ -1913,6 +1915,7 @@
 		F368E8C41BA6AE5A00F322AF /* shaders */ = {
 			isa = PBXGroup;
 			children = (
+				F34F0A611D2A2F4800C8CE20 /* skybox.omg */,
 				F3A2CEA91D1D46DC00C39277 /* generalLightingProjector.omg */,
 				F3A2CEAA1D1D46DC00C39277 /* gouraudMultiLight.omg */,
 				F3A2CEAB1D1D46DC00C39277 /* particles.omg */,
@@ -2257,6 +2260,7 @@
 				F348E4101D1D58DE00D5EF0B /* minimon_4_run.md5anim in Resources */,
 				F348E4041D1D58DE00D5EF0B /* minimon_1_run.md5anim in Resources */,
 				F348E4121D1D58DE00D5EF0B /* minimon_5_idle.md5anim in Resources */,
+				F34F0A621D2A2F4800C8CE20 /* skybox.omg in Resources */,
 				F348E4011D1D58DE00D5EF0B /* minimon_1.md5mesh in Resources */,
 				9435525F1BEF091F00FC4ADA /* wired_vertex.glsl in Resources */,
 				F348E4061D1D58DE00D5EF0B /* minimon_2_idle.md5anim in Resources */,
