@@ -6,6 +6,8 @@
 #include "MonsterSelector.hpp"
 #include "PlayButton.hpp"
 
+#include "Skybox.hpp";
+
 PlayerController    *player    = nullptr;
 LevelBuilder        *lBuilder      = nullptr;
 MonsterSelector     *mSelector  = nullptr;
@@ -91,6 +93,9 @@ bool Scene::init(){
     
 
     mSelector->go->mActive = false;
+    
+    Skybox::create();
+
 
     
     return true;

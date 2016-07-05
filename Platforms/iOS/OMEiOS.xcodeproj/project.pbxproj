@@ -239,6 +239,13 @@
 		F348E4251D1D5C2700D5EF0B /* foo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F348E4231D1D5C2700D5EF0B /* foo.ttf */; };
 		F34C4B2A1CF857C0005211A9 /* LevelBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F34C4B281CF857C0005211A9 /* LevelBuilder.cpp */; };
 		F34F0A621D2A2F4800C8CE20 /* skybox.omg in Resources */ = {isa = PBXBuildFile; fileRef = F34F0A611D2A2F4800C8CE20 /* skybox.omg */; };
+		F34F0A661D2A3E0000C8CE20 /* Skybox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F34F0A641D2A3E0000C8CE20 /* Skybox.cpp */; };
+		F34F0A6E1D2A892C00C8CE20 /* Back.png in Resources */ = {isa = PBXBuildFile; fileRef = F34F0A681D2A892C00C8CE20 /* Back.png */; };
+		F34F0A6F1D2A892C00C8CE20 /* Bottom.png in Resources */ = {isa = PBXBuildFile; fileRef = F34F0A691D2A892C00C8CE20 /* Bottom.png */; };
+		F34F0A701D2A892C00C8CE20 /* Front.png in Resources */ = {isa = PBXBuildFile; fileRef = F34F0A6A1D2A892C00C8CE20 /* Front.png */; };
+		F34F0A711D2A892C00C8CE20 /* Left.png in Resources */ = {isa = PBXBuildFile; fileRef = F34F0A6B1D2A892C00C8CE20 /* Left.png */; };
+		F34F0A721D2A892C00C8CE20 /* Right.png in Resources */ = {isa = PBXBuildFile; fileRef = F34F0A6C1D2A892C00C8CE20 /* Right.png */; };
+		F34F0A731D2A892C00C8CE20 /* Top.png in Resources */ = {isa = PBXBuildFile; fileRef = F34F0A6D1D2A892C00C8CE20 /* Top.png */; };
 		F3592D601D16894100D88B18 /* LevelInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3592D5E1D16894100D88B18 /* LevelInfo.cpp */; };
 		F3592D621D1690E400D88B18 /* worldA.cm in Resources */ = {isa = PBXBuildFile; fileRef = F3592D611D1690E400D88B18 /* worldA.cm */; };
 		F35AA90F1CC659D300957429 /* AnimMeshComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F35AA90D1CC659D300957429 /* AnimMeshComponent.cpp */; };
@@ -823,6 +830,14 @@
 		F34C4B281CF857C0005211A9 /* LevelBuilder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LevelBuilder.cpp; sourceTree = "<group>"; };
 		F34C4B291CF857C0005211A9 /* LevelBuilder.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LevelBuilder.hpp; sourceTree = "<group>"; };
 		F34F0A611D2A2F4800C8CE20 /* skybox.omg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = skybox.omg; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
+		F34F0A641D2A3E0000C8CE20 /* Skybox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Skybox.cpp; sourceTree = "<group>"; };
+		F34F0A651D2A3E0000C8CE20 /* Skybox.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Skybox.hpp; sourceTree = "<group>"; };
+		F34F0A681D2A892C00C8CE20 /* Back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Back.png; sourceTree = "<group>"; };
+		F34F0A691D2A892C00C8CE20 /* Bottom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Bottom.png; sourceTree = "<group>"; };
+		F34F0A6A1D2A892C00C8CE20 /* Front.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Front.png; sourceTree = "<group>"; };
+		F34F0A6B1D2A892C00C8CE20 /* Left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Left.png; sourceTree = "<group>"; };
+		F34F0A6C1D2A892C00C8CE20 /* Right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Right.png; sourceTree = "<group>"; };
+		F34F0A6D1D2A892C00C8CE20 /* Top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Top.png; sourceTree = "<group>"; };
 		F3592D5E1D16894100D88B18 /* LevelInfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LevelInfo.cpp; sourceTree = "<group>"; };
 		F3592D5F1D16894100D88B18 /* LevelInfo.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LevelInfo.hpp; sourceTree = "<group>"; };
 		F3592D611D1690E400D88B18 /* worldA.cm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = worldA.cm; path = OMEngine/Platforms/Android/assets/worldA.cm; sourceTree = "<group>"; };
@@ -918,7 +933,7 @@
 		F3A2CEAA1D1D46DC00C39277 /* gouraudMultiLight.omg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gouraudMultiLight.omg; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
 		F3A2CEAB1D1D46DC00C39277 /* particles.omg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = particles.omg; sourceTree = "<group>"; };
 		F3A2CEAC1D1D46DC00C39277 /* phongMultiLight.omg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = phongMultiLight.omg; sourceTree = "<group>"; };
-		F3A2CEAD1D1D46DC00C39277 /* phongMultiLightBump.omg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = phongMultiLightBump.omg; sourceTree = "<group>"; };
+		F3A2CEAD1D1D46DC00C39277 /* phongMultiLightBump.omg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = phongMultiLightBump.omg; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
 		F3A2CEAE1D1D46DC00C39277 /* phongMultiLightTexture.omg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = phongMultiLightTexture.omg; sourceTree = "<group>"; };
 		F3A2CEAF1D1D46DC00C39277 /* shadowProjector.omg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = shadowProjector.omg; sourceTree = "<group>"; };
 		F3A2CEB01D1D46DC00C39277 /* writedepth.omg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = writedepth.omg; sourceTree = "<group>"; };
@@ -1046,6 +1061,7 @@
 		7626523F17F10E6C007CCD43 /* OMEiOS */ = {
 			isa = PBXGroup;
 			children = (
+				F34F0A631D2A3DF600C8CE20 /* Environment */,
 				F3F9D39D1CD749AB002EF3FC /* GameMechanics */,
 				F374BB811CB3E1D100DBFB47 /* MD5 */,
 				F37CC2C71C17294B00502E16 /* Concurrency */,
@@ -1788,6 +1804,7 @@
 		F348E3C51D1D4FCA00D5EF0B /* textures */ = {
 			isa = PBXGroup;
 			children = (
+				F34F0A671D2A892C00C8CE20 /* skybox */,
 				F348E3C61D1D4FCA00D5EF0B /* candy_1.png */,
 				F348E3C71D1D4FCA00D5EF0B /* candy_2.png */,
 				F348E3C81D1D4FCA00D5EF0B /* candy_3.png */,
@@ -1876,6 +1893,29 @@
 			);
 			name = fonts;
 			path = OMEngine/Platforms/Android/assets/fonts;
+			sourceTree = "<group>";
+		};
+		F34F0A631D2A3DF600C8CE20 /* Environment */ = {
+			isa = PBXGroup;
+			children = (
+				F34F0A641D2A3E0000C8CE20 /* Skybox.cpp */,
+				F34F0A651D2A3E0000C8CE20 /* Skybox.hpp */,
+			);
+			name = Environment;
+			path = OMEngine/CPPSources/Environment;
+			sourceTree = "<group>";
+		};
+		F34F0A671D2A892C00C8CE20 /* skybox */ = {
+			isa = PBXGroup;
+			children = (
+				F34F0A681D2A892C00C8CE20 /* Back.png */,
+				F34F0A691D2A892C00C8CE20 /* Bottom.png */,
+				F34F0A6A1D2A892C00C8CE20 /* Front.png */,
+				F34F0A6B1D2A892C00C8CE20 /* Left.png */,
+				F34F0A6C1D2A892C00C8CE20 /* Right.png */,
+				F34F0A6D1D2A892C00C8CE20 /* Top.png */,
+			);
+			path = skybox;
 			sourceTree = "<group>";
 		};
 		F368E8B51BA6AC9F00F322AF /* 3dPart */ = {
@@ -2255,6 +2295,7 @@
 			files = (
 				F348E4031D1D58DE00D5EF0B /* minimon_1_jump.md5anim in Resources */,
 				F328C4FE1BF4997F0037AC6D /* font_fragment.glsl in Resources */,
+				F34F0A711D2A892C00C8CE20 /* Left.png in Resources */,
 				F348E3E51D1D52DA00D5EF0B /* minimon_1.mtl in Resources */,
 				F3CAEEE51BB01A7600DCF182 /* default_color_vertex.glsl in Resources */,
 				F348E4101D1D58DE00D5EF0B /* minimon_4_run.md5anim in Resources */,
@@ -2272,6 +2313,7 @@
 				F348E4251D1D5C2700D5EF0B /* foo.ttf in Resources */,
 				F3D5E1191AF8F32E00DD216B /* Images.xcassets in Resources */,
 				F348E3EA1D1D52DA00D5EF0B /* play_btn.mtl in Resources */,
+				F34F0A721D2A892C00C8CE20 /* Right.png in Resources */,
 				F348E4051D1D58DE00D5EF0B /* minimon_2.md5mesh in Resources */,
 				F348E3D51D1D4FCA00D5EF0B /* minimon_1.png in Resources */,
 				F348E40C1D1D58DE00D5EF0B /* minimon_3_run.md5anim in Resources */,
@@ -2291,6 +2333,7 @@
 				F348E40D1D1D58DE00D5EF0B /* minimon_4.md5mesh in Resources */,
 				F3BCACBA1BFF26FE002003B7 /* Main_iPad.storyboard in Resources */,
 				F348E3D01D1D4FCA00D5EF0B /* candy_1.png in Resources */,
+				F34F0A6E1D2A892C00C8CE20 /* Back.png in Resources */,
 				F348E3E41D1D52DA00D5EF0B /* candies.mtl in Resources */,
 				F348E3D81D1D4FCA00D5EF0B /* minimon_4.png in Resources */,
 				F3A2CEB11D1D46DC00C39277 /* generalLightingProjector.omg in Resources */,
@@ -2301,6 +2344,7 @@
 				F348E3E91D1D52DA00D5EF0B /* minimon_5.mtl in Resources */,
 				F348E41F1D1D5B5800D5EF0B /* candies.obj in Resources */,
 				F348E4021D1D58DE00D5EF0B /* minimon_1_idle.md5anim in Resources */,
+				F34F0A701D2A892C00C8CE20 /* Front.png in Resources */,
 				F348E3D61D1D4FCA00D5EF0B /* minimon_2.png in Resources */,
 				94EF0C601BA70F6700EBF5EE /* norm_as_color_fragment.glsl in Resources */,
 				F348E4191D1D5AE800D5EF0B /* lounge.ogg in Resources */,
@@ -2310,6 +2354,7 @@
 				F348E4081D1D58DE00D5EF0B /* minimon_2_run.md5anim in Resources */,
 				F348E3E81D1D52DA00D5EF0B /* minimon_4.mtl in Resources */,
 				F3A2CEB31D1D46DC00C39277 /* particles.omg in Resources */,
+				F34F0A731D2A892C00C8CE20 /* Top.png in Resources */,
 				F348E3D91D1D4FCA00D5EF0B /* minimon_5.png in Resources */,
 				F348E40B1D1D58DE00D5EF0B /* minimon_3_jump.md5anim in Resources */,
 				F368E8CA1BA6AE5A00F322AF /* fragmentPerPixel.glsl in Resources */,
@@ -2320,6 +2365,7 @@
 				F348E40A1D1D58DE00D5EF0B /* minimon_3_idle.md5anim in Resources */,
 				F348E4111D1D58DE00D5EF0B /* minimon_5.md5mesh in Resources */,
 				F348E3D11D1D4FCA00D5EF0B /* candy_2.png in Resources */,
+				F34F0A6F1D2A892C00C8CE20 /* Bottom.png in Resources */,
 				F3A263961C33BD360021B3B6 /* light_point_fragment.glsl in Resources */,
 				F348E4091D1D58DE00D5EF0B /* minimon_3.md5mesh in Resources */,
 				94EF0C5E1BA70E5400EBF5EE /* pos_norm_vertex.glsl in Resources */,
@@ -2510,6 +2556,7 @@
 				94CE87D91B62B53500752D5C /* OMGame.cpp in Sources */,
 				9478900F1BD4CFD200B55A25 /* btHinge2Constraint.cpp in Sources */,
 				F39FA5AF1C0DE15400CC0BB4 /* analysis.c in Sources */,
+				F34F0A661D2A3E0000C8CE20 /* Skybox.cpp in Sources */,
 				947890361BD4CFD200B55A25 /* btVector3.cpp in Sources */,
 				F35AA90F1CC659D300957429 /* AnimMeshComponent.cpp in Sources */,
 				F3B0F6B71BF0AD9F0044A442 /* stb_truetype.cpp in Sources */,

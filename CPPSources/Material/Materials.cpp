@@ -22,6 +22,7 @@ Materials::Materials(){
     loadPrograms();
     loadOMGFile("phongMultiLightTexture.omg");
     loadOMGFile("phongMultiLight.omg");
+    loadOMGFile("skybox.omg");
 }
 
 Materials::~Materials(){
@@ -116,7 +117,7 @@ bool Materials::loadMaterial(const std::string &name){
     return true;
 }
 
-bool Materials::loadTexture(const std::string &name){
+bool Materials::loadTexture(const std::string &name, bool generateID){
     logGLError();
     if(textures.find(name) != textures.end()){
         logMessage("Texture is already loaded: %s\n", name.c_str());
@@ -127,6 +128,8 @@ bool Materials::loadTexture(const std::string &name){
         return false;
     }
     logGLError();
+    if(generateID)
+        texture->generateID(0, 0);
     textures.insert(std::pair<std::string, sp<Texture>>(texture->filename, texture));
     logGLError();
     
@@ -136,7 +139,6 @@ bool Materials::loadTexture(const std::string &name){
 
 sp<Texture> Materials::getTexture(const std::string &name){
     if(textures.find(name) != textures.end()){
-        textures[name]->generateID(0, 0);
         return textures[name];
     }
     return nullptr;
@@ -210,7 +212,7 @@ string Materials::processMaterialMap(string name){
         logGLError();
         return std::string();
     }else{
-        loadTexture(name);
+        loadTexture(name, true);
                     logGLError();
         return name;
     }

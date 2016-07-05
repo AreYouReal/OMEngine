@@ -18,7 +18,7 @@ public:
     ~Materials();
 
     bool                loadMaterial(const string &name);
-    bool                loadTexture (const string &name);
+    bool                loadTexture (const string &name, bool generateID);
     sp<ObjMaterial>     getMaterial (const string &name);
     sp<Texture>         getTexture  (const string &name);
     sp<ShaderProgram>   getProgram  (const string &name);

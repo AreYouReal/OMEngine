@@ -3,164 +3,30 @@ type Skybox
 GL_VERTEX_SHADER
 
 #version 300 es
-#define MAX_LIGHTS 5
 
 layout(location = 0) in vec4 aPosition;
-layout(location = 1) in vec3 aNormal;
-layout(location = 2) in vec2 aTexCoord;
-layout(location = 3) in vec3 aTangent;
 
 uniform mat4        uModelViewM;
 uniform mat4        uProjectionM;
-uniform lowp mat4   uNormalM;
-uniform mat4        uShadowM;
 
-struct Light{
-    lowp int  type;
-    lowp vec3 position;
-    lowp vec3 direction;
-    
-    lowp vec4 color;
-    
-    float dst;
-    float linAtten;
-    float quadAtten;
-    
-    float spotCosCutoff;
-    float spotBlend;
-};
-
-struct Material{
-    lowp vec4       ambient;
-    lowp vec4       diffuse;
-    lowp vec4       specular;
-    mediump float   shininess;
-};
-
-uniform Material uMaterial;
-uniform Light    uLight[MAX_LIGHTS];
-uniform int     numLights;
-
-uniform lowp sampler2DShadow    uSamplerShadow;
-
-vec3 lightDirectionTS[MAX_LIGHTS];
-vec3 spotDirection[MAX_LIGHTS];
-vec3 posForLight;
-vec4 shadowProjCoord;
-lowp vec3 normal;
-
-out lowp vec4 ambientColor;
-out lowp vec4 diffuseColor;
-out lowp vec4 specularColor;
-
-
-void calculateLightDirection(lowp vec3 position){
-    for(int i = 0; i < numLights; ++i){
-        switch (uLight[i].type) {
-            case 0:
-                lightDirectionTS[i] = uLight[i].direction;
-                break;
-            case 1:
-                lightDirectionTS[i] = (uLight[i].position - position);
-                break;
-            case 2:
-                lightDirectionTS[i] = (uLight[i].position - position);
-                spotDirection[i] = uLight[i].direction ;
-                break;
-            default:
-                break;
-        }
-    }
-}
-
-void directionalLight(in vec4 color, in vec3 direction){
-    lowp float ndotl = max( dot( normal, normalize(direction)), 0.0 );
-    if(ndotl > 0.0){
-        lowp float ndoth = max(dot(normal, normalize(direction + posForLight)), 0.0);
-        diffuseColor += color * ndotl * uMaterial.diffuse;
-        specularColor += uMaterial.specular * color * pow(ndoth, uMaterial.shininess);
-    }
-}
-
-float attenuation(in vec3 direction, int index){
-    highp float dist = length(direction);
-    lowp float sphere = max((uLight[index].dst - dist)/uLight[index].dst, 0.0);
-    if(sphere <= 0.0) return 0.0;
-    highp float lamdistsqr = uLight[index].dst * uLight[index].dst;
-    lowp float att = uLight[index].dst / (uLight[index].dst + uLight[index].linAtten * dist);
-    att *= lamdistsqr / (lamdistsqr + uLight[index].quadAtten * dist * dist);
-    att *= sphere;
-    return att;
-}
-
-void spotLight(in Light light, in highp vec3 direction, in lowp vec3 spotdir){
-    lowp vec3 nlightdir = normalize(direction);
-    lowp float ndotl = max(dot(normal, nlightdir), 0.0);
-    if(ndotl > 0.0){
-        lowp float ldots = max(dot(nlightdir, spotdir), 0.0);
-        if(ldots > light.spotCosCutoff){
-            lowp float ndoth = max(dot(normal, normalize(nlightdir + posForLight)), 0.0);
-            lowp float spot = ldots * clamp((ldots - light.spotCosCutoff)/light.spotBlend, 0.0, 1.0);
-            diffuseColor += uMaterial.diffuse * light.color * ndoth * spot;
-            specularColor += uMaterial.specular * light.color * pow(ndoth, uMaterial.shininess) * spot;
-        }
-    }
-}
-
-void omniLight(in vec4 color, in vec3 direction, int index){
-    lowp float ndotl = max( dot( normal, normalize(direction)), 0.0 );
-    if(ndotl > 0.0){
-        float attenuation = attenuation(direction, index);
-        lowp float ndoth = max(dot(normal, normalize(direction + posForLight)), 0.0);
-        diffuseColor += uMaterial.diffuse * color * ndotl * attenuation;
-        specularColor += uMaterial.specular * color * pow(ndoth, uMaterial.shininess * 0.128) * attenuation;
-    }
-}
+out vec4 vertex;
 
 void main(){
-    diffuseColor = vec4(0, 0, 0, 1);
-    specularColor = vec4(0, 0, 0, 1);
-    posForLight = vec3(uModelViewM * aPosition);
-    gl_Position = uProjectionM * vec4(posForLight, 1.0);
-    
-    normal = normalize(vec3(uNormalM * vec4(aNormal, 1.0)));
-    shadowProjCoord = uShadowM * aPosition;
-    
-    for(int i = 0; i < numLights; ++i){
-        calculateLightDirection(posForLight);
-    }
-    
-    for(int i = 0; i < numLights; ++i){
-        switch (uLight[i].type) {
-            case 0:
-                directionalLight(uLight[i].color, lightDirectionTS[i]);
-                break;
-            case 1:
-                omniLight(uLight[i].color, lightDirectionTS[i], i);
-                break;
-            case 2:
-                spotLight(uLight[i], lightDirectionTS[i], spotDirection[i]);
-                break;
-            default:
-                break;
-        }
-    }
-    
-    ambientColor = uMaterial.ambient;
+    vertex = aPosition;
+    gl_Position = uProjectionM * uModelViewM * aPosition;
 }
 
 GL_FRAGMENT_SHADER
 
 #version 300 es
-
 precision mediump float;
 
-in lowp vec4 ambientColor;
-in lowp vec4 diffuseColor;
-in lowp vec4 specularColor;
+uniform sampler2D uSamplerDiffuse;
 
-out vec4 fragColor;
+in vec4 vertex;
+
+layout(location = 0) out vec4 outColor;
 
 void main(){
-    fragColor = ambientColor + diffuseColor + specularColor;
+    outColor = texture(uSamplerDiffuse, vertex.xyz);
 }
