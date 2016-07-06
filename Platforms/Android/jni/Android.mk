@@ -15,6 +15,7 @@ $(SRC_PATH)/CPPSources/Component/DebugDrawComponent.cpp\
 $(SRC_PATH)/CPPSources/Component/MeshRendererComponent.cpp\
 $(SRC_PATH)/CPPSources/Component/RigidBodyComponent.cpp\
 $(SRC_PATH)/CPPSources/DEBUG/WiredCube.cpp\
+$(SRC_PATH)/CPPSources/Environment/Skybox.cpp\
 $(SRC_PATH)/CPPSources/GameMechanics/Level/BBlock.cpp\
 $(SRC_PATH)/CPPSources/GameMechanics/Level/LevelBuilder.cpp\
 $(SRC_PATH)/CPPSources/GameMechanics/Level/LevelInfo.cpp\
@@ -46,6 +47,7 @@ $(SRC_PATH)/CPPSources/Shaders/Shader.cpp\
 $(SRC_PATH)/CPPSources/Shaders/ShaderHelper.cpp\
 $(SRC_PATH)/CPPSources/Shaders/ShaderProgram.cpp\
 $(SRC_PATH)/CPPSources/Shaders/SimpleGouraudPhongSP.cpp\
+$(SRC_PATH)/CPPSources/Shaders/SkyboxSP.cpp\
 $(SRC_PATH)/CPPSources/Shaders/WireSP.cpp\
 $(SRC_PATH)/CPPSources/Texture/Texture.cpp\
 $(SRC_PATH)/CPPSources/Transform/Transform.cpp\
@@ -260,6 +262,7 @@ $(SRC_PATH)/CPPSources/Audio\
 $(SRC_PATH)/CPPSources/Camera\
 $(SRC_PATH)/CPPSources/Component\
 $(SRC_PATH)/CPPSources/DEBUG\
+$(SRC_PATH)/CPPSources/Environment\
 $(SRC_PATH)/CPPSources/GameMechanics/Level\
 $(SRC_PATH)/CPPSources/GameMechanics/LoadingScreen\
 $(SRC_PATH)/CPPSources/GameMechanics/Monsters\

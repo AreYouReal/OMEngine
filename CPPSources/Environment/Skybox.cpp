@@ -13,8 +13,10 @@ static std::vector<float> cubeVerts = {
 
 static std::vector<unsigned short> cubeIndices = {0, 1, 2, 3, 7, 1, 5, 4, 7, 6, 2, 4, 0, 1};
 
+
 up<GameObject> Skybox::create(){
     up<GameObject> go = up<GameObject>(new GameObject("SKYBOX"));
+    go->mTransform.scale(50, 50, 50);
     up<Skybox> skyboxComp = up<Skybox>(new Skybox(go.get()));
     go->addComponent(std::move(skyboxComp));
     return go;
@@ -27,12 +29,16 @@ Skybox::Skybox(GameObject * const gameObject) : IComponent(gameObject){
     
      
     mComponentType = ComponentEnum::SKYBOX;
-    Materials::instance()->loadTexture("Right.png", false);
-    Materials::instance()->loadTexture("Left.png", false);
-    Materials::instance()->loadTexture("Top.png", false);
-    Materials::instance()->loadTexture("Bottom.png", false);
-    Materials::instance()->loadTexture("Front.png", false);
-    Materials::instance()->loadTexture("Back.png", false);
+    string prefix = "";
+#ifdef ANDROID
+    prefix = "skybox/";
+#endif
+    Materials::instance()->loadTexture(prefix + "Right.png", false);
+    Materials::instance()->loadTexture(prefix + "Left.png", false);
+    Materials::instance()->loadTexture(prefix + "Top.png", false);
+    Materials::instance()->loadTexture(prefix + "Bottom.png", false);
+    Materials::instance()->loadTexture(prefix + "Front.png", false);
+    Materials::instance()->loadTexture(prefix + "Back.png", false);
     
 
     
@@ -66,22 +72,22 @@ Skybox::Skybox(GameObject * const gameObject) : IComponent(gameObject){
     glGenTextures(1, &cubeMapID);
     glBindTexture(GL_TEXTURE_CUBE_MAP, cubeMapID);
     
-    sp<Texture> right = Materials::instance()->getTexture("Right.png");
+    sp<Texture> right = Materials::instance()->getTexture(prefix + "Right.png");
     glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X, 0, GL_RGBA, right->width, right->height, 0, GL_RGBA, GL_UNSIGNED_BYTE, &right->texelArray[0] );
     
-    sp<Texture> left = Materials::instance()->getTexture("Left.png");
+    sp<Texture> left = Materials::instance()->getTexture(prefix + "Left.png");
     glTexImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_X, 0, GL_RGBA, left->width, left->height, 0, GL_RGBA, GL_UNSIGNED_BYTE, &left->texelArray[0]);
     
-    sp<Texture> top = Materials::instance()->getTexture("Top.png");
+    sp<Texture> top = Materials::instance()->getTexture(prefix + "Top.png");
     glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_Y, 0, GL_RGBA, top->width, top->height, 0, GL_RGBA, GL_UNSIGNED_BYTE, &top->texelArray[0]);
     
-    sp<Texture> bottom = Materials::instance()->getTexture("Bottom.png");
+    sp<Texture> bottom = Materials::instance()->getTexture(prefix + "Bottom.png");
     glTexImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_Y, 0, GL_RGBA, bottom->width, bottom->height, 0, GL_RGBA, GL_UNSIGNED_BYTE, &bottom->texelArray[0]);
     
-    sp<Texture> front = Materials::instance()->getTexture("Front.png");
+    sp<Texture> front = Materials::instance()->getTexture(prefix + "Front.png");
     glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_Z, 0, GL_RGBA, front->width, front->height, 0, GL_RGBA, GL_UNSIGNED_BYTE, &front->texelArray[0]);
     
-    sp<Texture> back = Materials::instance()->getTexture("Back.png");
+    sp<Texture> back = Materials::instance()->getTexture(prefix + "Back.png");
     glTexImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_Z, 0, GL_RGBA, back->width, back->height, 0, GL_RGBA, GL_UNSIGNED_BYTE, &back->texelArray[0]);
     
     glTexParameterf(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
@@ -112,14 +118,19 @@ bool Skybox::init(){
 
 
 void Skybox::draw(){
+    Camera::instance()->pushMMatrix( go->transformMatrix() );
+    glCullFace(GL_FRONT);
+//    glDisable(GL_DEPTH_TEST);
     glBindVertexArray(vao);
-    
     
     sp<ObjMaterial> mat = Materials::instance()->getMaterial("skybox");
     mat->use();
 
     glDrawElements(GL_TRIANGLE_STRIP, cubeIndices.size(), GL_UNSIGNED_SHORT, nullptr);
     glBindVertexArray(0);
+    Camera::instance()->popMMatrix();
+    glCullFace(GL_BACK);
+//    glEnable(GL_DEPTH_TEST);
 }
 
 
