@@ -18,4 +18,8 @@ private:
     unsigned int vao;
     unsigned int vbo;
     unsigned int ibo;
+    
+    
+    void initCubeTexturesAndMat();
+    void initVAO();
 };

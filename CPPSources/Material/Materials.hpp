@@ -18,7 +18,7 @@ public:
     ~Materials();
 
     bool                loadMaterial(const string &name);
-    bool                loadTexture (const string &name, bool generateID);
+    bool                loadTexture (const string &name, bool generateID, unsigned int target = GL_TEXTURE_2D);
     sp<ObjMaterial>     getMaterial (const string &name);
     sp<Texture>         getTexture  (const string &name);
     sp<ShaderProgram>   getProgram  (const string &name);

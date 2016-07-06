@@ -117,12 +117,12 @@ bool Materials::loadMaterial(const std::string &name){
     return true;
 }
 
-bool Materials::loadTexture(const std::string &name, bool generateID){
+bool Materials::loadTexture(const std::string &name, bool generateID, unsigned int target){
     logGLError();
     if(textures.find(name) != textures.end()){
         logMessage("Texture is already loaded: %s\n", name.c_str());
     }
-    sp<Texture> texture(Texture::load(name.c_str()));
+    sp<Texture> texture(Texture::load(name.c_str(), target));
     if(texture == nullptr){
         logMessage("Unable to load texture: %s\n", name.c_str());
         return false;
