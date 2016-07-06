@@ -179,9 +179,9 @@ v3d LevelBuilder::getNewPos(){
         }
     }else{
         if(randValue % 2 == 0){
-            x = 3 * step;         z = 0;
+            x = 4 * step;         z = 0;
         }else{
-            z = 3 * step; x = 0;
+            z = 4 * step; x = 0;
         }
     }
     v3d newPos = mLastBlockPoss + v3d(x, 0, z);

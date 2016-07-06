@@ -39,7 +39,7 @@ private:
     std::vector<GameObject*> activeCandies;
     std::vector<GameObject*> inactiveCandies;
     
-    unsigned int blockCount{15};
+    unsigned int blockCount{25};
     
     GameObject *prevObj {nullptr};
 

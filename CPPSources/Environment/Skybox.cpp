@@ -73,10 +73,10 @@ Skybox::Skybox(GameObject * const gameObject) : IComponent(gameObject){
     glBindTexture(GL_TEXTURE_CUBE_MAP, cubeMapID);
     
     sp<Texture> right = Materials::instance()->getTexture(prefix + "Right.png");
-    glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X, 0, GL_RGBA, right->width, right->height, 0, GL_RGBA, GL_UNSIGNED_BYTE, &right->texelArray[0] );
+    glTexImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_X, 0, GL_RGBA, right->width, right->height, 0, GL_RGBA, GL_UNSIGNED_BYTE, &right->texelArray[0] );
     
     sp<Texture> left = Materials::instance()->getTexture(prefix + "Left.png");
-    glTexImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_X, 0, GL_RGBA, left->width, left->height, 0, GL_RGBA, GL_UNSIGNED_BYTE, &left->texelArray[0]);
+    glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X, 0, GL_RGBA, left->width, left->height, 0, GL_RGBA, GL_UNSIGNED_BYTE, &left->texelArray[0]);
     
     sp<Texture> top = Materials::instance()->getTexture(prefix + "Top.png");
     glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_Y, 0, GL_RGBA, top->width, top->height, 0, GL_RGBA, GL_UNSIGNED_BYTE, &top->texelArray[0]);
@@ -85,10 +85,10 @@ Skybox::Skybox(GameObject * const gameObject) : IComponent(gameObject){
     glTexImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_Y, 0, GL_RGBA, bottom->width, bottom->height, 0, GL_RGBA, GL_UNSIGNED_BYTE, &bottom->texelArray[0]);
     
     sp<Texture> front = Materials::instance()->getTexture(prefix + "Front.png");
-    glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_Z, 0, GL_RGBA, front->width, front->height, 0, GL_RGBA, GL_UNSIGNED_BYTE, &front->texelArray[0]);
+    glTexImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_Z, 0, GL_RGBA, front->width, front->height, 0, GL_RGBA, GL_UNSIGNED_BYTE, &front->texelArray[0]);
     
     sp<Texture> back = Materials::instance()->getTexture(prefix + "Back.png");
-    glTexImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_Z, 0, GL_RGBA, back->width, back->height, 0, GL_RGBA, GL_UNSIGNED_BYTE, &back->texelArray[0]);
+    glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_Z, 0, GL_RGBA, back->width, back->height, 0, GL_RGBA, GL_UNSIGNED_BYTE, &back->texelArray[0]);
     
     glTexParameterf(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glTexParameterf(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);

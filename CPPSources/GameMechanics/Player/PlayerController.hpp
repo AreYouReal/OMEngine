@@ -27,10 +27,10 @@ private:
     v3d currentFronVector{};
     float upLinVelocity = 0.0f;
     
-    float playerSpeed = 7.5;
+    float playerSpeed = 10.5;
     
     bool mJump = false;
-    float jumpSpeed = 7.5f;
+    float jumpSpeed = 10.5f;
     
     
 // Fields

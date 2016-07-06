@@ -8,7 +8,7 @@ static v3d leftDir{-1, 0, 0};
 static v3d backDir{0, 0, -1};
 static v3d rightDir{1, 0, 0};
 static int runStep{2};
-static int jumpStep{6};
+static int jumpStep{8};
 
 sp<LevelInfo> LevelInfo::parseLevelLine(const string line){
     if(line != ""){
