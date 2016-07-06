@@ -15,9 +15,7 @@ public:
     
 private:
     std::vector<sp<Texture>> textures;
-    
-    
+    unsigned int vao;
     unsigned int vbo;
     unsigned int ibo;
-    
 };

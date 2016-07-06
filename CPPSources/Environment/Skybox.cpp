@@ -1,5 +1,4 @@
 #include "Skybox.hpp"
-#include "ShaderProgram.h"
 
 static std::vector<float> cubeVerts = {
     -1.0f,  -1.0f,   1.0f,
@@ -12,7 +11,7 @@ static std::vector<float> cubeVerts = {
     1.0f,   1.0f,  -1.0f,
 };
 
-static std::vector<GLubyte> cubeIndices = {0, 1, 2, 3, 7, 1, 5, 4, 7, 6, 2, 4, 0, 1};
+static std::vector<unsigned short> cubeIndices = {0, 1, 2, 3, 7, 1, 5, 4, 7, 6, 2, 4, 0, 1};
 
 up<GameObject> Skybox::create(){
     up<GameObject> go = up<GameObject>(new GameObject("SKYBOX"));
@@ -24,15 +23,9 @@ up<GameObject> Skybox::create(){
 
 Skybox::Skybox(GameObject * const gameObject) : IComponent(gameObject){
     
-    glGenBuffers(1, &vbo);
-    glBindBuffer(GL_ARRAY_BUFFER, vbo);
+
     
-    glBufferData(GL_ARRAY_BUFFER, cubeVerts.size() * sizeof(float), &cubeVerts[0], GL_STATIC_DRAW );
-    
-    glGenBuffers(1, &ibo);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, cubeIndices.size() * sizeof(GLubyte), &cubeIndices[0], GL_STATIC_DRAW);
-    
+     
     mComponentType = ComponentEnum::SKYBOX;
     Materials::instance()->loadTexture("Right.png", false);
     Materials::instance()->loadTexture("Left.png", false);
@@ -41,7 +34,37 @@ Skybox::Skybox(GameObject * const gameObject) : IComponent(gameObject){
     Materials::instance()->loadTexture("Front.png", false);
     Materials::instance()->loadTexture("Back.png", false);
     
-    glActiveTexture(GL_TEXTURE1);
+
+    
+    
+    glGenBuffers(1, &vbo);
+    glGenBuffers(1, &ibo);
+    
+    glBindBuffer(GL_ARRAY_BUFFER, vbo);
+    unsigned char size = sizeof(v3d) / sizeof(float);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, size, GL_FLOAT, GL_FALSE, 0, 0);
+    
+    
+    glBufferData(GL_ARRAY_BUFFER, cubeVerts.size() * sizeof(float), &cubeVerts[0], GL_STATIC_DRAW );
+    
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, cubeIndices.size() * sizeof(unsigned short), &cubeIndices[0], GL_STATIC_DRAW);
+    
+    glGenVertexArrays(1, &vao);
+    glBindVertexArray(vao);
+        glBindBuffer(GL_ARRAY_BUFFER, vbo);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, size, GL_FLOAT, GL_FALSE, 0, 0);
+     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
+    
+    
+    glBindVertexArray(0);
+    
+    
+    unsigned int cubeMapID;
+    glGenTextures(1, &cubeMapID);
+    glBindTexture(GL_TEXTURE_CUBE_MAP, cubeMapID);
     
     sp<Texture> right = Materials::instance()->getTexture("Right.png");
     glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X, 0, GL_RGBA, right->width, right->height, 0, GL_RGBA, GL_UNSIGNED_BYTE, &right->texelArray[0] );
@@ -60,28 +83,43 @@ Skybox::Skybox(GameObject * const gameObject) : IComponent(gameObject){
     
     sp<Texture> back = Materials::instance()->getTexture("Back.png");
     glTexImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_Z, 0, GL_RGBA, back->width, back->height, 0, GL_RGBA, GL_UNSIGNED_BYTE, &back->texelArray[0]);
-
+    
     glTexParameterf(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glTexParameterf(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameterf(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
     glTexParameterf(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     glTexParameterf(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    
+    sp<ObjMaterial> skyboxMat = std::make_shared<ObjMaterial>("skybox");
+    skyboxMat->tAmbient = right;
+    skyboxMat->tAmbient->target = GL_TEXTURE_CUBE_MAP;
+    right->ID = cubeMapID;
+    skyboxMat->program = Materials::instance()->getProgram("skybox.omg");
+    Materials::instance()->addMaterial(skyboxMat);
+    
+    
+    
+    
 }
 
 Skybox::~Skybox(){
 }
 
 bool Skybox::init(){
-
-    
-    
     logMessage("Init skybox goes here");
     return true;
 }
 
 
 void Skybox::draw(){
-    sp<ShaderProgram> skyboxProgram = Materials::instance()->getProgram("skybox.omg");
+    glBindVertexArray(vao);
+    
+    
+    sp<ObjMaterial> mat = Materials::instance()->getMaterial("skybox");
+    mat->use();
+
+    glDrawElements(GL_TRIANGLE_STRIP, cubeIndices.size(), GL_UNSIGNED_SHORT, nullptr);
+    glBindVertexArray(0);
 }
 
 

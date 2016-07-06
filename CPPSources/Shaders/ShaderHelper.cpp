@@ -8,6 +8,7 @@
 #include "PhongMultiLightSP.hpp"
 #include "SimpleGouraudPhongSP.hpp"
 #include "DepthSP.hpp"
+#include "SkyboxSP.hpp"
 
 #pragma mark Public
 
@@ -20,7 +21,8 @@ std::map<string, ShaderHelper::ShaderType> enumTypeTable{
     std::pair<string, ShaderHelper::ShaderType>("Wired",                ShaderHelper::Wired             ),
     std::pair<string, ShaderHelper::ShaderType>("GouraudMultiLight",    ShaderHelper::GouraudMultiLight ),
     std::pair<string, ShaderHelper::ShaderType>("PhongMultiLight",      ShaderHelper::PhongMultiLight   ),
-    std::pair<string, ShaderHelper::ShaderType>("General",              ShaderHelper::General           )
+    std::pair<string, ShaderHelper::ShaderType>("General",              ShaderHelper::General           ),
+    std::pair<string, ShaderHelper::ShaderType>("Skybox",               ShaderHelper::Skybox           )
 };
 
 sp<ShaderProgram> ShaderHelper::createProgram(string programName, const string vertexShaderFilename, string fragmentShaderFilename, const ShaderType sType){
@@ -42,6 +44,9 @@ sp<ShaderProgram> ShaderHelper::createProgram(const string programName, const Sh
             break;
         case OneColor:
             program = std::make_shared<OneColorSP>();
+            break;
+        case Skybox:
+            program = std::make_shared<SkyboxSP>();
             break;
         case SimpleGouraud:
         case SimplePhong:

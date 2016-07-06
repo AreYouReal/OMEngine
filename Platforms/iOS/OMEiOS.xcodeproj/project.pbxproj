@@ -186,6 +186,7 @@
 		94FAF39E1BEE939F0087CC0C /* WiredCube.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94FAF39C1BEE939F0087CC0C /* WiredCube.cpp */; };
 		F328C4FE1BF4997F0037AC6D /* font_fragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F328C4FC1BF4997F0037AC6D /* font_fragment.glsl */; };
 		F328C4FF1BF4997F0037AC6D /* font_vertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F328C4FD1BF4997F0037AC6D /* font_vertex.glsl */; };
+		F32D61421D2CC40E002F89FF /* SkyboxSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F32D61401D2CC40E002F89FF /* SkyboxSP.cpp */; };
 		F32EB63C1C5FA5E00057F474 /* OneColorSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F32EB63A1C5FA5E00057F474 /* OneColorSP.cpp */; };
 		F33138101CD62640000705D5 /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3C52B2A1BBD079F009F3604 /* Scene.cpp */; };
 		F3392F611C117B4E005E850E /* Sound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3392F5F1C117B4E005E850E /* Sound.cpp */; };
@@ -771,6 +772,8 @@
 		94FFA85E1BD8D95500E44EBE /* MeshGLInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MeshGLInfo.h; sourceTree = "<group>"; };
 		F328C4FC1BF4997F0037AC6D /* font_fragment.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = font_fragment.glsl; path = ../Android/assets/shaders/font_fragment.glsl; sourceTree = SOURCE_ROOT; };
 		F328C4FD1BF4997F0037AC6D /* font_vertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = font_vertex.glsl; path = ../Android/assets/shaders/font_vertex.glsl; sourceTree = SOURCE_ROOT; };
+		F32D61401D2CC40E002F89FF /* SkyboxSP.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SkyboxSP.cpp; path = OMEngine/CPPSources/Shaders/SkyboxSP.cpp; sourceTree = "<group>"; };
+		F32D61411D2CC40E002F89FF /* SkyboxSP.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = SkyboxSP.hpp; path = OMEngine/CPPSources/Shaders/SkyboxSP.hpp; sourceTree = "<group>"; };
 		F32EB63A1C5FA5E00057F474 /* OneColorSP.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OneColorSP.cpp; path = OMEngine/CPPSources/Shaders/OneColorSP.cpp; sourceTree = "<group>"; };
 		F32EB63B1C5FA5E00057F474 /* OneColorSP.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = OneColorSP.hpp; path = OMEngine/CPPSources/Shaders/OneColorSP.hpp; sourceTree = "<group>"; };
 		F3392F5F1C117B4E005E850E /* Sound.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sound.cpp; sourceTree = "<group>"; };
@@ -2167,6 +2170,8 @@
 				F3E0F5571CD09B1D005D0EEE /* GouraudMultiLightSP.hpp */,
 				F3D942441CDF745500AE0D0B /* PhongMultiLightSP.cpp */,
 				F3D942451CDF745500AE0D0B /* PhongMultiLightSP.hpp */,
+				F32D61401D2CC40E002F89FF /* SkyboxSP.cpp */,
+				F32D61411D2CC40E002F89FF /* SkyboxSP.hpp */,
 			);
 			name = Programs;
 			sourceTree = "<group>";
@@ -2572,6 +2577,7 @@
 				94788FEE1BD4CFD200B55A25 /* btTriangleMeshShape.cpp in Sources */,
 				94788FFF1BD4CFD200B55A25 /* btGjkEpaPenetrationDepthSolver.cpp in Sources */,
 				94788FDF1BD4CFD200B55A25 /* btMultimaterialTriangleMeshShape.cpp in Sources */,
+				F32D61421D2CC40E002F89FF /* SkyboxSP.cpp in Sources */,
 				947890251BD4CFD200B55A25 /* btRaycastVehicle.cpp in Sources */,
 				94CE87CE1B62B4D000752D5C /* v3d.cpp in Sources */,
 				F380B7901BBBDC550049E755 /* ObjMesh.cpp in Sources */,

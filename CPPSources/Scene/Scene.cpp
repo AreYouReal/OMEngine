@@ -94,7 +94,7 @@ bool Scene::init(){
 
     mSelector->go->mActive = false;
     
-    Skybox::create();
+    addObjOnScene(std::move( Skybox::create() ));
 
 
     
