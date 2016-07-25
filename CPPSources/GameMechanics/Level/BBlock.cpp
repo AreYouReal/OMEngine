@@ -1,6 +1,8 @@
 #include "BBlock.hpp"
 
-BBlock::BBlock(GameObject * const gameObject, LevelBuilder * const lb) : IComponent(gameObject), mLB(lb){}
+BBlock::BBlock(GameObject * const gameObject, LevelBuilder * const lb) : IComponent(gameObject), mLB(lb){
+    gameObject->mTransform.mScale = v3d(0.2f, 0.2f, 0.2f);
+}
 
 BBlock::BBlock(GameObject * const gameObject) : IComponent(gameObject){}
 
