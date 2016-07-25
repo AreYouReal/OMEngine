@@ -56,14 +56,17 @@ bool RigidBodyComponent::initRigidBody(){
 
 void RigidBodyComponent::update(){
     if(mBody){
-        mBody->getWorldTransform().getOpenGLMatrix((float *)mTransformMatrix.pointer());
-        mTransformMatrix =  m4d::transpose(mTransformMatrix);
+        updateTransformMatrix();
         //        logMessage("%s %f, %f, %f\n", mObjMeshes[0]->getName().c_str(), pBody->getWorldTransform().m_origin[0], pBody->getWorldTransform().m_origin[1], pBody->getWorldTransform().m_origin[2]);
     }
 }
 
 void RigidBodyComponent::draw(){}
 
+void RigidBodyComponent::updateTransformMatrix(){
+    mBody->getWorldTransform().getOpenGLMatrix((float *)mTransformMatrix.pointer());
+    mTransformMatrix =  m4d::transpose(mTransformMatrix);
+}
 
 void RigidBodyComponent::setContantCallback(PhysicContactCallback pcc){
     mContactCC = pcc;

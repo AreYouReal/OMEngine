@@ -10,7 +10,6 @@
 up<GameObject> PlayButton::create(){
     up<GameObject> play = up<GameObject>(new GameObject("PLAY"));
     up<MeshRendererComponent> mrc = up<MeshRendererComponent>(new MeshRendererComponent(play.get(), AssetManager::instance()->getMeshFromObj("bblock.obj", "bblock")));
-    play->mTransform.mScale = v3d(0.2f, 0.2f, 0.2f);
     play->addComponent(std::move(mrc));
 
     up<RigidBodyComponent> rbc = up<RigidBodyComponent>(new RigidBodyComponent(play.get(), 0.0f));
@@ -19,13 +18,13 @@ up<GameObject> PlayButton::create(){
     
     play->addComponent(std::move(rbc));
     
-    play->setPosition(v3d(0, 8, 0));
+
     up<PlayButton> pbc = up<PlayButton>(new PlayButton(play.get()));
-    
-    pbc->mRigidBodyComp = static_cast<RigidBodyComponent*>( play->getComponent(ComponentEnum::RIGID_BODY) );
     
     play->addComponent(std::move(pbc));
 
+    play->setPosition(v3d(0, 8, 0));
+    
     return play;
 }
 

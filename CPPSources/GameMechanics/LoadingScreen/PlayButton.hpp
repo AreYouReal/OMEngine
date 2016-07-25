@@ -13,7 +13,4 @@ public:
     virtual void update() override;
     
     static up<GameObject> create();
-
-    
-    RigidBodyComponent *mRigidBodyComp;
 };

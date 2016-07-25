@@ -26,6 +26,8 @@ public:
     
     void setContantCallback(PhysicContactCallback pcc);
     void setNearCallback(PhysicNearCallback pnc);
+    
+    void updateTransformMatrix();
 
 private:
     

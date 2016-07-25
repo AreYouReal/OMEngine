@@ -109,6 +109,7 @@ void GameObject::setPosition(v3d pos){
         btTransform t = rBody->mBody->getWorldTransform();
         t.setOrigin(btVector3(pos.x, pos.y, pos.z));
         rBody->mBody->setCenterOfMassTransform(t);
+        rBody->updateTransformMatrix();
     }else{
         mTransform.mPosition = pos;
     }

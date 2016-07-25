@@ -16,7 +16,7 @@
 
 using UserData = struct{};
 static OMContext       *appContext;
-bool OMGame::debugFlag  = false;
+bool OMGame::debugFlag  = true;
 
 bool disableScene = false;
 
