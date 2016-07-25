@@ -25,6 +25,10 @@ public:
     
     AnimationStates getState(){ return mState; };
 
+    bool castShadow = true;
+    
+    void setShadowDraw(const bool cast){ md5->shadowDraw = cast; }
+    
 private:
     sp<md5::MD5>    md5;
     

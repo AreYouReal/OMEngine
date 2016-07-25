@@ -937,7 +937,7 @@
 		F3A2CEAB1D1D46DC00C39277 /* particles.omg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = particles.omg; sourceTree = "<group>"; };
 		F3A2CEAC1D1D46DC00C39277 /* phongMultiLight.omg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = phongMultiLight.omg; sourceTree = "<group>"; };
 		F3A2CEAD1D1D46DC00C39277 /* phongMultiLightBump.omg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = phongMultiLightBump.omg; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
-		F3A2CEAE1D1D46DC00C39277 /* phongMultiLightTexture.omg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = phongMultiLightTexture.omg; sourceTree = "<group>"; };
+		F3A2CEAE1D1D46DC00C39277 /* phongMultiLightTexture.omg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = phongMultiLightTexture.omg; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
 		F3A2CEAF1D1D46DC00C39277 /* shadowProjector.omg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = shadowProjector.omg; sourceTree = "<group>"; };
 		F3A2CEB01D1D46DC00C39277 /* writedepth.omg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = writedepth.omg; sourceTree = "<group>"; };
 		F3A8431F1CCF448C006D1B94 /* SimpleGouraudPhongSP.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SimpleGouraudPhongSP.cpp; path = OMEngine/CPPSources/Shaders/SimpleGouraudPhongSP.cpp; sourceTree = "<group>"; };

@@ -236,9 +236,10 @@ void MD5::build(){
 }
 
 void MD5::draw(){
-    setPose();
     if(visible && distance){
+        setPose();
         for(auto &mesh : meshes){
+            mesh->shadowDraw = shadowDraw;
             mesh->draw();
         }
     }
@@ -469,11 +470,16 @@ void Mesh::initMaterial(){
     material = Materials::instance()->getMaterial(shader);
     material->loadTextures();
     material->program = Materials::instance()->getProgramFoMesh(shader);
+    shadowMaterial = Materials::instance()->getMaterial("shadowMaterial");
 }
 
 void Mesh::draw(){
     if(visible){
-        if(material) material->use();
+        if(shadowDraw){
+            if(shadowMaterial) shadowMaterial->use();
+        }else{
+            if(material) material->use();
+        }
         if(vao) glBindVertexArray(vao);
         else setAttributes();
         

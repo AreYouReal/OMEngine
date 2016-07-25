@@ -23,6 +23,7 @@ Materials::Materials(){
     loadOMGFile("phongMultiLightTexture.omg");
     loadOMGFile("phongMultiLight.omg");
     loadOMGFile("skybox.omg");
+    loadOMGFile("writedepth.omg");
 }
 
 Materials::~Materials(){

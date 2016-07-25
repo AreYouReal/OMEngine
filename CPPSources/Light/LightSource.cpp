@@ -48,11 +48,11 @@ void LightSource::update(){
         go->setPosition(mFollowObj->getPosition() + v3d(1, 1, 1));
     }
     
-//    static float degrees = 0.0f;
-//    if(degrees > 360.0f){
-//        degrees = 0.0f;
-//    }
-//    degrees += 50 * Time::deltaTime;
-//    
-//    go->mTransform.rotate(degrees, v3d(1, 1, 0));
+    static float degrees = 0.0f;
+    if(degrees > 360.0f){
+        degrees = 0.0f;
+    }
+    degrees += 50 * Time::deltaTime;
+    
+    go->mTransform.rotate(degrees, v3d(1, 1, 0));
 }

@@ -122,10 +122,10 @@ void Scene::draw(){
 void Scene::drawDepth(){
     glGetIntegerv(GL_FRAMEBUFFER_BINDING, &Camera::instance()->mMainBuffer);
     glBindFramebuffer( GL_FRAMEBUFFER, Camera::instance()->shadowBuffer());
-    //        glBindFramebuffer(GL_FRAMEBUFFER, Camera::instance()->mMainBuffer);
+//            glBindFramebuffer(GL_FRAMEBUFFER, Camera::instance()->mMainBuffer);
     
     glViewport(0, 0, Camera::instance()->shadowmapWidth(), Camera::instance()->shadowmapHeight());
-    glClear(GL_DEPTH_BUFFER_BIT);
+    glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
     
     glColorMask ( GL_FALSE, GL_FALSE, GL_FALSE, GL_FALSE );
     glEnable ( GL_POLYGON_OFFSET_FILL );
@@ -139,6 +139,16 @@ void Scene::drawDepth(){
             mrc->shadowDraw = true;
             mrc->draw();
             mrc->shadowDraw = false;
+        }
+    }
+    
+    
+    for(const auto& go: mObjects){
+        AnimMeshComponent *amc = static_cast<AnimMeshComponent*>(go->getComponent(ComponentEnum::ANIM_MESH));
+        if(amc && amc->castShadow){
+            amc->setShadowDraw( true );
+            amc->draw();
+            amc->setShadowDraw(false);
         }
     }
     Camera::instance()->shadowDraw = false;

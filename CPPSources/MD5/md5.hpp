@@ -53,7 +53,9 @@ struct Mesh{
     std::vector<Weight> weights;
     unsigned int vao;
     bool visible = true;
+    bool shadowDraw = false;
     sp<ObjMaterial> material;
+    sp<ObjMaterial> shadowMaterial;
     
     void buildVBO();
     void buildVAO();
@@ -114,6 +116,8 @@ public:
         v3d     dimension;
         float radius;
         float distance;
+    
+        bool shadowDraw;
         
         void optimize(unsigned int vertexCacheSize);
         void build();
