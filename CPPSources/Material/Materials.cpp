@@ -1,34 +1,49 @@
 
 #include "Materials.hpp"
-#include "Game.h"
 #include "OMUtils.h"
 #include "ShaderHelper.h"
 
+static std::map<string, string>  meshShaderTable{
+    std::pair<string, string>("bblock", "phongMultiLight.omg"),
+    std::pair<string, string>("play_btn", "phongMultiLight.omg"),
+    std::pair<string, string>("candy_1", "phongMultiLightTexture.omg"),
+    std::pair<string, string>("candy_2", "phongMultiLightTexture.omg"),
+    std::pair<string, string>("candy_3", "phongMultiLightTexture.omg"),
+    std::pair<string, string>("candy_4", "phongMultiLightTexture.omg"),
+    std::pair<string, string>("candy_5", "phongMultiLightTexture.omg"),
+    std::pair<string, string>("minimon_1", "phongMultiLightTexture.omg"),
+    std::pair<string, string>("minimon_2", "phongMultiLightTexture.omg"),
+    std::pair<string, string>("minimon_3", "phongMultiLightTexture.omg"),
+    std::pair<string, string>("minimon_4", "phongMultiLightTexture.omg"),
+    std::pair<string, string>("minimon_5", "phongMultiLightTexture.omg"),
+};
+
 Materials::Materials(){
     loadPrograms();
-    sp<ObjMaterial> wireMaterial = std::make_shared<ObjMaterial>("wired");
-    wireMaterial->setProgram(getProgram("wired"));
-    materials.insert(std::pair<string, sp<ObjMaterial>>(wireMaterial->name, wireMaterial));
-    logMessage("Materials constructor!\n");
+    loadOMGFile("phongMultiLightTexture.omg");
+    loadOMGFile("phongMultiLight.omg");
+    loadOMGFile("skybox.omg");
+    loadOMGFile("writedepth.omg");
 }
 
 Materials::~Materials(){
     materials.clear();
-    logMessage("Materials destructor!\n");
 }
 
-
 bool Materials::loadMaterial(const std::string &name){
-    logMessage("Starting loading materials! %d\n", materials.size());
+    logGLError();
     if(materials.find(name) != materials.end()){
         logMessage("Material is already loaded: %s\n", name.c_str());
         return false;
     }
-    
-    std::unique_ptr<FileContent> objSource = readBytesFromFile(Game::getAppContext(), name.c_str());
+    string filename = name;
+#ifdef ANDROID
+    filename = "materials/" + filename;
+#endif
+    std::unique_ptr<FileContent> objSource = readBytesFromFile(filename.c_str());
     
     if(!objSource.get()){
-        logMessage("Unable to load material: %s\n", name.c_str());
+        logMessage("Unable to load material: %s\n", filename.c_str());
         return false;
     }
     
@@ -37,79 +52,94 @@ bool Materials::loadMaterial(const std::string &name){
     str[255] = {""};
     
     v3d v;
-    
-    logMessage("Line processing! %d\n", materials.size());
-    
+
     while(line){
         if(!line[0] || line[0] == '#' ){ line = strtok( NULL, "\n" ); continue;
         }else if( sscanf(line, "newmtl %s", str) == 1){
             mat = std::make_shared<ObjMaterial>(); mat->name = str;
             materials.insert(std::pair<std::string, sp<ObjMaterial>>(mat->name, mat));
+            logMessage("New material added: %s\n", mat->name.c_str());
+            logGLError();
         }else if(sscanf(line, "Ka %f %f %f", &v.x, &v.y, &v.z) == 3){
             memcpy(&mat->ambient, &v, sizeof(v3d));
+                    logGLError();
         }else if(sscanf(line, "Kd %f %f %f", &v.x, &v.y, &v.z) == 3){
             memcpy(&mat->diffuse, &v, sizeof(v3d));
+                    logGLError();
         }else if(sscanf(line, "Ks %f %f %f", &v.x, &v.y, &v.z) == 3){
             memcpy(&mat->specular, &v, sizeof(v3d));
+                    logGLError();
         }else if(sscanf(line, "Tf %f %f %f", &v.x, &v.y, &v.z) == 3){
             memcpy(&mat->transmissionFilter, &v, sizeof(v3d));
+                    logGLError();
         }else if(sscanf( line, "illum %f", &v.x ) == 1 ){
             mat->illuminationModel = (int)v.x;
+                    logGLError();
         }else if(sscanf(line, "d %f", &v.x) == 1){
             mat->ambient.w = v.x;
             mat->diffuse.w = v.x;
             mat->specular.w= v.x;
             mat->dissolve   = v.x;
+                    logGLError();
         }else if(sscanf(line, "Ns %f",  &v.x) == 1){
             mat->specularExponent   = v.x;
+                    logGLError();
         }else if(sscanf(line, "Ni %f", &v.x) == 1){
             mat->opticalDensity = v.x;
+                    logGLError();
         }else if(sscanf(line, "map_Ka %s", str) == 1){
-            mat->mapAmbient = str;
-            loadTexture(str);
+            mat->mapAmbient = processMaterialMap(str);
+                    logGLError();
         }else if(sscanf(line, "map_Kd %s", str) == 1){
-            mat->mapDiffuse = str;
-            loadTexture(str);
+            mat->mapDiffuse = processMaterialMap(str);
+                    logGLError();
         }else if(sscanf(line, "map_Ks %s", str) == 1){
-            mat->mapSpecular = str;
-            loadTexture(str);
+            mat->mapSpecular = processMaterialMap(str);
+                    logGLError();
         }else if(sscanf(line, "map_Tr %s", str) == 1){
-            mat->mapTranslucency = str;
-            loadTexture(str);
+            mat->mapTranslucency = processMaterialMap(str);
+                    logGLError();
         }else if( sscanf( line, "map_disp %s", str ) == 1 ||
                  sscanf( line, "map_Disp %s", str ) == 1 ||
                  sscanf( line, "disp %s"    , str ) == 1 ){
-            mat->mapDisp = str;
-            loadTexture(str);
+            mat->mapDisp = processMaterialMap(str);
+                    logGLError();
         }else if( sscanf( line, "map_bump %s", str ) == 1 ||
                  sscanf( line, "map_Bump %s", str ) == 1 ||
                  sscanf( line, "bump %s"	, str ) == 1 ){
-            mat->mapBump = str;
-            loadTexture(str);
+            mat->mapBump = processMaterialMap(str);
+                    logGLError();
         }
+        logGLError();
         line = strtok( NULL, "\n" );
     }
     
-    logMessage("%s", objSource->content);
+    logMessage("Loaded material: %s\n", mat->name.c_str());
     return true;
 }
 
-bool Materials::loadTexture(const std::string &name){
+bool Materials::loadTexture(const std::string &name, bool generateID, unsigned int target){
+    logGLError();
     if(textures.find(name) != textures.end()){
         logMessage("Texture is already loaded: %s\n", name.c_str());
     }
-    sp<Texture> texture(Texture::load(Game::getAppContext(), name.c_str()));
+    sp<Texture> texture(Texture::load(name.c_str(), target));
     if(texture == nullptr){
         logMessage("Unable to load texture: %s\n", name.c_str());
         return false;
     }
+    logGLError();
+    if(generateID)
+        texture->generateID(0, 0);
     textures.insert(std::pair<std::string, sp<Texture>>(texture->filename, texture));
+    logGLError();
+    
+    logMessage("Loaded texture: %s \n", texture->filename.c_str());
     return true;
 }
 
 sp<Texture> Materials::getTexture(const std::string &name){
     if(textures.find(name) != textures.end()){
-        textures[name]->generateID(0, 0);
         return textures[name];
     }
     return nullptr;
@@ -133,21 +163,117 @@ sp<ShaderProgram> Materials::getProgram(const string &name){
     return nullptr;
 }
 
+sp<ShaderProgram> Materials::getProgramFoMesh(const string &name){
+    if(meshShaderTable.find(name) != meshShaderTable.end()){
+        logMessage("Get program for mesh name: %s %s \n", name.c_str(), meshShaderTable[name].c_str());
+        return getProgram(meshShaderTable[name]);
+    }
+    return getProgram("normAsColor");
+}
+
+bool Materials::addMaterial(const sp<ObjMaterial> mat){
+    if(materials.find(mat->name) == materials.end()){
+            logMessage("Adding material: %s\n", mat->name.c_str());
+        materials.insert(std::pair<string, sp<ObjMaterial>>(mat->name, mat));
+        return true;
+    }else
+        return false;
+}
+
+bool Materials::isMaterialExist(const string &name){
+    return (materials.find(name) != materials.end());
+}
+
 void Materials::loadPrograms(){
-    logMessage("ShaderLibrary constructor!\n");
+    logGLError();
+    addProgram(ShaderHelper::createProgram("Normal",   "pos_norm_vertex.glsl",     "norm_as_color_fragment.glsl"   , ShaderHelper::ShaderType::Normal));
+    logGLError();
+    addProgram(ShaderHelper::createProgram("OneColor",    "default_color_vertex.glsl", "default_color_fragment.glsl"   , ShaderHelper::ShaderType::OneColor ));
+    addProgram(ShaderHelper::createProgram("SimpleGouraud","SimpeGouraudVertex.glsl",     "SimpleGouraudFragment.glsl"      , ShaderHelper::ShaderType::SimplePhong  ));
+    addProgram(ShaderHelper::createProgram("SimplePhong", "vertexPerPixel.glsl",      "fragmentPerPixel.glsl"      ,ShaderHelper::ShaderType::SimplePhong   ));
+    addProgram(ShaderHelper::createProgram("wired",           "wired_vertex.glsl",        "wired_fragment.glsl"  , ShaderHelper::ShaderType::Wired ));
     
-    addProgram(ShaderHelper::createProgram("norm_as_color",     "pos_norm_vertex.glsl",     "norm_as_color_fragment.glsl"   ));
-    addProgram(ShaderHelper::createProgram("default_gray",      "default_gray_vertex.glsl", "default_gray_fragment.glsl"    ));
-    addProgram(ShaderHelper::createProgram("defaultPerVertex",  "vertexPerVertex.glsl",     "fragmentPerVertex.glsl"        ));
-    addProgram(ShaderHelper::createProgram("defaultPerPixel",   "vertexPerPixel.glsl",      "fragmentPerPixel.glsl"         ));
-    addProgram(ShaderHelper::createProgram("bump",              "vertexBump.glsl",          "fragmentBump.glsl"             ));
-    addProgram(ShaderHelper::createProgram("wired",             "wired_vertex.glsl",        "wired_fragment.glsl"           ));
-    addProgram(ShaderHelper::createProgram("font",              "font_vertex.glsl",         "font_fragment.glsl"            ));
+    addProgram(ShaderHelper::createProgram("lightPoint",      "light_point_vertex.glsl",  "light_point_fragment.glsl"     ));
+    addProgram(ShaderHelper::createProgram("font",            "font_vertex.glsl",         "font_fragment.glsl"            ));
 }
 
 void Materials::addProgram(sp<ShaderProgram> program){
+    logGLError();
     programs.insert(std::pair<string, sp<ShaderProgram>>(program->name, program));
 }
 
+bool Materials::isOMGFile(string fileName){
+    return fileName.substr( fileName.find_last_of(".") + 1) == "omg" ;
+}
 
+string Materials::processMaterialMap(string name){
+    logGLError();
+    if(isOMGFile(name)){
+        loadOMGFile(name);
+        logGLError();
+        return std::string();
+    }else{
+        loadTexture(name, true);
+                    logGLError();
+        return name;
+    }
+
+}
+
+void Materials::loadOMGFile(string fileName){
+    if(programs.find(fileName) != programs.end()){
+        logMessage("OMG program is already loaded!\n");
+        return;
+    }
+    string path = fileName;
+#ifdef ANDROID
+    path = "shaders/" + path;
+#endif
+
+    up<FileContent> content = readTextFile(path);
+    if(!content){
+        logMessage("Unable to load OMG file %s\n", fileName.c_str());
+        return;
+    }
+    
+    char temp[52], temp_2[52];
+    
+    ShaderHelper::ShaderType type = ShaderHelper::ShaderHelper::General;
+    char *newLine = strchr((char*)content->content, '\n');
+    memcpy(temp, content->content, (newLine - (char*)content->content + 1));
+    if(sscanf(temp, "type %s", temp_2) == 1){
+        logMessage("Shader type : %s\n", temp_2);
+        type = ShaderHelper::getTypeFromString(temp_2);
+    }
+    
+    char vertexToken [48] = {"GL_VERTEX_SHADER"};
+    char fragmentToken[48] = {"GL_FRAGMENT_SHADER"};
+    char *vertexShader = strstr((char*)content->content, vertexToken);
+    char *fragmentShader = strstr((char*)content->content, fragmentToken);
+    logGLError();
+    if((vertexShader && fragmentShader) && (fragmentShader > vertexShader)){
+        vertexShader += strlen(vertexToken);
+        *fragmentShader = 0;
+        Shader vShader = ShaderHelper::createShader(GL_VERTEX_SHADER, vertexShader, "tempVertex");
+        
+        fragmentShader += strlen(fragmentToken);
+        
+        Shader fShader = ShaderHelper::createShader(GL_FRAGMENT_SHADER, fragmentShader, "tempFragment");
+        
+        sp<ShaderProgram> program =  ShaderHelper::createProgram(fileName, vShader, fShader, type);
+        
+        addProgram(program);
+        
+        if(!program->name.compare("writedepth.omg")){
+            sp<ObjMaterial> shadowMaterial = std::make_shared<ObjMaterial>("shadowMaterial");
+            shadowMaterial->program = program;
+            addMaterial(shadowMaterial);
+            logGLError();
+        }
+        logGLError();
+    }else{
+        logMessage("Omg file bad format:( \n");
+        return;
+    }
+}
 

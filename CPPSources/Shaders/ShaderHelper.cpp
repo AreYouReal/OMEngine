@@ -1,17 +1,78 @@
 #include "ShaderHelper.h"
-#include "Game.h"
+#include "OMGame.h"
+
+#include "NormalSP.hpp"
+#include "OneColorSP.hpp"
+#include "WireSP.hpp"
+#include "GouraudMultiLightSP.hpp"
+#include "PhongMultiLightSP.hpp"
+#include "SimpleGouraudPhongSP.hpp"
+#include "DepthSP.hpp"
+#include "SkyboxSP.hpp"
 
 #pragma mark Public
 
-sp<ShaderProgram> ShaderHelper::createProgram(string programName, const string vertexShaderFilename, string fragmentShaderFilename){
+std::map<string, ShaderHelper::ShaderType> enumTypeTable{
+    std::pair<string, ShaderHelper::ShaderType>("Depth",                ShaderHelper::Depth             ),
+    std::pair<string, ShaderHelper::ShaderType>("Normal",               ShaderHelper::Normal            ),
+    std::pair<string, ShaderHelper::ShaderType>("OneColor",             ShaderHelper::OneColor          ),
+    std::pair<string, ShaderHelper::ShaderType>("SimpleGouraud",        ShaderHelper::SimpleGouraud     ),
+    std::pair<string, ShaderHelper::ShaderType>("SimplePhong",          ShaderHelper::SimplePhong       ),
+    std::pair<string, ShaderHelper::ShaderType>("Wired",                ShaderHelper::Wired             ),
+    std::pair<string, ShaderHelper::ShaderType>("GouraudMultiLight",    ShaderHelper::GouraudMultiLight ),
+    std::pair<string, ShaderHelper::ShaderType>("PhongMultiLight",      ShaderHelper::PhongMultiLight   ),
+    std::pair<string, ShaderHelper::ShaderType>("General",              ShaderHelper::General           ),
+    std::pair<string, ShaderHelper::ShaderType>("Skybox",               ShaderHelper::Skybox           )
+};
+
+sp<ShaderProgram> ShaderHelper::createProgram(string programName, const string vertexShaderFilename, string fragmentShaderFilename, const ShaderType sType){
+    logGLError();
     Shader vertexShader = loadShader(GL_VERTEX_SHADER, vertexShaderFilename);
+    logGLError();
     Shader fragmentShader = loadShader(GL_FRAGMENT_SHADER, fragmentShaderFilename);
-    return createProgram(programName, vertexShader, fragmentShader);
+    logGLError();
+    return createProgram(programName, vertexShader, fragmentShader, sType);
 }
 
-sp<ShaderProgram> ShaderHelper::createProgram(const string programName, const Shader &vertexShader,const Shader &fragmentShader){
-    sp<ShaderProgram> program = std::make_shared<ShaderProgram>();
+sp<ShaderProgram> ShaderHelper::createProgram(const string programName, const Shader &vertexShader,const Shader &fragmentShader, const ShaderType sType){
+    logGLError();
+    
+    sp<ShaderProgram> program;
+    switch (sType) {
+        case Normal:
+            program = std::make_shared<NormalSP>();
+            break;
+        case OneColor:
+            program = std::make_shared<OneColorSP>();
+            break;
+        case Skybox:
+            program = std::make_shared<SkyboxSP>();
+            break;
+        case SimpleGouraud:
+        case SimplePhong:
+            program = std::make_shared<SimpleGouraudPhongSP>();
+            break;
+        case Wired:
+            program = std::make_shared<WireSP>();
+            break;
+        case PhongMultiLight:
+            program = std::make_shared<PhongMultiLightSP>();
+            break;
+        case GouraudMultiLight:
+            program = std::make_shared<GouraudMultiLightSP>();
+            break;
+        case Depth:
+            program = std::make_shared<DepthSP>();
+            break;
+        default:
+            program = std::make_shared<ShaderProgram>();
+            break;
+    }
+
+    logGLError();
+    
     program->ID = glCreateProgram();
+    
     glAttachShader(program->ID, vertexShader.ID);
     
     glAttachShader(program->ID, fragmentShader.ID);
@@ -27,51 +88,62 @@ sp<ShaderProgram> ShaderHelper::createProgram(const string programName, const Sh
         return program;
     }else{
         glGetProgramiv(program->ID, GL_ACTIVE_ATTRIBUTES, &total);
-        program->attribArray = std::vector<VertexAttrib>(total);
         for(unsigned int i = 0; i < total; i++){
             glGetActiveAttrib(program->ID, i, buffSize, &len, &size, &type, name );
-            VertexAttrib &attrib = program->attribArray[i];
+            VertexAttrib attrib;
             attrib.location = glGetAttribLocation(program->ID, name);
             attrib.name = name;
             attrib.type = type;
+            program->attributes.insert(std::pair<string, VertexAttrib>(attrib.name, attrib));
         }
-        
+        logGLError();
         glGetProgramiv(program->ID, GL_ACTIVE_UNIFORMS, &total);
-        program->uniformArray = std::vector<Uniform>(total);
         for(unsigned int i = 0; i < total; i++){
             glGetActiveUniform(program->ID, i, buffSize, &len, &size, &type, name);
-            Uniform &uniform = program->uniformArray[i];
+            Uniform uniform;
             uniform.location = glGetUniformLocation(program->ID, name);
             uniform.name = name;
             uniform.type = type;
+            program->uniforms.insert(std::pair<string, Uniform>(uniform.name, uniform));
         }
-        
+        program->initUniformLocations();
+        logGLError();
     }
-    glDeleteShader(vertexShader.ID);
-    glDeleteShader(fragmentShader.ID);
     
     ShaderHelper::printProgramInfoLog(program->ID);
     program->name = programName;
     
+    logGLError();
+    
     return program;
 }
 
+ShaderHelper::ShaderType ShaderHelper::getTypeFromString(const string strType){
+    if(enumTypeTable.find(strType) != enumTypeTable.end()){
+        return enumTypeTable[strType];
+    }
+    return ShaderHelper::ShaderType::Normal;
+}
+
 #pragma mark Helpers
-Shader ShaderHelper::loadShader(GLenum shaderType, std::string vertexShaderFilename){
+Shader ShaderHelper::loadShader(GLenum shaderType, std::string shaderFilename, std::string shaderName){
 #ifdef ANDROID
-    vertexShaderFilename = "shaders/" + vertexShaderFilename;
+    shaderFilename = "shaders/" + shaderFilename;
 #endif
+    std::unique_ptr<FileContent> shaderSource = readTextFile(shaderFilename);
+    return createShader(shaderType, (char *)shaderSource->content, shaderName);
+}
+
+Shader ShaderHelper::createShader(GLenum type, char* sourceCode, std::string shaderName ){
     Shader shader;
-    shader.name = vertexShaderFilename;
-    shader.type = GL_VERTEX_SHADER;
-    std::unique_ptr<FileContent> shaderSource = readTextFile(Game::getAppContext(), vertexShaderFilename);
-    shader.ID = glCreateShader(shaderType);
+    shader.name = shaderName;
+    shader.type = type;
+    shader.ID = glCreateShader(shader.type);
     if(!shader.ID) return shader;
-    char *temp = (char *)shaderSource->content;
-    glShaderSource(shader.ID, 1, &temp, NULL);
+    glShaderSource(shader.ID, 1, &sourceCode, NULL);
     glCompileShader(shader.ID);
     if(!checkCompileStatus(shader.ID)){
-        logMessage("ERROR COMPILE SHADER! %d", shaderType);
+        logMessage("ERROR COMPILE SHADER! %d", shader.type);
     }
     return shader;
 }
@@ -120,6 +192,7 @@ void ShaderHelper::printProgramInfoLog(GLuint program){
         logMessage("Error linking program: \n%s\n", infoLog);
         free(infoLog);
     }
+    logGLError();
 }
 
 void ShaderHelper::printShaderInfo(GLuint shader, GLenum pname){

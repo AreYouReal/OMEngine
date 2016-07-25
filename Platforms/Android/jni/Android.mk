@@ -6,13 +6,24 @@ include $(CLEAR_VARS)
 LOCAL_MODULE    := OME
 LOCAL_CFLAGS    += -std=c++11
 
-LOCAL_SRC_FILES := $(LOCAL_PATH)/esUtil_Android.cpp \
+LOCAL_SRC_FILES := $(LOCAL_PATH)/omUtil_Android.cpp \
 $(SRC_PATH)/CPPSources/Audio/Boombox.cpp\
 $(SRC_PATH)/CPPSources/Audio/Sound.cpp\
 $(SRC_PATH)/CPPSources/Camera/Camera.cpp\
+$(SRC_PATH)/CPPSources/Component/AnimMeshComponent.cpp\
+$(SRC_PATH)/CPPSources/Component/DebugDrawComponent.cpp\
 $(SRC_PATH)/CPPSources/Component/MeshRendererComponent.cpp\
+$(SRC_PATH)/CPPSources/Component/RigidBodyComponent.cpp\
 $(SRC_PATH)/CPPSources/DEBUG/WiredCube.cpp\
-$(SRC_PATH)/CPPSources/Game.cpp\
+$(SRC_PATH)/CPPSources/Environment/Skybox.cpp\
+$(SRC_PATH)/CPPSources/GameMechanics/Level/BBlock.cpp\
+$(SRC_PATH)/CPPSources/GameMechanics/Level/LevelBuilder.cpp\
+$(SRC_PATH)/CPPSources/GameMechanics/Level/LevelInfo.cpp\
+$(SRC_PATH)/CPPSources/GameMechanics/Level/LevelRelated.cpp\
+$(SRC_PATH)/CPPSources/GameMechanics/LoadingScreen/MonsterSelector.cpp\
+$(SRC_PATH)/CPPSources/GameMechanics/LoadingScreen/PlayButton.cpp\
+$(SRC_PATH)/CPPSources/GameMechanics/Monsters/CandyMonster.cpp\
+$(SRC_PATH)/CPPSources/GameMechanics/Player/PlayerController.cpp\
 $(SRC_PATH)/CPPSources/GameObject/GameObject.cpp\
 $(SRC_PATH)/CPPSources/Light/Illuminator.cpp\
 $(SRC_PATH)/CPPSources/Light/LightSource.cpp\
@@ -21,13 +32,23 @@ $(SRC_PATH)/CPPSources/Material/ObjMaterial.cpp\
 $(SRC_PATH)/CPPSources/Math/m4d.cpp\
 $(SRC_PATH)/CPPSources/Math/q4d.cpp\
 $(SRC_PATH)/CPPSources/Math/v3d.cpp\
+$(SRC_PATH)/CPPSources/MD5/md5.cpp\
 $(SRC_PATH)/CPPSources/Obj/Obj.cpp\
 $(SRC_PATH)/CPPSources/Obj/ObjMesh.cpp\
+$(SRC_PATH)/CPPSources/OMGame.cpp\
 $(SRC_PATH)/CPPSources/Physics/PhysicalWorld.cpp\
 $(SRC_PATH)/CPPSources/Scene/Scene.cpp\
+$(SRC_PATH)/CPPSources/Shaders/DepthSP.cpp\
+$(SRC_PATH)/CPPSources/Shaders/GouraudMultiLightSP.cpp\
+$(SRC_PATH)/CPPSources/Shaders/NormalSP.cpp\
+$(SRC_PATH)/CPPSources/Shaders/OneColorSP.cpp\
+$(SRC_PATH)/CPPSources/Shaders/PhongMultiLightSP.cpp\
 $(SRC_PATH)/CPPSources/Shaders/Shader.cpp\
 $(SRC_PATH)/CPPSources/Shaders/ShaderHelper.cpp\
 $(SRC_PATH)/CPPSources/Shaders/ShaderProgram.cpp\
+$(SRC_PATH)/CPPSources/Shaders/SimpleGouraudPhongSP.cpp\
+$(SRC_PATH)/CPPSources/Shaders/SkyboxSP.cpp\
+$(SRC_PATH)/CPPSources/Shaders/WireSP.cpp\
 $(SRC_PATH)/CPPSources/Texture/Texture.cpp\
 $(SRC_PATH)/CPPSources/Transform/Transform.cpp\
 $(SRC_PATH)/CPPSources/Txt/Font.cpp\
@@ -230,7 +251,9 @@ $(SRC_PATH)/CPPSources/Utils/3dPart/vorbis/smallft.c\
 $(SRC_PATH)/CPPSources/Utils/3dPart/vorbis/synthesis.c\
 $(SRC_PATH)/CPPSources/Utils/3dPart/vorbis/vorbisfile.c\
 $(SRC_PATH)/CPPSources/Utils/3dPart/vorbis/window.c\
+$(SRC_PATH)/CPPSources/Utils/Assets/AssetManager.cpp\
 $(SRC_PATH)/CPPSources/Utils/OMUtils.cpp\
+$(SRC_PATH)/CPPSources/Utils/Time.cpp\
 
 
 LOCAL_C_INCLUDES	:= $(SRC_PATH) \
@@ -239,12 +262,18 @@ $(SRC_PATH)/CPPSources/Audio\
 $(SRC_PATH)/CPPSources/Camera\
 $(SRC_PATH)/CPPSources/Component\
 $(SRC_PATH)/CPPSources/DEBUG\
-$(SRC_PATH)/CPPSources\
+$(SRC_PATH)/CPPSources/Environment\
+$(SRC_PATH)/CPPSources/GameMechanics/Level\
+$(SRC_PATH)/CPPSources/GameMechanics/LoadingScreen\
+$(SRC_PATH)/CPPSources/GameMechanics/Monsters\
+$(SRC_PATH)/CPPSources/GameMechanics/Player\
 $(SRC_PATH)/CPPSources/GameObject\
 $(SRC_PATH)/CPPSources/Light\
 $(SRC_PATH)/CPPSources/Material\
 $(SRC_PATH)/CPPSources/Math\
+$(SRC_PATH)/CPPSources/MD5\
 $(SRC_PATH)/CPPSources/Obj\
+$(SRC_PATH)/CPPSources\
 $(SRC_PATH)/CPPSources/Physics\
 $(SRC_PATH)/CPPSources/Scene\
 $(SRC_PATH)/CPPSources/Shaders\
@@ -273,6 +302,7 @@ $(SRC_PATH)/CPPSources/Utils/3dPart/nvtristrip\
 $(SRC_PATH)/CPPSources/Utils/3dPart/openAL\
 $(SRC_PATH)/CPPSources/Utils/3dPart/ttf\
 $(SRC_PATH)/CPPSources/Utils/3dPart/vorbis\
+$(SRC_PATH)/CPPSources/Utils/Assets\
 $(SRC_PATH)/CPPSources/Utils\
 
 

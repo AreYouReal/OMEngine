@@ -2,13 +2,18 @@
 
 uniform mediump mat4 uModelViewM;
 uniform mediump mat4 uProjectionM;
-uniform lowp    vec3 uColor;
+
+struct Material{
+    lowp vec4 ambient;
+};
+
+uniform Material uMaterial;
 
 layout(location = 0) in vec4 aPosition;
 
-out vec3 color;
+out vec4 color;
 
 void main(){
     gl_Position = uProjectionM * uModelViewM * aPosition;
-    color = uColor;
+    color = uMaterial.ambient;
 }

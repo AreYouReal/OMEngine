@@ -3,26 +3,23 @@
 
 #include "OMUtils.h"
 #include "Shortcuts.h"
-#include "Game.h"
 
 
 Boombox::Boombox(){
-    logMessage("Boombox constructor!\n");
-    
-#ifdef IOS
     const char * devicename = alcGetString(NULL, ALC_DEFAULT_DEVICE_SPECIFIER);
+    logMessage("DEVICE NAME: %s\n", devicename);
     device = alcOpenDevice(devicename);
+    logMessage("DEVICE: %d\n", device);
     error();
     context = alcCreateContext(device, NULL);
+    logMessage("CONTEXT: %d\n", context);
     error();
     alcMakeContextCurrent(context);
     error();
     logMessage( "\nAL_VENDOR:     %s\n",   ( char * )alGetString ( AL_VENDOR     ) );
     logMessage( "AL_RENDERER:     %s\n"  , ( char * )alGetString ( AL_RENDERER   ) );
     logMessage( "AL_VERSION:      %s\n"  , ( char * )alGetString ( AL_VERSION    ) );
-    logMessage( "AL_EXTENSIONS:   %s\n"  , ( char * )alGetString ( AL_EXTENSIONS ) );
-#endif
-    
+    logMessage( "AL_EXTENSIONS:   %s\n"  , ( char * )alGetString ( AL_EXTENSIONS ) );    
     
     callbacks.read_func     = Boombox::oggRead;
     callbacks.seek_func     = Boombox::oggSeek;
@@ -46,34 +43,41 @@ Boombox::~Boombox(){
     logMessage("Boombox destructor!\n");
 }
 
-
 void Boombox::play(){
-//      oggTestSound->play(1);
+
+    if(oggTestSound != nullptr){
+        if(oggTestSound->getState() != AL_PLAYING)
+        oggTestSound->play(1);
+    }
+
 //    alSourcePlay(sSource);
 }
 
 void Boombox::createAndLoadSoundBuffer(){
-    #ifdef IOS
-    alGenBuffers(1, &sbuffer);
-    up<FileContent> soundSource = readBytesFromFile(Game::getAppContext(), "test.raw");
-    
-    if(!soundSource) return;
-    
-    
-    alBufferData(sbuffer, AL_FORMAT_MONO16, soundSource->content, soundSource->size, 22050);
-    
-    
-    alGenSources(1, &sSource);
-    alSourcei(sSource, AL_BUFFER, sbuffer);
-#endif
+//    alGenBuffers(1, &sbuffer);
+//    up<FileContent> soundSource = readBytesFromFile("audio/est.raw");
+//    
+//    if(!soundSource) return;
+//    
+//    
+//    alBufferData(sbuffer, AL_FORMAT_MONO16, soundSource->content, soundSource->size, 22050);
+//    
+//    
+//    alGenSources(1, &sSource);
+//    alSourcei(sSource, AL_BUFFER, sbuffer);
+
 }
 
-void Boombox::checkObbFunctionality(){
+#include <thread>
+bool Boombox::checkObbFunctionality(){
+//    sleep(5);
     oggSoundBuffer = new Soundbuffer();
     if(oggSoundBuffer->load("lounge.ogg")){
         oggTestSound = new Sound("lounge.ogg", oggSoundBuffer);
+        logMessage("Loading done!");
+        return true;
     }else{
-    
+        return false;
     }
 }
 
@@ -131,36 +135,33 @@ int     Boombox::oggClose(void *memoryPtr){
 }
 
 void Boombox::error(){
-    #ifdef IOS
-    unsigned int error;
+
+    unsigned int error  = alGetError() ;
     
-    while( ( error = glGetError() ) != GL_NO_ERROR ){
-        char str[ 2048 ] = {""};
+    char str[ 2048 ] = {""};
         
-        switch( error ){
-            case AL_INVALID_NAME:{
-                strcpy( str, "AL_INVALID_NAME" );
-                break;
-            }
-            case AL_INVALID_ENUM:{
-                strcpy( str, "AL_INVALID_ENUM" );
-                break;
-            }
-            case AL_INVALID_VALUE:{
-                strcpy( str, "AL_INVALID_VALUE" );
-                break;
-            }
-            case AL_INVALID_OPERATION:{
-                strcpy( str, "AL_INVALID_OPERATION" );
-                break;
-            }
-            case AL_OUT_OF_MEMORY:{
-                strcpy( str, "AL_OUT_OF_MEMORY" );
-                break;
-            }
+    switch( error ){
+        case AL_INVALID_NAME:{
+            strcpy( str, "AL_INVALID_NAME" );
+            break;
         }
-        
-        logMessage( "[ AL_ERROR ]\nERROR: %s\n", str );
+        case AL_INVALID_ENUM:{
+            strcpy( str, "AL_INVALID_ENUM" );
+            break;
+        }
+        case AL_INVALID_VALUE:{
+            strcpy( str, "AL_INVALID_VALUE" );
+            break;
+        }
+        case AL_INVALID_OPERATION:{
+            strcpy( str, "AL_INVALID_OPERATION" );
+            break;
+        }
+        case AL_OUT_OF_MEMORY:{
+            strcpy( str, "AL_OUT_OF_MEMORY" );
+            break;
+        }
     }
-#endif
+    logMessage( "[ AL_ERROR ]\nERROR: %s\n", str );
+
 }

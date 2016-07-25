@@ -16,11 +16,15 @@ public:
     Illuminator& operator=(const Illuminator& rhs) = delete;
     ~Illuminator();
 
-    bool AddLightSource(sp<LightSource> lSource);
+    bool addLightSource(LightSource* lSource);
     
-    sp<LightSource> getLightSource();
+    LightSource* getLightSource();
+    LightSource* getLightSource(int index);
+    
+    void addLight(LightSource *light);
+    void removeLight(LightSource * light);
     
 private:
   
-    std::vector<sp<LightSource>> lightSources;
+    std::vector<LightSource*> lightSources;
 };

@@ -2,57 +2,42 @@
 
 #include "WiredCube.hpp"
 #include "btBoxShape.h"
-#include "Game.h"
 
 MeshRendererComponent::MeshRendererComponent(GameObject * const gameObject): IComponent(gameObject){
-    logMessage("MeshRendererComponent constructor!\n");
+    mComponentType = ComponentEnum::MESH_RENDERER;
 }
 
 MeshRendererComponent::MeshRendererComponent( GameObject * const gameObject, const sp<ObjMesh> mesh) : IComponent(gameObject){
+    mComponentType = ComponentEnum::MESH_RENDERER;
     mMeshes.push_back(mesh);
 }
 
 MeshRendererComponent::MeshRendererComponent(GameObject * const gameObject, const std::vector<sp<ObjMesh>> &meshes) : IComponent(gameObject){
+    mComponentType = ComponentEnum::MESH_RENDERER;
     mMeshes = meshes;
     logMessage("MeshRendererComponent constructor with meshes!\n");
 }
 
 MeshRendererComponent::~MeshRendererComponent(){
     onDestroy();
-    logMessage("MeshRendererComponent destructor!\n");
 }
 
-
-bool MeshRendererComponent::init(){
-    return true;
-}
-
-
-void MeshRendererComponent::update(){
-    // O_o
-    m4d ATTRIBUTE_ALIGNED16(modelM);
-    if(go->pBody){
-        go->pBody->getWorldTransform().getOpenGLMatrix(modelM.pointer());
-        modelM = m4d::transpose(modelM);
-        //        logMessage("%s %f, %f, %f\n", mObjMeshes[0]->getName().c_str(), pBody->getWorldTransform().m_origin[0], pBody->getWorldTransform().m_origin[1], pBody->getWorldTransform().m_origin[2]);
-    }else {
-        modelM = go->mTransform.transformMatrix();
-    }
-    
+void MeshRendererComponent::draw(){
+    m4d modelM = go->transformMatrix();
     Camera::instance()->pushMMatrix(modelM);
+    if(visible)
     for (auto const& mesh : mMeshes) {
-
+        
         if(mesh){
-//            logMessage("Name: %s\n", mesh->getName().c_str() );
+            mesh->shadowDraw = shadowDraw;
             if(!Camera::instance()->sphereDistanceInFrustum(go->getPosition(), mesh->outlines.radius)){
-                //            logMessage("skip %s mesh\n", mesh->getName().c_str());
+//                logMessage("Renderer: Skip object: %s, [%f, %f, %f]\n", go->name.c_str(), go->getPosition().x, go->getPosition().y, go->getPosition().z);
                 continue;
             }
 //            modelM =  m4d::translate(mesh->outlines.location);
 //            Camera::instance()->pushMVMatrix(modelM);
             
             if(mesh->renderObjectType() == RenderObjectType::SOLID){
-                if(Game::debugFlag){ drawDebugPhysicsGeometry(); }
                 mesh->draw();
             }else{
                 glEnable(GL_BLEND);
@@ -63,16 +48,7 @@ void MeshRendererComponent::update(){
                 mesh->draw();
                 glDisable(GL_BLEND);
             }
-         
-            
 //            Camera::instance()->popMVMatrix();
-        }
-    }
-    
-    for(auto const &child : go->mChildren){
-        IComponent *meshRendererComp = child->getComponent(ComponentEnum::MESH_RENDERER);
-        if(meshRendererComp){
-            meshRendererComp->update();
         }
     }
     Camera::instance()->popMMatrix();
@@ -80,23 +56,36 @@ void MeshRendererComponent::update(){
 
 
 void MeshRendererComponent::onDestroy(){
-    
+    logMessage("Destroy mesh renderer component!");
 }
 
 void MeshRendererComponent::addMesh(sp<ObjMesh> mesh){
     mMeshes.push_back(mesh);
 }
 
-void MeshRendererComponent::drawDebugPhysicsGeometry(){
-    WiredCube wc;
-    btBoxShape *bShape = (btBoxShape*)go->pBody->getCollisionShape();
-    btVector3 dimensions = bShape->getHalfExtentsWithMargin();
-    
-    m4d modelM = m4d::scale(dimensions.x() * 2, dimensions.y() * 2, dimensions.z() * 2);
-    Camera::instance()->pushMMatrix(modelM);
-    wc.draw();
-    
-    Camera::instance()->popMMatrix();
+v3d MeshRendererComponent::getDimensions(){
+    v3d dimensions, currMin, currMax;
+    for(const auto& mesh : mMeshes){
+        v3d min = mesh->outlines.min;
+        if(currMin.x > min.x) currMin.x = min.x;
+        if(currMin.y > min.y) currMin.y = min.y;
+        if(currMin.z > min.z) currMin.z = min.z;
+        
+        v3d max = mesh->outlines.max;
+        if(currMax.x < max.x) currMax.x = max.x;
+        if(currMax.y < max.y) currMax.y = max.y;
+        if(currMax.z < max.z) currMax.z = max.z;
+    }
+    dimensions = currMax - currMin;
+    return dimensions;
 }
 
+v3d MeshRendererComponent::getPosition(){
+    v3d pos;
+    for(const auto& mesh : mMeshes){
+        pos += mesh->outlines.location;
+    }
+    pos = 1.0f/mMeshes.size() * pos;
+    return pos;
+}
 

@@ -2,7 +2,6 @@
 
 #include "OMUtils.h"
 #include "ObjMesh.h"
-#include "IRenderable.h"
 #include "Camera.h"
 #include "Transform.hpp"
 
@@ -11,6 +10,9 @@
 
 // Components
 #include "IComponent.hpp"
+#include "RigidBodyComponent.hpp"
+#include "MeshRendererComponent.hpp"
+#include "AnimMeshComponent.hpp"
 
 
 class GameObject{
@@ -18,30 +20,38 @@ public:
     
     string name;
     GameObject(string name = "noname");
-    GameObject(sp<Transform>, sp<ObjMesh>, string n = "noname");
     ~GameObject();
     
     
-    void addComponent(const ComponentEnum &name, const up<IComponent> comp);
-    IComponent *getComponent(const ComponentEnum &name);
+    IComponent* addComponent(const up<IComponent>);
+    void        removeComponent(ComponentEnum comp);
     
+    IComponent *getComponent(const ComponentEnum&);
+    
+    
+    GameObject *parent = nullptr;
+    
+    void update();
+    void draw();
     
     void release();
     
-    void addChild(sp<GameObject> child);
+    void addChild(up<GameObject>);
     void destroyChildren();
     
     Transform   mTransform{};
-    
-    btRigidBody *pBody = nullptr;          // Physics "body" of the mesh
-    
     v3d getDimensions();
-    
     v3d getPosition();
+    v3d getFront();
     
-    std::vector<sp<GameObject>> mChildren;
+    void setPosition(v3d);
+    void setFront(v3d);
     
-private:
+    m4d transformMatrix();
+    
+    std::vector<up<GameObject>> mChildren;
 
     std::map<ComponentEnum, up<IComponent>> mComponents;
+    
+    bool mActive = true;
 };

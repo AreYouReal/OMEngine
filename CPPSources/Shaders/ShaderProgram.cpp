@@ -1,35 +1,187 @@
 #include "ShaderProgram.h"
 
+// Attributes
+const string ShaderProgram::posAttribName       {"aPosition"};
+const string ShaderProgram::normAttribName      {"aNormal"  };
+const string ShaderProgram::texCoordAttribName  {"aTexCoord"};
+const string ShaderProgram::tanAttribName       {"aTangent" };
+
+// Uniform
+// Matrices
+const string ShaderProgram::uniModelViewMatName {"uModelViewM"};
+const string ShaderProgram::uniProjectionMatName{"uProjectionM"};
+const string ShaderProgram::uniNormalMName      {"uNormalM"};
+const string ShaderProgram::uniShadowMName      {"uShadowM"};
+
+const string ShaderProgram::type                {"type"};
+const string ShaderProgram::position            {"position"};
+const string ShaderProgram::direction           {"direction"};
+const string ShaderProgram::color               {"color"};
+const string ShaderProgram::distance            {"dst"};
+const string ShaderProgram::linAtten            {"linAtten"};
+const string ShaderProgram::quadAtten           {"quadAtten"};
+const string ShaderProgram::cosCutoff           {"spotCosCutoff"};
+const string ShaderProgram::blend               {"spotBlend"};
+const string ShaderProgram::numLights           {"numLights"};
+
+
+
 ShaderProgram::ShaderProgram(){
-    logMessage("Shader program constructor!\n");
+    logGLError();
 }
 
 ShaderProgram::~ShaderProgram(){
-    logMessage("Shader program destructor: %d\n", ID );
 }
 
-
-int ShaderProgram::getUniformLocation(const char *name){
-    for(int i = 0; i < uniformArray.size(); i++) if(!strcmp(uniformArray[i].name.c_str(), name)) return uniformArray[i].location;
-    
-    return -1;
-}
-
-int ShaderProgram::getVertexAttribLocation(const char *name){
-    for(int i = 0; i < attribArray.size(); i++) if(!strcmp(attribArray[i].name.c_str(), name)) return attribArray[i].location;
-    
-    return -1;
+void ShaderProgram::initUniformLocations(){
+    // Shader specific
 }
 
 void ShaderProgram::use(){
     glUseProgram(ID);
     
-    bindAttributes();
+//    bindAttributes();
 }
 
-void ShaderProgram::bindAttributes(){
-    glBindAttribLocation(ID, 0, "aPosition");
-    glBindAttribLocation(ID, 1, "aNormal");
-    glBindAttribLocation(ID, 2, "aTexCoord");
-    glBindAttribLocation(ID, 3, "aTangent");
+// FOR REFERENCE -> No need to bind manually -> layout(location = 0) modifier in shader
+//void ShaderProgram::bindAttributes(){
+////    glBindAttribLocation(ID, attribLocations[Attributes::POSITION], "aPosition");
+////    glBindAttribLocation(ID, attribLocations[Attributes::NORMAL],   "aNormal");
+////    glBindAttribLocation(ID, attribLocations[Attributes::TEXTURE],  "aTexCoord");
+////    glBindAttribLocation(ID, attribLocations[Attributes::TANGENT],  "aTangent");
+//}
+
+void ShaderProgram::setUniforms(const ObjMaterial *mat){
+    m4d matrix;
+    
+    for(auto const &entry : uniforms){
+        if(!strcmp(entry.second.name.c_str(), "uSamplerDiffuse")){
+            glUniform1i(entry.second.location, 1);
+        }else if(!strcmp(entry.second.name.c_str(), "uModelViewM")){
+            matrix = Camera::instance()->modelViewMatrix();
+            glUniformMatrix4fv(entry.second.location, 1, GL_TRUE, matrix.pointer());
+        }else if(!strcmp(entry.second.name.c_str(), "uProjectionM")){
+            matrix = Camera::instance()->projectionMatrix();
+            glUniformMatrix4fv(entry.second.location, 1, GL_TRUE, matrix.pointer());
+        }else if(!strcmp(entry.second.name.c_str(), "uNormalM")){
+            matrix = Camera::instance()->normalMatrix();
+            glUniformMatrix4fv(entry.second.location, 1, GL_TRUE, matrix.pointer());
+        }else if(!strcmp(entry.second.name.c_str(), "uDissolve")){
+            glUniform1f(entry.second.location, mat->dissolve);
+        }else if(!strcmp(entry.second.name.c_str(), "uMaterial.ambient")){
+            glUniform4fv(entry.second.location, 1, &mat->ambient.x);
+        }else if(!strcmp(entry.second.name.c_str(), "uMaterial.diffuse")){
+            glUniform4fv(entry.second.location, 1, &mat->diffuse.x);
+        }else if(!strcmp(entry.second.name.c_str(), "uMaterial.specular")){
+            glUniform4fv(entry.second.location, 1, &mat->specular.x);
+        }else if(!strcmp(entry.second.name.c_str(), "uMaterial.shininess")){
+            glUniform1f(entry.second.location, mat->specularExponent );
+        }else if(!strcmp(entry.second.name.c_str(), "uLight.position")){
+            // LIGHT
+        }else if(!strcmp(entry.second.name.c_str(), "uSamplerBump")){
+            glUniform1i(entry.second.location, 4);
+        }else if(!strcmp(entry.second.name.c_str(), "uSamplerProjector")){
+            glUniform1i(entry.second.location, 0);
+        }else if(!strcmp(entry.second.name.c_str(), "uProjM")){
+            matrix = Camera::instance()->shadowMatrix();
+            glUniformMatrix4fv(entry.second.location, 1, GL_TRUE, matrix.pointer());
+        }
+
+    }
+    
+    char tmp[128] = {""};
+    for(int i = 0; i < 1; ++i){
+        LightSource* light =Illuminator::instance()->getLightSource(i);
+        v4d lightInEyeSpace = light->getPositionInEyeSpace();
+        v4d color = light->getColor();
+        v4d directionInEyeSpace = light->getDirectionInEyeSpace();
+
+        sprintf(tmp, "uLightFS[%d].color", i);
+        string qwe = tmp;
+        
+        glUniform4fv(getUniformLocation(qwe), 1, &color.x);
+        
+        sprintf(tmp, "uLight[%d].type", i);
+        glUniform1i(getUniformLocation(tmp), light->type());
+        
+        sprintf(tmp, "uLightFS[%d].type", i);
+        glUniform1i(getUniformLocation(tmp), light->type());
+        
+        sprintf(tmp, "uLightFS[%d].spotCosCutoff", i);
+        glUniform1f(getUniformLocation(tmp),  light->spotCosCutoff);
+        
+        sprintf(tmp, "uLightFS[%d].spotBlend", i);
+        glUniform1f(getUniformLocation("uLightFS.spotBlend"),      light->spotBlend);
+        
+        
+        sprintf(tmp, "uLightFS[%d].dst", i);
+        glUniform1f(getUniformLocation(tmp),         light->distance());
+        
+        sprintf(tmp, "uLightFS[%d].linAtten", i);
+        glUniform1f(getUniformLocation(tmp),    light->linearAtten());
+        
+        
+        sprintf(tmp, "uLightFS[%d].quadAten", i);
+        glUniform1f(getUniformLocation("uLightFS.quadAtent"),   light->quadAtten());
+        
+        sprintf(tmp, "uLight[%d].direction", i);
+        glUniform3fv(getUniformLocation(tmp), 1, &directionInEyeSpace.x);
+        
+        sprintf(tmp, "uLight[%d].position", i);
+        glUniform3fv(getUniformLocation(tmp), 1, &lightInEyeSpace.x);
+    }
+}
+
+
+int ShaderProgram::getUniformLocation(const string &name){
+    if(uniforms.find(name) != uniforms.end()){
+        return uniforms[name].location;
+    }else{
+        logMessage("Can't find uniform %s!!!\n", name.c_str());
+        return -1;
+    }
+}
+
+void ShaderProgram::initTransformUniformLocations(){
+    transformLoc.modelViewMat  = getUniformLocation(ShaderProgram::uniModelViewMatName );
+    transformLoc.projectionMat = getUniformLocation(ShaderProgram::uniProjectionMatName);
+    transformLoc.normalMat     = getUniformLocation(ShaderProgram::uniNormalMName      );
+    transformLoc.shadowMat     = getUniformLocation(ShaderProgram::uniShadowMName      );
+}
+
+
+void ShaderProgram::initMaterialUniformLocations(){
+    matLoc.ambient     = getUniformLocation("uMaterial.ambient"    );
+    matLoc.diffuse     = getUniformLocation("uMaterial.diffuse"    );
+    matLoc.specular    = getUniformLocation("uMaterial.specular"   );
+    matLoc.shininess   = getUniformLocation("uMaterial.shininess"  );
+    texLoc.diffuse     = getUniformLocation("uSamplerDiffuse"      );
+    texLoc.bump        = getUniformLocation("uSamplerBump"         );
+    texLoc.shadow      = getUniformLocation("uSamplerShadow"       );
+}
+
+
+void ShaderProgram::setTransformUniforms(){
+    glUniformMatrix4fv(transformLoc.modelViewMat,  1, GL_TRUE, Camera::instance()->modelViewMatrix().pointer()  );
+    glUniformMatrix4fv(transformLoc.projectionMat, 1, GL_TRUE, Camera::instance()->projectionMatrix().pointer() );
+    glUniformMatrix4fv(transformLoc.normalMat,     1, GL_TRUE, Camera::instance()->normalMatrix().pointer()     );
+    glUniformMatrix4fv(transformLoc.shadowMat,     1, GL_TRUE, Camera::instance()->shadowMatrix().pointer()     );
+}
+
+void ShaderProgram::setMaterialUniforms(const ObjMaterial *mat){
+    glUniform4fv(matLoc.ambient, 1, &mat->ambient.x);
+    glUniform4fv(matLoc.diffuse, 1, &mat->diffuse.x);
+    glUniform4fv(matLoc.specular, 1, &mat->specular.x);
+    
+    glUniform1f(matLoc.shininess, mat->specularExponent);
+    
+    
+    if(texLoc.diffuse > 0)
+        glUniform1i(texLoc.diffuse, 1);
+    
+    if(texLoc.bump > 0)
+        glUniform1i(texLoc.bump, 4);
+    
+    if(texLoc.shadow > 0)
+        glUniform1i(texLoc.shadow, 0 );
 }

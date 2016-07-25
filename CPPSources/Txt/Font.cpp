@@ -1,17 +1,14 @@
 
 #include "Font.hpp"
-
-#include "Game.h"
 #include "Materials.hpp"
 #include "Camera.h"
 
 
 Font::Font(string name, float fSize, unsigned int tWidth, unsigned int tHeight, int firstChar, int charCount){
-    logMessage("Font constructor! %s\n", name.c_str());
 #ifdef ANDROID
     name = "fonts/" + name;
 #endif
-    up<FileContent> content = readBytesFromFile(Game::getAppContext(), name.c_str());
+    up<FileContent> content = readBytesFromFile( name.c_str());
     if(!content){
         logMessage("Unable to load font file: %s\n", name.c_str());
     }else{
@@ -38,7 +35,6 @@ Font::Font(string name, float fSize, unsigned int tWidth, unsigned int tHeight, 
 
 
 Font::~Font(){
-    logMessage("Font destructor!\n");
 }
 
 float Font::length(const string& text){

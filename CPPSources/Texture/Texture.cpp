@@ -1,24 +1,29 @@
 #include "Texture.h"
-#include "Game.h"
 #include "lodepng.h"
 
 
-Texture::Texture(void* context, const char* filename, unsigned int texelType, unsigned char byte, unsigned int format, unsigned int target, unsigned int ID) : texelType(texelType), byte(4), format(format), target(target), ID(ID){
+Texture::Texture(const char* filename,unsigned int target, unsigned int texelType, unsigned char byte, unsigned int format, unsigned int ID) : texelType(texelType), byte(4), format(format), target(target), ID(ID){
+    logGLError();
     this->filename = filename;
-    texelArray = loadRawPNGData(context, filename, width, height);
-    logMessage("Texture constructor!\n");
+    string file = filename;
+#ifdef ANDROID
+    file = "textures/" + file;
+#endif
+    texelArray = loadRawPNGData(file.c_str(), width, height);
+    logGLError();
 }
 
 Texture::~Texture(){
-    logMessage("Texture destructor!\n");
 }
 
-std::shared_ptr<Texture> Texture::load(void *context, const char *filename){
-    return std::shared_ptr<Texture>(std::shared_ptr<Texture>(new Texture(context, filename)));
+std::shared_ptr<Texture> Texture::load(const char *filename, unsigned int target){
+    logGLError();
+    return std::shared_ptr<Texture>(std::shared_ptr<Texture>(new Texture(filename, target)));
 }
 
 
 void Texture::generateID(unsigned int flags, unsigned char filter){
+    logGLError();
     if(ID) return;
  
     glGenTextures(1, &ID);
@@ -66,6 +71,7 @@ void Texture::generateID(unsigned int flags, unsigned char filter){
     }
     
     glTexImage2D(target, 0, format, width, height, 0, format, texelType, &texelArray[0]);
+    logGLError();
     
     // generateMipMap if needed...
 }

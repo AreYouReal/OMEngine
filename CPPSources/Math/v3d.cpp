@@ -1,4 +1,5 @@
 #include "v3d.h"
+#include "q4d.h"
 
 #pragma mark 2D
 v2d::v2d():x(0), y(0){}
@@ -36,6 +37,8 @@ v3d& v3d::operator=(const v3d& vec3){
     return *this;
 }
 
+
+
 void v3d::operator+=(const v3d &vec){
     x += vec.x; y += vec.y; z += vec.z;
 }
@@ -44,6 +47,17 @@ void v3d::operator+=(const v3d &vec){
 void v3d::print(const v3d& vec3){
     std::cout << "[ " << vec3.x << ", " << vec3.y << ", " << vec3.z << " ]" << std::endl;
 }
+
+v3d v3d::lerp(const v3d &v1, const v3d &v2, const float blend){
+    if(blend >= 1.0f) return v3d(v2);
+    else if(blend <= 0.0f) return v3d(v1);
+    else{
+        return v3d(  v1.x + blend * (v2.x - v1.x)
+                   , v1.y + blend * (v2.y - v1.y)
+                   , v1.z + blend * (v2.z - v1.z) );
+    }
+}
+
 v3d operator+(const v3d& v1, const v3d& v2){
     v3d rVec3;
     rVec3.x = v1.x + v2.x;	rVec3.y = v1.y + v2.y;	rVec3.z = v1.z + v2.z;
@@ -102,6 +116,10 @@ v3d v3d::normalize(){
     return v3d::normalize(*this);
 }
 
+v3d v3d::createDirectionalVector(const float xAngle, const float yAngle, const float zAngle){
+    return v3d(cosf(M_PI / 180 * xAngle), cosf(M_PI / 180 * yAngle), cosf(M_PI /180 * zAngle)).normalize();
+}
+
 float* v3d::pointer(){
     return &x;
 }
@@ -128,12 +146,28 @@ v4d& v4d::operator=(const v4d& vec){
     return *this;
 }
 
+
 void v4d::print(const v4d& vec4){
     std::cout << "[ " << vec4.x << ", " << vec4.y << ", " << vec4.z << ", " << vec4.w << " ]" << std::endl;
 }
 
 float v4d::dot(const v4d &v1, const v4d &v2){
     return (v1.x * v2.x + v1.y * v2.y + v1.z * v2.z + v1.w * v2.w);
+}
+
+float v4d::dot(const q4d &q1, const q4d &q2){
+    return (q1.x * q2.x + q1.y * q2.y + q1.z * q2.z + q1.w * q2.w);
+}
+
+v4d v4d::lerp(const v4d &v1, const v4d &v2, const float blend){
+    if(blend >= 1.0f) return v4d(v2);
+    else if(blend <= 0.0f) return v4d(v1);
+    else{
+        return v4d(  v1.x + blend * (v2.x - v1.x)
+                   , v1.y + blend * (v2.y - v1.y)
+                   , v1.z + blend * (v2.z - v1.z)
+                   , v1.w + blend * (v2.w - v1.w));
+    }
 }
 
 v4d operator+(const v4d& v1, const v4d& v2){
@@ -146,6 +180,10 @@ v4d operator-(const v4d& v1, const v4d& v2){
 
 v4d operator*(const v4d& vec4, const float scalar){
     return v4d(vec4.x * scalar, vec4.y * scalar, vec4.z * scalar, vec4.w * scalar);
+}
+
+v4d operator/(v4d& vec4, const float scalar){
+    return v4d(vec4.x/scalar, vec4.y/scalar, vec4.z/scalar, vec4.w/scalar);
 }
 
 float* v4d::pointer(){

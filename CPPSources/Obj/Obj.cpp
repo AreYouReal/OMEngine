@@ -1,5 +1,4 @@
 #include "Obj.h"
-#include "Game.h"
 
 
 Obj::~Obj(){
@@ -7,7 +6,16 @@ Obj::~Obj(){
 }
 
 sp<Obj> Obj::load(const char *filename){
-    std::unique_ptr<FileContent> objSource = readBytesFromFile(Game::getAppContext(), filename);
+    
+    logGLError();
+    
+    string newFilename = filename;
+#ifdef ANDROID
+    newFilename = "objects/" + newFilename;
+#endif
+    
+    
+    std::unique_ptr<FileContent> objSource = readBytesFromFile(newFilename.c_str());
 #pragma warning throw exception here
     if(!objSource.get()) return nullptr;
     
@@ -27,7 +35,7 @@ sp<Obj> Obj::load(const char *filename){
         if(!line[0] || line[0] == '#'){
             // go to next object line
         }else if( line[0] == 'f' && line[1] == ' '){    // Read face indices...
-            bool useUVs; int vertexIndex[3]  = {0, 0, 0}, normalIndex[3] = {0, 0, 0}, uvIndex[3] = {0, 0, 0};
+            bool useUVs = false; int vertexIndex[3]  = {0, 0, 0}, normalIndex[3] = {0, 0, 0}, uvIndex[3] = {0, 0, 0};
             if(!Obj::readIndices(line, vertexIndex, normalIndex, uvIndex, useUVs)){
                 last = line[0];
                 line = strtok(NULL, "\n");
@@ -54,7 +62,7 @@ sp<Obj> Obj::load(const char *filename){
             // go to next object line
         } else if(sscanf(line, "vt %f %f", &v.x, &v.y) == 2){           // Read UVs.
             v.y = 1.0f - v.y;
-            data->UVs.push_back(v);
+            data->UVs.push_back(v2d(v.x, v.y));
         }else if(line[0] == 'v' && line[1] == 'n' ){    last = line[0];
         }else if(sscanf(line, "usemtl %s", str) == 1){  strcpy(usemtl, str);
         }else if(sscanf(line, "o %s", str) == 1){       strcpy(name, str);
@@ -105,7 +113,7 @@ bool Obj::readIndices(const char* line, int v[], int n[], int uv[], bool &useUVs
 }
 
 void Obj::addMesh(sp<ObjMesh> mesh, sp<ObjTriangleList> tList, char* name, char* usemtl, char* group, bool useUVs){
-    logMessage("Add new mesh to OBJ %s\n", name);
+//    logMessage("Add new mesh to OBJ %s\n", name);
     meshes.insert(std::pair<string, sp<ObjMesh>>(name, mesh));
     mesh->visible = true;
     if(name[0]) mesh->name = name;
@@ -115,7 +123,7 @@ void Obj::addMesh(sp<ObjMesh> mesh, sp<ObjTriangleList> tList, char* name, char*
     mesh->tLists.push_back(tList);
     
     tList->mode = GL_TRIANGLES;
-    if(useUVs) tList->useUVs = useUVs;
+    tList->useUVs = useUVs;
     if(usemtl[0]) tList->material = Materials::instance()->getMaterial(usemtl);
     name[0]         = 0;
     usemtl[0]       = 0;
@@ -158,7 +166,7 @@ void Obj::builNormalsAndTangents(){
                 
                 if(list->useUVs){
                     v3d tangent;
-                    v3d uv1, uv2;
+                    v2d uv1, uv2;
                     float c;
                     uv1 = UVs[list->tIndices[k].uvIndex[2]] - UVs[list->tIndices[k].uvIndex[0]];
                     uv2 = UVs[list->tIndices[k].uvIndex[1]] - UVs[list->tIndices[k].uvIndex[0]];
@@ -227,7 +235,9 @@ std::vector<sp<ObjMesh>> Obj::getAllMeshes(){
 unsigned int Obj::meshesSize()   { return (unsigned int)meshes.size();     }
 
 void Obj::build(){
+    logGLError();
     for(auto const &meshEntry : meshes){
+        logGLError();
         meshEntry.second->build();
     }
 }

@@ -1,181 +1,406 @@
 #include "Scene.hpp"
+#include "Camera.h"
+#include "Shortcuts.h"
+#include "LevelBuilder.hpp"
+#include "CandyMonster.hpp"
+#include "MonsterSelector.hpp"
+#include "PlayButton.hpp"
 
+#include "Skybox.hpp";
+
+PlayerController    *player    = nullptr;
+LevelBuilder        *lBuilder      = nullptr;
+MonsterSelector     *mSelector  = nullptr;
+PlayButton          *playButton = nullptr;
+
+float doubleTapTime = 0.4f;
+
+v3d startCameraPos{0, 11, 5};
+v3d mSelectorPos{20, 10, -6};
+v3d selectCameraPOs{20, 11, 5};
+float camMovingTime = 2.0f;
+
+
+#pragma Constr/Destr
 Scene::Scene(){
-    
+    logGLError();
+    AssetManager::instance()->init();
     Camera::instance();
-    Illuminator::instance();
     Materials::instance();
+    Illuminator::instance();
     PhysicalWorld::instance();
     Boombox::instance();
-    
-    
-    logMessage("Scene constructor!\n");
+    logGLError();
 }
 
 Scene::~Scene(){
     mObjects.clear();
-
     Camera::destroy();
     Illuminator::destroy();
     Materials::destroy();
     PhysicalWorld::destroy();
     Boombox::destroy();
-    
-    
-    logMessage("Scene destructor!\n");
 }
 
-bool Scene::init(){
-//    createBallsScene();
-    
-        createTestScene();
-
-    return true;
+#pragma Public
+void Scene::switchState(Scene::State newState){
+    switch (newState) {
+        case Scene::State::START_VIEW:
+            startViewRoutine();
+            break;
+        case Scene::State::SELECT_MONSTER_VIEW:
+            selectMonsterRoutine();
+            break;
+        case Scene::State::LEVEL_VIEW:
+            levelRoutine();
+            break;
+        default:
+            break;
+    }
+    mState = newState;
 }
 
+#pragma mark Remove/Add object
 void Scene::addObjOnScene(up<GameObject> go){
+    for(auto const &comp : go->mComponents){
+        comp.second->init();
+    }
     mObjects.push_back(std::move(go));
 }
 
+bool Scene::removeObjectFromTheScene(GameObject *go){
+    for(int i = 0; i < mObjects.size(); ++i){
+        if(mObjects[i].get() == go){
+            mObjects.erase(mObjects.begin() + i);
+            return true;
+        }
+    }
+    return false;
+}
+
+#pragma OME event functions
+
+bool Scene::init(){
+    srand(time(0));
+    
+    logGLError();
+    initMonsterSelector();
+    switchState(State::START_VIEW);
+    
+    Camera::instance()->initShadowBuffer();
+    
+    addLight();
+    
+
+    mSelector->go->mActive = false;
+    
+    addObjOnScene(std::move( Skybox::create() ));
+
+
+    
+    return true;
+}
+
 void Scene::update(float deltaTime){
+    Camera::instance()->update();
     PhysicalWorld::instance()->update(deltaTime);
+    for(int i = 0; i < mObjects.size(); ++i){
+        mObjects[i]->update();
+    }
+
 }
 
 void Scene::draw(){
+    logGLError();
+
+    Camera::instance()->draw();
     for(const auto& go : mObjects){
-        IComponent *mrc = go->getComponent(ComponentEnum::MESH_RENDERER);
-        if(mrc){
-            if(!mrc->go->name.compare("player")){
-                Camera::instance()->setFront(mrc->go->getPosition());
-            }
-            mrc->update();
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, Camera::instance()->depthTexture());
+        go->draw();
+    }
+    
+    logGLError();
+}
+
+void Scene::drawDepth(){
+    glGetIntegerv(GL_FRAMEBUFFER_BINDING, &Camera::instance()->mMainBuffer);
+    glBindFramebuffer( GL_FRAMEBUFFER, Camera::instance()->shadowBuffer());
+            glBindFramebuffer(GL_FRAMEBUFFER, Camera::instance()->mMainBuffer);
+    
+    glViewport(0, 0, Camera::instance()->shadowmapWidth(), Camera::instance()->shadowmapHeight());
+    glClear(GL_DEPTH_BUFFER_BIT);
+    
+    glColorMask ( GL_FALSE, GL_FALSE, GL_FALSE, GL_FALSE );
+    glEnable ( GL_POLYGON_OFFSET_FILL );
+    glPolygonOffset( 5.0f, 100.0f );
+    
+    glCullFace(GL_FRONT);
+    Camera::instance()->shadowDraw = true;
+    for(const auto& go: mObjects){
+        MeshRendererComponent *mrc = static_cast<MeshRendererComponent*>(go->getComponent(ComponentEnum::MESH_RENDERER));
+        if(mrc && mrc->castShadows){
+            mrc->shadowDraw = true;
+            mrc->draw();
+            mrc->shadowDraw = false;
         }
     }
+    
+    
+    for(const auto& go: mObjects){
+        AnimMeshComponent *amc = static_cast<AnimMeshComponent*>(go->getComponent(ComponentEnum::ANIM_MESH));
+        if(amc && amc->castShadow){
+            amc->setShadowDraw( true );
+            amc->draw();
+            amc->setShadowDraw(false);
+        }
+    }
+    Camera::instance()->shadowDraw = false;
+    
+    glCullFace( GL_BACK );
+    glDisable( GL_POLYGON_OFFSET_FILL );
 }
 
 void Scene::setRenderObjectState(RenderObjectType newState){
     if(mDrawingState != newState) mDrawingState = newState;
 }
 
-// DEBUG AND TEST STUFF GOES HERE
+void Scene::onTouchBegin(const int x, const int y){
+    static unsigned int startMillisec = 0;
+    switch (mState) {
+        case State::START_VIEW:{
+            GameObject * collidedObj = Camera::instance()->collisionRayIntersection(x, y);
+            if(collidedObj){
+                if(!collidedObj->name.compare("PLAY")){
+                    if(playButton->go->mActive)
+                        switchState(LEVEL_VIEW);
+                }else{
+                    if(startMillisec == 0){
+                        startMillisec = getMilliTime();
+                    }else{
+                        float secDelta = (getMilliTime() - startMillisec)/1000.0f;
+                        logMessage("Sec delta %f\n", secDelta);
+                        if(secDelta > doubleTapTime){
+                            startMillisec = getMilliTime();
+                        }else{
+                            switchState(State::SELECT_MONSTER_VIEW);
+                            startMillisec = 0;
+                        }
+                    }
+                }
+            }else{
+                if(startMillisec == 0){
+                    startMillisec = getMilliTime();
+                }else{
+                    float secDelta = (getMilliTime() - startMillisec)/1000.0f;
+                    logMessage("Sec delta %f\n", secDelta);
+                    if(secDelta > doubleTapTime){
+                        startMillisec = getMilliTime();
+                    }else{
+                        switchState(State::SELECT_MONSTER_VIEW);
+                        startMillisec = 0;
+                    }
+                }
+            }
+            break;
+        }
+        case State::SELECT_MONSTER_VIEW:
+            if(startMillisec == 0){
+                startMillisec = getMilliTime();
+                if(mSelector){
+                    mSelector->onTouchBegin(x, y);
+                }
+            }else{
+                float secDelta = (getMilliTime() - startMillisec)/1000.0f;
+                logMessage("Sec delta %f\n", secDelta);
+                if(secDelta > doubleTapTime){
+                    startMillisec = getMilliTime();
+                }else{
+                    switchState(State::START_VIEW);
+                    startMillisec = 0;
+                }
+            }
 
-
-void Scene::createTestScene(){
-    
-    sp<Obj> object = Obj::load("treemomo.obj");
-    object->build();
-    object->clear(); // Free mesh data.
-    
-    mObjRess.insert(std::pair<string, sp<Obj>>("scene", object));
-    
-    /// TEST CODE
-    v3d firstPos(0, 0, 0);
-    
-    up<GameObject> ground;
-    
-    
-    // Tree
-    
-    up<GameObject> treeAndLeafs = std::unique_ptr<GameObject>(new GameObject());
-    
-    up<MeshRendererComponent> mrc_1 = up<MeshRendererComponent>(new MeshRendererComponent(treeAndLeafs.get()));
-    mrc_1->addMesh(object->getMesh("leaf"));
-    mrc_1->addMesh(object->getMesh("tree"));
-    
-    treeAndLeafs->mTransform = (v3d(0, 0, 5));
-    treeAndLeafs->addComponent(ComponentEnum::MESH_RENDERER, std::move(mrc_1));
-    
-    PhysicalWorld::instance()->addPBodyToGameObject(treeAndLeafs.get(), PhysicalBodyShape::BOX, 1.0f, treeAndLeafs->getDimensions());
-    
-    //------------------------------
-    addObjOnScene(std::move(treeAndLeafs));
-    
-    // MOMO
-    up<GameObject> momo = std::unique_ptr<GameObject>(new GameObject());
-
-    mrc_1 = up<MeshRendererComponent>(new MeshRendererComponent(momo.get()));
-    mrc_1->addMesh(object->getMesh("momo"));
-    
-    momo->name = "momo";
-    momo->mTransform = (v3d(2.3, 0, 7));
-    momo->addComponent(ComponentEnum::MESH_RENDERER, std::move(mrc_1));
-    
-    
-    PhysicalWorld::instance()->addPBodyToGameObject(momo.get(), PhysicalBodyShape::BOX, 1.0f, momo->getDimensions());
-    
-    //----------------------------
-    addObjOnScene(std::move(momo));
-    
-    // GROUND
-    
-    ground = std::unique_ptr<GameObject>(new GameObject());
-    ground->mTransform = (v3d(0, 0, 0));
-
-    
-    mrc_1 = up<MeshRendererComponent>(new MeshRendererComponent(ground.get()));
-    mrc_1->addMesh(object->getMesh("grass_ground"));
-    
-    ground->addComponent(ComponentEnum::MESH_RENDERER, std::move(mrc_1));
-    
-    PhysicalWorld::instance()->addPBodyToGameObject(ground.get(), PhysicalBodyShape::BOX, 0.0f, v3d(10, 10, 1));
-    
-    //------------------------------------------------
-    
-    addObjOnScene(std::move(ground));
-    
-    
-    
-    //
-    //    , nullptr, [](btBroadphasePair &pair, btCollisionDispatcher &dispatcher, const btDispatcherInfo &info){
-    //        logMessage("nearCallback");
-    //        GameObject *go = (GameObject*)((btRigidBody*)(pair.m_pProxy0->m_clientObject))->getUserPointer();
-    //        if(go->name.compare("momo")) return;
-    //
-    //        dispatcher.defaultNearCallback(pair, dispatcher, info);
-    //    }
+            break;
+        case State::LEVEL_VIEW:
+            if(player) player->onTouch();
+            break;
+        default:
+            break;
+    }
 }
 
-
-
-
-void Scene::createMOMO(){    
-    up<GameObject> m = std::unique_ptr<GameObject>(new GameObject());
-    m->mTransform = (v3d(2, 0, 10));
-    
-    up<MeshRendererComponent> mrc_1 = up<MeshRendererComponent>(new MeshRendererComponent(m.get()));
-    mrc_1->addMesh(mObjRess["scene"]->getMesh("momo"));
-    
-    m->addComponent(ComponentEnum::MESH_RENDERER, std::move(mrc_1));
-    
-    PhysicalWorld::instance()->addPBodyToGameObject(m.get(), PhysicalBodyShape::BOX, 1.0f, m->getDimensions());
-    
-    addObjOnScene(std::move(m));
+void Scene::onTouchMove(const int x, const int y){
+    switch (mState) {
+        case State::SELECT_MONSTER_VIEW:
+            if(mSelector){
+                mSelector->onTouchMove(x, y);
+            }
+            break;
+        default:
+            break;
+    }
 }
 
-void Scene::createBallsScene(){
+void Scene::onTouchEnd(const int x, const int y){
+    switch (mState) {
+        case State::SELECT_MONSTER_VIEW:
+            if(mSelector){
+                mSelector->onTouchEnd(x, y);
+            }
+            break;
+        default:
+            break;
+    }
+}
+
+#pragma mark Init Helpers
+
+void Scene::addPlayButton(){
+    if(playButton) return;
+    up<GameObject> playBTN = PlayButton::create();
+    playButton = static_cast<PlayButton*>(playBTN->getComponent(ComponentEnum::PLAY_BTN));
+    addObjOnScene(std::move(playBTN));
+}
+
+void Scene::addLight(){
+    up<GameObject> go = std::unique_ptr<GameObject>(new GameObject("Light"));
     
-    sp<Obj> object = Obj::load("Scene.obj");
-    object->build();
-    object->clear();
+    go->setFront(v3d(0, 1, -1));
+    up<LightSource> light = up<LightSource>(new LightSource(go.get(), LightSource::Type::DIRECTION, v4d(1, 1, 1, 1)) );
+    light->IComponent::mComponentType = ComponentEnum::LIGHT_SOURCE;
+    go->addComponent(std::move(light));
     
-    mObjRess.insert(std::pair<string, sp<Obj>>("ballsScene", object));
+    if(OMGame::debugFlag){
+        up<DebugDrawComponent> debugDraw = up<DebugDrawComponent>(new DebugDrawComponent(go.get()));
+        debugDraw->mComponentType = ComponentEnum::DEBUG_DRAW;
+        go->addComponent(std::move(debugDraw));
+    }
     
-    up<GameObject> interior = std::unique_ptr<GameObject>(new GameObject("interior"));
-    up<MeshRendererComponent> mrc = up<MeshRendererComponent>(new MeshRendererComponent(interior.get(), mObjRess["ballsScene"]->getMesh(interior->name)));
-    interior->addComponent(ComponentEnum::MESH_RENDERER, std::move(mrc));
+    addObjOnScene(std::move(go));
     
-    up<GameObject> camera = std::unique_ptr<GameObject>(new GameObject("player"));
-    mrc = up<MeshRendererComponent>(new MeshRendererComponent(camera.get(), mObjRess["ballsScene"]->getMesh(camera->name)));
-    camera->addComponent(ComponentEnum::MESH_RENDERER, std::move(mrc));
+    go = std::unique_ptr<GameObject>(new GameObject("Light"));
+    light = up<LightSource>(new LightSource(go.get(), LightSource::Type::POINT, v4d(1, 1, 1, 1), 50) );
+//    go->setFront(v3d(5, 5, 0));
+    // TODO: Why z = -z fro proper lighting calculations!?
+    go->setPosition(v3d(0, 10, -3));
+
+    light->IComponent::mComponentType = ComponentEnum::LIGHT_SOURCE;
+    go->addComponent(std::move(light));
+
+    if(OMGame::debugFlag){
+        up<DebugDrawComponent> debugDraw = up<DebugDrawComponent>(new DebugDrawComponent(go.get()));
+        debugDraw->mComponentType = ComponentEnum::DEBUG_DRAW;
+        go->addComponent(std::move(debugDraw));
+    }
+
     
-    std::vector<GameObject*> objs;
-    objs.push_back(interior.get());
-    objs.push_back(camera.get());
+
+    addObjOnScene(std::move(go));
+}
+
+PlayerController* Scene::createPlayer(){
+    up<GameObject> candyMonster = CandyMonster::create(mSelector->getCurrentSelectedMonster());
+    up<RigidBodyComponent> rbc_1 = up<RigidBodyComponent>(new RigidBodyComponent(candyMonster.get(), 5.0f));
+    rbc_1->mBody->setGravity(btVector3(0, 0, 0));
+    rbc_1->mComponentType = ComponentEnum::RIGID_BODY;
+    candyMonster->addComponent(std::move(rbc_1));
+
+    if(OMGame::debugFlag){
+        up<DebugDrawComponent> ddc = up<DebugDrawComponent>(new DebugDrawComponent(candyMonster.get()));
+        ddc->mComponentType = ComponentEnum::DEBUG_DRAW;
+        candyMonster->addComponent(std::move(ddc));
+    }
+    candyMonster->mTransform.rotate(90, v3d(0, 1, 0));
+
+    up<PlayerController> player = up<PlayerController>( new PlayerController(candyMonster.get()));
+    PlayerController *ctr = player.get();
+    ctr->IComponent::mComponentType = ComponentEnum::PLAYER_CTR;
+    candyMonster->addComponent(std::move(player));
     
-    PhysicalWorld::instance()->loadPhysicsWorldFromFile("Scene.bullet", objs);
+    addObjOnScene(std::move(candyMonster));
     
-    addObjOnScene(std::move(interior));
-    addObjOnScene(std::move(camera));
+    return ctr;
+}
+
+void Scene::startViewRoutine(){
+    addPlayButton();
+    showPlayButton();
+    if(player == nullptr){
+        player = createPlayer();
+    }else{
+        player->go->removeComponent(ComponentEnum::ANIM_MESH);
+        
+        up<AnimMeshComponent> mamc = up<AnimMeshComponent>(new AnimMeshComponent(player->go, AssetManager::instance()->getMD5Mesh("minimon_" + std::to_string( (int) mSelector->getCurrentSelectedMonster())) ) );
+        player->go->addComponent(std::move(mamc));
+        player->refreshAnimMeshComp();
+    }
+
     
+    if(player){
+        player->go->mActive = true;
+    }
     
+//    if(mSelector){
+//        mSelector->go->mActive = false;
+//    }
+
+    Camera::instance()->moveTo(startCameraPos, camMovingTime);
+    Camera::instance()->lookAt( player->go->getPosition(), camMovingTime);
+}
+
+void Scene::levelRoutine(){
+     hidePlayButton();
+    if(!lBuilder){
+        up<GameObject> levelBuilderObject = LevelBuilder::create();
+        lBuilder = static_cast<LevelBuilder*>( levelBuilderObject->getComponent(ComponentEnum::LEVEL_BUILDER) );
+
+        player->setLevelBuilder(lBuilder);
+        addObjOnScene(std::move(levelBuilderObject));
+    }
+    lBuilder->buildLevel();
+    player->activate();
+    Illuminator::instance()->getLightSource(1)->follow(player->go);
+
+    if(mSelector){
+        mSelector->go->mActive = false;
+    }
+}
+
+void Scene::selectMonsterRoutine(){
+    initMonsterSelector();
+    
+    if(mSelector)
+        mSelector->go->mActive = true;
+    
+//    if(player){
+//        player->go->mActive = false;
+//    }
+    
+    Camera::instance()->lookAt(mSelector->go->getPosition(), camMovingTime);
+    Camera::instance()->moveTo(selectCameraPOs, camMovingTime);
+}
+
+void Scene::initMonsterSelector(){
+    if(!mSelector){
+        up<GameObject> monsterSelectorObject = up<GameObject>(new GameObject("MSelector"));
+        mSelector = MonsterSelector::add(monsterSelectorObject.get());
+        
+        for(int i =  1; i <= 5; ++i){
+            up<GameObject> candyMonster = CandyMonster::create((CandyMonster::CandyType)i);
+            mSelector->addMonster(std::move(candyMonster));
+        }
+        
+        monsterSelectorObject->setPosition(mSelectorPos);
+        monsterSelectorObject->mTransform.refreshTransformMatrix();
+        addObjOnScene(std::move(monsterSelectorObject));
+    }
+}
+
+void Scene::showPlayButton(){
+    playButton->go->mActive = true;
+}
+
+void Scene::hidePlayButton(){
+    playButton->go->mActive = false;
 }

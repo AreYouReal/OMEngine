@@ -4,47 +4,34 @@
 #include "btManifoldPoint.h"
 
 #include "OMUtils.h"
-#include "Game.h"
 
 #include "btBulletWorldImporter.h"
 
 PhysicalWorld::PhysicalWorld(){
     init();
-    logMessage("PhysicalWorld constructor!\n");
 }
 
 PhysicalWorld::~PhysicalWorld(){
     destroyTheWorld();
-    logMessage("PhysicalWorld destructor!\n");
 }
 
 void PhysicalWorld::update(float deltaTime){
-    physicsWorld->stepSimulation( deltaTime );
+    physicsWorld->updateAabbs();
+    physicsWorld->stepSimulation( Time::deltaTime, 5 );
 }
 
-bool PhysicalWorld::addPBodyToGameObject(GameObject *go, PhysicalBodyShape shape, float mass, v3d dimension,PhysicContactCallback contactCallback, PhysicNearCallback nearCallback ){
-    if(!go) return false;
-    // Collision shape choosing goes here...
-    btCollisionShape *cShape = new btBoxShape(btVector3(dimension.x * 0.5f, dimension.y * 0.5f, dimension.z * 0.5f));
-    btTransform bttransform;
-    m4d transformM = m4d::transpose(go->mTransform.transformMatrix());
-    bttransform.setFromOpenGLMatrix(transformM.pointer());
-    btDefaultMotionState *defMState = new btDefaultMotionState(bttransform);
-    btVector3 localInertia(0.0f, 0.0f, 0.0f);
-    if(mass > 0.0f) cShape->calculateLocalInertia( mass, localInertia );
-    go->pBody = new btRigidBody(mass, defMState, cShape, localInertia);
-    go->pBody->setUserPointer(go);
-    physicsWorld->addRigidBody(go->pBody);
-    if(contactCallback) {
-        go->pBody->setCollisionFlags(go->pBody->getCollisionFlags() | btCollisionObject::CF_CUSTOM_MATERIAL_CALLBACK);
-        gContactAddedCallback = contactCallback;
-    }
-    if(nearCallback) cDispatcher->setNearCallback(nearCallback);
+bool PhysicalWorld::addBodyToPhysicalWork(btRigidBody *body){
+    physicsWorld->addRigidBody(body);
     return true;
 }
 
+void PhysicalWorld::addNearCallback(PhysicNearCallback nearCC){
+    cDispatcher->setNearCallback(nearCC);
+}
+
+
 bool PhysicalWorld::loadPhysicsWorldFromFile(string filename, std::vector<GameObject*> objects){
-    up<FileContent> fileContent = readBytesFromFile(Game::getAppContext(), filename.c_str());
+    up<FileContent> fileContent = readBytesFromFile(filename.c_str());
     if(!fileContent) return false;
     
     btBulletWorldImporter *bulletImporter = new btBulletWorldImporter(physicsWorld.get());
@@ -56,8 +43,8 @@ bool PhysicalWorld::loadPhysicsWorldFromFile(string filename, std::vector<GameOb
         
         for(const auto go : objects){
             if(!go->name.compare(name)){
-                go->pBody = (btRigidBody *)co;
-                go->pBody->setUserPointer(go);
+//                go->pBody = (btRigidBody *)co;
+//                go->pBody->setUserPointer(go);
             }
         }
         
@@ -79,7 +66,7 @@ void PhysicalWorld::init(){
                                                               cInterface.get(),
                                                               cSolver.get(),
                                                               cConfig.get());
-    physicsWorld->setGravity(btVector3(0, 0, -9.8f));
+    physicsWorld->setGravity(btVector3(0, -9.8f, 0 ));
 }
 
 void PhysicalWorld::destroyTheWorld(){
@@ -93,6 +80,13 @@ void PhysicalWorld::destroyTheWorld(){
             physicsWorld->removeCollisionObject(btCObject);
             delete rBody;
         }
+    }
+}
+
+void PhysicalWorld::removeBodyFromWorld(btRigidBody *body){
+    if(body){
+        physicsWorld->removeRigidBody(body);
+        physicsWorld->removeCollisionObject(body);
     }
 }
 

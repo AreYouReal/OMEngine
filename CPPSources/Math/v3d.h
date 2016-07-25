@@ -7,10 +7,10 @@
 
 const float PI = atan(1.0f)*4.0f;
 
-
 // Forward declaration
 struct v3d;
 struct m4d;
+struct q4d;
 
 struct v4d{
 public:
@@ -26,10 +26,13 @@ public:
     float* pointer();
     
     float x{0}, y{0}, z{0}, w{1};
-    
+       
     static float dot(const v4d& v1, const v4d& v2);
+    static float dot(const q4d& q1, const q4d& q2);
     
     static void print(const v4d& vec4);
+    
+    static v4d lerp(const v4d &v1, const v4d &v2, const float blend);
 };
 
 struct v3d{
@@ -54,7 +57,12 @@ struct v3d{
     static float length(const v3d& vec3);
     static v3d normalize(const v3d& vec);
     
+    static v3d createDirectionalVector(const float xAngle, const float yAngle, const float zAngle);
+    
     static void print(const v3d& vec3);
+    
+    static v3d lerp(const v3d& v1, const v3d& v2, const float blend);
+
 };
 
 struct v2d{
@@ -66,6 +74,21 @@ struct v2d{
 v2d operator+(const v2d &lhs, const v2d &rhs);
 v2d operator-(const v2d &lhs, const v2d &rhs);
 
+inline bool operator!=(const v2d &lhs, const v2d &rhs){
+    return (lhs.x != rhs.x || lhs.y != rhs.y);
+}
+
+inline bool operator==(const v2d &lhs, const v2d &rhs){
+    return (lhs.x == rhs.x && lhs.y == rhs.y);
+}
+
+inline bool operator!=(const v3d &lhs, const v3d &rhs){
+    return (lhs.x != rhs.x || lhs.y != rhs.y || lhs.z != rhs.z);
+}
+
+inline bool operator==(const v3d &lhs, const v3d &rhs){
+    return (lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z);
+}
 
 v3d operator*(const float scalar, const v3d& vec3);
 v3d operator*(const v3d& vec3, const float scalar);
@@ -77,3 +100,4 @@ v3d operator/(v3d& vec3, const float scalar);
 v4d operator+(const v4d& v1, const v4d& v2);
 v4d operator-(const v4d& v1, const v4d& v2);
 v4d operator*(const v4d& vec4, const float scalar);
+v4d operator/(v4d& vec4, const float scalar);

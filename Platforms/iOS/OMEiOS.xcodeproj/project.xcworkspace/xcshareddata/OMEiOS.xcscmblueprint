@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "A623276CDE58E131A459AEF1A230F687A3938771",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "A623276CDE58E131A459AEF1A230F687A3938771" : 0,
+    "7E8D2459F137103E2F41F8C34D1BC48BDA8A1AE1" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "2B5304E1-92B2-4CDF-8A1B-E6FB8CDC47F4",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "A623276CDE58E131A459AEF1A230F687A3938771" : "OMEngine\/",
+    "7E8D2459F137103E2F41F8C34D1BC48BDA8A1AE1" : "3dPLibs\/recastnavigation\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "OMEiOS",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Platforms\/iOS\/OMEiOS.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/memononen\/recastnavigation.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "7E8D2459F137103E2F41F8C34D1BC48BDA8A1AE1"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/AreYouReal\/SREngine.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "A623276CDE58E131A459AEF1A230F687A3938771"
+    }
+  ]
+}

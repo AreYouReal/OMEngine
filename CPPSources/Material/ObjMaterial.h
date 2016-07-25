@@ -1,7 +1,6 @@
 #pragma once
 
 #include "OMUtils.h"
-#include "ShaderProgram.h"
 #include "Texture.h"
 #include "Materials.hpp"
 
@@ -17,11 +16,8 @@ public:
     ObjMaterial(std::string name = "default");
     ~ObjMaterial();
     void loadTextures();
-    void setProgram(sp<ShaderProgram> prog);
     void use();
     
-    
-private:
     std::string name;                                   // The material name!
     v4d         ambient     {0.1f, 0.1f, 0.1f, 1.0f};   // Ambient material color.
     v4d         diffuse     {0.5f, 0.5f, 0.5f, 1.0f};   // Diffuse material color.
@@ -40,6 +36,4 @@ private:
     
     sp<Texture> tAmbient, tDiffuse, tSpecular, tTranslucency, tDisp, tBump;
     sp<ShaderProgram>  program;
-    
-    virtual void setUniforms();
 };

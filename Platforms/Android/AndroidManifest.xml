@@ -3,12 +3,15 @@
     package="com.sre.enginetest">
     <application
         android:label="OME"
-        android:hasCode="false">
+        android:hasCode="false"
+        android:debuggable="true" >
          <activity android:name="android.app.NativeActivity"
                 android:label="OMEngine"
                 android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
 				android:launchMode="singleTask"
-                android:configChanges="orientation|keyboardHidden">
+                android:configChanges="orientation|keyboardHidden"
+                android:screenOrientation="portrait"
+             android:icon="@drawable/icon">
             <meta-data android:name="android.app.lib_name" 
                 android:value="OME" />
             <intent-filter>
@@ -17,6 +20,8 @@
             </intent-filter>
         </activity>
     </application>
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-feature android:glEsVersion="0x00030000"/>
     <uses-sdk android:minSdkVersion="18"/>
 </manifest>
+

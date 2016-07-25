@@ -1,10 +1,27 @@
 #pragma once
 
 #include "v3d.h"
+#include "q4d.h"
+
+struct m4d;
+
+struct m3d{
+public:
+    m3d();
+    m3d(const m4d& m4);
+    m3d* operator=(const m4d& m4);
+    v3d m[3];
+    
+    const float *pointer() const;
+};
+
+
+
 
 struct m4d{
 public:
     m4d();
+    m4d(const m3d& m3);
     m4d(const m4d& m4);
     m4d(const float arr[16]);
     m4d(const float m00, const float m01, const float m02, const float m03,
@@ -13,7 +30,7 @@ public:
         const float m30, const float m31, const float m32, const float m33);
     
     void operator=(const m4d& m4);
-    float* pointer();
+    const float* pointer() const;
     
     
     v4d m[4];
@@ -30,12 +47,11 @@ public:
     static m4d rotate(float angle, v3d& axis);
     static m4d rotate(v3d& angles);
     static m4d scale(float x, float y, float z);
-    static m4d scale(v3d& scale);
+    static m4d scale(const v3d& scale);
     static m4d translate(float x, float y, float z);
     static m4d translate(v3d& translate);
     
-    static void print(const m4d& m);
-    
+    static void print(const m4d& m);    
 };
 
 
@@ -48,5 +64,6 @@ m4d operator-(const m4d& m1, const m4d& m2);
 v4d operator*(const m4d& m, const v4d &v);
 v4d operator*(const v4d& v, const m4d &m);
 v3d operator*(const v3d& v, const m4d &m);
+v3d operator*(const m4d& m, const v3d &v);
 
 

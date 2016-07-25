@@ -1,6 +1,7 @@
 #pragma once
 
 #include "OMUtils.h"
+#include "Shortcuts.h"
 
 struct Shader{
     Shader();

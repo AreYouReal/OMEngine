@@ -1,14 +1,6 @@
 #include "ObjMesh.h"
 #include "Scene.hpp"
 
-ObjMesh::ObjMesh(){
-    logMessage("ObjMesh constructor! %s \n" , name.c_str());
-}
-
-ObjMesh::~ObjMesh(){
-    logMessage("ObjMesh destructor! %s \n" , name.c_str());
-}
-
 unsigned int ObjMesh::draw(){
     unsigned int n = 0;
     
@@ -20,8 +12,13 @@ unsigned int ObjMesh::draw(){
     else setAttributes();
     
     for(unsigned int i = 0; i < tLists.size(); ++i){
-        currentMaterial = tLists[i]->material;
-        if(currentMaterial) currentMaterial->use();
+        if(shadowDraw){
+            shadowMaterial->use();
+        }else{
+            currentMaterial = tLists[i]->material;
+            if(currentMaterial) currentMaterial->use();
+        }
+
         if(glInfo.vao){
             if(tLists.size() != 1) glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, tLists[i]->vbo);
         }else{
@@ -64,17 +61,18 @@ RenderObjectType ObjMesh::renderObjectType(){
 }
 
 void ObjMesh::build(){
+    logGLError();
     updateBounds();
     buildVBO();
     initMaterial();
-
+    logGLError();
     glGenVertexArrays(1, &glInfo.vao);
     glBindVertexArray(glInfo.vao);
     
     setAttributes();
-    
+    logGLError();
     if(tLists.size() == 1){ glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, tLists[0]->vbo); }
-    
+    logGLError();
     glBindVertexArray(0);
 }
 
@@ -96,12 +94,6 @@ void ObjMesh::updateBounds(){
     
     outlines.location = (outlines.min + outlines.max) * 0.5f;
     outlines.dimension = outlines.max - outlines.min;
-    //    mesh->radius =  mesh->dimension.x >= mesh->dimension.y ?
-    //                    mesh->dimension.x :
-    //                    mesh->dimension.y;
-    //    mesh->radius =  mesh->radius >= mesh->dimension.x ?
-    //                    mesh->radius * 0.5f :
-    //                    mesh->dimension.z * 0.5f;
     outlines.radius = v3d::length(outlines.max - outlines.min) * 0.5f;
 }
 
@@ -119,13 +111,14 @@ void ObjMesh::updateMin(v3d &min, v3d &vertex){
 
 void ObjMesh::buildVBO(){
     unsigned int v3dSize = sizeof(v3d);
-    glInfo.stride = v3dSize;
-    glInfo.stride += v3dSize;
-    glInfo.stride += v3dSize;
+    unsigned int v2dSize = sizeof(v2d);
+    glInfo.stride = v3dSize;            // Vertex
+    glInfo.stride += v3dSize;           // Normals
+    glInfo.stride += v3dSize;           // Face Normals
     
     if(vertexData[0].uvIndex != -1){
-        glInfo.stride += v3dSize;
-        glInfo.stride += v3dSize;
+        glInfo.stride += v3dSize;       // Tangent
+        glInfo.stride += v2dSize;   // UV
     }
     
     glInfo.size = (unsigned int)vertexData.size() * glInfo.stride;
@@ -143,16 +136,16 @@ void ObjMesh::buildVBO(){
         index = vertexData[i].vIndex;
         memcpy(vertexArray, &data->vertices[index], v3dSize);
         // Center the pivot
-        v3d centerThePivot = data->vertices[index] - outlines.location;      // ??????????
-        memcpy(vertexArray, &centerThePivot, v3dSize);                       // ??????????
+        v3d centerThePivot = data->vertices[index] - outlines.location;
+        memcpy(vertexArray, &centerThePivot, v3dSize);
         vertexArray += v3dSize;
         memcpy(vertexArray, &data->normals[index], v3dSize);
         vertexArray += v3dSize;
         memcpy(vertexArray, &data->faceNormals[index], v3dSize);
         vertexArray += v3dSize;
         if(vertexData[0].uvIndex != -1){
-            memcpy(vertexArray, &data->UVs[vertexData[i].uvIndex], v3dSize);
-            vertexArray += v3dSize;
+            memcpy(vertexArray, &data->UVs[vertexData[i].uvIndex], v2dSize);
+            vertexArray += v2dSize;
             memcpy(vertexArray, &data->tangents[index], v3dSize);
             vertexArray += v3dSize;
         }
@@ -162,9 +155,7 @@ void ObjMesh::buildVBO(){
     glBindBuffer(GL_ARRAY_BUFFER, glInfo.vbo);
     glBufferData(GL_ARRAY_BUFFER, glInfo.size, vertexStart, GL_STATIC_DRAW);
     free(vertexStart);
-    
-    //    logMessage("Mesh vertices vbo:  ARRAY  %d\n", mesh->vbo);
-    
+
     unsigned int off = 0;
     glInfo.offset[0] = off;
     off += v3dSize;
@@ -182,17 +173,18 @@ void ObjMesh::buildVBO(){
         glGenBuffers(1, &tLists[i]->vbo);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, tLists[i]->vbo);
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, tLists[i]->indices.size() * sizeof(unsigned short), &tLists[i]->indices[0], GL_STATIC_DRAW);
-        //        logMessage("tList VBO: %d\n", mesh->tLists[i].vbo);
     }
 }
 
 void ObjMesh::initMaterial(){
     for(unsigned int i = 0; i < tLists.size(); ++i){
+        
         if(tLists[i]->material != nullptr){
             tLists[i]->material->loadTextures();
-            tLists[i]->material->setProgram(Materials::instance()->getProgram("defaultPerVertex"));
+            tLists[i]->material->program = Materials::instance()->getProgramFoMesh(name);
         }
     }
+    shadowMaterial = Materials::instance()->getMaterial("shadowMaterial");
 }
 
 void ObjMesh::clear(){

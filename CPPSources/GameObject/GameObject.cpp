@@ -6,16 +6,40 @@
 
 
 GameObject::GameObject(string name) : name(name){
-    logMessage("GameObject constructor");
+    logMessage("GameObject constructor\n");
 }
-
-GameObject::GameObject(sp<Transform>, sp<ObjMesh>, string n) : name(n){ }
 
 GameObject::~GameObject(){
-    logMessage("GameObject destructor");
+    logMessage("GameObject destructor\n");
 }
 
-void GameObject::addChild(sp<GameObject> child){
+
+void GameObject::update(){
+    if(!mActive) return;
+    
+    for(auto const& comp : mComponents){
+        comp.second->update();
+    }
+    
+    for(auto const& child : mChildren){
+        child->update();
+    }
+}
+
+void GameObject::draw(){
+    if(!mActive) return;
+    
+    for(auto const& comp : mComponents){
+        comp.second->draw();
+    }
+    
+    for(auto const& child : mChildren){
+        child->draw();
+    }
+}
+
+void GameObject::addChild(up<GameObject> child){
+    child->parent = this;
     mChildren.push_back(std::move(child));
 }
 
@@ -23,8 +47,16 @@ void GameObject::destroyChildren(){
     mChildren.clear();
 }
 
-void GameObject::addComponent(const ComponentEnum &name, up<IComponent> comp){
-    mComponents.insert(std::pair<ComponentEnum, up<IComponent>>(name, std::move(comp)));
+IComponent* GameObject::addComponent(up<IComponent> comp){
+    IComponent *returnThis = comp.get();
+    mComponents.insert(std::pair<ComponentEnum, up<IComponent>>(comp->mComponentType, std::move(comp)));
+    return returnThis;
+}
+
+void GameObject::removeComponent(ComponentEnum comp){
+    if(mComponents.find(comp) != mComponents.end()){
+        mComponents.erase(comp);
+    }
 }
 
 IComponent *GameObject::getComponent(const ComponentEnum &name){
@@ -34,28 +66,63 @@ IComponent *GameObject::getComponent(const ComponentEnum &name){
 
 
 v3d GameObject::getDimensions(){
-//    v3d min, max;
-//    for(auto const &mesh : mObjMeshes){
-//        if(min.x > mesh->outlines.min.x) min.x = mesh->outlines.min.x;
-//        if(min.y > mesh->outlines.min.y) min.y = mesh->outlines.min.y;
-//        if(min.z > mesh->outlines.min.z) min.z = mesh->outlines.min.z;
-//        if(max.x < mesh->outlines.max.x) max.x = mesh->outlines.max.x;
-//        if(max.y < mesh->outlines.max.y) max.y = mesh->outlines.max.y;
-//        if(max.z < mesh->outlines.max.z) max.z = mesh->outlines.max.z;
-//    }
-//    v3d::print(mObjMeshes[0]->outlines.max - mObjMeshes[0]->outlines.min);
-//    
-//    return (mObjMeshes[0]->outlines.max - mObjMeshes[0]->outlines.min);
-    return v3d(1, 1, 1);
+    v3d dimensions(0.1f, 0.1f, 0.1f);
+    MeshRendererComponent *mrc = static_cast<MeshRendererComponent *>(getComponent(ComponentEnum::MESH_RENDERER));
+    if(mrc){
+        dimensions = mrc->getDimensions();
+        return v3d(dimensions.x * mTransform.mScale.x, dimensions.y * mTransform.mScale.y, dimensions.z * mTransform.mScale.z );
+    }else{
+        AnimMeshComponent *amc = static_cast<AnimMeshComponent *>(getComponent(ComponentEnum::ANIM_MESH));
+        if(amc){
+            dimensions = amc->dimension();
+            return v3d(dimensions.x * mTransform.mScale.x, dimensions.y * mTransform.mScale.y, dimensions.z * mTransform.mScale.z );
+        }
+    }
+    return dimensions;
 }
 
 
 v3d GameObject::getPosition(){
-    if(pBody){
-        btVector3 origin = pBody->getWorldTransform().getOrigin();
-        return v3d(origin.x(), origin.y(), origin.z());
-    }else{
-        return mTransform.mPosition;
+    RigidBodyComponent *rBody = static_cast<RigidBodyComponent*>( getComponent(ComponentEnum::RIGID_BODY) );
+    if(rBody){
+        btVector3 origin = rBody->mBody->getWorldTransform().getOrigin();
+        mTransform.mPosition = v3d(origin.x(), origin.y(), origin.z());
     }
-    return v3d();
+    v3d parentPos(0, 0, 0);
+    if(parent != nullptr)
+        parentPos = parent->getPosition();
+        
+    return (mTransform.mPosition + parentPos);
+}
+
+v3d GameObject::getFront(){
+    return mTransform.mFront;
+}
+
+void GameObject::setFront(v3d fronDir){
+    mTransform.mFront = fronDir.normalize();
+}
+
+void GameObject::setPosition(v3d pos){
+    RigidBodyComponent *rBody = static_cast<RigidBodyComponent*>( getComponent(ComponentEnum::RIGID_BODY) );
+    if(rBody){
+        btTransform t = rBody->mBody->getWorldTransform();
+        t.setOrigin(btVector3(pos.x, pos.y, pos.z));
+        rBody->mBody->setCenterOfMassTransform(t);
+        rBody->updateTransformMatrix();
+    }else{
+        mTransform.mPosition = pos;
+    }
+}
+
+m4d GameObject::transformMatrix(){
+    m4d m = mTransform.transformMatrix();
+    if(parent != nullptr)
+        m =  parent->transformMatrix() * m;
+    
+    
+    RigidBodyComponent *rBody = static_cast<RigidBodyComponent*>( getComponent(ComponentEnum::RIGID_BODY) );
+    if(rBody){ return  rBody->transformMatrix() * m; }
+    
+    return m;
 }

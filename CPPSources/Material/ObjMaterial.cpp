@@ -1,18 +1,19 @@
 #include "ObjMaterial.h"
-#include "Camera.h"
-#include "Illuminator.hpp"
+#include "ShaderProgram.h"
 
 ObjMaterial::ObjMaterial(std::string name){
+    logGLError();
     this->name = name;
-    logMessage("ObjMaterial constructor!%s\n", name.c_str());
 }
 
 ObjMaterial::~ObjMaterial(){
-    logMessage("ObjMaterial destructor!%s\n", name.c_str());
 }
 
 void ObjMaterial::use(){
-    if(program) program->use();
+    if(program){
+        program->use();
+        program->setUniforms(this);
+    }
     
     if(tAmbient){
         glActiveTexture(GL_TEXTURE0);
@@ -38,15 +39,11 @@ void ObjMaterial::use(){
         glActiveTexture(GL_TEXTURE5);
         glBindTexture(tTranslucency->target, tTranslucency->ID);
     }
-    
-    setUniforms();
-}
 
-void ObjMaterial::setProgram(sp<ShaderProgram> prog){
-    if(program == nullptr) program = prog;
 }
 
 void ObjMaterial::loadTextures(){
+    logGLError();
     if(mapAmbient[0]){
         sp<Texture> txt(Materials::instance()->getTexture(mapAmbient));
         if(txt != nullptr) tAmbient = txt;
@@ -74,41 +71,5 @@ void ObjMaterial::loadTextures(){
     if(mapBump[0]){
         sp<Texture> txt(Materials::instance()->getTexture(mapBump));
         if(txt != nullptr) tBump = txt;
-    }
-}
-
-void ObjMaterial::setUniforms(){
-    m4d matrix;
-    for(unsigned short i = 0; i < program->uniformArray.size(); ++i){
-        if(!strcmp(program->uniformArray[i].name.c_str(), "uSamplerDiffuse")){
-            glUniform1i(program->uniformArray[i].location, 1);
-        }else if(!strcmp(program->uniformArray[i].name.c_str(), "uModelViewM")){
-            matrix = Camera::instance()->modelViewMatrix();
-            glUniformMatrix4fv(program->uniformArray[i].location, 1, GL_TRUE, matrix.pointer());
-        }else if(!strcmp(program->uniformArray[i].name.c_str(), "uProjectionM")){
-            matrix = Camera::instance()->projectionMatrix();
-            glUniformMatrix4fv(program->uniformArray[i].location, 1, GL_TRUE, matrix.pointer());
-        }else if(!strcmp(program->uniformArray[i].name.c_str(), "uNormalM")){
-            matrix = Camera::instance()->normalMatrix();
-            glUniformMatrix4fv(program->uniformArray[i].location, 1, GL_TRUE, matrix.pointer());
-        }else if(!strcmp(program->uniformArray[i].name.c_str(), "uDissolve")){
-            glUniform1f(program->uniformArray[i].location, dissolve);
-        }else if(!strcmp(program->uniformArray[i].name.c_str(), "uAmbient")){
-            glUniform3fv(program->uniformArray[i].location, 1, &ambient.x);
-        }else if(!strcmp(program->uniformArray[i].name.c_str(), "uDiffuse")){
-            glUniform3fv(program->uniformArray[i].location, 1, &diffuse.x);
-        }else if(!strcmp(program->uniformArray[i].name.c_str(), "uSpecular")){
-            glUniform3fv(program->uniformArray[i].location, 1, &specular.x);
-        }else if(!strcmp(program->uniformArray[i].name.c_str(), "uShininess")){
-            glUniform1f(program->uniformArray[i].location, specularExponent);
-        }else if(!strcmp(program->uniformArray[i].name.c_str(), "uLightPos")){
-            v4d lightInEyeSpace = Illuminator::instance()->getLightSource()->getPositionInEyeSpace();
-            glUniform3fv(program->uniformArray[i].location, 1, &lightInEyeSpace.x);
-        }else if(!strcmp(program->uniformArray[i].name.c_str(), "uSamplerBump")){
-            glUniform1i(program->uniformArray[i].location, 4);
-        }else if(!strcmp(program->uniformArray[i].name.c_str(), "uColor")){
-            v3d color(1, 0, 0);
-            glUniform3fv(program->uniformArray[i].location, 1, &color.x);
-        }
     }
 }

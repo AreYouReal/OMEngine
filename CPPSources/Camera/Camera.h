@@ -8,6 +8,9 @@
 #include "m4d.h"
 #include "Transform.hpp"
 
+#include "btCollisionWorld.h"
+
+class GameObject;
 class Camera : public Singleton<Camera>{
 public:
     
@@ -16,41 +19,65 @@ public:
     Camera& operator=(const Camera& rhs) = delete;
     ~Camera();
     
-// Touch related
-    void onTouchBegin   (const int x, const int y);
-    void onTouchMove    (const int x, const int y);
-    void onTouchEnd     (const int x, const int y);
-//------------
+    void draw();
+    void update();
+    
+    // Getters
+    const float width(){ return mWidth; }
+    const float height(){ return mHeight; }
 
     const m4d modelViewMatrix() const;
     const m4d& viewMatrix() const;
     const m4d& projectionMatrix() const;
     const m4d& normalMatrix() const;
     const m4d& orthoMatrix() const;
+   
+    // General drawing vars
+    int     mMainBuffer;
     
+    void    clearColor(v4d color, float time = - 1);
+    
+    // Transform related
     void setWidthAndHeight(float width, float height);
     void setPosition(v3d pos);
-    void setFront(v3d front);
+    void lookAt(v3d front,const float time = -1.0f);
     void setUp(v3d up);
-
-    void rotate(float angle, float x, float y, float z);
-    void rotate(float angle, v3d& axis);
+    void follow(GameObject *go, v3d distance);
+    void follow(v3d distance);
     
-    float sphereDistanceInFrustum(v3d location, float radius);
     
+    
+    // Moving related
+    void moveTo(const v3d position, const float time);
+    
+// Matrix related
     void pushMMatrix(m4d matrix);
     void popMMatrix();
+
+// Visibility check
+    float sphereDistanceInFrustum(v3d location, float radius);
+    
+// Object picking related
+    GameObject* collisionRayIntersection(int screenX, int screenY);
+    
+
+    
+// Shadow related
+    bool            shadowDraw = false;
+
+    bool            initShadowBuffer();
+    const m4d&      shadowMatrix() const;
+    void            refreshShadowMatrix();
+    unsigned int    shadowBuffer()     { return mShadowmapBuffer;  }
+    unsigned int    shadowmapWidth()   { return mShadowmapWidth;   }
+    unsigned int    shadowmapHeight()  { return mShadowmapHeight;  }
+    unsigned int    depthTexture()     { return mDepthTexture;     }
     
 private:
     
-// Touch related variables
-    v2d viewLocation, viewDelta{.0f, .0f};
-    v3d moveLocation{.0f, .0f, .0f}, moveDelta;
-//------------------------
-    
-    float mFovy, mWidth, mHeight, mNear, mFar;
-    
-    Transform transform;
+    Transform transform{};    // Use mFront, mUp, mPosition for view matrix
+    v3d     mLookAt;
+    float mFovy, mWidth, mHeight, mNear, mFar;  // Projection matrix vars
     
     m4d mViewMatrix;
     m4d mProjectionMatrix;
@@ -59,9 +86,46 @@ private:
     v4d frustum[6];
     int viewportMatrix[4];
     
+    v4d     mClearColor{0.35f, 0.75f, 1.0f, 1.0f};
+    v4d     mAimClearColor{0, 0, 0, 0};
+    float   mClearColorTime = 0.0f;
+    float   mCurrentClearColorTime = 0.0f;
+    
+// Matrix stack
     std::stack<m4d> mMstack;
     
+// Camera moving
+    v3d         mMoveToPosition{9999, 9999, 9999};
+    float       mMovingTime = 0.0f;
+    float       mMovingCurrentTime = 0.0f;
+    
+    v3d         mLookAtAim{9999, 9999, 9999};
+    float       mLookAtTime = 0.0f;
+    float       mLookAtCurrentTime = 0.0f;
+    
+// Camera following
+    GameObject *mGoToFollow = nullptr;
+    v3d         mFollowDistance;
+    
+// Shadow related
+    m4d             mShadowMatrix;
+    unsigned int    mDepthTexture;
+    unsigned int    mShadowTexture;
+    unsigned int    mShadowmapBuffer;
+    unsigned int    mShadowmapWidth = 128;
+    unsigned int    mShadowmapHeight = 256;
+    
+// Helpers
     void refreshViewAndNormalMatrix();
     void refreshProjMatrix();
     void buildFrustum();
+    
+    v3d farPlanePoint(int screenX, int screenY);
+    
+    
+// Moving related
+    void movingRoutine();
+    void followingRoutine();
+    void lookAtRoutine();
+    void clearColorRoutine();
 };

@@ -1,6 +1,6 @@
 #pragma once
 
-// SREngine
+// OMEngine
 #include "OMUtils.h"
 #include "ObjMaterial.h"
 #include "Obj.h"
@@ -14,13 +14,13 @@ struct ObjTriangleIndex{ int vertexIndex[3], uvIndex[3]; };
 
 // Represent the one triangle list onside ObjMesh
 struct ObjTriangleList{
-    ObjTriangleList(){logMessage("ObjTriangleList Constructor!\n");}
-    ~ObjTriangleList(){logMessage("ObjTriangleList Destructor!\n"); }
+    ObjTriangleList(){}
+    ~ObjTriangleList(){}
     std::vector<ObjTriangleIndex>   tIndices;
     std::vector<unsigned short>     indices;
     sp<ObjMaterial>                 material;  // Pointer to the material to use when draw this list.
-    bool                            useUVs;     // True if triangle list is using UVs.
-    int                             mode;       // Drawing mode (Default: GL_TRIANGLES).
+    bool                            useUVs = false;     // True if triangle list is using UVs.
+    int                             mode = GL_TRIANGLES;       // Drawing mode (Default: GL_TRIANGLES).
     unsigned int                    vbo;
 };
 
@@ -33,9 +33,6 @@ class ObjMesh{
     friend class Obj;
 public:
 // Functions
-    ObjMesh();
-    ~ObjMesh();
-    
     unsigned int    draw();
     void            build();
     void            setAttributes();
@@ -45,7 +42,9 @@ public:
 // Fields
     MeshOutlines                    outlines;
     
-private:
+    bool        shadowDraw = false;
+    
+//private:
 // Helpers
     void    addVertexData(sp<ObjTriangleList> otl, int vIndex, int uvIndex);
     void    buildVBO();
@@ -62,6 +61,7 @@ private:
     std::vector<ObjVertexData>      vertexData;     // All vertex data (vertex index & uv index)
     std::vector<sp<ObjTriangleList>>tLists;         // Triangle lists...
     sp<ObjMaterial>                 currentMaterial = nullptr;
+    sp<ObjMaterial>                 shadowMaterial   = nullptr;
     wp<Obj>                         weakData;
     MeshGLInfo                      glInfo;
 };

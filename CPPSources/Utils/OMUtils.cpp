@@ -4,6 +4,8 @@
 #endif
 
 #include "OMUtils.h"
+#include "OMGame.h"
+#include <sys/time.h>
 
 
 #ifndef __APPLE__
@@ -34,7 +36,7 @@ EGLint GetContextRenderableType ( EGLDisplay eglDisplay ){
 
 #pragma GENERAL
 
-GLboolean SRCreateWindow ( OMContext *context, const char *title, GLint width, GLint height, GLuint flags ){
+GLboolean OMCreateWindow ( OMContext *context, const char *title, GLint width, GLint height, GLuint flags ){
 #ifndef __APPLE__
     EGLConfig config;
     EGLint majorVersion;
@@ -74,7 +76,7 @@ GLboolean SRCreateWindow ( OMContext *context, const char *title, GLint width, G
             EGL_ALPHA_SIZE,     8,
             EGL_DEPTH_SIZE,     8,
             EGL_STENCIL_SIZE,   8,
-            EGL_SAMPLE_BUFFERS, ( flags & ES_WINDOW_MULTISAMPLE ) ? 1 : 0,
+            EGL_SAMPLE_BUFFERS, ( flags & OM_WINDOW_MULTISAMPLE ) ? 1 : 0,
             // if EGL_KHR_create_context extension is supported, then we will use
             // EGL_OPENGL_ES3_BIT_KHR instead of EGL_OPENGL_ES2_BIT in the attribute list
             EGL_RENDERABLE_TYPE, GetContextRenderableType ( context->eglDisplay ),
@@ -127,22 +129,6 @@ GLboolean SRCreateWindow ( OMContext *context, const char *title, GLint width, G
     return GL_TRUE;
 }
 
-void SRRegisterDrawFunc ( OMContext *context, DrawFunc drawFunc ){
-    context->drawFunc = drawFunc;
-}
-
-void SRRegisterShutdownFunc ( OMContext *context, ShutDownFunc shutdownFunc ){
-    context->shutdownFunc = shutdownFunc;
-}
-
-void SRRegisterUpdateFunc ( OMContext *context, UpdateFunc updateFunc ){
-    context->updateFunc = updateFunc;
-}
-
-void SRRegisterTouchFunc ( OMContext *context, TouchFunc touchFunc ){
-    context->touchFunc = touchFunc;
-}
-
 
 #pragma mark LOGGING
 void logMessage(const char *formatString, ...){
@@ -162,9 +148,17 @@ void printGLString(string name, GLenum s){
     logMessage("GL %s = %s\n", name.c_str(), (const char *)glGetString(s));
 }
 
+void logGLError(){
+    GLenum err = glGetError();
+    if(err != GL_NO_ERROR){
+        logMessage("\n-------------GLERROR [ %x ]-------------\n", err);
+    }
+    
+}
+
 #pragma mark FILE RELATED
-srFile  *fileOpen       ( void *ioContext, const char *fileName ){
-    srFile *pFile = NULL;
+omFile  *fileOpen       ( void *ioContext, const char *fileName ){
+    omFile *pFile = NULL;
 //    logMessage("File open start");
     
 #ifdef ANDROID
@@ -184,7 +178,7 @@ srFile  *fileOpen       ( void *ioContext, const char *fileName ){
     return pFile;
 }
 
-long getFileSize(srFile *pFile){
+long getFileSize(omFile *pFile){
 #ifdef ANDROID
     long fSize = AAsset_getLength(pFile);
 #else
@@ -195,7 +189,7 @@ long getFileSize(srFile *pFile){
     return fSize;
 }
 
-void    fileClose       ( srFile *pFile ){
+void    fileClose       ( omFile *pFile ){
     if ( pFile != NULL )
     {
 #ifdef ANDROID
@@ -206,7 +200,7 @@ void    fileClose       ( srFile *pFile ){
 #endif
     }
 }
-long     fileRead        ( srFile *pFile, long bytesToRead, void *buffer ){
+long     fileRead        ( omFile *pFile, long bytesToRead, void *buffer ){
     long bytesRead = 0;
     
     if ( pFile == NULL ) return bytesRead;
@@ -251,10 +245,10 @@ std::vector<unsigned char> loadPNG ( void *ioContext, const char *fileName, unsi
 }
 
 #pragma mark READ SHADER
-std::unique_ptr<FileContent> readTextFile( void *ioContext, std::string fileName){
-    srFile      *fp;
+std::unique_ptr<FileContent> readTextFile(std::string fileName){
+    omFile      *fp;
     // Open the file for reading
-    fp = fileOpen ( ioContext, fileName.c_str() );
+    fp = fileOpen ( OMGame::getAppContext(), fileName.c_str() );
     
     if ( fp == NULL ){
         // Log error as 'error in opening the input file from apk'
@@ -274,9 +268,9 @@ std::unique_ptr<FileContent> readTextFile( void *ioContext, std::string fileName
 }
 
 #pragma mark READ OBJ FILE
-std::unique_ptr<FileContent> readBytesFromFile(void *ioContext, const char *fileName){
-    srFile *fp;
-    fp = fileOpen(ioContext, fileName);
+std::unique_ptr<FileContent> readBytesFromFile(const char *fileName){
+    omFile *fp;
+    fp = fileOpen(OMGame::getAppContext(), fileName);
     if( fp == NULL){
         logMessage("readOBJFromFile FAILED to load : { %s }\n", fileName);
         return std::unique_ptr<FileContent>();
@@ -292,10 +286,10 @@ std::unique_ptr<FileContent> readBytesFromFile(void *ioContext, const char *file
     return rValue;
 }
 
-std::vector<unsigned char> loadRawPNGData(void *ioContext, const char *filename, unsigned int &width, unsigned int &height){
+std::vector<unsigned char> loadRawPNGData(const char *filename, unsigned int &width, unsigned int &height){
 
-    srFile *fp;
-    fp = fileOpen(ioContext, filename);
+    omFile *fp;
+    fp = fileOpen(OMGame::getAppContext(), filename);
     if( fp == NULL){
         logMessage("loadRawPNGData FAILED to load file: { %s }\n", filename);
         return std::vector<unsigned char>();
@@ -329,4 +323,18 @@ std::vector<unsigned char> loadRawPNGData(void *ioContext, const char *filename,
 //
 //    return rawData;
     return out;
+}
+
+
+unsigned int getMicroTime( void ){
+    struct timeval tv;
+    gettimeofday( &tv, NULL );
+    return ( tv.tv_sec * 1000000 ) + tv.tv_usec;
+}
+
+
+unsigned int getMilliTime( void ){
+    struct timeval tv;
+    gettimeofday( &tv, NULL );
+    return tv.tv_usec / 1000 + tv.tv_sec * 1000;
 }
