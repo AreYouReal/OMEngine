@@ -157,14 +157,15 @@ void ShaderProgram::initMaterialUniformLocations(){
     matLoc.shininess   = getUniformLocation("uMaterial.shininess"  );
     texLoc.diffuse     = getUniformLocation("uSamplerDiffuse"      );
     texLoc.bump        = getUniformLocation("uSamplerBump"         );
-    texLoc.shadow      = getUniformLocation("uSampleShadow"        );
+    texLoc.shadow      = getUniformLocation("uSamplerShadow"       );
 }
 
 
 void ShaderProgram::setTransformUniforms(){
-    glUniformMatrix4fv(transformLoc.modelViewMat,  1, GL_TRUE, Camera::instance()->modelViewMatrix().pointer() );
-    glUniformMatrix4fv(transformLoc.projectionMat, 1, GL_TRUE, Camera::instance()->projectionMatrix().pointer());
-    glUniformMatrix4fv(transformLoc.normalMat,     1, GL_TRUE, Camera::instance()->normalMatrix().pointer()    );
+    glUniformMatrix4fv(transformLoc.modelViewMat,  1, GL_TRUE, Camera::instance()->modelViewMatrix().pointer()  );
+    glUniformMatrix4fv(transformLoc.projectionMat, 1, GL_TRUE, Camera::instance()->projectionMatrix().pointer() );
+    glUniformMatrix4fv(transformLoc.normalMat,     1, GL_TRUE, Camera::instance()->normalMatrix().pointer()     );
+    glUniformMatrix4fv(transformLoc.shadowMat,     1, GL_TRUE, Camera::instance()->shadowMatrix().pointer()     );
 }
 
 void ShaderProgram::setMaterialUniforms(const ObjMaterial *mat){
@@ -180,4 +181,7 @@ void ShaderProgram::setMaterialUniforms(const ObjMaterial *mat){
     
     if(texLoc.bump > 0)
         glUniform1i(texLoc.bump, 4);
+    
+    if(texLoc.shadow > 0)
+        glUniform1i(texLoc.shadow, 0 );
 }

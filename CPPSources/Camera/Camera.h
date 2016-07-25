@@ -72,7 +72,6 @@ public:
     unsigned int    shadowmapWidth()   { return mShadowmapWidth;   }
     unsigned int    shadowmapHeight()  { return mShadowmapHeight;  }
     unsigned int    depthTexture()     { return mDepthTexture;     }
-    unsigned int    shadowTexture()    { return mShadowTexture;    }
     
 private:
     

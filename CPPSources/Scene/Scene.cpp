@@ -114,7 +114,11 @@ void Scene::draw(){
     logGLError();
 
     Camera::instance()->draw();
-    for(const auto& go : mObjects){ go->draw(); }
+    for(const auto& go : mObjects){
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, Camera::instance()->depthTexture());
+        go->draw();
+    }
     
     logGLError();
 }
@@ -122,10 +126,10 @@ void Scene::draw(){
 void Scene::drawDepth(){
     glGetIntegerv(GL_FRAMEBUFFER_BINDING, &Camera::instance()->mMainBuffer);
     glBindFramebuffer( GL_FRAMEBUFFER, Camera::instance()->shadowBuffer());
-//            glBindFramebuffer(GL_FRAMEBUFFER, Camera::instance()->mMainBuffer);
+            glBindFramebuffer(GL_FRAMEBUFFER, Camera::instance()->mMainBuffer);
     
     glViewport(0, 0, Camera::instance()->shadowmapWidth(), Camera::instance()->shadowmapHeight());
-    glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
+    glClear(GL_DEPTH_BUFFER_BIT);
     
     glColorMask ( GL_FALSE, GL_FALSE, GL_FALSE, GL_FALSE );
     glEnable ( GL_POLYGON_OFFSET_FILL );

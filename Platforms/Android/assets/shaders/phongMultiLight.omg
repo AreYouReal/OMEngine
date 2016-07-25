@@ -29,6 +29,8 @@ out vec3 lightDirTS[MAX_LIGHTS];
 out vec3 spotDirs[MAX_LIGHTS];
 out vec3 normal;
 
+out vec4 shadowCoord;
+
 void calculateOutVars(lowp vec3 position){
     for(int i = 0; i < MAX_LIGHTS; ++i){
         switch (uLightVS[i].type) {
@@ -57,6 +59,8 @@ void main(){
     
     texCoord = aTexCoord;
     normal = normalize(vec3(uNormalM * vec4(aNormal, 1.0)));
+    
+    shadowCoord = uShadowM * aPosition;
 }
 
 
@@ -97,6 +101,7 @@ in vec3 spotDirs[MAX_LIGHTS];
 in vec3 position;
 in vec2 texCoord;
 in vec3 normal;
+in vec4 shadowCoord;
 
 out vec4 fragColor;
 
@@ -168,7 +173,8 @@ void main(){
                 break;
         }
     }
+    lowp float shadow = textureProj( uSamplerShadow, shadowCoord );
     
-    fragColor = finalColor;
+    fragColor = finalColor * shadow;
 }
 
